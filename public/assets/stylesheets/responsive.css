@@ -1,0 +1,727 @@
+/* Media Queries
+-------------------------------------------------------------- */
+@media only screen and (max-width: 1366px) {
+	.header .header-wrap .logo {
+		margin: 35px 70px 0 30px;
+	}
+
+	.header.upscrolled .header-wrap .logo {
+		margin: 35px 155px 0 30px;
+	}
+
+	.row-map .widget-sv {
+	    left: 80px;
+	}
+	
+}
+
+/* Smaller than standard 1200 */
+@media only screen and (max-width: 1199px) {
+	.flat-information {
+		display: none;
+	}
+}
+
+@media only screen and (max-width: 1020px) {
+	body {
+		padding: 0;
+	}
+}
+
+/* Smaller than standard 992 */
+@media only screen and (max-width: 991px) {
+	.btn-menu {
+		display: block;
+	}
+
+	.header .header-wrap .nav-wrap {
+	    float: right;
+	}
+
+	.page-title.parallax3 .flat-testimonial .testimonial .member-v1 .thumb,
+	.bottom .container-bottom .copyright,
+	.text-right {
+		float: none;
+	}
+
+	.mainnav,
+	.padding-45px .text-left,
+	.flat-causes .text-left,
+	.flat-information {
+		display: none;
+
+	}
+
+	.flat-row.flat-featured-causes,
+	.flat-row.flat-urgent-causes {
+	    margin-top: 0px;
+	}
+
+	.flat-causes,
+	.padding-45px {
+		margin-top: 40px;
+	    padding: 0;
+	}
+
+	.flat-row.flat-later-new .later-new,
+	.featured-causes,
+	.causes {
+		border: none;
+	}
+
+	.flat-row {
+		padding: 40px 0;
+		margin-bottom: 30px;
+	}
+
+	.flat-icon .icon {
+		margin-bottom: 20px;
+	}
+
+	.flat-divider.d30px,
+	.flat-divider.d45px,
+	.flat-divider.d60px,
+	.flat-divider.d50px {
+		height: 0;
+	}
+	
+	.page-title.parallax6 .page-title-heading h2,
+	.page-title.parallax5 .page-title-heading h2,
+	.page-title.parallax1 .page-title-heading h2 {
+	    font-size: 40px;
+	    line-height: 40px;
+        padding: 100px 0 40px;
+	}
+
+	.page-title.parallax5 .page-title-heading h2 {
+		padding: 0 0 40px;
+	}
+
+	.parallax.parallax9,
+	.parallax.parallax6,
+	.parallax.parallax5 {
+		padding: 100px 0;
+	}
+
+	.page-title.parallax9 .page-title-heading h2,
+	.page-title.parallax5 .page-title-heading h2 {
+	    font-size: 40px;
+	    line-height: 40px;
+	}
+
+	.title-section h4 {
+		font-size: 14px;
+	}
+
+	.page-title.parallax1 .parallax-button button.flat-button {
+	    padding: 18px 40px;
+	}
+
+	.page-title.parallax1 .parallax-button {
+	    padding-bottom: 100px;
+	}
+
+	.flat-row.no-padding {
+		padding: 0 0 40px;
+	}
+
+	.flat-events,
+	.bottom .container-bottom ul li {
+		margin-left: 0;
+	}
+
+	.flat-events .entry.entry-style1 {
+		padding-right: 0;
+	}
+
+	.flat-events .entry .events-post {
+		float: none;
+		margin-left: 0;
+		width: 100%;
+	}
+
+	.flat-events .entry .content-post {
+		padding: 0;
+	}
+
+	.flat-events .entry.entry-style1 .content-post {
+	    padding: 10px 0 0 1px;
+	    text-align: left; 
+	}
+
+	.flat-events .entry.entry-style1 .content-post .more {
+		float: left;
+	}
+
+	.flat-row .flat-support {
+	    margin: 0;
+	}
+
+	.flat-row.flat-later-new.padding-bottom .about-button {
+	    margin-top: 0;
+	}
+
+	.flat-row.flat-later-new.padding-bottom {
+	    padding: 40px 0;
+	}
+
+	.flat-row.no-padding-bottom,
+	footer {
+		padding: 40px 0 0;
+	    margin-bottom: 0;
+	}
+
+	.flat-row.flat-later-new .later-new {
+		border: none;
+	}
+
+	.flat-support .support-icon {
+	    margin-bottom: 20px;
+	}
+
+	.flat-teaser-wrapper .flat-teaser {
+	    padding: 50px 0 0 0;
+	}
+
+	.teaser-icon p {
+		overflow: hidden;
+	}
+	
+	.teaser-icon.style1 {
+	    margin-bottom: 0;
+	}
+
+	.flat-divider.d74px {
+		height: 30px;
+	}
+
+	.main-content {
+		padding: 40px 0;
+	}
+
+	.page-title.parallax3 .flat-testimonial ul.flex-direction-nav li {
+		display: none;
+	}
+
+	.page-title.parallax3 .flat-testimonial .testimonial .member-v1 .text {
+	    padding-top: 25px;
+	}
+
+	.flat-row.flat-later-new {
+	    padding: 40px 0;
+	}
+
+	.later-new .post {
+	    width: 48%;
+	    margin: 0 10px 10px 0;
+	}
+
+	.later-new .post.style1 {
+	    margin: 0 10px 0 0;
+	}
+
+	.flat-testimonial .text blockquote .blockqoute-text {
+		margin-bottom: 0;
+	}
+
+	footer.padding-top120px {
+	    padding: 125px 0 25px;
+	}
+
+	.cs-module-4 .cs-post {
+		width: 87%;
+	}
+
+	.bottom .container-bottom {
+	    padding: 25px 20px 30px;
+	}
+
+	.footer .widget {
+		margin-bottom: 30px;
+	}
+
+	.footer .widget .text p,
+	.footer .widget .widget-title {
+		margin-bottom: 15px;
+	}
+
+	.flat-events .entry.entry-style1 .meta-post ul {
+		float: left;
+	}
+
+	.flat-icon-left .iconbox {
+	    margin-bottom: 20px;
+	}
+
+	.recent-causes.style-v1 .wrap-post .post-recent-causes .title-post {
+		padding: 0 10px;
+	}
+
+	.blog-pagination {
+		margin-bottom: 50px;
+	}
+
+	.widget.widget-instagram .instagram-thumb .thumb {
+		width: 100px;
+	}
+
+	.page-title.parallax7 .page-title-heading h2,
+	.page-title.parallax8 .page-title-heading h2,
+	.page-title.parallax4 .page-title-heading h2 {
+		padding: 100px 0;
+	}
+
+	.page-title.parallax4 .page-title-heading.style1 h2 {
+		padding: 100px 0 0;
+	}
+
+	.breadcrumbs {
+	    padding: 125px 0;
+	}
+
+	.breadcrumbs.style1 {
+		float: left;
+	    padding: 0 0 100px;
+	}
+
+	.bottom .container-bottom,
+	.bottom .container-bottom .text-right {
+		text-align: center;
+	}
+
+	.bottom .container-bottom ul li {
+		margin-right: 15px;
+	}
+
+	.flat-about-charry .img-single img {
+		position: relative;
+	}
+
+	.flat-counter {
+		float: none;
+	}
+
+	.icon style1,
+	.flat-event {
+		margin-bottom: 30px;
+	}
+
+	.flat-counter {
+		margin-bottom: 60px;
+	}
+
+	.flat-portfolio.v2 .item {
+		width: 50%;
+	}
+}
+
+/* Tablet Landscape
+ @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
+
+}
+
+/* Tablet Portrait Size */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+	
+}
+
+/* All Mobile Sizes */
+@media only screen and (max-width: 767px) {
+	.causes .causes-img {
+		float: none;
+	}
+
+	.causes .causes-post {
+	    padding: 25px 15px 40px 15px;
+	}
+
+	.about-charry img {
+	    margin-bottom: 20px;
+	}
+
+	.title-section {
+	    margin-bottom: 70px;
+	}
+
+	.flat-counter.counter-donation:before {
+		left: 50%;
+		margin-left: 10px;
+	}
+
+	.recent-causes .post {
+	    width: 50%;
+	    margin: 15px 0;
+	}
+
+	.flat-recent-causes .about-button {
+	    margin-top: 20px;
+	}
+
+	.flat-counter:last-child {
+	    padding-right: 48px;
+	}
+
+	.tp-banner-container .tp-bullets {
+		display: none;
+	}
+
+	.recent-causes .post .wrap-post .donation-amount .donation-v1 {
+		font-size: 16px;
+	}
+
+	.recent-causes .post .wrap-post .donation-amount .donation-v2 {
+		font-size: 12px;
+	}
+
+	.flat-portfolio .item:hover .title-post {
+		bottom: 0;
+	}
+
+	.flat-portfolio .item .overlay {
+	    position: absolute;
+	    left: 0;
+	    top: 0;
+	    width: 100%;
+	    height: 100%;
+	}
+
+	.partners-wrapper .partners .partner {
+	    padding: 0 18px;
+	}
+
+	.partners-wrapper .partners .partner.top {
+		padding-bottom: 18px;
+	}
+
+	.partners-wrapper .partners .partner.bottom {
+		padding-top: 18px;
+	}
+
+	.mag-top-120px,
+	.flat-recent-causes.recent-mag-top .recent-causes {
+		margin-top: 0;
+	}
+
+	.flat-recent-causes .recent-causes {
+		margin: 0;
+	}
+
+	.single-image-services img {
+		margin-bottom: 40px;
+	}
+
+	.flat-countdown .countdown {
+		display: block;
+	}
+
+	.flat-countdown .square {
+		width: 100%;
+	}
+
+	.flat-countdown .days, 
+	.flat-countdown .hours, 
+	.flat-countdown .mins, 
+	.flat-countdown .secs {
+		margin-left: 0;
+	}
+
+}
+
+/* Mobile Landscape Size */
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+	
+}
+
+/* Mobile Portrait Size */
+@media only screen and (max-width: 479px) {
+	.header .header-wrap .logo {
+	    line-height: 60px;
+	}
+
+	.header .header-wrap .logo {
+		margin: 0 15px;
+	}
+
+	.btn-menu {
+	    line-height: 27px;
+	    margin: 20px 20px;
+	    width: 23px;
+	}
+
+	.partners-wrapper .partners .partner {
+	    width: 100%;
+	}
+
+	.title-section h2 {
+	    font-size: 28px;
+	    line-height: 25px;
+	}
+
+	.causes .causes-post .donation-amount .donation-v1 {
+		font-size: 23px;
+	}
+
+	.causes .causes-post .donation-amount .donation-v2 {
+		font-size: 20px;
+	}
+
+	.causes .causes-post .causes-button .flat-button.style1,
+	.causes .causes-post .causes-button p {
+		float: none;
+		margin-right: 0;
+	}
+
+	.causes-post .causes-button {
+		text-align: center;
+	}
+
+	.causes .causes-post .causes-button .flat-button.style2 {
+	    margin-top: 10px;
+	}
+
+	.title-section {
+		margin-bottom: 50px;
+	}
+
+	.about-charry img,
+	.contact-widget {
+		margin-bottom: 20px;
+	}
+
+	.about-charry .about-charry-post {
+		padding-left: 0;
+	}
+
+	.recent-causes .post .wrap-post .donation-amount .donation-v2 {
+	    font-size: 14px;
+	}
+
+	.recent-causes .post .wrap-post .donation-amount .donation-v1 {
+	    font-size: 20px;
+	}
+
+	.flat-icon-left .iconbox {
+		margin-bottom: 20px;
+	}
+
+	.flat-counter,
+	.flat-counter:last-child {
+		padding-right: 0;
+		float: none;
+		margin-bottom: 40px;
+	}
+
+	.flat-member .flat-member-carousel .owl-controls {
+	    margin-top: 35px;
+	}
+
+	.flat-testimonial .flex-direction-nav {
+		display: none;
+	}
+
+	.flat-testimonial .text blockquote .blockqoute-text {
+		margin-bottom: 0;
+	}
+
+	.flat-testimonial ul li .title-testimonial {
+		margin-bottom: 20px;
+	}
+
+	.flat-testimonial .member-v1 img {
+		margin-bottom: 20px;
+	}
+
+	.flat-row.flat-later-new {
+		padding: 40px 0 0;
+	}
+
+	.later-new .post {
+		width: 100%;
+		margin-bottom: 20px;
+	}
+
+	.later-new .post.style1 {
+		margin-bottom: 0;
+	}
+
+	footer.padding-top120px {
+	    padding: 170px 0 25px;
+	}
+
+	.bottom .container-bottom .text-right,
+	.bottom .container-bottom {
+		text-align: center;
+	}
+
+	.bottom .container-bottom ul li {
+	    margin-left: 10px;
+	}
+
+	.page-title.parallax2 {
+	    padding: 100px 0 60px;
+	}
+
+	.partners-wrapper .partners {
+		overflow: hidden; 
+		text-align: center;
+	}
+
+	.partners-wrapper .partners .partner {
+		float: none;
+	}
+
+	.partners-wrapper .partners .partner.top {
+	    border-top: 1px solid #e9e9e9;
+	}
+
+	.partners-wrapper .partners .partner {
+	    width: 100%;
+	    text-align: center;
+	    padding: 45px;
+	    border-left: 1px solid #e9e9e9;
+	}
+
+	.partners-wrapper .partners .partner.last {
+	    border-right: 1px solid #e9e9e9;
+	}
+
+	.partners-wrapper .partners .partner.bottom {
+	    border-bottom: 1px solid #e9e9e9;
+	}
+
+	.recent-causes .post {
+		width: 100%;
+	    margin: 15px 0;
+	}
+
+	.featured-causes .causes-post {
+	    padding: 0px 20px;
+	}
+
+	.featured-causes .causes-post .title-post {
+	    margin-bottom: 90px;
+	}
+
+	.post-wrap .post .content-post {
+	    padding: 40px 10px 30px 10px;
+	}
+
+	.blog-post .post-wrap {
+		margin-bottom: 50px;
+	}
+
+	.blog-post .sidebar {
+		padding-left: 0;
+	}
+
+	.widget .widget-title {
+		margin-bottom: 10px;
+	}
+
+	.sidebar .widget {
+		margin-bottom: 30px;
+	}
+
+	.content-post .entry-meta.style1 {
+		text-align: center;
+		float: none;
+	}
+
+	.content-post .flat-socials {
+		float: none;
+	}
+
+	.comment-post ul li {
+		margin-bottom: 20px;
+	}
+ 
+	article .comment.style1 {
+		margin-left: 0;
+	}
+
+	.comment-post .comment .comment-avatar {
+		float: none;
+	}
+
+	.comment-post .comment .comment-avatar > img {
+	    margin: 0 25px 25px 0;
+	}
+
+	.flat-contact-form .wrap-type-input,
+	.flat-contact-form .textarea-wrap {
+		width: 100%;
+		padding: 0;
+	}
+
+	.blog-pagination .flat-pagination li a {
+	    padding: 3px 10px;
+	}
+
+	.page-title.parallax7 .page-title-heading h2,
+	.page-title.parallax8 .page-title-heading h2,
+	.page-title.parallax4 .page-title-heading h2 {
+		padding: 100px 0 0;
+		font-size: 42px;
+	}
+
+	.breadcrumbs {
+		float: left;
+	    padding: 0 0 100px;
+	}
+
+	.flat-countdown {
+		padding: 20px;
+	}
+
+	.flat-portfolio.v2 .item {
+		width: 100%;
+	}
+
+	#mainnav-mobi ul > li > a {
+		padding: 0 15px;
+	}
+
+	#mainnav-mobi ul.submenu > li > a {
+		padding: 0 30px;
+	}
+
+	body.home-boxed,
+	.recent-causes .post {
+		padding: 0;
+	}
+
+	.page-title.parallax2 .flat-counter .numb-count,
+	.flat-counter.counter-donation:before {
+		font-size: 40px;
+	}
+
+	.flat-testimonial.style1 .text blockquote .blockqoute-text {
+	    padding: 170px 15px 40px 15px;
+	}
+
+}
+
+@media (max-width: 320px) {	
+	
+}
+
+/* Retina Devices */
+	@media 
+	only screen and (-webkit-min-device-pixel-ratio: 2),
+	only screen and (   min--moz-device-pixel-ratio: 2),
+	only screen and (   -moz-min-device-pixel-ratio: 2),
+	only screen and (     -o-min-device-pixel-ratio: 2/1),
+	only screen and (        min-device-pixel-ratio: 2),
+	only screen and (                min-resolution: 192dpi),
+	only screen and (                min-resolution: 2dppx) {
+	
+	.flat-accordion .toggle-title.active:after {
+		background: url("../images/icon/sub@2x.png");
+		background-size: 20px 4px;
+	}
+
+	.flat-accordion .toggle-title:after {
+		background: url("../images/icon/add@2x.png");
+		background-size: 20px 20px;
+	}
+}

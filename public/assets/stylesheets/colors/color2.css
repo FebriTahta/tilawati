@@ -1,0 +1,120 @@
+/**
+  * Color
+  * Border Color
+  * Background Color  
+*/
+
+/* Color
+-------------------------------------------------------------- */
+a:hover, 
+a:focus,
+#mainnav .menu .has-sub:hover:before, 
+#mainnav > ul > li > a:hover, 
+#mainnav > ul > li.home > a,
+#mainnav .menu .has-sub:hover:before, 
+#mainnav > ul > li > a:hover, 
+#mainnav > ul > li.home > a,
+.tp-caption.title-slide span,
+.tp-leftarrow.square:hover:before, 
+.tp-rightarrow.square:hover:before,
+.icon-square,
+.icon-post .more a:hover,
+.flat-icon-left .icon i,
+.widget.widget_mc4wp input[type="submit"]:hover,
+.bottom .container-bottom ul li a:hover,
+.featured-causes .causes-post .title-education p,
+.featured-causes .causes-post .donation-amount .donation-v1 p,
+.title-section h4,
+.recent-causes .post .donation-amount .donation-v1 p,
+.flat-events .entry .content-post p.date,
+.entry .meta-post ul li::before,
+.flat-events .entry .content-post .entry-post .more a:hover,
+.flat-testimonial ul li .title-testimonial p,
+.later-new .post .post-later-new .title-later-new p,
+.page-title.parallax6 .page-title-heading h2 span,
+.flat-event .event-content .event-title .title a:hover,
+.flat-member .flat-member-carousel .position,
+.flat-event-style1 .event-title .title-1,
+.flat-event-style1 .flat-time,
+.support-icon i,
+.page-title.parallax9 .page-title-heading h2 span,
+.teaser-icon .icon,
+.blog-pagination .flat-pagination li.active a, 
+.blog-pagination .flat-pagination li a:hover,
+.widget .recent-posts li .text a:hover,
+.post-wrap .post .content-post .title-education p,
+.content-post .entry-meta span,
+.content-post .more a,
+.widget-categories ul li a:hover,
+.widget-archives ul li a:hover,
+.widget-text .more.style1 a:hover,
+.content-post .entry-meta span.tag a:hover,
+.comment-post .comment-detail .comment-author a:hover,
+.comment-post .comment-detail .comment-reply:hover,
+.widget.widget-search #searchform #searchsubmit:hover,
+.breadcrumbs ul li a:hover,
+.footer ul.flat-socials li a:hover,
+.footer .contact-info ul li a:hover,
+.flat-testimonial .text blockquote .blockqoute-text::before,
+.content-post .entry-meta span a:hover,
+.causes .causes-post .title-education p,
+.causes .causes-post .donation-amount .donation-v1 p {
+	color: #32bfc0;
+}
+
+/* Border Color
+-------------------------------------------------------------- */
+.icon-square,
+.tp-bullets.simplebullets .bullet:hover, 
+.tp-bullets.simplebullets .bullet.selected,
+.owl-theme .owl-dots .owl-dot.active span:before,
+.widget.widget_mc4wp input[type="email"]:focus,
+.teaser-icon .icon,
+.blog-pagination .flat-pagination li.active a, 
+.blog-pagination .flat-pagination li a:hover,
+textarea:focus, input[type="text"]:focus, 
+input[type="password"]:focus, 
+input[type="datetime"]:focus, 
+input[type="datetime-local"]:focus, 
+input[type="date"]:focus, 
+input[type="month"]:focus, 
+input[type="time"]:focus, 
+input[type="week"]:focus, 
+input[type="number"]:focus, 
+input[type="email"]:focus, 
+input[type="url"]:focus, 
+input[type="search"]:focus, 
+input[type="tel"]:focus, 
+input[type="color"]:focus {
+	border-color: #32bfc0 ;
+}
+
+/* Background Color
+-------------------------------------------------------------- */
+#mainnav > ul > li:after,
+.tp-caption.flat-button,
+button, input[type="button"], 
+input[type="reset"], 
+input[type="submit"],
+.causes:before,
+.title-section:before,
+.icon:hover .icon-square:after, 
+.icon:focus .icon-square:after,
+.tp-bullets.simplebullets .bullet:hover, 
+.tp-bullets.simplebullets .bullet.selected,
+.flat-progress .progress-animate,
+.page-title.parallax2 .flat-counter .numb-count:before,
+.owl-theme .owl-dots .owl-dot.active span, 
+.owl-theme .owl-dots .owl-dot:hover span,
+.flat-portfolio .item .overlay,
+.flat-countdown .square,
+.icon.style1 .icon-square,
+.flat-about-charry .img-single::after,
+.flat-event .event-content .flat-time,
+.flat-member .flat-member-carousel .position::before,
+.teaser-icon .icon::after,
+.btn-menu:before, 
+.btn-menu:after, 
+.btn-menu span {
+	background-color: #32bfc0;
+}
