@@ -95,7 +95,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang']], function () {
     
     //sub controller ajax
     //fetch propinsi dan kota
-    Route::get('/fetch/{id}',[SubController::class, 'fetch']);
+    Route::get('/fetch/{id}',[SubController::class, 'fetch'])->name('fetch');
     //fetch program dan pelatihan untuk print
     Route::get('/fetchpp/{id}',[SubController::class, 'fetchpp']);
     //hapus data
