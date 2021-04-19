@@ -24,7 +24,8 @@ use App\Http\Controllers\ImportController;
 */
 
 Route::get('/', function () {
-    return view('auth.login');
+    // return view('auth.login');
+    return view('AdmPelatihan.Login.index');
     // return view('landing.index');
     // return redirect('/pelatihan-cabang');
 });
