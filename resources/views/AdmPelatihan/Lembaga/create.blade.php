@@ -42,12 +42,16 @@
                             <div class="form">
                                 <form action="{{ route('lembaga.store') }}" method="POST">@csrf
                                     <div class="form-group">
+                                        @if (auth()->user()->role=="cabang")
+                                            <input type="hidden" name="cabang_id" value="{{ auth()->user()->cabang->id }}" required>
+                                        @else
                                         <select name="cabang_id" id="" class="form-control" required>
                                             <option value="">= Pilih Cabang =</option>
                                             @foreach ($dt_cabang as $item)
                                                 <option value="{{$item->id}}">{{$item->name}}</option>
                                             @endforeach
                                         </select>
+                                        @endif
                                     </div>
                                     <div class="form-group">
                                         <input type="text" name="name" class="form-control" placeholder="Nama Lembaga..." required>

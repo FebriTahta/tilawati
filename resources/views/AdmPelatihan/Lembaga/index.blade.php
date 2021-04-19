@@ -67,29 +67,55 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                   @foreach ($dt_lembaga as $item)
-                                       <tr>
-                                           <td>{{ $item->name }}</td>
-                                           <td>{{ $item->kepala }}</td>
-                                           <td>{{ $item->jenis->name }}</td>
-                                           <td>{{ $item->alamat }}</td>
-                                           <td>{{ $item->kota->name }}</td>
-                                           <td>{{ $item->propinsi->name }}</td>
-                                           <td>{{ $item->totguru }}</td>
-                                           <td>{{ $item->totsantri }}</td>
-                                           <td>
-                                               @if ($item->keanggotaan==1)
-                                                   <p class="text-primary"> Aktif</p>
-                                               @else
-                                                   <p class="text-danger">Non Aktif</p>
-                                               @endif
-                                           </td>
-                                           <td>{{ $item->tglmasuk }}</td>
-                                           <td class="text-center">
-                                               <button class="btn btn-danger btn-sm"> <i class="fa fa-trash"></i></button>
-                                           </td>
-                                       </tr>
-                                   @endforeach
+                                    @if (auth()->user()->role=='cabang')
+                                        @foreach (auth()->user()->cabang->lembaga as $item)
+                                            <td>{{ $item->name }}</td>
+                                            <td>{{ $item->kepala }}</td>
+                                            <td>{{ $item->jenis->name }}</td>
+                                            <td>{{ $item->alamat }}</td>
+                                            <td>{{ $item->kota->name }}</td>
+                                            <td>{{ $item->propinsi->name }}</td>
+                                            <td>{{ $item->totguru }}</td>
+                                            <td>{{ $item->totsantri }}</td>
+                                            <td>
+                                                @if ($item->keanggotaan==1)
+                                                    <p class="text-primary"> Aktif</p>
+                                                @else
+                                                    <p class="text-danger">Non Aktif</p>
+                                                @endif
+                                            </td>
+                                            <td>{{ $item->tglmasuk }}</td>
+                                            <td class="text-center">
+                                                <button class="btn btn-sm text-white" style="background-color: rgb(151, 151, 255)"> <i class="fa fa-pencil"></i></button>
+                                                <button class="btn btn-danger btn-sm"> <i class="fa fa-trash"></i></button>
+                                            </td>
+                                        @endforeach
+                                    @else
+                                        @foreach ($dt_lembaga as $item)
+                                        <tr>
+                                            <td>{{ $item->name }}</td>
+                                            <td>{{ $item->kepala }}</td>
+                                            <td>{{ $item->jenis->name }}</td>
+                                            <td>{{ $item->alamat }}</td>
+                                            <td>{{ $item->kota->name }}</td>
+                                            <td>{{ $item->propinsi->name }}</td>
+                                            <td>{{ $item->totguru }}</td>
+                                            <td>{{ $item->totsantri }}</td>
+                                            <td>
+                                                @if ($item->keanggotaan==1)
+                                                    <p class="text-primary"> Aktif</p>
+                                                @else
+                                                    <p class="text-danger">Non Aktif</p>
+                                                @endif
+                                            </td>
+                                            <td>{{ $item->tglmasuk }}</td>
+                                            <td class="text-center">
+                                                <button class="btn btn-sm text-white" style="background-color: rgb(151, 151, 255)"> <i class="fa fa-pencil"></i></button>
+                                                <button class="btn btn-danger btn-sm"> <i class="fa fa-trash"></i></button>
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                    @endif
                                 </tbody>
                             </table>
                         </div>

@@ -99,7 +99,7 @@
                             </li>
                             <li class="menu-title">Data User</li>
                             <li class="">
-                                <a href="{{ route('user.index') }}" ><i class="fa fa-user"></i> USER</a>
+                                <a @if (auth()->user()->role=='pusat') href="{{ route('user.index') }}" @else class="text-danger disabled" @endif><i class="fa fa-user"></i> USER</a>
                             </li>
                         </ul>
                     </div>

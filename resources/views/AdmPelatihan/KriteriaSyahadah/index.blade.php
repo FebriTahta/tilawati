@@ -66,6 +66,7 @@
                                            <td>{{ $item->name }}</td>
                                            <td>{{ $item->untuk }}</td>
                                            <td class="text-center">
+                                                <button type="button" data-id="{{ $item->id }}" data-name="{{ $item->name }}" class="btn waves-effect waves-light text-white" style="background-color: rgb(134, 134, 252)"><i class="fa fa-pencil"></i></button>
                                                <button class="btn btn-danger"data-toggle="modal" data-target="#myModal" data-kriteria="{{ $item->name }}"><i class="fa fa-trash"></i> </button>
                                            </td>
                                        </tr>
@@ -109,6 +110,34 @@
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 </div>
+
+<!--modal edit-->
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title mt-0" id="myLargeModalLabel">Large modal</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Cras mattis consectetur purus sit amet fermentum.
+                    Cras justo odio, dapibus ac facilisis in,
+                    egestas eget quam. Morbi leo risus, porta ac
+                    consectetur ac, vestibulum at eros.</p>
+                <p>Praesent commodo cursus magna, vel scelerisque
+                    nisl consectetur et. Vivamus sagittis lacus vel
+                    augue laoreet rutrum faucibus dolor auctor.</p>
+                <p>Aenean lacinia bibendum nulla sed consectetur.
+                    Praesent commodo cursus magna, vel scelerisque
+                    nisl consectetur et. Donec sed odio dui. Donec
+                    ullamcorper nulla non metus auctor
+                    fringilla.</p>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
