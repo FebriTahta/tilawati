@@ -12,11 +12,11 @@ class Peserta extends Model
     protected $fillable = [
         'pelatihan_id',
         'name',
-        'fs',
-        'tj',
-        'gm',
-        'sl',
-        'kriteria',
+        // 'fs',
+        // 'tj',
+        // 'gm',
+        // 'sl',
+        // 'kriteria',
     ];
 
     public function pelatihan()

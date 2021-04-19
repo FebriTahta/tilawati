@@ -38,8 +38,9 @@
         <div class=" m-b-30 bg-transparent">
             <div class="row">
                 <div class="col-lg-4">
+                    @if (auth()->user()->role=='pusat')
                     <a href="{{route('cabang.create')}}" type="button" class="btn btn-primary waves-effect waves-light"><i class="fa fa-plus"></i> Tamabah Cabang Baru</a>
-                    {{-- <a href="{{route('cabang.create')}}" type="button" class="btn btn-primary waves-effect waves-light" data-toggle="modal" data-target=".bs-example-modal-center"><i class="fa fa-plus"></i> Tamabah Cabang Baru</a> --}}
+                    @endif
                 </div>
             </div>
         </div>

@@ -32,10 +32,11 @@
 					<td>{{ $item->alamat }}</td>
 				</tr>
 				<tr>
-					<td>{{ $item->kota }} {{ $item->tgllahir }}</td>
+					<?php $tgl_lahir = ($item->tgllahir - 25569) * 86400?>
+					<td>{{ $item->kota }} {{ gmdate('d-m-Y',$tgl_lahir) }}</td>
 				</tr>
 				<tr>
-					<td>{{ $item->kriteria->name }}</td>
+					<td>{{ $item->kriteria }}</td>
 				</tr>
 			</table>
 			<div class="row">

@@ -7,6 +7,7 @@ use App\Http\Controllers\CabangController;
 use App\Models\Cabang;
 use App\Models\Propinsi;
 use App\Models\Kota;
+use App\Models\User;
 
 class CabangController extends Controller
 {
@@ -58,6 +59,17 @@ class CabangController extends Controller
             $dt_cabang->email = $request->email;
             $dt_cabang->ekspedisi = $request->ekspedisi;
             $dt_cabang->save();
+
+            $dt_cabang->user()->save(User::create([
+                'cabang_id' => $dt_cabang->id,
+                'username' => $request->name,
+                'name' => $request->name,
+                'role' => $request->status,
+                'email' => $request->email,
+                'password' => bcrypt($request->status),
+            ]));
+
+            
 
             return redirect('/pelatihan-cabang')->with('success', ' ( '.$y.' ) Ditambahkan Sebagai Cabang Baru');
             

@@ -18,7 +18,16 @@
         <link href="{{asset('adm/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
         <link href="{{asset('adm/css/icons.css')}}" rel="stylesheet" type="text/css">
         <link href="{{asset('adm/css/style.css')}}" rel="stylesheet" type="text/css">
-
+        <link href="{{asset('adm/plugins/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{asset('adm/plugins/datatables/buttons.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
+        <!-- Responsive datatable examples -->
+        <link href="{{ asset('adm/plugins/datatables/responsive.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
+        <style>
+            a.disabled {
+            pointer-events: none;
+            cursor: default;
+            }
+        </style>
     </head>
 
 
@@ -46,45 +55,51 @@
                 <div class="sidebar-inner slimscrollleft">                    
                     <div id="sidebar-menu">
                         <ul>
-                            <li class="menu-title">Main</li>
+                            <li class="menu-title text-uppercase">Main</li>
                             <li>
                                 <a href="index.html" class="waves-effect">
                                     <i class="dripicons-meter"></i>
-                                    <span> Dashboard <span class="badge badge-success badge-pill float-right">3</span></span>
+                                    <span> Dashboard {{ auth()->user()->role }} <span class="badge badge-success badge-pill float-right">3</span></span>
                                 </a>
                             </li>
                             <li class="menu-title">Data Pelatihan</li>
                             <li class="has_sub">
-                                <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-document"></i><span> Master </span> <span class="badge badge-warning badge-pill float-right"></span></a>
+                                <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-document"></i><span> Master </span> <span class="badge badge-danger badge-pill float-right"></span></a>
+                                @auth
                                 <ul class="list-unstyled">
                                     <li><a href="{{route('cabang.index')}}">Cabang</a></li>
-                                    <li><a href="{{route('jenis.index')}}">Status Lembaga</a></li>
+                                    <li><a href="{{route('jenis.index')}}" @if (auth()->user()->role=='pusat') @else class="text-danger disabled" @endif>Status Lembaga</a></li>
                                     <li><a href="{{route('lembaga.index')}}">Lembaga</a></li>
-                                    <li><a href="{{ route('kriteria.index') }}">Kriteria Syahadah</a></li>
+                                    <li><a href="{{ route('kriteria.index') }}" @if (auth()->user()->role=='pusat') @else class="text-danger disabled" @endif>Kriteria Syahadah</a></li>
                                 </ul>
+                                @endauth
                             </li>
                             <li class="has_sub">
-                                <a href="javascript:void(0);" class="waves-effect"><i class="ti-pencil-alt"></i><span> Data Entri </span> <span class="badge badge-warning badge-pill float-right"></span></a>
+                                <a href="javascript:void(0);" class="waves-effect"><i class="ti-pencil-alt"></i><span> Data Entri </span> <span class="badge badge-danger badge-pill float-right"></span></a>
                                 <ul class="list-unstyled">
                                     <li><a href="{{route('pelatihan.index')}}">Pelatihan</a></li>
                                 </ul>
                             </li>
                             <li class="has_sub">
-                                <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-book-multiple"></i><span> Program </span> <span class="badge badge-warning badge-pill float-right"></span></a>
+                                <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-book-multiple"></i><span> Program </span> <span class="badge badge-danger badge-pill float-right"></span></a>
                                 <ul class="list-unstyled">
-                                    <li><a href="{{ route('program.index') }}">Jenis Program</a></li>
+                                    <li><a href="{{ route('program.index') }}" @if (auth()->user()->role=='pusat') @else class="text-danger disabled" @endif>Jenis Program</a></li>
                                 </ul>
                             </li>
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-copy"></i><span> Cetak </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                                 <ul class="list-unstyled">
-                                    <li><a href="{{ route('pelatihan.c_depan') }}">Cetak Ijazah Depan</a></li>
-                                    <li><a href="{{ route('pelatihan.c_belakang') }}">Cetak Ijazah Belakang Santri</a></li>
-                                    <li><a href="#">Cetak Ijazah Belakang Guru</a></li>
-                                    <li><a href="#">Cetak Ijazah TOT Instruktur</a></li>
-                                    <li><a href="#">Cetak Ijazah Tahsin</a></li>
-                                    <li><a href="#">Cetak Ijazah Tilawah</a></li>
+                                    <li><a href="{{ route('pelatihan.c_depan') }}" @if (auth()->user()->role=='pusat') @else class="text-danger disabled" @endif>Cetak Ijazah Depan</a></li>
+                                    <li><a href="{{ route('pelatihan.c_belakang') }}" @if (auth()->user()->role=='pusat') @else class="text-danger disabled" @endif>Cetak Ijazah Belakang Santri</a></li>
+                                    <li><a href="#" @if (auth()->user()->role=='pusat') @else class="text-danger disabled" @endif>Cetak Ijazah Belakang Guru</a></li>
+                                    <li><a href="#" @if (auth()->user()->role=='pusat') @else class="text-danger disabled" @endif>Cetak Ijazah TOT Instruktur</a></li>
+                                    <li><a href="#" @if (auth()->user()->role=='pusat') @else class="text-danger disabled" @endif>Cetak Ijazah Tahsin</a></li>
+                                    <li><a href="#" @if (auth()->user()->role=='pusat') @else class="text-danger disabled" @endif>Cetak Ijazah Tilawah</a></li>
                                 </ul>
+                            </li>
+                            <li class="menu-title">Data User</li>
+                            <li class="">
+                                <a href="{{ route('user.index') }}" ><i class="fa fa-user"></i> USER</a>
                             </li>
                         </ul>
                     </div>
@@ -202,7 +217,7 @@
     
                                             <!-- item-->
                                             <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                                <div class="notify-icon bg-warning"><i class="mdi mdi-martini"></i></div>
+                                                <div class="notify-icon bg-danger"><i class="mdi mdi-martini"></i></div>
                                                 <p class="notify-details">Your item is shipped<span class="text-muted">It is a long established fact that a reader will</span></p>
                                             </a>
                                             <!-- item-->
@@ -235,7 +250,14 @@
                                         <a class="dropdown-item" href="#"><i class="mdi mdi-account-circle m-r-5 text-muted"></i> Profile</a>
                                         <a class="dropdown-item" href="#"><span class="badge badge-success mt-1 float-right">5</span><i class="mdi mdi-settings m-r-5 text-muted"></i> Settings</a>
                                         <a class="dropdown-item" href="#"><i class="mdi mdi-lock-open-outline m-r-5 text-muted"></i> Lock screen</a>
-                                        <a class="dropdown-item" href="#"><i class="mdi mdi-logout m-r-5 text-muted"></i> Logout</a>
+                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                        document.getElementById('logout-form').submit();"><i class="mdi mdi-logout m-r-5 text-muted"></i>
+                                            {{ __('Logout') }}
+                                        </a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                            @csrf
+                                        </form>
                                     </div>
                                 </li>
 

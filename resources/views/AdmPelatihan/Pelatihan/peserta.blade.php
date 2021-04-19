@@ -115,24 +115,24 @@
                     <div class="card m-b-30">
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table id="data-table" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                     <thead class="mt-100">
                                         <tr>
                                             {{-- <th>id</th> --}}
                                             <th style="width: 10%">Nama</th>
-                                            <th>Alamat</th>
+                                            <th style="width: 20%">Alamat</th>
                                             <th>Kota</th>
                                             <th>Telp</th>
                                             <th>Tmp Lahir</th>
-                                            <th>fs</th>
-                                            <th>tj</th>
-                                            <th>gm</th>
-                                            <th>sl</th>
-                                            <th>mt</th>
-                                            <th>jilid</th>
+                                            <th style="width: 5%">fs</th>
+                                            <th style="width: 5%">tj</th>
+                                            <th style="width: 5%">gm</th>
+                                            <th style="width: 5%">sl</th>
+                                            @if ($dt_pel->keterangan=="GURU")
+                                            <th style="width: 5%">mt</th>
+                                            @endif
                                             <th>Syahadah</th>
                                             <th>kriteria</th>
-                                            {{-- <th>IDProg</th> --}}
                                             <th class="text-center">...</th>
                                         </tr>
                                     </thead>
@@ -141,16 +141,17 @@
                                         <tr>
                                             {{-- <td>{{ $item->id }}</td> --}}
                                             <td style="width: 10%">{{ $item->name }}</td>
-                                            <td>{{ $item->alamat }}</td>
+                                            <td style="width: 20%">{{ $item->alamat }}</td>
                                             <td>{{ $item->kota }}</td>
                                             <td>{{ $item->telp }}</td>
                                             <td>{{ $item->tmptlahir }}</td>
-                                            <td>{{ $item->fs }}</td>
-                                            <td>{{ $item->tj }}</td>
-                                            <td>{{ $item->gm }}</td>
-                                            <td>{{ $item->sl }}</td>
-                                            <td>{{ $item->mt }}</td>
-                                            <td>{{ $item->jilid }}</td>
+                                            <td style="width: 5%">{{ $item->fs }}</td>
+                                            <td style="width: 5%">{{ $item->tj }}</td>
+                                            <td style="width: 5%">{{ $item->gm }}</td>
+                                            <td style="width: 5%">{{ $item->sl }}</td>
+                                            @if ($dt_pel->keterangan=="GURU")
+                                            <td style="width: 5%">{{ $item->mt }}</td>
+                                            @endif
                                             <td>
                                                 @if ($item->bersyahadah==1)
                                                     lulus
@@ -298,7 +299,7 @@
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title mt-0">PELATIHAN BARU</h5>
+                    <h5 class="modal-title mt-0">DATA PESERTA PELATIHAN</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -308,29 +309,22 @@
                         <div class="card m-b-30">
                             <div class="card-body">
                                 <div class="container-fluid">
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="card m-b-30">
-                                                <div class="card-body">
-                                                    <h4 class="mt-0 header-title">Dropzone</h4>
-                                                    <p class="text-muted m-b-30 font-14">DropzoneJS is an open source library
-                                                        that provides drag’n’drop file uploads with image previews.
-                                                    </p>
-                                                    <div class="m-b-30">
-                                                        <form action="" class="dropzone">
-                                                            <div class="fallback">
-                                                                <input name="file" type="file" multiple="multiple" accept=".xls">
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                    <div class="text-center m-t-15">
-                                                        <button type="button" class="btn btn-primary waves-effect waves-light">Send Files</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div> <!-- end col -->
-                                    </div> <!-- end row -->
-                    
+                                    @if ($dt_pel->keterangan=="SANTRI")
+                                    <form action="{{ route('import.peserta') }}" method="POST" enctype="multipart/form-data">@csrf
+                                    @elseif($dt_pel->keterangan=="GURU")
+                                    <form action="{{ route('import.pesertaG') }}" method="POST" enctype="multipart/form-data">@csrf
+                                    @elseif($dt_pel->keterangan=="TOT_INSTRUKTUR")
+                                    <form action="{{ route('import.pesertaToT') }}" method="POST" enctype="multipart/form-data">@csrf
+                                    @endif
+                                        <div class="form-group">
+                                            <input type="hidden" value="{{ $dt_pel->id }}" name="id">
+                                            <label for="">Import Data Peserta "{{ $dt_pel->keterangan }}" Pelatihan (hanya Excel File format .xlsx)</label>
+                                            <input type="file" class="form-control" name="file" accept=".xlsx" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <button class="btn btn-sm btn-primary"><i class="fa fa-save"></i> Import</button>
+                                        </div>
+                                    </form>
                                 </div><!-- container fluid -->
                             </div>
                         </div>

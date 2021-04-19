@@ -145,6 +145,7 @@
                                     <option value="">= Untuk Guru / Santri =</option>
                                     <option value="GURU">GURU</option>
                                     <option value="SANTRI">SANTRI</option>
+                                    <option value="TOT_INSTRUKTUR">T.O.T INSTRUKTUR</option>
                                 </select>
                             </div>
                        </div>

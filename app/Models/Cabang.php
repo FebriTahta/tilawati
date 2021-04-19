@@ -42,4 +42,9 @@ class Cabang extends Model
     {
         return $this->hasMany(Pelatihan::class);
     }
+
+    public function user()
+    {
+        return $this->hasOne(User::class);
+    }
 }

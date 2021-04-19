@@ -90,7 +90,7 @@
                                     <div class="row">
                                         <div class="col-xl-6">
                                             <div class="form-group">
-                                                <input type="email" name="email" class="form-control" placeholder="Email..." >
+                                                <input type="email" name="email" class="form-control" placeholder="Email..." required>
                                             </div>
                                         </div>
                                         <div class="col-xl-6">
