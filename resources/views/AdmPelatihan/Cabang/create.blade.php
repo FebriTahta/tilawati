@@ -121,7 +121,7 @@ $(document).ready(function() {
             if(propinsi_id) {
                 console.log(propinsi_id);
                 $.ajax({
-                    url: '/public/fetch/' + propinsi_id,
+                    url: '/fetch/' + propinsi_id,
                     type: "GET",
                     dataType: "json",
                     success:function(data) {                      
