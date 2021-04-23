@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePropinsisTable extends Migration
+class CreateSantrisTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,15 @@ class CreatePropinsisTable extends Migration
      */
     public function up()
     {
-        Schema::create('propinsis', function (Blueprint $table) {
-            $table->id();
+        Schema::create('santris', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('lembaga_id');
             $table->string('name');
+            $table->string('alamat');
+            $table->string('telp');
+            $table->longText('foto')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -27,6 +32,6 @@ class CreatePropinsisTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('propinsis');
+        Schema::dropIfExists('santris');
     }
 }

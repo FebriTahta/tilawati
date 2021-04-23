@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateJenisTable extends Migration
+class CreateProvincesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateJenisTable extends Migration
      */
     public function up()
     {
-        Schema::create('jenis', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        Schema::create('provinces', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedInteger('province_id');
             $table->string('name');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -28,6 +28,6 @@ class CreateJenisTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('jenis');
+        Schema::dropIfExists('provinces');
     }
 }

@@ -12,6 +12,7 @@ use App\Http\Controllers\PesertaController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SubController;
 use App\Http\Controllers\ImportController;
+use App\Http\Controllers\DashboardController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,13 +26,15 @@ use App\Http\Controllers\ImportController;
 
 Route::get('/', function () {
     // return view('auth.login');
-    return view('AdmPelatihan.Login.index');
+    return redirect('dashboard');
     // return view('landing.index');
     // return redirect('/pelatihan-cabang');
 });
 Auth::routes();
 
 Route::group(['middleware' => ['auth', 'CheckRole:pusat']], function () {
+    //dashboard
+    Route::get('/dashboard',[DashboardController::class, 'index'])->name('dashboard');
     //user
     Route::get('/data-user',[UserController::class, 'index'])->name('user.index');
     //cabang
@@ -59,7 +62,9 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat']], function () {
     Route::post('/importPesertaToT',[ImportController::class,'importPesertaToT'])->name('import.pesertaToT');
 });
 
-Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang']], function () {
+Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga']], function () {
+    //dashboard
+    Route::get('/dashboard',[DashboardController::class, 'index'])->name('dashboard');
 
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     //cabang

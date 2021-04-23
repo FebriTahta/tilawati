@@ -18,7 +18,6 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'username',
-        // 'name',
         'email',
         'role',
         'password',
@@ -45,6 +44,10 @@ class User extends Authenticatable
 
     public function cabang()
     {
-        return $this->belongsTo(Cabang::class);
+        return $this->hasOne(Cabang::class);
+    }
+    public function lembaga()
+    {
+        return $this->hasOne(Lembaga::class);
     }
 }

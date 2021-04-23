@@ -14,14 +14,15 @@ class CreateLembagasTable extends Migration
     public function up()
     {
         Schema::create('lembagas', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('cabang_id')->references('id')->on('cabangs')->onDelete('cascade')->onUpdate('cascade');
             $table->string('name')->nullable();
             $table->string('kepala')->nullable();
             $table->unsignedBigInteger('jenis_id')->references('id')->on('jenis')->onDelete('cascade')->onUpdate('cascade');
             $table->longText('alamat')->nullable();
-            $table->unsignedBigInteger('propinsi_id')->references('id')->on('propinsis')->onDelete('cascade')->onUpdate('cascade');
-            $table->unsignedBigInteger('kota_id')->references('id')->on('kotas')->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedBigInteger('province_id')->references('id')->on('provinces')->onUpdate('cascade');
+            $table->unsignedBigInteger('city_id')->references('id')->on('cities')->onUpdate('cascade');
             $table->string('pos')->nullable();
             $table->string('telp')->nullable();
             $table->string('pengelola')->nullable();
@@ -32,6 +33,11 @@ class CreateLembagasTable extends Migration
             $table->string('tglmasuk')->nullable();
             $table->string('keanggotaan');
             $table->timestamps();
+             $table->softDeletes();
+        });
+
+        Schema::table('lembagas', function (Blueprint $table){
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

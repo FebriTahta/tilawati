@@ -5,18 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Propinsi extends Model
+class Province extends Model
 {
     use HasFactory;
 
-    protected $fillable=[
-        'name',
-    ];
-    protected $dates = ['deleted_at'];
-
-    public function kota()
+    protected $guarded = [];
+    
+    public function city()
     {
-        return $this->hasMany(Kota::class);
+        return $this->hasMany(City::class);
     }
 
     public function cabang()

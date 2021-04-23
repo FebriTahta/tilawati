@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\CabangController;
 use App\Models\Cabang;
 use App\Models\Propinsi;
+use App\Models\Province;
 use App\Models\Kota;
+use App\Models\City;
 use App\Models\User;
 
 class CabangController extends Controller
@@ -29,10 +31,10 @@ class CabangController extends Controller
      */
     public function create()
     {
-        $dt_props = Propinsi::all();
-        $dt_kota = Kota::all();
+        $dt_props = Province::all();
+        // $dt_kota = City::all();
         $dt_cabang = Cabang::orderBy('id')->get();
-        return view('AdmPelatihan.Cabang.create', compact('dt_props','dt_kota','dt_cabang'));
+        return view('AdmPelatihan.Cabang.create', compact('dt_props','dt_cabang'));
     }
 
     /**
@@ -43,39 +45,62 @@ class CabangController extends Controller
      */
     public function store(Request $request)
     {
-        try {
-            
+        // try {
             $y = $request->name;
-            $dt_cabang = new Cabang;
-            $dt_cabang->name = $request->name;
-            $dt_cabang->status = $request->status;
-            $dt_cabang->kepala = $request->kepala;
-            $dt_cabang->jabatan = $request->jabatan;
-            $dt_cabang->propinsi_id = $request->propinsi_id;
-            $dt_cabang->kota_id = $request->kota_id;
-            $dt_cabang->alamat = $request->alamat;
-            $dt_cabang->pos = $request->pos;
-            $dt_cabang->telp = $request->telp;
-            $dt_cabang->email = $request->email;
-            $dt_cabang->ekspedisi = $request->ekspedisi;
-            $dt_cabang->save();
-
-            $dt_cabang->user()->save(User::create([
-                'cabang_id' => $dt_cabang->id,
-                'username' => $request->name,
-                'name' => $request->name,
-                'role' => $request->status,
-                'email' => $request->email,
-                'password' => bcrypt($request->status),
-            ]));
-
+            $x = Cabang::where('name', $request->name)->first();
+            $e = $request->email;
+            $i = User::where('email', $request->email)->first();
             
+            if ($x!==null) {
+                # code...
+                
+                if ($i!==null) {
+                    # code...
+                    return redirect()->back()->with('danger', 'email cabang tersebut sudah digunakan cabang lain, silahkan gunakan email lain');
+                } else {
+                    # code...
+                    return redirect()->back()->with('danger', 'Cabang tersebut sudah terdata sebelumnya');
+                }
+                
 
-            return redirect('/pelatihan-cabang')->with('success', ' ( '.$y.' ) Ditambahkan Sebagai Cabang Baru');
+            } else {
+                # code...
+                if ($i !==null) {
+                    # code...
+                    return redirect()->back()->with('danger', 'email cabang tersebut sudah tersimpan sebelumnya, silahkan gunakan email lain');
+                } else {
+                    # code...
+                    $dt_cabang = new User;
+                    $dt_cabang->username = $request->name;
+                    $dt_cabang->role = $request->status;
+                    $dt_cabang->email = $request->email;
+                    $dt_cabang->password = bcrypt($request->status);
+                    $dt_cabang->save();
+                    
+                    $dt_cb = new Cabang;
+
+                    $dt_cb->user_id = $dt_cabang->id;
+                    $dt_cb->name = $request->name;
+                    $dt_cb->status = $request->status;
+                    $dt_cb->kepala = $request->kepala;
+                    $dt_cb->jabatan = $request->jabatan;
+                    $dt_cb->province_id = $request->province_id;
+                    $dt_cb->city_id = $request->city_id;
+                    $dt_cb->alamat = $request->alamat;
+                    $dt_cb->pos = $request->pos;
+                    $dt_cb->telp = $request->telp;
+                    $dt_cb->ekspedisi = $request->ekspedisi;
+                    $dt_cb->kecamatan = $request->kecamatan;
+                    $dt_cb->teritorial = $request->teritorial;
+                    $dt_cb->save();
+
+                    return redirect('/pelatihan-cabang')->with('success', ' ( '.$y.' ) Ditambahkan Sebagai Cabang Baru');
+                }
+            }
             
-        } catch (\Throwable $th) {
-            dd("error", $th);
-        }
+        // } catch (\Throwable $th) {
+        //     dd("error", $th);
+        // }
     }
 
     /**

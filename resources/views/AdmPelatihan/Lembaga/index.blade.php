@@ -53,14 +53,15 @@
                             <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                 <thead class="mt-100">
                                 <tr>
-                                    <th>Lembaga</th>
+                                    <th>Nama Lembaga</th>
                                     <th>Kepala</th>
-                                    <th>Status</th>
+                                    <th>Jenjang</th>
                                     <th>Alamat</th>
                                     <th>Kota</th>
                                     <th>Propinsi</th>
                                     <th>Total Guru</th>
                                     <th>Total Santri</th>
+                                    <th>Telp</th>
                                     <th>Aktif</th>
                                     <th>Tgl Masuk</th>
                                     <th class="text-center">...</th>
@@ -72,11 +73,12 @@
                                             <td>{{ $item->name }}</td>
                                             <td>{{ $item->kepala }}</td>
                                             <td>{{ $item->jenis->name }}</td>
-                                            <td>{{ $item->alamat }}</td>
+                                            <td style="width: 20%">{{ $item->alamat }}</td>
                                             <td>{{ $item->kota->name }}</td>
                                             <td>{{ $item->propinsi->name }}</td>
                                             <td>{{ $item->totguru }}</td>
                                             <td>{{ $item->totsantri }}</td>
+                                            <td>{{ $item->telp }}</td>
                                             <td>
                                                 @if ($item->keanggotaan==1)
                                                     <p class="text-primary"> Aktif</p>
@@ -86,8 +88,9 @@
                                             </td>
                                             <td>{{ $item->tglmasuk }}</td>
                                             <td class="text-center">
-                                                <button class="btn btn-sm text-white" style="background-color: rgb(151, 151, 255)"> <i class="fa fa-pencil"></i></button>
+                                                <button class="btn btn-sm text-white" style="background-color: rgb(151, 151, 255)" data-toggle="modal" data-target=".bs-example-modal-lg"> <i class="fa fa-pencil"></i></button>
                                                 <button class="btn btn-danger btn-sm"> <i class="fa fa-trash"></i></button>
+                                                <button class="btn btn-primary btn-sm"> <i class="fa fa-book"></i></button>
                                             </td>
                                         @endforeach
                                     @else
@@ -96,7 +99,7 @@
                                             <td>{{ $item->name }}</td>
                                             <td>{{ $item->kepala }}</td>
                                             <td>{{ $item->jenis->name }}</td>
-                                            <td>{{ $item->alamat }}</td>
+                                            <td style="width: 20%">{{ $item->alamat }}</td>
                                             <td>{{ $item->kota->name }}</td>
                                             <td>{{ $item->propinsi->name }}</td>
                                             <td>{{ $item->totguru }}</td>
@@ -126,4 +129,117 @@
     </div>
 </div>
 <!-- end row -->
+
+<!--modal-->
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title mt-0" id="myLargeModalLabel">UPDATE DATA LEMBAGA</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ route('lembaga.store') }}" method="POST">@csrf
+                    <div class="form-group">
+                        @if (auth()->user()->role=="cabang")
+                            <input type="hidden" name="cabang_id" value="{{ auth()->user()->cabang->id }}" required>
+                        @else
+                        <select name="cabang_id" id="" class="form-control" required>
+                            <option value="">= Pilih Cabang =</option>
+                            {{-- @foreach ($dt_cabang as $item)
+                                <option value="{{$item->id}}">{{$item->name}}</option>
+                            @endforeach --}}
+                        </select>
+                        @endif
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="name" class="form-control" placeholder="Nama Lembaga..." required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="kepala" class="form-control" placeholder="Nama Kepala Lembaga..." >
+                    </div>
+                    <div class="form-group">
+                        <select name="jenis_id" id="" class="form-control" required>
+                            <option value="">= Jenjang Lembaga =</option>
+                            {{-- @foreach ($dt_jenis as $item)
+                                <option value="{{$item->id}}">{{$item->name}}</option>
+                            @endforeach --}}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="alamat" class="form-control" id="" cols="20" rows="10">Alamat...</textarea>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-4">
+                            <div class="form-group">
+                                <select name="propinsi_id" id="" class="form-control" required>
+                                    <option value="">= Pilih Propinsi =</option>
+                                    {{-- @foreach ($dt_props as $item)
+                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                    @endforeach --}}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xl-4">
+                            <div class="form-group">
+                                <select name="kota_id" id="" class="form-control" required>
+                                    <option value="">= Pilih Kota =</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xl-4">
+                            <div class="form-group">
+                                <input type="number" class="form-control" placeholder="Kode Pos..." >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 form-group">
+                            <div class="form-group">
+                                <input type="number" name="telp" class="form-control" placeholder="Telp..." >
+                            </div>
+                        </div>
+                        <div class="col-6 form-group">
+                            <input type="email" class="form-control" name="email" placeholder="Email Lembaga..." required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" name="pengelola" class="form-control" placeholder="Pengelola..." >
+                    </div>
+                    <div class="row">
+                        <div class="col-4 form-group">
+                            <input type="number" class="form-control" name="totguru" placeholder="Total Guru" >
+                        </div>
+                        <div class="col-4 form-group">
+                            <input type="number" class="form-control" name="totsantri" placeholder="Total Santri" >
+                        </div>
+                        <div class="col-4 form-group">
+                            <input type="text" class="form-control" name="waktubelajar" placeholder="Waktu Belajar" >
+                        </div>
+                        <div class="col-4 form-group">
+                            <label for="">Tahun Berdiri</label>
+                            <input type="date" class="form-control" name="tahunberdiri" placeholder="Tahun Berdiri" >
+                        </div>
+                        <div class="col-4 form-group">
+                            <label for="">Tahun Masuk</label>
+                            <input type="date" class="form-control" name="tglmasuk" placeholder="Tanggal Masuk" >
+                        </div>
+                        <div class="col-4 form-group">
+                            <label for="">Keanggotaan Aktif</label>
+                            <select name="keanggotaan" id="" class="form-control" required>
+                                <option value="1">Aktif</option>
+                                <option value="0">Tidak Aktif</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group text-right">
+                        <button class="btn btn-primary"> <i class="fa fa-save "></i> &nbsp; Save</button>
+                    </div>
+                </form>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 @endsection

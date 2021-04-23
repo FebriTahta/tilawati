@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Kota;
+use App\Models\City;
 use App\Models\Cabang;
 use App\Models\Program;
 use App\Models\Pelatihan;
@@ -11,8 +12,8 @@ use Illuminate\Http\Request;
 class SubController extends Controller
 {
     public function fetch($id){
-        $kota = Kota::where("propinsi_id",$id)->pluck('name','id');
-        return json_encode($kota);
+        $city = City::where("province_id",$id)->pluck('name','id');
+        return json_encode($city);
     }
 
     public function fetchpp($id){

@@ -18,6 +18,7 @@ class Peserta extends Model
         // 'sl',
         // 'kriteria',
     ];
+    protected $dates = ['deleted_at'];
 
     public function pelatihan()
     {

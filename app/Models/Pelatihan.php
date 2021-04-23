@@ -14,6 +14,7 @@ class Pelatihan extends Model
         'program_id',
         'name',
     ];
+    protected $dates = ['deleted_at'];
 
     public function cabang()
     {

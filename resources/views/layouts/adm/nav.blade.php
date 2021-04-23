@@ -57,7 +57,7 @@
                         <ul>
                             <li class="menu-title text-uppercase">Main</li>
                             <li>
-                                <a href="index.html" class="waves-effect">
+                                <a href="{{ route('dashboard') }}" class="waves-effect">
                                     <i class="dripicons-meter"></i>
                                     <span> Dashboard {{ auth()->user()->role }} <span class="badge badge-success badge-pill float-right">3</span></span>
                                 </a>

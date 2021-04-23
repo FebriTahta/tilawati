@@ -24,6 +24,6 @@ class HomeController extends Controller
     public function index()
     {
         // return view('home');
-        return redirect('pelatihan-cabang');
+        return redirect('dashboard');
     }
 }

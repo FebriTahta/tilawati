@@ -15,6 +15,7 @@ class Lembaga extends Model
         'kota_id',
         'keanggotaan'
     ];
+    protected $dates = ['deleted_at'];
 
     public function cabang()
     {
@@ -32,5 +33,8 @@ class Lembaga extends Model
     {
         return $this->belongsTo(Kota::class);
     }
-
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

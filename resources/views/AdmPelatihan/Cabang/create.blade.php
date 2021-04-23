@@ -15,6 +15,9 @@
 <!-- end row -->
 
 <div class="row">
+    <!--flash massage-->
+    @include('layouts.sess.flash_message')
+    <!--flash massage-->
     <div class="col-xl-12">
         <div class="card m-b-30">
             <div class="card-body">
@@ -63,7 +66,7 @@
                                     <div class="row">
                                         <div class="col-xl-4">
                                             <div class="form-group">
-                                                <select name="propinsi_id" class="form-control" id="mySelect" required>
+                                                <select name="province_id" class="form-control" id="mySelect" required>
                                                     <option value="">= Propinsi =</option>
                                                     @foreach ($dt_props as $prop)
                                                        <option value="{{ $prop->id }}">{{ $prop->name }}</option>
@@ -73,16 +76,17 @@
                                         </div>
                                         <div class="col-xl-4">
                                             <div class="form-group">
-                                                <select name="kota_id" id="kota" class="form-control" required>
+                                                <select name="city_id" id="city" class="form-control" required>
                                                     <option value="">= Kota =</option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="col-xl-4">
                                             <div class="form-group">
-                                                <input type="text" name="pos" class="form-control" placeholder="Kode Pos..." >
+                                                <input type="text" name="kecamatan" class="form-control" placeholder="Kecamatan..." required>
                                             </div>
                                         </div>
+                                        
                                     </div>
                                     <div class="form-group">
                                         <textarea type="text" name="ekspedisi" class="form-control" placeholder="Alamat Ekspedisi..." >Alamat Ekspedisi... </textarea>
@@ -96,6 +100,16 @@
                                         <div class="col-xl-6">
                                             <div class="form-group">
                                                 <input type="text" name="telp" class="form-control" placeholder="Telp..." >
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-6">
+                                            <div class="form-group">
+                                                <input type="text" name="pos" class="form-control" placeholder="Kode Pos..." >
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-6">
+                                            <div class="form-group">
+                                                <input type="text" name="teritorial" class="form-control" placeholder="teritorial..." >
                                             </div>
                                         </div>
                                     </div>
@@ -116,24 +130,24 @@
 @section('script')
 <script>
 $(document).ready(function() {
-        $('select[name="propinsi_id"]').on('change', function() {
-            var propinsi_id = $(this).val();
-            if(propinsi_id) {
-                console.log(propinsi_id);
+        $('select[name="province_id"]').on('change', function() {
+            var province_id = $(this).val();
+            if(province_id) {
+                console.log(province_id);
                 $.ajax({
-                    url: '/fetch/' + propinsi_id,
+                    url: '/fetch/' + province_id,
                     type: "GET",
                     dataType: "json",
                     success:function(data) {                      
-                        $('select[name="kota_id"]').empty();
+                        $('select[name="city_id"]').empty();
                         $.each(data, function(key, value) {
-                        $('select[name="kota_id"]').append('<option value="'+ key +'">'+ value +'</option>');
+                        $('select[name="city_id"]').append('<option value="'+ key +'">'+ value +'</option>');
                         });
                         console.log(data);
                     }
                 });
             }else{
-                $('select[name="kota"]').empty().disabled();
+                $('select[name="city"]').empty().disabled();
             }
         });
     });

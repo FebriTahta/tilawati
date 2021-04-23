@@ -10,6 +10,7 @@ class Program extends Model
     use HasFactory;
 
     protected $fillable = ['name'];
+    protected $dates = ['deleted_at'];
 
     public function pelatihan()
     {

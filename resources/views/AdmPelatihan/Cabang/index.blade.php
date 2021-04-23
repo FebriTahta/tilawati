@@ -55,16 +55,16 @@
                             <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                 <thead class="mt-100">
                                 <tr>
-                                    <th>Cabang</th>
+                                    <th>Nama Cabang</th>
                                     <th>Status</th>
                                     <th>Kepala</th>
                                     <th>Alamat</th>
                                     <th>Kota</th>
-                                    <th>Prop</th>
-                                    <th>KdPos</th>
+                                    <th>Propvinsi</th>
                                     <th>Telp</th>
                                     <th>Email</th>
-                                    <th class="text-center">...</th>
+                                    <th>KdPos</th>
+                                    <th class="text-center">Opsi</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -76,9 +76,9 @@
                                             <td>{{ auth()->user()->cabang->alamat }}</td>
                                             <td>{{ auth()->user()->cabang->kota->name }}</td>
                                             <td>{{ auth()->user()->cabang->propinsi->name }}</td>
-                                            <td>{{ auth()->user()->cabang->pos }}</td>
                                             <td>{{ auth()->user()->cabang->telp }}</td>
-                                            <td>{{ auth()->user()->cabang->email }}</td>
+                                            <td>{{ auth()->user()->cabang->user->email }}</td>
+                                            <td>{{ auth()->user()->cabang->pos }}</td>
                                             <td class="text-center">
                                                 <button type="button" data-id="{{ auth()->user()->cabang->id }}" data-name="{{ auth()->user()->cabang->name }}" class="btn waves-effect waves-light text-white" style="background-color: rgb(134, 134, 252)"><i class="fa fa-pencil"></i></button>
                                             </td>
@@ -90,11 +90,11 @@
                                             <td>{{ $item->status }}</td>
                                             <td>{{ $item->kepala }}</td>
                                             <td>{{ $item->alamat }}</td>
-                                            <td>{{ $item->kota->name }}</td>
-                                            <td>{{ $item->propinsi->name }}</td>
-                                            <td>{{ $item->pos }}</td>
+                                            <td>{{ $item->city->name }}</td>
+                                            <td>{{ $item->province->name }}</td>
                                             <td>{{ $item->telp }}</td>
-                                            <td>{{ $item->email }}</td>
+                                            <td>{{ $item->user->email }}</td>
+                                            <td>{{ $item->pos }}</td>
                                             <td class="text-center">
                                                 <button type="button" data-id="{{ $item->id }}" data-name="{{ $item->name }}" class="btn waves-effect waves-light text-white" style="background-color: rgb(134, 134, 252)" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="fa fa-pencil"></i></button>
                                                 <button type="button" data-id="{{ $item->id }}" data-name="{{ $item->name }}" class="btn btn-danger waves-effect waves-light" data-toggle="modal" data-target=".bs-example-modal-center"><i class="fa fa-trash"></i></button>
@@ -153,18 +153,69 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p>Cras mattis consectetur purus sit amet fermentum.
-                    Cras justo odio, dapibus ac facilisis in,
-                    egestas eget quam. Morbi leo risus, porta ac
-                    consectetur ac, vestibulum at eros.</p>
-                <p>Praesent commodo cursus magna, vel scelerisque
-                    nisl consectetur et. Vivamus sagittis lacus vel
-                    augue laoreet rutrum faucibus dolor auctor.</p>
-                <p>Aenean lacinia bibendum nulla sed consectetur.
-                    Praesent commodo cursus magna, vel scelerisque
-                    nisl consectetur et. Donec sed odio dui. Donec
-                    ullamcorper nulla non metus auctor
-                    fringilla.</p>
+                <form action="{{ route('cabang.store') }}" method="POST">@csrf
+                    <p id="demo"></p>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="name" placeholder="Nama Cabang..." required>
+                    </div>
+                    <div class="form-group">
+                        <select name="status" class="form-control" id="" required>
+                            <option value="cabang">Cabang</option>
+                            <option value="calon cabang">Calon Cabang</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="kepala" placeholder="Kepala Cabang..." >
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="jabatan" placeholder="Jabatan..." >
+                    </div>
+                    <div class="form-group">
+                        <textarea name="alamat" class="form-control" id="" cols="20" rows="10">Alamat...</textarea>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-4">
+                            <div class="form-group">
+                                <select name="propinsi_id" class="form-control" id="mySelect" required>
+                                    <option value="">= Propinsi =</option>
+                                    {{-- @foreach ($dt_props as $prop)
+                                       <option value="{{ $prop->id }}">{{ $prop->name }}</option>
+                                   @endforeach --}}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xl-4">
+                            <div class="form-group">
+                                <select name="kota_id" id="kota" class="form-control" required>
+                                    <option value="">= Kota =</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xl-4">
+                            <div class="form-group">
+                                <input type="text" name="pos" class="form-control" placeholder="Kode Pos..." >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <textarea type="text" name="ekspedisi" class="form-control" placeholder="Alamat Ekspedisi..." >Alamat Ekspedisi... </textarea>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-6">
+                            <div class="form-group">
+                                <input type="email" name="email" class="form-control" placeholder="Email..." required>
+                            </div>
+                        </div>
+                        <div class="col-xl-6">
+                            <div class="form-group">
+                                <input type="text" name="telp" class="form-control" placeholder="Telp..." >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group text-right">
+                        <button class="btn btn-primary"> <i class="fa fa-save "></i> &nbsp; Save</button>
+                    </div>
+                </form>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

@@ -10,11 +10,14 @@ class Cabang extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
         'name',
         'status',
         // 'kepala',
-        'propinsi_id',
-        'kota_id',
+        'province_id',
+        'city_id',
+        'kecamatan',
+        'teritorial'
         // 'alamat',
         // 'pos',
         // 'telp',
@@ -22,6 +25,7 @@ class Cabang extends Model
         // 'ekspedisi',
         // 'jabatan'
     ];
+    protected $dates = ['deleted_at'];
 
     public function kota()
     {
@@ -45,6 +49,16 @@ class Cabang extends Model
 
     public function user()
     {
-        return $this->hasOne(User::class);
+        return $this->belongsTo(User::class);
+    }
+
+    public function province()
+    {
+        return $this->belongsTo(Province::class);
+    }
+
+    public function city()
+    {
+        return $this->belongsTo(City::class);
     }
 }

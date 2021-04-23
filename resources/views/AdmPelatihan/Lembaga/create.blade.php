@@ -61,7 +61,7 @@
                                     </div>
                                     <div class="form-group">
                                         <select name="jenis_id" id="" class="form-control" required>
-                                            <option value="">= Pilih Status =</option>
+                                            <option value="">= Jenjang Lembaga =</option>
                                             @foreach ($dt_jenis as $item)
                                                 <option value="{{$item->id}}">{{$item->name}}</option>
                                             @endforeach
@@ -73,7 +73,7 @@
                                     <div class="row">
                                         <div class="col-xl-4">
                                             <div class="form-group">
-                                                <select name="propinsi_id" id="" class="form-control" required>
+                                                <select name="province_id" id="" class="form-control" required>
                                                     <option value="">= Pilih Propinsi =</option>
                                                     @foreach ($dt_props as $item)
                                                         <option value="{{ $item->id }}">{{ $item->name }}</option>
@@ -83,7 +83,7 @@
                                         </div>
                                         <div class="col-xl-4">
                                             <div class="form-group">
-                                                <select name="kota_id" id="" class="form-control" required>
+                                                <select name="city_id" id="" class="form-control" required>
                                                     <option value="">= Pilih Kota =</option>
                                                 </select>
                                             </div>
@@ -94,8 +94,15 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <input type="number" name="telp" class="form-control" placeholder="Telp..." >
+                                    <div class="row">
+                                        <div class="col-6 form-group">
+                                            <div class="form-group">
+                                                <input type="number" name="telp" class="form-control" placeholder="Telp..." >
+                                            </div>
+                                        </div>
+                                        <div class="col-6 form-group">
+                                            <input type="email" class="form-control" name="email" placeholder="Email Lembaga..." required>
+                                        </div>
                                     </div>
                                     <div class="form-group">
                                         <input type="number" name="pengelola" class="form-control" placeholder="Pengelola..." >
@@ -143,7 +150,7 @@
 @section('script')
 <script>
 $(document).ready(function() {
-        $('select[name="propinsi_id"]').on('change', function() {
+        $('select[name="province_id"]').on('change', function() {
             var propinsi_id = $(this).val();
             if(propinsi_id) {
                 console.log(propinsi_id);
@@ -152,9 +159,9 @@ $(document).ready(function() {
                     type: "GET",
                     dataType: "json",
                     success:function(data) {                      
-                        $('select[name="kota_id"]').empty();
+                        $('select[name="city_id"]').empty();
                         $.each(data, function(key, value) {
-                        $('select[name="kota_id"]').append('<option value="'+ key +'">'+ value +'</option>');
+                        $('select[name="city_id"]').append('<option value="'+ key +'">'+ value +'</option>');
                         });
                         console.log(data);
                     }

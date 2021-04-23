@@ -14,19 +14,27 @@ class CreateCabangsTable extends Migration
     public function up()
     {
         Schema::create('cabangs', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('user_id');
             $table->string('name');
             $table->string('status');
             $table->string('kepala')->nullable();
             $table->string('jabatan')->nullable();
-            $table->unsignedBigInteger('propinsi_id')->references('id')->on('propinsis')->onDelete('cascade')->onUpdate('cascade');
-            $table->unsignedBigInteger('kota_id')->references('id')->on('kotas')->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedBigInteger('province_id')->references('id')->on('provinces')->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedBigInteger('city_id')->references('id')->on('cities')->onDelete('cascade')->onUpdate('cascade');
             $table->string('alamat')->nullable();
             $table->string('pos')->nullable();
             $table->string('telp')->nullable();
-            $table->string('email')->nullable();
+            // $table->string('email')->nullable();
             $table->string('ekspedisi')->nullable();
+            $table->string('kecamatan');
+            $table->string('teritorial');
             $table->timestamps();
+            $table->softDeletes();
+        });
+
+        Schema::table('cabangs', function (Blueprint $table){
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

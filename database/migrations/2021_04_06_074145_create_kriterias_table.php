@@ -14,10 +14,11 @@ class CreateKriteriasTable extends Migration
     public function up()
     {
         Schema::create('kriterias', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('name');
             $table->string('untuk');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

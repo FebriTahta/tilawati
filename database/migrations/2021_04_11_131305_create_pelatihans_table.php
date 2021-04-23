@@ -14,16 +14,26 @@ class CreatePelatihansTable extends Migration
     public function up()
     {
         Schema::create('pelatihans', function (Blueprint $table) {
-            $table->id()->startingValue(5090);
+            $table->bigIncrements('id')->startingValue(5090);
+            $table->unsignedBigInteger('cabang_id');
+            $table->unsignedBigInteger('program_id');
             $table->date('tanggal');
-            $table->unsignedBigInteger('cabang_id')->references('id')->on('cabangs')->onDelete('cascade')->onUpdate('cascade');
             $table->integer('nomer')->nullable();
             $table->string('name');
-            $table->unsignedBigInteger('program_id')->references('id')->on('programs')->onDelete('cascade')->onUpdate('cascade');
             $table->longText('tempat')->nullable();
             $table->text('keterangan');
             $table->timestamps();
+            $table->softDeletes();
         });
+
+        
+        Schema::table('pelatihans', function (Blueprint $table){
+            $table->foreign('cabang_id')->references('id')->on('cabangs')->onDelete('cascade')->onUpdate('cascade');
+        });
+
+        // Schema::table('pelatihans', function (Blueprint $table){
+        //     $table->foreign('program_id')->references('id')->on('programs')->onDelete('cascade')->onUpdate('cascade');
+        // });
     }
 
     /**

@@ -14,8 +14,8 @@ class CreatePesertasTable extends Migration
     public function up()
     {
         Schema::create('pesertas', function (Blueprint $table) {
-            $table->id()->startingValue(223300);
-            $table->unsignedBigInteger('pelatihan_id')->references('id')->on('pelatihans')->onDelete('cascade')->onUpdate('cascade');
+            $table->bigIncrements('id')->startingValue(223300);
+            $table->unsignedBigInteger('pelatihan_id');
             $table->string('lembaga')->nullable();
             $table->string('name');
             $table->string('tmptlahir')->nullable();
@@ -37,6 +37,12 @@ class CreatePesertasTable extends Migration
             $table->string('kriteria')->nullable();
             $table->string('munaqisy')->nullable();
             $table->timestamps();
+            $table->softDeletes();
+            
+        });
+
+        Schema::table('pesertas', function (Blueprint $table){
+            $table->foreign('pelatihan_id')->references('id')->on('pelatihans')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

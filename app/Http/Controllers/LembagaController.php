@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 use App\Models\Cabang;
 use App\Models\Jenis;
 use App\Models\Lembaga;
-use App\Models\Propinsi;
+use App\Models\User;
+use App\Models\Province;
 use Illuminate\Http\Request;
 
 class LembagaController extends Controller
@@ -29,7 +30,7 @@ class LembagaController extends Controller
     {
         $dt_cabang = Cabang::all();
         $dt_jenis = Jenis::all();
-        $dt_props = Propinsi::all();
+        $dt_props = Province::all();
         return view('AdmPelatihan.Lembaga.create', compact('dt_props','dt_cabang','dt_jenis'));
     }
 
@@ -41,33 +42,48 @@ class LembagaController extends Controller
      */
     public function store(Request $request)
     {
-        try {
-            
+        // try {
             $y = $request->name;
-            $dt_lem = new Lembaga;
-            $dt_lem->cabang_id = $request->cabang_id;
-            $dt_lem->name = $request->name;
-            $dt_lem->kepala = $request->kepala;
-            $dt_lem->jenis_id = $request->jenis_id;
-            $dt_lem->alamat = $request->alamat;
-            $dt_lem->propinsi_id = $request->propinsi_id;
-            $dt_lem->kota_id = $request->kota_id;
-            $dt_lem->pos = $request->pos;
-            $dt_lem->telp = $request->telp;
-            $dt_lem->pengelola = $request->pengelola;
-            $dt_lem->totguru = $request->totguru;
-            $dt_lem->totsantri = $request->totsantri;
-            $dt_lem->waktubelajar = $request->waktubelajar;
-            $dt_lem->tahunberdiri = $request->tahunberdiri;
-            $dt_lem->tglmasuk = $request->tglmasuk;
-            $dt_lem->keanggotaan = $request->keanggotaan;
-            $dt_lem->save();
+            $x = Lembaga::where('name', $y)->first();
+            if ($x!==null) {
+                # code...
+                return redirect()->back()->with('danger','Lembaga dengan nama tersebut telah terdaftar Periksa Daftar Lembaga yang ada');
+            } else {
+                # code...
+                $dt_cabang = new User;
+                $dt_cabang->username = $request->name;
+                $dt_cabang->role = $request->status;
+                $dt_cabang->email = $request->email;
+                $dt_cabang->password = bcrypt($request->status);
+                $dt_cabang->save();
 
-            return redirect('/pelatihan-lembaga')->with('success', ' ( '.$y.' ) Ditambahkan Sebagai Lembaga Baru');
+                $dt_lem = new Lembaga;
+                $dt_lem->user_id = $dt_cabang->id;
+                $dt_lem->cabang_id = $request->cabang_id;
+                $dt_lem->name = $request->name;
+                $dt_lem->kepala = $request->kepala;
+                $dt_lem->jenis_id = $request->jenis_id;
+                $dt_lem->alamat = $request->alamat;
+                $dt_lem->province_id = $request->province_id;
+                $dt_lem->city_id = $request->city_id;
+                $dt_lem->pos = $request->pos;
+                $dt_lem->telp = $request->telp;
+                $dt_lem->pengelola = $request->pengelola;
+                $dt_lem->totguru = $request->totguru;
+                $dt_lem->totsantri = $request->totsantri;
+                $dt_lem->waktubelajar = $request->waktubelajar;
+                $dt_lem->tahunberdiri = $request->tahunberdiri;
+                $dt_lem->tglmasuk = $request->tglmasuk;
+                $dt_lem->keanggotaan = $request->keanggotaan;
+    
+                $dt_lem->save();
+    
+                return redirect('/pelatihan-lembaga')->with('success', ' ( '.$y.' ) Ditambahkan Sebagai Lembaga Baru');
+            }
             
-        } catch (\Throwable $th) {
-            dd("error", $th);
-        }
+        // } catch (\Throwable $th) {
+        //     dd("error", $th);
+        // }
     }
 
     /**
