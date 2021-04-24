@@ -28,14 +28,15 @@
                     </div>
                     <div class="card-body">
                         <div class="border-bottom pb-4">
-                            <span class="badge badge-success"> +11% </span> <span class="ml-2 text-muted">From previous period</span>
+                            <span class="badge badge-success"> +11% </span> <span class="ml-2 text-muted">From previous
+                                period</span>
                         </div>
                         <div class="mt-4 text-muted">
                             <div class="float-right">
                                 <p class="m-0">Last : 1325</p>
                             </div>
                             <h5 class="m-0">1456<i class="mdi mdi-arrow-up text-success ml-2"></i></h5>
-                            
+
                         </div>
                     </div>
                 </div>
@@ -50,14 +51,15 @@
                     </div>
                     <div class="card-body">
                         <div class="border-bottom pb-4">
-                                <span class="badge badge-success"> +22% </span> <span class="ml-2 text-muted">From previous period</span>
+                            <span class="badge badge-success"> +22% </span> <span class="ml-2 text-muted">From previous
+                                period</span>
                         </div>
                         <div class="mt-4 text-muted">
                             <div class="float-right">
                                 <p class="m-0">Last : 3426</p>
                             </div>
                             <h5 class="m-0">3567<i class="mdi mdi-arrow-up text-success ml-2"></i></h5>
-                            
+
                         </div>
                     </div>
                 </div>
@@ -72,14 +74,15 @@
                     </div>
                     <div class="card-body">
                         <div class="border-bottom pb-4">
-                            <span class="badge badge-danger"> -02% </span> <span class="ml-2 text-muted">From previous period</span>
+                            <span class="badge badge-danger"> -02% </span> <span class="ml-2 text-muted">From previous
+                                period</span>
                         </div>
                         <div class="mt-4 text-muted">
                             <div class="float-right">
                                 <p class="m-0">Last : 15.8</p>
                             </div>
                             <h5 class="m-0">14.5<i class="mdi mdi-arrow-down text-danger ml-2"></i></h5>
-                            
+
                         </div>
                     </div>
                 </div>
@@ -94,14 +97,15 @@
                     </div>
                     <div class="card-body">
                         <div class="border-bottom pb-4">
-                            <span class="badge badge-success"> +10% </span> <span class="ml-2 text-muted">From previous period</span>
+                            <span class="badge badge-success"> +10% </span> <span class="ml-2 text-muted">From previous
+                                period</span>
                         </div>
                         <div class="mt-4 text-muted">
                             <div class="float-right">
                                 <p class="m-0">Last : 14256</p>
                             </div>
                             <h5 class="m-0">15234<i class="mdi mdi-arrow-up text-success ml-2"></i></h5>
-                            
+
                         </div>
                     </div>
                 </div>
@@ -118,7 +122,8 @@
                             <li class="activity-item">
                                 <span class="activity-date">12 Oct</span>
                                 <span class="activity-text">Responded to need “Volunteer Activities”</span>
-                                <p class="text-muted mt-2">Everyone realizes why a new common language would be desirable common words.</p>
+                                <p class="text-muted mt-2">Everyone realizes why a new common language would be
+                                    desirable common words.</p>
                             </li>
                             <li class="activity-item">
                                 <span class="activity-date">13 Oct</span>
@@ -128,7 +133,8 @@
                             <li class="activity-item">
                                 <span class="activity-date">14 Oct</span>
                                 <span class="activity-text">Uploaded this File</span>
-                                <p class="text-muted mt-2 mb-4">The new common language will be more simple and regular their pronunciation.</p>
+                                <p class="text-muted mt-2 mb-4">The new common language will be more simple and regular
+                                    their pronunciation.</p>
                             </li>
                         </ul>
                     </div>
@@ -152,39 +158,47 @@
 @section('script')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
 <script>
-    var year = <?php echo $year; ?>;
-    var user = <?php echo $user; ?>;
-    // var year = document.getElementById("year").value;
-    // var year = document.getElementById("user").value;
-    var barChartData = {
-        labels: year,
-        datasets: [{
-            label: 'User',
-            backgroundColor: "green",
-            data: user
-        }]
-    };
+    $(document).ready(function () {
+       getDataForChart();
 
-    window.onload = function() {
-        var ctx = document.getElementById("canvas").getContext("2d");
-        window.myBar = new Chart(ctx, {
-            type: 'line',
-            data: barChartData,
-            options: {
-                elements: {
-                    rectangle: {
-                        borderWidth: 2,
-                        borderColor: '#c1c1c1',
-                        borderSkipped: 'bottom'
-                    }
-                },
-                responsive: true,
-                title: {
-                    display: true,
-                    text: 'Yearly User Joined'
-                }
+    });
+
+    function getDataForChart() {
+        $.ajax({
+            type: "GET",
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: "{{ route('dashboard.chart') }}",
+            dataType: "JSON",
+            success: function (response) {
+
+                make_chart(response.content.year, response.content.user);
             }
         });
-    };
+    }
+    function make_chart(year, user) {
+        var ctx = document.getElementById('canvas').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: year,
+        datasets: [{
+            label: 'Data Diklat',
+            data: user,
+            borderColor: "grenn",
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+     }
+
 </script>
 @endsection

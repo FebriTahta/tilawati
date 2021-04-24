@@ -47,12 +47,12 @@
 
                 <div class="left-side-logo d-block d-lg-none">
                     <div class="text-center border-bottom">
-                        
+
                         <a href="index.html" class="logo"><img src="{{asset('assets/images/nf_logo.png')}}" height="50" alt="logo"></a>
                     </div>
                 </div>
 
-                <div class="sidebar-inner slimscrollleft">                    
+                <div class="sidebar-inner slimscrollleft">
                     <div id="sidebar-menu">
                         <ul>
                             <li class="menu-title text-uppercase">Main</li>
@@ -119,7 +119,7 @@
 
                         <div class="topbar-left	d-none d-lg-block">
                             <div class="text-center">
-                                
+
                                 <a href="index.html" class="logo"><img src="{{asset('assets/images/nf_logo.png')}}" height="50" alt="logo"></a>
                             </div>
                         </div>
@@ -129,11 +129,11 @@
                             <ul class="list-inline float-right mb-0">
                                 <li class="list-inline-item notification-list dropdown d-none d-sm-inline-block">
                                     <form role="search" class="app-search">
-                                        <div class="form-group mb-0"> 
+                                        <div class="form-group mb-0">
                                             <input type="text" class="form-control" placeholder="Search..">
                                             <button type="submit"><i class="fa fa-search"></i></button>
                                         </div>
-                                    </form> 
+                                    </form>
                                 </li>
                                 <li class="list-inline-item dropdown notification-list">
                                     <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button"
@@ -153,13 +153,13 @@
                                                 <div class="notify-icon"><img src="{{asset('adm/images/users/user-2.jpg')}}" alt="user-img" class="img-fluid rounded-circle" /> </div>
                                                 <p class="notify-details"><b>Charles M. Jones</b><span class="text-muted">Dummy text of the printing and typesetting industry.</span></p>
                                             </a>
-    
+
                                             <!-- item-->
                                             <a href="javascript:void(0);" class="dropdown-item notify-item">
                                                 <div class="notify-icon"><img src="{{ asset('adm/images/users/user-3.jpg') }}" alt="user-img" class="img-fluid rounded-circle" /> </div>
                                                 <p class="notify-details"><b>Thomas J. Mimms</b><span class="text-muted">You have 87 unread messages</span></p>
                                             </a>
-    
+
                                             <!-- item-->
                                             <a href="javascript:void(0);" class="dropdown-item notify-item">
                                                 <div class="notify-icon"><img src="{{ asset('adm/images/users/user-4.jpg') }}" alt="user-img" class="img-fluid rounded-circle" /> </div>
@@ -171,14 +171,14 @@
                                                 <div class="notify-icon"><img src="{{ asset('adm/images/users/user-5.jpg') }}" alt="user-img" class="img-fluid rounded-circle" /> </div>
                                                 <p class="notify-details"><b>Kendall E. Walker</b><span class="text-muted">Dummy text of the printing and typesetting industry.</span></p>
                                             </a>
-    
+
                                             <!-- item-->
                                             <a href="javascript:void(0);" class="dropdown-item notify-item">
                                                 <div class="notify-icon"><img src="{{ asset('adm/images/users/user-6.jpg') }}" alt="user-img" class="img-fluid rounded-circle" /> </div>
                                                 <p class="notify-details"><b>David M. Ryan</b><span class="text-muted">You have 87 unread messages</span></p>
                                             </a>
                                         </div>
-                                        
+
 
                                         <!-- All-->
                                         <a href="javascript:void(0);" class="dropdown-item notify-all">
@@ -208,13 +208,13 @@
                                                 <div class="notify-icon bg-primary"><i class="mdi mdi-cart-outline"></i></div>
                                                 <p class="notify-details">Your order is placed<span class="text-muted">Dummy text of the printing and typesetting industry.</span></p>
                                             </a>
-    
+
                                             <!-- item-->
                                             <a href="javascript:void(0);" class="dropdown-item notify-item">
                                                 <div class="notify-icon bg-success"><i class="mdi mdi-message"></i></div>
                                                 <p class="notify-details">New Message received<span class="text-muted">You have 87 unread messages</span></p>
                                             </a>
-    
+
                                             <!-- item-->
                                             <a href="javascript:void(0);" class="dropdown-item notify-item">
                                                 <div class="notify-icon bg-danger"><i class="mdi mdi-martini"></i></div>
@@ -225,7 +225,7 @@
                                                 <div class="notify-icon bg-danger"><i class="mdi mdi-message"></i></div>
                                                 <p class="notify-details">New Message received<span class="text-muted">You have 87 unread messages</span></p>
                                             </a>
-    
+
                                             <!-- item-->
                                             <a href="javascript:void(0);" class="dropdown-item notify-item">
                                                 <div class="notify-icon bg-info"><i class="mdi mdi-martini"></i></div>
