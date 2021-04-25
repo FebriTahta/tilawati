@@ -35,6 +35,8 @@ Auth::routes();
 Route::group(['middleware' => ['auth', 'CheckRole:pusat']], function () {
     //dashboard
     Route::get('/dashboard',[DashboardController::class, 'index'])->name('dashboard');
+    // data untuk chart di dashboar
+    Route::get('/dashboard-chart',[DashboardController::class,'dataForChart'])->name('dashboard.chart');
     //user
     Route::get('/data-user',[UserController::class, 'index'])->name('user.index');
     //cabang
@@ -55,7 +57,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat']], function () {
     Route::get('/fetch/{id}',[SubController::class, 'fetch']);
     //fetch program dan pelatihan untuk print
     Route::get('/fetchpp/{id}',[SubController::class, 'fetchpp']);
-    
+
     //import
     Route::post('/importPeserta',[ImportController::class,'importPeserta'])->name('import.peserta');
     Route::post('/importPesertaGuru',[ImportController::class,'importPesertaGuru'])->name('import.pesertaG');
@@ -92,13 +94,13 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga']], funct
     //pelatihan peserta
     Route::get('/pelatihan-data-entri/{id}/data', [PesertaController::class, 'daftarpeserta'])->name('pelatihan.daftarpeserta');
     Route::post('/pelatihan-data-entri/peserta', [PesertaController::class, 'storepes'])->name('pelatihan.storepes');
-    
+
     //cetak
     Route::get('/pelatihan-cetak-depan', [CetakController::class, 'ijazahdepan'])->name('pelatihan.c_depan');
     Route::post('/pelatihan-cetak-depan-print', [CetakController::class, 'cetak_depan'])->name('depan.cetak');
     Route::get('/pelatihan-cetak-belakang-santri', [CetakController::class, 'ijazahbelakangsantri'])->name('pelatihan.c_belakang');
     Route::post('/pelatihan-cetak-belakang-santri-print', [CetakController::class, 'cetak_belakang_santri'])->name('belakang.cetaksantri');
-    
+
     //sub controller ajax
     //fetch propinsi dan kota
     Route::get('/fetch/{id}',[SubController::class, 'fetch'])->name('fetch');

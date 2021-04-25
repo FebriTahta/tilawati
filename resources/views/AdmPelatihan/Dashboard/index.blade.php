@@ -204,39 +204,46 @@
 @section('script')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
 <script>
-    var year = <?php echo $monthNames; ?>;
-    var user = <?php echo $users; ?>;
-    // var year = document.getElementById("year").value;
-    // var year = document.getElementById("user").value;
-    var barChartData = {
-        labels: year,
-        datasets: [{
-            label: 'Peserta Diklat',
-            backgroundColor: "rgb(124, 152, 243)",
-            data: user
-        }]
-    };
+    $(document).ready(function () {
+       getDataForChart();
 
-    window.onload = function() {
-        var ctx = document.getElementById("canvas").getContext("2d");
-        window.myBar = new Chart(ctx, {
-            type: 'line',
-            data: barChartData,
-            options: {
-                elements: {
-                    rectangle: {
-                        borderWidth: 2,
-                        borderColor: '#c1c1c1',
-                        borderSkipped: 'bottom'
-                    }
-                },
-                responsive: true,
-                title: {
-                    display: true,
-                    text: 'Data Diklat Tiap Bulan Tahun 2021'
-                }
+    });
+    function getDataForChart() {
+        $.ajax({
+            type: "GET",
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: "{{ route('dashboard.chart') }}",
+            dataType: "JSON",
+            success: function (response) {
+
+                make_chart(response.content.monthNames, response.content.user);
             }
         });
-    };
+    }
+    function make_chart(monthNames, user) {
+        var ctx = document.getElementById('canvas').getContext('2d');
+        var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: monthNames,
+            datasets: [{
+                label: 'Data Diklat',
+                data: user,
+                borderColor: "green",
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+}
+
 </script>
 @endsection
