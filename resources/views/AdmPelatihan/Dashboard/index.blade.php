@@ -142,7 +142,19 @@
             <div class="col-xl-6">
                 <div class="card m-b-30" style="min-height: 436px">
                     <div class="card-body">
-                        <h4 class="mt-0 header-title mb-4 text-uppercase">DATA DIKLAT TIAP BULAN</h4>
+                        <h4 class="mt-0 header-title mb-4 text-uppercase">DATA PESERTA</h4>
+                        <div class="row">
+                            <div class="form-group col-4">
+                                <input type="date" id="dari" class="form-control">
+                            </div>
+                            <div class="form-group col-4">
+                                <input type="date" id="sampai" class="form-control">
+                            </div>
+                            <div class="form-group col-4">
+                                <button class="btn btn-rounded btn-primary form-control"> <i class="fa fa-search"></i> CARI</button>
+                            </div>
+                        </div>
+                        
                         <div class="panel-body">
                             <canvas id="canvas" height="350" width="600"></canvas>
                         </div>
