@@ -45,40 +45,44 @@ class LembagaController extends Controller
         // try {
             $y = $request->name;
             $x = Lembaga::where('name', $y)->first();
+            $z = User::where('email', $request->email)->first();
             if ($x!==null) {
                 # code...
                 return redirect()->back()->with('danger','Lembaga dengan nama tersebut telah terdaftar Periksa Daftar Lembaga yang ada');
             } else {
                 # code...
-                $dt_cabang = new User;
-                $dt_cabang->username = $request->name;
-                $dt_cabang->role = $request->status;
-                $dt_cabang->email = $request->email;
-                $dt_cabang->password = bcrypt($request->status);
-                $dt_cabang->save();
+                if ($z!==null) {
+                    # code...
+                    return redirect()->back()->with('danger','email tersebut telah terdaftar gunakan email lain');
+                    
+                } else {
+                    # code...
+                    $dt_cabang = new User;
+                    $dt_cabang->username = $request->name;
+                    $dt_cabang->role = "lembaga";
+                    $dt_cabang->email = $request->email;
+                    $dt_cabang->password = bcrypt("lembaga");
+                    $dt_cabang->save();
 
-                $dt_lem = new Lembaga;
-                $dt_lem->user_id = $dt_cabang->id;
-                $dt_lem->cabang_id = $request->cabang_id;
-                $dt_lem->name = $request->name;
-                $dt_lem->kepala = $request->kepala;
-                $dt_lem->jenis_id = $request->jenis_id;
-                $dt_lem->alamat = $request->alamat;
-                $dt_lem->province_id = $request->province_id;
-                $dt_lem->city_id = $request->city_id;
-                $dt_lem->pos = $request->pos;
-                $dt_lem->telp = $request->telp;
-                $dt_lem->pengelola = $request->pengelola;
-                $dt_lem->totguru = $request->totguru;
-                $dt_lem->totsantri = $request->totsantri;
-                $dt_lem->waktubelajar = $request->waktubelajar;
-                $dt_lem->tahunberdiri = $request->tahunberdiri;
-                $dt_lem->tglmasuk = $request->tglmasuk;
-                $dt_lem->keanggotaan = $request->keanggotaan;
-    
-                $dt_lem->save();
-    
-                return redirect('/pelatihan-lembaga')->with('success', ' ( '.$y.' ) Ditambahkan Sebagai Lembaga Baru');
+                    $dt_lem = new Lembaga;
+                    $dt_lem->user_id = $dt_cabang->id;
+                    $dt_lem->cabang_id = $request->cabang_id;
+                    $dt_lem->name = $request->name;
+                    $dt_lem->kepala = $request->kepala;
+                    $dt_lem->jenis_id = $request->jenis_id;
+                    $dt_lem->alamat = $request->alamat;
+                    $dt_lem->province_id = $request->province_id;
+                    $dt_lem->city_id = $request->city_id;
+                    $dt_lem->pos = $request->pos;
+                    $dt_lem->telp = $request->telp;
+                    $dt_lem->tahunberdiri = $request->tahunberdiri;
+                    $dt_lem->tglmasuk = $request->tglmasuk;
+                    $dt_lem->status = $request->status;
+        
+                    $dt_lem->save();
+        
+                    return redirect('/pelatihan-lembaga')->with('success', ' ( '.$y.' ) Ditambahkan Sebagai Lembaga Baru');
+                }
             }
             
         // } catch (\Throwable $th) {

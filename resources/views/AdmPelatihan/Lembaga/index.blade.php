@@ -59,8 +59,6 @@
                                     <th>Alamat</th>
                                     <th>Kota</th>
                                     <th>Propinsi</th>
-                                    <th>Total Guru</th>
-                                    <th>Total Santri</th>
                                     <th>Telp</th>
                                     <th>Aktif</th>
                                     <th>Tgl Masuk</th>
@@ -74,10 +72,8 @@
                                             <td>{{ $item->kepala }}</td>
                                             <td>{{ $item->jenis->name }}</td>
                                             <td style="width: 20%">{{ $item->alamat }}</td>
-                                            <td>{{ $item->kota->name }}</td>
-                                            <td>{{ $item->propinsi->name }}</td>
-                                            <td>{{ $item->totguru }}</td>
-                                            <td>{{ $item->totsantri }}</td>
+                                            <td>{{ $item->city->name }}</td>
+                                            <td>{{ $item->province->name }}</td>
                                             <td>{{ $item->telp }}</td>
                                             <td>
                                                 @if ($item->keanggotaan==1)
@@ -100,10 +96,9 @@
                                             <td>{{ $item->kepala }}</td>
                                             <td>{{ $item->jenis->name }}</td>
                                             <td style="width: 20%">{{ $item->alamat }}</td>
-                                            <td>{{ $item->kota->name }}</td>
-                                            <td>{{ $item->propinsi->name }}</td>
-                                            <td>{{ $item->totguru }}</td>
-                                            <td>{{ $item->totsantri }}</td>
+                                            <td>{{ $item->city->name }}</td>
+                                            <td>{{ $item->province->name }}</td>
+                                            <td>{{ $item->telp }}</td>
                                             <td>
                                                 @if ($item->keanggotaan==1)
                                                     <p class="text-primary"> Aktif</p>

@@ -13,7 +13,7 @@ class Lembaga extends Model
         'jenis_id',
         'propinsi_id',
         'kota_id',
-        'keanggotaan'
+        'status'
     ];
     protected $dates = ['deleted_at'];
 
@@ -25,13 +25,13 @@ class Lembaga extends Model
     {
         return $this->belongsTo(Jenis::class);
     }
-    public function propinsi()
+    public function province()
     {
-        return $this->belongsTo(Propinsi::class);
+        return $this->belongsTo(Province::class);
     }
-    public function kota()
+    public function city()
     {
-        return $this->belongsTo(Kota::class);
+        return $this->belongsTo(City::class);
     }
     public function user()
     {

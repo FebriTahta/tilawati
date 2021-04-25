@@ -25,13 +25,9 @@ class CreateLembagasTable extends Migration
             $table->unsignedBigInteger('city_id')->references('id')->on('cities')->onUpdate('cascade');
             $table->string('pos')->nullable();
             $table->string('telp')->nullable();
-            $table->string('pengelola')->nullable();
-            $table->string('totguru')->nullable();
-            $table->string('totsantri')->nullable();
-            $table->string('waktubelajar')->nullable();
             $table->string('tahunberdiri')->nullable();
             $table->string('tglmasuk')->nullable();
-            $table->string('keanggotaan');
+            $table->string('status');
             $table->timestamps();
              $table->softDeletes();
         });

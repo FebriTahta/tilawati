@@ -57,13 +57,13 @@
                                 <tr>
                                     <th>Nama Cabang</th>
                                     <th>Status</th>
-                                    <th>Kepala</th>
+                                    <th>Kepala Cabang</th>
                                     <th>Alamat</th>
                                     <th>Kota</th>
                                     <th>Propvinsi</th>
-                                    <th>Telp</th>
+                                    <th>Telephone</th>
                                     <th>Email</th>
-                                    <th>KdPos</th>
+                                    <th>Kode Pos</th>
                                     <th class="text-center">Opsi</th>
                                 </tr>
                                 </thead>

@@ -15,6 +15,9 @@
 <!-- end row -->
 
 <div class="row">
+    <!--flash massage-->
+    @include('layouts.sess.flash_message')
+    <!--flash massage-->
     <div class="col-xl-12">
         <div class="card m-b-30">
             <div class="card-body">
@@ -104,19 +107,7 @@
                                             <input type="email" class="form-control" name="email" placeholder="Email Lembaga..." required>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <input type="number" name="pengelola" class="form-control" placeholder="Pengelola..." >
-                                    </div>
                                     <div class="row">
-                                        <div class="col-4 form-group">
-                                            <input type="number" class="form-control" name="totguru" placeholder="Total Guru" >
-                                        </div>
-                                        <div class="col-4 form-group">
-                                            <input type="number" class="form-control" name="totsantri" placeholder="Total Santri" >
-                                        </div>
-                                        <div class="col-4 form-group">
-                                            <input type="text" class="form-control" name="waktubelajar" placeholder="Waktu Belajar" >
-                                        </div>
                                         <div class="col-4 form-group">
                                             <label for="">Tahun Berdiri</label>
                                             <input type="date" class="form-control" name="tahunberdiri" placeholder="Tahun Berdiri" >
@@ -126,8 +117,8 @@
                                             <input type="date" class="form-control" name="tglmasuk" placeholder="Tanggal Masuk" >
                                         </div>
                                         <div class="col-4 form-group">
-                                            <label for="">Keanggotaan Aktif</label>
-                                            <select name="keanggotaan" id="" class="form-control" required>
+                                            <label for="">Status</label>
+                                            <select name="status" id="" class="form-control" required>
                                                 <option value="1">Aktif</option>
                                                 <option value="0">Tidak Aktif</option>
                                             </select>
