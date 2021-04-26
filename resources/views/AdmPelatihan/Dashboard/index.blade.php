@@ -117,7 +117,7 @@
         <div class="row">
             <div class="col-xl-6">
                 <div class="card m-b-30">
-                    <div class="card-body" style="min-height: 436px">
+                    {{-- <div class="card-body" style="min-height: 436px">
                         <h4 class="mt-0 header-title mb-4 text-uppercase">History Aktifitas Diklat</h4>
                         <ul class="list-unstyled activity-list">
                             <li class="activity-item">
@@ -136,7 +136,153 @@
                                 <p class="text-muted mt-2">Diklat Tilawati</p>
                             </li>
                         </ul>
-                    </div>
+                    </div> --}}
+                    <div class="card-body">
+                    <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                        <thead>
+                        <tr>
+                            <th style="width: 20%">Name</th>
+                            <th style="width: 20%">Cabang</th>
+                            <th style="width: 20%">Lembaga</th>
+                            <th style="width: 10%">Telp</th>
+                            <th style="width: 30%">Alamat</th>
+                            <th>Diklat</th>
+                        </tr>
+                        </thead>
+
+
+                        <tbody>
+                        {{-- @foreach ($peserta as $item) --}}
+                            <tr>
+                                <td>febri rizqi tahta nugraha</td>
+                                <td>citra anak soleh</td>
+                                <td>baitul ghufron</td>
+                                <td>081329146514</td>
+                                <td>jl simo jawar gang 3 no 104 rt 02 rw 01</td>
+                                <td>
+                                    <ul>
+                                        <li>diklat tilawati lancar membaca (lulus)</li>
+                                        <li>diklat tahfiz (lulus)</li>
+                                        <li>diklat tilawah (tidak lulus)</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>febri rizqi tahta nugraha</td>
+                                <td>citra anak soleh</td>
+                                <td>baitul ghufron</td>
+                                <td>081329146514</td>
+                                <td>jl simo jawar gang 3 no 104 rt 02 rw 01</td>
+                                <td>
+                                    <ul>
+                                        <li>diklat tilawati lancar membaca (lulus)</li>
+                                        <li>diklat tahfiz (lulus)</li>
+                                        <li>diklat tilawah (tidak lulus)</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>febri rizqi tahta nugraha</td>
+                                <td>citra anak soleh</td>
+                                <td>baitul ghufron</td>
+                                <td>081329146514</td>
+                                <td>jl simo jawar gang 3 no 104 rt 02 rw 01</td>
+                                <td>
+                                    <ul>
+                                        <li>diklat tilawati lancar membaca (lulus)</li>
+                                        <li>diklat tahfiz (lulus)</li>
+                                        <li>diklat tilawah (tidak lulus)</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>febri rizqi tahta nugraha</td>
+                                <td>citra anak soleh</td>
+                                <td>baitul ghufron</td>
+                                <td>081329146514</td>
+                                <td>jl simo jawar gang 3 no 104 rt 02 rw 01</td>
+                                <td>
+                                    <ul>
+                                        <li>diklat tilawati lancar membaca (lulus)</li>
+                                        <li>diklat tahfiz (lulus)</li>
+                                        <li>diklat tilawah (tidak lulus)</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>febri rizqi tahta nugraha</td>
+                                <td>citra anak soleh</td>
+                                <td>baitul ghufron</td>
+                                <td>081329146514</td>
+                                <td>jl simo jawar gang 3 no 104 rt 02 rw 01</td>
+                                <td>
+                                    <ul>
+                                        <li>diklat tilawati lancar membaca (lulus)</li>
+                                        <li>diklat tahfiz (lulus)</li>
+                                        <li>diklat tilawah (tidak lulus)</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>febri rizqi tahta nugraha</td>
+                                <td>citra anak soleh</td>
+                                <td>baitul ghufron</td>
+                                <td>081329146514</td>
+                                <td>jl simo jawar gang 3 no 104 rt 02 rw 01</td>
+                                <td>
+                                    <ul>
+                                        <li>diklat tilawati lancar membaca (lulus)</li>
+                                        <li>diklat tahfiz (lulus)</li>
+                                        <li>diklat tilawah (tidak lulus)</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>febri rizqi tahta nugraha</td>
+                                <td>citra anak soleh</td>
+                                <td>baitul ghufron</td>
+                                <td>081329146514</td>
+                                <td>jl simo jawar gang 3 no 104 rt 02 rw 01</td>
+                                <td>
+                                    <ul>
+                                        <li>diklat tilawati lancar membaca (lulus)</li>
+                                        <li>diklat tahfiz (lulus)</li>
+                                        <li>diklat tilawah (tidak lulus)</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>febri rizqi tahta nugraha</td>
+                                <td>citra anak soleh</td>
+                                <td>baitul ghufron</td>
+                                <td>081329146514</td>
+                                <td>jl simo jawar gang 3 no 104 rt 02 rw 01</td>
+                                <td>
+                                    <ul>
+                                        <li>diklat tilawati lancar membaca (lulus)</li>
+                                        <li>diklat tahfiz (lulus)</li>
+                                        <li>diklat tilawah (tidak lulus)</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>febri rizqi tahta nugraha</td>
+                                <td>citra anak soleh</td>
+                                <td>baitul ghufron</td>
+                                <td>081329146514</td>
+                                <td>jl simo jawar gang 3 no 104 rt 02 rw 01</td>
+                                <td>
+                                    <ul>
+                                        <li>diklat tilawati lancar membaca (lulus)</li>
+                                        <li>diklat tahfiz (lulus)</li>
+                                        <li>diklat tilawah (tidak lulus)</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        {{-- @endforeach --}}
+                        </tbody>
+                    </table>
+                </div>
                 </div>
             </div>
             <div class="col-xl-6">
