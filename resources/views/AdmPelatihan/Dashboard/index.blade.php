@@ -8,7 +8,8 @@
             <div class="col-sm-12">
                 <div class="float-right page-breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><span id="hari"></span> <span id="tgl"></span> <span id="bln"></span></li>
+                        <li class="breadcrumb-item"><span id="hari"></span> <span id="tgl"></span> <span
+                                id="bln"></span></li>
                         <li class="breadcrumb-item active"><span id="clock"></span></li>
                     </ol>
                 </div>
@@ -28,7 +29,8 @@
                     </div>
                     <div class="card-body">
                         <div class="border-bottom pb-4 text-center">
-                            <h2>50</h2><h5>DIKLAT</h5>
+                            <h2>50</h2>
+                            <h5>DIKLAT</h5>
                             <div class="float-left">
                                 {{-- <h6 class="m-0">20 Cabang</h6> --}}
                             </div>
@@ -37,7 +39,7 @@
                             </div>
                         </div>
                         <div class="mt-4 text-muted">
-                            
+
                         </div>
                     </div>
                 </div>
@@ -52,7 +54,8 @@
                     </div>
                     <div class="card-body">
                         <div class="border-bottom pb-4 text-center">
-                            <h2>50</h2><h5>CABANG</h5>
+                            <h2>50</h2>
+                            <h5>CABANG</h5>
                         </div>
                         <div class="mt-4 text-muted">
                             <div class="float-left">
@@ -75,7 +78,8 @@
                     </div>
                     <div class="card-body">
                         <div class="border-bottom pb-4 text-center">
-                            <h2>50</h2><h5>LEMBAGA</h5>
+                            <h2>50</h2>
+                            <h5>LEMBAGA</h5>
                         </div>
                         <div class="mt-4 text-muted">
                             <div class="float-left">
@@ -98,7 +102,8 @@
                     </div>
                     <div class="card-body">
                         <div class="border-bottom pb-4 text-center">
-                            <h2>50</h2><h5>PESERTA</h5>
+                            <h2>50</h2>
+                            <h5>PESERTA</h5>
                         </div>
                         <div class="mt-4 text-muted">
                             <div class="float-left">
@@ -146,16 +151,19 @@
                         <div class="row">
                             <div class="form-group col-4">
                                 <input type="date" id="dari" class="form-control">
+                                <span class="red dari" style="color: red"></span>
                             </div>
                             <div class="form-group col-4">
                                 <input type="date" id="sampai" class="form-control">
+                                <span class="red sampai" style="color: red"></span>
                             </div>
                             <div class="form-group col-4">
-                                <button class="btn btn-rounded btn-primary form-control"> <i class="fa fa-search"></i> CARI</button>
+                                <button class="btn btn-rounded btn-primary form-control" onclick="search()"> <i
+                                        class="fa fa-search"></i> CARI</button>
                             </div>
                         </div>
-                        
-                        <div class="panel-body">
+
+                        <div class="panel-body show-chart">
                             <canvas id="canvas" height="350" width="600"></canvas>
                         </div>
                     </div>
@@ -169,41 +177,44 @@
                     <div class="card-body">
 
                         <h4 class="mt-0 header-title">DATA PESERTA PELATIHAN</h4>
-                        <p class="text-muted m-b-30 font-14">Table berikut menampilkan seluruh data peserta pelatihan yang ada beserta cabang, lembaga, jenis pelatihan, dan keterangan lulus atau tidaknya peserta tersebut
+                        <p class="text-muted m-b-30 font-14">Table berikut menampilkan seluruh data peserta pelatihan
+                            yang ada beserta cabang, lembaga, jenis pelatihan, dan keterangan lulus atau tidaknya
+                            peserta tersebut
                         </p>
                         <div class="table table-responsive">
-                        <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                            <thead>
-                            <tr>
-                                <th style="width: 20%">Name</th>
-                                <th style="width: 20%">Cabang</th>
-                                <th style="width: 20%">Lembaga</th>
-                                <th style="width: 10%">Telp</th>
-                                <th style="width: 30%">Alamat</th>
-                                <th>Diklat</th>
-                            </tr>
-                            </thead>
+                            <table id="datatable" class="table table-bordered dt-responsive nowrap"
+                                style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 20%">Name</th>
+                                        <th style="width: 20%">Cabang</th>
+                                        <th style="width: 20%">Lembaga</th>
+                                        <th style="width: 10%">Telp</th>
+                                        <th style="width: 30%">Alamat</th>
+                                        <th>Diklat</th>
+                                    </tr>
+                                </thead>
 
 
-                            <tbody>
-                            {{-- @foreach ($peserta as $item) --}}
-                                <tr>
-                                    <td>febri rizqi tahta nugraha</td>
-                                    <td>citra anak soleh</td>
-                                    <td>baitul ghufron</td>
-                                    <td>081329146514</td>
-                                    <td>jl simo jawar gang 3 no 104 rt 02 rw 01</td>
-                                    <td>
-                                        <ul>
-                                            <li>diklat tilawati lancar membaca (lulus)</li>
-                                            <li>diklat tahfiz (lulus)</li>
-                                            <li>diklat tilawah (tidak lulus)</li>
-                                        </ul>
-                                    </td>
-                                </tr>
-                            {{-- @endforeach --}}
-                            </tbody>
-                        </table>
+                                <tbody>
+                                    {{-- @foreach ($peserta as $item) --}}
+                                    <tr>
+                                        <td>febri rizqi tahta nugraha</td>
+                                        <td>citra anak soleh</td>
+                                        <td>baitul ghufron</td>
+                                        <td>081329146514</td>
+                                        <td>jl simo jawar gang 3 no 104 rt 02 rw 01</td>
+                                        <td>
+                                            <ul>
+                                                <li>diklat tilawati lancar membaca (lulus)</li>
+                                                <li>diklat tahfiz (lulus)</li>
+                                                <li>diklat tilawah (tidak lulus)</li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    {{-- @endforeach --}}
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -217,45 +228,80 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
 <script>
     $(document).ready(function () {
-       getDataForChart();
+        getDataForChart();
 
     });
-    function getDataForChart() {
+
+    function search() {
+        $(".sampai").text("");
+                    $(".dari").text('');
+        let rage = {
+            start: $('#dari').val(),
+            finish: $('#sampai').val(),
+            type:'search'
+        }
         $.ajax({
-            type: "GET",
+            type: "POST",
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             url: "{{ route('dashboard.chart') }}",
+            data: rage,
             dataType: "JSON",
             success: function (response) {
+                if (response.status=='error') {
+                    $(".sampai").text(response.errors.finish);
+                    $(".dari").text(response.errors.start);
 
+                } else{
+                    make_chart(response.content.monthNames, response.content.user)
+                }
+
+            }
+        });
+    }
+
+    function getDataForChart() {
+        $.ajax({
+            type: "POST",
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: "{{ route('dashboard.chart') }}",
+            data:{type:'all'},
+            dataType: "JSON",
+            success: function (response) {
                 make_chart(response.content.monthNames, response.content.user);
             }
         });
     }
+
     function make_chart(monthNames, user) {
+
+        $('.show-chart').html('');
+
+        $('.show-chart').html(`<canvas id="canvas" height="350" width="600"></canvas>`)
         var ctx = document.getElementById('canvas').getContext('2d');
         var myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: monthNames,
-            datasets: [{
-                label: 'Data Diklat',
-                data: user,
-                borderColor: "green",
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
+            type: 'line',
+            data: {
+                labels: monthNames,
+                datasets: [{
+                    label: 'Data Diklat',
+                    data: user,
+                    borderColor: "green",
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
                 }
             }
-        }
-    });
-}
+        });
+    }
 
 </script>
 @endsection

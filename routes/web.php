@@ -36,7 +36,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat']], function () {
     //dashboard
     Route::get('/dashboard',[DashboardController::class, 'index'])->name('dashboard');
     // data untuk chart di dashboar
-    Route::get('/dashboard-chart',[DashboardController::class,'dataForChart'])->name('dashboard.chart');
+    Route::post('/dashboard-chart',[DashboardController::class,'dataForChart'])->name('dashboard.chart');
     //user
     Route::get('/data-user',[UserController::class, 'index'])->name('user.index');
     //cabang
