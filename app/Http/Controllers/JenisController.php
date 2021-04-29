@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Jenis;
+use App\Models\Jenjang;
 use Illuminate\Http\Request;
 
 class JenisController extends Controller
@@ -13,8 +13,8 @@ class JenisController extends Controller
      */
     public function index()
     {
-        $dt_jenis = Jenis::all();
-        return view('AdmPelatihan.Jenis.index',compact('dt_jenis'));
+        $dt_jenis = Jenjang::all();
+        return view('AdmPelatihan.Jenjang.index',compact('dt_jenis'));
     }
 
     /**

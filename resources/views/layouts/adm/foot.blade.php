@@ -57,8 +57,8 @@
 <script src="{{asset('adm/pages/datatables.init.js')}}"></script>
 
 <!--Morris Chart-->
-{{-- <script src="{{asset('adm/plugins/morris/morris.min.js')}}"></script>
-<script src="{{asset('adm/plugins/raphael/raphael-min.js')}}"></script> --}}
+<script src="{{asset('adm/plugins/morris/morris.min.js')}}"></script>
+<script src="{{asset('adm/plugins/raphael/raphael-min.js')}}"></script>
 
 <!-- dashboard -->
 {{-- <script src="{{asset('adm/pages/dashboard.js')}}"></script> --}}

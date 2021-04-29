@@ -10,6 +10,7 @@ use App\Models\Province;
 use App\Models\Kota;
 use App\Models\City;
 use App\Models\User;
+use App\Models\Provinsi;
 
 class CabangController extends Controller
 {
@@ -32,9 +33,10 @@ class CabangController extends Controller
     public function create()
     {
         $dt_props = Province::all();
+        $dt_props2 = Provinsi::all();
         // $dt_kota = City::all();
         $dt_cabang = Cabang::orderBy('id')->get();
-        return view('AdmPelatihan.Cabang.create', compact('dt_props','dt_cabang'));
+        return view('AdmPelatihan.Cabang.create', compact('dt_props','dt_cabang','dt_props2'));
     }
 
     /**

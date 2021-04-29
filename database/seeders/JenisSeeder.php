@@ -56,6 +56,6 @@ class JenisSeeder extends Seeder
             ],
 
         ];
-        \DB::table('jenis')->insert($krit);
+        \DB::table('jenjangs')->insert($krit);
     }
 }

@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
             KriteriaSeeder::class,
             JenisSeeder::class,
             ProgramSeeder::class,
-            LocationsSeeder::class
+            // LocationsSeeder::class
         ]);
     }
 }

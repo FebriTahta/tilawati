@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSantrisTable extends Migration
+class CreateKepalasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,20 @@ class CreateSantrisTable extends Migration
      */
     public function up()
     {
-        Schema::create('santris', function (Blueprint $table) {
+        Schema::create('kepalas', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('lembaga_id');
             $table->string('name');
+            $table->string('tmptlahir');
+            $table->string('tgllahir');
             $table->string('alamat');
+            $table->unsignedBigInteger('provinsi_id');
+            $table->unsignedBigInteger('kota_id');
+            $table->unsignedBigInteger('kecamatan_id');
+            $table->unsignedBigInteger('kelurahan_id');
             $table->string('telp');
-            $table->longText('foto')->nullable();
+            $table->string('gender');
+            $table->string('pekerjaan');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -32,6 +37,6 @@ class CreateSantrisTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('santris');
+        Schema::dropIfExists('kepalas');
     }
 }

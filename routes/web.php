@@ -13,6 +13,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\SubController;
 use App\Http\Controllers\ImportController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\KepalaController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -35,12 +36,21 @@ Auth::routes();
 Route::group(['middleware' => ['auth', 'CheckRole:pusat']], function () {
     //dashboard
     Route::get('/dashboard',[DashboardController::class, 'index'])->name('dashboard');
-    // data untuk chart di dashboar
-    Route::post('/dashboard-chart',[DashboardController::class,'dataForChart'])->name('dashboard.chart');
+    Route::get('/peserta/filter', [DashboardController::class, 'daterangepeserta'])->name('peserta.filter');//get data peserta range ajax dashboard
+    Route::post('/dashboard-chart',[DashboardController::class,'dataForChart'])->name('dashboard.chart');// data untuk chart bar di dashboar
+    Route::post('/dashboard-chart-2',[DashboardController::class,'dataForChart2'])->name('dashboard.chart2');// data untuk chart pie di dashboar
+    Route::get('/dashboard/cabang',[DashboardController::class, 'getcabang'])->name('dashboard.cabang');
+    Route::get('/dashboard/lembaga',[DashboardController::class, 'getlembaga'])->name('dashboard.lembaga');
+    Route::get('/dashboard/peserta',[DashboardController::class, 'getpeserta'])->name('dashboard.peserta');
+    Route::get('/dashboard/diklat',[DashboardController::class, 'getdiklat'])->name('dashboard.diklat');
+    
     //user
     Route::get('/data-user',[UserController::class, 'index'])->name('user.index');
     //cabang
     Route::get('/pelatihan-cabang',[CabangController::class, 'index'])->name('cabang.index');
+    //kepala cabang
+    Route::post('/cabang-kepala-store',[KepalaController::class, 'store'])->name('cabang.kepalaS');
+    Route::get('/cabang-kepala-view',[KepalaController::class, 'view'])->name('cabang.kepalaV');
     //lembaga
     Route::get('/pelatihan-lembaga', [LembagaController::class , 'index'])->name('lembaga.index');
     Route::get('/pelatihan-lembaga-create', [LembagaController::class, 'create'])->name('lembaga.create');
@@ -53,8 +63,12 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat']], function () {
     Route::post('/pelatihan-data-entri/peserta', [PesertaController::class, 'storepes'])->name('pelatihan.storepes');
 
     //sub controller ajax
-    //fetch propinsi dan kota
+    //fetch propinsi, kabupaten/kota, kecamatan, kelurahan
     Route::get('/fetch/{id}',[SubController::class, 'fetch']);
+    Route::get('/fetch2/{id}',[SubController::class, 'fetch2']);
+    Route::get('/fetch3/{id}',[SubController::class, 'fetch3']);
+    Route::get('/fetch4/{id}',[SubController::class, 'fetch4']);
+    
     //fetch program dan pelatihan untuk print
     Route::get('/fetchpp/{id}',[SubController::class, 'fetchpp']);
 
