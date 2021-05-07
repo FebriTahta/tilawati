@@ -64,7 +64,7 @@
                                             <td style="width: 5%">{{$key+1}}</td>
                                             <td>{{$item->name}}</td>
                                             <td class="text-center" style="width: 10%">
-                                                <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
+                                                <button class="btn btn-sm btn-danger"data-toggle="modal" data-target="#myModal" data-kriteria="{{ $item->name }}" data-id="{{ $item->id }}"><i class="fa fa-trash"></i> </button>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -103,4 +103,40 @@
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 </div>
+
+<div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <form action="{{ route('jenjang.del') }}" method="POST">@csrf
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: rgb(243, 107, 107)">
+                    <h5 class="modal-title mt-0 text-white" id="myModalLabel" >HAPUS JENJANG</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input type="text" name="id" id="kriteriaid">
+                    <p id="kriteria"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" style="background-color: rgb(243, 107, 107)" class="btn btn-danger waves-effect waves-light"><i class="fa fa-trash"></i> HAPUS</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </form>
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+@endsection
+
+@section('script')
+<script type="application/javascript">
+    $('#myModal').on('show.bs.modal', function(event) {
+        var button = $(event.relatedTarget)
+        var kriteria = button.data('kriteria')
+        var id = button.data('id')
+        var modal = $(this)
+        modal.find('.modal-title').text('HAPUS JENJANG');
+        modal.find('.modal-body #kriteria').text(' Yakin akan menghapus " ' + kriteria + ' " ?');
+        modal.find('.modal-body #kriteriaid').val(id);
+    })
+</script>
 @endsection

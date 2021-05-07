@@ -11,6 +11,8 @@ use App\Models\Kota;
 use App\Models\City;
 use App\Models\User;
 use App\Models\Provinsi;
+use App\Models\Kepala;
+use App\Models\Kabupaten;
 
 class CabangController extends Controller
 {
@@ -32,11 +34,10 @@ class CabangController extends Controller
      */
     public function create()
     {
-        $dt_props = Province::all();
         $dt_props2 = Provinsi::all();
-        // $dt_kota = City::all();
+        $dt_kabupaten = Kabupaten::where('provinsi_id', 11)->first();
         $dt_cabang = Cabang::orderBy('id')->get();
-        return view('AdmPelatihan.Cabang.create', compact('dt_props','dt_cabang','dt_props2'));
+        return view('AdmPelatihan.Cabang.create', compact('dt_kabupaten','dt_cabang','dt_props2'));
     }
 
     /**
@@ -52,6 +53,8 @@ class CabangController extends Controller
             $x = Cabang::where('name', $request->name)->first();
             $e = $request->email;
             $i = User::where('email', $request->email)->first();
+            $k = $request->kepala_id;
+
             
             if ($x!==null) {
                 # code...
@@ -74,27 +77,32 @@ class CabangController extends Controller
                     # code...
                     $dt_cabang = new User;
                     $dt_cabang->username = $request->name;
-                    $dt_cabang->role = $request->status;
+                    $dt_cabang->role = 'cabang';
                     $dt_cabang->email = $request->email;
-                    $dt_cabang->password = bcrypt($request->status);
+                    $dt_cabang->password = bcrypt('cabang');
                     $dt_cabang->save();
                     
                     $dt_cb = new Cabang;
 
                     $dt_cb->user_id = $dt_cabang->id;
                     $dt_cb->name = $request->name;
-                    $dt_cb->status = $request->status;
-                    $dt_cb->kepala = $request->kepala;
-                    $dt_cb->jabatan = $request->jabatan;
-                    $dt_cb->province_id = $request->province_id;
-                    $dt_cb->city_id = $request->city_id;
                     $dt_cb->alamat = $request->alamat;
+                    $dt_cb->provinsi_id = $request->pro_id;
+                    $dt_cb->kabupaten_id = $request->kab_id;
+                    $dt_cb->kecamatan_id = $request->kec_id;
+                    $dt_cb->kelurahan_id = $request->kel_id;
                     $dt_cb->pos = $request->pos;
                     $dt_cb->telp = $request->telp;
                     $dt_cb->ekspedisi = $request->ekspedisi;
-                    $dt_cb->kecamatan = $request->kecamatan;
+                    // $dt_cb->email = $request->email;
                     $dt_cb->teritorial = $request->teritorial;
                     $dt_cb->save();
+
+                    $dt_kepala = Kepala::where('id', $k)->update(
+                        [
+                            'cabang_id'=>$dt_cb->id,
+                        ]
+                    );
 
                     return redirect('/pelatihan-cabang')->with('success', ' ( '.$y.' ) Ditambahkan Sebagai Cabang Baru');
                 }
@@ -124,7 +132,10 @@ class CabangController extends Controller
      */
     public function edit($id)
     {
-        //
+        $dt_kp = Kepala::where('cabang_id', $id)->first();
+        $dt_props2 = Provinsi::all();
+        $dt_cb = Cabang::find($id);
+        return view('AdmPelatihan.Cabang.edit', compact('dt_kp','dt_props2','dt_cb'));
     }
 
     /**
@@ -136,7 +147,41 @@ class CabangController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $ada_email = User::where('email',$request->email)->first();
+        if ($ada_email == null) {
+            # code...
+            $dt_cb = Cabang::find($id);
+            $dt_cb->user_id = $dt_cabang->id;
+                    $dt_cb->name = $request->name;
+                    $dt_cb->alamat = $request->alamat;
+                    $dt_cb->provinsi_id = $request->pro_id;
+                    $dt_cb->kabupaten_id = $request->kab_id;
+                    $dt_cb->kecamatan_id = $request->kec_id;
+                    $dt_cb->kelurahan_id = $request->kel_id;
+                    $dt_cb->pos = $request->pos;
+                    $dt_cb->telp = $request->telp;
+                    $dt_cb->ekspedisi = $request->ekspedisi;
+                    $dt_cb->teritorial = $request->teritorial;
+                    $dt_cb->save();
+
+            return redirect('/pelatihan-cabang')->with('success', 'data cabang berhasil diupdate');
+        } else {
+            # code...
+            $dt_cb = Cabang::find($id);
+            $dt_cb->name = $request->name;
+            $dt_cb->alamat = $request->alamat;
+            $dt_cb->provinsi_id = $request->pro_id;
+            $dt_cb->kabupaten_id = $request->kab_id;
+            $dt_cb->kecamatan_id = $request->kec_id;
+            $dt_cb->kelurahan_id = $request->kel_id;
+            $dt_cb->pos = $request->pos;
+            $dt_cb->telp = $request->telp;
+            $dt_cb->ekspedisi = $request->ekspedisi;
+            $dt_cb->teritorial = $request->teritorial;
+            $dt_cb->save();
+            return redirect('/pelatihan-cabang')->with('success', 'user ga di update karena data emailnya sama');
+        }
+        
     }
 
     /**

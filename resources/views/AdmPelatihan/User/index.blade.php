@@ -58,6 +58,7 @@
                                     <th>username</th>
                                     <th>status</th>
                                     <th>email</th>
+                                    <th>cabang</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -67,6 +68,15 @@
                                         <td>{{ $item->username }}</td>
                                         <td>{{ $item->role }}</td>
                                         <td>{{ $item->email }}</td>
+                                        <td>
+                                            @if ($item->cabang !== null)
+                                                cabang
+                                            @elseif($item->lembaga !== null)
+                                                lembaga
+                                            @else
+                                                kosong
+                                            @endif
+                                        </td>
                                     </tr>
                                 @endforeach
                                 </tbody>

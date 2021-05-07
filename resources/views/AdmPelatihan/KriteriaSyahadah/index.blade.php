@@ -67,7 +67,7 @@
                                            <td>{{ $item->untuk }}</td>
                                            <td class="text-center">
                                                 <button type="button" data-id="{{ $item->id }}" data-name="{{ $item->name }}" class="btn waves-effect waves-light text-white" style="background-color: rgb(134, 134, 252)"><i class="fa fa-pencil"></i></button>
-                                               <button class="btn btn-danger"data-toggle="modal" data-target="#myModal" data-kriteria="{{ $item->name }}"><i class="fa fa-trash"></i> </button>
+                                                <button class="btn btn-danger"data-toggle="modal" data-target="#myModal" data-kriteria="{{ $item->name }}"><i class="fa fa-trash"></i> </button>
                                            </td>
                                        </tr>
                                    @endforeach
@@ -98,8 +98,9 @@
                            <input type="text" class="form-control text-uppercase" name="name" placeholder="Kriteria..." required>
                        </div>
                        <div class="form-group">
-                           <input type="radio" value="GURU" name="untuk"> GURU 
-                           <input type="radio" value="SANTRI" name="untuk"> SANTRI 
+                            <input type="radio" value="INSTRUKTUR" name="untuk"> INSTRUKTUR 
+                            <input type="radio" value="GURU" name="untuk"> GURU 
+                            <input type="radio" value="SANTRI" name="untuk"> SANTRI 
                        </div>
                        <div class="form-group text-right">
                            <button class="btn btn-primary" type="submit"> <i class="fa fa-save"></i> Save</button>

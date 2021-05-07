@@ -194,7 +194,7 @@
                             <div class="row">
                                 <div class="form-group col-xl-6">
                                     <label for="">ID Program</label>
-                                    <input type="number" name="pelatihan_id" value="{{ $dt_pel->id }}" class="form-control">
+                                    <input type="number" name="pelatihan_id" value="{{ $dt_pel->id }}" class="form-control" required readonly>
                                 </div>
                                 <div class="form-group col-xl-6">
                                     <label for="">Lembaga</label>
@@ -209,57 +209,72 @@
                                     <input type="hidden" class="form-control text-uppercase" name="lembaga" id="lembaga">
                                 </div>
                                 <div class="form-group col-xl-6">
-                                    <label for="">Nama</label>
-                                    <input type="text" name="name" class="form-control text-uppercase" placeholder="">
+                                    <label for=""><i class="text-danger">*</i> Nama</label>
+                                    <input type="text" name="name" class="form-control text-uppercase" placeholder="" required>
                                 </div>
                                 <div class="form-group col-xl-6">
-                                    <label for="">Email</label>
+                                    <label for=""> Email</label>
                                     <input type="email" class="form-control" placeholder="" name="email">
                                 </div>
                                 <div class="form-group col-xl-6">
-                                    <label for="">Tempat Lahir</label>
-                                    <input type="text" name="tmptlahir" class="form-control text-uppercase" placeholder="" >
+                                    <label for=""><i class="text-danger">*</i> Tempat Lahir</label>
+                                    <input type="text" name="tmptlahir" class="form-control text-uppercase" placeholder="" required>
                                 </div>
                                 <div class="form-group col-xl-6">
-                                    <label for="">Tanggal Lahir</label>
-                                    <input type="date" name="tgllahir" class="form-control" placeholder="" >
+                                    <label for=""><i class="text-danger">*</i> Tanggal Lahir</label>
+                                    <input type="date" name="tgllahir" class="form-control" placeholder="" required>
                                 </div>
                                 <div class="form-group col-xl-12">
-                                    <label for="">Alamat</label>
-                                    <textarea name="alamat" class="form-control text-uppercase" id="" cols="30" rows=""></textarea>
+                                    <label for=""><i class="text-danger">*</i> Alamat</label>
+                                    <textarea name="alamat" class="form-control text-uppercase" id="" cols="30" rows="" required></textarea>
                                 </div>
                                 
                                 <div class="form-group col-xl-6">
-                                    <label for="">Kota</label>
-                                    <input type="text" name="kota" class="form-control text-uppercase">
+                                    <label for=""><i class="text-danger">*</i> Kota</label>
+                                    <input type="text" name="kota" class="form-control text-uppercase" required>
                                 </div>
                                 <div class="form-group col-xl-6">
                                     <label for="">Telp</label>
-                                    <input type="text" placeholder="" class="form-control " name="telp">
+                                    <input type="text" placeholder="" class="form-control " name="telp" required>
                                 </div>
                                 <div class="form-group col-sm-4">
-                                    <input type="number" class="form-control" name="fs" placeholder="fs" max="28" min="23" required>
+                                    <label for=""><i class="text-danger">*</i> Fashohah</label>
+                                    <input type="number" class="form-control" onkeyup="myFunction()" id="fs" name="fs"  max="28" min="23" required>
                                 </div>
                                 <div class="form-group col-sm-4">
-                                    <input type="number" class="form-control" name="tj" placeholder="tj" max="45" min="35" required>
+                                    <label for=""><i class="text-danger">*</i> Tajwid</label>
+                                    <input type="number" class="form-control" onkeyup="myFunction()" id="tj" name="tj"  max="45" min="35" required>
                                 </div>
                                 <div class="form-group col-sm-4">
-                                    <input type="number" class="form-control" name="gm" placeholder="gm" max="10" min="7" required>
+                                    <label for=""><i class="text-danger">*</i> Ghorib Musykilat</label>
+                                    <input type="number" class="form-control" onkeyup="myFunction()" id="gm" name="gm"  max="10" min="7" required>
                                 </div>
                                 <div class="form-group col-sm-4">
-                                    <input type="number" class="form-control" name="sl" placeholder="sl" max="7" min="5" required>
+                                    <label for=""><i class="text-danger">*</i> Suara dan Lagu</label>
+                                    <input type="number" class="form-control" onkeyup="myFunction()" id="sl" name="sl"  max="7" min="5" required>
                                 </div>
                                 @if ($dt_pel->keterangan == 'GURU')
                                 <div class="form-group col-sm-4">
-                                    <input type="number" class="form-control" name="mt" placeholder="mt">
+                                    <label for=""><i class="text-danger">*</i> MICROTEACHING</label>
+                                    <input type="number" class="form-control" id="mt" name="mt" max="90" min="50" required>
                                 </div>
                                 @endif
+                                    <div class="form-group col-sm-12"></div>
+                                    <div class="form-group col-xl-4 col-6">
+                                        <label for="">Jumlah Nilai</label>
+                                        <input type="text" readonly class="form-control" id="jumlah" name="jumlah" value="isi kategori penilaian">
+                                    </div>
+                                    <div class="form-group col-xl-4 col-6">
+                                        <label for="">Penilaian Syahadah</label>
+                                        <input type="text" readonly class="form-control" id="penilaian" value="lengkapi seluruh penilaian" name="penilaian">
+                                    </div>
                                 <div class="form-gorup col-sm-12">
                                     <div class="form-group">
                                         <div>
                                             <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" name="bersyahadah" value="1" class="custom-control-input form-control" id="customCheck1" data-parsley-multiple="groups" data-parsley-mincheck="2">
-                                                <label class="custom-control-label" for="customCheck1">Bersyahadah</label>
+                                                {{-- <input type="checkbox" name="bersyahadah" value="1" class="custom-control-input form-control" id="customCheck1" data-parsley-multiple="groups" data-parsley-mincheck="2">
+                                                <label class="custom-control-label" for="customCheck1">Bersyahadah</label> --}}
+                                                <input type="text" id="syahadah" name="syahadah" required>
                                             </div>
                                         </div>
                                     </div>
@@ -337,7 +352,34 @@
 @endsection
 @section('script')
 <script>
+    
+        function myFunction()
+        {
+            let x1 = document.getElementById("fs").value;
+            let x2 = document.getElementById("tj").value;
+            var x3 = document.getElementById("gm").value;
+            var x4 = document.getElementById("sl").value;
+            var x5 = document.getElementById("mt").value;
+            let zx = parseInt(x1) + parseInt(x2) + parseInt(x3) + parseInt(x4);
+            if (isNaN(zx)) {
+                document.getElementById("jumlah").value = "lengkapi seluruh kriteria penilaian";
+                document.getElementById("penilaian").value = "menunggu";
+            }else{
+                document.getElementById("jumlah").value = zx;
+                if (zx < 70) {
+                    document.getElementById("penilaian").value = "belum bersyahadah";
+                    document.getElementById("syahadah").value = "0";
+                }else{
+                    document.getElementById("penilaian").value = "bersyahadah";
+                    document.getElementById("syahadah").value = "1";
+                }
+            }
+        }
+    
+</script>
+<script>
     $(document).ready(function() {
+        
             $('select[name="krits"]').on('change', function() {
                 var kriteria_name = $(this).val();
                 document.getElementById("kriteria").value = kriteria_name;

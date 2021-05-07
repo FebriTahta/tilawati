@@ -56,47 +56,61 @@
                                 <thead class="mt-100">
                                 <tr>
                                     <th>Nama Cabang</th>
-                                    <th>Status</th>
                                     <th>Kepala Cabang</th>
+                                    <th>Provinsi</th>
+                                    <th>Kabupaten</th>
+                                    <th>Kecamatan</th>
+                                    <th>Kelurahan</th>
                                     <th>Alamat</th>
-                                    <th>Kota</th>
-                                    <th>Propvinsi</th>
                                     <th>Telephone</th>
                                     <th>Email</th>
+                                    <th>Teritorial</th>
                                     <th>Kode Pos</th>
+                                    <th>Alamat Ekspedisi</th>
+                                    <th>Total Lembaga Yang Dinaungi </th>
                                     <th class="text-center">Opsi</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                    @if (auth()->user()->role=="cabang")
+                                    <?php $item=auth()->user() ?>
+                                    @if ( $item->role == "cabang")
                                         <tr>
-                                            <td>{{ auth()->user()->cabang->name }}</td>
-                                            <td>{{ auth()->user()->cabang->status }}</td>
-                                            <td>{{ auth()->user()->cabang->kepala }}</td>
-                                            <td>{{ auth()->user()->cabang->alamat }}</td>
-                                            <td>{{ auth()->user()->cabang->kota->name }}</td>
-                                            <td>{{ auth()->user()->cabang->propinsi->name }}</td>
-                                            <td>{{ auth()->user()->cabang->telp }}</td>
-                                            <td>{{ auth()->user()->cabang->user->email }}</td>
-                                            <td>{{ auth()->user()->cabang->pos }}</td>
+                                            <td>{{ $item->cabang->name }}</td>
+                                            <td>{{ $item->cabang->kepala->name }}</td>
+                                            <td>{{ $item->cabang->provinsi->nama }}</td>
+                                            <td>{{ $item->cabang->kabupaten->nama }}</td>
+                                            <td>{{ $item->cabang->kecamatan->nama }}</td>
+                                            <td>{{ $item->cabang->kelurahan->nama }}</td>
+                                            <td>{{ $item->cabang->alamat }}</td>
+                                            <td>{{ $item->cabang->telp }}</td>
+                                            <td>{{ $item->cabang->user->email }}</td>
+                                            <td>{{ $item->cabang->teritorial }}</td>
+                                            <td>{{ $item->cabang->pos }}</td>
+                                            <td>{{ $item->cabang->ekspedisi }} lembaga</td>
+                                            
                                             <td class="text-center">
-                                                <button type="button" data-id="{{ auth()->user()->cabang->id }}" data-name="{{ auth()->user()->cabang->name }}" class="btn waves-effect waves-light text-white" style="background-color: rgb(134, 134, 252)"><i class="fa fa-pencil"></i></button>
+                                                <button type="button" data-id="{{ $item->cabang->id }}" data-name="{{ $item->cabang->name }}" class="btn waves-effect waves-light text-white" style="background-color: rgb(134, 134, 252)" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="fa fa-pencil"></i></button>
+                                                <button type="button" data-id="{{ $item->cabang->id }}" data-name="{{ $item->cabang->name }}" class="btn btn-danger waves-effect waves-light" data-toggle="modal" data-target=".bs-example-modal-center"><i class="fa fa-trash"></i></button>
                                             </td>
                                         </tr>
                                     @else
                                         @foreach ($dt_cabang as $item)
                                         <tr>
                                             <td>{{ $item->name }}</td>
-                                            <td>{{ $item->status }}</td>
-                                            <td>{{ $item->kepala }}</td>
+                                            <td>{{ $item->kepala->name }}</td>
+                                            <td>{{ $item->provinsi->nama }}</td>
+                                            <td>{{ $item->kabupaten->nama }}</td>
+                                            <td>{{ $item->kecamatan->nama }}</td>
+                                            <td>{{ $item->kelurahan->nama }}</td>
                                             <td>{{ $item->alamat }}</td>
-                                            <td>{{ $item->city->name }}</td>
-                                            <td>{{ $item->province->name }}</td>
                                             <td>{{ $item->telp }}</td>
                                             <td>{{ $item->user->email }}</td>
+                                            <td>{{ $item->teritorial }}</td>
                                             <td>{{ $item->pos }}</td>
+                                            <td>{{ $item->ekspedisi }}</td>
+                                            <td>{{ $item->lembaga->count() }} lembaga</td>
                                             <td class="text-center">
-                                                <button type="button" data-id="{{ $item->id }}" data-name="{{ $item->name }}" class="btn waves-effect waves-light text-white" style="background-color: rgb(134, 134, 252)" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="fa fa-pencil"></i></button>
+                                                <a href="{{ route('cabang.edit',$item->id) }}" type="button" class="btn waves-effect waves-light text-white" style="background-color: rgb(134, 134, 252)"><i class="fa fa-pencil"></i></a>
                                                 <button type="button" data-id="{{ $item->id }}" data-name="{{ $item->name }}" class="btn btn-danger waves-effect waves-light" data-toggle="modal" data-target=".bs-example-modal-center"><i class="fa fa-trash"></i></button>
                                             </td>
                                         </tr>

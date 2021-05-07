@@ -9,10 +9,21 @@ class Lembaga extends Model
 {
     use HasFactory;
     protected $fillable =[
+        'user_id',
         'cabang_id',
-        'jenis_id',
-        'propinsi_id',
-        'kota_id',
+        'name',
+        'alamat',
+        'provinsi_id',
+        'kabupaten_id',
+        'kecamatan_id',
+        'kelurahan_id',
+        'pos',
+        'telp',
+        'website',
+        'pengelola',
+        'jenjang_id',
+        'tahunberdiri',
+        'tahunmasuk',
         'status'
     ];
     protected $dates = ['deleted_at'];
@@ -25,16 +36,30 @@ class Lembaga extends Model
     {
         return $this->belongsTo(Jenis::class);
     }
-    public function province()
+    public function provinsi()
     {
-        return $this->belongsTo(Province::class);
+        return $this->belongsTo(Provinsi::class);
     }
-    public function city()
+    public function kabupaten()
     {
-        return $this->belongsTo(City::class);
+        return $this->belongsTo(Kabupaten::class);
     }
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+    public function jenjang()
+    {
+        return $this->belongsTo(Jenjang::class);
+    }
+
+    public function kepala()
+    {
+        return $this->hasOne(Kepala::class);
+    }
+
+    public function peserta()
+    {
+        return $this->hasMany(Peserta::class);
     }
 }

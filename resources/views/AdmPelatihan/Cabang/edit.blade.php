@@ -55,25 +55,25 @@
                     <div class="card m-b-30">
                         <div class="card-body">                          
                             <div class="form">
-                                <form action="{{ route('cabang.store') }}" method="POST">@csrf
+                                <form action="{{ route('cabang.update',$dt_cb->id) }}" method="POST">@method('PATCH')@csrf
                                     <p id="demo"></p>
                                     <div class="form-group">
-                                        <button class="btn btn-sm btn-primary" type="button" data-toggle="modal" data-target=".bs-example-modal-center"><i class="fa fa-plus"></i> Kepala Cabang</button><br><br>
-                                        <input type="hidden" class="form-control" id="kepala_id" name="kepala_id" value="" required>
+                                        <input type="hidden" class="form-control" id="id" name="id" value="{{ $dt_cb->id }}">
+                                        <input type="hidden" class="form-control" id="kepala_id" name="kepala_id" value="{{ $dt_cb->kepala->id }}" required>
                                         <label><i class="text-danger">*</i> Nama Kepala Cabang</label>
-                                        <input type="text" class="form-control" value="" name="kepala" readonly id="kepalax" placeholder=" * Nama Kepala Cabang..." data-toggle="modal" data-target=".bs-example-modal-center2">
+                                        <input type="text" class="form-control" name="kepala" readonly id="kepalax" value="{{ $dt_cb->kepala->name }}" placeholder=" * Nama Kepala Cabang..." data-toggle="modal" data-target=".bs-example-modal-center2">
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" class="form-control" name="name" placeholder=" * Nama Cabang..." required>
+                                        <input type="text" class="form-control" name="name" value="{{ $dt_cb->name }}" placeholder=" * Nama Cabang..." required>
                                     </div>
                                     <div class="form-group">
-                                        <textarea name="alamat" class="form-control" id="" cols="20" rows="10"> Alamat Lengkap Cabang...</textarea>
+                                        <textarea name="alamat" class="form-control" id="" cols="20" rows="10"> {{ $dt_cb->alamat }}</textarea>
                                     </div>
                                     <div class="row">
                                         <div class="col-xl-6">
                                             <div class="form-group">
                                                 <select name="pro_id" class="form-control"  required>
-                                                    <option value=""> Provinsi </option>
+                                                    <option value="{{ $dt_cb->provinsi_id }}"> {{ $dt_cb->provinsi->nama }} </option>
                                                     @foreach ($dt_props2 as $prop)
                                                        <option value="{{ $prop->id }}">{{ $prop->nama }}</option>
                                                    @endforeach
@@ -83,47 +83,47 @@
                                         <div class="col-xl-6">
                                             <div class="form-group">
                                                 <select name="kab_id" id="kab_id" class="form-control" required>
-                                                    <option value=""> Kabupaten/Kota </option>
+                                                    <option value="{{ $dt_cb->kabupaten_id }}"> {{ $dt_cb->kabupaten->nama }}</option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="col-xl-6">
                                             <div class="form-group">
                                                 <select name="kec_id" id="kec_id" class="form-control" required>
-                                                    <option value=""> Kecamatan </option>
+                                                    <option value="{{ $dt_cb->kecamatan_id }}"> {{ $dt_cb->kecamatan->nama }} </option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="col-xl-6">
                                             <div class="form-group">
                                                 <select name="kel_id" id="kel_id" class="form-control" required>
-                                                    <option value=""> Kelurahan </option>
+                                                    <option value="{{ $dt_cb->kelurahan_id }}"> {{ $dt_cb->kelurahan->nama }} </option>
                                                 </select>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <textarea type="text" name="ekspedisi" class="form-control" placeholder="Alamat Ekspedisi..." >Alamat Ekspedisi... </textarea>
+                                        <textarea type="text" name="ekspedisi" class="form-control" placeholder="Alamat Ekspedisi..." >{{ $dt_cb->ekspedisi }} </textarea>
                                     </div>
                                     <div class="row">
                                         <div class="col-xl-6">
                                             <div class="form-group">
-                                                <input type="email" name="email" class="form-control" placeholder="Email..." required>
+                                                <input type="email" name="email" class="form-control" value="{{ $dt_cb->user->email }}" placeholder="Email..." required>
                                             </div>
                                         </div>
                                         <div class="col-xl-6">
                                             <div class="form-group">
-                                                <input type="text" name="telp" class="form-control" placeholder="Telp..." >
+                                                <input type="text" name="telp" class="form-control" value="{{ $dt_cb->telp }}" placeholder="Telp..." >
                                             </div>
                                         </div>
                                         <div class="col-xl-6">
                                             <div class="form-group">
-                                                <input type="text" name="pos" class="form-control" placeholder="Kode Pos..." >
+                                                <input type="text" name="pos" class="form-control" value="{{ $dt_cb->pos }}" placeholder="Kode Pos..." >
                                             </div>
                                         </div>
                                         <div class="col-xl-6">
                                             <div class="form-group">
-                                                <input type="text" name="teritorial" class="form-control" placeholder="teritorial..." >
+                                                <input type="text" name="teritorial" class="form-control" value="{{ $dt_cb->teritorial }}" placeholder="teritorial..." >
                                             </div>
                                         </div>
                                     </div>
@@ -151,7 +151,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                   <form action="javascript:void(0)" method="POST" id="formKepalaStore" name="formKepalaStore">@csrf
+                   <form action="javascript:void(0)" method="POST" id="formKepalaStore" name="formKepalaStore">@method('PATCH')@csrf
                         <div class="row">
                             <div class="form-group col-xl-12">
                                 <label><i class="text-danger">*</i> NIK</label>
@@ -302,7 +302,7 @@ $(document).ready(function() {
                     type: "GET",
                     dataType: "json",
                     success:function(data) {                     
-                        $('select[name="kabupaten_id"]').empty();
+                        $('select[name="kabupaten_id"]');
                         $.each(data, function(key, value) {
                         $('select[name="kabupaten_id"]').append('<option value="'+ key +'">'+ value +'</option>');
                         });
@@ -315,7 +315,7 @@ $(document).ready(function() {
                                 type: "GET",
                                 dataType: "json",
                                 success:function(data) {                      
-                                    $('select[name="kecamatan_id"]').empty();
+                                    $('select[name="kecamatan_id"]');
                                     $.each(data, function(key, value) {
                                     $('select[name="kecamatan_id"]').append('<option value="'+ key +'">'+ value +'</option>');
                                     });
@@ -328,7 +328,7 @@ $(document).ready(function() {
                                             type: "GET",
                                             dataType: "json",
                                             success:function(data) {                      
-                                                $('select[name="kelurahan_id"]').empty();
+                                                $('select[name="kelurahan_id"]');
                                                 $.each(data, function(key, value) {
                                                 $('select[name="kelurahan_id"]').append('<option value="'+ key +'">'+ value +'</option>');
                                                 });
@@ -338,17 +338,17 @@ $(document).ready(function() {
                                             }
                                         });
                                     }else{
-                                        $('select[name="kelurahan_id"]').empty().disabled();
+                                        $('select[name="kelurahan_id"]').disabled();
                                     }
                                 }
                             });
                         }else{
-                            $('select[name="kecamatan_id"]').empty().disabled();
+                            $('select[name="kecamatan_id"]').disabled();
                         }
                     }
                 });
             }else{
-                $('select[name="kabupaten_id"]').empty().disabled();
+                $('select[name="kabupaten_id"]').disabled();
             }
         });
 
@@ -363,7 +363,7 @@ $(document).ready(function() {
                     type: "GET",
                     dataType: "json",
                     success:function(data) {                      
-                        $('select[name="kecamatan_id"]').empty();
+                        $('select[name="kecamatan_id"]');
                         $.each(data, function(key, value) {
                         $('select[name="kecamatan_id"]').append('<option value="'+ key +'">'+ value +'</option>');
                         });
@@ -376,7 +376,7 @@ $(document).ready(function() {
                                 type: "GET",
                                 dataType: "json",
                                 success:function(data) {                      
-                                    $('select[name="kelurahan_id"]').empty();
+                                    $('select[name="kelurahan_id"]');
                                     $.each(data, function(key, value) {
                                     $('select[name="kelurahan_id"]').append('<option value="'+ key +'">'+ value +'</option>');
                                     });
@@ -386,12 +386,12 @@ $(document).ready(function() {
                                 }
                             });
                         }else{
-                            $('select[name="kelurahan_id"]').empty().disabled();
+                            $('select[name="kelurahan_id"]').disabled();
                         }
                     }
                 });
             }else{
-                $('select[name="kecamatan_id"]').empty().disabled();
+                $('select[name="kecamatan_id"]').disabled();
             }
         });
         
@@ -406,7 +406,7 @@ $(document).ready(function() {
                     type: "GET",
                     dataType: "json",
                     success:function(data) {                      
-                        $('select[name="kelurahan_id"]').empty();
+                        $('select[name="kelurahan_id"]');
                         $.each(data, function(key, value) {
                         $('select[name="kelurahan_id"]').append('<option value="'+ key +'">'+ value +'</option>');
                         });
@@ -414,7 +414,7 @@ $(document).ready(function() {
                     }
                 });
             }else{
-                $('select[name="kelurahan_id"]').empty().disabled();
+                $('select[name="kelurahan_id"]').disabled();
             }
         });
         //input kepala
@@ -476,7 +476,7 @@ $(document).ready(function() {
                     type: "GET",
                     dataType: "json",
                     success:function(data) {                     
-                        $('select[name="kab_id"]').empty();
+                        $('select[name="kab_id"]')
                         $.each(data, function(key, value) {
                         $('select[name="kab_id"]').append('<option value="'+ key +'">'+ value +'</option>');
                         });
@@ -489,7 +489,7 @@ $(document).ready(function() {
                                 type: "GET",
                                 dataType: "json",
                                 success:function(data) {                      
-                                    $('select[name="kec_id"]').empty();
+                                    $('select[name="kec_id"]');
                                     $.each(data, function(key, value) {
                                     $('select[name="kec_id"]').append('<option value="'+ key +'">'+ value +'</option>');
                                     });
@@ -502,7 +502,7 @@ $(document).ready(function() {
                                             type: "GET",
                                             dataType: "json",
                                             success:function(data) {                      
-                                                $('select[name="kel_id"]').empty();
+                                                $('select[name="kel_id"]');
                                                 $.each(data, function(key, value) {
                                                 $('select[name="kel_id"]').append('<option value="'+ key +'">'+ value +'</option>');
                                                 });
@@ -512,17 +512,17 @@ $(document).ready(function() {
                                             }
                                         });
                                     }else{
-                                        $('select[name="kel_id"]').empty().disabled();
+                                        $('select[name="kel_id"]').disabled();
                                     }
                                 }
                             });
                         }else{
-                            $('select[name="kec_id"]').empty().disabled();
+                            $('select[name="kec_id"]').disabled();
                         }
                     }
                 });
             }else{
-                $('select[name="kab_id"]').empty();
+                $('select[name="kab_id"]');
             }
         });
 
@@ -537,7 +537,7 @@ $(document).ready(function() {
                     type: "GET",
                     dataType: "json",
                     success:function(data) {                      
-                        $('select[name="kec_id"]').empty();
+                        $('select[name="kec_id"]');
                         $.each(data, function(key, value) {
                         $('select[name="kec_id"]').append('<option value="'+ key +'">'+ value +'</option>');
                         });
@@ -550,7 +550,7 @@ $(document).ready(function() {
                                 type: "GET",
                                 dataType: "json",
                                 success:function(data) {                      
-                                    $('select[name="kel_id"]').empty();
+                                    $('select[name="kel_id"]');
                                     $.each(data, function(key, value) {
                                     $('select[name="kel_id"]').append('<option value="'+ key +'">'+ value +'</option>');
                                     });
@@ -560,12 +560,12 @@ $(document).ready(function() {
                                 }
                             });
                         }else{
-                            $('select[name="kel_id"]').empty().disabled();
+                            $('select[name="kel_id"]').disabled();
                         }
                     }
                 });
             }else{
-                $('select[name="kec_id"]').empty().disabled();
+                $('select[name="kec_id"]').disabled();
             }
         });
         
@@ -580,7 +580,7 @@ $(document).ready(function() {
                     type: "GET",
                     dataType: "json",
                     success:function(data) {                      
-                        $('select[name="kel_id"]').empty();
+                        $('select[name="kel_id"]');
                         $.each(data, function(key, value) {
                         $('select[name="kel_id"]').append('<option value="'+ key +'">'+ value +'</option>');
                         });
@@ -588,7 +588,7 @@ $(document).ready(function() {
                     }
                 });
             }else{
-                $('select[name="kel_id"]').empty().disabled();
+                $('select[name="kel_id"]').disabled();
             }
         });
     });

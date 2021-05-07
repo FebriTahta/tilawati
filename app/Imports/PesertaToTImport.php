@@ -41,7 +41,7 @@ class PesertaToTImport implements ToCollection, WithChunkReading, ShouldQueue
                     'i' =>$row[12],
                     
                     'bersyahadah' => $row[13],
-                    
+                    'created_at' => new \DateTime,
                 ];
                 DB::table('pesertas')->insert($dt_peserta);
             }   

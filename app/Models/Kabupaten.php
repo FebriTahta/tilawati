@@ -9,8 +9,14 @@ class Kabupaten extends Model
 {
     use HasFactory;
     protected $table = 'kabupaten';
-    // protected $fillabel = [
-    //     ''
-    // ];
+    
+    public function kecamatan()
+    {
+        return $this->hasMany(Kecamatan::class);
+    }
 
+    public function provinsi()
+    {
+        return $this->belongsTo(Provinsi::class);
+    }
 }

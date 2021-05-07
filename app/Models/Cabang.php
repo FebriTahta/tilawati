@@ -12,18 +12,19 @@ class Cabang extends Model
     protected $fillable = [
         'user_id',
         'name',
-        'status',
+        // 'status',
         // 'kepala',
-        'province_id',
-        'city_id',
-        'kecamatan',
-        'teritorial'
-        // 'alamat',
-        // 'pos',
-        // 'telp',
+        'provinsi_id',
+        'kabupaten_id',
+        'kecamatan_id',
+        'kelurahan_id',
+        // 'teritorial',
+        'alamat',
+        'pos',
+        'telp',
         // 'email',
-        // 'ekspedisi',
-        // 'jabatan'
+        'ekspedisi',
+        'teritorial'
     ];
     protected $dates = ['deleted_at'];
 
@@ -32,9 +33,9 @@ class Cabang extends Model
         return $this->belongsTo(Kota::class);
     }
 
-    public function propinsi()
+    public function provinsi()
     {
-        return $this->belongsTo(Propinsi::class);
+        return $this->belongsTo(Provinsi::class);
     }
 
     public function lembaga()
@@ -52,13 +53,28 @@ class Cabang extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function province()
+    public function kabupaten()
     {
-        return $this->belongsTo(Province::class);
+        return $this->belongsTo(Kabupaten::class);
+    }
+
+    public function kecamatan()
+    {
+        return $this->belongsTo(Kecamatan::class);
+    }
+
+    public function kelurahan()
+    {
+        return $this->belongsTo(Kelurahan::class);
     }
 
     public function city()
     {
         return $this->belongsTo(City::class);
+    }
+
+    public function kepala()
+    {
+        return $this->hasOne(Kepala::class);
     }
 }

@@ -15,32 +15,32 @@ class JenisSeeder extends Seeder
     {
         $krit = [
             [
-                'name' => "SD",                
+                'name' => "TPQ",                
                 'created_at' => new \DateTime,
                 'updated_at' => null,
             ],
             [
-                'name' => "SMP",
+                'name' => "TK/RA",
                 'created_at' => new \DateTime,
                 'updated_at' => null,
             ],
             [
-                'name' => "SMA",
+                'name' => "SD/MI",
                 'created_at' => new \DateTime,
                 'updated_at' => null,
             ],
             [
-                'name' => "PESANTREN",
+                'name' => "SMP/MTS",
                 'created_at' => new \DateTime,
                 'updated_at' => null,
             ],
             [
-                'name' => "TK",
+                'name' => "SMU/SMA",
                 'created_at' => new \DateTime,
                 'updated_at' => null,
             ],
             [
-                'name' => "TPQ",
+                'name' => "KURSUS",
                 'created_at' => new \DateTime,
                 'updated_at' => null,
             ],
@@ -50,7 +50,7 @@ class JenisSeeder extends Seeder
                 'updated_at' => null,
             ],
             [
-                'name' => "PAUD",
+                'name' => "PESANTREN",
                 'created_at' => new \DateTime,
                 'updated_at' => null,
             ],

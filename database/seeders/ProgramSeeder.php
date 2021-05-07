@@ -25,7 +25,7 @@ class ProgramSeeder extends Seeder
                 'updated_at' => null,
             ],
             [
-                'name' => "TOT INSTRUKTUR",
+                'name' => "TRAINING OF TRAINER",
                 'created_at' => new \DateTime,
                 'updated_at' => null,
             ],

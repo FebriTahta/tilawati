@@ -1,4 +1,22 @@
 @extends('layouts.adm.master')
+@section('head')
+<style>
+    table.dataTable.kepalas td:nth-child(3) {
+width: 20px;
+max-width: 20px;
+word-break: break-all;
+white-space: pre-line;
+text-align: center;
+}
+table.dataTable.kepalas td:nth-child(3) {
+width: 80px;
+max-width: 80px;
+word-break: break-all;
+white-space: pre-line;
+text-align: center;
+}
+</style>
+@endsection
 @section('content')
 <div class="row">
     <div class="col-sm-12">
@@ -39,7 +57,6 @@
             <div class="row">
                 <div class="col-lg-4">
                     <button type="button" class="btn btn-primary waves-effect waves-light" data-toggle="modal" data-target=".bs-example-modal-center"><i class="fa fa-plus"></i> Tambah Pelatihan Baru</button>
-                    {{-- <a href="{{route('cabang.create')}}" type="button" class="btn btn-primary waves-effect waves-light" data-toggle="modal" data-target=".bs-example-modal-center"><i class="fa fa-plus"></i> Tamabah Cabang Baru</a> --}}
                 </div>
             </div>
         </div>
@@ -51,7 +68,7 @@
                 <div class="col-12">
                     <div class="card m-b-30">
                         <div class="card-body">                          
-                            <table id="" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                            <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                 <thead class="mt-100">
                                 <tr>
                                     <th style="width: 10%">ID Program</th>
@@ -94,7 +111,7 @@
 <!-- end row -->
 <!--modal-->
 <div class="col-sm-6 col-md-3 m-t-30">
-    <div class="modal fade bs-example-modal-center" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal fade bs-example-modal-center" id="modal1" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
@@ -113,12 +130,8 @@
                                 </div>
                                 <div class="form-group col-xl-6">
                                     <label for="">Cabang</label>
-                                    <select name="cabang_id" id="" class="form-control" required>
-                                        <option value="">= Pilih Cabang =</option>
-                                        @foreach ($dt_c as $item)
-                                            <option value="{{ $item->id }}">{{ $item->name }}</option>
-                                        @endforeach
-                                    </select>
+                                    <input type="hidden" class="form-control" id="cabsid" name="cabang_id">
+                                    <input type="text" data-target="#exampleModalScrollable" id="cabs" class="form-control" data-toggle="modal" readonly placeholder="*Click me" data-dismiss="modal">
                                 </div>
                                 <div class="form-group col-xl-6">
                                     <input type="number" name="nomor" class="form-control" placeholder="Nomer..">
@@ -145,7 +158,7 @@
                                     <option value="">= Untuk Guru / Santri =</option>
                                     <option value="GURU">GURU</option>
                                     <option value="SANTRI">SANTRI</option>
-                                    <option value="TOT_INSTRUKTUR">T.O.T INSTRUKTUR</option>
+                                    <option value="TOT_INSTRUKTUR">INSTRUKTUR</option>
                                 </select>
                             </div>
                        </div>
@@ -158,4 +171,76 @@
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 </div>
+
+<!--data modal table cabang-->
+<!-- Modal -->
+<div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalScrollableTitle">DAFTAR CABANG</h5>
+          <button type="button" class="close" data-dismiss="modal" data-toggle="modal" data-target=".bs-example-modal-center" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <table id="datatable" class="table kepalas datas table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                <thead>
+                <tr>
+                    <th>Cabang</th>
+                    <th>Teritorial</th>
+                    <th class="text-center">Pilih</th>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+      </div>
+    </div>
+  </div>
+@endsection
+
+@section('script')
+    <script>
+        function pilih()
+        {
+            var pil = $( "#pilih:checked" ).val();
+            console.log(pil);
+            $("#cabsid").val(pil);
+            $("#modalkepala").modal('hide');
+            if(pil) {
+                $.ajax({
+                    url: '/fetch5/' + pil,
+                    type: "GET",
+                    dataType: "json",
+                    success:function(data) {
+                        $("#cabs").val(data.name);
+                        console.log(data);
+                    }
+                });
+            }
+        }
+
+        $(function () {
+    
+        var table = $('#datatable').DataTable({
+        destroy:true,
+        processing: true,
+        serverSide: true,
+        ajax: "{{ route('pelatihan.fetchcabang') }}",
+        columns: [
+            {data: 'name', name: 'name'},
+            {data: 'teritorial', name: 'teritorial'},
+            {
+                data: 'action', 
+                name: 'action', 
+                orderable: true, 
+                searchable: true
+            },
+        ]
+    });
+    
+  });
+    </script>
 @endsection

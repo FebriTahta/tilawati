@@ -25,22 +25,22 @@
                     <div class="card-body">
                         <h2 class="mt-0 header-title mb-4 text-uppercase">CARI DATA GLOBAL</h2>
                         <div class="row">
-                            <div class="col-4 form-group">
+                            <div class="col-6 col-xl-4 form-group">
                                 <label>Dari :</label>
                                 <input type="date" name="dari" id="dari" class="form-control">
                                 <span class="red dari" style="color: red"></span>
                             </div>
-                            <div class="col-4 form-group">
+                            <div class="col-6 col-xl-4 form-group">
                                 <label>Sampai :</label>
                                 <input type="date" name="sampai" id="sampai" class="form-control">
                                 <span class="red sampai" style="color: red"></span>
                             </div>
-                            <div class="form-group col-2">
+                            <div class="form-group col-6 col-xl-2">
                                 <label for="">Cari :</label>
                                 <button class="btn btn-rounded form-control text-white" style="background-color: rgb(137, 137, 253)" name="filter" id="filter" onclick="search()"> <i
                                         class="fa fa-search"></i></button>
                             </div>
-                            <div class="form-group col-2">
+                            <div class="form-group col-6 col-xl-2">
                                 <label for="">Reset :</label>
                                 <button class="btn btn-rounded btn-danger form-control" name="refresh" id="refresh"> <i
                                         class="fa fa-stop"></i></button>
@@ -174,17 +174,26 @@
             <div class="col-xl-12">
                 <div class="card m-b-30">
                     <div class="card-body">
-                    <h2 class="mt-0 header-title mb-4 text-uppercase">DATA PESERTA DIKLAT</h2>
-                    <table id="datatable" class="table datas table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                        <thead>
-                        <tr>
-                            <th >Name</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
-                </div>
+                        <h2 class="mt-0 header-title mb-4 text-uppercase">DATA PESERTA DIKLAT</h2>
+                        <table id="datatable" class="table datas table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                            <thead>
+                            <tr>
+                                <th>No.Peserta</th>
+                                <th>Nama Peserta</th>
+                                <th>No.Diklat</th>
+                                <th>Diklat</th>
+                                <th>Telp</th>
+                                <th>Asal Kota</th>
+                                <th>Alamat</th>
+                                <th>Sebagai</th>
+                                <th>Kriteria</th>
+                                <th>Status</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
             
@@ -213,8 +222,52 @@
         },
         columns: [
             {
-            data:'username',
-            name:'username'
+            data:'id',
+            name:'id'
+            },
+            {
+            data:'name',
+            name:'name'
+            },
+            {
+            data:'pelid',
+            name:'pelid'
+            },
+            {
+            data:'pelatihan',
+            name:'pelatihan'
+            },
+            {
+            data:'telp',
+            name:'telp'
+            },
+            {
+            data:'kota',
+            name:'kota'
+            },
+            {
+            data:'alamat',
+            name:'alamat'
+            },
+            {
+            data:'sebagai',
+            name:'sebagai'
+            },
+            {
+            data:'kriteria',
+            name:'kriteria'
+            },
+            {
+            data:'bersyahadah',
+            render: function(data) { 
+                if(data==1) {
+                  return '<span class="badge badge-primary">Bersyahadah</span>'; 
+                }
+                else {
+                  return '<span class="badge badge-danger">Belum Bersyahadah</span>';
+                }
+
+              },
             },
         ]
         });
@@ -225,6 +278,16 @@
             dataType: 'json',
             success:function(data) {
                 document.getElementById('dk').innerHTML = data;
+                console.log(data);
+            }
+        });
+        $.ajax({
+            url:'{{ route("dashboard.peserta") }}',
+            data:{dari:dari, sampai:sampai},
+            type: 'get',
+            dataType: 'json',
+            success:function(data) {
+                document.getElementById('pd').innerHTML = data;
                 console.log(data);
             }
         });
@@ -245,16 +308,6 @@
             dataType: 'json',
             success:function(data) {
                 document.getElementById('lb').innerHTML = data;
-                console.log(data);
-            }
-        });
-        $.ajax({
-            url:'{{ route("dashboard.peserta") }}',
-            data:{dari:dari, sampai:sampai},
-            type: 'get',
-            dataType: 'json',
-            success:function(data) {
-                document.getElementById('pd').innerHTML = data;
                 console.log(data);
             }
         });
@@ -279,6 +332,7 @@
         $('#datatable').DataTable().destroy();
         load_data();
         getDataForChart();
+        getDataForChart2();
     });
 
 });
@@ -311,9 +365,9 @@
                 if (response.status=='error') {
                     $(".sampai").text(response.errors.finish);
                     $(".dari").text(response.errors.start);
-
                 } else{
-                    make_chart(response.content.monthNames, response.content.user)
+                    make_chart(response.content.monthNames, response.content.peserta);
+                    console.log(response.content.peserta);
                 }
 
             }
@@ -331,10 +385,8 @@
                 if (response.status=='error') {
                     $(".sampai").text(response.errors.finish);
                     $(".dari").text(response.errors.start);
-
                 } else{
-                    make_chart(response.content.monthNames, response.content.pel)
-                    console.log(response.content.pel);
+                    make_chart2(response.content.monthNames2, response.content.pel);
                 }
 
             }
@@ -350,7 +402,7 @@
             data:{type:'all'},
             dataType: "JSON",
             success: function (response) {
-                make_chart(response.content.monthNames, response.content.user);
+                make_chart(response.content.monthNames, response.content.peserta);
             }
         });
     };
@@ -365,13 +417,13 @@
             data:{type:'all'},
             dataType: "JSON",
             success: function (response) {
-                make_chart2(response.content.monthNames, response.content.pel);
+                make_chart2(response.content.monthNames2, response.content.pel);
                 console.log(response.content.pel);
             }
         });
     };
     
-    function make_chart(monthNames, user) {
+    function make_chart(monthNames, peserta) {
         $('.show-chart').html('');
         //membuat chart baru
         $('.show-chart').html(`<canvas id="canvas" height="350" width="600"></canvas>`)
@@ -383,7 +435,7 @@
                 datasets: [{
                     label: 'JUMLAH PESERTA DIKLAT',
                     backgroundColor: "rgb(185, 124, 243)",
-                    data: user,
+                    data: peserta,
                     borderColor: "rgb(91, 233, 138)",
                     borderWidth: 1
                 }]
@@ -398,7 +450,7 @@
         });
     };
 
-    function make_chart2(monthNames, pel) {
+    function make_chart2(monthNames2, pel) {
         $('.show-chart2').html('');
         //membuat chart baru
         $('.show-chart2').html(`<canvas id="myChart" height="350" width="600"></canvas>`)
@@ -406,7 +458,7 @@
         var myChart = new Chart(ctx, {
             type: 'line',
             data: {
-                labels: monthNames,
+                labels: monthNames2,
                 datasets: [{
                     label: 'JUMLAH DIKLAT',
                     backgroundColor: "rgb(114, 228, 203)",

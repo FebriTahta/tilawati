@@ -9,7 +9,9 @@ use App\Models\Kelurahan;
 use App\Models\Cabang;
 use App\Models\Program;
 use App\Models\Pelatihan;
+use App\Models\Provinsi;
 use App\Models\Kepala;
+use App\Models\Jenjang;
 use DB;
 use Illuminate\Http\Request;
 
@@ -17,18 +19,30 @@ class SubController extends Controller
 {
 //1-3 daerah    
     public function fetch($id){
-        $city = Kabupaten::where("id_prov",$id)->pluck('nama','id_kab');
+        $city = Kabupaten::where('provinsi_id',$id)->pluck('nama','id');
         return json_encode($city);
     }
 
     public function fetch2($id){
-        $city = Kecamatan::where("id_kab",$id)->pluck('nama','id_kec');
+        $city = Kecamatan::where('kabupaten_id',$id)->pluck('nama','id');
         return json_encode($city);
     }
 
     public function fetch3($id){
-        $city = Kelurahan::where("id_kec",$id)->pluck('nama','id_kel');
+        $city = Kelurahan::where('kecamatan_id',$id)->pluck('nama','id');
         return json_encode($city);
+    }
+    public function fetch5($id){
+        $cb = Cabang::find($id);
+        return json_encode($cb);
+    }
+    public function fetch6($id){
+        $cb = Provinsi::find($id);
+        return json_encode($cb);
+    }
+    public function fetch7($id){
+        $cb = Kabupaten::find($id);
+        return json_encode($cb);
     }
 //nama kepala
     public function fetch4($id)
@@ -45,9 +59,18 @@ class SubController extends Controller
     public function hapuscabang(Request $request)
     {
         $id = $request->id;
+        User::where('cabang_id', $id)->delete();
         $cb = Cabang::find($id);
         $ncb= $cb->name;
         $cb->delete();
         return redirect()->back()->with('danger', 'Cabang ( '.$ncb.' ) Telah Dihapus Dari Sistem');
     }
+
+    public function hapusjenjang(Request $request)
+    {
+        $id = $request->id;
+        Jenjang::find($id)->delete();
+        return redirect()->back()->with('danger', 'jenjang tersebut telah dihapus');
+    }
+
 }

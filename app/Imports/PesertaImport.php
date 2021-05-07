@@ -38,6 +38,7 @@ class PesertaImport implements ToCollection
                     'jilid' => $row[10],
                     'bersyahadah' => $row[11],
                     'kriteria' => $row[12],
+                    'created_at' => new \DateTime,
                 ];
                 DB::table('pesertas')->insert($dt_peserta);
             }   

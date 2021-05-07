@@ -37,15 +37,12 @@ class PesertaGuruImport implements ToCollection, WithChunkReading, ShouldQueue
                     'gm' => $row[8],
                     'sl' => $row[9],
                     'mt' => $row[10],
-                    // 'kriteria' => $row[11],
-                    // 'jilid' => $row[12],
-                    // 'bersyahadah' => $row[13],
-                    // 'lembaga' => $row[14],
                     'kriteria'=> $row[11],
                     'jilid' => $row[12],
                     'bersyahadah' => $row[13],
                     'lembaga'=> $row[14],
                     'munaqisy'=> $row[15],
+                    'created_at' => new \DateTime,
                 ];
                 DB::table('pesertas')->insert($dt_peserta);
             }   

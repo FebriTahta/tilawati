@@ -23,15 +23,15 @@ class UserSeeder extends Seeder
                 'created_at' => new \DateTime,
                 'updated_at' => null,
             ],
-            [
-                'username' => "cabang",
-                // 'name' => "CABANG1",
-                'email'=> "cb1@gmail.com",
-                'role' => "cabang",
-                'password'   => bcrypt("rahasia"),
-                'created_at' => new \DateTime,
-                'updated_at' => null,
-            ],
+            // [
+            //     'username' => "cabang",
+            //     // 'name' => "CABANG1",
+            //     'email'=> "cb1@gmail.com",
+            //     'role' => "cabang",
+            //     'password'   => bcrypt("rahasia"),
+            //     'created_at' => new \DateTime,
+            //     'updated_at' => null,
+            // ],
 
         ];
         \DB::table('users')->insert($usr);

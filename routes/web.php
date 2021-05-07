@@ -48,8 +48,9 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat']], function () {
     Route::get('/data-user',[UserController::class, 'index'])->name('user.index');
     //cabang
     Route::get('/pelatihan-cabang',[CabangController::class, 'index'])->name('cabang.index');
-    //kepala cabang
+    //kepala cabang & Lembaga
     Route::post('/cabang-kepala-store',[KepalaController::class, 'store'])->name('cabang.kepalaS');
+    Route::post('/lembaga-kepala-store',[KepalaController::class, 'storekep'])->name('lembaga.kepalaS');
     Route::get('/cabang-kepala-view',[KepalaController::class, 'view'])->name('cabang.kepalaV');
     //lembaga
     Route::get('/pelatihan-lembaga', [LembagaController::class , 'index'])->name('lembaga.index');
@@ -58,6 +59,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat']], function () {
     //pelatihan data entri
     Route::get('/pelatihan-data-entri',[PelatihanController::class, 'index'])->name('pelatihan.index');
     Route::post('/pelatihan-data-entri-store' ,[PelatihanController::class, 'store'])->name('pelatihan.store');
+    Route::get('/pelatihan-cabang-datacabang',[PelatihanController::class, 'fetchdatacabang'])->name('pelatihan.fetchcabang');
     //pelatihan peserta
     Route::get('/pelatihan-data-entri/{id}/data', [PesertaController::class, 'daftarpeserta'])->name('pelatihan.daftarpeserta');
     Route::post('/pelatihan-data-entri/peserta', [PesertaController::class, 'storepes'])->name('pelatihan.storepes');
@@ -68,6 +70,9 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat']], function () {
     Route::get('/fetch2/{id}',[SubController::class, 'fetch2']);
     Route::get('/fetch3/{id}',[SubController::class, 'fetch3']);
     Route::get('/fetch4/{id}',[SubController::class, 'fetch4']);
+    Route::get('/fetch5/{id}',[SubController::class, 'fetch5']);
+    Route::get('/fetch6/{id}',[SubController::class, 'fetch6']);
+    Route::get('/fetch7/{id}',[SubController::class, 'fetch7']);
     
     //fetch program dan pelatihan untuk print
     Route::get('/fetchpp/{id}',[SubController::class, 'fetchpp']);
@@ -87,9 +92,12 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga']], funct
     Route::get('/pelatihan-cabang',[CabangController::class, 'index'])->name('cabang.index');
     Route::get('/pelatihan-cabang-create',[CabangController::class, 'create'])->name('cabang.create');
     Route::post('/pelatihan-cabang-store', [CabangController::class, 'store'])->name('cabang.store');
-    //jenis
+    Route::get('/pelatihan-cabang-edit/{id}',[CabangController::class, 'edit'])->name('cabang.edit');
+    Route::patch('/pelatihan-cabang-update/{id}',[CabangController::class, 'update'])->name('cabang.update');
+    //jenjang
     Route::get('/pelatihan-jenis', [JenisController::class , 'index'])->name('jenis.index');
     Route::post('/pelatihan-jenis-store', [JenisController::class, 'store'])->name('jenis.store');
+    Route::post('/pelatihan-jenjang-del', [SubController::class, 'hapusjenjang'])->name('jenjang.del');
     //lembaga
     Route::get('/pelatihan-lembaga', [LembagaController::class , 'index'])->name('lembaga.index');
     Route::get('/pelatihan-lembaga-create', [LembagaController::class, 'create'])->name('lembaga.create');
@@ -114,7 +122,8 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga']], funct
     Route::post('/pelatihan-cetak-depan-print', [CetakController::class, 'cetak_depan'])->name('depan.cetak');
     Route::get('/pelatihan-cetak-belakang-santri', [CetakController::class, 'ijazahbelakangsantri'])->name('pelatihan.c_belakang');
     Route::post('/pelatihan-cetak-belakang-santri-print', [CetakController::class, 'cetak_belakang_santri'])->name('belakang.cetaksantri');
-
+    Route::get('/pelatihan-cetak-belakang-guru',[CetakController::class, 'ijazahbelakangguru'])->name('pelatihan.c_belakang_g');
+    Route::post('/pelatihan-cetak-belakang-guru-print',[CetakController::class, 'cetak_belakang_guru'])->name('belakang.cetakguru');
     //sub controller ajax
     //fetch propinsi dan kota
     Route::get('/fetch/{id}',[SubController::class, 'fetch'])->name('fetch');

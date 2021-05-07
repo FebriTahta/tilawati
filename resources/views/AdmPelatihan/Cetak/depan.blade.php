@@ -49,8 +49,17 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card m-b-30">
-                        <div class="card-body">                          
-                            <form action="{{ route('depan.cetak') }}" method="POST">@csrf
+                        <div class="card-body">
+                            <div class="card m-b-30">
+                                {{-- <div class="card-body"> --}}
+                                    {{-- <div class="">
+                                        <div class="progress">
+                                            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
+                                        </div>
+                                    </div> --}}
+                                {{-- </div> --}}
+                            </div>                          
+                            <form target="_blank" action="{{ route('depan.cetak') }}" method="POST">@csrf
                                 <div class="form-group">
                                     <label for="">Jenis Program</label>
                                     <select name="program_id" id="" class="form-control" required>

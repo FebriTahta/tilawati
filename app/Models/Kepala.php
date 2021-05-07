@@ -11,17 +11,22 @@ class Kepala extends Model
     protected $table = 'kepalas';
 
     protected $fillable = [
+        'nik',
         'name',
         'tmptlahir',
         'tgllahir',
         'alamat',
+        'cabang_id',
+        'lembaga_id',
         'provinsi_id',
-        'kota_id',
+        'kabupaten_id',
         'kecamatan_id',
         'kelurahan_id',
         'telp',
         'gender',
-        'pekerjaan'
+        'pekerjaan',
+        'pendidikanter',
+        'tahunlulus'
     ];
 
     public function provinsi()
@@ -42,5 +47,14 @@ class Kepala extends Model
     public function kelurahan()
     {
         return $this->belongsTo(Kelurahan::class);
+    }
+
+    public function cabang()
+    {
+        return $this->belongsTo(Cabang::class);
+    }
+    public function lembaga()
+    {
+        return $this->belongsTo(Lembaga::class);
     }
 }

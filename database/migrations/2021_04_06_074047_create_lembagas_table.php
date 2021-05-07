@@ -18,23 +18,25 @@ class CreateLembagasTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('cabang_id')->references('id')->on('cabangs')->onDelete('cascade')->onUpdate('cascade');
             $table->string('name')->nullable();
-            $table->string('kepala')->nullable();
-            $table->unsignedBigInteger('jenis_id')->references('id')->on('jenis')->onDelete('cascade')->onUpdate('cascade');
             $table->longText('alamat')->nullable();
-            $table->unsignedBigInteger('province_id')->references('id')->on('provinces')->onUpdate('cascade');
-            $table->unsignedBigInteger('city_id')->references('id')->on('cities')->onUpdate('cascade');
+            $table->unsignedBigInteger('jenjang_id')->references('id')->on('jenjangs')->onUpdate('cascade');
+            $table->unsignedBigInteger('provinsi_id')->references('id')->on('provinsi')->onUpdate('cascade');
+            $table->unsignedBigInteger('kabupaten_id')->references('id')->on('kabupaten')->onUpdate('cascade');
+            $table->unsignedBigInteger('kecamatan_id')->references('id')->on('kecamatan')->onUpdate('cascade');
+            $table->unsignedBigInteger('kelurahan_id')->references('id')->on('kelurahan')->onUpdate('cascade');
             $table->string('pos')->nullable();
-            $table->string('telp')->nullable();
+            $table->string('telp');
+            $table->string('website')->nullable();
+            $table->string('pengelola');
             $table->string('tahunberdiri')->nullable();
-            $table->string('tglmasuk')->nullable();
+            $table->string('tahunmasuk')->nullable();
             $table->string('status');
             $table->timestamps();
-             $table->softDeletes();
+            $table->softDeletes();
         });
-
         Schema::table('lembagas', function (Blueprint $table){
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
-        });
+            $table->foreign('cabang_id')->references('id')->on('cabangs')->onDelete('cascade')->onUpdate('cascade');
+        });       
     }
 
     /**

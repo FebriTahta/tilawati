@@ -81,12 +81,12 @@ class DashboardController extends Controller
             {
                 $data = DB::table('pesertas')
                 ->whereBetween('created_at', array($request->dari, $request->sampai))
-                ->get();
+                ->count();
                 return response()->json($data,200);
             }
             else
             {
-                $data = Peserta::all()->count();
+                $data = User::all()->count();
                 return response()->json($data,200);
             }
         }
@@ -97,23 +97,41 @@ class DashboardController extends Controller
         {
             if(!empty($request->dari))
             {
-                $data = DB::table('users')
-                ->whereBetween('created_at', array($request->dari, $request->sampai))
-                ->get();
-                
+                $data = Peserta::with('pelatihan')
+                ->whereBetween('created_at', array($request->dari, $request->sampai));
+                return Datatables::eloquent($data)
+                ->addIndexColumn()
+                ->addColumn('pelatihan', function (Peserta $user) {
+                    return $user->pelatihan->name;
+                })
+                ->addColumn('pelid', function (Peserta $user) {
+                    return $user->pelatihan->id;
+                })
+                ->addColumn('sebagai', function (Peserta $user) {
+                    return $user->pelatihan->keterangan;
+                })
+                ->rawColumns(['pelid','pelatihan','sebagai'])
+                ->make(true);
             }
             else
             {
-                $data = User::with('cabang');
+                $data = Peserta::with('pelatihan');
                 return Datatables::eloquent($data)
-                ->addIndexColumn()
-                ->addColumn('cabang', function (User $user) {
-                })
                 // ->addColumn('action', function($row){
                 //     $actionBtn = '<a href="javascript:void(0)" class="edit btn btn-success btn-sm">Edit</a> <a href="javascript:void(0)" class="delete btn btn-danger btn-sm">Delete</a>';
                 //     return $actionBtn;
                 // })
-                ->rawColumns(['cabang'])
+                ->addIndexColumn()
+                ->addColumn('pelatihan', function (Peserta $user) {
+                    return $user->pelatihan->name;
+                })
+                ->addColumn('pelid', function (Peserta $user) {
+                    return $user->pelatihan->id;
+                })
+                ->addColumn('sebagai', function (Peserta $user) {
+                    return $user->pelatihan->keterangan;
+                })
+                ->rawColumns(['pelid','pelatihan','sebagai'])
                 ->make(true);
             }
          return datatables()->of($data)->make(true);
@@ -121,21 +139,21 @@ class DashboardController extends Controller
     }
     public function dataForChart(Request $request)
     {
-        $user = [];
+        $peserta = [];
         if ($request->type=='all') {
             $month = [01,02,03,04,05,06,07,8,9,10,11,12];
             $monthNames = collect($month)->transform(function ($value) {
                 return \Carbon\Carbon::parse('2021-'.$value.'-01')->format('M');
             })->toArray();
             foreach ($month as $key => $value) {
-                $user[] = User::where(\DB::raw("DATE_FORMAT(created_at, '%m')"),$value)->count();
+                $peserta[] = Peserta::where(\DB::raw("DATE_FORMAT(created_at, '%m')"),$value)->count();
             }
             $respon=[
                 'status'=>'success',
                 'msg'=>null,
                 'content'=>[
                     'monthNames'=>$monthNames,
-                    'user'=>$user,
+                    'peserta'=>$peserta,
                 ]
             ];
         } elseif ($request->type=='search') {
@@ -167,8 +185,7 @@ class DashboardController extends Controller
                 return \Carbon\Carbon::parse('2021-'.$value.'-01')->format('M');
             })->toArray();
             foreach ($month as $key => $value) {
-                $user[] = User::where(\DB::raw("DATE_FORMAT(created_at, '%m')"),$value)->count();
-                // $user[] = User::whereMonth('created_at','=','%Y-m')->count();
+                $peserta[] = Peserta::where(\DB::raw("DATE_FORMAT(created_at, '%m')"),$value)->count();
             }
             $respon=[
                 'status'=>'success',
@@ -176,7 +193,7 @@ class DashboardController extends Controller
                 'month'=>$month,
                 'content'=>[
                     'monthNames'=>$monthNames,
-                    'user'=>$user,
+                    'peserta'=>$peserta,
                 ]
             ];
            }
@@ -189,7 +206,7 @@ class DashboardController extends Controller
         $pel = [];
         if ($request->type=='all') {
             $month = [01,02,03,04,05,06,07,8,9,10,11,12];
-            $monthNames = collect($month)->transform(function ($value) {
+            $monthNames2 = collect($month)->transform(function ($value) {
                 return \Carbon\Carbon::parse('2021-'.$value.'-01')->format('M');
             })->toArray();
             foreach ($month as $key => $value) {
@@ -199,7 +216,7 @@ class DashboardController extends Controller
                 'status'=>'success',
                 'msg'=>null,
                 'content'=>[
-                    'monthNames'=>$monthNames,
+                    'monthNames2'=>$monthNames2,
                     'pel'=>$pel,
                 ]
             ];
@@ -228,19 +245,19 @@ class DashboardController extends Controller
                  $month[]=date('m', $start);
                  $start = strtotime("+1 month", $start);
              }
-             $monthNames = collect($month)->transform(function ($value) {
+             $monthNames2 = collect($month)->transform(function ($value) {
                  return \Carbon\Carbon::parse('2021-'.$value.'-01')->format('M');
              })->toArray();
              foreach ($month as $key => $value) {
                  $pel[] = Pelatihan::where(\DB::raw("DATE_FORMAT(created_at, '%m')"),$value)->count();
-                 // $user[] = User::whereMonth('created_at','=','%Y-m')->count();
+                 
              }
              $respon=[
                  'status'=>'success',
                  'msg'=>null,
                  'month'=>$month,
                  'content'=>[
-                     'monthNames'=>$monthNames,
+                     'monthNames2'=>$monthNames2,
                      'pel'=>$pel,
                  ]
              ];

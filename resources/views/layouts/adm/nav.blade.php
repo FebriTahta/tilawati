@@ -69,7 +69,7 @@
                                 @auth
                                 <ul class="list-unstyled">
                                     <li><a href="{{route('cabang.index')}}">Cabang</a></li>
-                                    <li><a href="{{route('jenis.index')}}" @if (auth()->user()->role=='pusat') @else class="text-danger disabled" @endif>Status Lembaga</a></li>
+                                    <li><a href="{{route('jenis.index')}}" @if (auth()->user()->role=='pusat') @else class="text-danger disabled" @endif>Kelembagaan</a></li>
                                     <li><a href="{{route('lembaga.index')}}">Lembaga</a></li>
                                     <li><a href="{{ route('kriteria.index') }}" @if (auth()->user()->role=='pusat') @else class="text-danger disabled" @endif>Kriteria Syahadah</a></li>
                                 </ul>
@@ -92,7 +92,7 @@
                                 <ul class="list-unstyled">
                                     <li><a href="{{ route('pelatihan.c_depan') }}" @if (auth()->user()->role=='pusat') @else class="text-danger disabled" @endif>Cetak Ijazah Depan</a></li>
                                     <li><a href="{{ route('pelatihan.c_belakang') }}" @if (auth()->user()->role=='pusat') @else class="text-danger disabled" @endif>Cetak Ijazah Belakang Santri</a></li>
-                                    <li><a href="#" @if (auth()->user()->role=='pusat') @else class="text-danger disabled" @endif>Cetak Ijazah Belakang Guru</a></li>
+                                    <li><a href="{{ route('pelatihan.c_belakang_g') }}" @if (auth()->user()->role=='pusat') @else class="text-danger disabled" @endif>Cetak Ijazah Belakang Guru</a></li>
                                     <li><a href="#" @if (auth()->user()->role=='pusat') @else class="text-danger disabled" @endif>Cetak Ijazah TOT Instruktur</a></li>
                                     <li><a href="#" @if (auth()->user()->role=='pusat') @else class="text-danger disabled" @endif>Cetak Ijazah Tahsin</a></li>
                                     <li><a href="#" @if (auth()->user()->role=='pusat') @else class="text-danger disabled" @endif>Cetak Ijazah Tilawah</a></li>
@@ -128,66 +128,6 @@
                         <nav class="navbar-custom">
 
                             <ul class="list-inline float-right mb-0">
-                                <li class="list-inline-item notification-list dropdown d-none d-sm-inline-block">
-                                    <form role="search" class="app-search">
-                                        <div class="form-group mb-0">
-                                            <input type="text" class="form-control" placeholder="Search..">
-                                            <button type="submit"><i class="fa fa-search"></i></button>
-                                        </div>
-                                    </form>
-                                </li>
-                                <li class="list-inline-item dropdown notification-list">
-                                    <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button"
-                                       aria-haspopup="false" aria-expanded="false">
-                                        <i class="mdi mdi-email-outline noti-icon"></i>
-                                        <span class="badge badge-danger badge-pill noti-icon-badge">5</span>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated dropdown-menu-lg">
-                                        <!-- item-->
-                                        <div class="dropdown-item noti-title">
-                                            <span class="badge badge-danger float-right">367</span>
-                                            <h5>Messages</h5>
-                                        </div>
-                                        <div class="slimscroll" style="max-height: 230px;">
-                                            <!-- item-->
-                                            <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                                <div class="notify-icon"><img src="{{asset('adm/images/users/user-2.jpg')}}" alt="user-img" class="img-fluid rounded-circle" /> </div>
-                                                <p class="notify-details"><b>Charles M. Jones</b><span class="text-muted">Dummy text of the printing and typesetting industry.</span></p>
-                                            </a>
-
-                                            <!-- item-->
-                                            <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                                <div class="notify-icon"><img src="{{ asset('adm/images/users/user-3.jpg') }}" alt="user-img" class="img-fluid rounded-circle" /> </div>
-                                                <p class="notify-details"><b>Thomas J. Mimms</b><span class="text-muted">You have 87 unread messages</span></p>
-                                            </a>
-
-                                            <!-- item-->
-                                            <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                                <div class="notify-icon"><img src="{{ asset('adm/images/users/user-4.jpg') }}" alt="user-img" class="img-fluid rounded-circle" /> </div>
-                                                <p class="notify-details">Luis M. Konrad<span class="text-muted">It is a long established fact that a reader will</span></p>
-                                            </a>
-
-                                            <!-- item-->
-                                            <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                                <div class="notify-icon"><img src="{{ asset('adm/images/users/user-5.jpg') }}" alt="user-img" class="img-fluid rounded-circle" /> </div>
-                                                <p class="notify-details"><b>Kendall E. Walker</b><span class="text-muted">Dummy text of the printing and typesetting industry.</span></p>
-                                            </a>
-
-                                            <!-- item-->
-                                            <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                                <div class="notify-icon"><img src="{{ asset('adm/images/users/user-6.jpg') }}" alt="user-img" class="img-fluid rounded-circle" /> </div>
-                                                <p class="notify-details"><b>David M. Ryan</b><span class="text-muted">You have 87 unread messages</span></p>
-                                            </a>
-                                        </div>
-
-
-                                        <!-- All-->
-                                        <a href="javascript:void(0);" class="dropdown-item notify-all">
-                                            View All
-                                        </a>
-
-                                    </div>
-                                </li>
 
                                 <li class="list-inline-item dropdown notification-list">
                                     <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button"
@@ -248,9 +188,6 @@
                                         <img src="{{ asset('adm/images/users/user-1.jpg') }}" alt="user" class="rounded-circle">
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated profile-dropdown ">
-                                        <a class="dropdown-item" href="#"><i class="mdi mdi-account-circle m-r-5 text-muted"></i> Profile</a>
-                                        <a class="dropdown-item" href="#"><span class="badge badge-success mt-1 float-right">5</span><i class="mdi mdi-settings m-r-5 text-muted"></i> Settings</a>
-                                        <a class="dropdown-item" href="#"><i class="mdi mdi-lock-open-outline m-r-5 text-muted"></i> Lock screen</a>
                                         <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                         document.getElementById('logout-form').submit();"><i class="mdi mdi-logout m-r-5 text-muted"></i>

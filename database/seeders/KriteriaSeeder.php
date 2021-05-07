@@ -74,6 +74,12 @@ class KriteriaSeeder extends Seeder
                 'created_at' => new \DateTime,
                 'updated_at' => null,
             ],
+            [
+                'name' => "SEBAGAI TRAINING OF TRAINER",
+                'untuk' => "INSTRUKTUR",
+                'created_at' => new \DateTime,
+                'updated_at' => null,
+            ],
 
         ];
         \DB::table('kriterias')->insert($krit);

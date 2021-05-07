@@ -5,6 +5,8 @@ use App\Models\Cabang;
 use App\Models\Program;
 use App\Models\Pelatihan;
 use Illuminate\Http\Request;
+use DB;
+use DataTables;
 
 class PelatihanController extends Controller
 {
@@ -34,6 +36,21 @@ class PelatihanController extends Controller
 
         } catch (\Throwable $th) {
             throw $th;
+        }
+    }
+
+    public function fetchdatacabang(Request $request)
+    {
+        if ($request->ajax()) {
+            $data = Cabang::latest()->get();
+            return Datatables::of($data)
+                ->addIndexColumn()
+                ->addColumn('action', function($row){
+                    $actionBtn = '<input type="radio" name="pilih" id="pilih" onclick="pilih()" value="'.$row->id.'" required>';
+                    return $actionBtn;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
         }
     }
 }

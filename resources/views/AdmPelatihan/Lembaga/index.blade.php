@@ -53,15 +53,17 @@
                             <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                 <thead class="mt-100">
                                 <tr>
-                                    <th>Nama Lembaga</th>
-                                    <th>Kepala</th>
-                                    <th>Jenjang</th>
-                                    <th>Alamat</th>
-                                    <th>Kota</th>
-                                    <th>Propinsi</th>
-                                    <th>Telp</th>
-                                    <th>Aktif</th>
-                                    <th>Tgl Masuk</th>
+                                    <th>NAMA LEMBAGA</th>
+                                    <th>ASAL CABANG</th>
+                                    <th>KEPALA LEMBAGA</th>
+                                    <th>JENJANG</th>
+                                    <th>PROVINSI</th>
+                                    <th>KABUPATEN/KOTA</th>
+                                    <th>TELEPHONE</th>
+                                    <th>ALAMAT</th>
+                                    <th>STATUS</th>
+                                    <th>TAHUN BERDIRI</th>
+                                    <th>TAHUN MASUK</th>
                                     <th class="text-center">...</th>
                                 </tr>
                                 </thead>
@@ -69,14 +71,20 @@
                                     @if (auth()->user()->role=='cabang')
                                         @foreach (auth()->user()->cabang->lembaga as $item)
                                             <td>{{ $item->name }}</td>
-                                            <td>{{ $item->kepala }}</td>
-                                            <td>{{ $item->jenis->name }}</td>
+                                            <td>
+                                                @if ($item->kepala==null)
+                                                    kosong
+                                                @else
+                                                    {{ $item->kepala->name}}
+                                                @endif
+                                            </td>
+                                            <td>{{ $item->jenjang->name }}</td>
                                             <td style="width: 20%">{{ $item->alamat }}</td>
-                                            <td>{{ $item->city->name }}</td>
-                                            <td>{{ $item->province->name }}</td>
+                                            <td>{{ $item->kabupaten->nama }}</td>
+                                            <td>{{ $item->provinsi->nama }}</td>
                                             <td>{{ $item->telp }}</td>
                                             <td>
-                                                @if ($item->keanggotaan==1)
+                                                @if ($item->status==1)
                                                     <p class="text-primary"> Aktif</p>
                                                 @else
                                                     <p class="text-danger">Non Aktif</p>
@@ -84,29 +92,36 @@
                                             </td>
                                             <td>{{ $item->tglmasuk }}</td>
                                             <td class="text-center">
-                                                <button class="btn btn-sm text-white" style="background-color: rgb(151, 151, 255)" data-toggle="modal" data-target=".bs-example-modal-lg"> <i class="fa fa-pencil"></i></button>
+                                                <button class="btn btn-sm text-white" style="background-color: rgb(151, 151, 255)"> <i class="fa fa-pencil"></i></button>
                                                 <button class="btn btn-danger btn-sm"> <i class="fa fa-trash"></i></button>
-                                                <button class="btn btn-primary btn-sm"> <i class="fa fa-book"></i></button>
                                             </td>
                                         @endforeach
                                     @else
-                                        @foreach ($dt_lembaga as $item)
+                                        @foreach ($dt_l as $item)
                                         <tr>
                                             <td>{{ $item->name }}</td>
-                                            <td>{{ $item->kepala }}</td>
-                                            <td>{{ $item->jenis->name }}</td>
-                                            <td style="width: 20%">{{ $item->alamat }}</td>
-                                            <td>{{ $item->city->name }}</td>
-                                            <td>{{ $item->province->name }}</td>
-                                            <td>{{ $item->telp }}</td>
+                                            <td>{{ $item->cabang->name }}</td>
                                             <td>
-                                                @if ($item->keanggotaan==1)
+                                                @if ($item->kepala == null)
+                                                    kepala kosong
+                                                @else
+                                                {{ $item->kepala->name}}
+                                                @endif
+                                            </td>
+                                            <td>{{ $item->jenjang->name }}</td>
+                                            <td>{{ $item->provinsi->nama }}</td>
+                                            <td>{{ $item->kabupaten->nama }}</td>
+                                            <td>{{ $item->telp }}</td>
+                                            <td style="width: 20%">{{ $item->alamat }}</td>
+                                            <td>
+                                                @if ($item->status==1)
                                                     <p class="text-primary"> Aktif</p>
                                                 @else
                                                     <p class="text-danger">Non Aktif</p>
                                                 @endif
                                             </td>
-                                            <td>{{ $item->tglmasuk }}</td>
+                                            <td>{{ $item->tahunberdiri }}</td>
+                                            <td>{{ $item->tahunmasuk }}</td>
                                             <td class="text-center">
                                                 <button class="btn btn-sm text-white" style="background-color: rgb(151, 151, 255)"> <i class="fa fa-pencil"></i></button>
                                                 <button class="btn btn-danger btn-sm"> <i class="fa fa-trash"></i></button>

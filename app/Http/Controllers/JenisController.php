@@ -35,12 +35,12 @@ class JenisController extends Controller
      */
     public function store(Request $request)
     {
-        $exst = Jenis::where('name',$request->name)->first();
+        $exst = Jenjang::where('name',$request->name)->first();
         if ($exst == null) {
             # code...
             try {
                 //code...
-                $dt_jenis_lembaga = new Jenis;
+                $dt_jenis_lembaga = new Jenjang;
                 $dt_jenis_lembaga->name = $request->name;
                 $dt_jenis_lembaga->save();
                 

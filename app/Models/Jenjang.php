@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Jenjang extends Model
 {
     use HasFactory;
+
+    public function lembaga()
+    {
+        return $this->hasMany(Lembaga::class);
+    }
 }
