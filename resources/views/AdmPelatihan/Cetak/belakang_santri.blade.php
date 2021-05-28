@@ -55,7 +55,7 @@
                                     <label for="">Program Pelatihan</label>
                                     <select name="pelatihan_id" id="" class="form-control" required>
                                         <option value="">= Pilih Program Pelatihan =</option>
-                                        @foreach ($dt_pel as $item)
+                                        @foreach ($dt_pel->pelatihan as $item)
                                             <option value="{{ $item->id }}">{{ $item->id }} | {{ $item->name }} | {{ $item->tanggal }} | {{ $item->tempat }}</option>
                                         @endforeach
                                     </select>

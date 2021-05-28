@@ -120,14 +120,14 @@
 			<tr>
 				<th>1</th>
 				<td>&nbsp; &nbsp;<b> QURAN</b></td>
-				<th colspan="3" class="pe3"></th>
-				<th class="pe2">86</th>
+				<th colspan="3" class="pe3"></th><?php $jumlah = $p->fs+$p->tj+$p->gm+$p->sl?>
+				<th class="pe2">{{ $jumlah }}</th>
 			</tr>
 			<tr>
 				<td class="pop"></td>
 				<td class="pop2">&nbsp; &nbsp; &nbsp; &nbsp;a. Fashohah</td>
 				<td class="nilai">&nbsp; &nbsp;28</td>
-				<td class="nilai2">&nbsp; &nbsp;25</td>
+				<td class="nilai2">&nbsp; &nbsp;23</td>
 				<td class="nilai3">&nbsp; &nbsp;{{ $p->fs }}</td>
 				<td class="nilai4"></td>
 			</tr>
@@ -135,7 +135,7 @@
 				<td class="pop"></td>
 				<td class="pop2">&nbsp; &nbsp; &nbsp; &nbsp;b. tajwid</td>
 				<td class="nilai">&nbsp; &nbsp;45</td>
-				<td class="nilai2">&nbsp; &nbsp;38</td>
+				<td class="nilai2">&nbsp; &nbsp;35</td>
 				<td class="nilai3">&nbsp; &nbsp;{{ $p->tj }}</td>
 				<td class="nilai4"></td>
 			</tr>
@@ -156,22 +156,16 @@
 				<td class="nilai4"></td>
 			</tr>
 			<tr>
-				<th>2</th>
-				<td class="nilai6">&nbsp; &nbsp;<b> MICROTEACHING</b></th>
-				<th colspan="3" class="nilai5"></th>
-				<th class="nilai7">{{ $p->mt }}</th>
-			</tr>
-			<tr>
-				<th></th>
-				<td class="nilai6">&nbsp; &nbsp;<b> RATA - RATA NILAI</b></th>
-				<th colspan="3" class="nilai5"></th>
-				<th class="nilai7">{{ $rata2 }}</th>
-			</tr>
-			<tr>
 				<th></th>
 				<td class="nilai6">&nbsp; &nbsp;<b> PRESTASI</b></th>
-				<th colspan="3" class="nilai5"></th>
-				<th class="nilai7">{{ $prestasi }}</th>
+				<th colspan="3" class="nilai5"></th> 
+				<th class="nilai7">
+                    @if ($jumlah >= 85)
+                        Baik
+                    @else
+                        Cukup
+                    @endif
+                </th>
 			</tr>
 		</table>
 			<div id="textbox" style="margin-top: 20px">

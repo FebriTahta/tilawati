@@ -23,8 +23,9 @@ class CabangController extends Controller
      */
     public function index()
     {
-        $dt_cabang = Cabang::all();   
-        return view('AdmPelatihan.Cabang.index',compact('dt_cabang'));
+        $dt_cabang = Cabang::all();
+        $dt_props2 = Provinsi::all();
+        return view('AdmPelatihan.Cabang.index',compact('dt_cabang','dt_props2'));
     }
 
     /**
@@ -35,9 +36,9 @@ class CabangController extends Controller
     public function create()
     {
         $dt_props2 = Provinsi::all();
-        $dt_kabupaten = Kabupaten::where('provinsi_id', 11)->first();
+        // $dt_kabupaten = Kabupaten::where('provinsi_id', 11)->first();
         $dt_cabang = Cabang::orderBy('id')->get();
-        return view('AdmPelatihan.Cabang.create', compact('dt_kabupaten','dt_cabang','dt_props2'));
+        return view('AdmPelatihan.Cabang.create', compact('dt_cabang','dt_props2'));
     }
 
     /**

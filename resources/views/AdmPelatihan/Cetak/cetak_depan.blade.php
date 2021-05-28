@@ -6,6 +6,10 @@
 </head>
 <body>
 	<style>
+		body{
+			font-family: Arial, Helvetica, sans-serif;
+			font-size: 16px;
+		}
 		.page-break {
 			page-break-after: always;
 			page-break-inside: avoid;
@@ -20,7 +24,7 @@
 	</style>
 		@foreach ($peserta as $item)
 		<div class="print">
-			<table style="height: 180px; width: 720px;margin-left:10px;margin-top:292px" class="dalam">
+			<table style="height: 180px; width: 720px;margin-left:134px;margin-top:292px" class="dalam">
 				<tbody>
 				<tr style="height: 10px;">
 				<td style="width: 249px; height: 10px;">NAMA&nbsp;</td>
@@ -59,27 +63,27 @@
 				</tbody>
 			</table>
 			<div style="margin-top: 15px"></div>
-			<table style="margin-left:30px;">
+			<table style="margin-left:134px;">
 				<tbody>
-				<tr style="height: 27px;">
-				<td style="width: 241px; height: 27px;">&nbsp;</td>
-				<td style="width: 208px; height: 27px;">&nbsp;</td>
-				<td style="width: 241px; height: 27px;">Surabaya, 06 May 2021</td>
+				<tr style="height: 27px;"><?php $tahun = date('Y')?>
+				<td style="width: 241px; height: 27px; font-weight: bold"><small>No. Syahadah : &nbsp;{{ $item->pelatihan_id }}/{{ $tahun }}/{{ $item->id }} </small></td>
+				<td style="width: 208px; height: 27px;">&nbsp;</td><?php $sekarang = date('d F Y')?>
+				<td style="width: 241px; height: 27px; font-weight: bold">Surabaya, {{ $sekarang }}</td>
 				</tr>
 				<tr style="height: 78px;">
-				<td style="width: 241px; height: 78px;"><small>No. Syahadah : &nbsp;{{ $item->pelatihan_id }}/2021/{{ $item->id }} </small></td>
+				<td style="width: 241px; height: 78px;"><img src="images/{{ $item->id }}qrcode.png" alt="" width="70px" height="70px"></td>
 				<td style="width: 208px; height: 78px;">&nbsp;</td>
-				<td style="width: 241px; height: 78px;"><img src="assets/images/pu2.png" alt=""></td>
+				<td style="width: 241px; height: 78px;"><img src="assets/images/pu2.png" alt="" width="140px" height="70px"></td>
 				</tr>
 				<tr style="height: 5px;">
 				<td style="width: 241px; height: 5px;">&nbsp;</td>
 				<td style="width: 208px; height: 5px;">&nbsp;</td>
-				<td style="width: 241px; height: 5px;">Dr. KH. Umar Jaeni M.Pd</td>
+				<td style="width: 241px; height: 5px; font-weight: bold">{{ $direktur }}</td>
 				</tr>
 				<tr style="height: 4px;">
 				<td style="width: 241px; height: 4px;">&nbsp;</td>
 				<td style="width: 208px; height: 4px;">&nbsp;</td>
-				<td style="width: 241px; height: 2px;">Direktur Eksekutif</td>
+				<td style="width: 241px; height: 2px;">{{ $jabatan }}</td>
 				</tr>
 				</tbody>
 			</table>

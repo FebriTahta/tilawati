@@ -17,6 +17,7 @@
         "laravel/ui": "^3.2",
         "maatwebsite/excel": "^3.1",
         "mpdf/mpdf": "^8.0",
+        "simplesoftwareio/simple-qrcode": "^4.2",
         "yajra/laravel-datatables-oracle": "^9.18"
     },
     "require-dev": {

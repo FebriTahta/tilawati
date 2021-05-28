@@ -23,10 +23,11 @@ text-align: center;
         <div class="float-right page-breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">Pelatihan</a></li>
-                <li class="breadcrumb-item active">Data Entri</li>
+                <li class="breadcrumb-item active"><a href="/">Data Entri</a></li>
+                <li><span id="clock"></span></li>
             </ol>
         </div>
-        <h5 class="page-title">Data Entri</h5>
+        {{-- <h5 class="page-title">Data Entri</h5> --}}
     </div>
 </div>
 <!-- end row -->
@@ -35,45 +36,33 @@ text-align: center;
     <!--flash massage-->
     @include('layouts.sess.flash_message')
     <!--flash massage-->
-    <div class="col-xl-12">
-        <div class="card m-b-30">
-            <div class="card-body">
-                <div class="float-left p-1 mr-3 " style="min-width: 100px">
-                    <div class="text-center bg-primary rounded p-3">
-                        <p class="text-white mb-0" id="bln">October</p>
-                        <h2 class="text-white mb-0" id="tgl"></h2>
-                        <p class="text-white mb-0" id="hari"></p>
-                    </div>
-                </div>
-                <div class="post-details text-right">
-                    <h2 class="text-muted" id="clock">jam</h2>
-                    <h5 class="text-muted">Selamat Beraktifitas</h5>
-                </div>
+    <div class="col-xl-2" style="align-content: center;text-align: center">
+        <div class="m-b-20" >
+            <div class="text-center bg-primary rounded p-3 m-t-10 "style="text-align: center; max-width: 100px;">
+                <p class="text-white mb-0" id="bln">October</p>
+                <h2 class="text-white mb-0" id="tgl"></h2>
+                <p class="text-white mb-0" id="hari"></p>
             </div>
-        </div>
-    </div>
-    <div class="col-xl-12">
-        <div class=" m-b-30 bg-transparent">
-            <div class="row">
-                <div class="col-lg-4">
-                    <button type="button" class="btn btn-primary waves-effect waves-light" data-toggle="modal" data-target=".bs-example-modal-center"><i class="fa fa-plus"></i> Tambah Pelatihan Baru</button>
-                </div>
+            {{-- @if (auth()->user()->role=='pusat') --}}
+            <div style="text-align: center; max-width: 100px;">
+                {{-- <button type="button" class="btn btn-primary m-t-10 waves-effect waves-light" data-toggle="modal" data-target=".bs-example-modal-lg" style="min-width: 100px"><i class="fa fa-plus"></i> Cabang</button> --}}
+                <button type="button" class="btn btn-primary waves-effect waves-light m-t-10" style="min-width: 100px" data-toggle="modal" data-target=".bs-example-modal-center"><i class="fa fa-plus"></i> Diklat</button>
             </div>
+            {{-- @endif --}}
         </div>
     </div>
 
-    <div class="col-xl-12">
+    <div class="col-xl-10">
         <div class="card m-b-30">
             <div class="row">
                 <div class="col-12">
-                    <div class="card m-b-30">
+                    <div class="card">
                         <div class="card-body">                          
                             <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                 <thead class="mt-100">
                                 <tr>
                                     <th style="width: 10%">ID Program</th>
                                     <th>Cabang</th>
-                                    <th>Nomer</th>
                                     <th>Tanggal</th>
                                     <th>Pelatihan</th>
                                     <th>Jenis Program</th>
@@ -87,7 +76,6 @@ text-align: center;
                                     <tr>
                                         <td style="width: 10%">{{ $item->id }}</td>
                                         <td>{{ $item->cabang->name }}</td>
-                                        <td>{{ $item->nomer }}</td>
                                         <td>{{ $item->tanggal }}</td>
                                         <td>{{ $item->name }}</td>
                                         <td>{{ $item->program->name }}</td>
@@ -126,22 +114,22 @@ text-align: center;
                             <div class="row">
                                 <div class="form-group col-xl-6">
                                     <label for="">Tanggal</label>
-                                    <input type="date" name="tanggal" class="form-control" required>
+                                    <input type="date" name="tanggal" class="form-control " required>
                                 </div>
                                 <div class="form-group col-xl-6">
                                     <label for="">Cabang</label>
-                                    <input type="hidden" class="form-control" id="cabsid" name="cabang_id">
-                                    <input type="text" data-target="#exampleModalScrollable" id="cabs" class="form-control" data-toggle="modal" readonly placeholder="*Click me" data-dismiss="modal">
+                                    <input type="hidden" class="form-control text-capitalize" id="cabsid" name="cabang_id">
+                                    <input type="text" data-target="#exampleModalScrollable" id="cabs" class="text-capitalize form-control" data-toggle="modal" readonly placeholder="*Click me" data-dismiss="modal">
                                 </div>
-                                <div class="form-group col-xl-6">
+                                {{-- <div class="form-group col-xl-6">
                                     <input type="number" name="nomor" class="form-control" placeholder="Nomer..">
-                                </div>
+                                </div> --}}
                             </div>
                             <div class="form-group">
-                                <input type="text" name="name" class="form-control" placeholder="Nama Pelatihan..." required>
+                                <input type="text" name="name" class="form-control text-capitalize" placeholder="Nama Pelatihan..." required>
                             </div>
                             <div class="form-group">
-                                <select name="program_id" class="form-control" id="" required>
+                                <select name="program_id" class="form-control text-capitalize" id="" required>
                                     <option value="">= Pilih Program =</option>
                                     @foreach ($dt_p as $item)
                                         <option value="{{ $item->id }}">{{ $item->name }}</option>
@@ -150,15 +138,15 @@ text-align: center;
                             </div>
                             <div class="form-group">
                                 <label for="">Tempat</label>
-                                <textarea name="tempat" class="form-control" id="" cols="30" rows=""></textarea>
+                                <textarea name="tempat" class="form-control text-capitalize" id="" cols="30" rows=""></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="">Keterangan</label>
-                                <select name="keterangan" id="" class="form-control" required>
+                                <select name="keterangan" id="" class="form-control text-capitalize" required>
                                     <option value="">= Untuk Guru / Santri =</option>
-                                    <option value="GURU">GURU</option>
-                                    <option value="SANTRI">SANTRI</option>
-                                    <option value="TOT_INSTRUKTUR">INSTRUKTUR</option>
+                                    <option value="guru">GURU</option>
+                                    <option value="santri">SANTRI</option>
+                                    <option value="instruktur">INSTRUKTUR</option>
                                 </select>
                             </div>
                        </div>

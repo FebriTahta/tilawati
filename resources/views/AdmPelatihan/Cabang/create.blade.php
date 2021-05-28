@@ -18,9 +18,10 @@
                 <li class="breadcrumb-item"><a href="#">Pelatihan</a></li>
                 <li class="breadcrumb-item"><a href="{{route('cabang.index')}}">Cabang</a></li>
                 <li class="breadcrumb-item active">Cabang Baru</li>
+                <li><span id="clock"></span></li>
             </ol>
         </div>
-        <h5 class="page-title">Cabang</h5>
+        {{-- <h5 class="page-title">Cabang</h5> --}}
     </div>
 </div>
 <!-- end row -->
@@ -30,26 +31,18 @@
     @include('layouts.sess.flash_message')
     
     <!--flash massage-->
-    <div class="col-xl-12">
-        <div class="card m-b-30">
-            <div class="card-body">
-                <div class="float-left p-1 mr-3 " style="min-width: 100px">
-                    <div class="text-center bg-primary rounded p-3">
-                        <p class="text-white mb-0" id="bln">October</p>
-                        <h2 class="text-white mb-0" id="tgl"></h2>
-                        <p class="text-white mb-0" id="hari"></p>
-                    </div>
-                </div>
-                <div class="post-details text-right">
-                    <h2 class="text-muted" id="clock">jam</h2>
-                    <h5 class="text-muted">Selamat Beraktifitas</h5>
-                </div>
+    <div class="col-xl-2" style="align-content: center;text-align: center">
+        <div class="m-b-20" >
+            <div class="text-center bg-primary rounded p-3 m-t-10 "style="text-align: center; max-width: 100px;">
+                <p class="text-white mb-0" id="bln">October</p>
+                <h2 class="text-white mb-0" id="tgl"></h2>
+                <p class="text-white mb-0" id="hari"></p>
             </div>
         </div>
     </div>
 
-    <div class="col-xl-12">
-        <div class="card m-b-30">
+    <div class="col-xl-10">
+        <div class="card m-b-30 m-t-10">
             <div class="row">
                 <div class="col-12">
                     <div class="card m-b-30">
@@ -58,21 +51,27 @@
                                 <form action="{{ route('cabang.store') }}" method="POST">@csrf
                                     <p id="demo"></p>
                                     <div class="form-group">
-                                        <button class="btn btn-sm btn-primary" type="button" data-toggle="modal" data-target=".bs-example-modal-center"><i class="fa fa-plus"></i> Kepala Cabang</button><br><br>
-                                        <input type="hidden" class="form-control" id="kepala_id" name="kepala_id" value="" required>
-                                        <label><i class="text-danger">*</i> Nama Kepala Cabang</label>
-                                        <input type="text" class="form-control" value="" name="kepala" readonly id="kepalax" placeholder=" * Nama Kepala Cabang..." data-toggle="modal" data-target=".bs-example-modal-center2">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <button class="btn btn-primary" type="button" data-toggle="modal" data-target=".bs-example-modal-center"><i class="fa fa-plus"></i> Kepala Cabang</button><br><br>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <input type="text" class="form-control text-capitalize" value="" name="kepala" id="kepalax" placeholder=" * Click me..." data-toggle="modal" data-target=".bs-example-modal-center2" readonly required>
+                                            </div>
+                                        </div>
+                                        <input type="hidden" class="form-control text-capitalize" id="kepala_id" name="kepala_id" value="" required>
+                                        {{-- <label><i class="text-danger">*</i> Nama Kepala Cabang</label> --}}
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" class="form-control" name="name" placeholder=" * Nama Cabang..." required>
+                                        <input type="text" class="form-control text-capitalize" name="name" placeholder=" * Nama Cabang..." required>
                                     </div>
                                     <div class="form-group">
-                                        <textarea name="alamat" class="form-control" id="" cols="20" rows="10"> Alamat Lengkap Cabang...</textarea>
+                                        <textarea name="alamat" class="form-control text-capitalize" id="" cols="20" rows="5" required> Alamat Lengkap Cabang...</textarea>
                                     </div>
                                     <div class="row">
                                         <div class="col-xl-6">
                                             <div class="form-group">
-                                                <select name="pro_id" class="form-control"  required>
+                                                <select name="pro_id" id="pro_id" class="form-control"  required>
                                                     <option value=""> Provinsi </option>
                                                     @foreach ($dt_props2 as $prop)
                                                        <option value="{{ $prop->id }}">{{ $prop->nama }}</option>
@@ -103,7 +102,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <textarea type="text" name="ekspedisi" class="form-control" placeholder="Alamat Ekspedisi..." >Alamat Ekspedisi... </textarea>
+                                        <textarea type="text" name="ekspedisi" class="form-control" rows="5" placeholder="Alamat Ekspedisi..." required>Alamat Ekspedisi... </textarea>
                                     </div>
                                     <div class="row">
                                         <div class="col-xl-6">
@@ -113,7 +112,7 @@
                                         </div>
                                         <div class="col-xl-6">
                                             <div class="form-group">
-                                                <input type="text" name="telp" class="form-control" placeholder="Telp..." >
+                                                <input type="text" name="telp" class="form-control" placeholder="Telp..." required>
                                             </div>
                                         </div>
                                         <div class="col-xl-6">
@@ -123,7 +122,7 @@
                                         </div>
                                         <div class="col-xl-6">
                                             <div class="form-group">
-                                                <input type="text" name="teritorial" class="form-control" placeholder="teritorial..." >
+                                                <input type="text" name="teritorial" class="form-control text-capitalize" placeholder="teritorial..." required>
                                             </div>
                                         </div>
                                     </div>
@@ -155,15 +154,15 @@
                         <div class="row">
                             <div class="form-group col-xl-12">
                                 <label><i class="text-danger">*</i> NIK</label>
-                                <input type="text" name="nik" class="form-control " placeholder="NIK (16 digit)" maxlength="16" size="16" required>
+                                <input type="text" name="nik" class="form-control " placeholder="NIK (16 digit)" maxlength="16" minlength="16" size="16" required>
                             </div>
                             <div class="form-group col-xl-12">
                                 <label><i class="text-danger">*</i> Nama Lengkap</label>
-                                <input type="text" class="form-control " name="name" placeholder="" required>
+                                <input type="text" class="form-control text-capitalize" name="name" placeholder="" required>
                             </div>
                             <div class="form-group col-xl-6">
                                 <label><i class="text-danger">*</i> Tempat Lahir</label>
-                                <input type="text" class="form-control" name="tmptlahir" required>
+                                <input type="text" class="form-control text-capitalize" name="tmptlahir" required>
                             </div>
                             <div class="form-group col-xl-6">
                                 <label><i class="text-danger">*</i> Tanggal Lahir</label>
@@ -171,7 +170,7 @@
                             </div>
                             <div class="form-group col-xl-12">
                                 <label for=""><i class="text-danger">*</i> Alamat Lengkap...</label>
-                                <textarea type="text" class="form-control " name="alamat" required></textarea>
+                                <textarea type="text" class="form-control text-capitalize" name="alamat" required></textarea>
                             </div>
                             <div class="form-group col-xl-6">
                                 <label><i class="text-danger">*</i> Provinsi</label>
@@ -213,11 +212,11 @@
                             </div>
                             <div class="form-group col-xl-6">
                                 <label for=""><i class="text-danger">*</i> Pekerjaan</label>
-                                <input type="text" class="form-control" name="pekerjaan" required>
+                                <input type="text" class="form-control text-capitalize" name="pekerjaan" required>
                             </div>
                             <div class="form-group col-xl-6">
                                 <label for=""><i class="text-danger">*</i> Pendidikan Terakhir</label>
-                                <input type="text" class="form-control" name="pendidikanter" required>
+                                <input type="text" class="form-control text-capitalize" name="pendidikanter" required>
                             </div>
                             <div class="form-group col-xl-6">
                                 <label for=""><i class="text-danger">*</i> Tahun Lulus</label>

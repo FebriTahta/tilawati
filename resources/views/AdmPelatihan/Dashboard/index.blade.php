@@ -8,11 +8,9 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="float-right page-breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><span id="hari"></span> <span id="tgl"></span> <span
-                                id="bln"></span></li>
-                        <li class="breadcrumb-item"><span id="clock"></span></li>
-                    </ol>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"></li>
+                </ol>
                 </div>
                 <h5 class="page-title text-uppercase">Dashboard</h5>
             </div>
@@ -23,7 +21,6 @@
             <div class="col-xl-12 col-md-12">
                 <div class="card m-b-30">
                     <div class="card-body">
-                        <h2 class="mt-0 header-title mb-4 text-uppercase">CARI DATA GLOBAL</h2>
                         <div class="row">
                             <div class="col-6 col-xl-4 form-group">
                                 <label>Dari :</label>
@@ -68,8 +65,8 @@
                                 {{-- <h6 class="m-0">30 Lembaga</h6> --}}
                             </div>
                         </div>
-                        <div class="mt-4 text-muted">
-
+                        <div class="mt-2 text-muted " style="text-align: center">
+                            <button class="btn btn-sm text-white" style="background-color: rgb(114, 228, 203)">Click Me</button>
                         </div>
                     </div>
                 </div>
@@ -135,13 +132,16 @@
                             <h2 id="pd">0</h2>
                             <h5>PESERTA</h5>
                         </div>
-                        <div class="mt-4 text-muted">
+                        
                             <div class="float-left">
                                 {{-- <p class="m-0">50 Guru</p> --}}
                             </div>
                             <div class="float-right">
                                 {{-- <p class="m-0">30 Santri</p> --}}
                             </div>
+                        
+                        <div class="mt-2 text-muted " style="text-align: center">
+                            <button class="btn btn-sm text-white" style="background-color: rgb(185, 124, 243)">Click Me</button>
                         </div>
                     </div>
                 </div>

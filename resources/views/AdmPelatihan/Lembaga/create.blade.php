@@ -1,7 +1,7 @@
 @extends('layouts.adm.master')
 @section('head')
     <style>
-        table.dataTable.kepalas td:nth-child(2) {
+        table.dataTable.kepalas td:nth-child(3) {
   width: 20px;
   max-width: 20px;
   word-break: break-all;
@@ -18,9 +18,10 @@
                 <li class="breadcrumb-item"><a href="#">Pelatihan</a></li>
                 <li class="breadcrumb-item"><a href="{{route('lembaga.index')}}">Lembaga</a></li>
                 <li class="breadcrumb-item active">Lembaga Baru</li>
+                <li class="breadcrumb-item active" id="clock"></li>
             </ol>
         </div>
-        <h5 class="page-title">Lembaga</h5>
+        {{-- <h5 class="page-title">Lembaga</h5> --}}
     </div>
 </div>
 <!-- end row -->
@@ -29,7 +30,7 @@
     <!--flash massage-->
     @include('layouts.sess.flash_message')
     <!--flash massage-->
-    <div class="col-xl-12">
+    {{-- <div class="col-xl-12">
         <div class="card m-b-30">
             <div class="card-body">
                 <div class="float-left p-1 mr-3 " style="min-width: 100px">
@@ -45,9 +46,18 @@
                 </div>
             </div>
         </div>
+    </div> --}}
+    <div class="col-xl-2" style="align-content: center;text-align: center">
+        <div class="m-b-20" >
+            <div class="text-center bg-primary rounded p-3 m-t-10 "style="text-align: center; max-width: 100px;">
+                <p class="text-white mb-0" id="bln">October</p>
+                <h2 class="text-white mb-0" id="tgl"></h2>
+                <p class="text-white mb-0" id="hari"></p>
+            </div>
+        </div>
     </div>
 
-    <div class="col-xl-12">
+    <div class="col-xl-10">
         <div class="card m-b-30">
             <div class="row">
                 <div class="col-12">
@@ -56,31 +66,39 @@
                             <div class="form">
                                 <form action="{{ route('lembaga.store') }}" method="POST">@csrf
                                     <div class="form-group">
-                                        <label><i class="text-danger">*</i> Pilih Lembaga</label>
+                                        <label><i class="text-danger">*</i> Asal Cabang</label>
                                         @if (auth()->user()->role=="cabang")
                                             <input type="hidden" name="cabang_id" value="{{ auth()->user()->cabang->id }}" required>
                                         @else
                                         <select name="cabang_id" id="cabang_id" class="form-control" required>
-                                            <option value="">= Daftar Nama Lembaga Yang Telah Terdaftar =</option>
+                                            <option value="">= Daftar Nama Cabang Yang Telah Terdaftar =</option>
                                             @foreach ($dt_cabang as $item)
-                                                <option class="form-control text-uppercase" value="{{$item->id}}">{{$item->name}}</option>
+                                                <option class="form-control text-capitalize" value="{{$item->id}}">{{$item->name}}</option>
                                             @endforeach
                                         </select>
+                                        {{-- <input type="hidden" name="cabang_id" id="cabang_id" class="form-control" required>
+                                        <input type="text" data-toggle="modal" id="cabangx" class="form-control" data-target=".bs-example-modal-center3" placeholder="* Click Me" readonly required> --}}
                                         @endif
                                     </div>
                                     <div class="form-group">
-                                        <button class="btn btn-sm btn-primary" type="button" data-toggle="modal" data-target=".bs-example-modal-center"><i class="fa fa-plus"></i> Kepala Lembaga</button><br><br>
-                                        <input type="hidden" class="form-control" id="kepala_id" name="kepala_id" required>
-                                        <label><i class="text-danger">*</i> Kepala Lembaga</label>
-                                        <input type="text" name="kepala" id="kepalax" class="form-control" placeholder="Nama Kepala Lembaga..." data-toggle="modal" data-target=".bs-example-modal-center2" readonly required>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <button class="btn btn-sm btn-primary" type="button" data-toggle="modal" data-target=".bs-example-modal-center"><i class="fa fa-plus"></i> Kepala Lembaga</button><br><br>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <input type="hidden" class="form-control" id="kepala_id" name="kepala_id" required>
+                                        {{-- <label><i class="text-danger">*</i> Kepala Lembaga</label> --}}
+                                        <input type="text" name="kepala" id="kepalax" class="form-control text-capitalize" placeholder="Nama Kepala Lembaga..." data-toggle="modal" data-target=".bs-example-modal-center2" readonly required>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="form-group">
                                         <label><i class="text-danger">*</i> Nama Lembaga</label>
-                                        <input type="text" name="name" class="form-control" placeholder="" required>
+                                        <input type="text" name="name" class="form-control text-capitalize" placeholder="" required>
                                     </div>
                                     <div class="form-group">
                                         <label><i class="text-danger">*</i> Alamat Lengkap Lembaga</label>
-                                        <textarea name="alamat" class="form-control" id="" cols="10" rows="10" required></textarea>
+                                        <textarea name="alamat" class="form-control text-capitalize" id="" cols="10" rows="5" required></textarea>
                                     </div>
                                     <div class="row">
                                         <div class="col-xl-6">
@@ -182,6 +200,7 @@
     </div>
 </div>
 <!-- end row -->
+{{-- modal 1 kepala lembaga --}}
 <div class="col-sm-6 col-md-3 m-t-30">
     <div class="modal fade bs-example-modal-center" id="ya" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -201,11 +220,11 @@
                             </div>
                             <div class="form-group col-xl-12">
                                 <label><i class="text-danger">*</i> Nama Lengkap</label>
-                                <input type="text" class="form-control " name="name" placeholder="" required>
+                                <input type="text" class="form-control text-capitalize" name="name" placeholder="" required>
                             </div>
                             <div class="form-group col-xl-12">
                                 <label for=""><i class="text-danger">*</i> Alamat Lengkap...</label>
-                                <textarea type="text" class="form-control " name="alamat" required></textarea>
+                                <textarea type="text" class="form-control text-capitalize" name="alamat" required></textarea>
                             </div>
                             <div class="form-group col-xl-6">
                                 <label for=""><i class="text-danger">*</i> Telephone</label>
@@ -220,7 +239,7 @@
                             </div>
                             <div class="form-group col-xl-6">
                                 <label for=""><i class="text-danger">*</i> Pendidikan Terakhir</label>
-                                <input type="text" class="form-control" name="pendidikanter" required>
+                                <input type="text" class="form-control text-capitalize" name="pendidikanter" required>
                             </div>
                             <div class="form-group col-xl-6">
                                 <label for=""><i class="text-danger">*</i> Tahun Lulus</label>
@@ -236,7 +255,7 @@
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 </div>
-{{-- modal 2 --}}
+{{-- modal 2 pilih calon kepala lembaga--}}
 <div class="col-sm-6 col-md-3 m-t-30">
     <div class="modal fade bs-example-modal-center2" id="modalkepala" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -252,7 +271,36 @@
                         <table id="datatable" class="table kepalas table-bordered" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                             <thead>
                                  <tr>
-                                     <th>Daftar Nama Kepala Cabang</th>
+                                     <th>Daftar Nama Kepala Lembaga</th>
+                                     <th>Alamat</th>
+                                     <th class="text-center">PILIH</th>
+                                 </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+</div>
+{{-- modal 3 pilih asal cabang--}}
+<div class="col-sm-6 col-md-3 m-t-30">
+    <div class="modal fade bs-example-modal-center3" id="modalcabang" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title mt-0">PILIH DAFTAR CABANG BERIKUT</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="table-responsive">
+                        <table id="datatable2" class="table kepalas table-bordered" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                            <thead>
+                                 <tr>
+                                     <th>Asal Cabang</th>
+                                     <th>Teritorial</th>
                                      <th class="text-center">PILIH</th>
                                  </tr>
                             </thead>
@@ -269,7 +317,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 <script>
     //pilih
-function pilih()
+    function pilih()
         {
             var pil = $( "#pilih:checked" ).val();
             console.log(pil);
@@ -287,27 +335,73 @@ function pilih()
                 });
             }
         }
+        function pilih2()
+        {
+            var pil = $( "#pilih2:checked" ).val();
+            console.log(pil);
+            $("#cabang_id").val(pil);
+            $("#modalcabang").modal('hide');
+            if(pil) {
+                $.ajax({
+                    url: '/fetch8/' + pil,
+                    type: "GET",
+                    dataType: "json",
+                    success:function(data) {
+                        $("#cabangx").val(data.name);
+                        console.log(data);
+                    }
+                });
+            }
+        }
 $(document).ready(function() {
 //show data kepala
-$('#datatable').DataTable({
-                //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
-                destroy: true,
-                processing: true,
-                serverSide: true,
-                ajax: {
-                    url:'{{ route("cabang.kepalaV") }}',
+    $('#datatable').DataTable({
+        //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
+        destroy: true,
+        processing: true,
+        serverSide: true,
+        ajax: {
+            url:'{{ route("cabang.kepalaV") }}',
+            },
+            columns: [
+                {
+                data:'name',
+                name:'name'
                 },
-                columns: [
-                    {
-                    data:'name',
-                    name:'name'
-                    },
-                    {
-                    data:'pilih',
-                    name:'pilih'
-                    },
-                ]
-                });
+                {
+                data:'alamat',
+                name:'alamat'
+                },
+                {
+                data:'pilih',
+                name:'pilih'
+                },
+            ]
+    });
+
+    $('#datatable2').DataTable({
+        //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
+        destroy: true,
+        processing: true,
+        serverSide: true,
+        ajax: {
+            url:'{{ route("lembaga.cabang") }}',
+            },
+            columns: [
+                {
+                data:'name',
+                name:'name'
+                },
+                {
+                data:'teritorial',
+                name:'teritorial'
+                },
+                {
+                data:'pilih',
+                name:'pilih'
+                },
+            ]
+    });
 });    
 </script>
 <script>
@@ -348,7 +442,7 @@ $(document).ready(function() {
     //trigger ajax untuk provinsi kabupaten kecamatan kelurahan
     $('select[name="cabang_id"]').on('change', function() {
             //mencari kota/kab dari provinsi 3 tingkat
-            var cabang_id = $(this).val();
+            var cabang_id = $('#cabang_id').val();
             console.log(cabang_id);
             if(cabang_id) {
                 $.ajax({

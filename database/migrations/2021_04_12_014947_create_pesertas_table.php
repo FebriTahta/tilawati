@@ -16,6 +16,7 @@ class CreatePesertasTable extends Migration
         Schema::create('pesertas', function (Blueprint $table) {
             $table->bigIncrements('id')->startingValue(223300);
             $table->unsignedBigInteger('pelatihan_id');
+            $table->date('tanggal');
             $table->string('lembaga')->nullable();
             $table->string('name');
             $table->string('tmptlahir')->nullable();
@@ -24,13 +25,14 @@ class CreatePesertasTable extends Migration
             $table->string('kota')->nullable();
             $table->string('telp')->nullable();
             $table->string('email')->nullable();
+            $table->integer('tf')->nullable();
             $table->integer('fs')->nullable();
             $table->integer('tj')->nullable();
             $table->integer('gm')->nullable();
             $table->integer('sl')->nullable();
             $table->integer('mt')->nullable();
-            $table->integer('il')->nullable();
             $table->integer('im')->nullable();
+            $table->integer('il')->nullable();
             $table->integer('i')->nullable();
             $table->string('bersyahadah')->nullable();
             $table->string('jilid')->nullable();

@@ -15,22 +15,27 @@ class ProgramSeeder extends Seeder
     {
         $pro = [
             [
-                'name' => "TAHSIN",                
+                'name' => "training of trainer",
                 'created_at' => new \DateTime,
                 'updated_at' => null,
             ],
             [
-                'name' => "TILAWATI",
+                'name' => "munaqys",
                 'created_at' => new \DateTime,
                 'updated_at' => null,
             ],
             [
-                'name' => "TRAINING OF TRAINER",
+                'name' => "tahfidz",
                 'created_at' => new \DateTime,
                 'updated_at' => null,
             ],
             [
-                'name' => "TILAWAH",
+                'name' => "munaqosyah santri",
+                'created_at' => new \DateTime,
+                'updated_at' => null,
+            ],
+            [
+                'name' => "standarisasi guru al qur'an",
                 'created_at' => new \DateTime,
                 'updated_at' => null,
             ],

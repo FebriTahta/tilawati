@@ -4,20 +4,21 @@
     <div class="col-sm-12">
         <div class="float-right page-breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Pelatihan</a></li>
+                <li class="breadcrumb-item"><a href="#">Diklat</a></li>
                 <li class="breadcrumb-item active">Lembaga</li>
+                <li class="breadcrumb-item active" id="clock"></li>
             </ol>
         </div>
-        <h5 class="page-title">Lembaga</h5>
+        {{-- <h5 class="page-title">Lembaga</h5> --}}
     </div>
 </div>
 <!-- end row -->
 
 <div class="row">
-        <!--flash massage-->
-        @include('layouts.sess.flash_message')
-        <!--flash massage-->
-    <div class="col-xl-12">
+    <!--flash massage-->
+    @include('layouts.sess.flash_message')
+    <!--flash massage-->
+    {{-- <div class="col-xl-12">
         <div class="card m-b-30">
             <div class="card-body">
                 <div class="float-left p-1 mr-3 " style="min-width: 100px">
@@ -33,8 +34,23 @@
                 </div>
             </div>
         </div>
+    </div> --}}
+    <div class="col-xl-2" style="align-content: center;text-align: center">
+        <div class="m-b-20" >
+            <div class="text-center bg-primary rounded p-3 m-t-10 "style="text-align: center; max-width: 100px;">
+                <p class="text-white mb-0" id="bln">October</p>
+                <h2 class="text-white mb-0" id="tgl"></h2>
+                <p class="text-white mb-0" id="hari"></p>
+            </div>
+            @if (auth()->user()->role=='pusat')
+            <div style="text-align: center; max-width: 100px;">
+                {{-- <button type="button" class="btn btn-primary m-t-10 waves-effect waves-light" data-toggle="modal" data-target=".bs-example-modal-lg" style="min-width: 100px"><i class="fa fa-plus"></i> Cabang</button> --}}
+                <a href="{{route('lembaga.create')}}" type="button" class="btn btn-primary m-t-10 waves-effect waves-light"><i class="fa fa-plus"></i> Lembaga</a>
+            </div>
+            @endif
+        </div>
     </div>
-    <div class="col-xl-12">
+    {{-- <div class="col-xl-12">
         <div class=" m-b-30 bg-transparent">
             <div class="row">
                 <div class="col-lg-4">
@@ -42,32 +58,33 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
-    <div class="col-xl-12">
+    <div class="col-xl-10">
         <div class="card m-b-30">
             <div class="row">
                 <div class="col-12">
                     <div class="card m-b-30">
                         <div class="card-body">                          
                             <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                                <thead class="mt-100">
+                                <thead class="mt-100 text-capitalize">
                                 <tr>
-                                    <th>NAMA LEMBAGA</th>
-                                    <th>ASAL CABANG</th>
-                                    <th>KEPALA LEMBAGA</th>
-                                    <th>JENJANG</th>
-                                    <th>PROVINSI</th>
-                                    <th>KABUPATEN/KOTA</th>
-                                    <th>TELEPHONE</th>
-                                    <th>ALAMAT</th>
-                                    <th>STATUS</th>
-                                    <th>TAHUN BERDIRI</th>
-                                    <th>TAHUN MASUK</th>
+                                    <th>Nama Lembaga</th>
+                                    <th>Asal Cabang</th>
+                                    <th>Kelembagaan</th>
+                                    <th>Kepala Lembaga</th>
+                                    <th>Jenjang</th>
+                                    <th>Provinsi</th>
+                                    <th>Kabupaten/Kota</th>
+                                    <th>Telp</th>
+                                    <th>Alamat</th>
+                                    <th>Status</th>
+                                    <th>Tahun Berdiri</th>
+                                    <th>Tahun Masuk</th>
                                     <th class="text-center">...</th>
                                 </tr>
                                 </thead>
-                                <tbody>
+                                <tbody class="text-capitalize">
                                     @if (auth()->user()->role=='cabang')
                                         @foreach (auth()->user()->cabang->lembaga as $item)
                                             <td>{{ $item->name }}</td>
@@ -85,9 +102,9 @@
                                             <td>{{ $item->telp }}</td>
                                             <td>
                                                 @if ($item->status==1)
-                                                    <p class="text-primary"> Aktif</p>
+                                                    Aktif</p>
                                                 @else
-                                                    <p class="text-danger">Non Aktif</p>
+                                                    Non Aktif</p>
                                                 @endif
                                             </td>
                                             <td>{{ $item->tglmasuk }}</td>
@@ -101,6 +118,7 @@
                                         <tr>
                                             <td>{{ $item->name }}</td>
                                             <td>{{ $item->cabang->name }}</td>
+                                            <td>{{ $item->jenjang->name }}</td>
                                             <td>
                                                 @if ($item->kepala == null)
                                                     kepala kosong
@@ -115,9 +133,9 @@
                                             <td style="width: 20%">{{ $item->alamat }}</td>
                                             <td>
                                                 @if ($item->status==1)
-                                                    <p class="text-primary"> Aktif</p>
+                                                    Aktif</p>
                                                 @else
-                                                    <p class="text-danger">Non Aktif</p>
+                                                    Non Aktif</p>
                                                 @endif
                                             </td>
                                             <td>{{ $item->tahunberdiri }}</td>

@@ -5,10 +5,11 @@
         <div class="float-right page-breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{route('jenis.index')}}">Pelatihan</a></li>
-                <li class="breadcrumb-item active">Status Lembaga</li>
+                <li class="breadcrumb-item active">Kelembagaan</li>
+                <li class="breadcrumb-item active" id="clock"></li>
             </ol>
         </div>
-        <h5 class="page-title">Status Lembaga</h5>
+        {{-- <h5 class="page-title">Status Lembaga</h5> --}}
     </div>
 </div>
 <!-- end row -->
@@ -17,35 +18,25 @@
     <!--flash massage-->
     @include('layouts.sess.flash_message')
     <!--flash massage-->
-    <div class="col-xl-12">
-        <div class="card m-b-30">
-            <div class="card-body">
-                <div class="float-left p-1 mr-3 " style="min-width: 100px">
-                    <div class="text-center bg-primary rounded p-3">
-                        <p class="text-white mb-0" id="bln"></p>
-                        <h2 class="text-white mb-0" id="tgl"></h2>
-                        <p class="text-white mb-0" id="hari"></p>
-                    </div>
+    
+        <div class="col-xl-2" style="align-content: center;text-align: center">
+            <div class="m-b-20" >
+                <div class="text-center bg-primary rounded p-3 m-t-10 "style="text-align: center; max-width: 100px;">
+                    <p class="text-white mb-0" id="bln">October</p>
+                    <h2 class="text-white mb-0" id="tgl"></h2>
+                    <p class="text-white mb-0" id="hari"></p>
                 </div>
-                <div class="post-details text-right">
-                    <h2 class="text-muted" id="clock"></h2>
-                    <h5 class="text-muted">Selamat Beraktifitas</h5>
+                @if (auth()->user()->role=='pusat')
+                <div style="text-align: center; max-width: 100px;">
+                    {{-- <button type="button" class="btn btn-primary m-t-10 waves-effect waves-light" data-toggle="modal" data-target=".bs-example-modal-lg" style="min-width: 100px"><i class="fa fa-plus"></i> Cabang</button> --}}
+                    <button type="button" class="btn btn-primary waves-effect waves-light m-t-10" data-toggle="modal" data-target=".bs-example-modal-center " style="min-width: 100px"><i class="fa fa-plus"></i> Jenjang</button>
                 </div>
+                @endif
             </div>
         </div>
-    </div>
-    <div class="col-xl-12">
-        <div class=" m-b-30 bg-transparent">
-            <div class="row">
-                <div class="col-lg-4">
-                    <button type="button" class="btn btn-primary waves-effect waves-light" data-toggle="modal" data-target=".bs-example-modal-center"><i class="fa fa-plus"></i> Tamabah Status Baru</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <div class="col-xl-12">
-        <div class="card m-b-30">
+    <div class="col-xl-10">
+        <div class="card m-b-30 m-t-10">
             <div class="row">
                 <div class="col-12">
                     <div class="card m-b-30">
@@ -115,7 +106,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <input type="text" name="id" id="kriteriaid">
+                    <input type="hidden" name="id" id="kriteriaid">
                     <p id="kriteria"></p>
                 </div>
                 <div class="modal-footer">

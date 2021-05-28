@@ -24,26 +24,33 @@ class PesertaToTImport implements ToCollection, WithChunkReading, ShouldQueue
             # code...
             if ($key >= 1) {
                 
-                $dt_peserta = [
-                    'pelatihan_id' => $this->id,
-                    'name' => $row[0],
-                    'alamat' => $row[1],
-                    'kota' => $row[2],
-                    'telp' => $row[3],
-                    'tmptlahir' => $row[4],
-                    'tgllahir' => $row[5],
-                    'fs' => $row[6],
-                    'tj' => $row[7],
-                    'gm' => $row[8],
-                    'sl' => $row[9],
-                    'il' =>$row[10],
-                    'im' =>$row[11],
-                    'i' =>$row[12],
-                    
-                    'bersyahadah' => $row[13],
-                    'created_at' => new \DateTime,
-                ];
-                DB::table('pesertas')->insert($dt_peserta);
+                $dt_pel = new Peserta;
+                $dt_pel->pelatihan_id = $this->id;
+                $dt_pel->name = $row[0];
+                $dt_pel->alamat = $row[1];
+                $dt_pel->kota = $row[2];
+                $dt_pel->telp =$row[3];
+                $dt_pel->tmptlahir = $row[4];
+                $dt_pel->tgllahir =$row[5];
+                $dt_pel->fs = $row[6];
+                $dt_pel->tj =$row[7];
+                $dt_pel->gm =$row[8];
+                $dt_pel->sl = $row[9];
+                $dt_pel->im =$row[10];
+                $dt_pel->il =$row[11];
+                $dt_pel->i =$row[12];
+                $dt_pel->kriteria = $row[13];
+                $dt_pel->jilid = $row[14];
+                $dt_pel->bersyahadah = $row[15];
+                $dt_pel->lembaga = $row[16];
+                $dt_pel->munaqisy =  $row[17];
+                $dt_pel->created_at = new \DateTime;
+                $dt_pel->save();
+                $id = $dt_pel->id;
+                \QrCode::size(150)
+                ->format('png')
+                ->generate(request()->url('http://course-academy.top/diklat/'.$id.'/'), public_path('images/'.$id.'qrcode.png'));
+
             }   
         }
     }

@@ -7,6 +7,7 @@ use App\Models\Lembaga;
 use App\Models\User;
 use App\Models\Kepala;
 use App\Models\Province;
+use DataTables;
 use Illuminate\Http\Request;
 
 class LembagaController extends Controller
@@ -145,5 +146,20 @@ class LembagaController extends Controller
         //
     }
 
-    
+    public function lembaga_view_cabang(Request $request)
+    {
+        if(request()->ajax())
+        {
+            $data = Cabang::orderBy('id','desc');
+                return Datatables::of($data)
+                        ->addIndexColumn()
+                        ->addColumn('pilih', function($row){
+                            $btn = '<input type="radio" name="pilih2" id="pilih2" onclick="pilih2()" value="'.$row->id.'" required>';
+                            return $btn;
+                        })
+                        ->rawColumns(['pilih'])
+                        ->make(true);
+                return datatables()->of($data)->make(true);
+        }
+    }
 }

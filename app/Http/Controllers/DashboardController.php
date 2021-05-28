@@ -26,7 +26,7 @@ class DashboardController extends Controller
             if(!empty($request->dari))
             {
                 $data = DB::table('pelatihans')
-                ->whereBetween('created_at', array($request->dari, $request->sampai))
+                ->whereBetween('tanggal', array($request->dari, $request->sampai))
                 ->count();
                 return response()->json($data,200);
             }
@@ -86,7 +86,7 @@ class DashboardController extends Controller
             }
             else
             {
-                $data = User::all()->count();
+                $data = Peserta::all()->count();
                 return response()->json($data,200);
             }
         }
@@ -146,6 +146,11 @@ class DashboardController extends Controller
                 return \Carbon\Carbon::parse('2021-'.$value.'-01')->format('M');
             })->toArray();
             foreach ($month as $key => $value) {
+                // $peserta[] = Peserta::query()->with(array('pelatihan'=>function($query){
+                //      $query->where(\DB::raw("DATE_FORMAT(tanggal, '%m')"),$value);
+                //  }));
+                // $peserta[] = Pelatihan::with('peserta')->where(\DB::raw("DATE_FORMAT(tanggal, '%m')"),$value)->count();
+                // $peserta[] = Peserta::with('pelatihan')->where(\DB::raw("DATE_FORMAT(tanggal, '%m')"),$value)->count();
                 $peserta[] = Peserta::where(\DB::raw("DATE_FORMAT(created_at, '%m')"),$value)->count();
             }
             $respon=[
@@ -186,6 +191,7 @@ class DashboardController extends Controller
             })->toArray();
             foreach ($month as $key => $value) {
                 $peserta[] = Peserta::where(\DB::raw("DATE_FORMAT(created_at, '%m')"),$value)->count();
+                // $peserta[] = Peserta::with('pelatihan')->where(\DB::raw("DATE_FORMAT(tanggal, '%m')"),$value)->count();
             }
             $respon=[
                 'status'=>'success',
@@ -210,7 +216,7 @@ class DashboardController extends Controller
                 return \Carbon\Carbon::parse('2021-'.$value.'-01')->format('M');
             })->toArray();
             foreach ($month as $key => $value) {
-                $pel[] = Pelatihan::where(\DB::raw("DATE_FORMAT(created_at, '%m')"),$value)->count();
+                $pel[] = Pelatihan::where(\DB::raw("DATE_FORMAT(tanggal, '%m')"),$value)->count();
             }
             $respon=[
                 'status'=>'success',
@@ -249,7 +255,7 @@ class DashboardController extends Controller
                  return \Carbon\Carbon::parse('2021-'.$value.'-01')->format('M');
              })->toArray();
              foreach ($month as $key => $value) {
-                 $pel[] = Pelatihan::where(\DB::raw("DATE_FORMAT(created_at, '%m')"),$value)->count();
+                 $pel[] = Pelatihan::where(\DB::raw("DATE_FORMAT(tanggal, '%m')"),$value)->count();
                  
              }
              $respon=[

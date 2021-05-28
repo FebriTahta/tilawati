@@ -29,7 +29,7 @@ class PesertaController extends Controller
             $dt_pes->lembaga = $request->lembaga;
             $dt_pes->name = $request->name;
             $dt_pes->tmptlahir = $request->tmptlahir;
-            $dt_pes->tgllahir = $request->tgllahir;
+            $dt_pes->tgllahir = $request->tgllahir2;
             $dt_pes->alamat = $request->alamat;
             $dt_pes->kota = $request->kota;
             $dt_pes->telp = $request->telp;
@@ -39,11 +39,14 @@ class PesertaController extends Controller
             $dt_pes->gm = $request->gm;
             $dt_pes->sl = $request->sl;
             $dt_pes->mt = $request->mt;
-            $dt_pes->bersyahadah = $request->bersyahadah;
+            $dt_pes->bersyahadah = $request->syahadah;
             $dt_pes->jilid = $request->jilid;
             $dt_pes->kriteria = $request->kriteria;
             $dt_pes->munaqisy = $request->munaqisy;
             $dt_pes->save();
+            \QrCode::size(150)
+            ->format('png')
+            ->generate('www.nurulfalah.org', public_path('images/'.$dt_pes->id.'qrcode.png'));
             return redirect()->back()->with('success', 'Data Peserta Berhasil Ditambahkan');
 
         } catch (\Throwable $th) {

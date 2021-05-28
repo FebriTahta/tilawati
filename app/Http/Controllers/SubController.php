@@ -50,6 +50,12 @@ class SubController extends Controller
         $data = Kepala::find($id);
         return json_encode($data);
     }
+//nama cabang
+    public function fetch8($id)
+    {
+        $data = Cabang::find($id);
+        return json_encode($data);
+    }
 
     public function fetchpp($id){
         $pelatihan = Pelatihan::where("program_id", $id)->get();

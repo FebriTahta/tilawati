@@ -14,6 +14,7 @@ use App\Http\Controllers\SubController;
 use App\Http\Controllers\ImportController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KepalaController;
+use App\Http\Controllers\TeritorialController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,7 +34,7 @@ Route::get('/', function () {
 });
 Auth::routes();
 
-Route::group(['middleware' => ['auth', 'CheckRole:pusat']], function () {
+Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga']], function () {
     //dashboard
     Route::get('/dashboard',[DashboardController::class, 'index'])->name('dashboard');
     Route::get('/peserta/filter', [DashboardController::class, 'daterangepeserta'])->name('peserta.filter');//get data peserta range ajax dashboard
@@ -56,6 +57,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat']], function () {
     Route::get('/pelatihan-lembaga', [LembagaController::class , 'index'])->name('lembaga.index');
     Route::get('/pelatihan-lembaga-create', [LembagaController::class, 'create'])->name('lembaga.create');
     Route::post('/pelatihan-lembaga-post', [LembagaController::class, 'store'])->name('lembaga.store');
+    Route::get('/lembaga-cabang-view',[LembagaController::class, 'lembaga_view_cabang'])->name('lembaga.cabang');
     //pelatihan data entri
     Route::get('/pelatihan-data-entri',[PelatihanController::class, 'index'])->name('pelatihan.index');
     Route::post('/pelatihan-data-entri-store' ,[PelatihanController::class, 'store'])->name('pelatihan.store');
@@ -63,6 +65,11 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat']], function () {
     //pelatihan peserta
     Route::get('/pelatihan-data-entri/{id}/data', [PesertaController::class, 'daftarpeserta'])->name('pelatihan.daftarpeserta');
     Route::post('/pelatihan-data-entri/peserta', [PesertaController::class, 'storepes'])->name('pelatihan.storepes');
+
+    //teritorial
+    Route::get('/pelatihan-teritorial',[TeritorialController::class, 'index'])->name('teritorial.index');
+    Route::post('/pelatihan-teritorial-post',[TeritorialControllerito::class, 'store'])->name('teritorial.store');
+    Route::get('/pelatihan-teritorial-get',[TeritorialController::class, 'get'])->name('teritorial.get');
 
     //sub controller ajax
     //fetch propinsi, kabupaten/kota, kecamatan, kelurahan
@@ -73,6 +80,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat']], function () {
     Route::get('/fetch5/{id}',[SubController::class, 'fetch5']);
     Route::get('/fetch6/{id}',[SubController::class, 'fetch6']);
     Route::get('/fetch7/{id}',[SubController::class, 'fetch7']);
+    Route::get('/fetch8/{id}',[SubController::class, 'fetch8']);
     
     //fetch program dan pelatihan untuk print
     Route::get('/fetchpp/{id}',[SubController::class, 'fetchpp']);
@@ -124,6 +132,11 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga']], funct
     Route::post('/pelatihan-cetak-belakang-santri-print', [CetakController::class, 'cetak_belakang_santri'])->name('belakang.cetaksantri');
     Route::get('/pelatihan-cetak-belakang-guru',[CetakController::class, 'ijazahbelakangguru'])->name('pelatihan.c_belakang_g');
     Route::post('/pelatihan-cetak-belakang-guru-print',[CetakController::class, 'cetak_belakang_guru'])->name('belakang.cetakguru');
+    Route::post('/pelatihan-cetak-belakang-tahfidz-print',[CetakController::class, 'cetak_belakang_tahfidz'])->name('belakang.cetaktahfidz');
+    Route::post('/pelatihan-cetak-belakang-tot-print',[CetakController::class, 'cetak_belakang_tot'])->name('belakang.cetaktot');
+    Route::get('/pelatihan-cetak-belakang-tot',[CetakController::class,'ijazahbelakangtot'])->name('pelatihan.c_belakang_tot');
+    Route::get('/pelatihan-cetak-belakang-tahfidz',[CetakController::class,'ijazahbelakangtahfidz'])->name('pelatihan.c_belakang_tahfidz');
+    Route::get('/pelatihan-cetak-belakang-munaqys',[CetakController::class,'ijazahbelakangmunaqys'])->name('pelatihan.c_belakang_munaqys');
     //sub controller ajax
     //fetch propinsi dan kota
     Route::get('/fetch/{id}',[SubController::class, 'fetch'])->name('fetch');
@@ -135,6 +148,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga']], funct
     Route::post('/importPeserta',[ImportController::class,'importPeserta'])->name('import.peserta');
     Route::post('/importPesertaGuru',[ImportController::class,'importPesertaGuru'])->name('import.pesertaG');
     Route::post('/importPesertaToT',[ImportController::class,'importPesertaToT'])->name('import.pesertaToT');
+    Route::post('/importPesertaTahfidz',[ImportController::class,'importPesertaTahfidz'])->name('import.pesertaTahfidz');
 });
 
 

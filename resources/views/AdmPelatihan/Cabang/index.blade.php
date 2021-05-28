@@ -4,11 +4,12 @@
     <div class="col-sm-12">
         <div class="float-right page-breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Pelatihan</a></li>
+                <li class="breadcrumb-item"><a href="#">Diklat</a></li>
                 <li class="breadcrumb-item active">Cabang</li>
+                <li class="breadcrumb-item active" id="clock"></li>
             </ol>
         </div>
-        <h5 class="page-title">Cabang</h5>
+        {{-- <h5 class="page-title">Cabang</h5> --}}
     </div>
 </div>
 <!-- end row -->
@@ -17,42 +18,28 @@
     <!--flash massage-->
     @include('layouts.sess.flash_message')
     <!--flash massage-->
-    <div class="col-xl-12">
-        <div class="card m-b-30">
-            <div class="card-body">
-                <div class="float-left p-1 mr-3 " style="min-width: 100px">
-                    <div class="text-center bg-primary rounded p-3">
-                        <p class="text-white mb-0" id="bln">October</p>
-                        <h2 class="text-white mb-0" id="tgl"></h2>
-                        <p class="text-white mb-0" id="hari"></p>
-                    </div>
-                </div>
-                <div class="post-details text-right">
-                    <h2 class="text-muted" id="clock">jam</h2>
-                    <h5 class="text-muted">Selamat Beraktifitas</h5>
-                </div>
+    <div class="col-xl-2" style="align-content: center;text-align: center">
+        <div class="m-b-20" >
+            <div class="text-center bg-primary rounded p-3 m-t-10 "style="text-align: center; max-width: 100px;">
+                <p class="text-white mb-0" id="bln">October</p>
+                <h2 class="text-white mb-0" id="tgl"></h2>
+                <p class="text-white mb-0" id="hari"></p>
             </div>
+            @if (auth()->user()->role=='pusat')
+            <div style="text-align: center; max-width: 100px;">
+                {{-- <button type="button" class="btn btn-primary m-t-10 waves-effect waves-light" data-toggle="modal" data-target=".bs-example-modal-lg" style="min-width: 100px"><i class="fa fa-plus"></i> Cabang</button> --}}
+                <a href="{{route('cabang.create')}}" type="button" class="btn btn-primary waves-effect waves-light m-t-20" style="min-width: 100px"><i class="fa fa-plus"></i> Cabang</a>
+            </div>
+            @endif
         </div>
     </div>
-    <div class="col-xl-12">
-        <div class=" m-b-30 bg-transparent">
-            <div class="row">
-                <div class="col-lg-4">
-                    @if (auth()->user()->role=='pusat')
-                    <a href="{{route('cabang.create')}}" type="button" class="btn btn-primary waves-effect waves-light"><i class="fa fa-plus"></i> Tamabah Cabang Baru</a>
-                    @endif
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-xl-12">
-        <div class="card m-b-30">
+    <div class="col-xl-10">
+        <div class="card m-b-30 m-t-10">
             <div class="row">
                 <div class="col-12">
-                    <div class="card m-b-30">
-                        <div class="card-body">                          
-                            <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                    <div class="card">
+                        <div class="card-body">                      
+                            <table id="datatable" class="table datas table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                 <thead class="mt-100">
                                 <tr>
                                     <th>Nama Cabang</th>
@@ -126,6 +113,105 @@
     </div>
 </div>
 <!-- end row -->
+
+<!--  Modal content for the above example -->
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: cornflowerblue">
+                <h5 class="modal-title mt-0 text-white" id="myLargeModalLabel">Cabang Baru</h5>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ route('cabang.store') }}" method="POST">@csrf
+                    <p id="demo"></p>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <button class="btn btn-primary" type="button" data-toggle="modal" data-target=".bs-example-modal-center"><i class="fa fa-plus"></i> Kepala Cabang</button><br><br>
+                            </div>
+                            <div class="col-md-9">
+                                <input type="hidden" class="form-control" id="kepala_id" name="kepala_id" value="" required>
+                                <input type="text" class="form-control" value="" name="kepala" readonly id="kepalax" placeholder=" * Pilih Kepala Cabang..." data-toggle="modal" data-target=".bs-example-modal-center2">
+                            </div>
+                        </div>
+                        {{-- <label><i class="text-danger">*</i> Nama Kepala Cabang</label> --}}
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="name" placeholder=" * Nama Cabang..." required>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="alamat" class="form-control" id="" cols="20" rows="3"> Alamat Lengkap Cabang...</textarea>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-6">
+                            <div class="form-group">
+                                <select name="pro_id" class="form-control"  required>
+                                    <option value=""> Provinsi </option>
+                                    @foreach ($dt_props2 as $prop)
+                                        <option value="{{ $prop->id }}">{{ $prop->nama }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xl-6">
+                            <div class="form-group">
+                                <select name="kab_id" id="kab_id" class="form-control" required>
+                                    <option value=""> Kabupaten/Kota </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xl-6">
+                            <div class="form-group">
+                                <select name="kec_id" id="kec_id" class="form-control" required>
+                                    <option value=""> Kecamatan </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xl-6">
+                            <div class="form-group">
+                                <select name="kel_id" id="kel_id" class="form-control" required>
+                                    <option value=""> Kelurahan </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <textarea type="text" rows="3" name="ekspedisi" class="form-control" placeholder="Alamat Ekspedisi..." >Alamat Ekspedisi... </textarea>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-6">
+                            <div class="form-group">
+                                <input type="email" name="email" class="form-control" placeholder="Email..." required>
+                            </div>
+                        </div>
+                        <div class="col-xl-6">
+                            <div class="form-group">
+                                <input type="text" name="telp" class="form-control" placeholder="Telp..." >
+                            </div>
+                        </div>
+                        <div class="col-xl-6">
+                            <div class="form-group">
+                                <input type="text" name="pos" class="form-control" placeholder="Kode Pos..." >
+                            </div>
+                        </div>
+                        <div class="col-xl-6">
+                            <div class="form-group">
+                                <input type="text" name="teritorial" class="form-control" placeholder="teritorial..." >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group text-right">
+                        <button class="btn btn-primary"> <i class="fa fa-save "></i> &nbsp; Save</button>
+                    </div>
+                </form>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 <!--modal hapus-->
 <div class="modal fade bs-example-modal-center" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -156,84 +242,6 @@
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
-<!--modal edit-->
-<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title mt-0" id="myLargeModalLabel">Large modal</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form action="{{ route('cabang.store') }}" method="POST">@csrf
-                    <p id="demo"></p>
-                    <div class="form-group">
-                        <input type="text" class="form-control" name="name" placeholder="Nama Cabang..." required>
-                    </div>
-                    <div class="form-group">
-                        <select name="status" class="form-control" id="" required>
-                            <option value="cabang">Cabang</option>
-                            <option value="calon cabang">Calon Cabang</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" name="kepala" placeholder="Kepala Cabang..." >
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" name="jabatan" placeholder="Jabatan..." >
-                    </div>
-                    <div class="form-group">
-                        <textarea name="alamat" class="form-control" id="" cols="20" rows="10">Alamat...</textarea>
-                    </div>
-                    <div class="row">
-                        <div class="col-xl-4">
-                            <div class="form-group">
-                                <select name="propinsi_id" class="form-control" id="mySelect" required>
-                                    <option value="">= Propinsi =</option>
-                                    {{-- @foreach ($dt_props as $prop)
-                                       <option value="{{ $prop->id }}">{{ $prop->name }}</option>
-                                   @endforeach --}}
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-xl-4">
-                            <div class="form-group">
-                                <select name="kota_id" id="kota" class="form-control" required>
-                                    <option value="">= Kota =</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-xl-4">
-                            <div class="form-group">
-                                <input type="text" name="pos" class="form-control" placeholder="Kode Pos..." >
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <textarea type="text" name="ekspedisi" class="form-control" placeholder="Alamat Ekspedisi..." >Alamat Ekspedisi... </textarea>
-                    </div>
-                    <div class="row">
-                        <div class="col-xl-6">
-                            <div class="form-group">
-                                <input type="email" name="email" class="form-control" placeholder="Email..." required>
-                            </div>
-                        </div>
-                        <div class="col-xl-6">
-                            <div class="form-group">
-                                <input type="text" name="telp" class="form-control" placeholder="Telp..." >
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group text-right">
-                        <button class="btn btn-primary"> <i class="fa fa-save "></i> &nbsp; Save</button>
-                    </div>
-                </form>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
 @endsection
 @section('script')
 <script type="application/javascript">
@@ -248,4 +256,6 @@
         
     })
 </script>
+
+
 @endsection

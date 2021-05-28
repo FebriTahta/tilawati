@@ -68,10 +68,11 @@
         <div class="float-right page-breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">Pelatihan</a></li>
-                <li class="breadcrumb-item active">Data Entri</li>
+                <li class="breadcrumb-item active"><a href="/">Data Entri</a></li>
+                <li><span id="clock"></span></li>
             </ol>
         </div>
-        <h5 class="page-title">Data Entri</h5>
+        {{-- <h5 class="page-title">Data Entri</h5> --}}
     </div>
 </div>
 <!-- end row -->
@@ -80,35 +81,23 @@
     <!--flash massage-->
     @include('layouts.sess.flash_message')
     <!--flash massage-->
-    <div class="col-xl-12">
-        <div class="card m-b-30">
-            <div class="card-body">
-                <div class="float-left p-1 mr-3 " style="min-width: 100px">
-                    <div class="text-center bg-primary rounded p-3">
-                        <p class="text-white mb-0" id="bln">October</p>
-                        <h2 class="text-white mb-0" id="tgl"></h2>
-                        <p class="text-white mb-0" id="hari"></p>
-                    </div>
-                </div>
-                <div class="post-details text-right">
-                    <h2 class="text-muted" id="clock">jam</h2>
-                    <h5 class="text-muted">Selamat Beraktifitas</h5>
-                </div>
+    <div class="col-xl-2" style="align-content: center;text-align: center">
+        <div class="m-b-20" >
+            <div class="text-center bg-primary rounded p-3 m-t-10 "style="text-align: center; max-width: 100px;">
+                <p class="text-white mb-0" id="bln">October</p>
+                <h2 class="text-white mb-0" id="tgl"></h2>
+                <p class="text-white mb-0" id="hari"></p>
             </div>
-        </div>
-    </div>
-
-    <div class="col-xl-12">
-        <div class=" m-b-30 bg-transparent">
-            <div class="row">
-                <div class="col-lg-4">
-                    <button type="button" class="btn btn-primary waves-effect waves-light" data-toggle="modal" data-target=".bs-example-modal-center"><i class="fa fa-plus"></i> Tambah Peserta</button>
-                    <button type="button" class="btn btn-primary waves-effect waves-light" data-toggle="modal" data-target=".bs-example-modal-center1"><i class="fa fa-plus"></i> Import Peserta</button>
-                </div>
+            {{-- @if (auth()->user()->role=='pusat') --}}
+            <div style="text-align: center; max-width: 100px;">
+                {{-- <button type="button" class="btn btn-primary m-t-10 waves-effect waves-light" data-toggle="modal" data-target=".bs-example-modal-lg" style="min-width: 100px"><i class="fa fa-plus"></i> Cabang</button> --}}
+                <button type="button" class="btn btn-primary waves-effect waves-light m-t-10" style="min-width: 100px" data-toggle="modal" data-target=".bs-example-modal-center"><i class="fa fa-plus"></i> Peserta</button>
+                <button type="button" class="btn btn-primary waves-effect waves-light m-t-10" style="min-width: 100px" data-toggle="modal" data-target=".bs-example-modal-center1"><i class="fa fa-plus"></i> Import</button>
             </div>
+            {{-- @endif --}}
         </div>
-    </div>    
-    <div class="col-xl-12">
+    </div>  
+    <div class="col-xl-10">
         <div class="card m-b-30">
             <div class="row">
                 <div class="col-12">
@@ -120,19 +109,22 @@
                                         <tr>
                                             {{-- <th>id</th> --}}
                                             <th style="width: 10%">Nama</th>
-                                            <th style="width: 20%">Alamat</th>
-                                            <th>Kota</th>
+                                            <th style="width: 10%">Kota</th>
+                                            <th>Syahadah</th>
+                                            <th>Kriteria</th>
+                                            <th>Alamat</th>
                                             <th>Telp</th>
                                             <th>Tmp Lahir</th>
+                                            <th>Tanggal Lahir</th>
                                             <th style="width: 5%">fs</th>
                                             <th style="width: 5%">tj</th>
                                             <th style="width: 5%">gm</th>
                                             <th style="width: 5%">sl</th>
-                                            @if ($dt_pel->keterangan=="GURU")
+                                            @if ($dt_pel->keterangan=="guru")
                                             <th style="width: 5%">mt</th>
                                             @endif
-                                            <th>Syahadah</th>
-                                            <th>kriteria</th>
+                                            
+                                            
                                             <th class="text-center">...</th>
                                         </tr>
                                     </thead>
@@ -141,17 +133,7 @@
                                         <tr>
                                             {{-- <td>{{ $item->id }}</td> --}}
                                             <td style="width: 10%">{{ $item->name }}</td>
-                                            <td style="width: 20%">{{ $item->alamat }}</td>
-                                            <td>{{ $item->kota }}</td>
-                                            <td>{{ $item->telp }}</td>
-                                            <td>{{ $item->tmptlahir }}</td>
-                                            <td style="width: 5%">{{ $item->fs }}</td>
-                                            <td style="width: 5%">{{ $item->tj }}</td>
-                                            <td style="width: 5%">{{ $item->gm }}</td>
-                                            <td style="width: 5%">{{ $item->sl }}</td>
-                                            @if ($dt_pel->keterangan=="GURU")
-                                            <td style="width: 5%">{{ $item->mt }}</td>
-                                            @endif
+                                            <td style="width: 10%">{{ $item->kota }}</td>
                                             <td>
                                                 @if ($item->bersyahadah==1)
                                                     lulus
@@ -160,6 +142,20 @@
                                                 @endif
                                             </td>
                                             <td>{{ $item->kriteria }}</td>
+                                            <td>{{ $item->alamat }}</td>
+                                            <td>{{ $item->telp }}</td>
+                                            <td>{{ $item->tmptlahir }}</td>
+                                            <?php $tgl_lahir = ($item->tgllahir - 25569) * 86400?>
+                                            <td>{{ gmdate('d F Y',$tgl_lahir) }}</td>
+                                            <td style="width: 5%">{{ $item->fs }}</td>
+                                            <td style="width: 5%">{{ $item->tj }}</td>
+                                            <td style="width: 5%">{{ $item->gm }}</td>
+                                            <td style="width: 5%">{{ $item->sl }}</td>
+                                            @if ($item->pelatihan->keterangan=="guru")
+                                            <td style="width: 5%">{{ $item->mt }}</td>
+                                            @endif
+                                            
+                                            
                                             {{-- <td>{{ $item->pelatihan->id }}</td> --}}
                                             <td>
                                                 <button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
@@ -206,11 +202,11 @@
                                     </select>
                                 </div>
                                 <div class="form-group col-xl-12">
-                                    <input type="hidden" class="form-control text-uppercase" name="lembaga" id="lembaga">
+                                    <input type="hidden" class="form-control text-capitalize" name="lembaga" id="lembaga">
                                 </div>
                                 <div class="form-group col-xl-6">
                                     <label for=""><i class="text-danger">*</i> Nama</label>
-                                    <input type="text" name="name" class="form-control text-uppercase" placeholder="" required>
+                                    <input type="text" name="name" class="form-control text-capitalize" placeholder="" required>
                                 </div>
                                 <div class="form-group col-xl-6">
                                     <label for=""> Email</label>
@@ -218,42 +214,43 @@
                                 </div>
                                 <div class="form-group col-xl-6">
                                     <label for=""><i class="text-danger">*</i> Tempat Lahir</label>
-                                    <input type="text" name="tmptlahir" class="form-control text-uppercase" placeholder="" required>
+                                    <input type="text" name="tmptlahir" class="form-control text-capitalize" placeholder="" required>
                                 </div>
                                 <div class="form-group col-xl-6">
                                     <label for=""><i class="text-danger">*</i> Tanggal Lahir</label>
-                                    <input type="date" name="tgllahir" class="form-control" placeholder="" required>
+                                    <input type="date" id="tgllahir" name="tgllahir" onchange="tes()" class="form-control" placeholder="" required>
+                                    <input type="hidden" id="y" name="tgllahir2">
                                 </div>
                                 <div class="form-group col-xl-12">
                                     <label for=""><i class="text-danger">*</i> Alamat</label>
-                                    <textarea name="alamat" class="form-control text-uppercase" id="" cols="30" rows="" required></textarea>
+                                    <textarea name="alamat" class="form-control text-capitalize" id="" cols="30" rows="" required></textarea>
                                 </div>
                                 
                                 <div class="form-group col-xl-6">
                                     <label for=""><i class="text-danger">*</i> Kota</label>
-                                    <input type="text" name="kota" class="form-control text-uppercase" required>
+                                    <input type="text" name="kota" class="form-control text-capitalize" required>
                                 </div>
                                 <div class="form-group col-xl-6">
                                     <label for="">Telp</label>
                                     <input type="text" placeholder="" class="form-control " name="telp" required>
                                 </div>
                                 <div class="form-group col-sm-4">
-                                    <label for=""><i class="text-danger">*</i> Fashohah</label>
-                                    <input type="number" class="form-control" onkeyup="myFunction()" id="fs" name="fs"  max="28" min="23" required>
+                                    <label for=""><i class="text-danger">*</i> Fashohah <i class="text-danger">Max:28</i></label>
+                                    <input type="number" class="form-control" onkeyup="myFunction()" id="fs" name="fs"  max="28" required>
                                 </div>
                                 <div class="form-group col-sm-4">
-                                    <label for=""><i class="text-danger">*</i> Tajwid</label>
-                                    <input type="number" class="form-control" onkeyup="myFunction()" id="tj" name="tj"  max="45" min="35" required>
+                                    <label for=""><i class="text-danger">*</i> Tajwid <i class="text-danger">Max:45</i></label>
+                                    <input type="number" class="form-control" onkeyup="myFunction()" id="tj" name="tj"  max="45" required>
                                 </div>
                                 <div class="form-group col-sm-4">
-                                    <label for=""><i class="text-danger">*</i> Ghorib Musykilat</label>
-                                    <input type="number" class="form-control" onkeyup="myFunction()" id="gm" name="gm"  max="10" min="7" required>
+                                    <label for=""><i class="text-danger">*</i> Ghorib Musykilat <i class="text-danger">Max:10</i></label>
+                                    <input type="number" class="form-control" onkeyup="myFunction()" id="gm" name="gm"  max="10" required>
                                 </div>
                                 <div class="form-group col-sm-4">
-                                    <label for=""><i class="text-danger">*</i> Suara dan Lagu</label>
-                                    <input type="number" class="form-control" onkeyup="myFunction()" id="sl" name="sl"  max="7" min="5" required>
+                                    <label for=""><i class="text-danger">*</i> Suara dan Lagu <i class="text-danger">Max:7</i></label>
+                                    <input type="number" class="form-control" onkeyup="myFunction()" id="sl" name="sl"  max="7" required>
                                 </div>
-                                @if ($dt_pel->keterangan == 'GURU')
+                                @if ($dt_pel->keterangan == 'guru')
                                 <div class="form-group col-sm-4">
                                     <label for=""><i class="text-danger">*</i> MICROTEACHING</label>
                                     <input type="number" class="form-control" id="mt" name="mt" max="90" min="50" required>
@@ -280,7 +277,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group col-xl-12">
-                                    <input type="jidil" class="form-control text-uppercase" name="jidil" placeholder="Jilid..">
+                                    <input type="jidil" class="form-control text-capitalize" name="jidil" placeholder="Jilid..">
                                 </div>
                                 <div class="form-group col-xl-12">
                                     <select name="krits" id="krits" class="form-control" required>
@@ -291,10 +288,10 @@
                                     </select>
                                 </div>
                                 <div class="form-group col-xl-12">
-                                    <input type="hidden" class="form-control text-uppercase" name="kriteria" id="kriteria" required>
+                                    <input type="hidden" class="form-control text-capitalize" name="kriteria" id="kriteria" required>
                                 </div>
                                 <div class="form-group col-xl-12">
-                                    <input type="text" class="form-control text-uppercase" placeholder="munaqisy">
+                                    <input type="text" class="form-control text-capitalize" placeholder="munaqisy">
                                 </div>
                             </div>
                        </div>
@@ -324,16 +321,20 @@
                         <div class="card m-b-30">
                             <div class="card-body">
                                 <div class="container-fluid">
-                                    @if ($dt_pel->keterangan=="SANTRI")
+                                   
+                                    @if ($dt_pel->program->name=="munaqosyah santri")
                                     <form action="{{ route('import.peserta') }}" method="POST" enctype="multipart/form-data">@csrf
-                                    @elseif($dt_pel->keterangan=="GURU")
+                                    @elseif($dt_pel->program->name=="standarisasi guru al qur'an")
                                     <form action="{{ route('import.pesertaG') }}" method="POST" enctype="multipart/form-data">@csrf
-                                    @elseif($dt_pel->keterangan=="TOT_INSTRUKTUR")
+                                    @elseif($dt_pel->program->name=="tahfidz")
+                                    <form action="{{ route('import.pesertaTahfidz') }}" method="POST" enctype="multipart/form-data">@csrf
+                                    @elseif($dt_pel->program->name=="training of trainer")
                                     <form action="{{ route('import.pesertaToT') }}" method="POST" enctype="multipart/form-data">@csrf
                                     @endif
                                         <div class="form-group">
                                             <input type="hidden" value="{{ $dt_pel->id }}" name="id">
-                                            <label for="">Import Data Peserta "{{ $dt_pel->keterangan }}" Pelatihan (hanya Excel File format .xlsx)</label>
+                                            <input type="hidden" value="{{ $dt_pel->tanggal }}" name="tanggal">
+                                            <label for="">Import Data Peserta "{{ $dt_pel->program->name }}" Pelatihan (hanya Excel File format .xlsx)</label>
                                             <input type="file" class="form-control" name="file" accept=".xlsx" required>
                                         </div>
                                         <div class="form-group">
@@ -352,14 +353,38 @@
 @endsection
 @section('script')
 <script>
-    
+        function tes() {
+            var x = $('#tgllahir').val();
+            
+                var date= new Date(x);
+                var bulan = '' + (date.getMonth()+1);
+                var tanggal = '' + (date.getDate());
+                var tahun = date.getFullYear();
+                if (bulan.length<2) {
+                    var p = '0'+ bulan;
+                }else{
+                    var p = bulan;
+                }
+                if (tanggal.length<2) {
+                    var pp= '0'+tanggal;
+                }else{
+                    var pp = tanggal;
+                }
+                var restgl = p+'/'+pp+'/'+tahun;
+                console.log(restgl);
+                console.log(date.getMonth()+1+'/'+date.getDate()+'/'+date.getFullYear());
+            var res = x.replace("-","/");
+            var a = res.replace("-","/");
+            console.log(a);
+            var b = $('#y').val(restgl);
+        }
         function myFunction()
         {
             let x1 = document.getElementById("fs").value;
             let x2 = document.getElementById("tj").value;
             var x3 = document.getElementById("gm").value;
             var x4 = document.getElementById("sl").value;
-            var x5 = document.getElementById("mt").value;
+            // var x5 = document.getElementById("mt").value;
             let zx = parseInt(x1) + parseInt(x2) + parseInt(x3) + parseInt(x4);
             if (isNaN(zx)) {
                 document.getElementById("jumlah").value = "lengkapi seluruh kriteria penilaian";

@@ -1,7 +1,7 @@
 </div> <!-- content -->
 
 <footer class="footer">
-    © 2021 <b>Program Pelatihan PonPes Nurul Falah</b> <span class="d-none d-sm-inline-block"> - Crafted with <i
+    © 2021 <b>Program Diklat PonPes Nurul Falah</b> <span class="d-none d-sm-inline-block"> - Crafted with <i
             class="mdi mdi-heart text-danger"></i> IT & Administrasi Team.</span>
 </footer>
 
