@@ -1,18 +1,21 @@
 @extends('layouts.adm.master')
-@section('head')
+{{-- @section('head')
     
-@endsection
+@endsection --}}
 @section('content')
-<div class="page-content-wrapper ">
-    <div class="container-fluid">
+{{-- <div class="page-content-wrapper ">
+    <div class="container-fluid"> --}}
+        
         <div class="row">
             <div class="col-sm-12">
                 <div class="float-right page-breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"></li>
-                </ol>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Diklat</a></li>
+                        <li class="breadcrumb-item active">Dashboard</li>
+                        <li class="breadcrumb-item active" id="clock"></li>
+                    </ol>
                 </div>
-                <h5 class="page-title text-uppercase">Dashboard</h5>
+                <h5 class="page-title">Dashboard</h5>
             </div>
         </div>
         <!-- end row -->
@@ -20,8 +23,8 @@
         <div class="row">
             <div class="col-xl-12 col-md-12">
                 <div class="card m-b-30">
-                    <div class="card-body">
-                        <div class="row">
+                    <div class="card">
+                        <div class="row p-3">
                             <div class="col-6 col-xl-4 form-group">
                                 <label>Dari :</label>
                                 <input type="date" name="dari" id="dari" class="form-control">
@@ -57,16 +60,13 @@
                     <div class="card-body">
                         <div class="border-bottom pb-4 text-center">
                             <h2 id="dk">0</h2>
-                            <h5>DIKLAT</h5>
+                            <h5><button class="btn btn-sm text-white waves-effect waves-dark" data-toggle="modal" data-target=".bs-example-modal-lg-diklat" style="background-color: rgb(114, 228, 203)">Click Me</button></h5>
                             <div class="float-left">
                                 {{-- <h6 class="m-0">20 Cabang</h6> --}}
                             </div>
                             <div class="float-right">
                                 {{-- <h6 class="m-0">30 Lembaga</h6> --}}
                             </div>
-                        </div>
-                        <div class="mt-2 text-muted " style="text-align: center">
-                            <button class="btn btn-sm text-white" style="background-color: rgb(114, 228, 203)">Click Me</button>
                         </div>
                     </div>
                 </div>
@@ -82,16 +82,16 @@
                     <div class="card-body">
                         <div class="border-bottom pb-4 text-center">
                             <h2 id="cb">0</h2>
-                            <h5>CABANG</h5>
+                            <h5><button class="btn btn-sm text-white" style="background-color: rgb(75, 152, 253)">Click Me</button></h5>
                         </div>
-                        <div class="mt-4 text-muted">
+                        
                             <div class="float-left">
                                 {{-- <p class="m-0">50 Guru</p> --}}
                             </div>
                             <div class="float-right">
                                 {{-- <p class="m-0">30 Santri</p> --}}
                             </div>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
@@ -106,16 +106,16 @@
                     <div class="card-body">
                         <div class="border-bottom pb-4 text-center">
                             <h2 id="lb">0</h2>
-                            <h5>LEMBAGA</h5>
+                            <h5><button class="btn btn-sm text-white" style="background-color: rgb(124, 152, 243)">Click Me</button></h5>
                         </div>
-                        <div class="mt-4 text-muted">
+                        
                             <div class="float-left">
                                 {{-- <p class="m-0">50 Guru</p> --}}
                             </div>
                             <div class="float-right">
                                 {{-- <p class="m-0">30 Santri</p> --}}
                             </div>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
@@ -130,7 +130,7 @@
                     <div class="card-body">
                         <div class="border-bottom pb-4 text-center">
                             <h2 id="pd">0</h2>
-                            <h5>PESERTA</h5>
+                            <h5><button class="btn btn-sm text-white" style="background-color: rgb(185, 124, 243)">Click Me</button></h5>
                         </div>
                         
                             <div class="float-left">
@@ -140,9 +140,6 @@
                                 {{-- <p class="m-0">30 Santri</p> --}}
                             </div>
                         
-                        <div class="mt-2 text-muted " style="text-align: center">
-                            <button class="btn btn-sm text-white" style="background-color: rgb(185, 124, 243)">Click Me</button>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -198,8 +195,37 @@
             </div>
             
         </div>
-    </div>
-</div>
+    {{-- </div>
+</div> --}}
+
+{{-- modal diklat --}}
+<div class="modal fade bs-example-modal-lg-diklat" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header text-white" style="background-color: rgb(114, 228, 203)">
+                <h5 class="modal-title mt-0" id="myLargeModalLabel">DATA DIKLAT</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table id="datatable-diklat" class="table datas table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Diklat</th>
+                            <th>Cabang</th>
+                            <th>Program</th>
+                            <th>Tempat</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 @endsection
 @section('script')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
@@ -211,6 +237,7 @@
     load_data();
     function load_data(dari = '', sampai = '')
     {
+        //peserta diklat
         $('#datatable').DataTable({
         //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
         destroy: true,

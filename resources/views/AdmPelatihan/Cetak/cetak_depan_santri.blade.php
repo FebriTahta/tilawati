@@ -28,7 +28,7 @@
 	</style>
 		@foreach ($peserta as $item)
 		<div class="print">
-			<table style="height: 180px; width: 720px;margin-left:116px;margin-top:290px" class="dalam">
+			<table style="height: 180px; width: 720px;margin-left:116px;margin-top:280px" class="dalam">
 				<tbody>
 				<tr class="atas" style="height: 10px;">
 				<td class="atas" style="width: 200px; height: 10px;">Nama&nbsp;</td>
@@ -53,6 +53,12 @@
 				<td class="atas" style="width: 52px; height: 10px;">&nbsp;</td>
 				</tr>
 				<tr class="atas" style="height: 9px;">
+				<td class="atas" style="width: 200px; height: 10px;">Asal Lembaga</td>
+				<td class="atas" style="width: 11px; height: 10px;">:</td>
+				<td class="atas" style="width: 562px; height: 10px;" >CITRA ANAK ANAK</td>
+				<td class="atas" style="width: 52px; height: 10px;">&nbsp;</td>
+				</tr>
+				<tr class="atas" style="height: 9px;">
 				<td class="atas" style="width: 200px; height: 10px;">Dinyatakan</td>
 				<td class="atas" style="width: 11px; height: 10px;">:</td>
 				<td class="atas" style="width: 562px; height: 10px;" >{{ $item->kriteria }}</td>
@@ -66,7 +72,7 @@
 				</tr>
 				</tbody>
 			</table>			
-			<table style="margin-left:116px; margin-top: 15px">
+			<table style="margin-left:116px; margin-top: 25px">
 				<tbody>
 				<tr style="height: 27px;"><?php $tahun = date('Y')?>
 				<td class="bawah" style="width: 210px; height: 27px; "><small> </small></td>

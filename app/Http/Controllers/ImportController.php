@@ -23,14 +23,16 @@ class ImportController extends Controller
     public function importPesertaGuru(Request $request)
     {
         $id = $request->id;
-        Excel::queueImport(new PesertaGuruImport($id), $request->file('file'));
+        $tanggal = $request->tanggal;
+        Excel::queueImport(new PesertaGuruImport($id,$tanggal), $request->file('file'));
         return redirect()->back()->with('success','Peserta Berhasil Ditambahkan Melalui file Excel');
     }
 
     public function importPesertaToT(Request $request)
     {
         $id = $request->id;
-        Excel::queueImport(new PesertaToTImport($id), $request->file('file'));
+        $tanggal = $request->tanggal;
+        Excel::queueImport(new PesertaToTImport($id, $tanggal), $request->file('file'));
         return redirect()->back()->with('success','Peserta Berhasil Ditambahkan Melalui file Excel');
     }
 

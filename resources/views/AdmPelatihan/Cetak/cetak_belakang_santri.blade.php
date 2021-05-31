@@ -7,7 +7,7 @@
 	<style>
 		body{
 			font-family: Arial, Helvetica, sans-serif;
-			font-size: 16px;
+			font-size: 12px;
 		}
 		.page-break {
 			page-break-after: always;

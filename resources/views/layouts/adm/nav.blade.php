@@ -89,21 +89,22 @@
                                 </ul>
                             </li>
                             <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-account-location"></i><span> Daftar Kepala </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                                <ul class="list-unstyled">
+                                    <li><a href="#" @if (auth()->user()->role=='pusat') @else class="text-danger disabled" @endif>Kepala Cabang</a></li>
+                                    <li><a href="#" @if (auth()->user()->role=='pusat') @else class="text-danger disabled" @endif>Kepala Lembaga</a></li>
+                                </ul>
+                            </li>
+                            <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-copy"></i><span> Cetak </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                                 <ul class="list-unstyled">
-                                    <li><a href="{{ route('pelatihan.c_depan') }}" @if (auth()->user()->role=='pusat') @else class="text-danger disabled" @endif>Cetak Ijazah Depan</a></li>
+                                    <li><a href="{{ route('pelatihan.c_depan') }}" @if (auth()->user()->role=='pusat') @else class="text-danger disabled" @endif>Ijazah Depan Guru</a></li>
+                                    <li><a href="{{ route('pelatihan.c_depan_s') }}" @if (auth()->user()->role=='pusat') @else class="text-danger disabled" @endif>Ijazah Depan Santri</a></li>
                                     <li><a href="{{ route('pelatihan.c_belakang') }}" @if (auth()->user()->role=='pusat') @else class="text-danger disabled" @endif>Cetak Ijazah Belakang Santri</a></li>
                                     <li><a href="{{ route('pelatihan.c_belakang_g') }}" @if (auth()->user()->role=='pusat') @else class="text-danger disabled" @endif>Cetak Ijazah Belakang Guru</a></li>
                                     <li><a href="{{ route('pelatihan.c_belakang_tot') }}" @if (auth()->user()->role=='pusat') @else class="text-danger disabled" @endif>Cetak Ijazah TOT Instruktur</a></li>
                                     <li><a href="{{ route('pelatihan.c_belakang_tahfidz') }}" @if (auth()->user()->role=='pusat') @else class="text-danger disabled" @endif>Cetak Ijazah Tahfidz</a></li>
                                     <li><a href="{{ route('pelatihan.c_belakang_munaqys') }}" @if (auth()->user()->role=='pusat') @else class="text-danger disabled" @endif>Cetak Ijazah Munaqys</a></li>
-                                </ul>
-                            </li>
-                            <li class="has_sub">
-                                <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-copy"></i><span> Daftar Kepala </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
-                                <ul class="list-unstyled">
-                                    <li><a href="#" @if (auth()->user()->role=='pusat') @else class="text-danger disabled" @endif>Kepala Cabang</a></li>
-                                    <li><a href="#" @if (auth()->user()->role=='pusat') @else class="text-danger disabled" @endif>Kepala Lembaga</a></li>
                                 </ul>
                             </li>
                             <li class="menu-title">USER AKSES</li>

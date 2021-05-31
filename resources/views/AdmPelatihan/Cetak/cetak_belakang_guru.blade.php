@@ -7,7 +7,10 @@
 	<style>
 		body{
 			font-family: Arial, Helvetica, sans-serif;
-			font-size: 16px;
+			font-size: 14px;
+		}
+		.syahadah{
+			font-size: 14px;
 		}
 		.page-break {
 			page-break-after: always;
@@ -101,15 +104,15 @@
 		}
 	</style>
 	@foreach($peserta as $key=> $p)
-<div class="container page-break" style="margin-top: 110px">
+<div class="container page-break" style="margin-top: 147px">
 	<center>
-		<p>No. Syahadah : {{ $p->pelatihan->id }} / 2021 / {{ $p->id }}</p>
+		<p class="syahadah">No. Syahadah : {{ $p->pelatihan->id }} / 2021 / {{ $p->id }}</p>
 	</center>
 		<table style="width: 600px" class="table1 center">
 			<tr>
 					<th rowspan="2">No.</th>
-					<th rowspan="2">Bidang Peniliaan</th>
-					<th colspan="4" class="penilaian">Peniliaan</th>
+					<th rowspan="2">Bidang Penilaian</th>
+					<th colspan="4" class="penilaian">Penilaian</th>
 			</tr>
 			<tr>     
 				<th class="pe">Max</th>

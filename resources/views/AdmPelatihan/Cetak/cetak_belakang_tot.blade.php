@@ -7,7 +7,10 @@
 	<style>
 		body{
 			font-family: Arial, Helvetica, sans-serif;
-			font-size: 16px;
+			font-size: 12px;
+		}
+		.syahadah{
+			font-size: 12px;
 		}
 		.page-break {
 			page-break-after: always;
@@ -43,7 +46,7 @@
 		}
 
 		th.pe2{
-			border-left: 0;    
+			/* border-left: 0;     */
 		}
 
 
@@ -68,7 +71,7 @@
 		}
 
 		td.nilai4{
-			border-left: 0;
+			
 			border-bottom: 0;
 			border-top: 0;
 		}
@@ -82,16 +85,6 @@
 		}
 
 		th.nilai7{
-			border-left: 0;
-		}
-		td.pops{
-			border-right: 0;
-		}
-		td.pops2{
-			border-left: 0;
-			border-right: 0;
-		}
-		td.pops3{
 			border-left: 0;
 		}
 		td.pop{
@@ -109,43 +102,55 @@
 		.alignright {
 			float: right;
 		}
+		td.pops{
+			border-right: 0;
+		}
+		td.pops2{
+			border-left: 0;
+			border-right: 0;
+		}
+		td.pops3{
+			border-left: 0;
+		}
+		
 	</style>
 	@foreach($peserta as $key=> $p)
-<div class="container page-break" style="margin-top: 110px">
+<div class="container page-break" style="margin-top: 147px">
 	<center>
-		<p>No. Syahadah : {{ $p->pelatihan->id }} / 2021 / {{ $p->id }}</p>
+		<span class="syahadah">No. Syahadah : {{ $p->pelatihan->id }} / 2021 / {{ $p->id }}</span>
 	</center>
-		<table style="width: 600px" class="table1 center">
+		<table style="width: 600px;" class="table1 center">
 			<tr>
 					<th rowspan="2">No.</th>
-					<th rowspan="2">Bidang Peniliaan</th>
-					<th colspan="4" class="penilaian">Peniliaan</th>
+					<th rowspan="2">Bidang Penilaian</th>
+					<th colspan="3" class="penilaian">Penilaian</th>
+					<th style="border-bottom: 0"></th>
 			</tr>
 			<tr>     
 				<th class="pe">Max</th>
 				<th class="pe">Min</th>
 				<th class="pe">Nilai</th>
-				<th class="pe">Jumlah</th>
+				<th style="border-top: 0">Jumlah</th>
 			</tr>
 			<tr>
 				<th>1</th>
-				<td>&nbsp; &nbsp;<b> QURAN</b></td>
+				<td>&nbsp; &nbsp;<b> Al-Qur'an</b></td>
 				<th colspan="3" class="pe3"></th><?php $jumlah = $p->fs+$p->tj+$p->gm+$p->sl?>
-				<th class="pe2">{{ $jumlah }}</th>
+				<th class="nilai4">{{ $jumlah }}</th>
 			</tr>
 			<tr>
 				<td class="pop"></td>
 				<td class="pop2">&nbsp; &nbsp; &nbsp; &nbsp;a. Fashohah</td>
 				<td class="nilai">&nbsp; &nbsp;28</td>
-				<td class="nilai2">&nbsp; &nbsp;26</td>
+				<td class="nilai2">&nbsp; &nbsp;25</td>
 				<td class="nilai3">&nbsp; &nbsp;{{ $p->fs }}</td>
 				<td class="nilai4"></td>
 			</tr>
 			<tr>
 				<td class="pop"></td>
-				<td class="pop2">&nbsp; &nbsp; &nbsp; &nbsp;b. tajwid</td>
+				<td class="pop2">&nbsp; &nbsp; &nbsp; &nbsp;b. Tajwid</td>
 				<td class="nilai">&nbsp; &nbsp;45</td>
-				<td class="nilai2">&nbsp; &nbsp;42</td>
+				<td class="nilai2">&nbsp; &nbsp;38</td>
 				<td class="nilai3">&nbsp; &nbsp;{{ $p->tj }}</td>
 				<td class="nilai4"></td>
 			</tr>
@@ -153,7 +158,7 @@
 				<td class="pop"></td>
 				<td class="pop2">&nbsp; &nbsp; &nbsp; &nbsp;c. Ghorib musyikilat</td>
 				<td class="nilai">&nbsp; &nbsp;10</td>
-				<td class="nilai2">&nbsp; &nbsp;10</td>
+				<td class="nilai2">&nbsp; &nbsp;7</td>
 				<td class="nilai3">&nbsp; &nbsp;{{ $p->gm }}</td>
 				<td class="nilai4"></td>
 			</tr>
@@ -161,7 +166,7 @@
 				<td class="pop"></td>
 				<td class="pop2">&nbsp; &nbsp; &nbsp; &nbsp;d. Suara Lagu</td>
 				<td class="nilai">&nbsp; &nbsp;7</td>
-				<td class="nilai2">&nbsp; &nbsp;7</td>
+				<td class="nilai2">&nbsp; &nbsp;5</td>
 				<td class="nilai3">&nbsp; &nbsp;{{ $p->sl }}</td>
 				<td class="nilai4"></td>
 			</tr>
@@ -189,18 +194,17 @@
                 <td class="pops3">&nbsp; &nbsp;</td>
 				<th class="nilai7">{{ $p->i }}</th>
 			</tr>
-            
 			<tr>
 				<th></th>
 				<td class="nilai6">&nbsp; &nbsp;<b> RATA - RATA NILAI</b></th>
 				<th colspan="3" class="nilai5"></th><?php $rata2 = ($jumlah + $p->im + $p->il + $p->i)/4?>
-				<th class="nilai7">{{ $rata2 }}</th>
+				<th class="nilai4">{{ $rata2 }}</th>
 			</tr>
 			<tr>
 				<th></th>
 				<td class="nilai6">&nbsp; &nbsp;<b> PRESTASI</b></th>
 				<th colspan="3" class="nilai5"></th> 
-				<th class="nilai7">
+				<th class="nilai4">
                     @if ($rata2 >= 85)
                         Baik
                     @else
@@ -210,11 +214,11 @@
 			</tr>
 		</table>
 			<div id="textbox" style="margin-top: 20px">
-				<div class="alignleft" style="margin-left: 180px"><b> Baik : 85 - 95 </b></div>
-				<div class="alignright" style="margin-right: 180px"></b> Cukup : 65 - 84 </b></div>
+				<div class="alignleft" style="margin-left: 180px"> Baik : 85 - 95 </div>
+				<div class="alignright" style="margin-right: 180px"> Cukup : 75 - 84 </div>
 			</div>
 </div>
 
 	@endforeach
 </body>
-</html>
+</html>	

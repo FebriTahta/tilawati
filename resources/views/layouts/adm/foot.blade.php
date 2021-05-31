@@ -71,7 +71,7 @@
 $(document).ready(function () {
         let location = window.location.href;
         let split_link = location.split('/');
-        if (split_link[3] !== 'dashboard') {
+        if (split_link[3] !== 'view_yang_tidak_diinginkan') {
             setInterval(showTime, 500);
             calender();
         }

@@ -36,14 +36,17 @@ Auth::routes();
 
 Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga']], function () {
     //dashboard
-    Route::get('/dashboard',[DashboardController::class, 'index'])->name('dashboard');
-    Route::get('/peserta/filter', [DashboardController::class, 'daterangepeserta'])->name('peserta.filter');//get data peserta range ajax dashboard
     Route::post('/dashboard-chart',[DashboardController::class,'dataForChart'])->name('dashboard.chart');// data untuk chart bar di dashboar
     Route::post('/dashboard-chart-2',[DashboardController::class,'dataForChart2'])->name('dashboard.chart2');// data untuk chart pie di dashboar
-    Route::get('/dashboard/cabang',[DashboardController::class, 'getcabang'])->name('dashboard.cabang');
-    Route::get('/dashboard/lembaga',[DashboardController::class, 'getlembaga'])->name('dashboard.lembaga');
-    Route::get('/dashboard/peserta',[DashboardController::class, 'getpeserta'])->name('dashboard.peserta');
-    Route::get('/dashboard/diklat',[DashboardController::class, 'getdiklat'])->name('dashboard.diklat');
+    Route::get('/dashboard',[DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard/diklat-filter',[DashboardController::class,'daterangediklat'])->name('diklat.filter');//get data diklat range ajax dashboard
+    Route::get('/dashboard/cabang-filter',[DashboardCabang::class,'daterangecabang'])->name('cabang.filter');//get data cabang range ajax dashboard
+    Route::get('/dashboard/lembaga-filter',[DashboardController::class,'daterangelembaga'])->name('lembaga.filter');//get data lembaga range ajax dashboard
+    Route::get('/dashboard/peserta-filter', [DashboardController::class, 'daterangepeserta'])->name('peserta.filter');//get data peserta range ajax dashboard
+    Route::get('/dashboard/cabang',[DashboardController::class, 'getcabang'])->name('dashboard.cabang');//get total cabang ajax dashboard
+    Route::get('/dashboard/lembaga',[DashboardController::class, 'getlembaga'])->name('dashboard.lembaga');//get total cabang ajax dashboard
+    Route::get('/dashboard/peserta',[DashboardController::class, 'getpeserta'])->name('dashboard.peserta');//get total peserta diklat ajax dashboard
+    Route::get('/dashboard/diklat',[DashboardController::class, 'getdiklat'])->name('dashboard.diklat');//get total data diklat ajax dashboard
     
     //user
     Route::get('/data-user',[UserController::class, 'index'])->name('user.index');
@@ -127,7 +130,9 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga']], funct
 
     //cetak
     Route::get('/pelatihan-cetak-depan', [CetakController::class, 'ijazahdepan'])->name('pelatihan.c_depan');
+    Route::get('/pelatihan-cetak-depan-santri', [CetakController::class, 'ijazahdepan_s'])->name('pelatihan.c_depan_s');
     Route::post('/pelatihan-cetak-depan-print', [CetakController::class, 'cetak_depan'])->name('depan.cetak');
+    Route::post('/pelatihan-cetak-depan-santri-print', [CetakController::class, 'cetak_depan_santri'])->name('depan.cetak_s');
     Route::get('/pelatihan-cetak-belakang-santri', [CetakController::class, 'ijazahbelakangsantri'])->name('pelatihan.c_belakang');
     Route::post('/pelatihan-cetak-belakang-santri-print', [CetakController::class, 'cetak_belakang_santri'])->name('belakang.cetaksantri');
     Route::get('/pelatihan-cetak-belakang-guru',[CetakController::class, 'ijazahbelakangguru'])->name('pelatihan.c_belakang_g');

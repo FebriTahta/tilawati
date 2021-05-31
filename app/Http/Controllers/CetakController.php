@@ -18,6 +18,13 @@ class CetakController extends Controller
         return view('AdmPelatihan.Cetak.depan',compact('dt_pel','dt_pro'));
     }
 
+    public function ijazahdepan_s()
+    {
+        $dt_pel = Pelatihan::all();
+        $dt_pro = Program::all();
+        return view('AdmPelatihan.Cetak.depan_s',compact('dt_pel','dt_pro'));
+    }
+
     public function ijazahbelakangsantri()
     {
         $dt_pel = Program::where('name','munaqosyah santri')->first();
@@ -63,17 +70,32 @@ class CetakController extends Controller
             $pdf = PDF::loadview('AdmPelatihan.Cetak.cetak_depan',compact('peserta','direktur','jabatan'))->setPaper($customPaper, 'portrait');
             return $pdf->download('cetak-laporan-ijazah-depan-peserta-pdf','I');
 
-            // $post = "aaa";
-            // $pdf = PDF::loadView('AdmPelatihan.Cetak.cetak_depan', compact('peserta','direktur','jabatan'))->setPaper($customPaper, 'portrait');
-
-            //     $path = public_path('images/');
-            //     $fileName =  $post . '.' . 'pdf' ;
-            //     return $pdf->save($path . '/' . $fileName);
-                // return $pdf->download($fileName);
         }else{
             $direktur = "Nama Kepala Cabang";
             $jabatan = "Kepala Cabang";
             $pdf = PDF::loadview('AdmPelatihan.Cetak.cetak_depan',compact('peserta','direktur','jabatan'))->setPaper($customPaper, 'portrait');
+            return $pdf->download('cetak-laporan-ijazah-depan-peserta-pdf','I');
+        }
+    }
+
+    public function cetak_depan_santri(Request $request)
+    {
+        $id = $request->pelatihan_id;
+        $peserta = Peserta::where('pelatihan_id', $id)
+                          ->where('bersyahadah', 1)->get();
+        $customPaper = array(0,0,792,612);
+    	
+        if (auth()->user()->role=='pusat') {
+            # code...
+            $direktur = "Dr. KH. Umar Jaeni M.Pd";
+            $jabatan = "Direktur Eksekutif";
+            $pdf = PDF::loadview('AdmPelatihan.Cetak.cetak_depan_santri',compact('peserta','direktur','jabatan'))->setPaper($customPaper, 'portrait');
+            return $pdf->download('cetak-laporan-ijazah-depan-peserta-santri-pdf','I');
+
+        }else{
+            $direktur = "Nama Kepala Cabang";
+            $jabatan = "Kepala Cabang";
+            $pdf = PDF::loadview('AdmPelatihan.Cetak.cetak_depan_santri',compact('peserta','direktur','jabatan'))->setPaper($customPaper, 'portrait');
             return $pdf->download('cetak-laporan-ijazah-depan-peserta-pdf','I');
         }
     }

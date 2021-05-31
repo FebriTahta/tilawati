@@ -11,9 +11,10 @@ use App\Models\Peserta;
 
 class PesertaToTImport implements ToCollection, WithChunkReading, ShouldQueue
 {
-    public function __construct($id)
+    public function __construct($id,$tanggal)
     {
         $this->id=$id;
+        $this->tanggal=$tanggal;
     }
     /**
     * @param Collection $collection
@@ -26,6 +27,7 @@ class PesertaToTImport implements ToCollection, WithChunkReading, ShouldQueue
                 
                 $dt_pel = new Peserta;
                 $dt_pel->pelatihan_id = $this->id;
+                $dt_pel->tanggal = $this->tanggal;
                 $dt_pel->name = $row[0];
                 $dt_pel->alamat = $row[1];
                 $dt_pel->kota = $row[2];
