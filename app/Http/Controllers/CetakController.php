@@ -58,44 +58,54 @@ class CetakController extends Controller
 
     public function cetak_depan(Request $request)
     {
-        $id = $request->pelatihan_id;
-        $peserta = Peserta::where('pelatihan_id', $id)
+        $id         = $request->pelatihan_id;
+        $pelatihan  = Pelatihan::find($id);
+        $cabang     = $pelatihan->cabang->kabupaten->nama;
+        $kabupaten  = substr($cabang, 5);
+        $peserta    = Peserta::where('pelatihan_id', $id)
                           ->where('bersyahadah', 1)->get();
         $customPaper = array(0,0,792,612);
-    	
-        if (auth()->user()->role=='pusat') {
-            # code...
-            $direktur = "Dr. KH. Umar Jaeni M.Pd";
-            $jabatan = "Direktur Eksekutif";
-            $pdf = PDF::loadview('AdmPelatihan.Cetak.cetak_depan',compact('peserta','direktur','jabatan'))->setPaper($customPaper, 'portrait');
-            return $pdf->download('cetak-laporan-ijazah-depan-peserta-pdf','I');
 
+        if ($cabang == 'KOTA SURABAYA') {
+            # code...
+            $direktur   = "Dr. KH. Umar Jaeni M.Pd";
+            $jabatan    = "Direktur Eksekutif";
+            $kepala     = $jabatan;
+            
+            $pdf        = PDF::loadview('AdmPelatihan.Cetak.cetak_depan',compact('peserta','direktur','kepala','kabupaten','cabang'))->setPaper($customPaper, 'portrait');
+            return $pdf->download('cetak-laporan-ijazah-depan-peserta-pdf','I');
         }else{
-            $direktur = "Nama Kepala Cabang";
-            $jabatan = "Kepala Cabang";
-            $pdf = PDF::loadview('AdmPelatihan.Cetak.cetak_depan',compact('peserta','direktur','jabatan'))->setPaper($customPaper, 'portrait');
+            $jabatan    = "Kacab. ".strtolower($kabupaten);
+            $kepala     = ucwords($jabatan);
+            $direktur   = $pelatihan->cabang->kepala->name;
+            
+            $pdf        = PDF::loadview('AdmPelatihan.Cetak.cetak_depan',compact('peserta','direktur','kepala','kabupaten','cabang'))->setPaper($customPaper, 'portrait');
             return $pdf->download('cetak-laporan-ijazah-depan-peserta-pdf','I');
         }
     }
 
     public function cetak_depan_santri(Request $request)
     {
-        $id = $request->pelatihan_id;
+        $id         = $request->pelatihan_id;
+        $pelatihan  = Pelatihan::find($id);
+        $cabang     = $pelatihan->cabang->kabupaten->nama;
+        $kabupaten  = substr($cabang, 5);
         $peserta = Peserta::where('pelatihan_id', $id)
                           ->where('bersyahadah', 1)->get();
         $customPaper = array(0,0,792,612);
-    	
-        if (auth()->user()->role=='pusat') {
+        if ($cabang == 'KOTA SURABAYA') {
             # code...
-            $direktur = "Dr. KH. Umar Jaeni M.Pd";
-            $jabatan = "Direktur Eksekutif";
-            $pdf = PDF::loadview('AdmPelatihan.Cetak.cetak_depan_santri',compact('peserta','direktur','jabatan'))->setPaper($customPaper, 'portrait');
+            $direktur   = "Dr. KH. Umar Jaeni M.Pd";
+            $jabatan    = "Direktur Eksekutif";
+            $kepala     = $jabatan;
+            $pdf = PDF::loadview('AdmPelatihan.Cetak.cetak_depan_santri',compact('peserta','direktur','kepala'))->setPaper($customPaper, 'portrait');
             return $pdf->download('cetak-laporan-ijazah-depan-peserta-santri-pdf','I');
 
         }else{
-            $direktur = "Nama Kepala Cabang";
-            $jabatan = "Kepala Cabang";
-            $pdf = PDF::loadview('AdmPelatihan.Cetak.cetak_depan_santri',compact('peserta','direktur','jabatan'))->setPaper($customPaper, 'portrait');
+            $jabatan    = "Kacab. ".strtolower($kabupaten);
+            $kepala     = ucwords($jabatan);
+            $direktur   = $pelatihan->cabang->kepala->name;
+            $pdf = PDF::loadview('AdmPelatihan.Cetak.cetak_depan_santri',compact('peserta','direktur','kepala'))->setPaper($customPaper, 'portrait');
             return $pdf->download('cetak-laporan-ijazah-depan-peserta-pdf','I');
         }
     }

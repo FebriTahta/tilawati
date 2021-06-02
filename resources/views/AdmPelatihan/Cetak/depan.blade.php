@@ -103,7 +103,7 @@ $(document).ready(function() {
                         var tmp = data.toString().split(',');                  
                         $('select[name="pelatihan_id"]').empty();
                         $.each(data, function(key, value) {
-                        $('select[name="pelatihan_id"]').append('<option value="'+ value.id +'">'+ value.id + " | " + value.name + " | " + value.tanggal + " | " + value.tempat +'</option>');
+                        $('select[name="pelatihan_id"]').append('<option value="'+ value.id +'">'+ value.id + " | " + value.name + " | " + value.tanggal + " | " + value.tempat + '</option>');
                         });
                         console.log(data);
                     }

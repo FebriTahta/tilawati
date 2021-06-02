@@ -104,7 +104,7 @@
                     <div class="card m-b-30">
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                     <thead class="mt-100">
                                         <tr>
                                             {{-- <th>id</th> --}}
@@ -323,13 +323,17 @@
                                 <div class="container-fluid">
                                    
                                     @if ($dt_pel->program->name=="munaqosyah santri")
-                                    <form action="{{ route('import.peserta') }}" method="POST" enctype="multipart/form-data">@csrf
+                                    <form id="importpeserta"  method="POST" enctype="multipart/form-data">@csrf
+                                        <input type="hidden" id="import_tipe" value="santri">
                                     @elseif($dt_pel->program->name=="standarisasi guru al qur'an")
-                                    <form action="{{ route('import.pesertaG') }}" method="POST" enctype="multipart/form-data">@csrf
+                                    <form id="importpeserta"  method="POST" enctype="multipart/form-data">@csrf
+                                        <input type="hidden" id="import_tipe" value="guru">
                                     @elseif($dt_pel->program->name=="tahfidz")
-                                    <form action="{{ route('import.pesertaTahfidz') }}" method="POST" enctype="multipart/form-data">@csrf
+                                    <form id="importpeserta"  method="POST" enctype="multipart/form-data">@csrf
+                                        <input type="hidden" id="import_tipe" value="tahfidz">
                                     @elseif($dt_pel->program->name=="training of trainer")
-                                    <form action="{{ route('import.pesertaToT') }}" method="POST" enctype="multipart/form-data">@csrf
+                                    <form id="importpeserta"  method="POST" enctype="multipart/form-data">@csrf
+                                        <input type="hidden" id="import_tipe" value="trainer">
                                     @endif
                                         <div class="form-group">
                                             <input type="hidden" value="{{ $dt_pel->id }}" name="id">
@@ -338,7 +342,8 @@
                                             <input type="file" class="form-control" name="file" accept=".xlsx" required>
                                         </div>
                                         <div class="form-group">
-                                            <button class="btn btn-sm btn-primary"><i class="fa fa-save"></i> Import</button>
+                                            {{-- <button class="btn btn-sm btn-primary" id="btnimport"><i class="fa fa-save"></i> Import</button> --}}
+                                            <input type="submit" name="import" id="btnimport" class="btn btn-info" value="Import" />
                                         </div>
                                     </form>
                                 </div><!-- container fluid -->
@@ -352,7 +357,9 @@
 </div>
 @endsection
 @section('script')
-<script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    <script>
         function tes() {
             var x = $('#tgllahir').val();
             
@@ -401,63 +408,69 @@
             }
         }
     
-</script>
-<script>
-    $(document).ready(function() {
-        
+    </script>
+    <script>
+        $(document).ready(function() {
             $('select[name="krits"]').on('change', function() {
                 var kriteria_name = $(this).val();
                 document.getElementById("kriteria").value = kriteria_name;
             });
-        });
-    $(document).ready(function() {
-        $('select[name="lemb"]').on('change', function() {
+            $('select[name="lemb"]').on('change', function() {
             var lembaga = $(this).val();
             document.getElementById("lembaga").value = lembaga;
+            });
+            //import
+
+            $('#importpeserta').submit(function(e) {
+                var import_tipe = $('#import_tipe').val();
+                if (import_tipe == 'santri') {
+                    var import_peserta = "{{ route('import.peserta')}}";
+                } else if(import_tipe == 'guru') {
+                    var import_peserta = "{{ route('import.pesertaG')}}";
+                } else if(import_tipe == 'tahfidz') {
+                    var import_peserta = "{{ route('import.pesertaTahfidz')}}";
+                } else if(import_tipe == 'trainer') {
+                    var import_peserta = "{{ route('import.pesertaToT')}}";
+                }
+                $('#process').css('display', 'block');
+                e.preventDefault();
+                var formData = new FormData(this);
+                $.ajax({
+                type:'POST',
+                url: import_peserta,
+                data: formData,
+                cache:false,
+                contentType: false,
+                processData: false,
+                beforeSend:function(){
+                    $('#btnimport').attr('disabled','disabled');
+                    $('#btnimport').val('Importing');
+                },
+                success: function(data){
+
+                    if(data.success)
+                        {
+                            $("#importpeserta")[0].reset();
+                            toastr.success(data.success);
+                            // $("#bs-example-modal-center1").modal('hide');
+                            // var oTable = $('#datatable').dataTable();
+                            // oTable.fnDraw(false);
+                            $('#btnimport').val('Import');
+                            $('#btnimport').attr('disabled',false);
+                            
+                        }
+                        if(data.error)
+                        {
+                            $('#message').html('<div class="alert alert-danger">'+data.error+'</div>');
+                            $('#btnimport').attr('disabled',false);
+                            $('#btnimport').val('Import');
+                        }
+                },
+                error: function(data){
+                console.log(data);
+                }
+                });
+            });
         });
-    });
-</script>
-<script>
-    function readFile(input) {
- if (input.files && input.files[0]) {
- var reader = new FileReader();
- 
- reader.onload = function (e) {
- var htmlPreview = 
- '<img width="200" src="' + e.target.result + '" />'+
- '<p>' + input.files[0].name + '</p>';
- var wrapperZone = $(input).parent();
- var previewZone = $(input).parent().parent().find('.preview-zone');
- var boxZone = $(input).parent().parent().find('.preview-zone').find('.box').find('.box-body');
- 
- wrapperZone.removeClass('dragover');
- previewZone.removeClass('hidden');
- boxZone.empty();
- boxZone.append(htmlPreview);
- };
- 
- reader.readAsDataURL(input.files[0]);
- }
-}function reset(e) {
- e.wrap('<form>').closest('form').get(0).reset();
- e.unwrap();
-}$(".dropzone").change(function(){
- readFile(this);
-});$('.dropzone-wrapper').on('dragover', function(e) {
- e.preventDefault();
- e.stopPropagation();
- $(this).addClass('dragover');
-});$('.dropzone-wrapper').on('dragleave', function(e) {
- e.preventDefault();
- e.stopPropagation();
- $(this).removeClass('dragover');
-});$('.remove-preview').on('click', function() {
- var boxZone = $(this).parents('.preview-zone').find('.box-body');
- var previewZone = $(this).parents('.preview-zone');
- var dropzone = $(this).parents('.form-group').find('.dropzone');
- boxZone.empty();
- previewZone.addClass('hidden');
- reset(dropzone);
-});
-</script>
+    </script>
 @endsection

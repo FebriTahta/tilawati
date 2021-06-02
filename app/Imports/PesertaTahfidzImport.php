@@ -2,16 +2,17 @@
 
 namespace App\Imports;
 use App\Models\Peserta;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Maatwebsite\Excel\Concerns\WithChunkReading;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Maatwebsite\Excel\Concerns\WithChunkReading;
 
 class PesertaTahfidzImport implements ToCollection, WithChunkReading, ShouldQueue
 {
-    public function __construct($id)
+    public function __construct($id, $tanggal)
     {
         $this->id=$id;
+        $this->tanggal=$tanggal;
     }
     /**
     * @param Collection $collection
@@ -24,6 +25,7 @@ class PesertaTahfidzImport implements ToCollection, WithChunkReading, ShouldQueu
                 
                 $dt_pel = new Peserta;
                 $dt_pel->pelatihan_id = $this->id;
+                $dt_pel->tanggal = $this->tanggal;
                 $dt_pel->name = $row[0];
                 $dt_pel->alamat = $row[1];
                 $dt_pel->kota = $row[2];
@@ -41,10 +43,10 @@ class PesertaTahfidzImport implements ToCollection, WithChunkReading, ShouldQueu
                 $dt_pel->created_at = new \DateTime;
                 $dt_pel->save();
                 $id = $dt_pel->id;
+                $link = 'http://course-academy.top/diklat/'.$id.'/';
                 \QrCode::size(150)
                 ->format('png')
-                ->generate(request()->url('http://course-academy.top/diklat/'.$id.'/'), public_path('images/'.$id.'qrcode.png'));
-
+                ->generate(request()->url($link), public_path('images/'.$id.'qrcode.png'));
             }   
         }
     }

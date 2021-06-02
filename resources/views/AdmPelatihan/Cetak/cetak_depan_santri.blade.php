@@ -92,7 +92,7 @@
 				<tr style="height: 4px;">
 				<td class="bawah" style="width: 210px; height: 4px;">&nbsp;</td>
 				<td class="bawah" style="width: 185px; height: 4px;">&nbsp;</td>
-				<td class="bawah" style="width: 241px; height: 2px;">{{ $jabatan }}</td>
+				<td class="bawah" style="width: 241px; height: 2px;">{{ $kepala }}</td>
 				</tr>
 				</tbody>
 			</table>

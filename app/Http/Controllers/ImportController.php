@@ -16,30 +16,43 @@ class ImportController extends Controller
     {
         $id = $request->id ;
         $tanggal = $request->tanggal;
-        Excel::import(new PesertaImport($id, $tanggal), $request->file('file'));
-        return redirect()->back()->with('success','Peserta Berhasil Ditambahkan Melalui file Excel');
+        $data = Excel::import(new PesertaImport($id, $tanggal), $request->file('file'));
+        return Response()->json([
+            $data,
+            'success'=>'Peserta Berhasil Ditambahkan Melalui file Excel'
+        ]);
     }
 
     public function importPesertaGuru(Request $request)
     {
         $id = $request->id;
         $tanggal = $request->tanggal;
-        Excel::queueImport(new PesertaGuruImport($id,$tanggal), $request->file('file'));
-        return redirect()->back()->with('success','Peserta Berhasil Ditambahkan Melalui file Excel');
+        $data = Excel::queueImport(new PesertaGuruImport($id,$tanggal), $request->file('file'));
+        return Response()->json([
+            $data,
+            'success'=>'Peserta Berhasil Ditambahkan Melalui file Excel'
+        ]);
     }
 
     public function importPesertaToT(Request $request)
     {
         $id = $request->id;
         $tanggal = $request->tanggal;
-        Excel::queueImport(new PesertaToTImport($id, $tanggal), $request->file('file'));
-        return redirect()->back()->with('success','Peserta Berhasil Ditambahkan Melalui file Excel');
+        $data = Excel::queueImport(new PesertaToTImport($id, $tanggal), $request->file('file'));
+        return Response()->json([
+            $data,
+            'success'=>'Peserta Berhasil Ditambahkan Melalui file Excel'
+        ]);
     }
 
     public function importPesertaTahfidz(Request $request)
     {
         $id = $request->id;
-        Excel::queueImport(new PesertaTahfidzImport($id), $request->file('file'));
-        return redirect()->back()->with('success','Peserta Berhasil Ditambahkan Melalui file Excel');
+        $tanggal = $request->tanggal;
+        $data = Excel::queueImport(new PesertaTahfidzImport($id, $tanggal), $request->file('file'));
+        return Response()->json([
+            $data,
+            'success'=>'Peserta Tahfidz Berhasil Ditambahkan Melalui file Excel'
+        ]);
     }
 }

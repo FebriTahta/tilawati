@@ -76,7 +76,11 @@
 				<tr style="height: 78px;">
 				<td class="bawah" style="width: 210px; height: 70px;"><img src="images/{{ $item->id }}qrcode.png" alt="" width="70px" height="70px"></td>
 				<td class="bawah" style="width: 210px; height: 70px;">&nbsp;</td>
-				<td class="bawah" style="width: 241px; height: 70px;"><img src="assets/images/pu2.png" alt="" width="140px" height="70px"></td>
+				<td class="bawah" style="width: 241px; height: 70px;">
+					@if ($cabang=='KOTA SURABAYA')
+					<img src="assets/images/pu2.png" alt="" width="140px" height="70px">
+					@endif
+				</td>
 				</tr>
 				<tr style="height: 5px;">
 				<td class="bawah" style="width: 210px; height: 5px;">No. Syahadah : &nbsp;{{ $item->pelatihan_id }}/{{ $tahun }}/{{ $item->id }}</td>
@@ -86,7 +90,7 @@
 				<tr style="height: 4px;">
 				<td class="bawah" style="width: 210px; height: 4px;">&nbsp;</td>
 				<td class="bawah" style="width: 185px; height: 4px;">&nbsp;</td>
-				<td class="bawah" style="width: 241px; height: 2px;">{{ $jabatan }}</td>
+				<td class="bawah" style="width: 241px; height: 2px; text-transform: capitalize">{{ $kepala }}</td>
 				</tr>
 				</tbody>
 			</table>

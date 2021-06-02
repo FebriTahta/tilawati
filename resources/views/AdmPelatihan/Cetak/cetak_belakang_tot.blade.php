@@ -124,19 +124,18 @@
 					<th rowspan="2">No.</th>
 					<th rowspan="2">Bidang Penilaian</th>
 					<th colspan="3" class="penilaian">Penilaian</th>
-					<th style="border-bottom: 0"></th>
+					<th rowspan="2" style="text-align: center">Jumlah</th>
 			</tr>
 			<tr>     
 				<th class="pe">Max</th>
 				<th class="pe">Min</th>
 				<th class="pe">Nilai</th>
-				<th style="border-top: 0">Jumlah</th>
 			</tr>
 			<tr>
 				<th>1</th>
 				<td>&nbsp; &nbsp;<b> Al-Qur'an</b></td>
 				<th colspan="3" class="pe3"></th><?php $jumlah = $p->fs+$p->tj+$p->gm+$p->sl?>
-				<th class="nilai4">{{ $jumlah }}</th>
+				<th >{{ $jumlah }}</th>
 			</tr>
 			<tr>
 				<td class="pop"></td>
@@ -144,7 +143,7 @@
 				<td class="nilai">&nbsp; &nbsp;28</td>
 				<td class="nilai2">&nbsp; &nbsp;25</td>
 				<td class="nilai3">&nbsp; &nbsp;{{ $p->fs }}</td>
-				<td class="nilai4"></td>
+				<td style="border-top: 0;border-bottom: 0;"></td>
 			</tr>
 			<tr>
 				<td class="pop"></td>
@@ -152,7 +151,7 @@
 				<td class="nilai">&nbsp; &nbsp;45</td>
 				<td class="nilai2">&nbsp; &nbsp;38</td>
 				<td class="nilai3">&nbsp; &nbsp;{{ $p->tj }}</td>
-				<td class="nilai4"></td>
+				<td style="border-top: 0;border-bottom: 0;"></td>
 			</tr>
 			<tr>
 				<td class="pop"></td>
@@ -160,7 +159,7 @@
 				<td class="nilai">&nbsp; &nbsp;10</td>
 				<td class="nilai2">&nbsp; &nbsp;7</td>
 				<td class="nilai3">&nbsp; &nbsp;{{ $p->gm }}</td>
-				<td class="nilai4"></td>
+				<td style="border-top: 0;border-bottom: 0;"></td>
 			</tr>
 			<tr>
 				<td class="pop"></td>
@@ -168,7 +167,7 @@
 				<td class="nilai">&nbsp; &nbsp;7</td>
 				<td class="nilai2">&nbsp; &nbsp;5</td>
 				<td class="nilai3">&nbsp; &nbsp;{{ $p->sl }}</td>
-				<td class="nilai4"></td>
+				<td style="border-top: 0;border-bottom: 0;"></td>
 			</tr>
 			<tr>
 				<th>2</th>
@@ -176,7 +175,7 @@
                 <td class="pops">&nbsp; &nbsp;95</td>
                 <td class="pops2">&nbsp; &nbsp;65</td>
                 <td class="pops3">&nbsp; &nbsp;</td>
-				<th class="nilai7">{{ $p->im }}</th>
+				<th >{{ $p->im }}</th>
 			</tr>
             <tr>
 				<th>3</th>
@@ -184,7 +183,7 @@
                 <td class="pops">&nbsp; &nbsp;95</td>
                 <td class="pops2">&nbsp; &nbsp;65</td>
                 <td class="pops3">&nbsp; &nbsp;</td>
-				<th class="nilai7">{{ $p->il }}</th>
+				<th >{{ $p->il }}</th>
 			</tr>
             <tr>
 				<th>4</th>
@@ -192,19 +191,19 @@
                 <td class="pops">&nbsp; &nbsp;95</td>
                 <td class="pops2">&nbsp; &nbsp;65</td>
                 <td class="pops3">&nbsp; &nbsp;</td>
-				<th class="nilai7">{{ $p->i }}</th>
+				<th >{{ $p->i }}</th>
 			</tr>
 			<tr>
 				<th></th>
 				<td class="nilai6">&nbsp; &nbsp;<b> RATA - RATA NILAI</b></th>
 				<th colspan="3" class="nilai5"></th><?php $rata2 = ($jumlah + $p->im + $p->il + $p->i)/4?>
-				<th class="nilai4">{{ $rata2 }}</th>
+				<th >{{ $rata2 }}</th>
 			</tr>
 			<tr>
 				<th></th>
 				<td class="nilai6">&nbsp; &nbsp;<b> PRESTASI</b></th>
 				<th colspan="3" class="nilai5"></th> 
-				<th class="nilai4">
+				<th >
                     @if ($rata2 >= 85)
                         Baik
                     @else

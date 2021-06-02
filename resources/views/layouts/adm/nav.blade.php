@@ -76,12 +76,7 @@
                                 </ul>
                                 @endauth
                             </li>
-                            <li class="has_sub">
-                                <a href="javascript:void(0);" class="waves-effect"><i class="ti-pencil-alt"></i><span> Data Entri </span> <span class="badge badge-danger badge-pill float-right"></span><span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
-                                <ul class="list-unstyled">
-                                    <li><a href="{{route('pelatihan.index')}}">Pelatihan</a></li>
-                                </ul>
-                            </li>
+                            
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-book-multiple"></i><span> Program </span> <span class="badge badge-danger badge-pill float-right"></span><span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                                 <ul class="list-unstyled">
@@ -105,6 +100,13 @@
                                     <li><a href="{{ route('pelatihan.c_belakang_tot') }}" @if (auth()->user()->role=='pusat') @else class="text-danger disabled" @endif>Cetak Ijazah TOT Instruktur</a></li>
                                     <li><a href="{{ route('pelatihan.c_belakang_tahfidz') }}" @if (auth()->user()->role=='pusat') @else class="text-danger disabled" @endif>Cetak Ijazah Tahfidz</a></li>
                                     <li><a href="{{ route('pelatihan.c_belakang_munaqys') }}" @if (auth()->user()->role=='pusat') @else class="text-danger disabled" @endif>Cetak Ijazah Munaqys</a></li>
+                                </ul>
+                            </li>
+                            <li class="menu-title">DIKLAT</li>
+                            <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect"><i class="ti-pencil-alt"></i><span> Data Entri </span> <span class="badge badge-danger badge-pill float-right"></span><span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                                <ul class="list-unstyled">
+                                    <li><a href="{{route('pelatihan.index')}}">Pelatihan</a></li>
                                 </ul>
                             </li>
                             <li class="menu-title">USER AKSES</li>

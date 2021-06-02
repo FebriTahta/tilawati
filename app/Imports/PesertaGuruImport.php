@@ -1,13 +1,11 @@
 <?php
 
 namespace App\Imports;
-use DB;
 use App\Models\Peserta;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Maatwebsite\Excel\Concerns\WithChunkReading;
-
 
 class PesertaGuruImport implements ToCollection, WithChunkReading, ShouldQueue
 {
