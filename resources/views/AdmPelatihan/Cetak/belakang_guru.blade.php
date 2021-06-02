@@ -49,7 +49,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card m-b-30">
-                        <div class="card-body">                          
+                        <div class="card-body">
                             <form action="{{ route('belakang.cetakguru') }}" method="POST">@csrf
                                 <div class="form-group">
                                     <label for="">Program Pelatihan</label>

@@ -56,6 +56,12 @@ class CetakController extends Controller
         return view('AdmPelatihan.Cetak.belakang_guru', compact('dt_pro'));
     }
 
+    public function ijazahbelakangmunaqisy()
+    {   
+        $dt_pro = Program::where('name','munaqisy')->first();
+        return view('AdmPelatihan.Cetak.belakang_tahfidz', compact('dt_pro'));
+    }
+
     public function cetak_depan(Request $request)
     {
         $id         = $request->pelatihan_id;
@@ -119,6 +125,17 @@ class CetakController extends Controller
         // $customPaper = array(0,0,842.4,597.6);
     	$pdf = PDF::loadview('AdmPelatihan.Cetak.cetak_belakang_santri',compact('peserta'))->setPaper($customPaper, 'portrait');
     	return $pdf->download('cetak-laporan-ijazah-belakang-santri-pdf');
+    }
+
+    public function cetak_belakang_munaqisy(Request $request)
+    {
+        $id = $request->pelatihan_id;
+        $peserta = Peserta::where('pelatihan_id', $id)
+                          ->where('bersyahadah', 1)->get();
+        $customPaper = array(0,0,792,612);
+        // $customPaper = array(0,0,842.4,597.6);
+    	$pdf = PDF::loadview('AdmPelatihan.Cetak.cetak_belakang_munaqisy',compact('peserta'))->setPaper($customPaper, 'portrait');
+    	return $pdf->download('cetak-laporan-ijazah-belakang-munaqisy-pdf');
     }
 
     public function cetak_belakang_tahfidz(Request $request)

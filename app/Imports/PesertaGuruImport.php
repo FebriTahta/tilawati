@@ -55,11 +55,11 @@ class PesertaGuruImport implements ToCollection, WithChunkReading, ShouldQueue
 
     public function batchSize(): int
     {
-        return 500;
+        return 10;
     }
 
     public function chunkSize(): int
     {
-        return 500;
+        return 10;
     }
 }

@@ -49,8 +49,12 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card m-b-30">
-                        <div class="card-body">                          
+                        <div class="card-body">
+                            @if ($dt_pro->name=='munaqisy')
+                            <form action="{{ route('belakang.cetakmunaqisy') }}" method="POST">@csrf
+                            @else
                             <form action="{{ route('belakang.cetaktahfidz') }}" method="POST">@csrf
+                            @endif
                                 <div class="form-group">
                                     <label for="">Program Pelatihan</label>
                                     <select name="pelatihan_id" id="" class="form-control" required>

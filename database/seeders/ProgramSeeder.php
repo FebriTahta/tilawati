@@ -15,21 +15,6 @@ class ProgramSeeder extends Seeder
     {
         $pro = [
             [
-                'name' => "training of trainer",
-                'created_at' => new \DateTime,
-                'updated_at' => null,
-            ],
-            [
-                'name' => "munaqys",
-                'created_at' => new \DateTime,
-                'updated_at' => null,
-            ],
-            [
-                'name' => "tahfidz",
-                'created_at' => new \DateTime,
-                'updated_at' => null,
-            ],
-            [
                 'name' => "munaqosyah santri",
                 'created_at' => new \DateTime,
                 'updated_at' => null,
@@ -39,7 +24,21 @@ class ProgramSeeder extends Seeder
                 'created_at' => new \DateTime,
                 'updated_at' => null,
             ],
-
+            [
+                'name' => "tahfidz",
+                'created_at' => new \DateTime,
+                'updated_at' => null,
+            ],
+            [
+                'name' => "training of trainer",
+                'created_at' => new \DateTime,
+                'updated_at' => null,
+            ],
+            [
+                'name' => "munaqisy",
+                'created_at' => new \DateTime,
+                'updated_at' => null,
+            ],
         ];
         \DB::table('programs')->insert($pro);
     }

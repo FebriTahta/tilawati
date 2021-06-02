@@ -334,6 +334,9 @@
                                     @elseif($dt_pel->program->name=="training of trainer")
                                     <form id="importpeserta"  method="POST" enctype="multipart/form-data">@csrf
                                         <input type="hidden" id="import_tipe" value="trainer">
+                                    @elseif($dt_pel->program->name=="munaqisy")
+                                    <form id="importpeserta"  method="POST" enctype="multipart/form-data">@csrf
+                                        <input type="hidden" id="import_tipe" value="munaqisy">
                                     @endif
                                         <div class="form-group">
                                             <input type="hidden" value="{{ $dt_pel->id }}" name="id">
@@ -429,6 +432,8 @@
                     var import_peserta = "{{ route('import.pesertaG')}}";
                 } else if(import_tipe == 'tahfidz') {
                     var import_peserta = "{{ route('import.pesertaTahfidz')}}";
+                } else if(import_tipe == 'munaqisy') {
+                    var import_peserta = "{{ route('import.pesertaMunaqisy')}}";
                 } else if(import_tipe == 'trainer') {
                     var import_peserta = "{{ route('import.pesertaToT')}}";
                 }
