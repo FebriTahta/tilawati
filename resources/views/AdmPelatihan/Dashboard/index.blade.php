@@ -15,7 +15,12 @@
                         <li class="breadcrumb-item active" id="clock"></li>
                     </ol>
                 </div>
-                <h5 class="page-title">Dashboard</h5>
+                <div class="float-left page-breadcrumb">
+                    <ol class="breadcrumb">
+                        <span id="tgl"></span>&nbsp; <li class="breadcrumb-item active" id="bln"></li>
+                        <li class="breadcrumb-item active" id="hari"></li>
+                    </ol>
+                </div>
             </div>
         </div>
         <!-- end row -->
@@ -60,7 +65,7 @@
                     <div class="card-body">
                         <div class="border-bottom pb-4 text-center">
                             <h2 id="dk">0</h2>
-                            <h5><button class="btn btn-sm text-white waves-effect waves-dark" data-toggle="modal" data-target=".bs-example-modal-lg-diklat" style="background-color: rgb(114, 228, 203)">Click Me</button></h5>
+                            {{-- <h5><button class="btn btn-sm text-white waves-effect waves-dark" data-toggle="modal" data-target=".bs-example-modal-lg-diklat" style="background-color: rgb(114, 228, 203)">Click Me</button></h5> --}}
                             <div class="float-left">
                                 {{-- <h6 class="m-0">20 Cabang</h6> --}}
                             </div>
@@ -82,7 +87,7 @@
                     <div class="card-body">
                         <div class="border-bottom pb-4 text-center">
                             <h2 id="cb">0</h2>
-                            <h5><button class="btn btn-sm text-white" style="background-color: rgb(75, 152, 253)">Click Me</button></h5>
+                            {{-- <h5><button class="btn btn-sm text-white" style="background-color: rgb(75, 152, 253)">Click Me</button></h5> --}}
                         </div>
                         
                             <div class="float-left">
@@ -106,7 +111,7 @@
                     <div class="card-body">
                         <div class="border-bottom pb-4 text-center">
                             <h2 id="lb">0</h2>
-                            <h5><button class="btn btn-sm text-white" style="background-color: rgb(124, 152, 243)">Click Me</button></h5>
+                            {{-- <h5><button class="btn btn-sm text-white" style="background-color: rgb(124, 152, 243)">Click Me</button></h5> --}}
                         </div>
                         
                             <div class="float-left">
@@ -130,7 +135,7 @@
                     <div class="card-body">
                         <div class="border-bottom pb-4 text-center">
                             <h2 id="pd">0</h2>
-                            <h5><button class="btn btn-sm text-white" style="background-color: rgb(185, 124, 243)">Click Me</button></h5>
+                            {{-- <button class="btn btn-sm text-white" style="background-color: rgb(185, 124, 243)">Click Me</button> --}}
                         </div>
                         
                             <div class="float-left">
@@ -168,64 +173,56 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-12">
+            <div class="col-xl-12" id="data_p">
                 <div class="card m-b-30">
                     <div class="card-body">
-                        <h2 class="mt-0 header-title mb-4 text-uppercase">DATA PESERTA DIKLAT</h2>
-                        <table id="datatable" class="table datas table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                            <thead>
-                            <tr>
-                                <th>No.Peserta</th>
-                                <th>Nama Peserta</th>
-                                <th>No.Diklat</th>
-                                <th>Diklat</th>
-                                <th>Telp</th>
-                                <th>Asal Kota</th>
-                                <th>Alamat</th>
-                                <th>Sebagai</th>
-                                <th>Kriteria</th>
-                                <th>Status</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                        </table>
+                        <h2 class="mt-0 header-title mb-4 text-uppercase">DATA DIKLAT</h2>
+                        <div class="table-responsive">
+							<table id="datatable_diklat" class="table datas table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Diklat</th>
+                                        <th>Tanggal</th>
+                                        <th>Cabang</th>
+                                        <th>Tempat</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-capitalize"></tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
-            
+            <div class="col-xl-12" id="data_p">
+                <div class="card m-b-30">
+                    <div class="card-body">
+                        <h2 class="mt-0 header-title mb-4 text-uppercase">DATA PESERTA DIKLAT</h2>
+                        <div class="table-responsive">
+                            <table id="datatable" class="table datas table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                <thead>
+                                <tr>
+                                    <th>ID Peserta</th>
+                                    <th>Peserta</th>
+                                    <th>Status</th>
+                                    <th>Telp</th>
+                                    <th>Asal</th>
+                                    <th>Alamat</th>
+                                    <th>Sebagai</th>
+                                    <th>No. Diklat</th>
+                                    <th>Diklat</th>
+                                    <th>Kriteria</th>
+                                </tr>
+                                </thead>
+                                <tbody class="text-capitalize"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     {{-- </div>
 </div> --}}
-
-{{-- modal diklat --}}
-<div class="modal fade bs-example-modal-lg-diklat" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header text-white" style="background-color: rgb(114, 228, 203)">
-                <h5 class="modal-title mt-0" id="myLargeModalLabel">DATA DIKLAT</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <table id="datatable-diklat" class="table datas table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Diklat</th>
-                            <th>Cabang</th>
-                            <th>Program</th>
-                            <th>Tempat</th>
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
-                </table>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-
 @endsection
 @section('script')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
@@ -237,67 +234,6 @@
     load_data();
     function load_data(dari = '', sampai = '')
     {
-        //peserta diklat
-        $('#datatable').DataTable({
-        //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
-        destroy: true,
-        processing: true,
-        serverSide: true,
-        ajax: {
-            url:'{{ route("peserta.filter") }}',
-            data:{dari:dari, sampai:sampai}
-        },
-        columns: [
-            {
-            data:'id',
-            name:'id'
-            },
-            {
-            data:'name',
-            name:'name'
-            },
-            {
-            data:'pelid',
-            name:'pelid'
-            },
-            {
-            data:'pelatihan',
-            name:'pelatihan'
-            },
-            {
-            data:'telp',
-            name:'telp'
-            },
-            {
-            data:'kota',
-            name:'kota'
-            },
-            {
-            data:'alamat',
-            name:'alamat'
-            },
-            {
-            data:'sebagai',
-            name:'sebagai'
-            },
-            {
-            data:'kriteria',
-            name:'kriteria'
-            },
-            {
-            data:'bersyahadah',
-            render: function(data) { 
-                if(data==1) {
-                  return '<span class="badge badge-primary">Bersyahadah</span>'; 
-                }
-                else {
-                  return '<span class="badge badge-danger">Belum Bersyahadah</span>';
-                }
-
-              },
-            },
-        ]
-        });
         $.ajax({
             url:'{{ route("dashboard.diklat") }}',
             data:{dari:dari, sampai:sampai},
@@ -338,6 +274,102 @@
                 console.log(data);
             }
         });
+        //diklat
+        $('#datatable_diklat').DataTable({
+        //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
+        destroy: true,
+        processing: true,
+        serverSide: true,
+        ajax: {
+            url:'{{ route("dashboard.diklat_data") }}',
+            data:{dari:dari, sampai:sampai}
+        },
+        columns: [
+            {
+                data:'id',
+                name:'id',
+            },
+            {
+            data:'name',
+            name:'name'
+            },
+            {
+            data:'tanggal',
+            name:'tanggal'
+            },
+            {
+            data:'cabang',
+            name:'cabang'
+            },
+            {
+            data:'tempat',
+            name:'tempat'
+            },
+        ]
+        });
+        //peserta diklat
+        $('#datatable').DataTable({
+        //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
+        destroy: true,
+        processing: true,
+        serverSide: true,
+        ajax: {
+            url:'{{ route("peserta.filter") }}',
+            data:{dari:dari, sampai:sampai}
+        },
+        columns: [
+            {
+            data:'id',
+            name:'id'
+            },
+            {
+            data:'name',
+            name:'name'
+            },
+            {
+            data:'bersyahadah',
+            name:'bersyahadah',
+            render: function(data) { 
+                if(data==1) {
+                  return '<span class="badge badge-primary">Bersyahadah</span>'; 
+                }
+                else {
+                  return '<span class="badge badge-danger">Belum Bersyahadah</span>';
+                }
+
+              },
+            },
+            {
+            data:'telp',
+            name:'telp'
+            },
+            {
+            data:'kota',
+            name:'kota'
+            },
+            {
+            data:'alamat',
+            name:'alamat'
+            },
+            {
+            data:'sebagai',
+            name:'sebagai'
+            },
+            {
+            data:'pelid',
+            name:'pelid'
+            },
+            {
+            data:'pelatihan',
+            name:'pelatihan'
+            },
+            {
+            data:'kriteria',
+            name:'kriteria'
+            },
+            
+        ]
+        });
     }
     $('#filter').click(function(){
         var dari = $('#dari').val();
@@ -352,6 +384,7 @@
             alert('Both Date is required');
         }
     });
+
 
     $('#refresh').click(function(){
         $('#dari').val('');
@@ -370,7 +403,9 @@
         //mengambil data chart
         getDataForChart();
         getDataForChart2();
+        
     });
+    
     //berdasarkan pencarian data
     function search() {
         $(".sampai").text('');

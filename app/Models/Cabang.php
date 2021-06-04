@@ -12,17 +12,14 @@ class Cabang extends Model
     protected $fillable = [
         'user_id',
         'name',
-        // 'status',
-        // 'kepala',
+        'status',
         'provinsi_id',
         'kabupaten_id',
         'kecamatan_id',
         'kelurahan_id',
-        // 'teritorial',
         'alamat',
         'pos',
         'telp',
-        // 'email',
         'ekspedisi',
         'teritorial'
     ];
@@ -68,13 +65,8 @@ class Cabang extends Model
         return $this->belongsTo(Kelurahan::class);
     }
 
-    public function city()
-    {
-        return $this->belongsTo(City::class);
-    }
-
     public function kepala()
     {
-        return $this->hasOne(Kepala::class);
+        return $this->belongsToMany(Kepala::class);
     }
 }

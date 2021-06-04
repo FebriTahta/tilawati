@@ -37,6 +37,36 @@ class DashboardController extends Controller
             }
         }
     }
+    public function getdiklat_data(Request $request)
+    {
+        if(request()->ajax())
+        {
+            if(!empty($request->dari))
+            {
+                $data = Pelatihan::whereBetween('tanggal', array($request->dari, $request->sampai));
+                return Datatables::of($data)
+                ->addIndexColumn()
+                ->addColumn('cabang', function (Pelatihan $cabangs) {
+                    return $cabangs->cabang->name;
+                })
+                ->rawColumns(['cabang'])
+                ->make(true);
+            }
+            else
+            {
+                $data = Pelatihan::orderBy('tanggal','desc');
+                return Datatables::of($data)
+                ->addIndexColumn()
+                ->addColumn('cabang', function (Pelatihan $cabangs) {
+                    return $cabangs->cabang->name;
+                })
+                ->rawColumns(['cabang'])
+                ->make(true);
+                
+            }
+         return datatables()->of($data)->make(true);
+        }
+    }
     public function getcabang(Request $request)
     {
         if (request()->ajax()) {
@@ -99,7 +129,7 @@ class DashboardController extends Controller
             {
                 $data = Peserta::with('pelatihan')
                 ->whereBetween('created_at', array($request->dari, $request->sampai));
-                return Datatables::eloquent($data)
+                return Datatables::of($data)
                 ->addIndexColumn()
                 ->addColumn('pelatihan', function (Peserta $user) {
                     return $user->pelatihan->name;
@@ -131,7 +161,7 @@ class DashboardController extends Controller
                 ->addColumn('sebagai', function (Peserta $user) {
                     return $user->pelatihan->keterangan;
                 })
-                ->rawColumns(['pelid','pelatihan','sebagai'])
+                ->rawColumns(['pelid','pelatihan','sebagai','status'])
                 ->make(true);
             }
          return datatables()->of($data)->make(true);
@@ -178,7 +208,7 @@ class DashboardController extends Controller
                 'msg'=>'validation error',
                 'errors'=>$validator->errors(),
                 'content'=>null,
-            ];
+            ]; 
            } else {
             $start = strtotime($request->start);
             $end = strtotime($request->finish);

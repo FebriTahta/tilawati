@@ -8,6 +8,7 @@ use App\Imports\PesertaGuruImport;
 use App\Imports\PesertaToTImport;
 use App\Imports\PesertaTahfidzImport;
 use App\Imports\PesertaMunaqisyImport;
+use App\Imports\CabangImport;
 use Illuminate\Http\Request;
 use Excel;
 
@@ -65,6 +66,15 @@ class ImportController extends Controller
         return Response()->json([
             $data,
             'success'=>'Peserta Munaqisy Berhasil Ditambahkan Melalui file Excel'
+        ]);
+    }
+
+    public function importCabang(Request $request)
+    {
+        $data = Excel::queueImport(new CabangImport(), $request->file('file'));
+        return Response()->json([
+            $data,
+            'success'=>'Data Cabang Berhasil Ditambahkan Melalui file Excel'
         ]);
     }
 }

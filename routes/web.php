@@ -39,14 +39,15 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga']], funct
     Route::post('/dashboard-chart',[DashboardController::class,'dataForChart'])->name('dashboard.chart');// data untuk chart bar di dashboar
     Route::post('/dashboard-chart-2',[DashboardController::class,'dataForChart2'])->name('dashboard.chart2');// data untuk chart pie di dashboar
     Route::get('/dashboard',[DashboardController::class, 'index'])->name('dashboard');
-    Route::get('/dashboard/diklat-filter',[DashboardController::class,'daterangediklat'])->name('diklat.filter');//get data diklat range ajax dashboard
-    Route::get('/dashboard/cabang-filter',[DashboardCabang::class,'daterangecabang'])->name('cabang.filter');//get data cabang range ajax dashboard
-    Route::get('/dashboard/lembaga-filter',[DashboardController::class,'daterangelembaga'])->name('lembaga.filter');//get data lembaga range ajax dashboard
-    Route::get('/dashboard/peserta-filter', [DashboardController::class, 'daterangepeserta'])->name('peserta.filter');//get data peserta range ajax dashboard
+    Route::get('/dashboard/diklat-total',[DashboardController::class,'daterangediklat'])->name('diklat.filter');//get data diklat range ajax dashboard
+    Route::get('/dashboard/cabang-total',[DashboardCabang::class,'daterangecabang'])->name('cabang.filter');//get data cabang range ajax dashboard
+    Route::get('/dashboard/lembaga-total',[DashboardController::class,'daterangelembaga'])->name('lembaga.filter');//get data lembaga range ajax dashboard
+    Route::get('/dashboard/peserta-total', [DashboardController::class, 'daterangepeserta'])->name('peserta.filter');//get data peserta range ajax dashboard
     Route::get('/dashboard/cabang',[DashboardController::class, 'getcabang'])->name('dashboard.cabang');//get total cabang ajax dashboard
     Route::get('/dashboard/lembaga',[DashboardController::class, 'getlembaga'])->name('dashboard.lembaga');//get total cabang ajax dashboard
     Route::get('/dashboard/peserta',[DashboardController::class, 'getpeserta'])->name('dashboard.peserta');//get total peserta diklat ajax dashboard
     Route::get('/dashboard/diklat',[DashboardController::class, 'getdiklat'])->name('dashboard.diklat');//get total data diklat ajax dashboard
+    Route::get('/dashboard/diklat-data',[DashboardController::class, 'getdiklat_data'])->name('dashboard.diklat_data');//nama nama data diklat ajax dashboard
     
     //user
     Route::get('/data-user',[UserController::class, 'index'])->name('user.index');
@@ -156,6 +157,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga']], funct
     Route::post('/importPesertaToT',[ImportController::class,'importPesertaToT'])->name('import.pesertaToT');
     Route::post('/importPesertaTahfidz',[ImportController::class,'importPesertaTahfidz'])->name('import.pesertaTahfidz');
     Route::post('/importPesertaMunaqisy',[ImportController::class,'importPesertaMunaqisy'])->name('import.pesertaMunaqisy');
+    Route::post('/importCabang',[ImportController::class, 'importCabang'])->name('import.cabang');
 });
 
 

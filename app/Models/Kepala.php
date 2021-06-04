@@ -51,7 +51,7 @@ class Kepala extends Model
 
     public function cabang()
     {
-        return $this->belongsTo(Cabang::class);
+        return $this->belongsToMany(Cabang::class);
     }
     public function lembaga()
     {

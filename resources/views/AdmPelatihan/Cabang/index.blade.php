@@ -30,6 +30,9 @@
                 {{-- <button type="button" class="btn btn-primary m-t-10 waves-effect waves-light" data-toggle="modal" data-target=".bs-example-modal-lg" style="min-width: 100px"><i class="fa fa-plus"></i> Cabang</button> --}}
                 <a href="{{route('cabang.create')}}" type="button" class="btn btn-primary waves-effect waves-light m-t-20" style="min-width: 100px"><i class="fa fa-plus"></i> Cabang</a>
             </div>
+            <div style="text-align: center; max-width: 100px;">
+                <button type="button" data-toggle="modal" data-target=".bs-example-modal-cabang" class="btn btn-primary waves-effect waves-dark m-t-20" style="min-width: 100px"><i class="fa fa-plus"></i> Import</button>
+            </div>
             @endif
         </div>
     </div>
@@ -212,7 +215,7 @@
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
-<!--modal hapus-->
+<!-- modal hapus -->
 <div class="modal fade bs-example-modal-center" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -242,8 +245,45 @@
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
+<!-- modal import -->
+<div class="col-sm-6 col-md-3 m-t-30">
+    <div class="modal fade bs-example-modal-cabang" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title mt-0">IMPORT DATA CABANG </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-xl-12">
+                        <div class="card m-b-30">
+                            <div class="card-body">
+                                <div class="container-fluid">
+                                    <form id="importcabang"  method="POST" enctype="multipart/form-data">@csrf
+                                        <input type="hidden" id="import_tipe" value="munaqisy">
+                                        <div class="form-group">
+                                            <label for="">Import Data "Cabang" (hanya Excel File format .xlsx)</label>
+                                            <input type="file" class="form-control" name="file" accept=".xlsx" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="submit" name="import" id="btnimport" class="btn btn-info" value="Import" />
+                                        </div>
+                                    </form>
+                                </div><!-- container fluid -->
+                            </div>
+                        </div>
+                    </div> <!-- end col -->
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+</div>
 @endsection
 @section('script')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 <script type="application/javascript">
     $('.bs-example-modal-center').on('show.bs.modal', function(event) {
         var button = $(event.relatedTarget)
@@ -255,6 +295,45 @@
         modal.find('.modal-body #name').text(name);
         
     })
+
+    $('#importcabang').submit(function(e) {
+        e.preventDefault();
+        var formData = new FormData(this);
+        $.ajax({
+        type:'POST',
+        url: "{{ route('import.cabang')}}",
+        data: formData,
+        cache:false,
+        contentType: false,
+        processData: false,
+        beforeSend:function(){
+            $('#btnimport').attr('disabled','disabled');
+            $('#btnimport').val('Importing');
+        },
+        success: function(data){
+            if(data.success)
+            {
+                $("#importcabang")[0].reset();
+                toastr.success(data.success);
+                // $("#bs-example-modal-center1").modal('hide');
+                // var oTable = $('#datatable').dataTable();
+                // oTable.fnDraw(false);
+                $('#btnimport').val('Import');
+                $('#btnimport').attr('disabled',false);                            
+            }
+            if(data.error)
+            {
+                $('#message').html('<div class="alert alert-danger">'+data.error+'</div>');
+                $('#btnimport').attr('disabled',false);
+                $('#btnimport').val('Import');
+            }
+        },
+        error: function(data)
+        {
+            console.log(data);
+            }
+        });
+    });
 </script>
 
 

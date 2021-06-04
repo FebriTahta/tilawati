@@ -18,11 +18,12 @@ class CreateCabangsTable extends Migration
             // $table->bigInteger('cabang_id');
             $table->unsignedBigInteger('user_id');
             $table->string('name');
-            $table->unsignedBigInteger('provinsi_id');
-            $table->unsignedBigInteger('kabupaten_id');
-            $table->unsignedBigInteger('kecamatan_id');
-            $table->unsignedBigInteger('kelurahan_id');
-            $table->string('teritorial');
+            $table->string('status')->nullable();
+            $table->unsignedBigInteger('provinsi_id')->nullable();
+            $table->unsignedBigInteger('kabupaten_id')->nullable();
+            $table->unsignedBigInteger('kecamatan_id')->nullable();
+            $table->unsignedBigInteger('kelurahan_id')->nullable();
+            $table->string('teritorial')->nullable();
             $table->string('alamat')->nullable();
             $table->string('pos')->nullable();
             $table->string('telp')->nullable();

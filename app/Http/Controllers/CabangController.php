@@ -34,7 +34,8 @@ class CabangController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
+    {   
+        
         $dt_props2 = Provinsi::all();
         // $dt_kabupaten = Kabupaten::where('provinsi_id', 11)->first();
         $dt_cabang = Cabang::orderBy('id')->get();
