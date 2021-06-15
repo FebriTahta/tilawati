@@ -17,6 +17,8 @@ class Lembaga extends Model
         'kabupaten_id',
         'kecamatan_id',
         'kelurahan_id',
+        'jml_guru',
+        'jml_santri',
         'pos',
         'telp',
         'website',
@@ -55,11 +57,16 @@ class Lembaga extends Model
 
     public function kepala()
     {
-        return $this->hasOne(Kepala::class);
+        return $this->belongsTo(Kepala::class);
     }
 
     public function peserta()
     {
         return $this->hasMany(Peserta::class);
+    }
+
+    public function kecamatan()
+    {
+        return $this->belongsTo(Kecamatan::class);
     }
 }

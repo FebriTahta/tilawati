@@ -5,14 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\CabangController;
 use App\Models\Cabang;
-use App\Models\Propinsi;
-use App\Models\Province;
-use App\Models\Kota;
-use App\Models\City;
 use App\Models\User;
 use App\Models\Provinsi;
 use App\Models\Kepala;
 use App\Models\Kabupaten;
+use DataTables;
 
 class CabangController extends Controller
 {
@@ -35,7 +32,6 @@ class CabangController extends Controller
      */
     public function create()
     {   
-        
         $dt_props2 = Provinsi::all();
         // $dt_kabupaten = Kabupaten::where('provinsi_id', 11)->first();
         $dt_cabang = Cabang::orderBy('id')->get();
@@ -196,6 +192,26 @@ class CabangController extends Controller
     {
         $dt_cabang = Cabang::find($id)->delete();
         return redirect()->back()->with('danger', 'Cabang Berhasil Dihapus');
+    }
+
+    public function getcabang_data(Request $request)
+    {
+        if(request()->ajax())
+        {
+            $data   = Cabang::orderBy('id','asc')->with('kepala')->with('provinsi')->with('kabupaten');
+            return DataTables::of($data)
+                    ->addColumn('kepala', function ($data) {
+                        return $data->kepala->name;
+                    })
+                    ->addColumn('kabupaten', function ($data) {
+                        return $data->kabupaten->nama;
+                    })
+                    ->addColumn('provinsi', function ($data) {
+                        return $data->provinsi->nama;
+                    })
+                    ->rawColumns(['kepala','kabupaten','provinsi'])
+                    ->make(true);
+        }
     }
 
 }

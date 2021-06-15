@@ -16,8 +16,8 @@ class Kepala extends Model
         'tmptlahir',
         'tgllahir',
         'alamat',
-        'cabang_id',
-        'lembaga_id',
+        // 'cabang_id',
+        // 'lembaga_id',
         'provinsi_id',
         'kabupaten_id',
         'kecamatan_id',
@@ -51,10 +51,10 @@ class Kepala extends Model
 
     public function cabang()
     {
-        return $this->belongsToMany(Cabang::class);
+        return $this->hasMany(Cabang::class);
     }
     public function lembaga()
     {
-        return $this->belongsTo(Lembaga::class);
+        return $this->hasMany(Lembaga::class);
     }
 }

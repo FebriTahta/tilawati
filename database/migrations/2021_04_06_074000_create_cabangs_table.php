@@ -15,12 +15,13 @@ class CreateCabangsTable extends Migration
     {
         Schema::create('cabangs', function (Blueprint $table) {
             $table->bigIncrements('id');
-            // $table->bigInteger('cabang_id');
+            $table->text('kode')->unique()->index();
             $table->unsignedBigInteger('user_id');
-            $table->string('name');
+            $table->string('name')->index();
             $table->string('status')->nullable();
+            $table->unsignedBigInteger('kepala_id')->nullable();
             $table->unsignedBigInteger('provinsi_id')->nullable();
-            $table->unsignedBigInteger('kabupaten_id')->nullable();
+            $table->unsignedBigInteger('kabupaten_id')->nullable()->index();
             $table->unsignedBigInteger('kecamatan_id')->nullable();
             $table->unsignedBigInteger('kelurahan_id')->nullable();
             $table->string('teritorial')->nullable();

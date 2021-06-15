@@ -63,6 +63,11 @@
 <!-- dashboard -->
 {{-- <script src="{{asset('adm/pages/dashboard.js')}}"></script> --}}
 
+<!-- Sweet-Alert  -->
+<script src="{{ asset('adm/plugins/sweet-alert2/sweetalert2.min.js') }}"></script>
+<script src="{{ asset('adm/pages/sweet-alert.init.js') }}"></script>
+<script src="{{ asset('dist/sweetalert2.js')}}"></script>
+
 <!-- App js -->
 <script src="{{asset('adm/js/app.js')}}"></script>
 

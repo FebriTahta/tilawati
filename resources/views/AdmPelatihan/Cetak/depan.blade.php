@@ -78,7 +78,7 @@
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary btn-sm"> <i class="fa fa-print"></i> Cetak</button>
                                 </div>
-                            </form>        
+                            </form>
                         </div>
                     </div>
                 </div> <!-- end col -->

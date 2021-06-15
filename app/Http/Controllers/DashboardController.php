@@ -19,6 +19,14 @@ class DashboardController extends Controller
     {
     	return view('AdmPelatihan.Dashboard.index');
     }
+    public function getuser(Request $request)
+    {
+        if (request()->ajax()) {
+            # code...
+            $data = User::all()->count();
+            return response()->json($data,200);
+        }
+    }
     public function getdiklat(Request $request)
     {
         if (request()->ajax()) {
@@ -103,6 +111,52 @@ class DashboardController extends Controller
             }
         }
     }
+
+    public function getlembaga_kab(Request $request)
+    {
+        if (request()->ajax()) {
+            # code...
+            if(!empty($request->dari))
+            {
+                $data = DB::table('lembagas')
+                ->whereBetween('created_at', array($request->dari, $request->sampai))
+                ->count();
+                return response()->json($data,200);
+            }
+            else
+            {
+                $data = DB::table('lembagas')
+                ->select('kabupaten_id', DB::raw('count(*) as total'))
+                ->groupBy('kabupaten_id')
+                ->get()->count();
+                return response()->json($data,200);
+            }
+        }
+    }
+
+    public function getlembaga_pro(Request $request)
+    {
+        if (request()->ajax()) {
+            # code...
+            if(!empty($request->dari))
+            {
+                $data = DB::table('lembagas')
+                ->whereBetween('created_at', array($request->dari, $request->sampai))
+                ->count();
+                return response()->json($data,200);
+            }
+            else
+            {
+                $data = DB::table('lembagas')
+                ->select('provinsi_id', DB::raw('count(*) as total'))
+                ->groupBy('provinsi_id')
+                ->get()->count();
+                return response()->json($data,200);
+            }
+        }
+    }
+
+
     public function getpeserta(Request $request)
     {
         if (request()->ajax()) {

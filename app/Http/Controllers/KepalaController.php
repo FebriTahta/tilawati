@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Kepala;
 use DB;
 use DataTables;
+use App\Models\Lembaga;
 use Illuminate\Http\Request;
 
 class KepalaController extends Controller
@@ -58,16 +59,26 @@ class KepalaController extends Controller
 
     public function view(Request $request)
     {
+        //tes kepala lembaga
         if(request()->ajax())
         {
-            $data = Kepala::orderBy('id','desc')->where('cabang_id',null)->where('lembaga_id', null);
+            $data = Lembaga::select('kepala_id')->with('kepala');
                 return Datatables::of($data)
                         ->addIndexColumn()
+                        ->addColumn('kepala', function($row){
+                            if ($row->kepala !== null) {
+                                # code...
+                                $kepala = $row->kepala->name;
+                            }else{
+                                $kepala = '';
+                            }
+                            return $kepala;
+                        })
                         ->addColumn('pilih', function($row){
                             $btn = '<input type="radio" name="pilih" id="pilih" onclick="pilih()" value="'.$row->id.'" required>';
                             return $btn;
                         })
-                        ->rawColumns(['pilih'])
+                        ->rawColumns(['pilih','kepala'])
                         ->make(true);
                 return datatables()->of($data)->make(true);
         }

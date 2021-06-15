@@ -9,6 +9,12 @@ class Kabupaten extends Model
 {
     use HasFactory;
     protected $table = 'kabupaten';
+    protected $fillable = [
+        'id',
+        'provinsi_id',
+        'nama',
+        'id_jenis',
+    ];
     
     public function kecamatan()
     {
@@ -18,5 +24,10 @@ class Kabupaten extends Model
     public function provinsi()
     {
         return $this->belongsTo(Provinsi::class);
+    }
+
+    public function cabang()
+    {
+        return $this->hasMany(Cabang::class);
     }
 }

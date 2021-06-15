@@ -15,6 +15,12 @@ use App\Http\Controllers\ImportController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KepalaController;
 use App\Http\Controllers\TeritorialController;
+use App\Http\Controllers\CabangCont;
+use App\Http\Controllers\LembagaCont;
+use App\Http\Controllers\JenjangCont;
+use App\Http\Controllers\ProgramCont;
+use App\Http\Controllers\KriteriaCont;
+use App\Http\Controllers\CetakCont;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,7 +34,7 @@ use App\Http\Controllers\TeritorialController;
 
 Route::get('/', function () {
     // return view('auth.login');
-    return redirect('dashboard');
+    return redirect('/diklat-cabang');
     // return view('landing.index');
     // return redirect('/pelatihan-cabang');
 });
@@ -43,14 +49,18 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga']], funct
     Route::get('/dashboard/cabang-total',[DashboardCabang::class,'daterangecabang'])->name('cabang.filter');//get data cabang range ajax dashboard
     Route::get('/dashboard/lembaga-total',[DashboardController::class,'daterangelembaga'])->name('lembaga.filter');//get data lembaga range ajax dashboard
     Route::get('/dashboard/peserta-total', [DashboardController::class, 'daterangepeserta'])->name('peserta.filter');//get data peserta range ajax dashboard
+    Route::get('/dashboard/user',[DashboardController::class, 'getuser'])->name('dashboard.user');//get total user ajax dashboard
     Route::get('/dashboard/cabang',[DashboardController::class, 'getcabang'])->name('dashboard.cabang');//get total cabang ajax dashboard
-    Route::get('/dashboard/lembaga',[DashboardController::class, 'getlembaga'])->name('dashboard.lembaga');//get total cabang ajax dashboard
+    Route::get('/dashboard/lembaga',[DashboardController::class, 'getlembaga'])->name('dashboard.lembaga');//get total lembaga ajax dashboard
+    Route::get('/dashboard/lembaga-kabupaten',[DashboardController::class, 'getlembaga_kab'])->name('dashboard.lembagakab');//get total kabupaten lembaga ajax dashboard
+    Route::get('/dashboard/lembaga-provinsi',[DashboardController::class, 'getlembaga_pro'])->name('dashboard.lembagapro');//get total provinsi lembaga ajax dashboard
     Route::get('/dashboard/peserta',[DashboardController::class, 'getpeserta'])->name('dashboard.peserta');//get total peserta diklat ajax dashboard
     Route::get('/dashboard/diklat',[DashboardController::class, 'getdiklat'])->name('dashboard.diklat');//get total data diklat ajax dashboard
     Route::get('/dashboard/diklat-data',[DashboardController::class, 'getdiklat_data'])->name('dashboard.diklat_data');//nama nama data diklat ajax dashboard
     
     //user
     Route::get('/data-user',[UserController::class, 'index'])->name('user.index');
+    Route::get('/pelatihan-user-data',[UserController::class, 'getuser_data'])->name('user.data');
     //cabang
     Route::get('/pelatihan-cabang',[CabangController::class, 'index'])->name('cabang.index');
     //kepala cabang & Lembaga
@@ -101,6 +111,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga']], funct
 
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     //cabang
+    Route::get('/pelatihan-cabang-data',[CabangController::class, 'getcabang_data'])->name('cabang.data');
     Route::get('/pelatihan-cabang',[CabangController::class, 'index'])->name('cabang.index');
     Route::get('/pelatihan-cabang-create',[CabangController::class, 'create'])->name('cabang.create');
     Route::post('/pelatihan-cabang-store', [CabangController::class, 'store'])->name('cabang.store');
@@ -111,6 +122,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga']], funct
     Route::post('/pelatihan-jenis-store', [JenisController::class, 'store'])->name('jenis.store');
     Route::post('/pelatihan-jenjang-del', [SubController::class, 'hapusjenjang'])->name('jenjang.del');
     //lembaga
+    Route::get('/pelatihan-lembaga-data',[LembagaController::class, 'getlembaga_data'])->name('lembaga.data');
     Route::get('/pelatihan-lembaga', [LembagaController::class , 'index'])->name('lembaga.index');
     Route::get('/pelatihan-lembaga-create', [LembagaController::class, 'create'])->name('lembaga.create');
     Route::post('/pelatihan-lembaga-post', [LembagaController::class, 'store'])->name('lembaga.store');
@@ -158,6 +170,36 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga']], funct
     Route::post('/importPesertaTahfidz',[ImportController::class,'importPesertaTahfidz'])->name('import.pesertaTahfidz');
     Route::post('/importPesertaMunaqisy',[ImportController::class,'importPesertaMunaqisy'])->name('import.pesertaMunaqisy');
     Route::post('/importCabang',[ImportController::class, 'importCabang'])->name('import.cabang');
+    Route::post('/importRpq',[ImportController::class, 'importRpq'])->name('import.rpq');
+    Route::post('/importLembaga',[ImportController::class, 'importLembaga'])->name('import.lembaga');
 });
 
+//new route tilawati
+Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga']], function () {
+    Route::get('/diklat-cabang',[CabangCont::class, 'index'])->name('diklat.cabang');
+    Route::get('/diklat-cabang-data',[CabangCont::class, 'cabang_data'])->name('diklat.cabang_data');
+    Route::get('/diklat-cabang-total',[CabangCont::class, 'cabang_total'])->name('diklat.cabang_tot');
+    Route::get('/diklat-cabang-kabupaten-total',[CabangCont::class, 'cabang_kabupaten'])->name('diklat.cabang_kab');
+    Route::get('/diklat-cabang-provinsi-total',[CabangCont::class, 'cabang_provinsi'])->name('diklat.cabang_pro');
 
+    Route::get('/diklat-lembaga',[LembagaCont::class, 'index'])->name('diklat.lembaga');
+    Route::get('/diklat-lembaga-data',[LembagaCont::class, 'lembaga_data'])->name('diklat.lembaga_data');
+    Route::get('/diklat-lembaga-total',[LembagaCont::class, 'lembaga_total'])->name('diklat.lembaga_tot');
+    Route::get('/diklat-lembaga-kabupaten-total',[LembagaCont::class, 'lembaga_kabupaten'])->name('diklat.lembaga_kab');
+    Route::get('/diklat-lembaga-provinsi-total',[LembagaCont::class, 'lembaga_provinsi'])->name('diklat.lembaga_pro');
+
+    Route::get('/diklat-jenjang',[JenjangCont::class, 'index'])->name('diklat.jenjang');
+    Route::get('/diklat-jenjang-data',[JenjangCont::class, 'jenjang_data'])->name('diklat.jenjang_data');
+    Route::get('/diklat-jenjang-total',[JenjangCont::class, 'jenjang_total'])->name('diklat.jenjang_tot');
+
+    Route::get('/diklat-program',[ProgramCont::class, 'index'])->name('diklat.program');
+    Route::get('/diklat-program-data',[ProgramCont::class, 'program_data'])->name('diklat.program_data');
+    Route::get('/diklat-program-total',[ProgramCont::class, 'program_total'])->name('diklat.program_tot');
+
+    Route::get('/diklat-kriteria',[KriteriaCont::class, 'index'])->name('diklat.kriteria');
+    Route::get('/diklat-kriteria-data',[KriteriaCont::class, 'kriteria_data'])->name('diklat.kriteria_data');
+    Route::get('/diklat-kriteria-total',[KriteriaCont::class, 'kriteria_total'])->name('diklat.kriteria_tot');
+
+    Route::get('/diklat-ijazah-depan-guru',[CetakCont::class, 'depan_guru'])->name('diklat.depan_guru');
+    Route::get('/diklat-ijazah-depan-santri',[CetakCont::class, 'depan_santri'])->name('diklat.depan_santri');
+});

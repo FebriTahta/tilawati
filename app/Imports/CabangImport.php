@@ -5,6 +5,7 @@ use App\Models\Cabang;
 use App\Models\User;
 use App\Models\Kabupaten;
 use App\Models\Provinsi;
+use App\Models\Kepala;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -25,6 +26,8 @@ class CabangImport implements ToCollection, WithChunkReading, ShouldQueue
                 $username_user      = $row[1];
                 $kepala_cabang      = $row[2];
                 $cek_username       = User::where('username', $username_user)->first();
+                $cek_kepala         = Kepala::where('name', $kepala_cabang)->first();
+
                 if ($cek_username !== null) {
                     # code...
                     //tidak kosong pilih id user
@@ -43,8 +46,22 @@ class CabangImport implements ToCollection, WithChunkReading, ShouldQueue
                     $dt_cab     = new Cabang;
                     $dt_cab->user_id    = $dt_usr->id;
                     $dt_cab->name       = $row[1];
-                    $dt_cab->status     = 'Cabang';
+                    $dt_cab->status     = 'CABANG';
                     $dt_cab->alamat     = $row[3];
+                    
+                    $kode = mt_rand(100000, 999999);
+                    
+                    $cek_kode_cabang    = Cabang::where('kode', $kode)->first();
+                    if ($cek_kode_cabang == null) {
+                        # code...
+                        $dt_cab->kode       = $kode;
+                    } else {
+                        # code...
+                        $kode  = mt_rand(100000, 999999);
+                        $hasil = $kode + $key;
+                        $dt_cab->kode       = $hasil;
+                    }
+
                     //inisialisasi kota / kabupaten yang diinput
                     $kab     = strtoupper($row[4]);
                     $kab_kab = 'KAB. '.$kab;
@@ -57,7 +74,7 @@ class CabangImport implements ToCollection, WithChunkReading, ShouldQueue
                         $kabupaten_id = $tes_kab->id;
                         $dt_cab->kabupaten_id = $kabupaten_id;
                         $dt_cab->provinsi_id = $tes_kab->provinsi->id;
-                    }
+                    } 
                     if ($tes_kot !== null) {
                         # code...
                         $kabupaten_id = $tes_kot->id;
@@ -67,7 +84,25 @@ class CabangImport implements ToCollection, WithChunkReading, ShouldQueue
                     //lanut protses insert data
                     $dt_cab->telp       = $row[7];
                     $dt_cab->created_at = new \DateTime;
-                    $dt_cab->save();
+                    // $dt_cab->save();
+                    
+                    //inisialisasi kepala cabang ada atau tidak
+                    if ($cek_kepala !== null) {
+                        # code...
+                        // $dt_cab->kepala()->attach($cek_kepala);
+                        $kepala_id = $cek_kepala->id;
+                        $dt_cab->kepala_id = $kepala_id;
+                        $dt_cab->save();
+
+                    }else{
+                        $dt_kep = new Kepala;
+                        $dt_kep->name   = $kepala_cabang;
+                        $dt_kep->save();
+                        // $dt_cab->kepala()->attach($dt_kep);
+                        $kepala_id = $dt_kep->id;
+                        $dt_cab->kepala_id = $kepala_id;
+                        $dt_cab->save();
+                    }
                 }
             }   
         }

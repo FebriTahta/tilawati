@@ -146,6 +146,37 @@ class LembagaController extends Controller
         //
     }
 
+    public function getlembaga_data(Request $request)
+    {
+        if(request()->ajax())
+        {
+            $data   = Lembaga::orderBy('tahunmasuk','desc')
+            ->select('name','alamat','tahunmasuk','jml_guru','jml_santri','provinsi_id','kepala_id','kabupaten_id')
+            ->with('kepala','provinsi','kabupaten');
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->addColumn('kepala', function($data){
+                    if ($data->kepala == null) {
+                        # code...
+                        $kepala = '<span class="btn btn-sm badge badge-danger" data-toggle="modal"
+                        data-target="#tambah_kepala">Kosong</span>';
+                    } else {
+                        # code...
+                        $kepala = $data->kepala->name;
+                    }
+                    return $kepala;
+                })
+                ->addColumn('kabupaten', function ($data) {
+                    return $kabupaten = $data->kabupaten->nama;
+                })
+                ->addColumn('provinsi', function ($data) {
+                    return $provinsi = $data->provinsi->nama;
+                })                   
+                ->rawColumns(['kepala','kabupaten','provinsi'])
+                ->make(true);
+        }
+    }
+
     public function lembaga_view_cabang(Request $request)
     {
         if(request()->ajax())
@@ -162,4 +193,5 @@ class LembagaController extends Controller
                 return datatables()->of($data)->make(true);
         }
     }
+
 }

@@ -9,6 +9,12 @@
                 <li class="breadcrumb-item active" id="clock"></li>
             </ol>
         </div>
+        <div class="float-left page-breadcrumb">
+            <ol class="breadcrumb">
+                <span id="tgl"></span>&nbsp; <li class="breadcrumb-item active" id="bln"></li>
+                <li class="breadcrumb-item active" id="hari"></li>
+            </ol>
+        </div>
         {{-- <h5 class="page-title">Cabang</h5> --}}
     </div>
 </div>
@@ -19,95 +25,123 @@
     @include('layouts.sess.flash_message')
     <!--flash massage-->
     <div class="col-xl-2" style="align-content: center;text-align: center">
-        <div class="m-b-20" >
-            <div class="text-center bg-primary rounded p-3 m-t-10 "style="text-align: center; max-width: 100px;">
-                <p class="text-white mb-0" id="bln">October</p>
-                <h2 class="text-white mb-0" id="tgl"></h2>
-                <p class="text-white mb-0" id="hari"></p>
+        <div class="card mini-stat m-b-30">
+            <div class="p-3 text-white" style="background-color: rgb(0, 208, 223)">
+                <div class="mini-stat-icon">
+                    <i class="fa fa-building-o float-right mb-0"></i>
+                </div>
+                <h6 class="text-uppercase mb-0">TOTAL</h6>
             </div>
-            @if (auth()->user()->role=='pusat')
-            <div style="text-align: center; max-width: 100px;">
-                {{-- <button type="button" class="btn btn-primary m-t-10 waves-effect waves-light" data-toggle="modal" data-target=".bs-example-modal-lg" style="min-width: 100px"><i class="fa fa-plus"></i> Cabang</button> --}}
-                <a href="{{route('cabang.create')}}" type="button" class="btn btn-primary waves-effect waves-light m-t-20" style="min-width: 100px"><i class="fa fa-plus"></i> Cabang</a>
+            <div class="card-body text-left">
+                <div class="border-bottom">
+                    <blockquote class="blockquote font-18">
+                        <h2 id="cb">???</h2>
+                        <footer class="blockquote-footer">Cabang</footer>
+                    </blockquote>
+                </div>
             </div>
-            <div style="text-align: center; max-width: 100px;">
-                <button type="button" data-toggle="modal" data-target=".bs-example-modal-cabang" class="btn btn-primary waves-effect waves-dark m-t-20" style="min-width: 100px"><i class="fa fa-plus"></i> Import</button>
-            </div>
-            @endif
-        </div>
+        </div>        
     </div>
     <div class="col-xl-10">
-        <div class="card m-b-30 m-t-10">
+        <div class="card mini-stat m-b-30">
+            <div class="p-3 text-white" style="background-color: rgb(0, 208, 223)">
+                <div class="mini-stat-icon">
+                    <i class="fa fa-building-o float-right mb-0"></i>
+                </div>
+                <h6 class="text-uppercase mb-0">data cabang</h6>
+            </div>
+            <div class="card-body">
+                <div class="border-bottom">
+                    <div class="m-t-20 m-b-20 text-right" style="margin-right: 15px">
+                        <button type="button" data-toggle="modal" data-target=".bs-example-modal-cabang" class="btn btn-primary waves-effect waves-dark btn-sm"><i class="mdi mdi-cloud-upload"></i> Import Cabang</button>
+                        <button type="button" data-toggle="modal" data-target=".bs-example-modal-rpq" class="btn btn-primary waves-effect waves-dark btn-sm"><i class="mdi mdi-cloud-upload"></i> Import RPQ</button>
+                        <a href="{{route('cabang.create')}}" type="button" class="btn btn-primary waves-effect waves-light btn-sm"><i class="fa fa-plus"></i> Cabang</a>
+                    </div>
+                    <blockquote class="text-left">
+                        <table id="datatable_cabang" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0;width: 100%">
+                            <thead class="mt-100">
+                            <tr>
+                                {{-- <th>Nama Cabang</th>
+                                <th>Kepala Cabang</th>
+                                <th>Provinsi</th>
+                                <th>Kabupaten</th>
+                                <th>Kecamatan</th>
+                                <th>Kelurahan</th>
+                                <th>Alamat</th>
+                                <th>Telephone</th>
+                                <th>Email</th>
+                                <th>Teritorial</th>
+                                <th>Kode Pos</th>
+                                <th>Alamat Ekspedisi</th>
+                                <th>Total Lembaga Yang Dinaungi </th>
+                                <th class="text-center">Opsi</th> --}}
+                                <th>Cabang</th>
+                                <th>Kepala</th>
+                                <th>Kota / Kabupaten</th>
+                                <th>Provinsi</th>
+                                <th>Telp</th>
+                                <th>Alamat</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <?php $item=auth()->user() ?>
+                                {{-- @if ( $item->role == "cabang")
+                                    <tr>
+                                        <td>{{ $item->cabang->name }}</td>
+                                        <td>{{ $item->cabang->kepala->name }}</td>
+                                        <td>{{ $item->cabang->provinsi->nama }}</td>
+                                        <td>{{ $item->cabang->kabupaten->nama }}</td>
+                                        <td>{{ $item->cabang->kecamatan->nama }}</td>
+                                        <td>{{ $item->cabang->kelurahan->nama }}</td>
+                                        <td>{{ $item->cabang->alamat }}</td>
+                                        <td>{{ $item->cabang->telp }}</td>
+                                        <td>{{ $item->cabang->user->email }}</td>
+                                        <td>{{ $item->cabang->teritorial }}</td>
+                                        <td>{{ $item->cabang->pos }}</td>
+                                        <td>{{ $item->cabang->ekspedisi }} lembaga</td>
+                                        
+                                        <td class="text-center">
+                                            <button type="button" data-id="{{ $item->cabang->id }}" data-name="{{ $item->cabang->name }}" class="btn waves-effect waves-light text-white" style="background-color: rgb(134, 134, 252)" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="fa fa-pencil"></i></button>
+                                            <button type="button" data-id="{{ $item->cabang->id }}" data-name="{{ $item->cabang->name }}" class="btn btn-danger waves-effect waves-light" data-toggle="modal" data-target=".bs-example-modal-center"><i class="fa fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                @else
+                                    @foreach ($dt_cabang as $item)
+                                    <tr>
+                                        <td>{{ $item->name }}</td>
+                                        <td>{{ $item->kepala->name }}</td>
+                                        <td>{{ $item->provinsi->nama }}</td>
+                                        <td>{{ $item->kabupaten->nama }}</td>
+                                        <td>{{ $item->kecamatan->nama }}</td>
+                                        <td>{{ $item->kelurahan->nama }}</td>
+                                        <td>{{ $item->alamat }}</td>
+                                        <td>{{ $item->telp }}</td>
+                                        <td>{{ $item->user->email }}</td>
+                                        <td>{{ $item->teritorial }}</td>
+                                        <td>{{ $item->pos }}</td>
+                                        <td>{{ $item->ekspedisi }}</td>
+                                        <td>{{ $item->lembaga->count() }} lembaga</td>
+                                        <td class="text-center">
+                                            <a href="{{ route('cabang.edit',$item->id) }}" type="button" class="btn waves-effect waves-light text-white" style="background-color: rgb(134, 134, 252)"><i class="fa fa-pencil"></i></a>
+                                            <button type="button" data-id="{{ $item->id }}" data-name="{{ $item->name }}" class="btn btn-danger waves-effect waves-light" data-toggle="modal" data-target=".bs-example-modal-center"><i class="fa fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                @endif --}}
+                            </tbody>
+                        </table>
+                        <footer class="blockquote-footer">Data cabang terbaru berdasarkan tahun 2021</footer>
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+        <div class="card m-b-30 ">
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        <div class="card-body">                      
-                            <table id="datatable" class="table datas table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                                <thead class="mt-100">
-                                <tr>
-                                    <th>Nama Cabang</th>
-                                    <th>Kepala Cabang</th>
-                                    <th>Provinsi</th>
-                                    <th>Kabupaten</th>
-                                    <th>Kecamatan</th>
-                                    <th>Kelurahan</th>
-                                    <th>Alamat</th>
-                                    <th>Telephone</th>
-                                    <th>Email</th>
-                                    <th>Teritorial</th>
-                                    <th>Kode Pos</th>
-                                    <th>Alamat Ekspedisi</th>
-                                    <th>Total Lembaga Yang Dinaungi </th>
-                                    <th class="text-center">Opsi</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                    <?php $item=auth()->user() ?>
-                                    @if ( $item->role == "cabang")
-                                        <tr>
-                                            <td>{{ $item->cabang->name }}</td>
-                                            <td>{{ $item->cabang->kepala->name }}</td>
-                                            <td>{{ $item->cabang->provinsi->nama }}</td>
-                                            <td>{{ $item->cabang->kabupaten->nama }}</td>
-                                            <td>{{ $item->cabang->kecamatan->nama }}</td>
-                                            <td>{{ $item->cabang->kelurahan->nama }}</td>
-                                            <td>{{ $item->cabang->alamat }}</td>
-                                            <td>{{ $item->cabang->telp }}</td>
-                                            <td>{{ $item->cabang->user->email }}</td>
-                                            <td>{{ $item->cabang->teritorial }}</td>
-                                            <td>{{ $item->cabang->pos }}</td>
-                                            <td>{{ $item->cabang->ekspedisi }} lembaga</td>
-                                            
-                                            <td class="text-center">
-                                                <button type="button" data-id="{{ $item->cabang->id }}" data-name="{{ $item->cabang->name }}" class="btn waves-effect waves-light text-white" style="background-color: rgb(134, 134, 252)" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="fa fa-pencil"></i></button>
-                                                <button type="button" data-id="{{ $item->cabang->id }}" data-name="{{ $item->cabang->name }}" class="btn btn-danger waves-effect waves-light" data-toggle="modal" data-target=".bs-example-modal-center"><i class="fa fa-trash"></i></button>
-                                            </td>
-                                        </tr>
-                                    @else
-                                        @foreach ($dt_cabang as $item)
-                                        <tr>
-                                            <td>{{ $item->name }}</td>
-                                            <td>{{ $item->kepala->name }}</td>
-                                            <td>{{ $item->provinsi->nama }}</td>
-                                            <td>{{ $item->kabupaten->nama }}</td>
-                                            <td>{{ $item->kecamatan->nama }}</td>
-                                            <td>{{ $item->kelurahan->nama }}</td>
-                                            <td>{{ $item->alamat }}</td>
-                                            <td>{{ $item->telp }}</td>
-                                            <td>{{ $item->user->email }}</td>
-                                            <td>{{ $item->teritorial }}</td>
-                                            <td>{{ $item->pos }}</td>
-                                            <td>{{ $item->ekspedisi }}</td>
-                                            <td>{{ $item->lembaga->count() }} lembaga</td>
-                                            <td class="text-center">
-                                                <a href="{{ route('cabang.edit',$item->id) }}" type="button" class="btn waves-effect waves-light text-white" style="background-color: rgb(134, 134, 252)"><i class="fa fa-pencil"></i></a>
-                                                <button type="button" data-id="{{ $item->id }}" data-name="{{ $item->name }}" class="btn btn-danger waves-effect waves-light" data-toggle="modal" data-target=".bs-example-modal-center"><i class="fa fa-trash"></i></button>
-                                            </td>
-                                        </tr>
-                                        @endforeach
-                                    @endif
-                                </tbody>
-                            </table>
+                        <div class="card-body mini-stat m-b-30">
+                            
+                            
                         </div>
                     </div>
                 </div> <!-- end col -->
@@ -245,7 +279,7 @@
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
-<!-- modal import -->
+<!-- modal import cabang-->
 <div class="col-sm-6 col-md-3 m-t-30">
     <div class="modal fade bs-example-modal-cabang" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -265,7 +299,7 @@
                                         <input type="hidden" id="import_tipe" value="munaqisy">
                                         <div class="form-group">
                                             <label for="">Import Data "Cabang" (hanya Excel File format .xlsx)</label>
-                                            <input type="file" class="form-control" name="file" accept=".xlsx" required>
+                                            <input type="file" class="form-control" name="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" required>
                                         </div>
                                         <div class="form-group">
                                             <input type="submit" name="import" id="btnimport" class="btn btn-info" value="Import" />
@@ -280,11 +314,97 @@
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 </div>
+
+<!-- modal import cabang-->
+<div class="col-sm-6 col-md-3 m-t-30">
+    <div class="modal fade bs-example-modal-rpq" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title mt-0">IMPORT DATA RPQ </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-xl-12">
+                        <div class="card m-b-30">
+                            <div class="card-body">
+                                <div class="container-fluid">
+                                    <form id="importrpq"  method="POST" enctype="multipart/form-data">@csrf
+                                        <input type="hidden" id="import_tipe" value="munaqisy">
+                                        <div class="form-group">
+                                            <label for="">Import Data "RPQ" (hanya Excel File format .xlsx)</label>
+                                            <input type="file" class="form-control" name="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="submit" name="import" id="btnimportrpq" class="btn btn-info" value="Import"/>
+                                        </div>
+                                    </form>
+                                </div><!-- container fluid -->
+                            </div>
+                        </div>
+                    </div> <!-- end col -->
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+</div>
 @endsection
 @section('script')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.all.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 <script type="application/javascript">
+
+    $(document).ready(function() {
+        $.ajax({
+            url:'{{ route("dashboard.cabang") }}',
+            type: 'get',
+            dataType: 'json',
+            success:function(data) {
+                document.getElementById('cb').innerHTML = data;
+                console.log(data);
+            }
+        });
+        $('#datatable_cabang').DataTable({
+        //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
+        destroy: true,
+        processing: true,
+        serverSide: true,
+        ajax: {
+            url:'{{ route("cabang.data") }}',
+        },
+        columns: [
+            {
+            data:'name',
+            name:'name'
+            },
+            {
+            data:'kepala',
+            name:'kepala.name'
+            },
+            {
+            data:'kabupaten',
+            name:'kabupaten.nama'
+            },
+            {
+            data:'provinsi',
+            name:'provinsi.nama'
+            },
+            {
+            data:'telp',
+            name:'telp'
+            },
+            {
+            data:'alamat',
+            name:'alamat'
+            }
+        ]
+        });
+    })
+
     $('.bs-example-modal-center').on('show.bs.modal', function(event) {
         var button = $(event.relatedTarget)
         var id = button.data('id')
@@ -308,18 +428,81 @@
         processData: false,
         beforeSend:function(){
             $('#btnimport').attr('disabled','disabled');
-            $('#btnimport').val('Importing');
+            $('#btnimport').val('Importing Process');
         },
         success: function(data){
             if(data.success)
             {
+                //get total data cabang
+                $.ajax({
+                    url:'{{ route("dashboard.cabang") }}',
+                    type: 'get',
+                    dataType: 'json',
+                    success:function(data) {
+                        document.getElementById('cb').innerHTML = data;
+                        console.log(data);
+                    }
+                });
+                //sweetalert and refresh datatable
                 $("#importcabang")[0].reset();
                 toastr.success(data.success);
-                // $("#bs-example-modal-center1").modal('hide');
-                // var oTable = $('#datatable').dataTable();
-                // oTable.fnDraw(false);
+                var oTable = $('#datatable_cabang').dataTable();
+                oTable.fnDraw(false);
                 $('#btnimport').val('Import');
-                $('#btnimport').attr('disabled',false);                            
+                $('#btnimport').attr('disabled',false);
+                $('.bs-example-modal-cabang').modal('hide');
+                swal("Done!", data.message, "success");
+            }
+            if(data.error)
+            {
+                $('#message').html('<div class="alert alert-danger">'+data.error+'</div>');
+                $('#btnimport').attr('disabled',false);
+                $('#btnimport').val('Import');
+            }
+        },
+        error: function(data)
+        {
+            console.log(data);
+            }
+        });
+    });
+
+    $('#importrpq').submit(function(e) {
+        e.preventDefault();
+        var formData = new FormData(this);
+        $.ajax({
+        type:'POST',
+        url: "{{ route('import.rpq')}}",
+        data: formData,
+        cache:false,
+        contentType: false,
+        processData: false,
+        beforeSend:function(){
+            $('#btnimportrpq').attr('disabled','disabled');
+            $('#btnimportrpq').val('Importing Process');
+        },
+        success: function(data){
+            if(data.success)
+            {
+                //get total data cabang
+                $.ajax({
+                    url:'{{ route("dashboard.cabang") }}',
+                    type: 'get',
+                    dataType: 'json',
+                    success:function(data) {
+                        document.getElementById('cb').innerHTML = data;
+                        console.log(data);
+                    }
+                });
+                //sweetalert and refresh datatable
+                $("#importrpq")[0].reset();
+                toastr.success(data.success);
+                var oTable = $('#datatable_cabang').dataTable();
+                oTable.fnDraw(false);
+                $('#btnimport').val('Import');
+                $('#btnimport').attr('disabled',false);
+                $('.bs-example-modal-rpq').modal('hide');
+                swal("Done!", data.message, "success");
             }
             if(data.error)
             {

@@ -19,7 +19,7 @@ class CreatePelatihansTable extends Migration
             $table->unsignedBigInteger('program_id');
             $table->date('tanggal');
             $table->integer('nomer')->nullable();
-            $table->string('name');
+            $table->string('name')->index();
             $table->longText('tempat')->nullable();
             $table->text('keterangan');
             $table->timestamps();

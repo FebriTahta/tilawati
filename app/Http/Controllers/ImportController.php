@@ -9,6 +9,8 @@ use App\Imports\PesertaToTImport;
 use App\Imports\PesertaTahfidzImport;
 use App\Imports\PesertaMunaqisyImport;
 use App\Imports\CabangImport;
+use App\Imports\LembagaImport;
+use App\Imports\RpqImport;
 use Illuminate\Http\Request;
 use Excel;
 
@@ -77,4 +79,23 @@ class ImportController extends Controller
             'success'=>'Data Cabang Berhasil Ditambahkan Melalui file Excel'
         ]);
     }
+
+    public function importRpq(Request $request)
+    {
+        $data = Excel::queueImport(new RpqImport(), $request->file('file'));
+        return Response()->json([
+            $data,
+            'success'=>'Data Rpq Berhasil Ditambahkan Melalui file Excel'
+        ]);
+    }
+
+    public function importLembaga(Request $request)
+    {
+        $data = Excel::queueImport(new LembagaImport(), $request->file('file'));
+        return Response()->json([
+            $data,
+            'success'=>'Data Lembaga Berhasil Ditambahkan Melalui file Excel'
+        ]);
+    }
+
 }

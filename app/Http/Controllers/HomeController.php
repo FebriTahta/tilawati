@@ -24,6 +24,7 @@ class HomeController extends Controller
     public function index()
     {
         // return view('home');
-        return redirect('dashboard');
+        // return redirect('dashboard');
+        return redirect('/diklat-cabang');
     }
 }

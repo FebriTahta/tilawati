@@ -15,27 +15,23 @@ class CreateKepalasTable extends Migration
     {
         Schema::create('kepalas', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('nik')->nullable();
-            $table->string('name');
+            $table->bigInteger('nik')->nullable()->index();
+            $table->string('name')->index();
             $table->string('tmptlahir')->nullable();
             $table->string('tgllahir')->nullable();
             $table->string('alamat')->nullable();
-            $table->unsignedBigInteger('lembaga_id')->nullable();
+            // $table->unsignedBigInteger('lembaga_id')->nullable();
             $table->unsignedBigInteger('provinsi_id')->nullable();
-            $table->unsignedBigInteger('kabupaten_id')->nullable();
+            $table->unsignedBigInteger('kabupaten_id')->nullable()->index();
             $table->unsignedBigInteger('kecamatan_id')->nullable();
             $table->unsignedBigInteger('kelurahan_id')->nullable();
             $table->string('telp')->nullable();
             $table->string('gender')->nullable();
-            $table->string('pekerjaan')->nullable();
-            $table->string('pendidikanter')->nullable();
-            $table->string('tahunlulus')->nullable();
+            $table->string('pekerjaan')->nullable()->index();
+            $table->string('pendidikanter')->nullable()->index();
+            $table->string('tahunlulus')->nullable()->index();
             $table->timestamps();
             $table->softDeletes();
-        });
-
-        Schema::table('kepalas', function (Blueprint $table){
-            $table->foreign('lembaga_id')->references('id')->on('lembagas')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

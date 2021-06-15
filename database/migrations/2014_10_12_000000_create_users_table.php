@@ -17,8 +17,8 @@ class CreateUsersTable extends Migration
             $table->bigIncrements('id');
             // $table->unsignedBigInteger('cabang_id')->references('id')->on('cabangs')->onDelete('cascade')->onUpdate('cascade')->nullable();
             // $table->unsignedBigInteger('lembaga_id')->references('id')->on('lembagas')->onDelete('cascade')->onUpdate('cascade')->nullable();
-            $table->string('username');
-            $table->string('email')->nullable();
+            $table->string('username')->index();
+            $table->string('email')->nullable()->index();
             $table->string('role');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

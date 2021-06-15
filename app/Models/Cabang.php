@@ -13,6 +13,7 @@ class Cabang extends Model
         'user_id',
         'name',
         'status',
+        'kode',
         'provinsi_id',
         'kabupaten_id',
         'kecamatan_id',
@@ -25,10 +26,6 @@ class Cabang extends Model
     ];
     protected $dates = ['deleted_at'];
 
-    public function kota()
-    {
-        return $this->belongsTo(Kota::class);
-    }
 
     public function provinsi()
     {
@@ -67,6 +64,6 @@ class Cabang extends Model
 
     public function kepala()
     {
-        return $this->belongsToMany(Kepala::class);
+        return $this->belongsTo(Kepala::class);
     }
 }

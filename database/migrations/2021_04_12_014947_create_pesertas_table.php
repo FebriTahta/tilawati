@@ -18,12 +18,12 @@ class CreatePesertasTable extends Migration
             $table->unsignedBigInteger('pelatihan_id');
             $table->date('tanggal');
             $table->string('lembaga')->nullable();
-            $table->string('name');
-            $table->string('tmptlahir')->nullable();
+            $table->string('name')->index();
+            $table->string('tmptlahir')->nullable()->index();
             $table->string('tgllahir')->nullable();
-            $table->longText('alamat')->nullable();
-            $table->string('kota')->nullable();
-            $table->string('telp')->nullable();
+            $table->longText('alamat')->nullable()->index();
+            $table->string('kota')->nullable()->index();
+            $table->string('telp')->nullable()->index();
             $table->string('email')->nullable();
             $table->integer('tf')->nullable();
             $table->integer('fs')->nullable();
