@@ -29,11 +29,8 @@
                         <div class="col-lg-12">
                             <div class="card">
                                 <div class="card-body">
-                    
                                     <h4 class="card-title">Data ijazah depan guru</h4>
                                     <p class="card-title-desc">Ter-update berdasarkan Tahun 2021 </br></p>
-                                    
-                    
                                     <blockquote class="blockquote font-size-16 mb-0 mt-2">
                                         <form target="_blank" action="{{ route('depan.cetak') }}" method="POST">@csrf
                                             <div class="form-group">
@@ -44,7 +41,7 @@
                                                         <option value="{{ $item->id }}">{{ $item->name }}</option>
                                                     @endforeach
                                                 </select>
-                                            </div>    
+                                            </div>
                                             <div class="form-group">
                                                 <label for="">Program Pelatihan</label>
                                                 <select name="pelatihan_id" id="" class="form-control" required>
@@ -57,7 +54,6 @@
                                         </form>
                                         <footer class="blockquote-footer">Updated at  <cite title="Source Title">2021</cite></footer>
                                     </blockquote>
-                    
                                 </div>
                             </div>
                         </div>

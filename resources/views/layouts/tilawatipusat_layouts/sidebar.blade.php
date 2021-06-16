@@ -36,10 +36,10 @@
 
                 <li class="menu-title">Data Entri</li>
                 <li>
-                    <a href="javascript: void(0);" class="waves-effect">
+                    <a href="{{ route('diklat.diklat') }}" class="waves-effect">
                         <i class="mdi mdi-pencil"></i>
                         <span class="badge badge-pill badge-danger float-right"></span>
-                        <span>Diklat</span>
+                        <span>Data Diklat</span>
                     </a>
                 </li>
 

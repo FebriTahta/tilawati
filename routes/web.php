@@ -21,6 +21,7 @@ use App\Http\Controllers\JenjangCont;
 use App\Http\Controllers\ProgramCont;
 use App\Http\Controllers\KriteriaCont;
 use App\Http\Controllers\CetakCont;
+use App\Http\Controllers\DiklatCont;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -200,6 +201,11 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga']], funct
     Route::get('/diklat-kriteria-data',[KriteriaCont::class, 'kriteria_data'])->name('diklat.kriteria_data');
     Route::get('/diklat-kriteria-total',[KriteriaCont::class, 'kriteria_total'])->name('diklat.kriteria_tot');
 
+    Route::get('/diklat-diklat',[DiklatCont::class, 'index'])->name('diklat.diklat');
+    Route::get('/diklat-diklat-data',[DiklatCont::class, 'diklat_data'])->name('diklat.diklat_data');
+    Route::get('/diklat-diklat-total',[DiklatCont::class, 'diklat_total'])->name('diklat.diklat_tot');
+    Route::post('/diklat-diklat-cabang-select',[DiklatCont::class, 'diklat_cabang_select'])->name('diklat.diklat_cabang_select');
+    
     Route::get('/diklat-ijazah-depan-guru',[CetakCont::class, 'depan_guru'])->name('diklat.depan_guru');
     Route::get('/diklat-ijazah-depan-santri',[CetakCont::class, 'depan_santri'])->name('diklat.depan_santri');
 });
