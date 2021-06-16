@@ -13,6 +13,7 @@ class CreateCabangsTable extends Migration
      */
     public function up()
     {
+        Schema::defaultStringLength(255);
         Schema::create('cabangs', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('kode')->index();

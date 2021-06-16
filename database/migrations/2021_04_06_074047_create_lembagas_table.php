@@ -13,6 +13,7 @@ class CreateLembagasTable extends Migration
      */
     public function up()
     {
+        Schema::defaultStringLength(255);
         Schema::create('lembagas', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('kode')->index();
