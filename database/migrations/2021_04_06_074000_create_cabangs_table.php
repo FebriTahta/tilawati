@@ -18,7 +18,7 @@ class CreateCabangsTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('kode')->index();
             $table->unsignedBigInteger('user_id');
-            $table->string('name')->index();
+            $table->string('name')->nullable();
             $table->string('status')->nullable();
             $table->unsignedBigInteger('kepala_id')->nullable();
             $table->unsignedBigInteger('provinsi_id')->nullable();

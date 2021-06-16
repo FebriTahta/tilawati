@@ -19,7 +19,7 @@ class CreateLembagasTable extends Migration
             $table->bigInteger('kode')->index();
             $table->unsignedBigInteger('user_id')->nullable();
             $table->unsignedBigInteger('cabang_id')->references('id')->on('cabangs')->onDelete('cascade')->onUpdate('cascade')->nullable();
-            $table->longText('name', 191)->nullable()->index();
+            $table->longText('name')->nullable();
             $table->longText('alamat')->nullable();
             $table->unsignedBigInteger('kepala_id')->references('id')->on('kepalas')->onUpdate('cascade')->nullable();
             $table->unsignedBigInteger('jenjang_id')->references('id')->on('jenjangs')->onUpdate('cascade')->nullable();
