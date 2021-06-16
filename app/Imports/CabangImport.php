@@ -37,7 +37,7 @@ class CabangImport implements ToCollection, WithChunkReading, ShouldQueue
                     //kosong buat user bar
                     $dt_usr     = new User;
                     $dt_usr->username = $username_user;
-                    $dt_usr->password = Hash::make($row[2]);
+                    $dt_usr->password = Hash::make('cabang_nf');
                     $dt_usr->role     = $row[2];
                     $dt_usr->email    = $row[8];
                     $dt_usr->created_at = new \DateTime;

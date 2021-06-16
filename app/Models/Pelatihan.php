@@ -13,6 +13,8 @@ class Pelatihan extends Model
         'cabang_id',
         'program_id',
         'name',
+        'keterangan',
+        'tempat'
     ];
     protected $dates = ['deleted_at'];
 

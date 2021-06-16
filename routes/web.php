@@ -23,6 +23,7 @@ use App\Http\Controllers\ProgramCont;
 use App\Http\Controllers\KriteriaCont;
 use App\Http\Controllers\CetakCont;
 use App\Http\Controllers\DiklatCont;
+use App\Http\Controllers\PesertaCont;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -205,8 +206,17 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga']], funct
     Route::get('/diklat-diklat',[DiklatCont::class, 'index'])->name('diklat.diklat');
     Route::get('/diklat-diklat-data',[DiklatCont::class, 'diklat_data'])->name('diklat.diklat_data');
     Route::get('/diklat-diklat-total',[DiklatCont::class, 'diklat_total'])->name('diklat.diklat_tot');
-    Route::post('/diklat-diklat-cabang-select',[DiklatCont::class, 'diklat_cabang_select'])->name('diklat.diklat_cabang_select');
+    Route::get('/diklat-diklat-cabang-select',[DiklatCont::class, 'diklat_cabang_select'])->name('diklat.diklat_cabang_select');
+    Route::get('/diklat-diklat-create', [DiklatCont::class, 'create'])->name('diklat.create');
+    Route::get('/diklat-diklat-cabang-id-select/{name}',[DiklatCont::class, 'diklat_cabang_select_id'])->name('diklat.diklat_cabang_id');
+    Route::post('/diklat-diklat-post',[DiklatCont::class, 'store'])->name('diklat.store');
+
+    Route::get('/diklat-peserta/{id}',[PesertaCont::class, 'index'])->name('diklat.peserta');
+    Route::get('/diklat-peserta-data',[PesertaCont::class, 'peserta_data'])->name('diklat.peserta_data');
+    Route::get('/diklat-peserta-total',[PesertaCont::class, 'peserta_total'])->name('diklat.peserta_tot');
     
     Route::get('/diklat-ijazah-depan-guru',[CetakCont::class, 'depan_guru'])->name('diklat.depan_guru');
     Route::get('/diklat-ijazah-depan-santri',[CetakCont::class, 'depan_santri'])->name('diklat.depan_santri');
+
+
 });

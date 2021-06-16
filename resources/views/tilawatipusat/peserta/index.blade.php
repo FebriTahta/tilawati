@@ -1,6 +1,6 @@
 @extends('layouts.tilawatipusat_layouts.master')
 
-@section('title') diklat @endsection
+@section('title') peserta @endsection
 @section('css')
 
     <!-- DataTables -->
@@ -16,14 +16,14 @@
 @section('content')
 
     @component('common-tilawatipusat.breadcrumb')
-         @slot('title') diklat   @endslot
-         @slot('title_li') diklat Tilawati   @endslot
+         @slot('title') peserta   @endslot
+         @slot('title_li') peserta Tilawati   @endslot
     @endcomponent
                     <div class="row">
                         <div class="col-xl-4">
                             @component('common-tilawatipusat.dashboard-widget')
                             
-                                @slot('title') <b id="cb"> 2,456 </b> diklat  @endslot
+                                @slot('title') <b id="cb"> 2,456 </b> peserta  @endslot
                                 @slot('iconClass') mdi mdi-tag-plus-outline  @endslot
                                 @slot('price')   @endslot
                                 
@@ -36,16 +36,16 @@
                             <div class="card">
                                 <div class="card-body">
                     
-                                    <h4 class="card-title">Data diklat</h4>
+                                    <h4 class="card-title">Data peserta</h4>
                                     <p class="card-title-desc">Ter-update berdasarkan Tahun 2021 </br></p>
-                                    {{-- <button class="btn btn-sm btn-success  mr-1" style="width:130px " data-toggle="modal" data-target=".bs-example-modal-diklat"><i class="mdi mdi-plus"></i> tambah diklat</button> --}}
-                                    <a class="btn btn-sm btn-success  mr-1" style="width:130px " href="{{ route('diklat.create') }}"><i class="mdi mdi-plus"></i> tambah diklat</a>
+                                    {{-- <button class="btn btn-sm btn-success  mr-1" style="width:130px " data-toggle="modal" data-target=".bs-example-modal-peserta"><i class="mdi mdi-plus"></i> tambah peserta</button> --}}
+                                    <a class="btn btn-sm btn-success  mr-1" style="width:130px " href="#"><i class="mdi mdi-plus"></i> tambah peserta</a>
                     
                                     <blockquote class="blockquote font-size-16 mb-0 mt-2">
-                                        <table id="datatable-buttons" class="table table-diklat table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
+                                        <table id="datatable-buttons" class="table table-peserta table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
                                             <thead class="text-bold text-primary" style="text-transform: capitalize">
                                                 <tr>
-                                                    <th>diklat</th>
+                                                    <th>peserta</th>
                                                     <th>program</th>
                                                     <th>cabang</th>
                                                     <th>tempat</th>
@@ -60,7 +60,7 @@
 
                                             <tfoot class="text-primary" style="text-transform: capitalize">
                                                 <tr>
-                                                    <th>diklat</th>
+                                                    <th>peserta</th>
                                                     <th>program</th>
                                                     <th>cabang</th>
                                                     <th>tempat</th>
@@ -78,6 +78,26 @@
                         </div>
                     </div>
                     <!-- end row -->
+
+                    <!--modal import peserta-->
+                    <div class="col-sm-6 col-md-3 m-t-30">
+                        <div class="modal fade bs-example-modal-peserta" id="modal1" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title mt-0">peserta BARU</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    
+                                    <div class="modal-body">
+                                       
+                                    </div>
+                                </div><!-- /.modal-content -->
+                            </div><!-- /.modal-dialog -->
+                        </div><!-- /.modal -->
+                    </div>
 
 @endsection
 
@@ -110,30 +130,8 @@
         <script>
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             $(document).ready(function(){
-                $('#sel_cabang').select2('destroy').select2({
-                    placeholder: 'Select an item',
-                    ajax: {
-                        url: "{{route('diklat.diklat_cabang_select')}}",
-                        dataType: 'json',
-                        delay: 250,
-                        processResults: function (data) {
-                        return {
-                            results:  $.map(data, function (item) {
-                                return {
-                                    text: item.kode,
-                                    text: item.name,
-                                    id: item.id   
-                                }
-                            })
-                        };
-                        },
-                        cache: true
-                    }
-                });
-
-                
                 $.ajax({
-                    url:'{{ route("diklat.diklat_tot") }}',
+                    url:'{{ route("diklat.peserta_tot") }}',
                     type: 'get',
                     dataType: 'json',
                     success:function(data) {
@@ -148,7 +146,7 @@
                 processing: true,
                 serverSide: true,
                 ajax: {
-                    url:'{{ route("diklat.diklat_data") }}',
+                    url:'{{ route("diklat.peserta_data") }}',
                 },
                 columns: [
                     
