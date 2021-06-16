@@ -21,7 +21,7 @@ class CreatePesertasTable extends Migration
             $table->string('name')->index();
             $table->string('tmptlahir')->nullable()->index();
             $table->string('tgllahir')->nullable();
-            $table->longText('alamat')->nullable()->index();
+            $table->longText('alamat')->nullable();
             $table->string('kota')->nullable()->index();
             $table->string('telp')->nullable()->index();
             $table->string('email')->nullable();
