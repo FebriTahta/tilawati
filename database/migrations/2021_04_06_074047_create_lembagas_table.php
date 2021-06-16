@@ -15,7 +15,7 @@ class CreateLembagasTable extends Migration
     {
         Schema::create('lembagas', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->text('kode')->unique()->index();
+            $table->text('kode')->index();
             $table->unsignedBigInteger('user_id')->nullable();
             $table->unsignedBigInteger('cabang_id')->references('id')->on('cabangs')->onDelete('cascade')->onUpdate('cascade')->nullable();
             $table->longText('name')->nullable()->index();

@@ -15,7 +15,7 @@ class CreateCabangsTable extends Migration
     {
         Schema::create('cabangs', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->text('kode')->unique()->index();
+            $table->text('kode')->index();
             $table->unsignedBigInteger('user_id');
             $table->string('name')->index();
             $table->string('status')->nullable();
