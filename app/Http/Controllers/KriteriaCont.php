@@ -19,6 +19,14 @@ class KriteriaCont extends Controller
         {
             $data   = Kriteria::all();
             return DataTables::of($data)
+            ->addColumn('option', function ($data) {
+                $btn = ' <button class="btn btn-sm btn-warning" data-toggle="modal" data-target=".bs-example-modal-kriteria-update"
+                data-id="'.$data->id.'" data-name="'.$data->name.'" data-untuk="'.$data->untuk.'"><i class="mdi mdi-pencil-outline"></i></button>';
+                $btn .= ' <button class="btn btn-sm btn-danger" data-toggle="modal" data-target=".bs-example-modal-kriteria-hapus"
+                data-id="'.$data->id.'"><i class="fa fa-trash"></i> </button>';
+                return $btn;
+            })
+            ->rawColumns(['option'])
             ->make(true);
         }
     }
@@ -41,5 +49,36 @@ class KriteriaCont extends Controller
                 return response()->json($data,200);
             }
         }
+    }
+
+    public function store(Request $request){
+        Kriteria::updateOrCreate(
+            [
+              'id' => $request->id
+            ],
+            [
+                'name' => $request->name,
+                'untuk' => $request->untuk,
+            ]
+        );
+      
+        return response()->json(
+            [
+              'success' => 'Kriteria Baru Berhasil Ditambahkan!',
+              'message' => 'Kriteria Baru Berhasil Ditambahkan!'
+            ]
+        );
+    }
+
+    public function delete(Request $request){
+        $id = $request->id;
+        Kriteria::find($id)->delete();
+        return response()->json(
+            [
+              'success' => 'Kriteria Tersebut Berhasil Dihapus!',
+              'message' => 'Kriteria Tersebut Berhasil Dihapus!'
+            ]
+        );
+
     }
 }

@@ -195,6 +195,8 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga']], funct
     Route::get('/diklat-jenjang',[JenjangCont::class, 'index'])->name('diklat.jenjang');
     Route::get('/diklat-jenjang-data',[JenjangCont::class, 'jenjang_data'])->name('diklat.jenjang_data');
     Route::get('/diklat-jenjang-total',[JenjangCont::class, 'jenjang_total'])->name('diklat.jenjang_tot');
+    Route::post('/diklat-jenjang-store',[JenjangCont::class, 'store'])->name('diklat.jenjang_store');
+    Route::post('/diklat-jenjang-delete',[JenjangCont::class, 'delete'])->name('diklat.jenjang_delete');
 
     Route::get('/diklat-program',[ProgramCont::class, 'index'])->name('diklat.program');
     Route::get('/diklat-program-data',[ProgramCont::class, 'program_data'])->name('diklat.program_data');
@@ -205,6 +207,8 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga']], funct
     Route::get('/diklat-kriteria',[KriteriaCont::class, 'index'])->name('diklat.kriteria');
     Route::get('/diklat-kriteria-data',[KriteriaCont::class, 'kriteria_data'])->name('diklat.kriteria_data');
     Route::get('/diklat-kriteria-total',[KriteriaCont::class, 'kriteria_total'])->name('diklat.kriteria_tot');
+    Route::post('/diklat-kriteria-store',[KriteriaCont::class, 'store'])->name('diklat.kriteria_store');
+    Route::post('/diklat-kriteria-delete',[KriteriaCont::class, 'delete'])->name('diklat.kriteria_delete');
 
     Route::get('/diklat-diklat',[DiklatCont::class, 'index'])->name('diklat.diklat');
     Route::get('/diklat-diklat-data',[DiklatCont::class, 'diklat_data'])->name('diklat.diklat_data');
@@ -212,7 +216,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga']], funct
     Route::get('/diklat-diklat-cabang-select',[DiklatCont::class, 'diklat_cabang_select'])->name('diklat.diklat_cabang_select');
     Route::get('/diklat-diklat-create', [DiklatCont::class, 'create'])->name('diklat.create');
     Route::get('/diklat-diklat-cabang-id-select/{name}',[DiklatCont::class, 'diklat_cabang_select_id'])->name('diklat.diklat_cabang_id');
-    Route::post('/diklat-diklat-post',[DiklatCont::class, 'store'])->name('diklat.store');
+    Route::post('/diklat-diklat-store',[DiklatCont::class, 'store'])->name('diklat.store');
 
     Route::get('/diklat-peserta/{id}',[PesertaCont::class, 'index'])->name('diklat.peserta');
     Route::get('/diklat-peserta-data',[PesertaCont::class, 'peserta_data'])->name('diklat.peserta_data');
