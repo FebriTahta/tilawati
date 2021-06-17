@@ -24,6 +24,7 @@ use App\Http\Controllers\KriteriaCont;
 use App\Http\Controllers\CetakCont;
 use App\Http\Controllers\DiklatCont;
 use App\Http\Controllers\PesertaCont;
+use App\Http\Controllers\PenilaianCont;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -198,6 +199,8 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga']], funct
     Route::get('/diklat-program',[ProgramCont::class, 'index'])->name('diklat.program');
     Route::get('/diklat-program-data',[ProgramCont::class, 'program_data'])->name('diklat.program_data');
     Route::get('/diklat-program-total',[ProgramCont::class, 'program_total'])->name('diklat.program_tot');
+    Route::post('/diklat-program-store',[ProgramCont::class, 'store'])->name('diklat.program_store');
+    Route::post('/diklat-program-delete',[ProgramCont::class, 'delete'])->name('diklat.program_delete');
 
     Route::get('/diklat-kriteria',[KriteriaCont::class, 'index'])->name('diklat.kriteria');
     Route::get('/diklat-kriteria-data',[KriteriaCont::class, 'kriteria_data'])->name('diklat.kriteria_data');
@@ -215,6 +218,9 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga']], funct
     Route::get('/diklat-peserta-data',[PesertaCont::class, 'peserta_data'])->name('diklat.peserta_data');
     Route::get('/diklat-peserta-total',[PesertaCont::class, 'peserta_total'])->name('diklat.peserta_tot');
     
+    Route::post('/diklat-penilaian-store',[PenilaianCont::class,'store'])->name('diklat.penilaian_store'); //insert sekaligus update
+    Route::post('/diklat-penilaian-delete',[PenilaianCont::class, 'delete'])->name('diklat.penilaian_delete');
+
     Route::get('/diklat-ijazah-depan-guru',[CetakCont::class, 'depan_guru'])->name('diklat.depan_guru');
     Route::get('/diklat-ijazah-depan-santri',[CetakCont::class, 'depan_santri'])->name('diklat.depan_santri');
 

@@ -20,7 +20,6 @@ class CreateKepalasTable extends Migration
             $table->string('tmptlahir')->nullable();
             $table->string('tgllahir')->nullable();
             $table->string('alamat')->nullable();
-            // $table->unsignedBigInteger('lembaga_id')->nullable();
             $table->unsignedBigInteger('provinsi_id')->nullable();
             $table->unsignedBigInteger('kabupaten_id')->nullable()->index();
             $table->unsignedBigInteger('kecamatan_id')->nullable();

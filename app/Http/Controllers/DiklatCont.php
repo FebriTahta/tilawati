@@ -12,6 +12,7 @@ class DiklatCont extends Controller
 {
     public function index(Request $request)
     {
+
         $dt_program = Program::all();
         return view('tilawatipusat.diklat.index',compact('dt_program'));
     }
