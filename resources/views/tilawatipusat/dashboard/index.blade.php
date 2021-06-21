@@ -107,6 +107,7 @@
 
         <script>
         $(document).ready(function(){
+            load_data();
             function load_data(dari = '', sampai = '')
             {
              //peserta
