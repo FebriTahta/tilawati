@@ -11,7 +11,7 @@
 
     @component('common-tilawatipusat.breadcrumb')
          @slot('title') program   @endslot
-         @slot('title_li') program Tilawati   @endslot
+         @slot('title_li') Tilawati   @endslot
     @endcomponent
                     <div class="row">
                         <div class="col-xl-4">

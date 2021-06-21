@@ -10,8 +10,8 @@
 @section('content')
 
     @component('common-tilawatipusat.breadcrumb')
-         @slot('title') jenjang Kelembagaan   @endslot
-         @slot('title_li') Jenjang Tilawati   @endslot
+         @slot('title') jenjang   @endslot
+         @slot('title_li') Kelembagaan   @endslot
     @endcomponent
                     <div class="row">
                         <div class="col-xl-4">
@@ -34,7 +34,7 @@
                                     <p class="card-title-desc">Ter-update berdasarkan Tahun 2021 </br></p>
                                     <button onclick="tambahJenjang()" class="btn btn-sm btn-success  mr-1" style="width:130px "><i class="mdi mdi-plus"></i> tambah jenjang</button>
                     
-                                    <blockquote class="blockquote font-size-16 mb-0 mt-2">
+                                    <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
                                         <table id="datatable-buttons" class="table table-jenjang table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
                                             <thead class="text-bold text-primary">
                                                 <tr>

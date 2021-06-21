@@ -11,13 +11,13 @@
 
     @component('common-tilawatipusat.breadcrumb')
          @slot('title') kriteria   @endslot
-         @slot('title_li') kriteria Tilawati   @endslot
+         @slot('title_li') Syahadah   @endslot
     @endcomponent
                     <div class="row">
                         <div class="col-xl-4">
                             @component('common-tilawatipusat.dashboard-widget')
                             
-                                @slot('title') <b id="cb"> 2,456 </b> kriteria  @endslot
+                                @slot('title') <b id="cb"> 2,456 </b> Kriteria Syahadah @endslot
                                 @slot('iconClass') mdi mdi-tag-plus-outline  @endslot
                                 @slot('price')   @endslot
                                 
@@ -34,7 +34,7 @@
                                     <p class="card-title-desc">Ter-update berdasarkan Tahun 2021 </br></p>
                                     <button onclick="tambahKriteria()" class="btn btn-sm btn-success  mr-1" style="width:130px "><i class="mdi mdi-plus"></i> tambah kriteria</button>
                     
-                                    <blockquote class="table-responsive blockquote font-size-16 mb-0 mt-2">
+                                    <blockquote class="table-responsive blockquote font-size-16 mb-0 mt-2 table-responsive">
                                         <table id="datatable-buttons" class="table table-kriteria table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
                                             <thead class="text-bold text-primary text-capitalize">
                                                 <tr>

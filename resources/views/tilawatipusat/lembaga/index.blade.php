@@ -11,7 +11,7 @@
 
     @component('common-tilawatipusat.breadcrumb')
          @slot('title') lembaga   @endslot
-         @slot('title_li') lembaga Tilawati   @endslot
+         @slot('title_li') Tilawati   @endslot
     @endcomponent
                     <div class="row">
                         <div class="col-xl-4">
@@ -53,7 +53,7 @@
                                     <button class="btn btn-sm btn-success  mr-1" style="width:130px " data-toggle="modal" data-target=".bs-example-modal-lembaga"><i class="mdi mdi-cloud-upload"></i> import lembaga</button>
                                     <button class="btn btn-sm btn-success  mr-1" style="width:130px "><i class="mdi mdi-plus"></i> tambah lembaga</button>
                     
-                                    <blockquote class="blockquote font-size-16 mb-0 mt-2">
+                                    <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
                                         <table id="datatable-buttons" class="table table-lembaga table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
                                             <thead class="text-bold text-primary">
                                                 <tr>

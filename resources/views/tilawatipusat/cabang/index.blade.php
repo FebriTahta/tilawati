@@ -11,7 +11,7 @@
 
     @component('common-tilawatipusat.breadcrumb')
          @slot('title') Cabang   @endslot
-         @slot('title_li') Cabang Tilawati   @endslot
+         @slot('title_li') Tilawati   @endslot
     @endcomponent
                     <div class="row">
                         <div class="col-xl-4">
@@ -50,11 +50,11 @@
                     
                                     <h4 class="card-title">Data Cabang</h4>
                                     <p class="card-title-desc">Ter-update berdasarkan Tahun 2021 </br><code>Data Import dan Eksport Berbeda Format (Berhati-hati ketika meng-importkan data baru)</code></p>
-                                    <button class="btn btn-sm btn-success  mr-1" style="width:130px " data-toggle="modal" data-target=".bs-example-modal-cabang"><i class="mdi mdi-cloud-upload"></i> import cabang</button>
-                                    <button class="btn btn-sm btn-success  mr-1" style="width:130px " data-toggle="modal" data-target=".bs-example-modal-rpq" ><i class="mdi mdi-cloud-upload"></i> import rpq</button>
-                                    <button class="btn btn-sm btn-success  mr-1" style="width:130px "><i class="mdi mdi-plus"></i> tambah cabang</button>
+                                    <button class="btn btn-sm btn-success  mr-1" style="width:130px ; margin-bottom: 5px" data-toggle="modal" data-target=".bs-example-modal-cabang"><i class="mdi mdi-cloud-upload"></i> import cabang</button>
+                                    <button class="btn btn-sm btn-success  mr-1" style="width:130px ; margin-bottom: 5px" data-toggle="modal" data-target=".bs-example-modal-rpq" ><i class="mdi mdi-cloud-upload"></i> import rpq</button>
+                                    <button class="btn btn-sm btn-success  mr-1" style="width:130px ; margin-bottom: 5px"><i class="mdi mdi-plus"></i> tambah cabang</button>
                     
-                                    <blockquote class="blockquote font-size-16 mb-0 mt-2">
+                                    <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
                                         <table id="datatable-buttons" class="table table-cabang table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
                                             <thead class="text-bold text-primary">
                                                 <tr>

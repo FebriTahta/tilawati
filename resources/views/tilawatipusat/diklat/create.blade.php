@@ -17,7 +17,7 @@
 
     @component('common-tilawatipusat.breadcrumb')
          @slot('title') diklat   @endslot
-         @slot('title_li') Buat Diklat Baru   @endslot
+         @slot('title_li') Buat Baru   @endslot
     @endcomponent
                     <div class="row">
                         <div class="col-lg-12">

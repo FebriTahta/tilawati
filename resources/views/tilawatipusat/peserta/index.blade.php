@@ -38,7 +38,7 @@
                                     <a class="btn btn-sm btn-success  mr-1" style="width:130px " href="{{ route('diklat.peserta_create', $pelatihan_id) }}"><i class="mdi mdi-plus"></i> tambah peserta</a>
                                     <button class="btn btn-sm btn-success  mr-1" style="width:130px " data-toggle="modal" data-target=".bs-example-modal-peserta"><i class="mdi mdi-cloud-upload"></i> import peserta</button>
                                     <input type="hidden" id="pelatihan_id" value="{{ $pelatihan_id }}">
-                                    <blockquote class="blockquote font-size-16 mb-0 mt-2">
+                                    <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
                                         <div id="message"></div>
                                         <table id="datatable-buttons" class="table table-peserta table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
                                             <thead class="text-bold text-primary" style="text-transform: capitalize">
