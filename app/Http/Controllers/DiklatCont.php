@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Pelatihan;
 use App\Models\Program;
+use App\Models\Peserta;
 use DB;
 use App\Models\Cabang;
 use DataTables;
@@ -12,7 +13,12 @@ class DiklatCont extends Controller
 {
     public function index(Request $request)
     {
-
+        // $data   = Pelatihan::with('cabang','program')->withCount('peserta')->get();
+        // foreach ($data as $key => $value) {
+        //     # code...
+        //     $x = $value->peserta_count;
+        // }
+        // return $x;
         $dt_program = Program::all();
         return view('tilawatipusat.diklat.index',compact('dt_program'));
     }
@@ -21,8 +27,17 @@ class DiklatCont extends Controller
     {
         if(request()->ajax())
         {
-            $data   = Pelatihan::with('cabang','program');
+            $data   = Pelatihan::with('cabang','program')->withCount('peserta');
             return DataTables::of($data)
+                    ->addColumn('peserta', function($data){
+                        if ($data->peserta_count == 0) {
+                            # code...
+                            return '<span class="text-danger">'.$data->peserta_count.' - '.$data->keterangan.'<span>';
+                        } else {
+                            # code...
+                            return '<span class="text-success">'.$data->peserta_count.' - '.$data->keterangan.'<span>';
+                        }
+                    })
                     ->addColumn('cabang', function ($data) {
                         return $data->cabang->name;
                     })
@@ -30,11 +45,11 @@ class DiklatCont extends Controller
                         return $data->program->name;
                     })
                     ->addColumn('action', function($data){
-                        // $actionBtn = '<input type="radio" name="pilih" id="pilih" onclick="pilih()" value="'.$row->id.'" required>';
-                        $actionBtn = '<a href="/diklat-peserta/'.$data->id.'" class="btn btn-sm btn-outline btn-success fa fa-pencil-square">Tambah Peserta</a>';
+                        $actionBtn = ' <a href="/diklat-peserta/'.$data->id.'" class="btn btn-sm btn-outline btn-success fa fa-pencil-square"><i class="fa fa-user"></i></a>';
+                        $actionBtn .= ' <a href="#" data-toggle="modal" data-target=".bs-example-modal-diklat-hapus" data-id="'.$data->id.'" class="btn btn-sm btn-outline btn-danger fa fa-pencil-square"><i class="fa fa-trash"></i></a>';
                         return $actionBtn;
                     })
-            ->rawColumns(['cabang','program','action'])
+            ->rawColumns(['cabang','program','action','peserta'])
             ->make(true);
         }
     }
@@ -110,4 +125,20 @@ class DiklatCont extends Controller
             ]
         );
     }
+
+    public function delete(Request $request)
+    {
+        $id = $request->id;
+        $pelatihan = Pelatihan::find($id)->delete();
+        $peserta = Peserta::where('pelatihan_id',$id)->delete();
+
+        return response()->json(
+            [
+              'success' => 'Diklat Berhasil Dihapus',
+              'message' => 'Diklat Berhasil Dihapus'
+            ]
+        );
+    }
+
+    
 }

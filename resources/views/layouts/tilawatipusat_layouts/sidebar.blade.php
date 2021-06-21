@@ -26,7 +26,7 @@
             <!-- Left Menu Start -->
             <ul class="metismenu list-unstyled" id="side-menu">
                 <li>
-                    <a href="{{ route('dashboard') }}" class="waves-effect">
+                    <a href="{{ route('diklat.dashboard') }}" class="waves-effect">
                         <i class="mdi mdi-airplay"></i><span class="badge badge-pill badge-info float-right"></span>
                         <span>Dashboard</span>
                     </a>
@@ -66,8 +66,8 @@
                         <span>Depan</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('diklat.depan_guru') }}">Guru</a></li>
-                        <li><a href="{{ route('diklat.depan_santri') }}">Santri</a></li>
+                        <li><a href="{{ route('diklat.depan_guru') }}">CETAK IJAZAH</a></li>
+                        {{-- <li><a href="{{ route('diklat.depan_santri') }}">Santri</a></li> --}}
                     </ul>
                 </li>
 
@@ -77,11 +77,11 @@
                         <span>Belakang</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="ui-alerts">Guru</a></li>
-                        <li><a href="ui-buttons">Santri</a></li>
+                        <li><a href="{{ route('diklat.belakang') }}">CETAK IJAZAH</a></li>
+                        {{-- <li><a href="ui-buttons">Santri</a></li>
                         <li><a href="ui-buttons">Instruktur</a></li>
                         <li><a href="ui-buttons">Tahfidz</a></li>
-                        <li><a href="ui-buttons">Munaqys</a></li>
+                        <li><a href="ui-buttons">Munaqys</a></li> --}}
                     </ul>
                 </li>
 

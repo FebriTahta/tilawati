@@ -1,0 +1,203 @@
+// 
+// _layouts.scss
+// 
+
+body[data-layout-size="boxed"] {
+
+    .container-fluid{
+        max-width: 100% !important;
+    }
+    background-color: $boxed-body-bg;
+    #layout-wrapper {
+        background-color: $body-bg;
+        max-width: $boxed-layout-width;
+        margin: 0 auto;
+        box-shadow: $box-shadow;
+        &::before{
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+    }
+
+
+    #page-topbar {
+        max-width: $boxed-layout-width;
+        margin: 0 auto;
+    }
+
+    .footer {
+        margin: 0 auto;
+        max-width: calc(#{$boxed-layout-width} - #{$sidebar-width});
+    }
+
+    &.vertical-collpsed {
+        .footer {
+            max-width: calc(#{$boxed-layout-width} - #{$sidebar-collapsed-width});
+        }
+    }
+}
+
+
+// Horizontal Boxed Layout
+
+body[data-layout="horizontal"][data-layout-size="boxed"]{
+    .footer{
+        max-width:1300px;
+    }
+    .container-fluid, .navbar-header {
+        max-width: $boxed-layout-width;
+    }
+}
+
+
+// Detached layout
+
+body[data-layout="detached"]{
+    @include media-breakpoint-up(lg) {
+        .container-fluid{
+            max-width: 95%;
+        }
+
+        #page-topbar{
+            position: absolute;
+        }
+
+        .toggle-btn{
+            display: none;
+        }
+
+        .navbar-brand-box{
+            margin-right: 24px;
+        }
+
+        .vertical-menu{
+            border-radius: 7px;
+            position: relative;
+            margin-top: 35px;
+
+            .user-img{
+                img{
+                    padding: 6px;
+                    border: 2px dashed $primary;
+                }
+            }
+        }
+
+        #sidebar-menu{
+            padding-bottom: 90px
+        }
+        
+
+        .page-content{
+            margin-top: 16px;
+            padding-bottom: 0px;
+        }
+
+        .main-content{
+            position: relative;
+            min-height: 100vh;
+            padding-bottom: 60px;
+        }
+
+        .page-title-box{
+            padding-bottom: $grid-gutter-width;
+            .page-title{
+                line-height: 70px;
+            }
+            
+        }
+    }
+
+    @include media-breakpoint-down(md) {
+        .container-fluid{
+            padding: 0;
+        }
+
+        .page-content{
+            padding: calc(#{$header-height} + 0px) $grid-gutter-width $footer-height $grid-gutter-width;
+        }
+    }
+
+    #layout-wrapper{
+        display: flex;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+
+        &::before{
+            content: "";
+            position: absolute;
+            top: 0px;
+            left: 0;
+            right: 0;
+            width: 100%;
+            height: 165px;
+            background: $bg-gradient;
+            box-shadow: 1px 0 7px 0 rgba(0,0,0,0.5);
+        }
+
+        &::after {
+            background: url("/images/bg-effect.png") center;
+            content: "";
+            position: absolute;
+            top: 0px;
+            left: 0;
+            right: 0;
+            width: 100%;
+            height: 180px;
+            background-size: cover;
+            opacity: 0.03;
+        }
+    }
+
+    .main-content{
+        width: 100%;
+        margin-left: 0;
+    }
+    
+    .navbar-brand-box{
+        float: left;
+        position: relative;
+        text-align: left;
+    }
+
+    .navbar-header{
+        padding: 0px;
+
+        .card-img-overlay{
+            background-color: rgba($black, 0.4);
+        }
+    }
+
+    .footer{
+        left: 0;
+        .container-fluid{
+            max-width: 100%;
+        }
+    }
+
+    .page-title-box{
+        position: relative;
+        z-index: 1;
+
+        .page-title{
+            color: $white;
+        }
+
+        .breadcrumb-item{
+            >a {
+                color: rgba($white, 0.8);
+            }
+            &.active, +.breadcrumb-item::before{
+                color: rgba($white, 0.6);
+            }
+        }
+    }
+}
+
+@include media-breakpoint-down(md) {
+    
+    body[data-topbar=colored] #page-topbar {
+        background: $bg-gradient;
+    }
+}

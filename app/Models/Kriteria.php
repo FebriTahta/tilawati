@@ -9,6 +9,11 @@ class Kriteria extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name','untuk'];
+    protected $fillable = ['name','untuk','program_id'];
     protected $dates = ['deleted_at'];
+
+    public function program()
+    {
+        return $this->belongsTo(Program::class);
+    }
 }

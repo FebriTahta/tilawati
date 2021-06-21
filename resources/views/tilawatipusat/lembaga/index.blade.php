@@ -190,6 +190,7 @@
                 $('#datatable-buttons').DataTable({
                 //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
                 destroy: true,
+                ordering:false,
                 processing: true,
                 serverSide: true,
                 ajax: {
@@ -238,14 +239,7 @@
                     },
                     {
                     data:'status',
-                    name:'status',
-                    render: function(data) { 
-                            if(data == "Aktif") {
-                                return '<span class=" badge badge-success">Aktif</span>'; 
-                            }else{
-                                return '<span class=" badge badge-danger">Non Aktif</span>'; 
-                            }
-                        },
+                    name:'status'
                     },
                 ]
                 });

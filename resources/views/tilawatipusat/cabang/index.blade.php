@@ -59,10 +59,10 @@
                                             <thead class="text-bold text-primary">
                                                 <tr>
                                                     <th>Kode</th>
-                                                    <th>Name</th>
+                                                    <th>Nama</th>
                                                     <th>Kepala</th>
-                                                    <th>Kabupaten</th>
                                                     <th>Provinsi</th>
+                                                    <th>Kabupaten</th>
                                                     <th>Telephone</th>
                                                     <th>Alamat</th>
                                                     <th>Status</th>
@@ -72,16 +72,16 @@
                                             <tbody style="text-transform: uppercase; font-size: 12px">
                                             </tbody>
 
-                                            <tfoot class="text-primary">
+                                            <tfoot class="text-bold text-primary">
                                                 <tr>
-                                                    <th>Kode</th>
-                                                    <th>Name</th>
-                                                    <th>Kepala</th>
-                                                    <th>Kabupaten</th>
-                                                    <th>Provinsi</th>
-                                                    <th>Telephone</th>
-                                                    <th>Alamat</th>
-                                                    <th>Status</th>
+                                                   <th>Kode</th>
+                                                   <th>Nama</th>
+                                                   <th>Kepala</th>
+                                                   <th>Provinsi</th>
+                                                   <th>Kabupaten</th>
+                                                   <th>Telephone</th>
+                                                   <th>Alamat</th>
+                                                   <th>Status</th>
                                                 </tr>
                                             </tfoot>
                                         </table>
@@ -222,9 +222,10 @@
                 processing: true,
                 serverSide: true,
                 ajax: {
-                    url:'{{ route("cabang.data") }}',
+                    url:'{{ route("diklat.cabang_data") }}',
                 },
                 columns: [
+                    
                     {
                     data:'kode',
                     name:'kode'
@@ -238,12 +239,12 @@
                     name:'kepala.name'
                     },
                     {
-                    data:'kabupaten',
-                    name:'kabupaten.nama'
-                    },
-                    {
                     data:'provinsi',
                     name:'provinsi.nama'
+                    },
+                    {
+                    data:'kabupaten',
+                    name:'kabupaten.nama'
                     },
                     {
                     data:'telp',

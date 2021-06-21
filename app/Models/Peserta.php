@@ -11,12 +11,18 @@ class Peserta extends Model
 
     protected $fillable = [
         'pelatihan_id',
+        'lembaga_id',
         'name',
-        // 'fs',
-        // 'tj',
-        // 'gm',
-        // 'sl',
-        // 'kriteria',
+        'tanggal',
+        'email',
+        'tmptlahir',
+        'tgllahir',
+        'alamat',
+        'telp',
+        'provinsi_id',
+        'kabupaten_id',
+        'kriteria_id',
+        'kriteria',
     ];
     protected $dates = ['deleted_at'];
 
@@ -33,5 +39,20 @@ class Peserta extends Model
     public function kriteria()
     {
         return $this->belongsTo(Kriteria::class);
+    }
+
+    public function provinsi()
+    {
+        return $this->belongsTo(Provinsi::class);
+    }
+
+    public function kabupaten()
+    {
+        return $this->belongsTo(Kabupaten::class);
+    }
+
+    public function nilai()
+    {
+        return $this->hasMany(Nilai::class);
     }
 }

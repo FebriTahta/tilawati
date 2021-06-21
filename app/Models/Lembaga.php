@@ -30,6 +30,7 @@ class Lembaga extends Model
     ];
     protected $dates = ['deleted_at'];
 
+    
     public function cabang()
     {
         return $this->belongsTo(Cabang::class);
@@ -38,14 +39,8 @@ class Lembaga extends Model
     {
         return $this->belongsTo(Jenis::class);
     }
-    public function provinsi()
-    {
-        return $this->belongsTo(Provinsi::class);
-    }
-    public function kabupaten()
-    {
-        return $this->belongsTo(Kabupaten::class);
-    }
+  
+    
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -69,4 +64,16 @@ class Lembaga extends Model
     {
         return $this->belongsTo(Kecamatan::class);
     }
+
+    public function provinsi()
+    {
+        return $this->belongsTo(Provinsi::class);
+    }
+
+    public function kabupaten()
+    {
+        return $this->belongsTo(Kabupaten::class);
+    }
+
+    
 }

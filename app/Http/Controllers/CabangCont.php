@@ -17,18 +17,18 @@ class CabangCont extends Controller
     {
         if(request()->ajax())
         {
-            $data   = Cabang::orderBy('id','asc')->with('kepala','kabupaten','provinsi');
+            $data   = Cabang::with('provinsi','kabupaten','kepala');
             return DataTables::of($data)
-                    ->addColumn('kepala', function ($data) {
-                        return $data->kepala->name;
-                    })
-                    ->addColumn('kabupaten', function ($data) {
-                        return $data->kabupaten->nama;
-                    })
-                    ->addColumn('provinsi', function ($data) {
-                        return $data->provinsi->nama;
-                    })
-            ->rawColumns(['kepala','kabupaten','provinsi'])
+            ->addColumn('provinsi', function ($data) {
+                return $data->provinsi->nama;
+            })
+            ->addColumn('kabupaten', function ($data) {
+                return $data->kabupaten->nama;
+            })
+            ->addColumn('kepala', function($data){
+                return $data->kepala->name;
+            })
+            ->rawColumns(['provinsi','kabupaten','kepala'])
             ->make(true);
         }
     }

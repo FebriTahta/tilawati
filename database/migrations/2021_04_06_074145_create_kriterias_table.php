@@ -15,6 +15,7 @@ class CreateKriteriasTable extends Migration
     {
         Schema::create('kriterias', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('program_id');
             $table->string('name');
             $table->string('untuk');
             $table->timestamps();

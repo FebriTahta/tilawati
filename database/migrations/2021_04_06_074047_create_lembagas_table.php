@@ -15,33 +15,30 @@ class CreateLembagasTable extends Migration
     {
         Schema::defaultStringLength(255);
         Schema::create('lembagas', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->bigInteger('kode')->index();
+            $table->bigIncrements('id')->index();
+            $table->bigInteger('kode');
             $table->unsignedBigInteger('user_id')->nullable();
-            $table->unsignedBigInteger('cabang_id')->references('id')->on('cabangs')->onDelete('cascade')->onUpdate('cascade')->nullable();
+            $table->unsignedBigInteger('cabang_id')->nullable();
             $table->longText('name')->nullable();
             $table->longText('alamat')->nullable();
-            $table->unsignedBigInteger('kepala_id')->references('id')->on('kepalas')->onUpdate('cascade')->nullable();
-            $table->unsignedBigInteger('jenjang_id')->references('id')->on('jenjangs')->onUpdate('cascade')->nullable();
-            $table->unsignedBigInteger('provinsi_id')->references('id')->on('provinsi')->onUpdate('cascade')->nullable();
-            $table->unsignedBigInteger('kabupaten_id')->references('id')->on('kabupaten')->onUpdate('cascade')->nullable();
-            $table->unsignedBigInteger('kecamatan_id')->references('id')->on('kecamatan')->onUpdate('cascade')->nullable();
-            $table->unsignedBigInteger('kelurahan_id')->references('id')->on('kelurahan')->onUpdate('cascade')->nullable();
+            $table->unsignedBigInteger('kepala_id')->nullable();
+            $table->unsignedBigInteger('jenjang_id')->nullable();
+            $table->unsignedBigInteger('provinsi_id')->nullable();
+            $table->unsignedBigInteger('kabupaten_id')->nullable();
+            $table->unsignedBigInteger('kecamatan_id')->nullable();
+            $table->unsignedBigInteger('kelurahan_id')->nullable();
             $table->string('pos')->nullable();
-            $table->string('telp')->nullable()->index();
+            $table->string('telp')->nullable();
             $table->string('website')->nullable();
             $table->string('pengelola')->nullable();
             $table->integer('jml_guru')->nullable();
             $table->integer('jml_santri')->nullable();
             $table->date('tahunberdiri')->nullable();
-            $table->date('tahunmasuk')->nullable()->index();
-            $table->string('status')->nullable()->index();
+            $table->date('tahunmasuk')->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
             $table->softDeletes();
-        });
-        Schema::table('lembagas', function (Blueprint $table){
-            $table->foreign('cabang_id')->references('id')->on('cabangs')->onDelete('cascade')->onUpdate('cascade');
-        });       
+        });     
     }
 
     /**

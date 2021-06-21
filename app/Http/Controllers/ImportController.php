@@ -11,6 +11,7 @@ use App\Imports\PesertaMunaqisyImport;
 use App\Imports\CabangImport;
 use App\Imports\LembagaImport;
 use App\Imports\RpqImport;
+use App\Imports\PesertaDiklatImport;
 use Illuminate\Http\Request;
 use Excel;
 
@@ -21,6 +22,17 @@ class ImportController extends Controller
         $id = $request->id ;
         $tanggal = $request->tanggal;
         $data = Excel::import(new PesertaImport($id, $tanggal), $request->file('file'));
+        return Response()->json([
+            $data,
+            'success'=>'Peserta Berhasil Ditambahkan Melalui file Excel'
+        ]);
+    }
+    //new
+    public function importPesertaDiklat(Request $request)
+    {
+        $id = $request->id ;
+        $tanggal = $request->tanggal;
+        $data = Excel::import(new PesertaDiklatImport($id, $tanggal), $request->file('file'));
         return Response()->json([
             $data,
             'success'=>'Peserta Berhasil Ditambahkan Melalui file Excel'

@@ -1,0 +1,91 @@
+// 
+// timeline.scss
+//
+
+/************** Horizontal timeline **************/
+
+.timeline-box {
+    padding: 0px !important;
+    position: relative;
+    .item-lable {
+        width: 100px;
+        height: 30px;
+        line-height: 30px;
+        margin: 0 auto;
+        font-size: 12px;
+        position: relative;
+        top: -20px;
+        z-index: 1;
+    }
+    .timeline-spacing {
+        margin-bottom: 70px;
+    }
+    .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 100px;
+        margin: 0px auto;
+        position: relative;
+        top: -6px;
+        z-index: 1;
+    }
+    .timeline-line {
+        width: 100%;
+        position: relative;
+        height: 3px;
+        border-top: 3px solid $gray-200;
+    }
+    .vertical-line {
+        position: relative;
+        width: 100%;
+        .wrapper-line {
+            width: 2px;
+            height: 50px;
+            background-color: $gray-200;
+            margin: 0 auto;
+        }
+    }
+}
+
+.timeline-count .row:first-child .timeline-box:first-child .timeline-line:before {
+    content: '';
+    width: 10px;
+    height: 10px;
+    border-radius: 100px;
+    background: $gray-200;
+    position: absolute;
+    top: -6px;
+}
+
+.timeline-count .row:last-child .timeline-box:last-child .timeline-line,
+.timeline-count .row:first-child .timeline-box:first-child .timeline-line {
+    border-top: 3px solid $gray-200 !important;
+}
+
+.timeline-count .row:last-child .timeline-box:last-child:before {
+    content: unset !important;
+}
+
+.timeline-count .row:nth-child(odd) .timeline-box:last-child:before {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 30px;
+    width: 100%;
+    height: 100%;
+    border-right: 3px solid $gray-200;
+}
+
+.timeline-count .row:nth-child(even) .timeline-box:last-child:before {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 30px;
+    width: 100%;
+    height: 100%;
+    border-left: 3px solid $gray-200;
+}
+
+.timeline-count .row:nth-child(even) {
+    direction: rtl;
+}

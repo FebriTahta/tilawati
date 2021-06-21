@@ -40,6 +40,7 @@
                                                 <tr>
                                                     <th>kriteria</th>
                                                     <th>untuk</th>
+                                                    <th>program</th>
                                                     <th>option</th>
                                                 </tr>
                                             </thead>
@@ -51,6 +52,7 @@
                                                 <tr>
                                                     <th>kriteria</th>
                                                     <th>untuk</th>
+                                                    <th>program</th>
                                                     <th>option</th>
                                                 </tr>
                                             </tfoot>
@@ -128,6 +130,13 @@
                                                                 <label for="">Kriteria</label>
                                                                 <input type="text" name="name" id="name" class="form-control text-capitalize" required>
                                                                 <input type="hidden" name="id" id="id" class="form-control">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <select name="program_id" id="" class="form-control">
+                                                                    @foreach ($pro as $item)
+                                                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                                                    @endforeach
+                                                                </select>
                                                             </div>
                                                             <div class="form-group"> 
                                                                 <select name="untuk" class="form-control text-capitalize" id="untuk">
@@ -256,7 +265,7 @@
                 processData: false,
                 beforeSend:function(){
                     $('#btnhapus').attr('disabled','disabled');
-                    $('#btnhapus').val('Proses MMenghapus Data');
+                    $('#btnhapus').val('Proses Hapus Data');
                 },
                 success: function(data){
                     if(data.success)
@@ -361,6 +370,10 @@
                     {
                     data:'untuk',
                     name:'untuk'
+                    },
+                    {
+                    data:'program',
+                    name:'program.name'
                     },
                     {
                     data:'option',

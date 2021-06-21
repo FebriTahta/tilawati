@@ -30,4 +30,13 @@ class Kabupaten extends Model
     {
         return $this->hasMany(Cabang::class);
     }
+
+    public function lembaga()
+    {
+        return $this->hasMany(Lembaga::class);
+    }
+    public function peserta()
+    {
+        return $this->hasMany(Peserta::class);
+    }
 }

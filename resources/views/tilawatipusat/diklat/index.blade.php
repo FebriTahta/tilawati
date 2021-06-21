@@ -36,7 +36,7 @@
                             <div class="card">
                                 <div class="card-body">
                     
-                                    <h4 class="card-title">Data diklat</h4>
+                                    <h4 class="card-title">Data Diklat</h4>
                                     <p class="card-title-desc">Ter-update berdasarkan Tahun 2021 </br></p>
                                     {{-- <button class="btn btn-sm btn-success  mr-1" style="width:130px " data-toggle="modal" data-target=".bs-example-modal-diklat"><i class="mdi mdi-plus"></i> tambah diklat</button> --}}
                                     <a class="btn btn-sm btn-success  mr-1" style="width:130px " href="{{ route('diklat.create') }}"><i class="mdi mdi-plus"></i> tambah diklat</a>
@@ -50,7 +50,7 @@
                                                     <th>cabang</th>
                                                     <th>tempat</th>
                                                     <th>tanggal</th>
-                                                    <th>keterangan</th>
+                                                    <th>Peserta</th>
                                                     <th>Option</th>
                                                 </tr>
                                             </thead>
@@ -65,7 +65,7 @@
                                                     <th>cabang</th>
                                                     <th>tempat</th>
                                                     <th>tanggal</th>
-                                                    <th>keterangan</th>
+                                                    <th>Peserta</th>
                                                     <th>Option</th>
                                                 </tr>
                                             </tfoot>
@@ -78,6 +78,41 @@
                         </div>
                     </div>
                     <!-- end row -->
+
+                    <div class="col-sm-6 col-md-3 m-t-30">
+                        <div class="modal fade bs-example-modal-diklat-hapus" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-md">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <div class="col-xl-12">
+                                            <div class="card m-b-30">
+                                                <div class="card-body">
+                                                    <div class="container-fluid">
+                                                        <form id="hapusdiklat"  method="POST" enctype="multipart/form-data">@csrf
+                                                            <div class="form-group text-center">
+                                                                <h5>Anda yakin akan menghapus Diklat tersebut ?</h5>
+                                                                <input type="hidden" class="form-control text-capitalize" id="id" name="id" required>
+                                                            </div>
+                                                            <div class="row" style="text-align: center">
+                                                                <div class="form-group col-6 col-xl-6">
+                                                                    <input type="submit" name="hapus" id="btnhapus" class="btn btn-danger" value="Ya, Hapus!" />
+                                                                </div>
+                                                                <div class="form-group col-6 col-xl-6">
+                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                                                        No, Cancel!
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div><!-- container fluid -->
+                                                </div>
+                                            </div>
+                                        </div> <!-- end col -->
+                                    </div>
+                                </div><!-- /.modal-content -->
+                            </div><!-- /.modal-dialog -->
+                        </div><!-- /.modal -->
+                    </div>
 
 @endsection
 
@@ -108,6 +143,48 @@
         <script src="{{ URL::asset('tilawatipusat/js/pages/datatables.init.js')}}"></script>
 
         <script>
+
+            $('.bs-example-modal-diklat-hapus').on('show.bs.modal', function(event) {
+                var button = $(event.relatedTarget)
+                id = button.data('id')
+                var modal = $(this)
+                modal.find('.modal-body #id').val(id);
+            })
+            $('#hapusdiklat').submit(function(e) {
+                e.preventDefault();
+                var formData = new FormData(this);
+                $.ajax({
+                type:'POST',
+                url: "{{ route('diklat.delete')}}",
+                data: formData,
+                cache:false,
+                contentType: false,
+                processData: false,
+                beforeSend:function(){
+                    $('#btnhapus').attr('disabled','disabled');
+                    $('#btnhapus').val('Proses Hapus Data');
+                },
+                success: function(data){
+                    if(data.success)
+                    {
+                        //sweetalert and redirect
+                        var oTable = $('#datatable-buttons').dataTable();
+                        oTable.fnDraw(false);
+                        $('#btnhapus').val('Ya, Hapus!');
+                        $('.bs-example-modal-diklat-hapus').modal('hide');
+                        $('#btntambah').attr('disabled',false);
+                        swal({ title: "Success!",
+                            text: "Kriteria Tersebut Berhasil Di Dihapus!",
+                            type: "success"})
+                    }
+                },
+                error: function(data)
+                {
+                    console.log(data);
+                    }
+                });
+            });
+
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             $(document).ready(function(){
                 $('#sel_cabang').select2('destroy').select2({
@@ -173,8 +250,8 @@
                     name:'tanggal'
                     },
                     {
-                    data:'keterangan',
-                    name:'keterangan'
+                    data:'peserta',
+                    name:'peserta'
                     },
                     {
                     data:'action',

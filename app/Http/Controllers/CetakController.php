@@ -104,14 +104,14 @@ class CetakController extends Controller
             $direktur   = "Dr. KH. Umar Jaeni M.Pd";
             $jabatan    = "Direktur Eksekutif";
             $kepala     = $jabatan;
-            $pdf = PDF::loadview('AdmPelatihan.Cetak.cetak_depan_santri',compact('peserta','direktur','kepala'))->setPaper($customPaper, 'portrait');
+            $pdf = PDF::loadview('AdmPelatihan.Cetak.cetak_depan_santri',compact('peserta','direktur','kepala','cabang'))->setPaper($customPaper, 'portrait');
             return $pdf->download('cetak-laporan-ijazah-depan-peserta-santri-pdf','I');
 
         }else{
             $jabatan    = "Kacab. ".strtolower($kabupaten);
             $kepala     = ucwords($jabatan);
             $direktur   = $pelatihan->cabang->kepala->name;
-            $pdf = PDF::loadview('AdmPelatihan.Cetak.cetak_depan_santri',compact('peserta','direktur','kepala'))->setPaper($customPaper, 'portrait');
+            $pdf = PDF::loadview('AdmPelatihan.Cetak.cetak_depan_santri',compact('peserta','direktur','kepala','cabang'))->setPaper($customPaper, 'portrait');
             return $pdf->download('cetak-laporan-ijazah-depan-peserta-pdf','I');
         }
     }

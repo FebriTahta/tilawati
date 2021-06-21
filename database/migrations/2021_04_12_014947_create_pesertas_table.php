@@ -15,9 +15,15 @@ class CreatePesertasTable extends Migration
     {
         Schema::create('pesertas', function (Blueprint $table) {
             $table->bigIncrements('id')->startingValue(223300);
+            $table->bigInteger('nik')->nullable();
             $table->unsignedBigInteger('pelatihan_id');
+            $table->unsignedBigInteger('lembaga_id')->nullable();
+            $table->unsignedBigInteger('provinsi_id')->nullable();
+            $table->unsignedBigInteger('kabupaten_id')->nullable();
+            $table->unsignedBigInteger('kecamatan_id')->nullable();
+            $table->unsignedBigInteger('kelurahan_id')->nullable();
+            $table->unsignedBigInteger('kriteria_id')->nullable();
             $table->date('tanggal');
-            $table->string('lembaga')->nullable();
             $table->string('name')->index();
             $table->string('tmptlahir')->nullable()->index();
             $table->string('tgllahir')->nullable();
@@ -40,7 +46,6 @@ class CreatePesertasTable extends Migration
             $table->string('munaqisy')->nullable();
             $table->timestamps();
             $table->softDeletes();
-            
         });
 
         Schema::table('pesertas', function (Blueprint $table){

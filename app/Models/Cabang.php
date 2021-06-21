@@ -14,6 +14,7 @@ class Cabang extends Model
         'name',
         'status',
         'kode',
+        'kepala_id',
         'provinsi_id',
         'kabupaten_id',
         'kecamatan_id',
@@ -26,11 +27,17 @@ class Cabang extends Model
     ];
     protected $dates = ['deleted_at'];
 
-
     public function provinsi()
     {
         return $this->belongsTo(Provinsi::class);
     }
+
+    public function kabupaten()
+    {
+        return $this->belongsTo(Kabupaten::class);
+    }
+
+    
 
     public function lembaga()
     {
@@ -47,23 +54,20 @@ class Cabang extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function kabupaten()
-    {
-        return $this->belongsTo(Kabupaten::class);
-    }
+    
 
     public function kecamatan()
     {
         return $this->belongsTo(Kecamatan::class);
     }
 
-    public function kelurahan()
-    {
-        return $this->belongsTo(Kelurahan::class);
-    }
-
     public function kepala()
     {
         return $this->belongsTo(Kepala::class);
+    }
+
+    public function kelurahan()
+    {
+        return $this->belongsTo(Kelurahan::class);
     }
 }

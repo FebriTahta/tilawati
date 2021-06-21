@@ -241,7 +241,7 @@
                                                                 <div class="row">
                                                                     <div class="col-6 col-md-6 form-group">
                                                                         <label for="">Min</label>
-                                                                        <input type="number" min="10" class="form-control" name="min" required>
+                                                                        <input type="number"  class="form-control" name="min" required>
                                                                     </div>
                                                                     <div class="col-6 col-md-6 form-group">
                                                                         <label for="">Max</label>
@@ -581,7 +581,7 @@
                 processData: false,
                 beforeSend:function(){
                     $('#hapusnilai').attr('disabled','disabled');
-                    $('#hapusnilai').val('Proses Penghapusan Data');
+                    $('#hapusnilai').val('Proses Menghapus Data');
                 },
                 success: function(data){
                     if(data.success)

@@ -15,72 +15,26 @@ class KriteriaSeeder extends Seeder
     {
         $krit = [
             [
-                'name' => "SEBAGAI GURU AL QUR'AN METODE TILAWATI",
-                'untuk' => "GURU",
+                'name' => "sebagai guru al-qur'an metode tilawati",
+                'untuk' => "guru",
+                'program_id' => "2",
                 'created_at' => new \DateTime,
                 'updated_at' => null,
             ],
             [
-                'name' => "SEBAGAI INSTRUKTUR LAGU DAN MUNAQISY METODE TILAWATI",
-                'untuk' => "GURU",
+                'name' => "sebagai instruktur mengajar strategi tilawati",
+                'untuk' => "instruktur",
+                'program_id' => "4",
                 'created_at' => new \DateTime,
                 'updated_at' => null,
             ],
             [
-                'name' => "SEBAGAI INSTRUKTUR LAGU DAN MUNAQISY SANTRI METODE TILAWATI",
-                'untuk' => "GURU",
+                'name' => "sebagai santri khatam al-qur'an 30 juz",
+                'untuk' => "santri",
+                'program_id' => "1",
                 'created_at' => new \DateTime,
                 'updated_at' => null,
             ],
-            [
-                'name' => "SEBAGAI INSTRUKTUR LAGU DAN STRATEGI MENGAJAR METODE TILAWATI",
-                'untuk' => "GURU",
-                'created_at' => new \DateTime,
-                'updated_at' => null,
-            ],
-            [
-                'name' => "SEBAGAI INSTRUKTUR LAGU METODE TILAWATI",
-                'untuk' => "GURU",
-                'created_at' => new \DateTime,
-                'updated_at' => null,
-            ],
-            [
-                'name' => "SEBAGAI INSTRUKTUR LAGU, STRATEGI MENGAJAR DAN MUNAQISY METODE TILAWATI",
-                'untuk' => "GURU",
-                'created_at' => new \DateTime,
-                'updated_at' => null,
-            ],
-            [
-                'name' => "SEBAGAI INSTRUKTUR LAGU, STRATEGI MENGAJAR DAN MUNAQISY SANTRI METODE TILAWATI",
-                'untuk' => "GURU",
-                'created_at' => new \DateTime,
-                'updated_at' => null,
-            ],
-            [
-                'name' => "SEBAGAI INSTRUKTUR STRATEGI MENGAJAR DAN MUNAQISY METODE TILAWATI",
-                'untuk' => "GURU",
-                'created_at' => new \DateTime,
-                'updated_at' => null,
-            ],
-            [
-                'name' => "SEBAGAI INSTRUKTUR STRATEGI MENGAJAR METODE TILAWATI",
-                'untuk' => "GURU",
-                'created_at' => new \DateTime,
-                'updated_at' => null,
-            ],
-            [
-                'name' => "SEBAGAI SANTRI KHATAM 30 JUZ",
-                'untuk' => "SANTRI",
-                'created_at' => new \DateTime,
-                'updated_at' => null,
-            ],
-            [
-                'name' => "SEBAGAI TRAINING OF TRAINER",
-                'untuk' => "INSTRUKTUR",
-                'created_at' => new \DateTime,
-                'updated_at' => null,
-            ],
-
         ];
         \DB::table('kriterias')->insert($krit);
     }

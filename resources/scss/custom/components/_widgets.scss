@@ -1,0 +1,133 @@
+// 
+// Widgets.scss
+// 
+
+// 
+// Widgets.scss
+// 
+
+.mini-stats-wid{
+    .mini-stat-icon{
+        overflow: hidden;
+        position: relative;
+        &:before, &:after{
+            content: "";
+            position: absolute;
+            width: 8px;
+            height: 54px;
+            background-color: rgba($white,.1);
+            left: 16px;
+            transform: rotate(32deg);
+            top: -5px;
+            transition: all 0.4s;
+        }
+
+        &::after{
+            left: -12px;
+            width: 12px;
+            transition: all 0.2s;
+        }
+    }
+
+    &:hover{
+        .mini-stat-icon{
+            &::after{
+                left: 60px;
+            }
+        }
+    }
+}
+
+
+
+// activity widget
+
+.activity-wid{
+    border-left: 3px dashed $gray-300;
+    margin-left: 16px;
+
+    .activity-list{
+        position: relative;
+        padding: 0 0 40px 30px;
+        .activity-icon{
+            position: absolute;
+            left: -16px;
+            top: -6px;
+            z-index: 9;
+        }
+
+        &:last-child{
+            padding-bottom: 0px;
+        }
+    }
+}
+
+
+// social source
+
+.social-source{
+    .social-source-list{
+        padding: 13px 0px;
+    }
+}
+
+// Inbox widget
+
+.inbox-wid{
+    .inbox-list-item{
+        a{
+            color: $body-color;
+            display: block;
+            padding: 14px 0px;
+            border-bottom: 1px solid $border-color;
+        }
+
+        &:first-child{
+            a{
+                padding-top: 0px;
+            }
+        }
+
+        &:last-child{
+            a{
+                border-bottom: 0px;
+            }
+        }
+    }
+}
+
+
+.review-carousel{
+    .carousel-control-icon{
+        width: 24px;
+        height: 24px;
+        line-height: 24px;
+        color: $primary;
+        background-color: rgba($primary, 0.25);
+        font-size: 20px;
+        border-radius: 50%;
+    }
+    
+    .carousel-control-next, .carousel-control-prev{
+        bottom: auto;
+        top: -47px;
+    }
+
+    .carousel-control-prev{
+        left: auto;
+        right: 40px;
+    }
+
+}
+
+
+// profile
+
+.profile-widgets {
+    .online-circle {
+        position: absolute;
+        right: 0;
+        top: 100px;
+        left: 75px;
+    }
+}

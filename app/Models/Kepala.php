@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Kepala extends Model
 {
     use HasFactory;
-    protected $table = 'kepalas';
 
     protected $fillable = [
         'nik',
@@ -16,8 +15,6 @@ class Kepala extends Model
         'tmptlahir',
         'tgllahir',
         'alamat',
-        // 'cabang_id',
-        // 'lembaga_id',
         'provinsi_id',
         'kabupaten_id',
         'kecamatan_id',
@@ -29,26 +26,6 @@ class Kepala extends Model
         'tahunlulus'
     ];
 
-    public function provinsi()
-    {
-        return $this->belongsTo(Provinsi::class);
-    }
-
-    public function kabupaten()
-    {
-        return $this->belongsTo(Kabupaten::class);
-    }
-
-    public function kecamatan()
-    {
-        return $this->belongsTo(Kecamatan::class);
-    }
-
-    public function kelurahan()
-    {
-        return $this->belongsTo(Kelurahan::class);
-    }
-
     public function cabang()
     {
         return $this->hasMany(Cabang::class);
@@ -56,5 +33,25 @@ class Kepala extends Model
     public function lembaga()
     {
         return $this->hasMany(Lembaga::class);
+    }
+    public function provinsi()
+    {
+        return $this->belongsTo(Provinsi::class);
+    }
+    public function kabupaten()
+    {
+        return $this->belongsTo(Kabupaten::class);
+    }
+    public function kecamatan()
+    {
+        return $this->belongsTo(Kecamatan::class);
+    }
+    public function kelurahan()
+    {
+        return $this->belongsTo(Kelurahan::class);
+    }
+    public function pelatihan()
+    {
+        return $this->hasMany(Pelatihan::class);
     }
 }

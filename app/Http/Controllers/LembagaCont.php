@@ -18,11 +18,9 @@ class lembagaCont extends Controller
     {
         if(request()->ajax())
         {
-            $data   = Lembaga::orderBy('tahunmasuk','desc')
-            ->select('name','alamat','tahunmasuk','jml_guru','kode','jml_santri','provinsi_id','kepala_id','kabupaten_id','status','telp')
-            ->with('kepala','provinsi','kabupaten');
+            $data   = Lembaga::orderBy('tahunmasuk','desc')->with(['kepala','provinsi','kabupaten'])
+            ->select(['kode','name','kepala_id','kabupaten_id','provinsi_id','telp','jml_guru','jml_santri','alamat','tahunmasuk','status']);
             return DataTables::of($data)
-                ->addIndexColumn()
                 ->addColumn('kepala', function($data){
                     if ($data->kepala == null) {
                         # code...

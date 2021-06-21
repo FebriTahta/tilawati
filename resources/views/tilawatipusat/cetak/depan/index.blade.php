@@ -1,6 +1,6 @@
 @extends('layouts.tilawatipusat_layouts.master')
 
-@section('title') ijazah depan guru @endsection
+@section('title') ijazah depan @endsection
 @section('css')
 
     <!-- DataTables -->
@@ -10,8 +10,8 @@
 @section('content')
 
     @component('common-tilawatipusat.breadcrumb')
-         @slot('title') ijazah depan guru   @endslot
-         @slot('title_li') ijazah depan guru Tilawati   @endslot
+         @slot('title') ijazah depan    @endslot
+         @slot('title_li') CETAK   @endslot
     @endcomponent
                     {{-- <div class="row">
                         <div class="col-xl-4">
@@ -29,23 +29,23 @@
                         <div class="col-lg-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="card-title">Data ijazah depan guru</h4>
+                                    <h4 class="card-title">Data Ijazah Depan</h4>
                                     <p class="card-title-desc">Ter-update berdasarkan Tahun 2021 </br></p>
                                     <blockquote class="blockquote font-size-16 mb-0 mt-2">
-                                        <form target="_blank" action="{{ route('depan.cetak') }}" method="POST">@csrf
+                                        <form target="_blank" action="{{ route('diklat.depan_cetak') }}" method="POST">@csrf
                                             <div class="form-group">
                                                 <label for="">Jenis Program</label>
-                                                <select name="program_id" id="" class="form-control" required>
+                                                <select name="program_id" id="" class="form-control text-capitalize" required>
                                                     <option value="">= Pilih Jenis Program =</option>
                                                     @foreach ($dt_pro as $item)
-                                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                                        <option class="text-capitalize" value="{{ $item->id }}">{{ $item->name }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
                                             <div class="form-group">
                                                 <label for="">Program Pelatihan</label>
-                                                <select name="pelatihan_id" id="" class="form-control" required>
-                                                    <option value="">= Pilih Program Pelatihan =</option>
+                                                <select name="pelatihan_id" id="" class="form-control text-capitalize" required>
+                                                    <option class="text-capitalize" value="">= Pilih Program Pelatihan =</option>
                                                 </select>
                                             </div>
                                             <div class="form-group">
@@ -116,7 +116,28 @@
         <script src="{{ URL::asset('tilawatipusat/js/pages/datatables.init.js')}}"></script>
 
         <script>
-            
-            
-        </script>
+            $(document).ready(function() {
+                    $('select[name="program_id"]').on('change', function() {
+                        var program_id = $(this).val();
+                        if(program_id) {
+                            console.log(program_id);
+                            $.ajax({
+                                url: '/fetchpp/' + program_id,
+                                type: "GET",
+                                dataType: "json",
+                                success:function(data) {    
+                                    var tmp = data.toString().split(',');                  
+                                    $('select[name="pelatihan_id"]').empty();
+                                    $.each(data, function(key, value) {
+                                    $('select[name="pelatihan_id"]').append('<option value="'+ value.id +'">'+ value.id + " | " + value.name + " | " + value.tanggal + " | " + value.tempat + '</option>');
+                                    });
+                                    console.log(data);
+                                }
+                            });
+                        }else{
+                            $('select[name="pelatihan_id"]').empty().disabled();
+                        }
+                    });
+                });
+            </script>
 @endsection

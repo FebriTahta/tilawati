@@ -98,10 +98,12 @@
 		}
 		.alignright {
 			float: right;
+		}.paksatengah{
+			margin-right: 19px;
 		}
 	</style>
 	@foreach($peserta as $key=> $p)
-<div class="container page-break" style="margin-top: 110px">
+<div class="container page-break paksatengah" style="margin-top: 110px">
 	<center>
 		<p>No. Syahadah : {{ $p->pelatihan->id }} / 2021 / {{ $p->id }}</p>
 	</center>

@@ -22,4 +22,10 @@ class Penilaian extends Model
     {
         return $this->belongsTo(Program::class);
     }
+
+    public function nilai()
+    {
+        return $this->hasMany(Nilai::class);
+    }
+    
 }

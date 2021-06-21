@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use DB;
 use App\Models\Kriteria;
+use App\Models\Program;
 use DataTables;
 use Illuminate\Http\Request;
 
@@ -10,15 +11,19 @@ class KriteriaCont extends Controller
 {
     public function index(Request $request)
     {
-        return view('tilawatipusat.kriteria.index');
+        $pro = Program::all();
+        return view('tilawatipusat.kriteria.index',compact('pro'));
     }
 
     public function kriteria_data(Request $request)
     {
         if(request()->ajax())
         {
-            $data   = Kriteria::all();
+            $data   = Kriteria::with('program');
             return DataTables::of($data)
+            ->addColumn('program',function($data){
+                return $data->program->name;
+            })
             ->addColumn('option', function ($data) {
                 $btn = ' <button class="btn btn-sm btn-warning" data-toggle="modal" data-target=".bs-example-modal-kriteria-update"
                 data-id="'.$data->id.'" data-name="'.$data->name.'" data-untuk="'.$data->untuk.'"><i class="mdi mdi-pencil-outline"></i></button>';
@@ -26,7 +31,7 @@ class KriteriaCont extends Controller
                 data-id="'.$data->id.'"><i class="fa fa-trash"></i> </button>';
                 return $btn;
             })
-            ->rawColumns(['option'])
+            ->rawColumns(['option','program'])
             ->make(true);
         }
     }
@@ -58,6 +63,7 @@ class KriteriaCont extends Controller
             ],
             [
                 'name' => $request->name,
+                'program_id' => $request->program_id,
                 'untuk' => $request->untuk,
             ]
         );

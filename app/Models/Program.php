@@ -21,4 +21,9 @@ class Program extends Model
     {
         return $this->hasmany(Penilaian::class);
     }
+
+    public function kriteria()
+    {
+        return $this->hasMany(Kriteria::class);
+    }
 }

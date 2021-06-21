@@ -654,7 +654,7 @@
               },
             },
             {
-            data:'kabupaten',
+            data:'kabupatem',
             name:'kabupaten.nama',
             },
             {
