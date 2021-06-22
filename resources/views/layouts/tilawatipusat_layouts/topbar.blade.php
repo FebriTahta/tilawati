@@ -63,21 +63,19 @@
                 <div class="navbar-brand-box">
                     <a href="{{ route('diklat.dashboard') }}" class="logo logo-dark">
                         <span class="logo-sm">
-                            {{-- <img src="{{ asset('tilawatipusat/images/logo-sm.png') }}" alt="" height="20"> --}}
-                            TILAWATI
+                            <img src="{{ asset('assets/images/tilawati-white.png') }}" alt="" width="100px">
                         </span>
                         <span class="logo-lg">
-                            {{-- <img src="{{ asset('tilawatipusat/images/logo-dark.png') }}" alt="" height="17"> --}}
-                            TILAWATI
+                            <img src="{{  asset('assets/images/tilawati-white.png')  }}" alt="" width="70px">
                         </span>
                     </a>
 
                     <a href="{{ route('diklat.dashboard') }}" class="logo logo-light text-white">
                         <p class="logo-sm">
-                            <img src="{{ asset('assets/images/tilawati.png') }}" alt="" width="100px">
+                            <img src="{{ asset('assets/images/tilawati-white.png') }}" alt="" width="100px">
                         </p>
                         <p class="logo-lg">
-                            <img src="{{  asset('assets/images/tilawati.png')  }}" alt="" width="70px">
+                            <img src="{{  asset('assets/images/tilawati-white.png')  }}" alt="" width="80px">
                         </p>
                     </a>
                 </div>
