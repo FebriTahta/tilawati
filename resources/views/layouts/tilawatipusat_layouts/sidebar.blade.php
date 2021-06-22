@@ -5,7 +5,7 @@
 
         <div class="user-wid text-center py-4">
             <div class="user-img">
-                <img src="{{ asset('assets/images/logo-nf.png') }}" alt="" class="avatar-md mx-auto rounded-circle">
+                <img src="{{ asset('assets/images/tilawati.png') }}" alt="" class="avatar-md rounded-circle">
             </div>
 
             <div class="mt-3">

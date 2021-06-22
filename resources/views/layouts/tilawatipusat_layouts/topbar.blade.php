@@ -75,7 +75,7 @@
                             <img src="{{ asset('assets/images/tilawati-white.png') }}" alt="" width="100px">
                         </p>
                         <p class="logo-lg">
-                            <img src="{{  asset('assets/images/tilawati-white.png')  }}" alt="" width="80px">
+                            <img src="{{  asset('assets/images/nf_logo_white.png')  }}" alt="" width="130px">
                         </p>
                     </a>
                 </div>

@@ -5,7 +5,9 @@
 
     <!-- DataTables -->
     <link href="{{ URL::asset('tilawatipusat/libs/datatables/datatables.min.css')}}" rel="stylesheet" type="text/css" />
+    <style>
 
+    </style>
 @endsection
 
 @section('content')
@@ -14,6 +16,94 @@
          @slot('title') Dashboard   @endslot
          @slot('title_li')   @endslot
      @endcomponent
+     <div class="row">
+        <div class="col-xl-5">
+            @component('common-tilawatipusat.dashboard-widget')
+        
+            @slot('title') <a href="#"><b id="cb">5</b> <b>Cabang</b></a> <a href="#"><br> <span id="pv">10 </span> Provinsi & </a> <a href="#"><span id="kb">5 </span> Kabupaten / Kota </a> @endslot
+            @slot('iconClass') mdi mdi-tag-plus-outline  @endslot
+            @slot('price')   @endslot
+            
+           
+        @endcomponent
+
+        @component('common-tilawatipusat.dashboard-widget')
+        
+            @slot('title') <a href="#"><b id="lm">5</b> <b>Lembaga</b></a> <a href=""><br> <span id="lmpv">10 </span> Provinsi & </a> <a href="#"><span id="lmkb">5 </span> Kabupaten / Kota </a> @endslot
+            @slot('iconClass') mdi mdi-tag-plus-outline  @endslot
+            @slot('price')  @endslot
+            
+           
+        @endcomponent
+        </div>
+        <div class="col-xl-7">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title mb-4">History</h4>
+                    <div class="mb-4 card-title">
+                        <p><span class="text-primary"> {{ $diklat_ini }} </span> Kegiatan Diklat Terbaru</p>
+                    </div>
+                    <div class="mb-3">
+                        <i class="fas fa-quote-left h4 text-primary"></i>
+                    </div>
+                    <div id="reviewExampleControls" class="carousel slide review-carousel" data-ride="carousel">
+                        <div class="carousel-inner">
+                            @foreach ($diklat as $key=>$item)
+                                <div class="carousel-item @if($key==1) active @endif text-capitalize">
+                                    <div>
+                                        <p>Diklat {{ $item->program->name }}, pada : <b>{{ Carbon\Carbon::parse($item->tanggal)->isoFormat('D MMMM Y') }}, </b>di {{ $item->tempat }}, diikuti <b>{{ $item->peserta->count() }} peserta </b></p>
+                                        <div class="media mt-4">
+                                            <div class="avatar-sm mr-3">
+                                                <span class="avatar-title bg-soft-primary text-primary rounded-circle">
+                                                        {{ $key+1 }}
+                                                    </span>
+                                            </div>
+                                            <div class="media-body">
+                                                <h5 class="font-size-16 mb-1">{{ $item->cabang->status }}</h5>
+                                                <p class="mb-2">{{ $item->cabang->name }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+        
+                        <a class="carousel-control-prev" href="#reviewExampleControls" role="button" data-slide="prev">
+                            <i class="mdi mdi-chevron-left carousel-control-icon"></i>
+                        </a>
+                        <a class="carousel-control-next" href="#reviewExampleControls" role="button" data-slide="next">
+                            <i class="mdi mdi-chevron-right carousel-control-icon"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+     </div>
+     <div class="card col-xl-7">
+        
+    </div>
+     <div class="col-xl-5">
+   
+        @component('common-tilawatipusat.dashboard-widget')
+        
+            @slot('title') <b id="dk">5</b> <b>Diklat</b> <br>   @endslot
+            @slot('iconClass') mdi mdi-tag-plus-outline  @endslot
+            @slot('price')  @endslot
+            
+           
+        @endcomponent
+   
+        @component('common-tilawatipusat.dashboard-widget')
+        
+            @slot('title') <b id="ps">5</b> <b>Peserta</b> <br>  @endslot
+            @slot('iconClass') mdi mdi-tag-plus-outline  @endslot
+            @slot('price')  @endslot
+            
+           
+        @endcomponent
+        
+   </div>
      <div class="card">
         <div class="row p-3">
             <div class="col-6 col-xl-4 form-group">
@@ -39,46 +129,6 @@
         </div>
     </div>
                     <div class="row">
-                        <div class="col-xl-5">
-                            
-     @component('common-tilawatipusat.dashboard-widget')
-     
-         @slot('title') <b id="cb">5</b> <b>Cabang</b> <br> <span id="pv">10 </span> Provinsi & <span id="kb">5 </span> Kabupaten / Kota  @endslot
-         @slot('iconClass') mdi mdi-tag-plus-outline  @endslot
-         @slot('price')   @endslot
-         
-        
-     @endcomponent
-     
-     @component('common-tilawatipusat.dashboard-widget')
-     
-         @slot('title') <b id="lm">5</b> <b>Lembaga</b> <br> <span id="lmpv">10 </span> Provinsi & <span id="lmkb">5 </span> Kabupaten / Kota  @endslot
-         @slot('iconClass') mdi mdi-tag-plus-outline  @endslot
-         @slot('price')  @endslot
-         
-        
-     @endcomponent
-
-     @component('common-tilawatipusat.dashboard-widget')
-     
-         @slot('title') <b id="dk">5</b> <b>Diklat</b> <br>   @endslot
-         @slot('iconClass') mdi mdi-tag-plus-outline  @endslot
-         @slot('price')  @endslot
-         
-        
-     @endcomponent
-
-     @component('common-tilawatipusat.dashboard-widget')
-     
-         @slot('title') <b id="ps">5</b> <b>Peserta</b> <br>  @endslot
-         @slot('iconClass') mdi mdi-tag-plus-outline  @endslot
-         @slot('price')  @endslot
-         
-        
-     @endcomponent
-     
-                        </div>
-
                         <div class="col-xl-7">
                             <div class="card">
                                 <div class="card-body">
