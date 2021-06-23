@@ -17,33 +17,13 @@
          @slot('title_li')   @endslot
      @endcomponent
      <div class="row">
-        <div class="col-xl-5">
-            @component('common-tilawatipusat.dashboard-widget')
-        
-            @slot('title') <a href="#"><b id="cb">5</b> <b>Cabang</b></a> <a href="#"><br> <span id="pv">10 </span> Provinsi & </a> <a href="#"><span id="kb">5 </span> Kabupaten / Kota </a> @endslot
-            @slot('iconClass') mdi mdi-tag-plus-outline  @endslot
-            @slot('price')   @endslot
-            
-           
-        @endcomponent
-
-        @component('common-tilawatipusat.dashboard-widget')
-        
-            @slot('title') <a href="#"><b id="lm">5</b> <b>Lembaga</b></a> <a href=""><br> <span id="lmpv">10 </span> Provinsi & </a> <a href="#"><span id="lmkb">5 </span> Kabupaten / Kota </a> @endslot
-            @slot('iconClass') mdi mdi-tag-plus-outline  @endslot
-            @slot('price')  @endslot
-            
-           
-        @endcomponent
-        </div>
         <div class="col-xl-7">
-            <div class="card">
+            <div class="card" style="min-height: 265px">
                 <div class="card-body">
-                    <h4 class="card-title mb-4">History</h4>
                     <div class="mb-4 card-title">
                         <p><span class="text-primary"> {{ $diklat_ini }} </span> Kegiatan Diklat Terbaru</p>
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-4">
                         <i class="fas fa-quote-left h4 text-primary"></i>
                     </div>
                     <div id="reviewExampleControls" class="carousel slide review-carousel" data-ride="carousel">
@@ -78,75 +58,94 @@
                 </div>
             </div>
         </div>
+
+        <div class="col-xl-5">
+            @component('common-tilawatipusat.dashboard-widget')
         
-     </div>
-     <div class="card col-xl-7">
+            @slot('title') <a href="#"><b id="cb">5</b> <b>Cabang</b></a> <a href="#"><br> <span id="pv">10 </span> Provinsi & </a> <a href="#"><span id="kb">5 </span> Kabupaten / Kota </a> @endslot
+            @slot('iconClass') mdi mdi-tag-plus-outline  @endslot
+            @slot('price')   @endslot
+            
+           
+        @endcomponent
+
+        @component('common-tilawatipusat.dashboard-widget')
+        
+            @slot('title') <a href="#"><b id="lm">5</b> <b>Lembaga</b></a> <a href=""><br> <span id="lmpv">10 </span> Provinsi & </a> <a href="#"><span id="lmkb">5 </span> Kabupaten / Kota </a> @endslot
+            @slot('iconClass') mdi mdi-tag-plus-outline  @endslot
+            @slot('price')  @endslot
+            
+           
+        @endcomponent
+        </div>
+        
         
     </div>
-     <div class="col-xl-5">
-   
-        @component('common-tilawatipusat.dashboard-widget')
-        
-            @slot('title') <b id="dk">5</b> <b>Diklat</b> <br>   @endslot
-            @slot('iconClass') mdi mdi-tag-plus-outline  @endslot
-            @slot('price')  @endslot
+    <div class="row">
+        <div class="col-xl-5">
+            <div class="card">
+                <div class="row card-body">
+                    <div class="col-12 col-xl-12 form-group">
+                        <label>Dari :</label>
+                        <input type="date" name="dari" id="dari" class="form-control">
+                        <span class="red dari" style="color: red"></span>
+                    </div>
+                    <div class="col-12 col-xl-12 form-group">
+                        <label>Sampai :</label>
+                        <input type="date" name="sampai" id="sampai" class="form-control">
+                        <span class="red sampai" style="color: red"></span>
+                    </div>
+                    <div class="form-group col-12 col-xl-12">
+                        <label for="">Cari :</label>
+                        <button class="btn btn-rounded form-control text-white" style="background-color: rgb(137, 137, 253)" name="filter" id="filter" onclick="search()"> <i
+                                class="fa fa-search"></i></button>
+                    </div>
+                    <div class="form-group col-12 col-xl-12">
+                        <label for="">Reset :</label>
+                        <button class="btn btn-rounded btn-danger form-control" name="refresh" id="refresh"> <i
+                                class="fa fa-stop"></i></button>
+                    </div>
+                </div>
+            </div>
+            @component('common-tilawatipusat.dashboard-widget')
             
-           
-        @endcomponent
-   
-        @component('common-tilawatipusat.dashboard-widget')
-        
-            @slot('title') <b id="ps">5</b> <b>Peserta</b> <br>  @endslot
-            @slot('iconClass') mdi mdi-tag-plus-outline  @endslot
-            @slot('price')  @endslot
+                @slot('title') <b id="dk">5</b> <b>Diklat</b> <br>   @endslot
+                @slot('iconClass') mdi mdi-tag-plus-outline  @endslot
+                @slot('price')  @endslot
+                
+               
+            @endcomponent
+       
+            @component('common-tilawatipusat.dashboard-widget')
             
-           
-        @endcomponent
-        
-   </div>
-     <div class="card">
-        <div class="row p-3">
-            <div class="col-6 col-xl-4 form-group">
-                <label>Dari :</label>
-                <input type="date" name="dari" id="dari" class="form-control">
-                <span class="red dari" style="color: red"></span>
+                @slot('title') <b id="ps">5</b> <b>Peserta</b> <br>  @endslot
+                @slot('iconClass') mdi mdi-tag-plus-outline  @endslot
+                @slot('price')  @endslot
+                
+               
+            @endcomponent
+       </div>
+       <div class="col-xl-7">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="mt-0 header-title mb-4 text-uppercase">DATA DIKLAT</h5>
+                    <div class="panel-body show-chart2">
+                        <canvas id="myChart" height="350" width="600"></canvas>
+                    </div>
+                </div>
             </div>
-            <div class="col-6 col-xl-4 form-group">
-                <label>Sampai :</label>
-                <input type="date" name="sampai" id="sampai" class="form-control">
-                <span class="red sampai" style="color: red"></span>
-            </div>
-            <div class="form-group col-6 col-xl-2">
-                <label for="">Cari :</label>
-                <button class="btn btn-rounded form-control text-white" style="background-color: rgb(137, 137, 253)" name="filter" id="filter" onclick="search()"> <i
-                        class="fa fa-search"></i></button>
-            </div>
-            <div class="form-group col-6 col-xl-2">
-                <label for="">Reset :</label>
-                <button class="btn btn-rounded btn-danger form-control" name="refresh" id="refresh"> <i
-                        class="fa fa-stop"></i></button>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="mt-0 header-title mb-4 text-uppercase">DATA PESERTA DIKLAT</h5>
+                    <div class="panel-body show-chart">
+                        <canvas id="canvas" height="350" width="600"></canvas>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
                     <div class="row">
-                        <div class="col-xl-7">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h5 class="mt-0 header-title mb-4 text-uppercase">DATA DIKLAT</h5>
-                                    <div class="panel-body show-chart2">
-                                        <canvas id="myChart" height="350" width="600"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="card-body">
-                                    <h5 class="mt-0 header-title mb-4 text-uppercase">DATA PESERTA DIKLAT</h5>
-                                    <div class="panel-body show-chart">
-                                        <canvas id="canvas" height="350" width="600"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        
                     </div>
                     <!-- end row -->
 
