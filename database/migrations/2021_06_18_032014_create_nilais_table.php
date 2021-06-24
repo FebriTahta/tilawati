@@ -21,6 +21,10 @@ class CreateNilaisTable extends Migration
             $table->string('kategori')->nullable();
             $table->timestamps();
         });
+
+        Schema::table('nilais', function (Blueprint $table){
+            $table->foreign('peserta_id')->references('id')->on('pesertas')->onDelete('cascade')->onUpdate('cascade');
+        });
     }
 
     /**

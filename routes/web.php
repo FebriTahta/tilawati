@@ -28,6 +28,7 @@ use App\Http\Controllers\DashboardCont;
 use App\Http\Controllers\PenilaianCont;
 use App\Http\Controllers\ProfileCont;
 use App\Http\Controllers\NilaiCont;
+use App\Http\Controllers\TeritoriCont;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -188,12 +189,19 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga']], funct
     Route::get('/diklat-cabang-total',[CabangCont::class, 'cabang_total'])->name('diklat.cabang_tot');
     Route::get('/diklat-cabang-kabupaten-total',[CabangCont::class, 'cabang_kabupaten'])->name('diklat.cabang_kab');
     Route::get('/diklat-cabang-provinsi-total',[CabangCont::class, 'cabang_provinsi'])->name('diklat.cabang_pro');
+    Route::get('/diklat-cabang-provinsi-data',[CabangCont::class,'data_cabang_provinsi'])->name('diklat.data_cab_pro');
+    Route::get('/diklat-cabang-provinsi-get-data/{id}',[CabangCont::class,'data_cabang_provinsi_data'])->name('diklat.data_cab_pro_data');
+    Route::get('/diklat-cabang-provinsi-get-data-view/{id}/{tanggal}',[CabangCont::class,'data_cabang_provinsi_view'])->name('diklat.data_cab_pro_view');
+
+    Route::get('/diklat-teritori-cabang',[TeritoriCont::class,'cabang_duplikat_kabupaten'])->name('diklat.duplikat_cabang');
 
     Route::get('/diklat-lembaga',[LembagaCont::class, 'index'])->name('diklat.lembaga');
     Route::get('/diklat-lembaga-data',[LembagaCont::class, 'lembaga_data'])->name('diklat.lembaga_data');
     Route::get('/diklat-lembaga-total',[LembagaCont::class, 'lembaga_total'])->name('diklat.lembaga_tot');
     Route::get('/diklat-lembaga-kabupaten-total',[LembagaCont::class, 'lembaga_kabupaten'])->name('diklat.lembaga_kab');
     Route::get('/diklat-lembaga-provinsi-total',[LembagaCont::class, 'lembaga_provinsi'])->name('diklat.lembaga_pro');
+    Route::get('/diklat-lembaga-aktif',[LembagaCont::class,'lembaga_aktif'])->name('diklat.lembaga_aktif');
+    Route::get('/diklat-lembaga-non-aktif',[LembagaCont::class,'lembaga_nonaktif'])->name('diklat.lembaga_nonaktif');
 
     Route::get('/diklat-jenjang',[JenjangCont::class, 'index'])->name('diklat.jenjang');
     Route::get('/diklat-jenjang-data',[JenjangCont::class, 'jenjang_data'])->name('diklat.jenjang_data');

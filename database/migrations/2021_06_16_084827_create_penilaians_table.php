@@ -22,6 +22,10 @@ class CreatePenilaiansTable extends Migration
             $table->string('kategori');
             $table->timestamps();
         });
+
+        Schema::table('penilaians', function (Blueprint $table){
+            $table->foreign('program_id')->references('id')->on('programs')->onDelete('cascade')->onUpdate('cascade');
+        });
     }
 
     /**

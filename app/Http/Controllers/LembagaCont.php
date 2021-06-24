@@ -43,6 +43,46 @@ class lembagaCont extends Controller
         }
     }
 
+    public function lembaga_aktif(Request $request)
+    {
+        if (request()->ajax()) {
+            # code...
+            if(!empty($request->dari))
+            {
+                $data = DB::table('lembagas')->where('status', 'Aktif')
+                ->whereBetween('created_at', array($request->dari, $request->sampai))
+                ->get()->count();
+                return response()->json($data,200);
+            }
+            else
+            {
+                $data = DB::table('lembagas')->where('status', 'Aktif')
+                ->get()->count();
+                return response()->json($data,200);
+            }
+        }
+    }
+
+    public function lembaga_nonaktif(Request $request)
+    {
+        if (request()->ajax()) {
+            # code...
+            if(!empty($request->dari))
+            {
+                $data = DB::table('lembagas')->where('status', 'Non Aktif')
+                ->whereBetween('created_at', array($request->dari, $request->sampai))
+                ->get()->count();
+                return response()->json($data,200);
+            }
+            else
+            {
+                $data = DB::table('lembagas')->where('status', 'Non Aktif')
+                ->get()->count();
+                return response()->json($data,200);
+            }
+        }
+    }
+
     public function lembaga_total(Request $request)
     {
         if (request()->ajax()) {

@@ -17,16 +17,16 @@
                         <div class="col-xl-4">
                             @component('common-tilawatipusat.dashboard-widget')
                             
-                                @slot('title') <b id="cb"> 2,456 </b> lembaga  @endslot
+                                @slot('title') <b id="cb"> ??? </b> lembaga <br> <small><b id="lem_aktif"></b> Aktif & <b id="lem_nonaktif"></b> Non Aktif</small> @endslot
                                 @slot('iconClass') mdi mdi-tag-plus-outline  @endslot
-                                @slot('price')   @endslot
+                                @slot('price')  @endslot
                                 
                             @endcomponent
                         </div>
                         <div class="col-xl-4">
                             @component('common-tilawatipusat.dashboard-widget')
                             
-                                @slot('title') <b id="kb"> 2,456 </b> Kabupaten  @endslot
+                                @slot('title') <b id="kb"> ??? </b> Kabupaten  @endslot
                                 @slot('iconClass') mdi mdi-tag-plus-outline  @endslot
                                 @slot('price')   @endslot
                                 
@@ -157,6 +157,26 @@
         <script>
             $(document).ready(function(){
                 
+                $.ajax({
+                    url:'{{ route("diklat.lembaga_nonaktif") }}',
+                    type: 'get',
+                    dataType: 'json',
+                    success:function(data) {
+                        document.getElementById('lem_nonaktif').innerHTML = data;
+                        console.log(data);
+                    }
+                });
+
+                $.ajax({
+                    url:'{{ route("diklat.lembaga_aktif") }}',
+                    type: 'get',
+                    dataType: 'json',
+                    success:function(data) {
+                        document.getElementById('lem_aktif').innerHTML = data;
+                        console.log(data);
+                    }
+                });
+
                 $.ajax({
                     url:'{{ route("diklat.lembaga_kab") }}',
                     type: 'get',

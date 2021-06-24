@@ -2,34 +2,41 @@
 
 @section('title') Dashboard @endsection
 @section('css')
-
+<style>
+    table.dataTable.prov td:nth-child(2) {
+    width: 20px;
+    max-width: 20px;
+    word-break: break-all;
+    white-space: pre-line;
+    text-align: center;
+    }
+    table.dataTable.prov th:nth-child(2) {
+    text-align: center;
+    }
+</style>
     <!-- DataTables -->
     <link href="{{ URL::asset('tilawatipusat/libs/datatables/datatables.min.css')}}" rel="stylesheet" type="text/css" />
-    <style>
-
-    </style>
 @endsection
 
 @section('content')
-
     @component('common-tilawatipusat.breadcrumb')
          @slot('title') Dashboard   @endslot
          @slot('title_li')   @endslot
      @endcomponent
-     <div class="row">
-        <div class="col-xl-7">
-            <div class="card" style="min-height: 265px">
-                <div class="card-body">
-                    <div class="mb-4 card-title">
-                        <p><span class="text-primary"> {{ $diklat_ini }} </span> Kegiatan Diklat Terbaru</p>
-                    </div>
-                    <div class="mb-4">
-                        <i class="fas fa-quote-left h4 text-primary"></i>
-                    </div>
-                    <div id="reviewExampleControls" class="carousel slide review-carousel" data-ride="carousel">
-                        <div class="carousel-inner">
-                            @foreach ($diklat as $key=>$item)
-                                <div class="carousel-item @if($key==1) active @endif text-capitalize">
+        <div class="row">
+            <div class="col-xl-7">
+                <div class="card" style="min-height: 265px">
+                    <div class="card-body">
+                        <div class="mb-4 card-title">
+                            <p class="text-info"><u class="text-info"> {{ $diklat_ini }} </u> Kegiatan Diklat Terbaru</p>
+                        </div>
+                        <div class="mb-4">
+                            <i class="fas fa-quote-left h4 text-primary"></i>
+                        </div>
+                        <div id="reviewExampleControls" class="carousel slide review-carousel" data-ride="carousel">
+                            <div class="carousel-inner">
+                                @foreach ($diklat as $key=>$item)
+                                <div class="carousel-item @if($key==0) active @endif text-capitalize">
                                     <div>
                                         <p>Diklat {{ $item->program->name }}, pada : <b>{{ Carbon\Carbon::parse($item->tanggal)->isoFormat('D MMMM Y') }}, </b>di {{ $item->tempat }}, diikuti <b>{{ $item->peserta->count() }} peserta </b></p>
                                         <div class="media mt-4">
@@ -45,121 +52,281 @@
                                         </div>
                                     </div>
                                 </div>
-                            @endforeach
+                                @endforeach
+                            </div>
+            
+                            <a class="carousel-control-prev" href="#reviewExampleControls" role="button" data-slide="prev">
+                                <i class="mdi mdi-chevron-left carousel-control-icon"></i>
+                            </a>
+                            <a class="carousel-control-next" href="#reviewExampleControls" role="button" data-slide="next">
+                                <i class="mdi mdi-chevron-right carousel-control-icon"></i>
+                            </a>
                         </div>
-        
-                        <a class="carousel-control-prev" href="#reviewExampleControls" role="button" data-slide="prev">
-                            <i class="mdi mdi-chevron-left carousel-control-icon"></i>
-                        </a>
-                        <a class="carousel-control-next" href="#reviewExampleControls" role="button" data-slide="next">
-                            <i class="mdi mdi-chevron-right carousel-control-icon"></i>
-                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-5">
+                @component('common-tilawatipusat.dashboard-widget')
+            
+                @slot('title') <a href="#" data-toggle="modal" data-target="#mod_cabang"><b id="cb">???</b> <b>Cabang</b></a> <a href="#" data-toggle="modal" data-target="#mod_cabang2"><br> <span id="pv">??? </span> Provinsi & </a> <a href="#"><span id="kb">??? </span> Kabupaten / Kota </a> @endslot
+                @slot('iconClass') mdi mdi-tag-plus-outline  @endslot
+                @slot('price')   @endslot
+                
+            
+            @endcomponent
+
+            @component('common-tilawatipusat.dashboard-widget')
+            
+                @slot('title') <a href="#"><b id="lm">???</b> <b>Lembaga</b></a> <a href=""><br> <span id="lmpv">??? </span> Provinsi & </a> <a href="#"><span id="lmkb">??? </span> Kabupaten / Kota </a> @endslot
+                @slot('iconClass') mdi mdi-tag-plus-outline  @endslot
+                @slot('price')  @endslot
+                
+            
+            @endcomponent
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <i> Berikut Daftar Cabang Yang Memiliki Daerah Teritorial </i><br>
+                        <a class="text-info" href="#"><i>check</i></a>
+                        @foreach ($x as $item)
+                            <?php $data = App\Models\Cabang::where('kabupaten_id', $item->kabupaten_id)->get()?>
+                        @endforeach
                     </div>
                 </div>
             </div>
         </div>
+    
+        <div class="row">
+            <div class="col-xl-5">
+                <div class="card" style="min-height: 383px">
+                    <div class="row card-body">
+                        <div class="col-12 col-xl-12 form-group">
+                            <label>Dari :</label>
+                            <input type="date" name="dari" id="dari" class="form-control">
+                            <span class="red dari" style="color: red"></span>
+                        </div>
+                        <div class="col-12 col-xl-12 form-group">
+                            <label>Sampai :</label>
+                            <input type="date" name="sampai" id="sampai" class="form-control">
+                            <span class="red sampai" style="color: red"></span>
+                        </div>
+                        <div class="form-group col-12 col-xl-12">
+                            <label for="">Cari :</label>
+                            <button class="btn btn-rounded form-control text-white" style="background-color: rgb(137, 137, 253)" name="filter" id="filter" onclick="search()"> <i
+                                    class="fa fa-search"></i></button>
+                        </div>
+                        <div class="form-group col-12 col-xl-12">
+                            <label for="">Reset :</label>
+                            <button class="btn btn-rounded btn-danger form-control" name="refresh" id="refresh"> <i
+                                    class="fa fa-stop"></i></button>
+                        </div>
+                    </div>
+                </div>
 
-        <div class="col-xl-5">
-            @component('common-tilawatipusat.dashboard-widget')
+                @component('common-tilawatipusat.dashboard-widget')
+                
+                    @slot('title') <b id="dk">???</b> <b>Diklat</b> <br>   @endslot
+                    @slot('iconClass') mdi mdi-tag-plus-outline  @endslot
+                    @slot('price')  @endslot
+                    
+                
+                @endcomponent
         
-            @slot('title') <a href="#"><b id="cb">5</b> <b>Cabang</b></a> <a href="#"><br> <span id="pv">10 </span> Provinsi & </a> <a href="#"><span id="kb">5 </span> Kabupaten / Kota </a> @endslot
-            @slot('iconClass') mdi mdi-tag-plus-outline  @endslot
-            @slot('price')   @endslot
-            
-           
-        @endcomponent
+                @component('common-tilawatipusat.dashboard-widget')
+                
+                    @slot('title') <b id="ps">???</b> <b>Peserta</b> <br>  @endslot
+                    @slot('iconClass') mdi mdi-tag-plus-outline  @endslot
+                    @slot('price')  @endslot
+                    
+                
+                @endcomponent
 
-        @component('common-tilawatipusat.dashboard-widget')
-        
-            @slot('title') <a href="#"><b id="lm">5</b> <b>Lembaga</b></a> <a href=""><br> <span id="lmpv">10 </span> Provinsi & </a> <a href="#"><span id="lmkb">5 </span> Kabupaten / Kota </a> @endslot
-            @slot('iconClass') mdi mdi-tag-plus-outline  @endslot
-            @slot('price')  @endslot
-            
-           
-        @endcomponent
         </div>
-        
-        
-    </div>
+        <div class="col-xl-7">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="mt-0 header-title mb-4 text-uppercase">DATA DIKLAT</h5>
+                        <div class="panel-body show-chart2">
+                            <canvas id="myChart" height="350" width="600"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="mt-0 header-title mb-4 text-uppercase">DATA PESERTA DIKLAT</h5>
+                        <div class="panel-body show-chart">
+                            <canvas id="canvas" height="350" width="600"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     <div class="row">
-        <div class="col-xl-5">
-            <div class="card">
-                <div class="row card-body">
-                    <div class="col-12 col-xl-12 form-group">
-                        <label>Dari :</label>
-                        <input type="date" name="dari" id="dari" class="form-control">
-                        <span class="red dari" style="color: red"></span>
-                    </div>
-                    <div class="col-12 col-xl-12 form-group">
-                        <label>Sampai :</label>
-                        <input type="date" name="sampai" id="sampai" class="form-control">
-                        <span class="red sampai" style="color: red"></span>
-                    </div>
-                    <div class="form-group col-12 col-xl-12">
-                        <label for="">Cari :</label>
-                        <button class="btn btn-rounded form-control text-white" style="background-color: rgb(137, 137, 253)" name="filter" id="filter" onclick="search()"> <i
-                                class="fa fa-search"></i></button>
-                    </div>
-                    <div class="form-group col-12 col-xl-12">
-                        <label for="">Reset :</label>
-                        <button class="btn btn-rounded btn-danger form-control" name="refresh" id="refresh"> <i
-                                class="fa fa-stop"></i></button>
-                    </div>
-                </div>
+</div>
+<!-- end row -->
+<!-- modal cabang -->
+<div class="modal fade bs-example-modal-xl" id="mod_cabang" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">DAFTAR CABANG</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-            @component('common-tilawatipusat.dashboard-widget')
-            
-                @slot('title') <b id="dk">5</b> <b>Diklat</b> <br>   @endslot
-                @slot('iconClass') mdi mdi-tag-plus-outline  @endslot
-                @slot('price')  @endslot
-                
-               
-            @endcomponent
-       
-            @component('common-tilawatipusat.dashboard-widget')
-            
-                @slot('title') <b id="ps">5</b> <b>Peserta</b> <br>  @endslot
-                @slot('iconClass') mdi mdi-tag-plus-outline  @endslot
-                @slot('price')  @endslot
-                
-               
-            @endcomponent
-       </div>
-       <div class="col-xl-7">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="mt-0 header-title mb-4 text-uppercase">DATA DIKLAT</h5>
-                    <div class="panel-body show-chart2">
-                        <canvas id="myChart" height="350" width="600"></canvas>
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="mt-0 header-title mb-4 text-uppercase">DATA PESERTA DIKLAT</h5>
-                    <div class="panel-body show-chart">
-                        <canvas id="canvas" height="350" width="600"></canvas>
-                    </div>
-                </div>
+            <div class="modal-body">
+                {{-- <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive"> --}}
+                    <table id="datatable-buttons" class="table cab table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
+                        <thead class="text-bold text-primary">
+                            <tr>
+                                <th>Kode</th>
+                                <th>Nama</th>
+                                <th>Kepala</th>
+                                <th>Provinsi</th>
+                                <th>Kabupaten</th>
+                                <th>Telephone</th>
+                                <th>Alamat</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+
+                        <tbody style="text-transform: uppercase; font-size: 12px">
+                        </tbody>
+
+                        <tfoot class="text-bold text-primary">
+                            <tr>
+                               <th>Kode</th>
+                               <th>Nama</th>
+                               <th>Kepala</th>
+                               <th>Provinsi</th>
+                               <th>Kabupaten</th>
+                               <th>Telephone</th>
+                               <th>Alamat</th>
+                               <th>Status</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <footer class="blockquote-footer">Updated at  <cite title="Source Title">2021</cite></footer>
+                {{-- </blockquote> --}}
             </div>
         </div>
+        <!-- /.modal-content -->
     </div>
-                    <div class="row">
-                        
-                    </div>
-                    <!-- end row -->
+    <!-- /.modal-dialog -->
+</div>
 
+<div class="modal fade bs-example-modal-xl-2" id="mod_cabang2" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">DAFTAR KABUPATEN DARI CABANG</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                {{-- <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive"> --}}
+                    <table id="datatable-buttons2" class="table prov table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
+                        <thead class="text-bold text-primary">
+                            <tr>
+                                <th>Kabupaten</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+
+                        <tbody style="text-transform: uppercase; font-size: 12px">
+                        </tbody>
+
+                        <tfoot class="text-bold text-primary">
+                            <tr>
+                               <th>Kabupaten</th>
+                               <th>Action</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <footer class="blockquote-footer">Updated at  <cite title="Source Title">2021</cite></footer>
+                {{-- </blockquote> --}}
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+<div class="modal fade bs-example-modal-xl-3" id="mod_cabang3" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">DAFTAR KABUPATEN DARI CABANG</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                {{-- <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive"> --}}
+                    {{-- <table id="datatable-buttons3" class="table prov table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
+                        <thead class="text-bold text-primary">
+                            <tr>
+                                <th>Cabang</th>
+                                <th>Kabupaten</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+
+                        <tbody style="text-transform: uppercase; font-size: 12px">
+                        </tbody>
+
+                        <tfoot class="text-bold text-primary">
+                            <tr>
+                                <th>Cabang</th>
+                                <th>Kabupaten</th>
+                                <th>Action</th>
+                            </tr>
+                        </tfoot>
+                    </table> --}}
+                    <input type="text" id="id" class="form-control">
+                    <footer class="blockquote-footer">Updated at  <cite title="Source Title">2021</cite></footer>
+                {{-- </blockquote> --}}
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
 @endsection
 
 @section('script')
+<!--Toast-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.all.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+<!-- Required datatable js -->
+<script src="{{ URL::asset('tilawatipusat/libs/datatables/datatables.min.js')}}"></script>
+<script src="{{ URL::asset('tilawatipusat/libs/jszip/jszip.min.js')}}"></script>
+<script src="{{ URL::asset('tilawatipusat/libs/pdfmake/pdfmake.min.js')}}"></script>
+
+<!-- Datatable init js -->
+<script src="{{ URL::asset('tilawatipusat/js/pages/datatables.init.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
 
         <script>
+        var id_prov;
+        $('#mod_cabang3').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget)
+            id_prov = button.data('id')
+            var modal = $(this)
+            modal.find('.modal-body #id').val(id_prov);
+        })
+
         $(document).ready(function(){
             load_data();
+            data_cabang();
+            data_cabang_provinsi();
             function load_data(dari = '', sampai = '')
             {
-             //peserta
             $.ajax({
                     url:'{{ route("diklat.peserta_tot") }}',
                     data:{dari:dari, sampai:sampai},
@@ -246,7 +413,79 @@
                         document.getElementById('lm').innerHTML = data;
                         console.log(data);
                     }
-                });   
+                });
+            }
+            function data_cabang(dari = '', sampai = ''){
+                $('#datatable-buttons').DataTable({
+                    //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
+                    destroy: true,
+                    processing: true,
+                    serverSide: true,
+                    ajax: {
+                        url:'{{ route("diklat.cabang_data") }}',
+                        data:{dari:dari, sampai:sampai}
+                    },
+                    columns: [
+                        
+                        {
+                        data:'kode',
+                        name:'kode'
+                        },
+                        {
+                        data:'name',
+                        name:'name'
+                        },
+                        {
+                        data:'kepala',
+                        name:'kepala.name'
+                        },
+                        {
+                        data:'provinsi',
+                        name:'provinsi.nama'
+                        },
+                        {
+                        data:'kabupaten',
+                        name:'kabupaten.nama'
+                        },
+                        {
+                        data:'telp',
+                        name:'telp'
+                        },
+                        {
+                        data:'alamat',
+                        name:'alamat'
+                        },
+                        {
+                        data:'status',
+                        name:'status'
+                        },
+                    ]
+                });
+            }
+
+            function data_cabang_provinsi(dari = '', sampai = '') {
+                $('#datatable-buttons2').DataTable({
+                            //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
+                            destroy: true,
+                            processing: true,
+                            serverSide: true,
+                            ajax: {
+                                url:'{{ route("diklat.data_cab_pro") }}',
+                                data:{dari:dari, sampai:sampai}
+                            },
+                            columns: [
+                                
+                                {
+                                data:'provinsi',
+                                name:'provinsi.nama'
+                                },
+                                {
+                                data:'action',
+                                name:'action'
+                                }
+                                
+                            ]
+                    });
             }
 
             $('#filter').click(function(){
@@ -256,6 +495,8 @@
                 {
                     // $('#datatable').DataTable().destroy();
                     load_data(dari, sampai);
+                    data_cabang(dari, sampai);
+                    data_cabang_provinsi(dari, sampai);
                 }
                 else
                 {
@@ -263,12 +504,13 @@
                 }
             });
 
-
             $('#refresh').click(function(){
                 $('#dari').val('');
                 $('#sampai').val('');
                 // $('#datatable').DataTable().destroy();
                 load_data();
+                data_cabang();
+                data_cabang_provinsi();
                 getDataForChart();
                 getDataForChart2();
             });
