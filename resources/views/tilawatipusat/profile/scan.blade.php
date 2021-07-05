@@ -128,24 +128,24 @@
                         </div>
                     </div>
                     
-                    <div class="tab-pane" id="settings" role="tabpanel">
+                    <div class="tab-pane " id="settings" role="tabpanel">
 
                         <div class="row mt-4">
-                            <div class="col-md-4">
+                            <div class="@if ($program->name == 'munaqosyah santri') col-md-4 @else col-xl-6 @endif">
                                 <div class="form-group">
                                     <label for="firstname">First Name</label>
-                                    <input type="text" class="form-control" id="firstname" value="{{ $peserta->name }}" readonly>
+                                    <input type="text" class="form-control text-capitalize" id="firstname" value="{{ $peserta->name }}" readonly>
                                 </div>
                             </div>
                             @if ($program->name == 'munaqosyah santri')
-                            <div class="col-md-4">
+                            <div class="@if ($program->name == 'munaqosyah santri') col-md-4 @else col-xl-6 @endif">
                                 <div class="form-group">
                                     <label for="firstname">Asal Lembaga</label>
-                                    <input type="text" class="form-control" id="firstname" value="{{ $peserta->lembaga->name }}" readonly>
+                                    <input type="text" class="form-control text-capitalize" id="firstname" value="{{ $peserta->lembaga->name }}" readonly>
                                 </div>
                             </div>
                             @endif
-                            <div class="col-md-4">
+                            <div class="@if ($program->name == 'munaqosyah santri') col-md-4 @else col-xl-6 @endif">
                                 <div class="form-group">
                                     <label for="lastname">No Telephone</label>
                                     <input type="text" class="form-control" id="lastname" value="{{ $peserta->telp }}" readonly>

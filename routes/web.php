@@ -45,7 +45,7 @@ Route::get('/', function () {
     return redirect('/login');
 });
 Auth::routes();
-Route::get('/diklat-profile-peserta/{id}',[ProfileCont::class,'index'])->name('diklat.profile_peserta');
+Route::get('/diklat-profile-peserta/{id_peserta}/{id_program}/{id_pelatihan}/admin',[ProfileCont::class,'index'])->name('diklat.profile_peserta');
 Route::get('/diklat-profile-peserta/{id_peserta}/{id_program}/{id_pelatihan}',[ProfileCont::class,'scan'])->name('diklat.profile_peserta_scan');
 
 Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga']], function () {

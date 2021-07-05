@@ -68,7 +68,7 @@ class PesertaCont extends Controller
                     })
                     ->addColumn('action', function($data){
                         $actionBtn = ' <a href="#" data-id="'.$data->id.'" data-toggle="modal" data-target="#hapusData" class="btn btn-sm btn-outline btn-danger fa fa-pencil-square"><i class="fa fa-trash"></i></a>';
-                        $actionBtn .= ' <a href="/diklat-profile-peserta/'.$data->id.'" class="btn btn-sm btn-outline btn-info fa fa-pencil-square"><i class="fa fa-user"></i></a>';
+                        $actionBtn .= ' <a href="/diklat-profile-peserta/'.$data->id.'/'.$data->pelatihan->program->id.'/'.$data->pelatihan->id.'/admin" class="btn btn-sm btn-outline btn-info fa fa-pencil-square"><i class="fa fa-user"></i></a>';
                         return $actionBtn;
                     })
             ->rawColumns(['nilai','action','kabupaten'])

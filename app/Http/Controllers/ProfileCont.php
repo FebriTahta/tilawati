@@ -8,10 +8,12 @@ use Illuminate\Http\Request;
 
 class ProfileCont extends Controller
 {
-    public function index($id)
+    public function index($id,$id_program,$id_pelatihan)
     {
         $peserta = Peserta::find($id);
-        return view('tilawatipusat.profile.index',compact('peserta'));
+        $program = Program::find($id_program);
+        $pelatihan= Pelatihan::find($id_pelatihan);
+        return view('tilawatipusat.profile.index',compact('peserta','program','pelatihan'));
     }
 
     public function scan($id,$id_program,$id_pelatihan){
