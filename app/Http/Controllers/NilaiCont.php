@@ -23,18 +23,31 @@ class NilaiCont extends Controller
                     'nominal'=>$request->nominal[$key],
                     'kategori'=>$request->kategori[$key]
                 );
-                Nilai::insert($data);
+                $nilai = Nilai::insert($data);
             }
         }
-        $data2 = Peserta::updateOrCreate(
+        $total  = Nilai::where('peserta_id',$peserta_id)->where("kategori","al-qur'an")->sum('nominal');
+        $total2 = Nilai::where('peserta_id',$peserta_id)->where("kategori","skill")->sum('nominal');
+        $total3 = Nilai::where('peserta_id',$peserta_id)->where("kategori","skill")->count();
+        $rata2  = ($total + $total2)/($total3+1);
+        $syahadah;
+        if ($rata2 > 74) {
+            # code...
+            $syahadah = '1';
+        } else {
+            # code...
+            $syahadah = '0';
+        }
+        $data2  = Peserta::updateOrCreate(
             [
               'id' => $peserta_id
             ],
             [
                 'kriteria_id'=>$request->kriteria_id,
-                'kriteria'=>$request->kriteria
+                'kriteria'=>$request->kriteria,
+                'bersyahadah' => $syahadah,
             ]
-        );
+        );     
         return response()->json(
             [
                $data,$data2,

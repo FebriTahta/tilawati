@@ -20,7 +20,7 @@ class CabangCont extends Controller
             if(!empty($request->dari))
             {
                 $data   = Cabang::with('provinsi','kabupaten','kepala')
-                ->whereBetween('created_at', array($request->dari, $request->sampai));;
+                ->whereBetween('created_at', array($request->dari, $request->sampai));
                 return DataTables::of($data)
                 ->addColumn('provinsi', function ($data) {
                     return $data->provinsi->nama;
@@ -31,8 +31,13 @@ class CabangCont extends Controller
                 ->addColumn('kepala', function($data){
                     if ($data->kepala !== null) {
                         # code...
-                        return $data->kepala->name;
+                        $kepala ='<a href="#" data-toggle="modal"
+                        data-target=".bs-example-modal-kepala-lembaga" data-kode="'.$data->kode.'">'. $data->kepala->name.'</a>';
+                    }else{
+                        $kepala = '<button class="btn btn-sm badge badge-danger" data-toggle="modal"
+                        data-target=".bs-example-modal-kepala-lembaga" data-kode="'.$data->kode.'">Kosong</button>';
                     }
+                    return $kepala;
                 })
                 ->rawColumns(['provinsi','kabupaten','kepala'])
                 ->make(true);
@@ -46,7 +51,15 @@ class CabangCont extends Controller
                     return $data->kabupaten->nama;
                 })
                 ->addColumn('kepala', function($data){
-                    return $data->kepala->name;
+                    if ($data->kepala !== null) {
+                        # code...
+                        $kepala ='<a href="#" data-toggle="modal"
+                        data-target=".bs-example-modal-kepala-lembaga" data-kode="'.$data->kode.'">'. $data->kepala->name.'</a>';
+                    }else{
+                        $kepala = '<button class="btn btn-sm badge badge-danger" data-toggle="modal"
+                        data-target=".bs-example-modal-kepala-lembaga" data-kode="'.$data->kode.'">Kosong</button>';
+                    }
+                    return $kepala;
                 })
                 ->rawColumns(['provinsi','kabupaten','kepala'])
                 ->make(true);

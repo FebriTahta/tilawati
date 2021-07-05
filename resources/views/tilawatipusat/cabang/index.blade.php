@@ -58,7 +58,6 @@
                                         <table id="datatable-buttons" class="table table-cabang table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
                                             <thead class="text-bold text-primary">
                                                 <tr>
-                                                    <th>Kode</th>
                                                     <th>Nama</th>
                                                     <th>Kepala</th>
                                                     <th>Provinsi</th>
@@ -74,7 +73,6 @@
 
                                             <tfoot class="text-bold text-primary">
                                                 <tr>
-                                                   <th>Kode</th>
                                                    <th>Nama</th>
                                                    <th>Kepala</th>
                                                    <th>Provinsi</th>
@@ -165,6 +163,74 @@
                         </div><!-- /.modal -->
                     </div>
 
+                    <div class="modal fade bs-example-modal-kepala-bagian-lama" id="mod_cabang2" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-scrollable modal-xl">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">DAFTAR PROVINSI DARI CABANG</h5>
+                                    <button type="button" class="close" data-dismiss="modal" onclick="tutup_pilih_kepala()" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    {{-- <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive"> --}}
+                                        <form id="pilih_kepala_bagian_form" method="post" enctype="multipart/form-data">@csrf
+                                            <input type="hidden" id="lembaga_kode" name="kode">
+                                            <input type="submit" style="margin-bottom: 20px" id="pilih_kepala_bagian_btn" class="btn btn-sm btn-info" value="Konfirmasi">
+                                            <table id="datatable-buttons2" class="table prov table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
+                                                <thead class="text-bold text-primary">
+                                                    <tr>
+                                                        <th>Nama</th>
+                                                        <th>Kepala Bagian</th>
+                                                        <th>pilih</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody style="text-transform: uppercase; font-size: 12px">
+                                                </tbody>
+                                                <tfoot class="text-bold text-primary">
+                                                    <tr>
+                                                        <th>Nama</th>
+                                                        <th>Kepala Bagian</th>
+                                                        <th>pilih</th>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                        </form>
+                                        <footer class="blockquote-footer">Updated at  <cite title="Source Title">2021</cite></footer>
+                                    {{-- </blockquote> --}}
+                                </div>
+                            </div>
+                            <!-- /.modal-content -->
+                        </div>
+                        <!-- /.modal-dialog -->
+                    </div>
+
+                    <div class="col-sm-6 col-md-3 m-t-30">
+                        <div class="modal fade bs-example-modal-kepala-lembaga" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-md">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title mt-0 text-uppercase">menambahkan kepala lembaga</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body kepalas">
+                                        <input type="hidden" id="id" class="memilih_lembaga" name="lembaga_id">
+                                        <div class="row">
+                                            <div class="form-group col-xl-6">
+                                                <button class="btn btn-info text-capitalize" style="width: 100%; height: 59px;" onclick="kepala_bagian()">kepala bagian yang sudah ada</button>
+                                            </div>
+                                            <div class="form-group col-xl-6">
+                                                <button class="btn btn-success text-capitalize" style="width: 100%; height: 59px;">kepala bagian baru</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><!-- /.modal-content -->
+                            </div><!-- /.modal-dialog -->
+                        </div><!-- /.modal -->
+                    </div>
+
 @endsection
 
 @section('script')
@@ -184,8 +250,91 @@
         <script src="{{ URL::asset('tilawatipusat/js/pages/datatables.init.js')}}"></script>
 
         <script>
-            $(document).ready(function(){
+            var kode;
+            function tutup_pilih_kepala() {
+                $("#pilih_kepala_bagian_form")[0].reset();
+            }
+            $('.bs-example-modal-kepala-lembaga').on('show.bs.modal', function(event) {
+                var button = $(event.relatedTarget)
+                id = button.data('kode')
+                var modal = $(this)
+                kode = modal.find('.modal-body #id').val(id);
                 
+            })
+
+            function kepala_bagian() {
+                $('.bs-example-modal-kepala-lembaga').modal('hide');
+                $('.bs-example-modal-kepala-bagian-lama').modal('show');
+                var ya = $('.memilih_lembaga').val();
+                document.getElementById('lembaga_kode').value=ya;
+                console.log(ya);
+            }
+
+            $('#pilih_kepala_bagian_form').submit(function(e) {
+                e.preventDefault();
+                var formData = new FormData(this);
+                $.ajax({
+                type:'POST',
+                url: "/diklat-kepala-bagian-pilih-cabang",
+                data: formData,
+                cache:false,
+                contentType: false,
+                processData: false,
+                beforeSend:function(){
+                    $('#pilih_kepala_bagian_btn').attr('disabled','disabled');
+                    $('#pilih_kepala_bagian_btn').val('Proses Update Data');
+                },
+                success: function(data){
+                        if(data.success)
+                        {
+                            //sweetalert and redirect
+                            var oTable = $('#datatable-buttons').dataTable();
+                            oTable.fnDraw(false);
+                            $("#pilih_kepala_bagian_form")[0].reset();
+                            $('#pilih_kepala_bagian_btn').val('Konfirmasi!');
+                            $('.bs-example-modal-kepala-bagian-lama').modal('hide');
+                            $('#pilih_kepala_bagian_btn').attr('disabled',false);
+                            swal({ title: "Success!",
+                                text: "Kepala Cabang Sudah Dipilih!",
+                                type: "success"})
+                        }else{
+                            $('#pilih_kepala_bagian_btn').val('Konfirmasi!');
+                            $('#pilih_kepala_bagian_btn').attr('disabled',false);
+                            swal({ title: "Error!",
+                                text: "Pilih Kepala Lembaga / Cabang Terlebih Dahulu!",
+                                type: "error"})
+                        }
+                    }
+                });
+            });
+
+            $(document).ready(function(){
+
+                $('#datatable-buttons2').DataTable({
+                //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
+                destroy: true,
+                processing: true,
+                serverSide: true,
+                ajax: {
+                    url:'{{ route("diklat.kepala_pilih") }}',
+                },
+                columns: [
+                    {
+                    data:'name',
+                    name:'name'
+                    },
+                    {
+                    data:'bagian',
+                    name:'cabang.name',
+                    name:'lembaga.name',
+                    },
+                    {
+                    data:'pilih',
+                    name:'pilih'
+                    }
+                ]
+                });
+
                 $.ajax({
                     url:'{{ route("diklat.cabang_kab") }}',
                     type: 'get',
@@ -225,18 +374,14 @@
                     url:'{{ route("diklat.cabang_data") }}',
                 },
                 columns: [
-                    
-                    {
-                    data:'kode',
-                    name:'kode'
-                    },
                     {
                     data:'name',
                     name:'name'
                     },
                     {
                     data:'kepala',
-                    name:'kepala.name'
+                    name:'kepala.name',
+                    orderable:false,
                     },
                     {
                     data:'provinsi',

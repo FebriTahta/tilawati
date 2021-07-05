@@ -35,8 +35,14 @@ class Kabupaten extends Model
     {
         return $this->hasMany(Lembaga::class);
     }
+    
     public function peserta()
     {
         return $this->hasMany(Peserta::class);
+    }
+
+    public function kepala()
+    {
+        return $this->hasMany(Kepala::class);
     }
 }

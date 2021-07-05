@@ -47,25 +47,23 @@ class CetakCont extends Controller
             $kepala     = $jabatan;
             
             $pdf        = PDF::loadview('AdmPelatihan.Cetak.cetak_depan',compact('peserta','direktur','kepala','kabupaten','cabang','pelatihan'))->setPaper($customPaper, 'portrait');
-            return $pdf->download('ijazah-depan-peserta-pdf_'.$pelatihan->name.'','I');
+            return $pdf->download('ijazah-depan-peserta-pdf_'.$pelatihan->name.'.pdf','I');
         }else{
             $jabatan    = "Kacab. ".strtolower($kabupaten);
             $kepala     = ucwords($jabatan);
             $direktur   = $pelatihan->cabang->kepala->name;
             
             $pdf        = PDF::loadview('AdmPelatihan.Cetak.cetak_depan',compact('peserta','direktur','kepala','kabupaten','cabang','pelatihan'))->setPaper($customPaper, 'portrait');
-            return $pdf->download('ijazah-depan-peserta-pdf_'.$pelatihan->name.'','I');
+            return $pdf->download('ijazah-depan-peserta-pdf_'.$pelatihan->name.'.pdf','I');
         }
     }
 
     public function cetak_belakang(Request $request){
         $id = $request->pelatihan_id;
-        $pelatihan = Pelatihan::find($id);
-        // $peserta = Peserta::where('pelatihan_id', $id)
-        //                   ->where('bersyahadah', 1)->get();
-        $peserta    = Peserta::where('pelatihan_id', $id)->where('kriteria','<>','')->get();
+        $pelatihan = Pelatihan::find($id);        
+        $peserta    = Peserta::where('pelatihan_id', $id)->where('kriteria','<>','')->where('bersyahadah', 1)->get();
         $customPaper = array(0,0,792,612);
     	$pdf = PDF::loadview('AdmPelatihan.Cetak.cetak_belakang_guru',compact('peserta','pelatihan'))->setPaper($customPaper, 'portrait');
-    	return $pdf->download('ijazah-belakang-peserta-pdf_'.$pelatihan->name.'','I');
+    	return $pdf->download('ijazah-belakang-peserta-pdf_'.$pelatihan->name.'.pdf','I');
     }
 }

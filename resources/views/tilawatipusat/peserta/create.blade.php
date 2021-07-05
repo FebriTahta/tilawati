@@ -22,7 +22,7 @@
                                 <div class="card-body">
                                     
                                     <h4 class="card-title">TAMBAHKAN PESERTA BARU</h4>
-                                    <p class="card-title-desc">Pastikan data diisi dengan benar </br></p>
+                                    <p class="card-title-desc">Pastikan data diisi dengan benar</p>
                                     <blockquote class="blockquote font-size-16 mb-0 mt-2">
                                         <form id="tambahPeserta" method="POST" enctype="multipart/form-data">@csrf
                                             <div class="form-group">
@@ -47,7 +47,7 @@
                                                     </div>
                                                     <div class="form-group col-12 col-xl-6">
                                                         <label for=""> Email</label>
-                                                        <input type="email" class="form-control input-mask" data-inputmask="'alias':'email'" placeholder="_@_._" name="email" required>
+                                                        <input type="email" class="form-control input-mask" data-inputmask="'alias':'email'" placeholder="_@_._" name="email">
                                                     </div>
                                                     <div class="form-group col-12 col-xl-6">
                                                         <label for=""><i class="text-danger">*</i> Telp</label>
@@ -177,22 +177,6 @@
                 }
             });
 
-            $(document).ready(function(){
-                // $('.select2').on('change', function() {
-                //     var name = $(".select2 option:selected").text();
-                    
-                //     $.ajax({
-                //         url: '/diklat-diklat-lembaga-id-select/'+name,
-                //         type: 'get',
-                //         dataType: 'json',
-                //         success: function(data){
-                //             console.log(data.id);
-                //             $('#y').val(data.id)
-                //         }
-                //     });
-                // })
-            });
-
             $('#tambahPeserta').submit(function(e) {
                 e.preventDefault();
                 var formData = new FormData(this);
@@ -222,13 +206,15 @@
                                 window.location.href = "/diklat-peserta/"+dik_id;
                             }
                         });
+                    }else{
+                        $('#btnSimpan').val('Buat Baru');
+                        $('#btnSimpan').attr('disabled',false);
+                        swal({ title: "Error!",
+                            text: "Asal lembaga peserta sudah tidak aktif, mohon hubungi Admin Tilawati Pusat!",
+                            type: "error"})
                     }
                 },
-                error: function(data)
-                {
-                    console.log(data);
-                    }
-                });
+            });
             });
             
         </script>

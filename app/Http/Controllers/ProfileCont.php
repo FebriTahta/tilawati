@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Models\Peserta;
+use App\Models\Program;
+use App\Models\Pelatihan;
 use Illuminate\Http\Request;
 
 class ProfileCont extends Controller
@@ -10,5 +12,12 @@ class ProfileCont extends Controller
     {
         $peserta = Peserta::find($id);
         return view('tilawatipusat.profile.index',compact('peserta'));
+    }
+
+    public function scan($id,$id_program,$id_pelatihan){
+        $peserta = Peserta::find($id);
+        $program = Program::find($id_program);
+        $pelatihan= Pelatihan::find($id_pelatihan);
+        return view('tilawatipusat.profile.scan',compact('peserta','program','pelatihan'));
     }
 }

@@ -23,6 +23,8 @@ class Peserta extends Model
         'kabupaten_id',
         'kriteria_id',
         'kriteria',
+        'bersyahadah',
+        'kota'
     ];
     protected $dates = ['deleted_at'];
 

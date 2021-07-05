@@ -1,0 +1,350 @@
+@extends('layouts.tilawatipusat_layouts.master')
+
+@section('title') Update Kepala Bagian @endsection
+@section('css')
+
+    <!-- DataTables -->
+    <link href="{{ URL::asset('tilawatipusat/libs/datatables/datatables.min.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{URL::asset('tilawatipusat/libs/select2/select2.min.css')}}" rel="stylesheet" type="text/css" />
+    <style>
+        .file {
+        visibility: hidden;
+        position: absolute;
+        }
+    </style>
+@endsection
+@section('content')
+
+    @component('common-tilawatipusat.breadcrumb')
+         @slot('title') Update   @endslot
+         @slot('title_li') Kepala Bagian   @endslot
+    @endcomponent
+                    <div class="row">
+                        <div class="col-xl-4">
+                            @component('common-tilawatipusat.dashboard-widget')
+                            
+                                @slot('title') <b id="cb"> ??? </b> Kepala bagian  @endslot
+                                @slot('iconClass') mdi mdi-tag-plus-outline  @endslot
+                                @slot('price')   @endslot
+                                
+                            @endcomponent
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-body">
+                    
+                                    <h4 class="card-title">Update Data Kepala Bagian</h4>
+                                    <p class="card-title-desc">Ter-update berdasarkan Tahun 2021 </br><code>Pastikan seluruh data kepala bagian diisi dengan benar</code></p>
+                                    
+                                    <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
+                                        <footer class="blockquote-footer">  <cite title="Source Title">Data Diri</cite></footer>
+                                        <div class="row">
+                                            <div class="form-group col-xl-6">
+                                                <i class="text-danger">* </i><label for="NIK">NIK</label>
+                                                <input type="number" class="form-control" name="nik" value="{{ $data->nik }}" required>
+                                            </div>
+                                            <div class="form-group col-xl-6">
+                                                <i class="text-danger">* </i><label for="NAMA">Nama Lengkap</label>
+                                                <input type="text" class="form-control" name="name" value="{{ $data->name }}" required>
+                                            </div>
+                                            <div class="form-group col-xl-6">
+                                                <i class="text-danger">* </i><label for="TELP">Telephone</label>
+                                                <input type="text" class="form-control" required>
+                                            </div>
+                                            <div class="form-group col-xl-6">
+                                                <i class="text-danger">* </i><label for="GENDER">Gender</label>
+                                                <select name="" id="" class="form-control" required>
+                                                    <option @if($data->gender == '') selected value="" @endif> *</option>
+                                                    <option @if($data->gender == 'L') selected value="L" @endif> Laki-Laki</option>
+                                                    <option @if($data->gender == 'P') selected value="P" @endif> Perempuan</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-xl-6">
+                                                <i class="text-danger">* </i><label for="">Tempat Lahir (Kota / Kab)</label>
+                                                <select id="kota" name="kota" class="form-control select2" required>
+                                                    <option value="0"><i class="text-danger"></i></option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-xl-6">
+                                                <i class="text-danger">* </i><label for="">Tanggal Lahir</label>
+                                                <input type="date" class="form-control" required>
+                                            </div>
+                                        </div><hr>
+                                        <footer class="blockquote-footer">  <cite title="Source Title">Bio Data (Sesuai KTP)</cite></footer>
+                                        <div class="row">
+                                            <div class="form-group col-xl-6">
+                                                <label><i class="text-danger">*</i> Provinsi</label>
+                                                <select name="provinsi_id" id="mySelect" class="form-control" >
+                                                    <option value="">*</option>
+                                                    @foreach ($dt_props2 as $item)
+                                                    <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-xl-6">
+                                                <label><i class="text-danger">*</i> Kabupaten / Kota</label>
+                                                <select id="kabupaten_id" name="kabupaten_id" class="form-control" >
+                                                    <option value="">*</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-xl-6">
+                                                <label><i class="text-danger">*</i> Kecamatan</label>
+                                                <select id="kecamatan_id" name="kecamatan_id" class="form-control" >
+                                                    <option value="">*</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-xl-6">
+                                                <label><i class="text-danger">*</i> Kelurahan</label>
+                                                <select id="kelurahan_id" name="kelurahan_id" class="form-control" >
+                                                    <option value="">*</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-xl-6">
+                                                <i class="text-danger">* </i><label for="">Alamat</label>
+                                                <textarea name="" id="" cols="30" rows="5" class="form-control"></textarea>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <footer class="blockquote-footer"> <cite title="Source Title">Data Pendukung</cite></footer>
+                                        <div class="row">
+                                            <div class="form-group col-xl-6">
+                                                <i class="text-danger">* </i><label for="">Pendidikan terakhir</label>
+                                                <input type="text" class="form-control">
+                                            </div>
+                                            <div class="form-group col-xl-6">
+                                                <i class="text-danger">* </i><label for="">Tahun Lulus</label>
+                                                <input type="date" class="form-control" required>
+                                            </div>
+                                            <div class="form-group col-xl-6">
+                                                <i class="text-danger">* </i><label for="">Pekerjaan</label>
+                                                <input type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-xl-6">
+                                                <i class="text-danger"></i><label for="">Foto <span class="text-warning">(boleh tidak diisi)</span></label>
+                                                    <div class="input-group my-3">
+                                                        <input type="file" name="img[]" class="file" accept="image/*">
+                                                        <input type="text" class="form-control" disabled placeholder="Upload File" id="file">
+                                                        <div class="input-group-append">
+                                                            <button type="button" class="browse btn btn-primary">Browse...</button>
+                                                        </div>
+                                                    </div>
+                                                    <img src="https://placehold.it/80x80" id="preview" class="img-thumbnail">
+                                            </div>
+                                        </div>
+                                        
+                                            <div class="form-group text-right">
+                                                <input type="text" class="btn btn-info" value="Submit!">
+                                            </div>
+                                        
+                                    </blockquote>
+                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end row -->
+
+                    <!--modal import kepala-->
+                    <div class="col-sm-6 col-md-3 m-t-30">
+                        <div class="modal fade bs-example-modal-kepala" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title mt-0">IMPORT DATA kepala </h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="col-xl-12">
+                                            <div class="card m-b-30">
+                                                <div class="card-body">
+                                                    <div class="container-fluid">
+                                                        <form id="importkepala"  method="POST" enctype="multipart/form-data">@csrf
+                                                            <input type="hidden" id="import_tipe" value="munaqisy">
+                                                            <div class="form-group">
+                                                                <label for="">Import Data "kepala" (hanya Excel File format .xlsx)</label>
+                                                                <input type="file" class="form-control" name="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" required>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <input type="submit" name="import" id="btnimport" class="btn btn-info" value="Import" />
+                                                            </div>
+                                                        </form>
+                                                    </div><!-- container fluid -->
+                                                </div>
+                                            </div>
+                                        </div> <!-- end col -->
+                                    </div>
+                                </div><!-- /.modal-content -->
+                            </div><!-- /.modal-dialog -->
+                        </div><!-- /.modal -->
+                    </div>
+                    <!--modal import rpq-->
+                    <div class="col-sm-6 col-md-3 m-t-30">
+                        <div class="modal fade bs-example-modal-rpq" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title mt-0">IMPORT DATA RPQ </h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="col-xl-12">
+                                            <div class="card m-b-30">
+                                                <div class="card-body">
+                                                    <div class="container-fluid">
+                                                        <form id="importrpq"  method="POST" enctype="multipart/form-data">@csrf
+                                                            <input type="hidden" id="import_tipe" value="munaqisy">
+                                                            <div class="form-group">
+                                                                <label for="">Import Data "RPQ" (hanya Excel File format .xlsx)</label>
+                                                                <input type="file" class="form-control" name="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" required>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <input type="submit" name="import" id="btnimportrpq" class="btn btn-info" value="Import"/>
+                                                            </div>
+                                                        </form>
+                                                    </div><!-- container fluid -->
+                                                </div>
+                                            </div>
+                                        </div> <!-- end col -->
+                                    </div>
+                                </div><!-- /.modal-content -->
+                            </div><!-- /.modal-dialog -->
+                        </div><!-- /.modal -->
+                    </div>
+
+@endsection
+
+@section('script')
+
+        <!-- Script Select2-->
+        <script src="{{URL::asset('/tilawatipusat/libs/select2/select2.min.js')}}"></script>
+        <script src="{{URL::asset('/tilawatipusat/libs/bootstrap-datepicker/bootstrap-datepicker.min.js')}}"></script>
+        <script src="{{URL::asset('/tilawatipusat/libs/bootstrap-colorpicker/bootstrap-colorpicker.min.js')}}"></script>
+        <script src="{{URL::asset('/tilawatipusat/libs/bootstrap-touchspin/bootstrap-touchspin.min.js')}}"></script>
+        <script src="{{URL::asset('/tilawatipusat/libs/bootstrap-maxlength/bootstrap-maxlength.min.js')}}"></script>
+
+        <!-- form advanced init -->
+        <script src="{{URL::asset('/tilawatipusat/js/pages/form-advanced.init.js')}}"></script>
+
+        <!-- Toast -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.all.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+        
+        <!-- form mask -->
+        <script src="{{URL::asset('/tilawatipusat/libs/inputmask/inputmask.min.js')}}"></script>
+        <!-- form mask init -->
+        <script src="{{URL::asset('/tilawatipusat/js/pages/form-mask.init.js')}}"></script>
+
+        <script>
+            $(document).on("click", ".browse", function() {
+  var file = $(this).parents().find(".file");
+  file.trigger("click");
+});
+$('input[type="file"]').change(function(e) {
+  var fileName = e.target.files[0].name;
+  $("#file").val(fileName);
+
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    // get loaded data and render thumbnail.
+    document.getElementById("preview").src = e.target.result;
+  };
+  // read the image file as a data URL.
+  reader.readAsDataURL(this.files[0]);
+});
+            $('select[name="provinsi_id"]').on('change', function() {
+            //mencari kota/kab dari provinsi 3 tingkat
+                var provinsi_id = $(this).val();
+                console.log(provinsi_id);
+                if(provinsi_id) {
+                    
+                    $.ajax({
+                        url: '/fetch/' + provinsi_id,
+                        type: "GET",
+                        dataType: "json",
+                        success:function(data) {                     
+                            $('select[name="kabupaten_id"]').empty();
+                            $.each(data, function(key, value) {
+                            $('select[name="kabupaten_id"]').append('<option value="'+ key +'">'+ value +'</option>');
+                            });
+                            console.log(data);
+                            var a = $( "#kabupaten_id option:selected" ).val();
+                            console.log("kabupaten"+a);
+                            if(a) {
+                            $.ajax({
+                                    url: '/fetch2/' + a,
+                                    type: "GET",
+                                    dataType: "json",
+                                    success:function(data) {                      
+                                        $('select[name="kecamatan_id"]').empty();
+                                        $.each(data, function(key, value) {
+                                        $('select[name="kecamatan_id"]').append('<option value="'+ key +'">'+ value +'</option>');
+                                        });
+                                        console.log(data);
+                                        var x = $( "#kecamatan_id option:selected" ).val();
+                                        console.log("kecamatan"+x);
+                                        if(x) {
+                                        $.ajax({
+                                                url: '/fetch3/' + x,
+                                                type: "GET",
+                                                dataType: "json",
+                                                success:function(data) {                      
+                                                    $('select[name="kelurahan_id"]').empty();
+                                                    $.each(data, function(key, value) {
+                                                    $('select[name="kelurahan_id"]').append('<option value="'+ key +'">'+ value +'</option>');
+                                                    });
+                                                    console.log(data);
+                                                    var x = $( "#kelurahan_id option:selected" ).val();
+                                                    console.log("kelurahan"+x);
+                                                }
+                                            });
+                                        }else{
+                                            $('select[name="kelurahan_id"]').empty().disabled();
+                                        }
+                                    }
+                                });
+                            }else{
+                                $('select[name="kecamatan_id"]').empty().disabled();
+                            }
+                        }
+                    });
+                }else{
+                    $('select[name="kabupaten_id"]').empty().disabled();
+                }
+            });
+
+            $('#kota').select2('destroy').select2({
+                placeholder: 'Select an item',
+                ajax: {
+                    url: "/diklat-peserta-kota-select",
+                    dataType: 'json',
+                    delay: 250,
+                    processResults: function (data) {
+                        return {
+                            results:  $.map(data, function (item) {
+                                return {
+                                    text: item.nama,
+                                    id: item.id
+                                }
+                            })
+                        };
+                    },
+                    cache: true
+                }
+            });
+            $(document).ready(function(){
+
+                
+            })
+        </script>
+@endsection

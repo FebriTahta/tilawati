@@ -54,8 +54,6 @@ class Cabang extends Model
         return $this->belongsTo(User::class);
     }
 
-    
-
     public function kecamatan()
     {
         return $this->belongsTo(Kecamatan::class);

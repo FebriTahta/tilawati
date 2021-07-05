@@ -27,30 +27,117 @@ class DiklatCont extends Controller
     {
         if(request()->ajax())
         {
-            $data   = Pelatihan::with('cabang','program')->withCount('peserta');
-            return DataTables::of($data)
-                    ->addColumn('peserta', function($data){
-                        if ($data->peserta_count == 0) {
-                            # code...
-                            return '<span class="text-danger">'.$data->peserta_count.' - '.$data->keterangan.'<span>';
-                        } else {
-                            # code...
-                            return '<span class="text-success">'.$data->peserta_count.' - '.$data->keterangan.'<span>';
-                        }
-                    })
-                    ->addColumn('cabang', function ($data) {
-                        return $data->cabang->name;
-                    })
-                    ->addColumn('program', function ($data) {
-                        return $data->program->name;
-                    })
-                    ->addColumn('action', function($data){
-                        $actionBtn = ' <a href="/diklat-peserta/'.$data->id.'" class="btn btn-sm btn-outline btn-success fa fa-pencil-square"><i class="fa fa-user"></i></a>';
-                        $actionBtn .= ' <a href="#" data-toggle="modal" data-target=".bs-example-modal-diklat-hapus" data-id="'.$data->id.'" class="btn btn-sm btn-outline btn-danger fa fa-pencil-square"><i class="fa fa-trash"></i></a>';
-                        return $actionBtn;
-                    })
-            ->rawColumns(['cabang','program','action','peserta'])
-            ->make(true);
+            if(!empty($request->dari))
+            {
+                $data   = Pelatihan::with('cabang','program')->withCount('peserta')->orderBy('id','desc')
+                ->whereBetween('tanggal', array($request->dari, $request->sampai));
+                return DataTables::of($data)
+                        ->addColumn('peserta', function($data){
+                            if ($data->peserta_count == 0) {
+                                # code...
+                                return '<a href="/diklat-peserta/'.$data->id.'" class="text-danger">'.$data->peserta_count.' - '.$data->keterangan.'<a>';
+                            } else {
+                                # code...
+                                return '<a href="/diklat-peserta/'.$data->id.'" class="text-success">'.$data->peserta_count.' - '.$data->keterangan.'<a>';
+                            }
+                        })
+                        ->addColumn('cabang', function ($data) {
+                            return $data->cabang->name;
+                        })
+                        ->addColumn('program', function ($data) {
+                            return $data->program->name;
+                        })
+                        ->addColumn('action', function($data){
+                            $actionBtn = ' <a href="#" data-toggle="modal" data-target=".bs-example-modal-diklat-hapus" data-id="'.$data->id.'" class="btn btn-sm btn-outline btn-danger fa fa-pencil-square"><i class="fa fa-trash"></i></a>';
+                            return $actionBtn;
+                        })
+                ->rawColumns(['cabang','program','action','peserta'])
+                ->make(true);
+            }else{
+                $data   = Pelatihan::with('cabang','program')->withCount('peserta')->orderBy('id','desc');
+                return DataTables::of($data)
+                        ->addColumn('peserta', function($data){
+                            if ($data->peserta_count == 0) {
+                                # code...
+                                return '<a href="/diklat-peserta/'.$data->id.'" class="text-danger">'.$data->peserta_count.' - '.$data->keterangan.'<a>';
+                            } else {
+                                # code...
+                                return '<a href="/diklat-peserta/'.$data->id.'" class="text-success">'.$data->peserta_count.' - '.$data->keterangan.'<a>';
+                            }
+                        })
+                        ->addColumn('cabang', function ($data) {
+                            return $data->cabang->name;
+                        })
+                        ->addColumn('program', function ($data) {
+                            return $data->program->name;
+                        })
+                        ->addColumn('action', function($data){
+                            $actionBtn = ' <a href="#" data-toggle="modal" data-target=".bs-example-modal-diklat-hapus" data-id="'.$data->id.'" class="btn btn-sm btn-outline btn-danger fa fa-pencil-square"><i class="fa fa-trash"></i></a>';
+                            return $actionBtn;
+                        })
+                ->rawColumns(['cabang','program','action','peserta'])
+                ->make(true);
+            }
+        }
+    }
+
+    public function diklat_data_cabang(Request $request, $cabang_id)
+    {
+        if(request()->ajax())
+        {
+            if(!empty($request->dari))
+            {
+                $data   = Pelatihan::where('cabang_id',$cabang_id)->with('cabang','program')->withCount('peserta')->orderBy('id','desc')
+                ->whereBetween('tanggal', array($request->dari, $request->sampai));
+                return DataTables::of($data)
+                        ->addColumn('peserta', function($data){
+                            if ($data->peserta_count == 0) {
+                                # code...
+                                return '<span class="text-danger">'.$data->peserta_count.' - '.$data->keterangan.'<span>';
+                            } else {
+                                # code...
+                                return '<span class="text-success">'.$data->peserta_count.' - '.$data->keterangan.'<span>';
+                            }
+                        })
+                        ->addColumn('cabang', function ($data) {
+                            return $data->cabang->name;
+                        })
+                        ->addColumn('program', function ($data) {
+                            return $data->program->name;
+                        })
+                        ->addColumn('action', function($data){
+                            $actionBtn = ' <a href="/diklat-peserta/'.$data->id.'" class="btn btn-sm btn-outline btn-success fa fa-pencil-square"><i class="fa fa-user"></i></a>';
+                            $actionBtn .= ' <a href="#" data-toggle="modal" data-target=".bs-example-modal-diklat-hapus" data-id="'.$data->id.'" class="btn btn-sm btn-outline btn-danger fa fa-pencil-square"><i class="fa fa-trash"></i></a>';
+                            return $actionBtn;
+                        })
+                ->rawColumns(['cabang','program','action','peserta'])
+                ->make(true);
+            }else{
+                $data   = Pelatihan::where('cabang_id', $cabang_id)->with('cabang','program')->withCount('peserta')->orderBy('id','desc');
+                return DataTables::of($data)
+                        ->addColumn('peserta', function($data){
+                            if ($data->peserta_count == 0) {
+                                # code...
+                                return '<a href="/diklat-peserta/'.$data->id.'" class="text-danger">'.$data->peserta_count.' - '.$data->keterangan.'<a>';
+                            } else {
+                                # code...
+                                return '<a href="/diklat-peserta/'.$data->id.'" class="text-success">'.$data->peserta_count.' - '.$data->keterangan.'<a>';
+                            }
+                        })
+                        ->addColumn('cabang', function ($data) {
+                            return $data->cabang->name;
+                        })
+                        ->addColumn('program', function ($data) {
+                            return $data->program->name;
+                        })
+                        ->addColumn('action', function($data){
+                            $actionBtn = ' <a href="/diklat-peserta/'.$data->id.'" class="btn btn-sm btn-outline btn-success fa fa-pencil-square"><i class="fa fa-user"></i></a>';
+                            $actionBtn .= ' <a href="#" data-toggle="modal" data-target=".bs-example-modal-diklat-hapus" data-id="'.$data->id.'" class="btn btn-sm btn-outline btn-danger fa fa-pencil-square"><i class="fa fa-trash"></i></a>';
+                            return $actionBtn;
+                        })
+                ->rawColumns(['cabang','program','action','peserta'])
+                ->make(true);
+            }
         }
     }
 
@@ -61,7 +148,7 @@ class DiklatCont extends Controller
             if(!empty($request->dari))
             {
                 $data = DB::table('pelatihans')
-                ->whereBetween('created_at', array($request->dari, $request->sampai))
+                ->whereBetween('tanggal', array($request->dari, $request->sampai))
                 ->get()->count();
                 return response()->json($data,200);
             }
@@ -140,5 +227,80 @@ class DiklatCont extends Controller
         );
     }
 
+    public function diklat_cabang_total(Request $request)
+    {
+        if (request()->ajax()) {
+            # code...
+            if(!empty($request->dari))
+            {
+                $data = DB::table('pelatihans')
+                ->whereBetween('tanggal', array($request->dari, $request->sampai))
+                ->select('cabang_id', DB::raw('count(*) as total'))
+                ->groupBy('cabang_id')
+                ->get()->count();
+                return response()->json($data,200);
+            }
+            else
+            {
+                $data = DB::table('pelatihans')
+                ->select('cabang_id', DB::raw('count(*) as total'))
+                ->groupBy('cabang_id')
+                ->get()->count();
+                return response()->json($data,200);
+            }
+        }
+    }
+
+    public function diklat_cabang_data(Request $request)
+    {
+        if(request()->ajax())
+        {
+            if(!empty($request->dari))
+            {
+                $data   = Pelatihan::whereBetween('tanggal', array($request->dari, $request->sampai))->with('cabang')->select('cabang_id')->distinct();
+                return DataTables::of($data)
+                ->addColumn('cabang', function ($data) {
+                    return $data->cabang->name;
+                })
+                ->addColumn('action', function ($data) {
+                    $btn = '<a href="/diklat-diklat-cabang-data/'.$data->cabang->id.'" class="btn btn-sm btn-info"> check </a>';
+                    return $btn;
+                })
+                ->rawColumns(['cabang','action'])
+                ->make(true);
+            }else{
+                $data   = Pelatihan::with('cabang')->select('cabang_id')->distinct();
+                return DataTables::of($data)
+                ->addColumn('cabang', function ($data) {
+                    return $data->cabang->name;
+                })
+                ->addColumn('action', function ($data) {
+                    $btn = '<a href="/diklat-diklat-cabang-data/'.$data->cabang->id.'" class="btn btn-sm btn-info"> check </a>';
+                    return $btn;
+                })
+                ->rawColumns(['cabang','action'])
+                ->make(true);
+            }
+        }
+    }
+
+    public function diklat_cabang_data_view(Request $request, $cabang_id){
+        $data = Cabang::where('id',$cabang_id)->withCount('pelatihan')->first();
+        return view('tilawatipusat.diklat.diklat_cabang',compact('data'));
+    }
+
+    public function total_diklat_cabang(Request $request, $cabang_id){
+        if(request()->ajax())
+        {
+            if(!empty($request->dari))
+            {
+                $data = Pelatihan::where('cabang_id', $cabang_id)->whereBetween('tanggal', array($request->dari, $request->sampai))->count();
+                return response()->json($data,200);
+            }else{
+                $data = Pelatihan::where('cabang_id', $cabang_id)->count();
+                return response()->json($data,200);
+            }
+        }
+    }
     
 }

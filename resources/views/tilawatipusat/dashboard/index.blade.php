@@ -35,24 +35,28 @@
                         </div>
                         <div id="reviewExampleControls" class="carousel slide review-carousel" data-ride="carousel">
                             <div class="carousel-inner">
-                                @foreach ($diklat as $key=>$item)
-                                <div class="carousel-item @if($key==0) active @endif text-capitalize">
-                                    <div>
-                                        <p>Diklat {{ $item->program->name }}, pada : <b>{{ Carbon\Carbon::parse($item->tanggal)->isoFormat('D MMMM Y') }}, </b>di {{ $item->tempat }}, diikuti <b>{{ $item->peserta->count() }} peserta </b></p>
-                                        <div class="media mt-4">
-                                            <div class="avatar-sm mr-3">
-                                                <span class="avatar-title bg-soft-primary text-primary rounded-circle">
-                                                        {{ $key+1 }}
-                                                    </span>
-                                            </div>
-                                            <div class="media-body">
-                                                <h5 class="font-size-16 mb-1">{{ $item->cabang->status }}</h5>
-                                                <p class="mb-2">{{ $item->cabang->name }}</p>
+                                @if ($diklat->count() == 0)
+                                    <p class="text-danger">BELUM ADA KEGIATAN DIKLAT BARU</p>
+                                @else
+                                    @foreach ($diklat as $key=>$item)
+                                        <div class="carousel-item @if($key==0) active @endif text-capitalize">
+                                            <div>
+                                                <p>Diklat {{ $item->program->name }}, pada : <b>{{ Carbon\Carbon::parse($item->tanggal)->isoFormat('D MMMM Y') }}, </b>di {{ $item->tempat }}, diikuti <b>{{ $item->peserta->count() }} peserta </b></p>
+                                                <div class="media mt-4">
+                                                    <div class="avatar-sm mr-3">
+                                                        <span class="avatar-title bg-soft-primary text-primary rounded-circle">
+                                                                {{ $key+1 }}
+                                                            </span>
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <h5 class="font-size-16 mb-1">{{ $item->cabang->status }}</h5>
+                                                        <p class="mb-2">{{ $item->cabang->name }}</p>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                                @endforeach
+                                    @endforeach
+                                @endif
                             </div>
             
                             <a class="carousel-control-prev" href="#reviewExampleControls" role="button" data-slide="prev">
@@ -68,7 +72,7 @@
             <div class="col-xl-5">
                 @component('common-tilawatipusat.dashboard-widget')
             
-                @slot('title') <a href="#" data-toggle="modal" data-target="#mod_cabang"><b id="cb">???</b> <b>Cabang</b></a> <a href="#" data-toggle="modal" data-target="#mod_cabang2"><br> <span id="pv">??? </span> Provinsi & </a> <a href="#"><span id="kb">??? </span> Kabupaten / Kota </a> @endslot
+                @slot('title') <a href="/diklat-cabang"><b id="cb">???</b> <b>Cabang</b></a> <a href="#" data-toggle="modal" data-target="#mod_cabang2"><br> <span id="pv">??? </span> Provinsi & </a> <a href="#"><span id="kb">??? </span> Kabupaten / Kota </a> @endslot
                 @slot('iconClass') mdi mdi-tag-plus-outline  @endslot
                 @slot('price')   @endslot
                 
@@ -137,7 +141,7 @@
         
                 @component('common-tilawatipusat.dashboard-widget')
                 
-                    @slot('title') <b id="ps">???</b> <b>Peserta</b> <br>  @endslot
+                    @slot('title')<a href="#" data-toggle="modal" data-target=".bs-example-modal-xl-4"> <b id="ps">???</b> <b>Peserta</b> </a><br>  @endslot
                     @slot('iconClass') mdi mdi-tag-plus-outline  @endslot
                     @slot('price')  @endslot
                     
@@ -178,7 +182,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                {{-- <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive"> --}}
+                <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
                     <table id="datatable-buttons" class="table cab table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
                         <thead class="text-bold text-primary">
                             <tr>
@@ -210,7 +214,7 @@
                         </tfoot>
                     </table>
                     <footer class="blockquote-footer">Updated at  <cite title="Source Title">2021</cite></footer>
-                {{-- </blockquote> --}}
+                </blockquote>
             </div>
         </div>
         <!-- /.modal-content -->
@@ -222,7 +226,7 @@
     <div class="modal-dialog modal-md">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">DAFTAR KABUPATEN DARI CABANG</h5>
+                <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">DAFTAR PROVINSI DARI CABANG</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -296,6 +300,60 @@
     </div>
     <!-- /.modal-dialog -->
 </div>
+
+<!-- modal cabang -->
+<div class="modal fade bs-example-modal-xl-4" id="mod_cabang4" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">DAFTAR PESERTA</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
+                    <table id="datatable-button-peserta" class="table cab table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
+                        <thead class="text-bold text-primary">
+                            <tr>
+                                <th>Kode</th>
+                                <th>Nama</th>
+                                <th>Telp</th>
+                                <th>Kabu / Kota</th>
+                                <th>Program</th>
+                                <th>Status</th>
+                                <th>Cabang</th>
+                                <th>Tanggal</th>
+                                <th>Alamat</th>
+                            </tr>
+                        </thead>
+
+                        <tbody style="text-transform: uppercase; font-size: 12px">
+                        </tbody>
+
+                        <tfoot class="text-bold text-primary">
+                            <tr>
+                                <th>Kode</th>
+                                <th>Nama</th>
+                                <th>Telp</th>
+                                <th>Kabu / Kota</th>
+                                <th>Program</th>
+                                <th>Status</th>
+                                <th>Cabang</th>
+                                <th>Tanggal</th>
+                                <th>Alamat</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <footer class="blockquote-footer">Updated at  <cite title="Source Title">2021</cite></footer>
+                </blockquote>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
 @endsection
 
 @section('script')
@@ -416,50 +474,55 @@
                 });
             }
             function data_cabang(dari = '', sampai = ''){
-                $('#datatable-buttons').DataTable({
-                    //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
-                    destroy: true,
-                    processing: true,
-                    serverSide: true,
-                    ajax: {
-                        url:'{{ route("diklat.cabang_data") }}',
-                        data:{dari:dari, sampai:sampai}
+                $('#datatable-button-peserta').DataTable({
+                //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
+                destroy: true,
+                processing: true,
+                serverSide: true,
+                ajax: {
+                    url:'/diklat-peserta-keseluruhan',
+                    data:{dari:dari, sampai:sampai}
+                },
+                columns: [
+                    {
+                    data:'id',
+                    name:'id'
                     },
-                    columns: [
-                        
-                        {
-                        data:'kode',
-                        name:'kode'
-                        },
-                        {
-                        data:'name',
-                        name:'name'
-                        },
-                        {
-                        data:'kepala',
-                        name:'kepala.name'
-                        },
-                        {
-                        data:'provinsi',
-                        name:'provinsi.nama'
-                        },
-                        {
-                        data:'kabupaten',
-                        name:'kabupaten.nama'
-                        },
-                        {
-                        data:'telp',
-                        name:'telp'
-                        },
-                        {
-                        data:'alamat',
-                        name:'alamat'
-                        },
-                        {
-                        data:'status',
-                        name:'status'
-                        },
-                    ]
+                    {
+                    data:'name',
+                    name:'name'
+                    },
+                    {
+                    data:'telp',
+                    name:'telp'
+                    },
+                    {
+                    data:'kota',
+                    name:'kota'
+                    },
+                    {
+                    data:'program',
+                    name:'program.name',
+                    orderable: false,
+                    },
+                    {
+                    data:'nilai',
+                    name:'nilai'
+                    },
+                    {
+                    data:'cabang',
+                    name:'cabang.name',
+                    orderable: false,
+                    },
+                    {
+                    data:'tanggal',
+                    name:'tanggal'
+                    },
+                    {
+                    data:'alamat',
+                    name:'alamat'
+                    },
+                ]
                 });
             }
 

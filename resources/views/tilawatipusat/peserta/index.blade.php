@@ -16,11 +16,12 @@
          @slot('title')peserta {{ $diklat->program->name }}   @endslot
          @slot('title_li')   @endslot
     @endcomponent
+    <input type="hidden" id="pelatihan_id" value="{{ $diklat->id }}">
                     <div class="row">
                         <div class="col-xl-4">
                             @component('common-tilawatipusat.dashboard-widget')
                             
-                                @slot('title') <b id="cb"> 2,456 </b> Peserta  @endslot
+                                @slot('title') <b id="cb"> ??? </b> Peserta  @endslot
                                 @slot('iconClass') mdi mdi-tag-plus-outline  @endslot
                                 @slot('price')   @endslot
                                 
@@ -34,9 +35,12 @@
                                 <div class="card-body">
                     
                                     <h4 class="card-title text-capitalize">Data Peserta Pelatihan </h4>
+                                    @if ($diklat->program->penilaian->count() == 0)
+                                        <code>Tambahkan kategori penilaian pada program diklat terlebih dahulu pada menu program</code>
+                                    @endif
                                     <p class="card-title-desc">Ter-update berdasarkan Tahun 2021 </br></p>
-                                    <a class="btn btn-sm btn-success  mr-1" style="width:130px " href="{{ route('diklat.peserta_create', $pelatihan_id) }}"><i class="mdi mdi-plus"></i> tambah peserta</a>
-                                    <button class="btn btn-sm btn-success  mr-1" style="width:130px " data-toggle="modal" data-target=".bs-example-modal-peserta"><i class="mdi mdi-cloud-upload"></i> import peserta</button>
+                                    <a class="btn btn-sm btn-success  mr-1 text-white" style="width:130px " @if($diklat->program->penilaian->count() == 0) disabled @else href="{{ route('diklat.peserta_create', $pelatihan_id) }}" @endif><i class="mdi mdi-plus"></i> tambah peserta</a>
+                                    <button class="btn btn-sm btn-success  mr-1" style="width:130px " data-toggle="modal" @if($diklat->program->penilaian->count() == 0) disabled @else data-target=".bs-example-modal-peserta" @endif><i class="mdi mdi-cloud-upload"></i> import peserta</button>
                                     <input type="hidden" id="pelatihan_id" value="{{ $pelatihan_id }}">
                                     <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
                                         <div id="message"></div>
@@ -54,7 +58,7 @@
                                                 </tr>
                                             </thead>
     
-                                            <tbody style=" font-size: 12px">
+                                            <tbody style=" font-size: 12px" class="text-uppercase">
                                             </tbody>
 
                                             <tfoot class="text-primary" style="text-transform: capitalize">
@@ -95,33 +99,43 @@
                                                 <input type="hidden" id="id" name="peserta_id">
                                             </div>
                                             <div class="row">
-                                                @foreach ($diklat->program->penilaian as $item)
-                                                    @if ($item->kategori !== 'skill')
-                                                        <div class="form-group col-xl-6 col-12">
-                                                            <label for="" class="text-capitalize">{{ $item->name }}
-                                                                @if ($item->max !== null || $item->min !== null)
-                                                                    <br><i class="text-danger">Min:{{ $item->min }}</i> & <i class="text-danger">Max:{{ $item->max }}</i>
-                                                                @endif
-                                                            </label>
-                                                            <input type="hidden" name="kategori[]" value="{{ $item->kategori }}">
-                                                            <input type="hidden" name="penilaian_id[]" value="{{ $item->id }}">
-                                                            <input type="number" id="nominal[]" name="nominal[]" min="{{ $item->min }}" max="{{ $item->max }}" class="form-control">
-                                                        </div>
-                                                    @else
-                                                        <div class="form-group col-xl-6 col-12">
-                                                            <label for="" class="text-capitalize">{{ $item->name }}
-                                                                @if ($item->max !== null || $item->min !== null)
-                                                                    <br><i class="text-danger">Min:{{ $item->min }}</i> & <i class="text-danger">Max:{{ $item->max }}</i>
-                                                                @else
-                                                                <br><br>
-                                                                @endif
-                                                            </label>
-                                                            <input type="hidden" name="kategori[]" value="{{ $item->kategori }}">
-                                                            <input type="hidden" name="penilaian_id[]" value="{{ $item->id }}">
-                                                            <input type="number" id="nominal[]" name="nominal[]" min="{{ $item->min }}" max="{{ $item->max }}" class="form-control">
-                                                        </div>
-                                                    @endif
-                                                @endforeach
+                                                <div class="form-group col-12">
+                                                    <code>Pastikan kategori penilaian pada tiap program sudah fix sebelum anda melakukan penilaian</code>
+                                                    <hr>
+                                                </div>
+                                                @if ($diklat->program->penilaian->count() == 0)
+                                                <div class="form-group col-12 text-center">
+                                                    <p class="text-danger text-uppercase">Belum ada kategori penilaian pada program <a href="/diklat-program">{{ $diklat->program->name }}</a></p>
+                                                </div>
+                                                @else
+                                                    @foreach ($diklat->program->penilaian as $item)
+                                                        @if ($item->kategori !== 'skill')
+                                                            <div class="form-group col-xl-6 col-12">
+                                                                <label for="" class="text-capitalize">{{ $item->name }}
+                                                                    @if ($item->max !== null || $item->min !== null)
+                                                                        <br><i class="text-danger">Min:{{ $item->min }}</i> & <i class="text-danger">Max:{{ $item->max }}</i>
+                                                                    @endif
+                                                                </label>
+                                                                <input type="hidden" name="kategori[]" value="{{ $item->kategori }}">
+                                                                <input type="hidden" name="penilaian_id[]" value="{{ $item->id }}">
+                                                                <input type="number" id="nominal[]" name="nominal[]" max="{{ $item->max }}" class="form-control">
+                                                            </div>
+                                                        @else
+                                                            <div class="form-group col-xl-6 col-12">
+                                                                <label for="" class="text-capitalize">{{ $item->name }}
+                                                                    @if ($item->max !== null || $item->min !== null)
+                                                                        <br><i class="text-danger">Min:{{ $item->min }}</i> & <i class="text-danger">Max:{{ $item->max }}</i>
+                                                                    @else
+                                                                    <br><br>
+                                                                    @endif
+                                                                </label>
+                                                                <input type="hidden" name="kategori[]" value="{{ $item->kategori }}">
+                                                                <input type="hidden" name="penilaian_id[]" value="{{ $item->id }}">
+                                                                <input type="number" id="nominal[]" name="nominal[]" max="{{ $item->max }}" class="form-control">
+                                                            </div>
+                                                        @endif
+                                                    @endforeach
+                                                @endif
                                             </div>
                                             <div class="form-group">
                                                 <label for="">Sebagai</label>
@@ -132,9 +146,11 @@
                                                 </select>
                                                 <input type="hidden" class="form-control" id="kriterias" name="kriteria">
                                             </div>
-                                            <div class="form-group text-right">
-                                                <input type="submit" class="btn btn-sm btn-info" value="Submit Nilai" id="btnsubmit">
-                                            </div>
+                                            @if ($diklat->program->penilaian->count() !== 0)
+                                                <div class="form-group text-right">
+                                                    <input type="submit" class="btn btn-sm btn-info" value="Submit Nilai" id="btnsubmit">
+                                                </div>
+                                            @endif
                                         </form>
                                     </div>
                                 </div><!-- /.modal-content -->
@@ -376,9 +392,9 @@
                 var k = $('#kriteria_id').text();
                 var pel_id = $('#pelatihan_id').val();
                 document.getElementById('kriterias').value=k;
-
+                var pelatihan_id = $('#pelatihan_id').val();
                 $.ajax({
-                    url:'{{ route("diklat.peserta_tot") }}',
+                    url:'/diklat-total-peserta-pelatihan/'+pelatihan_id,
                     type: 'get',
                     dataType: 'json',
                     success:function(data) {
