@@ -92,7 +92,7 @@
                         <div class="form-group" style="margin-top: 20px">
                             <h5 class="text-uppercase text-primary">Informasi Diklat</h5>
                             <div style="text-align: justify">
-                                <p>Peserta Diklat yang bernama "<b class="text-capitalize">{{ $peserta->name }}</b>" telah mengikuti Diklat <b class="text-capitalize"> {{ $program->name }} </b> 
+                                <p>Peserta @if($program !== 'munaqosyah santri') Diklat @endif yang bernama "<b class="text-capitalize">{{ $peserta->name }}</b>" telah mengikuti @if($program !== 'munaqosyah santri') Diklat @endif <b class="text-capitalize"> {{ $program->name }} </b> 
                                 yang diadakan oleh Cabang : <b class="text-capitalize"> {{ $pelatihan->cabang->name }} - {{ $pelatihan->cabang->kabupaten->nama }} </b></br> pada tanggal <i>{{ $pelatihan->tanggal }}</i> 
                                 di <b> {{ $pelatihan->tempat }} </b></p>
                                 <p>Dengan hasil akhir penilaian yang telah diberikan, maka. <br>
