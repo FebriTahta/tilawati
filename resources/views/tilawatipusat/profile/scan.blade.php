@@ -90,9 +90,9 @@
                 <div class="tab-content p-3 text-muted">
                     <div class="tab-pane active" id="experience" role="tabpanel">
                         <div class="form-group" style="margin-top: 20px">
-                            <h5 class="text-uppercase text-primary">Informasi Diklat</h5>
+                            <h5 class="text-uppercase text-primary">Informasi Peserta</h5>
                             <div style="text-align: justify">
-                                <p>Peserta @if($program !== 'munaqosyah santri') Diklat @endif yang bernama "<b class="text-capitalize">{{ $peserta->name }}</b>" telah mengikuti @if($program !== 'munaqosyah santri') Diklat @endif <b class="text-capitalize"> {{ $program->name }} </b> 
+                                <p>Peserta @if($program->name !== 'munaqosyah santri') Diklat @endif yang bernama "<b class="text-capitalize">{{ $peserta->name }}</b>" telah mengikuti @if($program->name !== 'munaqosyah santri') Diklat @endif <b class="text-capitalize"> {{ $program->name }} </b> 
                                 yang diadakan oleh Cabang : <b class="text-capitalize"> {{ $pelatihan->cabang->name }} - {{ $pelatihan->cabang->kabupaten->nama }} </b></br> pada tanggal <i>{{ $pelatihan->tanggal }}</i> 
                                 di <b> {{ $pelatihan->tempat }} </b></p>
                                 <p>Dengan hasil akhir penilaian yang telah diberikan, maka. <br>
@@ -131,13 +131,21 @@
                     <div class="tab-pane" id="settings" role="tabpanel">
 
                         <div class="row mt-4">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="firstname">First Name</label>
                                     <input type="text" class="form-control" id="firstname" value="{{ $peserta->name }}" readonly>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            @if ($program->name == 'munaqosyah santri')
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="firstname">Asal Lembaga</label>
+                                    <input type="text" class="form-control" id="firstname" value="{{ $peserta->lembaga->name }}" readonly>
+                                </div>
+                            </div>
+                            @endif
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="lastname">No Telephone</label>
                                     <input type="text" class="form-control" id="lastname" value="{{ $peserta->telp }}" readonly>
