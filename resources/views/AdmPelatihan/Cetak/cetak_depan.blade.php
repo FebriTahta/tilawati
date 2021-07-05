@@ -77,7 +77,7 @@
 				<tbody>
 				<tr style="height: 27px;"><?php $tahun = date('Y')?>
 				<td class="bawah" style="width: 210px; height: 27px; "><small> </small></td>
-				<td class="bawah" style="width: 210px; height: 27px;">&nbsp;</td><?php $lokasicetak = '<span class="text-transform: lowercase">'.substr($item->pelatihan->cabang->kabupaten->nama, 4).'</span>'?>
+				<td class="bawah" style="width: 210px; height: 27px;">&nbsp;</td><?php $lokasicetak = strtolower(substr($item->pelatihan->cabang->kabupaten->nama, 4))?>
 				<td class="atas" style="width: 241px; height: 27px; text-transform: lowercase;text-transform: capitalize">{{ $lokasicetak }}, {{ Carbon\Carbon::now()->isoFormat('D MMMM Y') }}</td>
 				</tr>
 				<tr style="height: 78px;">
