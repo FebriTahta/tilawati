@@ -1,6 +1,6 @@
 @extends('layouts.tilawatipusat_layouts.master')
 
-@section('title') diklat @endsection
+@section('title') Peserta @endsection
 @section('css')
 
     <!-- DataTables -->
@@ -16,8 +16,8 @@
 @section('content')
 
     @component('common-tilawatipusat.breadcrumb')
-         @slot('title') diklat   @endslot
-         @slot('title_li') TILAWATI   @endslot
+         @slot('title') Peeserta   @endslot
+         @slot('title_li') DIKLAT   @endslot
     @endcomponent
                     <div class="row">
                         <div class="col-xl-12 col-md-12">
@@ -67,7 +67,7 @@
                         <div class="col-xl-4">
                             @component('common-tilawatipusat.dashboard-widget')
                             
-                                @slot('title') <a href="#" data-toggle="modal" data-target="#mod_cabang2"> <b id="cb2"> ??? </b> KABUPATEN</a>@endslot
+                                @slot('title') <a href="#" data-toggle="modal" data-target="#mod_cabang2"> <b id="cb3"> ??? </b> KABUPATEN</a>@endslot
                                 @slot('iconClass') mdi mdi-city  @endslot
                                 @slot('price')   @endslot
                                 
@@ -87,9 +87,9 @@
                                             <thead class="text-bold text-primary" style="text-transform: capitalize">
                                                 <tr>
                                                     <th>peserta</th>
-                                                    <th>program</th>
+                                                    <th>asal</th>
+                                                    <th>program pelatihan</th>
                                                     <th>cabang</th>
-                                                    <th>kota/kabupaten</th>
                                                     <th>telp</th>
                                                     <th>email</th>
                                                     <th>nilai</th>
@@ -106,9 +106,9 @@
                                             <tfoot class="text-primary" style="text-transform: capitalize">
                                                 <tr>
                                                     <th>peserta</th>
-                                                    <th>program</th>
+                                                    <th>asal</th>
+                                                    <th>program pelatihan</th>
                                                     <th>cabang</th>
-                                                    <th>kota/kabupaten</th>
                                                     <th>telp</th>
                                                     <th>email</th>
                                                     <th>nilai</th>
@@ -201,6 +201,32 @@
                         <!-- /.modal-dialog -->
                     </div>
 
+                    <div class="col-sm-6 col-md-3 m-t-30">
+                        <div class="modal fade modal-scan" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-md">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title mt-0">SCAN QR CODE PESERTA </h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="col-xl-12">
+                                            <div class="card m-b-30">
+                                                <div class="card-body">
+                                                    <div class="container-fluid text-center">
+                                                        <img src="" alt="qr-code" id="qr-code" width="200px" height="200px">
+                                                    </div><!-- container fluid -->
+                                                </div>
+                                            </div>
+                                        </div> <!-- end col -->
+                                    </div>
+                                </div><!-- /.modal-content -->
+                            </div><!-- /.modal-dialog -->
+                        </div><!-- /.modal -->
+                    </div>
+
 @endsection
 
 @section('script')
@@ -231,6 +257,12 @@
 
         <script>
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+            $('.modal-scan').on('show.bs.modal', function(event) {
+                var button = $(event.relatedTarget)
+                id = button.data('id')
+                var modal = $(this)
+                document.getElementById("qr-code").src = id;
+            })
             $('.bs-example-modal-diklat-hapus').on('show.bs.modal', function(event) {
                 var button = $(event.relatedTarget)
                 id = button.data('id')
@@ -322,6 +354,17 @@
                         }
                     });
 
+                    $.ajax({
+                        url:'{{ route("diklat.peserta_kabupaten_tot") }}',
+                        type: 'get',
+                        dataType: 'json',
+                        data:{dari:dari, sampai:sampai},
+                        success:function(data) {
+                            document.getElementById('cb3').innerHTML = data;
+                            console.log(data);
+                        }
+                    });
+
                     //data diklat dan data cabang diklat
                     $('.table-diklat').DataTable({
                         //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
@@ -335,7 +378,11 @@
                         columns: [
                             {
                             data:'name',
-                            name:'name'
+                            name:'name',
+                            },
+                            {
+                            data:'kabupaten',
+                            name:'kabupaten.nama'
                             },
                             {
                             data:'program',
@@ -348,10 +395,6 @@
                             name:'cabang.name',
                             searchable: false,
                             orderable: false,
-                            },
-                            {
-                            data:'kabupaten',
-                            name:'kabupaten.nama'
                             },
                             {
                             data:'telp',

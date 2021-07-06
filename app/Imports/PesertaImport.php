@@ -5,30 +5,30 @@ namespace App\Imports;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use App\Models\Peserta;
+use App\Models\Pelatihan;
 use DB;
 use SimpleSoftwareIO\QrCode\Generator;
 use Illuminate\Http\Request;
 class PesertaImport implements ToCollection
 {
-    public function __construct($id,$tanggal)
+    public function __construct($id,$tanggal,$cabang_id)
     {
-        $this->id=$id;
-        $this->tanggal=$tanggal;
-        
+        $this->id;
+        $this->tanggal;
+        $this->cabang_id;
     }
     /**
     * @param Collection $collection
     */
     public function collection(Collection $collection)
     {
-        $pelatihan  = Pelatihan::where('id', $this->id)->first();
-        $cabang     = $pelatihan->cabang_id;
         foreach ($collection as $key => $row) {
             # code...
             if ($key >= 1) {
+                
                     $dt_pel = new Peserta;
-                    $dt_pel->cabang_id = $cabang;
                     $dt_pel->pelatihan_id = $this->id;
+                    $dt_pel->cabang_id = $this->cabang_id;
                     $dt_pel->tanggal = $this->tanggal;
                     $dt_pel->name = $row[0];
                     $dt_pel->alamat = $row[1];

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Peserta;
+use App\Models\Pelatihan;
 use Maatwebsite\Excel\HeadingRowImport;
 use App\Imports\PesertaImport;
 use App\Imports\PesertaGuruImport;
@@ -19,9 +20,12 @@ class ImportController extends Controller
 {
     public function importPeserta(Request $request)
     {
+        $pelatihan = Pelatihan::find($request->id);
+        $cabang_id = $pelatihan->cabang_id;
+        
         $id = $request->id ;
         $tanggal = $request->tanggal;
-        $data = Excel::import(new PesertaImport($id, $tanggal), $request->file('file'));
+        $data = Excel::import(new PesertaImport($id, $tanggal, $cabang_id), $request->file('file'));
         return Response()->json([
             $data,
             'success'=>'Peserta Berhasil Ditambahkan Melalui file Excel'
@@ -31,8 +35,10 @@ class ImportController extends Controller
     public function importPesertaDiklat(Request $request)
     {
         $id = $request->id ;
+        $pelatihan = Pelatihan::find($id);
+        $cabang_id = $pelatihan->cabang_id;
         $tanggal = $request->tanggal;
-        $data = Excel::import(new PesertaDiklatImport($id, $tanggal), $request->file('file'));
+        $data = Excel::import(new PesertaDiklatImport($id, $tanggal, $cabang_id), $request->file('file'));
         return Response()->json([
             $data,
             'success'=>'Peserta Berhasil Ditambahkan Melalui file Excel'

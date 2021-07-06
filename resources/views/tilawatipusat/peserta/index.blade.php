@@ -229,6 +229,32 @@
                         </div><!-- /.modal -->
                     </div>
 
+                    <div class="col-sm-6 col-md-3 m-t-30">
+                        <div class="modal fade modal-scan" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-md">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title mt-0">SCAN QR CODE PESERTA </h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="col-xl-12">
+                                            <div class="card m-b-30">
+                                                <div class="card-body">
+                                                    <div class="container-fluid text-center">
+                                                        <img src="" alt="qr-code" id="qr-code" width="200px" height="200px">
+                                                    </div><!-- container fluid -->
+                                                </div>
+                                            </div>
+                                        </div> <!-- end col -->
+                                    </div>
+                                </div><!-- /.modal-content -->
+                            </div><!-- /.modal-dialog -->
+                        </div><!-- /.modal -->
+                    </div>
+
 @endsection
 
 @section('script')
@@ -258,7 +284,12 @@
         <script src="{{ URL::asset('tilawatipusat/js/pages/datatables.init.js')}}"></script>
 
         <script>
-
+            $('.modal-scan').on('show.bs.modal', function(event) {
+                var button = $(event.relatedTarget)
+                id = button.data('id')
+                var modal = $(this)
+                document.getElementById("qr-code").src = id;
+            })
             $('#importpeserta').submit(function(e) {
                 e.preventDefault();
                 var formData = new FormData(this);

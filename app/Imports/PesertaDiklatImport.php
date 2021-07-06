@@ -15,11 +15,11 @@ use Maatwebsite\Excel\Concerns\ToCollection;
 class PesertaDiklatImport implements ToCollection
 {
 
-    public function __construct($id,$tanggal)
+    public function __construct($id,$tanggal,$cabang_id)
     {
         $this->id=$id;
         $this->tanggal=$tanggal;
-        
+        $this->cabang_id=$cabang_id;
     }
 
     /**
@@ -33,6 +33,7 @@ class PesertaDiklatImport implements ToCollection
             if ($key >= 1) {
                 $dt_pel = new Peserta;
                     $dt_pel->pelatihan_id = $this->id;
+                    $dt_pel->cabang_id = $this->cabang_id;
                     $dt_pel->tanggal = $this->tanggal;
                     $dt_pel->name = $row[0];
                     $dt_pel->alamat = $row[1];
