@@ -244,7 +244,7 @@ class PesertaCont extends Controller
                 );
                 $program = Pelatihan::where('id', $data->pelatihan_id)->first();
                 $program_id = $program->program_id;
-                $qr = \QrCode::size(100)
+                $qr = \QrCode::size(200)
                     ->format('png')
                     ->generate('https://www.tilawatipusat.com/diklat-profile-peserta/'.$data->id.'/'.$program_id.'/'.$data->pelatihan_id, public_path('images/'.$data->id.'qrcode.png'));
                     return response()->json(
@@ -312,5 +312,118 @@ class PesertaCont extends Controller
               'message' => 'Peserta Berhasil Dihapus!'
             ]
         );
+    }
+
+    public function seluruh_peserta(Request $request)
+    {
+        return view('tilawatipusat.peserta.seluruh');
+    }
+
+    public function seluruh_peserta_data(Request $request)
+    {
+        if(request()->ajax())
+        {
+            if(!empty($request->dari))
+            {
+                $data   = Peserta::whereBetween('tanggal', array($request->dari, $request->sampai))->with('pelatihan')->with('kabupaten')->with('nilai');
+                return DataTables::of($data)
+                        ->addColumn('nilai', function ($data) {
+                            if ($data->nilai->count() == 0) {
+                                # code...
+                                return $button = '<a href="#" data-toggle="modal" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-danger">belum dinilai</a>';
+                            }else{
+                                // return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-info">sudah dinilai</a>';
+                                $total = $data->nilai->where("kategori","al-qur'an")->sum('nominal');
+                                    $total2 = $data->nilai->where("kategori","skill")->sum('nominal');
+                                    $total3 = $data->nilai->where("kategori","skill")->count();
+                                    
+                                    // $rata2 = $data->nilai->sum('nominal');
+                                    $rata2 = ($total + $total2)/($total3+1);
+                                    if ($rata2 > 84) {
+                                        # code...
+                                        return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-primary">'.$rata2.' (baik)</a>';
+                                    }
+                                    elseif($rata2 < 84 && $rata2 < 75){
+                                        return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-warning">'.$rata2.' (belum bersyahadah)</a>';
+                                    }
+                                    else {
+                                        # code...
+                                        return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-info">'.$rata2.' (cukup)</a>';
+                                    }
+                                
+                            }
+                            return $button;
+                        })
+                        ->addColumn('pelatihan', function ($data) {
+                            return $data->pelatihan->program->name;
+                        })
+                        ->addColumn('kabupaten', function ($data) {
+                            return $data->kabupaten->nama;
+                        })
+                        ->addColumn('program', function ($data) {
+                            return $data->pelatihan->program->name;
+                        })
+                        ->addColumn('cabang', function ($data) {
+                            return $data->pelatihan->cabang->name;
+                        })
+                        ->addColumn('action', function($data){
+                            $actionBtn = ' <a href="#" data-id="'.$data->id.'" data-toggle="modal" data-target="#hapusData" class="btn btn-sm btn-outline btn-danger fa fa-pencil-square"><i class="fa fa-trash"></i></a>';
+                            $actionBtn .= ' <a href="/diklat-profile-peserta/'.$data->id.'/'.$data->pelatihan->program->id.'/'.$data->pelatihan->id.'/admin" class="btn btn-sm btn-outline btn-info fa fa-pencil-square"><i class="fa fa-user"></i></a>';
+                            return $actionBtn;
+                        })
+                ->rawColumns(['nilai','action','kabupaten','program'])
+                ->make(true);
+            }else{
+                $data   = Peserta::with('pelatihan')->with('kabupaten')->with('nilai');
+                return DataTables::of($data)
+                        ->addColumn('nilai', function ($data) {
+                            if ($data->nilai->count() == 0) {
+                                # code...
+                                return $button = '<a href="#" data-toggle="modal" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-danger">belum dinilai</a>';
+                            }else{
+                                // return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-info">sudah dinilai</a>';
+                                $total = $data->nilai->where("kategori","al-qur'an")->sum('nominal');
+                                    $total2 = $data->nilai->where("kategori","skill")->sum('nominal');
+                                    $total3 = $data->nilai->where("kategori","skill")->count();
+                                    
+                                    // $rata2 = $data->nilai->sum('nominal');
+                                    $rata2 = ($total + $total2)/($total3+1);
+                                    if ($rata2 > 84) {
+                                        # code...
+                                        return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-primary">'.$rata2.' (baik)</a>';
+                                    }
+                                    elseif($rata2 < 84 && $rata2 < 75){
+                                        return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-warning">'.$rata2.' (belum bersyahadah)</a>';
+                                    }
+                                    else {
+                                        # code...
+                                        return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-info">'.$rata2.' (cukup)</a>';
+                                    }
+                                
+                            }
+                            return $button;
+                        })
+                        ->addColumn('pelatihan', function ($data) {
+                            return $data->pelatihan->program->name;
+                        })
+                        ->addColumn('kabupaten', function ($data) {
+                            return $data->kabupaten->nama;
+                        })
+                        ->addColumn('program', function ($data) {
+                            return $data->pelatihan->program->name;
+                        })
+                        ->addColumn('cabang', function ($data) {
+                            return $data->pelatihan->cabang->name;
+                        })
+                        ->addColumn('action', function($data){
+                            $actionBtn = ' <a href="#" data-id="'.$data->id.'" data-toggle="modal" data-target="#hapusData" class="btn btn-sm btn-outline btn-danger fa fa-pencil-square"><i class="fa fa-trash"></i></a>';
+                            $actionBtn .= ' <a href="/diklat-profile-peserta/'.$data->id.'/'.$data->pelatihan->program->id.'/'.$data->pelatihan->id.'/admin" class="btn btn-sm btn-outline btn-info fa fa-pencil-square"><i class="fa fa-user"></i></a>';
+                            return $actionBtn;
+                        })
+                ->rawColumns(['nilai','action','kabupaten','program'])
+                ->make(true);
+            }
+            
+        }
     }
 }

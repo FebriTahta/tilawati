@@ -32,12 +32,19 @@
                     </a>
                 </li>
 
-                <li class="menu-title">Data Entri</li>
+                <li class="menu-title">Input Data Diklat</li>
                 <li>
                     <a href="{{ route('diklat.diklat') }}" class="waves-effect">
-                        <i class="mdi mdi-pencil"></i>
+                        <i class="mdi mdi-pencil-box-multiple-outline"></i>
                         <span class="badge badge-pill badge-danger float-right"></span>
                         <span>Data Diklat</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('diklat.seluruh_peserta') }}" class="waves-effect">
+                        <i class="mdi mdi-smart-card-outline"></i>
+                        <span class="badge badge-pill badge-danger float-right"></span>
+                        <span>Seluruh Peserta Diklat</span>
                     </a>
                 </li>
 

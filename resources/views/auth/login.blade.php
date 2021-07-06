@@ -35,7 +35,7 @@
                             <a href="/">
                                 <div class="">
                                     {{-- <img class="logo-size" src="{{ asset('lgnfrm/images/logo-light.svg') }}" alt=""> --}}
-                                    <img class="" style="width: 250px" src="{{ asset('assets/images/nf_logo.png') }}">
+                                    <img class="" style="width: 330px" src="{{ asset('assets/images/tilawati-white.png') }}">
                                 </div>
                             </a>
                         </div>

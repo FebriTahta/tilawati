@@ -45,7 +45,7 @@ class PesertaImport implements ToCollection
                     $dt_pel->save();
                     $id = $dt_pel->id;
                     $link = 'http://course-academy.top/diklat/'.$id.'/';
-                    \QrCode::size(150)
+                    \QrCode::size(200)
                     ->format('png')
                     ->generate(request()->url($link), public_path('images/'.$id.'qrcode.png'));
             }   

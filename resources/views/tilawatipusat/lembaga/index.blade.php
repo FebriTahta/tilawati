@@ -18,7 +18,8 @@
                             @component('common-tilawatipusat.dashboard-widget')
                             
                                 @slot('title') <b id="cb"> ??? </b> lembaga <br> <small><b id="lem_aktif"></b> Aktif & <b id="lem_nonaktif"></b> Non Aktif</small> @endslot
-                                @slot('iconClass') mdi mdi-tag-plus-outline  @endslot
+                                @slot('iconClass') mdi mdi-mdi mdi-contact-mail-outline
+                                tag-plus-outline  @endslot
                                 @slot('price')  @endslot
                                 
                             @endcomponent
@@ -27,7 +28,7 @@
                             @component('common-tilawatipusat.dashboard-widget')
                             
                                 @slot('title') <b id="kb"> ??? </b> Kabupaten  @endslot
-                                @slot('iconClass') mdi mdi-tag-plus-outline  @endslot
+                                @slot('iconClass') mdi mdi-city  @endslot
                                 @slot('price')   @endslot
                                 
                             @endcomponent
@@ -36,7 +37,7 @@
                             @component('common-tilawatipusat.dashboard-widget')
                             
                                 @slot('title') <b id="pv"> 2,456 </b>  Provinsi  @endslot
-                                @slot('iconClass') mdi mdi-tag-plus-outline  @endslot
+                                @slot('iconClass') mdi mdi-city-variant-outline  @endslot
                                 @slot('price')  @endslot
                                 
                             @endcomponent

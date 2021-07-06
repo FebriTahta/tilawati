@@ -46,20 +46,29 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-6">
+                        <div class="col-xl-4">
                             @component('common-tilawatipusat.dashboard-widget')
                             
-                                @slot('title') <b id="cb"> ??? </b> DIKLAT  @endslot
+                                @slot('title') <b id="cb"> ??? </b> PESERTA  @endslot
                                 @slot('iconClass') mdi mdi-home-analytics  @endslot
                                 @slot('price')   @endslot
                                 
                             @endcomponent
                         </div>
-                        <div class="col-xl-6">
+                        <div class="col-xl-4">
                             @component('common-tilawatipusat.dashboard-widget')
                             
-                                @slot('title') <a href="#" data-toggle="modal" data-target="#mod_cabang2"> <b id="cb2"> ??? </b> CABANG  YANG MENGADAKAN DIKLAT</a>@endslot
+                                @slot('title') <a href="#" data-toggle="modal" data-target="#mod_cabang2"> <b id="cb2"> ??? </b> CABANG </a>@endslot
                                 @slot('iconClass') mdi mdi-bank-outline  @endslot
+                                @slot('price')   @endslot
+                                
+                            @endcomponent
+                        </div>
+                        <div class="col-xl-4">
+                            @component('common-tilawatipusat.dashboard-widget')
+                            
+                                @slot('title') <a href="#" data-toggle="modal" data-target="#mod_cabang2"> <b id="cb2"> ??? </b> KABUPATEN</a>@endslot
+                                @slot('iconClass') mdi mdi-city  @endslot
                                 @slot('price')   @endslot
                                 
                             @endcomponent
@@ -71,34 +80,41 @@
                             <div class="card">
                                 <div class="card-body">
                     
-                                    <h4 class="card-title">Data Diklat</h4>
-                                    <p class="card-title-desc">Ter-update berdasarkan Tahun 2021 </br></p>
-                                    {{-- <button class="btn btn-sm btn-success  mr-1" style="width:130px " data-toggle="modal" data-target=".bs-example-modal-diklat"><i class="mdi mdi-plus"></i> tambah diklat</button> --}}
-                                    <a class="btn btn-sm btn-success  mr-1" style="width:130px " href="{{ route('diklat.create') }}"><i class="mdi mdi-plus"></i> tambah diklat</a>
+                                    <h4 class="card-title">Data Peserta Diklat</h4>
                     
                                     <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
                                         <table id="datatable-buttons" class="table table-diklat table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
                                             <thead class="text-bold text-primary" style="text-transform: capitalize">
                                                 <tr>
-                                                    <th>program diklat</th>
+                                                    <th>peserta</th>
+                                                    <th>program</th>
                                                     <th>cabang</th>
-                                                    <th>tanggal</th>
-                                                    <th>tempat</th>
-                                                    <th>Peserta</th>
+                                                    <th>kota/kabupaten</th>
+                                                    <th>telp</th>
+                                                    <th>email</th>
+                                                    <th>nilai</th>
+                                                    <th>tanggal lahir</th>
+                                                    <th>alamat</th>
+                                                    <th>Kriteria</th>
                                                     <th>Option</th>
                                                 </tr>
                                             </thead>
     
-                                            <tbody style="text-transform: uppercase; font-size: 12px">
+                                            <tbody style=" font-size: 12px" class="text-uppercase">
                                             </tbody>
 
                                             <tfoot class="text-primary" style="text-transform: capitalize">
                                                 <tr>
-                                                    <th>program diklat</th>
+                                                    <th>peserta</th>
+                                                    <th>program</th>
                                                     <th>cabang</th>
-                                                    <th>tanggal</th>
-                                                    <th>tempat</th>
-                                                    <th>Peserta</th>
+                                                    <th>kota/kabupaten</th>
+                                                    <th>telp</th>
+                                                    <th>email</th>
+                                                    <th>nilai</th>
+                                                    <th>tanggal lahir</th>
+                                                    <th>alamat</th>
+                                                    <th>Kriteria</th>
                                                     <th>Option</th>
                                                 </tr>
                                             </tfoot>
@@ -286,7 +302,7 @@
 
                     //total diklat dan cabang yang mengadakan diklat
                     $.ajax({
-                        url:'{{ route("diklat.diklat_tot") }}',
+                        url:'{{ route("diklat.peserta_tot") }}',
                         type: 'get',
                         dataType: 'json',
                         data:{dari:dari, sampai:sampai},
@@ -313,29 +329,53 @@
                         processing: true,
                         serverSide: true,
                         ajax: {
-                            url:'{{ route("diklat.diklat_data") }}',
+                            url:'{{ route("diklat.seluruh_peserta_data") }}',
                             data:{dari:dari, sampai:sampai}
                         },
                         columns: [
                             {
+                            data:'name',
+                            name:'name'
+                            },
+                            {
                             data:'program',
-                            name:'program.name'
+                            name:'program.name',
+                            searchable: false,
+                            orderable: false,
                             },
                             {
                             data:'cabang',
-                            name:'cabang.name'
+                            name:'cabang.name',
+                            searchable: false,
+                            orderable: false,
                             },
                             {
-                            data:'tanggal',
-                            name:'tanggal'
+                            data:'kabupaten',
+                            name:'kabupaten.nama'
                             },
                             {
-                            data:'tempat',
-                            name:'tempat'
+                            data:'telp',
+                            name:'telp'
                             },
                             {
-                            data:'peserta',
-                            name:'peserta'
+                            data:'email',
+                            name:'email'
+                            },
+                            {
+                            data:'nilai',
+                            name:'nilai'
+                            },
+                            {
+                            data:'tgllahir',
+                            name:'tgllahir'
+                            },
+                            {
+                            data:'alamat',
+                            name:'alamat'
+                            },
+                            {
+                            data:'kriteria',
+                            name:'kriteria'
                             },
                             {
                             data:'action',

@@ -247,6 +247,8 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga']], funct
     Route::get('/diklat-diklat-total-diklat-cabang/{cabang_id}',[DiklatCont::class, 'total_diklat_cabang'])->name('diklat.diklat_cabang_total');
 
     Route::get('/diklat-peserta/{id}',[PesertaCont::class, 'index'])->name('diklat.peserta');
+    Route::get('/diklat-peserta-data',[PesertaCont::class, 'seluruh_peserta'])->name('diklat.seluruh_peserta');
+    Route::get('/diklat-seluruh-peserta-data',[PesertaCont::class, 'seluruh_peserta_data'])->name('diklat.seluruh_peserta_data');
     Route::get('/diklat-peserta-data/{id}',[PesertaCont::class, 'peserta_data'])->name('diklat.peserta_data');
     Route::get('/diklat-peserta-total',[PesertaCont::class, 'peserta_total'])->name('diklat.peserta_tot');
     Route::get('/diklat-total-peserta-pelatihan/{pelatihan_id}',[PesertaCont::class, 'peserta_diklat_total'])->name('diklat.peserta_diklat_tot');

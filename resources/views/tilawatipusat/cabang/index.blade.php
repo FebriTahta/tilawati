@@ -18,7 +18,7 @@
                             @component('common-tilawatipusat.dashboard-widget')
                             
                                 @slot('title') <b id="cb"> 2,456 </b> Cabang  @endslot
-                                @slot('iconClass') mdi mdi-tag-plus-outline  @endslot
+                                @slot('iconClass') mdi mdi-bank-outline  @endslot
                                 @slot('price')   @endslot
                                 
                             @endcomponent
@@ -27,7 +27,7 @@
                             @component('common-tilawatipusat.dashboard-widget')
                             
                                 @slot('title') <b id="kb"> 2,456 </b> Kabupaten  @endslot
-                                @slot('iconClass') mdi mdi-tag-plus-outline  @endslot
+                                @slot('iconClass') mdi mdi-city  @endslot
                                 @slot('price')   @endslot
                                 
                             @endcomponent
@@ -36,7 +36,8 @@
                             @component('common-tilawatipusat.dashboard-widget')
                             
                                 @slot('title') <b id="pv"> 2,456 </b>  Provinsi  @endslot
-                                @slot('iconClass') mdi mdi-tag-plus-outline  @endslot
+                                @slot('iconClass') mdi mdi-city-variant-outline
+                                @endslot
                                 @slot('price')  @endslot
                                 
                             @endcomponent
@@ -52,7 +53,7 @@
                                     <p class="card-title-desc">Ter-update berdasarkan Tahun 2021 </br><code>Data Import dan Eksport Berbeda Format (Berhati-hati ketika meng-importkan data baru)</code></p>
                                     <button class="btn btn-sm btn-success  mr-1" style="width:130px ; margin-bottom: 5px" data-toggle="modal" data-target=".bs-example-modal-cabang"><i class="mdi mdi-cloud-upload"></i> import cabang</button>
                                     <button class="btn btn-sm btn-success  mr-1" style="width:130px ; margin-bottom: 5px" data-toggle="modal" data-target=".bs-example-modal-rpq" ><i class="mdi mdi-cloud-upload"></i> import rpq</button>
-                                    <button class="btn btn-sm btn-success  mr-1" style="width:130px ; margin-bottom: 5px"><i class="mdi mdi-plus"></i> tambah cabang</button>
+                                    <button class="btn btn-sm btn-success mb-2 mr-1" style="width:130px " data-toggle="modal" data-target=".bs-example-modal-tambah-lembaga"><i class="mdi mdi-plus"></i> tambah cabang</button>
                     
                                     <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
                                         <table id="datatable-buttons" class="table table-cabang table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
@@ -225,6 +226,103 @@
                                                 <button class="btn btn-success text-capitalize" style="width: 100%; height: 59px;">kepala bagian baru</button>
                                             </div>
                                         </div>
+                                    </div>
+                                </div><!-- /.modal-content -->
+                            </div><!-- /.modal-dialog -->
+                        </div><!-- /.modal -->
+                    </div>
+
+                    {{-- tambah cabang baru --}}
+                    <div class="col-sm-6 col-md-3 m-t-30">
+                        <div class="modal fade bs-example-modal-tambah-lembaga" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title mt-0">Tambah Lembaga Baru </h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    
+                                    <div class="modal-body">
+                                        <div class="col-xl-12">
+                                            <div class="card m-b-30">
+                                                <div class="card-body">
+                                                    <form method="POST" id="tambahlembaga">@csrf
+                                                        <div class="row">
+                                                            
+                                                            <div class="form-group col-sm-4">
+                                                                <input type="hidden" class="form-control" name="kabupaten" id="kabupaten" readonly>
+                                                                <input type="text" class="form-control" id="kabupaten_id" name="kabupaten_id" value="2. Kabupaten / Kota" readonly>
+                                                            </div>
+                                                            <div class="form-group col-sm-4">
+                                                                <select name="kecamatan_id" id="kecamatan_id" class="form-control" required>
+                                                                    <option value=""><i class="text-danger">3. </i> Kecamatan</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="form-group col-sm-4">
+                                                                <select name="kelurahan_id" id="kelurahan_id" class="form-control" required>
+                                                                    <option value=""><i class="text-danger">4. </i> Kelurahan</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="form-group col-xl-6">
+                                                                <label for=""><i class="text-danger">* </i>Nama Cabang</label>
+                                                                <input type="text" class="form-control" name="name" required>
+                                                            </div>
+                                                            <div class="form-group col-xl-6">
+                                                                <label for=""><i class="text-danger">* </i>Telp Lembaga</label>
+                                                                <input type="number" class="form-control" name="telp" required>
+                                                            </div>
+                                                            <div class="form-group col-xl-6">
+                                                                <label for=""><i class="text-danger"> </i>Email Lembaga</label>
+                                                                <input type="email" class="form-control" name="email">
+                                                            </div>
+                                                            <div class="form-group col-xl-6">
+                                                                <label for=""><i class="text-danger"> </i>Website Lembaga</label>
+                                                                <input type="text" class="form-control" name="website">
+                                                            </div>
+                                                            <div class="form-group col-xl-12">
+                                                                <label for=""><i class="text-danger">* </i>Alamat Lembaga (lokasi lembaga)</label>
+                                                                <textarea name="alamat" class="form-control" id="" cols="5" rows="3" required></textarea>
+                                                            </div>
+                                                            <div class="form-group col-xl-6">
+                                                                <select name="jenjang_id" class="form-control" id="" required>
+                                                                    <option value=""><i class="text-danger">*</i> Kelembagaan</option>
+                                                                    
+                                                                </select>
+                                                            </div>
+                                                            <div class="form-group col-xl-6">
+                                                                <select name="kelembagaan" class="form-control" id="" required>
+                                                                    <option value=""><i class="text-danger">*</i> Pengelolaan</option>
+                                                                    <option value="Yayasan">1. Yayasan</option>
+                                                                    <option value="Masjid">2. Masjid</option>
+                                                                    <option value="Pribadi">3. Pribadi</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="form-group col-xl-3">
+                                                                <label for=""><i class="text-danger">* </i>Kode Pos</label>
+                                                                <input type="number" class="form-control" name="pos" required>
+                                                            </div>
+                                                            <div class="form-group col-xl-3">
+                                                                <label for=""><i class="text-danger">* </i>Tahun Masuk</label>
+                                                                <input type="date" class="form-control" name="tahunmasuk" required>
+                                                            </div>
+                                                            <div class="form-group col-xl-3">
+                                                                <label for=""><i class="text-danger">* </i>Jumlah Guru</label>
+                                                                <input type="number" class="form-control" name="jml_guru" required>
+                                                            </div>
+                                                            <div class="form-group col-xl-3">
+                                                                <label for=""><i class="text-danger">* </i>Jumlah Santri</label>
+                                                                <input type="number" class="form-control" name="jml_santri" required>
+                                                            </div>
+                                                            <div class="form-group col-xl-12 col-12">
+                                                                <input type="submit" id="tambahlembaga_btn" style="width: 100%" class="btn btn-info" value="Submit!">
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div> <!-- end col -->
                                     </div>
                                 </div><!-- /.modal-content -->
                             </div><!-- /.modal-dialog -->

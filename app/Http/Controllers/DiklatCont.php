@@ -260,7 +260,7 @@ class DiklatCont extends Controller
                 $data   = Pelatihan::whereBetween('tanggal', array($request->dari, $request->sampai))->with('cabang')->select('cabang_id')->distinct();
                 return DataTables::of($data)
                 ->addColumn('cabang', function ($data) {
-                    return $data->cabang->name;
+                    return $data->cabang->name.' ( '.$data->cabang->kabupaten->nama.' ) ';
                 })
                 ->addColumn('action', function ($data) {
                     $btn = '<a href="/diklat-diklat-cabang-data/'.$data->cabang->id.'" class="btn btn-sm btn-info"> check </a>';
@@ -272,7 +272,7 @@ class DiklatCont extends Controller
                 $data   = Pelatihan::with('cabang')->select('cabang_id')->distinct();
                 return DataTables::of($data)
                 ->addColumn('cabang', function ($data) {
-                    return $data->cabang->name;
+                    return $data->cabang->name.' ( '.$data->cabang->kabupaten->nama.' ) ';
                 })
                 ->addColumn('action', function ($data) {
                     $btn = '<a href="/diklat-diklat-cabang-data/'.$data->cabang->id.'" class="btn btn-sm btn-info"> check </a>';

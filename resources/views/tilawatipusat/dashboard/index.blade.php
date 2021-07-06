@@ -73,7 +73,7 @@
                 @component('common-tilawatipusat.dashboard-widget')
             
                 @slot('title') <a href="/diklat-cabang"><b id="cb">???</b> <b>Cabang</b></a> <a href="#" data-toggle="modal" data-target="#mod_cabang2"><br> <span id="pv">??? </span> Provinsi & </a> <a href="#"><span id="kb">??? </span> Kabupaten / Kota </a> @endslot
-                @slot('iconClass') mdi mdi-tag-plus-outline  @endslot
+                @slot('iconClass') mdi mdi-bank-outline  @endslot
                 @slot('price')   @endslot
                 
             
@@ -82,7 +82,8 @@
             @component('common-tilawatipusat.dashboard-widget')
             
                 @slot('title') <a href="#"><b id="lm">???</b> <b>Lembaga</b></a> <a href=""><br> <span id="lmpv">??? </span> Provinsi & </a> <a href="#"><span id="lmkb">??? </span> Kabupaten / Kota </a> @endslot
-                @slot('iconClass') mdi mdi-tag-plus-outline  @endslot
+                @slot('iconClass') mdi mdi-mdi mdi-contact-mail-outline
+                tag-plus-outline  @endslot
                 @slot('price')  @endslot
                 
             
@@ -133,7 +134,7 @@
                 @component('common-tilawatipusat.dashboard-widget')
                 
                     @slot('title') <b id="dk">???</b> <b>Diklat</b> <br>   @endslot
-                    @slot('iconClass') mdi mdi-tag-plus-outline  @endslot
+                    @slot('iconClass') mdi mdi-home-analytics  @endslot
                     @slot('price')  @endslot
                     
                 
@@ -142,7 +143,7 @@
                 @component('common-tilawatipusat.dashboard-widget')
                 
                     @slot('title')<a href="#" data-toggle="modal" data-target=".bs-example-modal-xl-4"> <b id="ps">???</b> <b>Peserta</b> </a><br>  @endslot
-                    @slot('iconClass') mdi mdi-tag-plus-outline  @endslot
+                    @slot('iconClass') mdi mdi-account-group  @endslot
                     @slot('price')  @endslot
                     
                 

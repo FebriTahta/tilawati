@@ -51,7 +51,7 @@
                             @component('common-tilawatipusat.dashboard-widget')
                             
                                 @slot('title') <b id="cb">  </b> DIKLAT  @endslot
-                                @slot('iconClass') mdi mdi-tag-plus-outline  @endslot
+                                @slot('iconClass') mdi mdi-home-analytics  @endslot
                                 @slot('price')   @endslot
                                 
                             @endcomponent
@@ -60,7 +60,7 @@
                             @component('common-tilawatipusat.dashboard-widget')
                             
                                 @slot('title') <b href="#" class="text-uppercase"> <b id="cb2"> CABANG  {{ $data->name }} </b> </b>@endslot
-                                @slot('iconClass') mdi mdi-tag-plus-outline  @endslot
+                                @slot('iconClass') mdi mdi-bank-outline  @endslot
                                 @slot('price')  @endslot
                                 
                             @endcomponent
