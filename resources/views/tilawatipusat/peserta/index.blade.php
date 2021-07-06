@@ -244,7 +244,7 @@
                                             <div class="card m-b-30">
                                                 <div class="card-body">
                                                     <div class="container-fluid text-center">
-                                                        <img src="" alt="qr-code" id="qr-code" width="200px" height="200px">
+                                                        <img src="" alt="qr-code" id="qr-code" width="150px" height="150px">
                                                     </div><!-- container fluid -->
                                                 </div>
                                             </div>

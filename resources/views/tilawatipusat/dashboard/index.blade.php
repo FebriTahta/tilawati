@@ -81,7 +81,7 @@
 
             @component('common-tilawatipusat.dashboard-widget')
             
-                @slot('title') <a href="#"><b id="lm">???</b> <b>Lembaga</b></a> <a href=""><br> <span id="lmpv">??? </span> Provinsi & </a> <a href="#"><span id="lmkb">??? </span> Kabupaten / Kota </a> @endslot
+                @slot('title') <a href="/diklat-lembaga"><b id="lm">???</b> <b>Lembaga</b></a> <a href=""><br> <span id="lmpv">??? </span> Provinsi & </a> <a href="#"><span id="lmkb">??? </span> Kabupaten / Kota </a> @endslot
                 @slot('iconClass') mdi mdi-mdi mdi-contact-mail-outline
                 tag-plus-outline  @endslot
                 @slot('price')  @endslot
@@ -133,7 +133,7 @@
 
                 @component('common-tilawatipusat.dashboard-widget')
                 
-                    @slot('title') <b id="dk">???</b> <b>Diklat</b> <br>   @endslot
+                    @slot('title') <a href="/diklat-diklat"><b id="dk">???</b> <b>Diklat</b> </a><br>   @endslot
                     @slot('iconClass') mdi mdi-home-analytics  @endslot
                     @slot('price')  @endslot
                     
@@ -142,7 +142,7 @@
         
                 @component('common-tilawatipusat.dashboard-widget')
                 
-                    @slot('title')<a href="#" data-toggle="modal" data-target=".bs-example-modal-xl-4"> <b id="ps">???</b> <b>Peserta</b> </a><br>  @endslot
+                    @slot('title')<a href="/diklat-peserta-data"> <b id="ps">???</b> <b>Peserta</b> </a><br>  @endslot
                     @slot('iconClass') mdi mdi-account-group  @endslot
                     @slot('price')  @endslot
                     
@@ -223,44 +223,6 @@
     <!-- /.modal-dialog -->
 </div>
 
-<div class="modal fade bs-example-modal-xl-2" id="mod_cabang2" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-md">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">DAFTAR PROVINSI DARI CABANG</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                {{-- <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive"> --}}
-                    <table id="datatable-buttons2" class="table prov table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
-                        <thead class="text-bold text-primary">
-                            <tr>
-                                <th>Kabupaten</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-
-                        <tbody style="text-transform: uppercase; font-size: 12px">
-                        </tbody>
-
-                        <tfoot class="text-bold text-primary">
-                            <tr>
-                               <th>Kabupaten</th>
-                               <th>Action</th>
-                            </tr>
-                        </tfoot>
-                    </table>
-                    <footer class="blockquote-footer">Updated at  <cite title="Source Title">2021</cite></footer>
-                {{-- </blockquote> --}}
-            </div>
-        </div>
-        <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-</div>
-
 <div class="modal fade bs-example-modal-xl-3" id="mod_cabang3" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
@@ -301,60 +263,6 @@
     </div>
     <!-- /.modal-dialog -->
 </div>
-
-<!-- modal cabang -->
-<div class="modal fade bs-example-modal-xl-4" id="mod_cabang4" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">DAFTAR PESERTA</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
-                    <table id="datatable-button-peserta" class="table cab table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
-                        <thead class="text-bold text-primary">
-                            <tr>
-                                <th>Kode</th>
-                                <th>Nama</th>
-                                <th>Telp</th>
-                                <th>Kabu / Kota</th>
-                                <th>Program</th>
-                                <th>Status</th>
-                                <th>Cabang</th>
-                                <th>Tanggal</th>
-                                <th>Alamat</th>
-                            </tr>
-                        </thead>
-
-                        <tbody style="text-transform: uppercase; font-size: 12px">
-                        </tbody>
-
-                        <tfoot class="text-bold text-primary">
-                            <tr>
-                                <th>Kode</th>
-                                <th>Nama</th>
-                                <th>Telp</th>
-                                <th>Kabu / Kota</th>
-                                <th>Program</th>
-                                <th>Status</th>
-                                <th>Cabang</th>
-                                <th>Tanggal</th>
-                                <th>Alamat</th>
-                            </tr>
-                        </tfoot>
-                    </table>
-                    <footer class="blockquote-footer">Updated at  <cite title="Source Title">2021</cite></footer>
-                </blockquote>
-            </div>
-        </div>
-        <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-</div>
-
 @endsection
 
 @section('script')
@@ -383,7 +291,6 @@
         $(document).ready(function(){
             load_data();
             data_cabang();
-            data_cabang_provinsi();
             function load_data(dari = '', sampai = '')
             {
             $.ajax({
@@ -474,83 +381,6 @@
                     }
                 });
             }
-            function data_cabang(dari = '', sampai = ''){
-                $('#datatable-button-peserta').DataTable({
-                //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
-                destroy: true,
-                processing: true,
-                serverSide: true,
-                ajax: {
-                    url:'/diklat-peserta-keseluruhan',
-                    data:{dari:dari, sampai:sampai}
-                },
-                columns: [
-                    {
-                    data:'id',
-                    name:'id'
-                    },
-                    {
-                    data:'name',
-                    name:'name'
-                    },
-                    {
-                    data:'telp',
-                    name:'telp'
-                    },
-                    {
-                    data:'kota',
-                    name:'kota'
-                    },
-                    {
-                    data:'program',
-                    name:'program.name',
-                    orderable: false,
-                    },
-                    {
-                    data:'nilai',
-                    name:'nilai'
-                    },
-                    {
-                    data:'cabang',
-                    name:'cabang.name',
-                    orderable: false,
-                    },
-                    {
-                    data:'tanggal',
-                    name:'tanggal'
-                    },
-                    {
-                    data:'alamat',
-                    name:'alamat'
-                    },
-                ]
-                });
-            }
-
-            function data_cabang_provinsi(dari = '', sampai = '') {
-                $('#datatable-buttons2').DataTable({
-                            //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
-                            destroy: true,
-                            processing: true,
-                            serverSide: true,
-                            ajax: {
-                                url:'{{ route("diklat.data_cab_pro") }}',
-                                data:{dari:dari, sampai:sampai}
-                            },
-                            columns: [
-                                
-                                {
-                                data:'provinsi',
-                                name:'provinsi.nama'
-                                },
-                                {
-                                data:'action',
-                                name:'action'
-                                }
-                                
-                            ]
-                    });
-            }
 
             $('#filter').click(function(){
                 var dari = $('#dari').val();
@@ -559,8 +389,6 @@
                 {
                     // $('#datatable').DataTable().destroy();
                     load_data(dari, sampai);
-                    data_cabang(dari, sampai);
-                    data_cabang_provinsi(dari, sampai);
                 }
                 else
                 {
@@ -574,7 +402,6 @@
                 // $('#datatable').DataTable().destroy();
                 load_data();
                 data_cabang();
-                data_cabang_provinsi();
                 getDataForChart();
                 getDataForChart2();
             });

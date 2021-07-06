@@ -252,6 +252,13 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga']], funct
     Route::get('/diklat-peserta-data/{id}',[PesertaCont::class, 'peserta_data'])->name('diklat.peserta_data');
     Route::get('/diklat-peserta-total',[PesertaCont::class, 'peserta_total'])->name('diklat.peserta_tot');
     Route::get('/diklat-peserta-kabupaten-total',[PesertaCont::class, 'peserta_kabupaten_total'])->name('diklat.peserta_kabupaten_tot');
+    Route::get('/diklat-peserta-kabupaten',[PesertaCont::class,'peserta_kabupaten'])->name('diklat.peserta_kab');
+    Route::get('/diklat-peserta-cabang-pilih',[PesertaCont::class, 'peserta_cabang_pilih'])->name('diklat.peserta_cabang_pilih');
+    Route::get('/diklat-peserta-diklat-cabang/{cabang_id}',[PesertaCont::class, 'peserta_cabang'])->name('diklat.peserta_cabang');
+    Route::get('/diklat-peserta-diklat-cabang-data/{cabang_id}',[PesertaCont::class, 'peserta_cabang_data'])->name('diklat.peserta_cabang_data');
+    Route::get('/diklat-peserta-diklat-cabang-total/{cabang_id}',[PesertaCont::class, 'peserta_cabang_total'])->name('diklat.peserta_cabang_tot');
+    Route::get('/diklat-peserta-diklat-cabang-kabupaten-total/{cabang_id}',[PesertaCont::class, 'peserta_kabupaten_cabang_total'])->name('diklat.peserta_kab_cab_tot');
+    Route::get('/diklat-peserta-diklat-kabupaten-cabang/{cabang_id}',[PesertaCont::class, 'peserta_kabupaten_cabang'])->name('diklat.peserta_cab_kab');
     Route::get('/diklat-total-peserta-pelatihan/{pelatihan_id}',[PesertaCont::class, 'peserta_diklat_total'])->name('diklat.peserta_diklat_tot');
     Route::get('/diklat-peserta-create/{id}',[PesertaCont::class, 'create'])->name('diklat.peserta_create');
     Route::post('/diklat-peserta-store',[PesertaCont::class, 'store'])->name('diklat.peserta_store');

@@ -12,6 +12,7 @@ use App\Models\Lembaga;
 use App\Models\Cabang;
 use App\Models\Kabupaten;
 use App\Models\Kriteria;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class PesertaCont extends Controller
@@ -31,7 +32,9 @@ class PesertaCont extends Controller
     {
         if(request()->ajax())
         {
-            $data   = Peserta::where('pelatihan_id', $id)->with('pelatihan')->with('kabupaten')->with('nilai');
+            if(!empty($request->dari))
+            {
+                $data   = Peserta::wherebetween('tanggal', array($request->dari, $request->sampai))->where('pelatihan_id', $id)->with('pelatihan')->with('kabupaten')->with('nilai');
             return DataTables::of($data)
                     ->addColumn('nilai', function ($data) {
                         if ($data->nilai->count() == 0) {
@@ -66,14 +69,67 @@ class PesertaCont extends Controller
                     ->addColumn('kabupaten', function ($data) {
                         return $data->kabupaten->nama;
                     })
+                    ->addColumn('tgllahir', function ($data) {
+                        $a = Carbon::parse($data->tgllahir)->isoFormat('D MMMM Y');
+                        return $a;
+                    })
                     ->addColumn('action', function($data){
                         $actionBtn = ' <a href="#" data-id="'.$data->id.'" data-toggle="modal" data-target="#hapusData" class="btn btn-sm btn-outline btn-danger "><i class="fa fa-trash"></i></a>';
                         $actionBtn .= ' <a href="/diklat-profile-peserta/'.$data->id.'/'.$data->pelatihan->program->id.'/'.$data->pelatihan->id.'/admin" class="btn btn-sm btn-outline btn-info "><i class="fa fa-user"></i></a>';
                         $actionBtn .= ' <a href="#" class="btn btn-sm btn-outline btn-success" data-id="'.asset('images/'.$data->id.'qrcode.png').'" data-toggle="modal" data-target=".modal-scan"><i class="mdi mdi-barcode-scan"></i></a>';
                         return $actionBtn;
                     })
-            ->rawColumns(['nilai','action','kabupaten'])
+            ->rawColumns(['nilai','action','kabupaten','tgllahir'])
             ->make(true);
+            }else{
+                $data   = Peserta::where('pelatihan_id', $id)->with('pelatihan')->with('kabupaten')->with('nilai');
+                return DataTables::of($data)
+                        ->addColumn('nilai', function ($data) {
+                            if ($data->nilai->count() == 0) {
+                                # code...
+                                return $button = '<a href="#" data-toggle="modal" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-danger">belum dinilai</a>';
+                            }else{
+                                // return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-info">sudah dinilai</a>';
+                                $total = $data->nilai->where("kategori","al-qur'an")->sum('nominal');
+                                    $total2 = $data->nilai->where("kategori","skill")->sum('nominal');
+                                    $total3 = $data->nilai->where("kategori","skill")->count();
+                                    
+                                    // $rata2 = $data->nilai->sum('nominal');
+                                    $rata2 = ($total + $total2)/($total3+1);
+                                    if ($rata2 > 84) {
+                                        # code...
+                                        return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-primary">'.$rata2.' (baik)</a>';
+                                    }
+                                    elseif($rata2 < 84 && $rata2 < 75){
+                                        return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-warning">'.$rata2.' (belum bersyahadah)</a>';
+                                    }
+                                    else {
+                                        # code...
+                                        return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-info">'.$rata2.' (cukup)</a>';
+                                    }
+                                
+                            }
+                            return $button;
+                        })
+                        ->addColumn('pelatihan', function ($data) {
+                            return $data->pelatihan->program->name;
+                        })
+                        ->addColumn('kabupaten', function ($data) {
+                            return $data->kabupaten->nama;
+                        })
+                        ->addColumn('tgllahir', function ($data) {
+                            $a = Carbon::parse($data->tgllahir)->isoFormat('D MMMM Y');
+                            return $a;
+                        })
+                        ->addColumn('action', function($data){
+                            $actionBtn = ' <a href="#" data-id="'.$data->id.'" data-toggle="modal" data-target="#hapusData" class="btn btn-sm btn-outline btn-danger "><i class="fa fa-trash"></i></a>';
+                            $actionBtn .= ' <a href="/diklat-profile-peserta/'.$data->id.'/'.$data->pelatihan->program->id.'/'.$data->pelatihan->id.'/admin" class="btn btn-sm btn-outline btn-info "><i class="fa fa-user"></i></a>';
+                            $actionBtn .= ' <a href="#" class="btn btn-sm btn-outline btn-success" data-id="'.asset('images/'.$data->id.'qrcode.png').'" data-toggle="modal" data-target=".modal-scan"><i class="mdi mdi-barcode-scan"></i></a>';
+                            return $actionBtn;
+                        })
+                ->rawColumns(['nilai','action','kabupaten','tgllahir'])
+                ->make(true);
+            }
         }
     }
 
@@ -81,47 +137,98 @@ class PesertaCont extends Controller
     {
         if (request()->ajax()) {
             # code...
-            $data   = Peserta::with('pelatihan')->with('kabupaten')->with('nilai')->orderBy('id','desc');
-            return DataTables::of($data)
-                    ->addColumn('nilai', function ($data) {
-                        if ($data->nilai->count() == 0) {
-                            # code...
-                            return $button = '<a href="#" data-toggle="modal" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-danger">belum dinilai</a>';
-                        }else{
-                            // return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-info">sudah dinilai</a>';
-                            $total = $data->nilai->where("kategori","al-qur'an")->sum('nominal');
-                                $total2 = $data->nilai->where("kategori","skill")->sum('nominal');
-                                $total3 = $data->nilai->where("kategori","skill")->count();
-                                // $rata2 = $data->nilai->sum('nominal');
-                                $rata2 = ($total + $total2)/($total3+1);
-                                if ($rata2 > 85) {
-                                    # code...
-                                    return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-primary">'.$rata2.' (baik)</a>';
-                                }
-                                elseif($rata2 < 85 && $rata2 < 75){
-                                    return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-warning">'.$rata2.' (belum bersyahadah)</a>';
-                                }
-                                else {
-                                    # code...
-                                    return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-info">'.$rata2.' (cukup)</a>';
-                                }
-                            
-                        }
-                        return $button;
-                    })
-                    ->addColumn('program', function ($data) {
-                        return $data->pelatihan->program->name;
-                    })
-                    ->addColumn('kabupaten', function ($data) {
-                        return $data->kabupaten->nama;
-                    })
-                    ->addColumn('cabang', function ($data) {
-                        return $data->pelatihan->cabang->name;
-                    })
-            ->rawColumns(['nilai','kabupaten','cabang','program'])
-            ->make(true);
+            if(!empty($request->dari))
+            {
+                $data   = Peserta::wherebetween('tanggal', array($request->dari, $request->sampai))->with('pelatihan')->with('kabupaten')->with('nilai')->orderBy('id','desc');
+                return DataTables::of($data)
+                        ->addColumn('nilai', function ($data) {
+                            if ($data->nilai->count() == 0) {
+                                # code...
+                                return $button = '<a href="#" data-toggle="modal" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-danger">belum dinilai</a>';
+                            }else{
+                                // return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-info">sudah dinilai</a>';
+                                $total = $data->nilai->where("kategori","al-qur'an")->sum('nominal');
+                                    $total2 = $data->nilai->where("kategori","skill")->sum('nominal');
+                                    $total3 = $data->nilai->where("kategori","skill")->count();
+                                    // $rata2 = $data->nilai->sum('nominal');
+                                    $rata2 = ($total + $total2)/($total3+1);
+                                    if ($rata2 > 85) {
+                                        # code...
+                                        return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-primary">'.$rata2.' (baik)</a>';
+                                    }
+                                    elseif($rata2 < 85 && $rata2 < 75){
+                                        return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-warning">'.$rata2.' (belum bersyahadah)</a>';
+                                    }
+                                    else {
+                                        # code...
+                                        return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-info">'.$rata2.' (cukup)</a>';
+                                    }
+                                
+                            }
+                            return $button;
+                        })
+                        ->addColumn('program', function ($data) {
+                            return $data->pelatihan->program->name;
+                        })
+                        ->addColumn('kabupaten', function ($data) {
+                            return $data->kabupaten->nama;
+                        })
+                        ->addColumn('cabang', function ($data) {
+                            return $data->pelatihan->cabang->name;
+                        })
+                        ->addColumn('tgllahir', function ($data) {
+                            $a = Carbon::parse($data->tgllahir)->isoFormat('D MMMM Y');
+                            return $a;
+                        })
+                ->rawColumns(['nilai','kabupaten','cabang','program','tgllahir'])
+                ->make(true);
+            }else{
+                $data   = Peserta::with('pelatihan')->with('kabupaten')->with('nilai')->orderBy('id','desc');
+                return DataTables::of($data)
+                        ->addColumn('nilai', function ($data) {
+                            if ($data->nilai->count() == 0) {
+                                # code...
+                                return $button = '<a href="#" data-toggle="modal" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-danger">belum dinilai</a>';
+                            }else{
+                                // return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-info">sudah dinilai</a>';
+                                $total = $data->nilai->where("kategori","al-qur'an")->sum('nominal');
+                                    $total2 = $data->nilai->where("kategori","skill")->sum('nominal');
+                                    $total3 = $data->nilai->where("kategori","skill")->count();
+                                    // $rata2 = $data->nilai->sum('nominal');
+                                    $rata2 = ($total + $total2)/($total3+1);
+                                    if ($rata2 > 85) {
+                                        # code...
+                                        return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-primary">'.$rata2.' (baik)</a>';
+                                    }
+                                    elseif($rata2 < 85 && $rata2 < 75){
+                                        return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-warning">'.$rata2.' (belum bersyahadah)</a>';
+                                    }
+                                    else {
+                                        # code...
+                                        return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-info">'.$rata2.' (cukup)</a>';
+                                    }
+                                
+                            }
+                            return $button;
+                        })
+                        ->addColumn('program', function ($data) {
+                            return $data->pelatihan->program->name;
+                        })
+                        ->addColumn('kabupaten', function ($data) {
+                            return $data->kabupaten->nama;
+                        })
+                        ->addColumn('cabang', function ($data) {
+                            return $data->pelatihan->cabang->name;
+                        })
+                        ->addColumn('tgllahir', function ($data) {
+                            $a = Carbon::parse($data->tgllahir)->isoFormat('D MMMM Y');
+                            return $a;
+                        })
+                ->rawColumns(['nilai','kabupaten','cabang','program','tgllahir'])
+                ->make(true);
+            
+            }
         }
-        
     }
 
     public function peserta_total(Request $request)
@@ -138,6 +245,26 @@ class PesertaCont extends Controller
             else
             {
                 $data = DB::table('pesertas')
+                ->get()->count();
+                return response()->json($data,200);
+            }
+        }
+    }
+
+    public function peserta_cabang_total(Request $request, $cabang_id)
+    {
+        if (request()->ajax()) {
+            # code...
+            if(!empty($request->dari))
+            {
+                $data = DB::table('pesertas')->where('cabang_id', $cabang_id)
+                ->whereBetween('tanggal', array($request->dari, $request->sampai))
+                ->get()->count();
+                return response()->json($data,200);
+            }
+            else
+            {
+                $data = DB::table('pesertas')->where('cabang_id', $cabang_id)
                 ->get()->count();
                 return response()->json($data,200);
             }
@@ -452,6 +579,252 @@ class PesertaCont extends Controller
                 ->get()->count();
                 return response()->json($data,200);
             }
+        }
+    }
+
+    public function peserta_kabupaten_cabang_total(Request $request,$cabang_id)
+    {
+        if (request()->ajax()) {
+            # code...
+            if(!empty($request->dari))
+            {
+                $data = DB::table('pesertas')->where('cabang_id', $cabang_id)
+                ->whereBetween('tanggal', array($request->dari, $request->sampai))
+                ->select('kabupaten_id', DB::raw('count(*) as total'))
+                ->groupBy('kabupaten_id')
+                ->get()->count();
+                return response()->json($data,200);
+            }
+            else
+            {
+                $data = DB::table('pesertas')->where('cabang_id', $cabang_id)
+                ->select('kabupaten_id', DB::raw('count(*) as total'))
+                ->groupBy('kabupaten_id')
+                ->get()->count();
+                return response()->json($data,200);
+            }
+        }
+    }
+
+    public function peserta_kabupaten(Request $request)
+    {
+        if(request()->ajax())
+        {
+            if(!empty($request->dari))
+            {
+                $data   = Peserta::whereBetween('tanggal', array($request->dari, $request->sampai))->with('kabupaten')->select('kabupaten_id')->distinct();
+                return DataTables::of($data)
+                ->addColumn('kabupaten', function ($data) {
+                    return $data->kabupaten->nama;
+                })
+                ->addColumn('action', function ($data) {
+                    $btn = '<a href="#" class="btn btn-sm btn-info"> check </a>';
+                    return $btn;
+                })
+                ->rawColumns(['kabupaten','action'])
+                ->make(true);
+            }else{
+                $data   = Peserta::with('kabupaten')->select('kabupaten_id')->distinct();
+                return DataTables::of($data)
+                ->addColumn('kabupaten', function ($data) {
+                    return $data->kabupaten->nama;
+                })
+                ->addColumn('action', function ($data) {
+                    $btn = '<a href="#" class="btn btn-sm btn-info"> check </a>';
+                    return $btn;
+                })
+                ->rawColumns(['kabupaten','action'])
+                ->make(true);
+            }
+        }
+    }
+
+    public function peserta_kabupaten_cabang(Request $request, $cabang_id)
+    {
+        if(request()->ajax())
+        {
+            if(!empty($request->dari))
+            {
+                $data   = Peserta::where('cabang_id',$cabang_id)->whereBetween('tanggal', array($request->dari, $request->sampai))->with('kabupaten')->select('kabupaten_id')->distinct();
+                return DataTables::of($data)
+                ->addColumn('kabupaten', function ($data) {
+                    return $data->kabupaten->nama;
+                })
+                ->addColumn('action', function ($data) {
+                    $btn = '<a href="#" class="btn btn-sm btn-info"> check </a>';
+                    return $btn;
+                })
+                ->rawColumns(['kabupaten','action'])
+                ->make(true);
+            }else{
+                $data   = Peserta::where('cabang_id',$cabang_id)->with('kabupaten')->select('kabupaten_id')->distinct();
+                return DataTables::of($data)
+                ->addColumn('kabupaten', function ($data) {
+                    return $data->kabupaten->nama;
+                })
+                ->addColumn('action', function ($data) {
+                    $btn = '<a href="#" class="btn btn-sm btn-info"> check </a>';
+                    return $btn;
+                })
+                ->rawColumns(['kabupaten','action'])
+                ->make(true);
+            }
+        }
+    }
+
+    public function peserta_cabang_pilih(Request $request)
+    {
+        if(request()->ajax())
+        {
+            if(!empty($request->dari))
+            {
+                $data   = Pelatihan::whereBetween('tanggal', array($request->dari, $request->sampai))->with('cabang')->select('cabang_id')->distinct();
+                return DataTables::of($data)
+                ->addColumn('cabang', function ($data) {
+                    return $data->cabang->name.' ( '.$data->cabang->kabupaten->nama.' ) ';
+                })
+                ->addColumn('action', function ($data) {
+                    $btn = '<a href="/diklat-peserta-diklat-cabang/'.$data->cabang->id.'" class="btn btn-sm btn-info"> check </a>';
+                    return $btn;
+                })
+                ->rawColumns(['cabang','action'])
+                ->make(true);
+            }else{
+                $data   = Pelatihan::with('cabang')->select('cabang_id')->distinct();
+                return DataTables::of($data)
+                ->addColumn('cabang', function ($data) {
+                    return $data->cabang->name.' ( '.$data->cabang->kabupaten->nama.' ) ';
+                })
+                ->addColumn('action', function ($data) {
+                    $btn = '<a href="/diklat-peserta-diklat-cabang/'.$data->cabang->id.'" class="btn btn-sm btn-info"> check </a>';
+                    return $btn;
+                })
+                ->rawColumns(['cabang','action'])
+                ->make(true);
+            }
+        }
+    }
+
+    public function peserta_cabang(Request $request, $cabang_id)
+    {
+        $cabang = Cabang::find($cabang_id);
+        return view('tilawatipusat.peserta.cabang',compact('cabang'));
+    }
+
+    public function peserta_cabang_data(Request $request, $cabang_id)
+    {
+        if(request()->ajax())
+        {
+            if(!empty($request->dari))
+            {
+                $data   = Peserta::where('cabang_id', $cabang_id)->whereBetween('tanggal', array($request->dari, $request->sampai))->with('pelatihan')->with('kabupaten')->with('nilai');
+                return DataTables::of($data)
+                        ->addColumn('nilai', function ($data) {
+                            if ($data->nilai->count() == 0) {
+                                # code...
+                                return $button = '<a href="#" data-toggle="modal" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-danger">belum dinilai</a>';
+                            }else{
+                                // return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-info">sudah dinilai</a>';
+                                $total = $data->nilai->where("kategori","al-qur'an")->sum('nominal');
+                                    $total2 = $data->nilai->where("kategori","skill")->sum('nominal');
+                                    $total3 = $data->nilai->where("kategori","skill")->count();
+                                    
+                                    // $rata2 = $data->nilai->sum('nominal');
+                                    $rata2 = ($total + $total2)/($total3+1);
+                                    if ($rata2 > 84) {
+                                        # code...
+                                        return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-primary">'.$rata2.' (baik)</a>';
+                                    }
+                                    elseif($rata2 < 84 && $rata2 < 75){
+                                        return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-warning">'.$rata2.' (belum bersyahadah)</a>';
+                                    }
+                                    else {
+                                        # code...
+                                        return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-info">'.$rata2.' (cukup)</a>';
+                                    }
+                                
+                            }
+                            return $button;
+                        })
+                        ->addColumn('pelatihan', function ($data) {
+                            return $data->pelatihan->program->name;
+                        })
+                        ->addColumn('kabupaten', function ($data) {
+                            return $data->kabupaten->nama;
+                        })
+                        ->addColumn('program', function ($data) {
+                            return $data->pelatihan->program->name;
+                        })
+                        ->addColumn('cabang', function ($data) {
+                            return $data->pelatihan->cabang->name.' ('.$data->pelatihan->cabang->kabupaten->nama.')';
+                        })
+                        ->addColumn('tgllahir', function ($data) {
+                            $a = Carbon::parse($data->tgllahir)->isoFormat('D MMMM Y');
+                            return $a;
+                        })
+                        ->addColumn('action', function($data){
+                            $actionBtn = ' <a href="#" data-id="'.$data->id.'" data-toggle="modal" data-target="#hapusData" class="btn btn-sm btn-outline btn-danger fa fa-pencil-square"><i class="fa fa-trash"></i></a>';
+                            $actionBtn .= ' <a href="/diklat-profile-peserta/'.$data->id.'/'.$data->pelatihan->program->id.'/'.$data->pelatihan->id.'/admin" class="btn btn-sm btn-outline btn-info fa fa-pencil-square"><i class="fa fa-user"></i></a>';
+                            return $actionBtn;
+                        })
+                ->rawColumns(['nilai','action','kabupaten','program','tgllahir'])
+                ->make(true);
+            }else{
+                $data   = Peserta::where('cabang_id', $cabang_id)->with('pelatihan')->with('kabupaten')->with('nilai');
+                return DataTables::of($data)
+                        ->addColumn('nilai', function ($data) {
+                            if ($data->nilai->count() == 0) {
+                                # code...
+                                return $button = '<a href="#" data-toggle="modal" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-danger">belum dinilai</a>';
+                            }else{
+                                // return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-info">sudah dinilai</a>';
+                                $total = $data->nilai->where("kategori","al-qur'an")->sum('nominal');
+                                    $total2 = $data->nilai->where("kategori","skill")->sum('nominal');
+                                    $total3 = $data->nilai->where("kategori","skill")->count();
+                                    
+                                    // $rata2 = $data->nilai->sum('nominal');
+                                    $rata2 = ($total + $total2)/($total3+1);
+                                    if ($rata2 > 84) {
+                                        # code...
+                                        return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-primary">'.$rata2.' (baik)</a>';
+                                    }
+                                    elseif($rata2 < 84 && $rata2 < 75){
+                                        return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-warning">'.$rata2.' (belum bersyahadah)</a>';
+                                    }
+                                    else {
+                                        # code...
+                                        return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-info">'.$rata2.' (cukup)</a>';
+                                    }
+                                
+                            }
+                            return $button;
+                        })
+                        ->addColumn('pelatihan', function ($data) {
+                            return $data->pelatihan->program->name;
+                        })
+                        ->addColumn('kabupaten', function ($data) {
+                            return $data->kabupaten->nama;
+                        })
+                        ->addColumn('program', function ($data) {
+                            return $data->pelatihan->program->name;
+                        })
+                        ->addColumn('cabang', function ($data) {
+                            return $data->pelatihan->cabang->name.' ('.$data->pelatihan->cabang->kabupaten->nama.')';
+                        })
+                        ->addColumn('tgllahir', function ($data) {
+                            $a = Carbon::parse($data->tgllahir)->isoFormat('D MMMM Y');
+                            return $a;
+                        })
+                        ->addColumn('action', function($data){
+                            $actionBtn = ' <a href="#" data-id="'.$data->id.'" data-toggle="modal" data-target="#hapusData" class="btn btn-sm btn-outline btn-danger "><i class="fa fa-trash"></i></a>';
+                            $actionBtn .= ' <a href="/diklat-profile-peserta/'.$data->id.'/'.$data->pelatihan->program->id.'/'.$data->pelatihan->id.'/admin" class="btn btn-sm btn-outline btn-info "><i class="fa fa-user"></i></a>';
+                            $actionBtn .= ' <a href="#" class="btn btn-sm btn-outline btn-success" data-id="'.asset('images/'.$data->id.'qrcode.png').'" data-toggle="modal" data-target=".modal-scan"><i class="mdi mdi-barcode-scan"></i></a>';
+                            return $actionBtn;
+                        })
+                ->rawColumns(['nilai','action','kabupaten','program','tgllahir'])
+                ->make(true);
+            }
+            
         }
     }
 }

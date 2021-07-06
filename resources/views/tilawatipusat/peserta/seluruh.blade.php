@@ -49,8 +49,8 @@
                         <div class="col-xl-4">
                             @component('common-tilawatipusat.dashboard-widget')
                             
-                                @slot('title') <b id="cb"> ??? </b> PESERTA  @endslot
-                                @slot('iconClass') mdi mdi-home-analytics  @endslot
+                                @slot('title') <b id="cb"> ??? </b><br><small> Total Peserta Diklat  </small>@endslot
+                                @slot('iconClass')  mdi mdi-account-group  @endslot
                                 @slot('price')   @endslot
                                 
                             @endcomponent
@@ -58,7 +58,7 @@
                         <div class="col-xl-4">
                             @component('common-tilawatipusat.dashboard-widget')
                             
-                                @slot('title') <a href="#" data-toggle="modal" data-target="#mod_cabang2"> <b id="cb2"> ??? </b> CABANG </a>@endslot
+                                @slot('title') <a href="#" data-toggle="modal" data-target="#mod_cabang2"> <b id="cb2"> ??? </b><br><small> Asal Cabang Pelatihan </small></a>@endslot
                                 @slot('iconClass') mdi mdi-bank-outline  @endslot
                                 @slot('price')   @endslot
                                 
@@ -67,7 +67,7 @@
                         <div class="col-xl-4">
                             @component('common-tilawatipusat.dashboard-widget')
                             
-                                @slot('title') <a href="#" data-toggle="modal" data-target="#mod_cabang2"> <b id="cb3"> ??? </b> KABUPATEN</a>@endslot
+                                @slot('title') <a href="#" data-toggle="modal" data-target="#mod_kabupaten"> <b id="cb3"> ??? </b><br><small> Kota / Kabupaten Daerah Asal </small></a>@endslot
                                 @slot('iconClass') mdi mdi-city  @endslot
                                 @slot('price')   @endslot
                                 
@@ -201,6 +201,44 @@
                         <!-- /.modal-dialog -->
                     </div>
 
+                    <div class="modal fade bs-example-modal-xl-3" id="mod_kabupaten" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-md">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">DAFTAR CABANG YANG MENGADAKAN DIKLAT</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
+                                        <table id="datatable-buttons3" class="table table-diklat-kabupaten table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
+                                            <thead class="text-bold text-primary">
+                                                <tr>
+                                                    <th>Kabupaten</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                    
+                                            <tbody style="text-transform: uppercase; font-size: 12px">
+                                            </tbody>
+                    
+                                            <tfoot class="text-bold text-primary">
+                                                <tr>
+                                                   <th>Kabupaten</th>
+                                                   <th>Action</th>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                        <footer class="blockquote-footer">Updated at  <cite title="Source Title">2021</cite></footer>
+                                    </blockquote>
+                                </div>
+                            </div>
+                            <!-- /.modal-content -->
+                        </div>
+                        <!-- /.modal-dialog -->
+                    </div>
+
                     <div class="col-sm-6 col-md-3 m-t-30">
                         <div class="modal fade modal-scan" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered modal-md">
@@ -216,7 +254,7 @@
                                             <div class="card m-b-30">
                                                 <div class="card-body">
                                                     <div class="container-fluid text-center">
-                                                        <img src="" alt="qr-code" id="qr-code" width="200px" height="200px">
+                                                        <img src="" alt="qr-code" id="qr-code" width="150px" height="150px">
                                                     </div><!-- container fluid -->
                                                 </div>
                                             </div>
@@ -428,13 +466,35 @@
                         ]
                     });
 
+                    $('#datatable-buttons3').DataTable({
+                        //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
+                        destroy: true,
+                        processing: true,
+                        serverSide: true,
+                        ajax: {
+                            url:'{{ route("diklat.peserta_kab") }}',
+                            data:{dari:dari, sampai:sampai}
+                        },
+                        columns: [
+                            {
+                            data:'kabupaten',
+                            name:'kabupaten.nama'
+                            },
+                            {
+                            data:'action',
+                            name:'action'
+                            },
+                            
+                        ]
+                    });
+
                     $('.table-diklat-cabang').DataTable({
                         //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
                         destroy: true,
                         processing: true,
                         serverSide: true,
                         ajax: {
-                            url:'{{ route("diklat.diklat_cabang_data") }}',
+                            url:'{{ route("diklat.peserta_cabang_pilih") }}',
                             data:{dari:dari, sampai:sampai}
                         },
                         columns: [
