@@ -50,7 +50,7 @@
                         <div class="col-xl-6">
                             @component('common-tilawatipusat.dashboard-widget')
                             
-                                @slot('title') <b id="cb">  </b> DIKLAT  @endslot
+                                @slot('title') <b id="cb">  </b> PESERTA  @endslot
                                 @slot('iconClass') mdi mdi-home-analytics  @endslot
                                 @slot('price')   @endslot
                                 
