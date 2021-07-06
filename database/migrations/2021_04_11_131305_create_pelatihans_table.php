@@ -30,10 +30,6 @@ class CreatePelatihansTable extends Migration
         Schema::table('pelatihans', function (Blueprint $table){
             $table->foreign('cabang_id')->references('id')->on('cabangs')->onDelete('cascade')->onUpdate('cascade');
         });
-
-        // Schema::table('pelatihans', function (Blueprint $table){
-        //     $table->foreign('program_id')->references('id')->on('programs')->onDelete('cascade')->onUpdate('cascade');
-        // });
     }
 
     /**

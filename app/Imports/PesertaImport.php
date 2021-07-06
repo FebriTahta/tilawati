@@ -21,11 +21,13 @@ class PesertaImport implements ToCollection
     */
     public function collection(Collection $collection)
     {
-        
+        $pelatihan  = Pelatihan::where('id', $this->id)->first();
+        $cabang     = $pelatihan->cabang_id;
         foreach ($collection as $key => $row) {
             # code...
             if ($key >= 1) {
                     $dt_pel = new Peserta;
+                    $dt_pel->cabang_id = $cabang;
                     $dt_pel->pelatihan_id = $this->id;
                     $dt_pel->tanggal = $this->tanggal;
                     $dt_pel->name = $row[0];

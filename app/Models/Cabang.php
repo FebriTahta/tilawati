@@ -68,4 +68,9 @@ class Cabang extends Model
     {
         return $this->belongsTo(Kelurahan::class);
     }
+
+    public function peserta()
+    {
+        return $this->hasMany(Peserta::class);
+    }
 }

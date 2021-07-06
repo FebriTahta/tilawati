@@ -228,6 +228,7 @@ class PesertaCont extends Controller
                       'id' => $request->id
                     ],
                     [
+                        'cabang_id' => $diklat->cabang_id,
                         'lembaga_id' => $request->lembaga_id,
                         'pelatihan_id' => $request->pelatihan_id,
                         'tanggal' => $tanggal,
@@ -271,6 +272,7 @@ class PesertaCont extends Controller
                   'id' => $request->id
                 ],
                 [
+                    'cabang_id' => $diklat->cabang_id,
                     'lembaga_id' => $request->lembaga_id,
                     'pelatihan_id' => $request->pelatihan_id,
                     'tanggal' => $tanggal,

@@ -10,6 +10,7 @@ class Peserta extends Model
     use HasFactory;
 
     protected $fillable = [
+        'cabang_id',
         'pelatihan_id',
         'lembaga_id',
         'name',
@@ -56,5 +57,10 @@ class Peserta extends Model
     public function nilai()
     {
         return $this->hasMany(Nilai::class);
+    }
+
+    public function cabang()
+    {
+        return $this->belongsTo(Cabang::class);
     }
 }
