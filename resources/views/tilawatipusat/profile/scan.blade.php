@@ -93,20 +93,22 @@
                         <div class="form-group" style="margin-top: 20px">
                             <h5 class="text-uppercase text-primary">Informasi Peserta</h5>
                             <div style="text-align: justify">
-                                <p>Peserta @if($program->name !== 'munaqosyah santri') Diklat @endif yang bernama "<b class="text-capitalize">{{ $peserta->name }}</b>" telah mengikuti @if($program->name !== 'munaqosyah santri') Diklat @endif <b class="text-capitalize"> {{ $program->name }} </b> 
-                                yang diadakan oleh Cabang : <b class="text-capitalize"> {{ $pelatihan->cabang->name }} - {{ $pelatihan->cabang->kabupaten->nama }} </b></br> pada tanggal <i>{{ $pelatihan->tanggal }}</i> 
-                                di <b> {{ $pelatihan->tempat }} </b></p>
+                                <p>Peserta @if($program->name !== 'munaqosyah santri') Diklat @endif dengan Nama <br><b class="text-capitalize">{{ $peserta->name }}</b><br> 
+                                Telah mengikuti Program @if($program->name !== 'munaqosyah santri') Diklat @endif <br><b class="text-capitalize"> {{ $program->name }} </b> <br>
+                                Yang diadakan oleh Cabang <br><b class="text-capitalize"> {{ $pelatihan->cabang->name }} - {{ $pelatihan->cabang->kabupaten->nama }} </b>
+                                </br> Pada tanggal <i>{{ $pelatihan->tanggal }}</i> <br>
+                                Bertempat di <br><b> {{ $pelatihan->tempat }} </b></p>
                                 <p>Dengan hasil akhir penilaian yang telah diberikan, maka. <br>
-                                    <b class="text-capitalize">{{ $peserta->name }}</b> dinyatakan 
+                                    <b class="text-capitalize">{{ $peserta->name }}</b><br> Dinyatakan <br>
                                     @if ($peserta->nilai->count() == 0)
-                                    <span class="badge badge-danger text-capitalize">Belum dinilai</span>
+                                    <span class="text-danger text-capitalize">Belum dinilai</span>
                                 @else
                                     @if ($rata2 > 84)
-                                        <i class="text-info text-capitalize">Bersyahadah</i> dengan predikat <i class="text-info">BAIK</i>
+                                        <i class="text-info text-capitalize">Bersyahadah</i> dengan predikat - <i class="text-info">BAIK</i>
                                     @elseif($rata2 < 84 && $rata2 < 75)
                                         <i class="text-danger text-capitalize">Belum Bersyahadah</i>
                                     @else
-                                        <i class="text-warning text-capitalize">Bersyahadah (CUKUP)</i>
+                                        <i class="text-info text-capitalize">Bersyahadah</i> dengan predikat - <i class="text-info">CUKUP</i>
                                     @endif
                                 @endif
                                 </p>
