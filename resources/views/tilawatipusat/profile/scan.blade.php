@@ -110,7 +110,7 @@
                                 @endif
                                 </p>
                             </div>
-                            <br><hr><h3 class="text-uppercase text-primary">Detail Nilai</h3>
+                            <br><hr><h3 class="text-uppercase text-primary">Rincian Penilaian</h3>
                             <div class="text-center">
                                 <h5 class="text-primary">Al-Qur'an</h5>
                             </div>
