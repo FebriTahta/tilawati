@@ -44,11 +44,11 @@
                                 <span class="badge badge-danger text-capitalize">Belum dinilai</span>
                             @else
                                 @if ($rata2 > 84)
-                                    <span class="badge badge-info text-capitalize">Bersyahadah (BAIK)</span>
+                                    <span class="badge badge-info text-capitalize">Bersyahadah</span>
                                 @elseif($rata2 < 84 && $rata2 < 75)
                                     <span class="badge badge-danger text-capitalize">Belum Bersyahadah</span>
                                 @else
-                                    <span class="badge badge-warning text-capitalize">Bersyahadah (CUKUP)</span>
+                                    <span class="badge badge-info text-capitalize">Bersyahadah</span>
                                 @endif
                             @endif
                             <br>
@@ -114,14 +114,18 @@
 
                             @foreach ($peserta->nilai as $item)
                                 @if ($item->kategori !== 'skill')
+                                <hr>
+                                <p>Al Qur'an</p>
                                     <div class="row text-capitalize" style="margin-top: 5px">
                                         <span class="col-6 col-md-6 text-left">{{ $item->penilaian->name }}</span>
                                         <span class="col-6 col-md-6 text-right text-info">{{ $item->nominal }}</span>
                                     </div>
                                 @else
+                                <hr>
+                                <p>Skill</p>
                                     <div class="row text-capitalize" style="margin-top: 5px">
-                                        <span class="col-6 col-md-6 text-left">{{ $item->penilaian->name }}</span>
-                                        <span class="col-6 col-md-6 text-right text-info">{{ $item->nominal }}</span>
+                                        <span class="col-12 col-md-12">{{ $item->penilaian->name }}</span>
+                                        <span class="col-12 col-md-12 text-info">{{ $item->nominal }}</span>
                                     </div>
                                 @endif
                             @endforeach
