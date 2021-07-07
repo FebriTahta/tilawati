@@ -37,8 +37,6 @@
 
                         <div class="mt-3 text-uppercase">
                             <a href="#" class="text-dark font-weight-medium font-size-16">{{ $peserta->name }}</a>
-                            <span >{{ Carbon\Carbon::parse($peserta->tanggal)->isoFormat('D MMMM Y') }}</span>
-                            <br>
                             @if ($peserta->nilai->count() == 0)
                                 <span class="badge badge-danger text-capitalize">Belum dinilai</span>
                             @else
@@ -50,9 +48,10 @@
                                     <span class="badge badge-info text-capitalize">Bersyahadah</span>
                                 @endif
                             @endif
-                            <br>
                             <?php $krits = strtolower($peserta->kriteria)?>
                             <p class="text-body mt-1 mb-1 text-capitalize">{{ $krits }}</p>
+                            <br>
+                            <span >{{ Carbon\Carbon::parse($peserta->tanggal)->isoFormat('D MMMM Y') }}</span>
                         </div>
 
                         <div class="row mt-4 border border-left-0 border-right-0 p-3">
