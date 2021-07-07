@@ -37,21 +37,24 @@
 
                         <div class="mt-3 text-uppercase">
                             <a href="#" class="text-dark font-weight-medium font-size-16">{{ $peserta->name }}</a>
-                            <p class="text-body mt-1 mb-1 text-capitalize">{{ $peserta->pelatihan->program->name }}</p>
-                            <span >{{ Carbon\Carbon::parse($peserta->tanggal)->isoFormat('D MMMM Y') }}</span>
                             <br>
                             @if ($peserta->nilai->count() == 0)
                                 <span class="badge badge-danger text-capitalize">Belum dinilai</span>
                             @else
                                 @if ($rata2 > 84)
-                                    <span class="badge badge-info text-capitalize">Bersyahadah (BAIK)</span>
+                                    <span class="badge badge-info text-capitalize">Bersyahadah</span>
                                 @elseif($rata2 < 84 && $rata2 < 75)
                                     <span class="badge badge-danger text-capitalize">Belum Bersyahadah</span>
                                 @else
-                                    <span class="badge badge-warning text-capitalize">Bersyahadah (CUKUP)</span>
+                                    <span class="badge badge-info text-capitalize">Bersyahadah</span>
                                 @endif
                             @endif
+                            <?php $krits = strtolower($peserta->kriteria)?>
+                            <p class="text-body mt-1 mb-1 text-capitalize">{{ $krits }}</p>
                             <br>
+                            <span >{{ Carbon\Carbon::parse($peserta->tanggal)->isoFormat('D MMMM Y') }}</span>
+                            <br>
+                            <span class="text-capitalize">{{ $program->name }}</span>
                         </div>
 
                         <div class="row mt-4 border border-left-0 border-right-0 p-3">
@@ -90,38 +93,55 @@
                 <div class="tab-content p-3 text-muted">
                     <div class="tab-pane active" id="experience" role="tabpanel">
                         <div class="form-group" style="margin-top: 20px">
-                            <h5 class="text-uppercase text-primary">Informasi Peserta</h5>
+                            <div class="text-center">
+                                <h3 class="text-uppercase text-primary">Informasi</h3>
+                                <hr>
+                            </div>
                             <div style="text-align: justify">
-                                <p>Peserta @if($program->name !== 'munaqosyah santri') Diklat @endif yang bernama "<b class="text-capitalize">{{ $peserta->name }}</b>" telah mengikuti @if($program->name !== 'munaqosyah santri') Diklat @endif <b class="text-capitalize"> {{ $program->name }} </b> 
-                                yang diadakan oleh Cabang : <b class="text-capitalize"> {{ $pelatihan->cabang->name }} - {{ $pelatihan->cabang->kabupaten->nama }} </b></br> pada tanggal <i>{{ $pelatihan->tanggal }}</i> 
-                                di <b> {{ $pelatihan->tempat }} </b></p>
+                                <p>Peserta @if($program->name !== 'munaqosyah santri') Diklat @endif dengan Nama <br><b class="text-capitalize">{{ $peserta->name }}</b><br> 
+                                Telah mengikuti Program @if($program->name !== 'munaqosyah santri') Diklat @endif <br><b class="text-capitalize"> {{ $program->name }} </b> <br>
+                                Yang diadakan oleh Cabang <br><b class="text-capitalize"> {{ $pelatihan->cabang->name }} - {{ $pelatihan->cabang->kabupaten->nama }} </b>
+                                </br> Pada tanggal <br><b>{{ Carbon\Carbon::parse($pelatihan->tanggal)->isoFormat('D MMMM Y') }}</b> <br>
+                                Bertempat di <br><b> {{ $pelatihan->tempat }} </b></p>
                                 <p>Dengan hasil akhir penilaian yang telah diberikan, maka. <br>
-                                    <b class="text-capitalize">{{ $peserta->name }}</b> dinyatakan 
+                                    <b class="text-capitalize">{{ $peserta->name }}</b><br> Dinyatakan <br>
                                     @if ($peserta->nilai->count() == 0)
-                                    <span class="badge badge-danger text-capitalize">Belum dinilai</span>
+                                    <span class="text-danger text-capitalize">Belum dinilai</span>
                                 @else
                                     @if ($rata2 > 84)
-                                        <i class="text-info text-capitalize">Bersyahadah</i> dengan predikat <i class="text-info">BAIK</i>
+                                        <i class="text-info text-capitalize">Bersyahadah</i> dengan predikat - <i class="text-info">BAIK</i>
                                     @elseif($rata2 < 84 && $rata2 < 75)
                                         <i class="text-danger text-capitalize">Belum Bersyahadah</i>
                                     @else
-                                        <i class="text-warning text-capitalize">Bersyahadah (CUKUP)</i>
+                                        <i class="text-info text-capitalize">Bersyahadah</i> dengan predikat - <i class="text-info">CUKUP</i>
                                     @endif
                                 @endif
                                 </p>
                             </div>
-                            <br><hr><h5 class="text-uppercase text-primary">Detail Nilai</h5>
-
+                            <br><hr>
+                            <div class="text-center"><h3 class="text-uppercase text-primary">Rincian Penilaian</h3></div>
+                            <div class="text-center">
+                                <h5 class="text-primary">Al-Qur'an</h5>
+                            </div>
+                            <hr>
                             @foreach ($peserta->nilai as $item)
                                 @if ($item->kategori !== 'skill')
                                     <div class="row text-capitalize" style="margin-top: 5px">
                                         <span class="col-6 col-md-6 text-left">{{ $item->penilaian->name }}</span>
                                         <span class="col-6 col-md-6 text-right text-info">{{ $item->nominal }}</span>
                                     </div>
-                                @else
+                                @endif
+                            @endforeach
+                            <hr>
+                            <div class="text-center">
+                                <h5 class="text-primary">Kemampuan</h5>
+                                <span class="text-danger">_________</span>
+                            </div>
+                            @foreach ($peserta->nilai as $item)
+                                @if ($item->kategori == 'skill')
                                     <div class="row text-capitalize" style="margin-top: 5px">
-                                        <span class="col-6 col-md-6 text-left">{{ $item->penilaian->name }}</span>
-                                        <span class="col-6 col-md-6 text-right text-info">{{ $item->nominal }}</span>
+                                        <span class="col-12 col-md-12">{{ $item->penilaian->name }}</span>
+                                        <span class="col-12 col-md-12 text-info">{{ $item->nominal }}</span>
                                     </div>
                                 @endif
                             @endforeach
@@ -138,7 +158,7 @@
                                 </div>
                             </div>
                             @if ($program->name == 'munaqosyah santri')
-                            <div class="col-md-4">
+                            <div class="@if ($program->name == 'munaqosyah santri') col-md-4 @else col-xl-6 @endif">
                                 <div class="form-group">
                                     <label for="firstname">Asal Lembaga</label>
                                     <input type="text" class="form-control text-capitalize" id="firstname" value="{{ $peserta->lembaga->name }}" readonly>
