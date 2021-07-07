@@ -18,11 +18,21 @@
     @endcomponent
     <input type="hidden" id="pelatihan_id" value="{{ $diklat->id }}">
                     <div class="row">
+                        <div class="col-xl-8">
+                            @component('common-tilawatipusat.dashboard-widget')
+                            
+                                @slot('title') <b id=""> Cabang {{ $diklat->cabang->name }} - {{ $diklat->cabang->kabupaten->nama }} - <span class="text-info">{{ Carbon\Carbon::parse($diklat->tanggal)->isoFormat('D MMMM Y') }}</span></b>  @endslot
+                                @slot('iconClass')mdi mdi-account-group  @endslot
+                                @slot('price')   @endslot
+                                
+                            @endcomponent
+                        </div>
+
                         <div class="col-xl-4">
                             @component('common-tilawatipusat.dashboard-widget')
                             
                                 @slot('title') <b id="cb"> ??? </b> Peserta  @endslot
-                                @slot('iconClass') mdi mdi-tag-plus-outline  @endslot
+                                @slot('iconClass')mdi mdi-account-group  @endslot
                                 @slot('price')   @endslot
                                 
                             @endcomponent
