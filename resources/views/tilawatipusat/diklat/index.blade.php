@@ -243,7 +243,7 @@
                         oTable.fnDraw(false);
                         $('#btnhapus').val('Ya, Hapus!');
                         $('.bs-example-modal-diklat-hapus').modal('hide');
-                        $('#btntambah').attr('disabled',false);
+                        $('#btnhapus').attr('disabled',false);
                         swal({ title: "Success!",
                             text: "Kriteria Tersebut Berhasil Di Dihapus!",
                             type: "success"})
