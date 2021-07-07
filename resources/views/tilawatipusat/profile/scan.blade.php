@@ -91,12 +91,14 @@
                 <div class="tab-content p-3 text-muted">
                     <div class="tab-pane active" id="experience" role="tabpanel">
                         <div class="form-group" style="margin-top: 20px">
-                            <h5 class="text-uppercase text-primary">Informasi Peserta</h5>
+                            <div class="text-center">
+                                <h3 class="text-uppercase text-primary">Informasi Peserta</h3>
+                            </div>
                             <div style="text-align: justify">
                                 <p>Peserta @if($program->name !== 'munaqosyah santri') Diklat @endif dengan Nama <br><b class="text-capitalize">{{ $peserta->name }}</b><br> 
                                 Telah mengikuti Program @if($program->name !== 'munaqosyah santri') Diklat @endif <br><b class="text-capitalize"> {{ $program->name }} </b> <br>
                                 Yang diadakan oleh Cabang <br><b class="text-capitalize"> {{ $pelatihan->cabang->name }} - {{ $pelatihan->cabang->kabupaten->nama }} </b>
-                                </br> Pada tanggal <br><i>{{ Carbon\Carbon::parse($pelatihan->tanggal)->isoFormat('D MMMM Y') }}</i> <br>
+                                </br> Pada tanggal <br><b>{{ Carbon\Carbon::parse($pelatihan->tanggal)->isoFormat('D MMMM Y') }}</b> <br>
                                 Bertempat di <br><b> {{ $pelatihan->tempat }} </b></p>
                                 <p>Dengan hasil akhir penilaian yang telah diberikan, maka. <br>
                                     <b class="text-capitalize">{{ $peserta->name }}</b><br> Dinyatakan <br>
