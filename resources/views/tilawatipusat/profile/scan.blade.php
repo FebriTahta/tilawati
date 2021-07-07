@@ -126,16 +126,13 @@
                             <hr>
                             <div class="text-center">
                                 <h5 class="text-primary">Kemampuan</h5>
+                                <span class="text-danger">_________</span>
                             </div>
                             @foreach ($peserta->nilai as $item)
                                 @if ($item->kategori == 'skill')
                                     <div class="row text-capitalize" style="margin-top: 5px">
                                         <span class="col-12 col-md-12">{{ $item->penilaian->name }}</span>
                                         <span class="col-12 col-md-12 text-info">{{ $item->nominal }}</span>
-                                    </div>
-                                @else
-                                    <div class="text-center">
-                                        <span class="text-danger">__________</span>
                                     </div>
                                 @endif
                             @endforeach
