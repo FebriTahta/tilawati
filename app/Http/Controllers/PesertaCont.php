@@ -76,7 +76,7 @@ class PesertaCont extends Controller
                     ->addColumn('action', function($data){
                         $actionBtn = ' <a href="#" data-id="'.$data->id.'" data-toggle="modal" data-target="#hapusData" class="btn btn-sm btn-outline btn-danger "><i class="fa fa-trash"></i></a>';
                         $actionBtn .= ' <a href="/diklat-profile-peserta/'.$data->id.'/'.$data->pelatihan->program->id.'/'.$data->pelatihan->id.'/admin" class="btn btn-sm btn-outline btn-info "><i class="fa fa-user"></i></a>';
-                        $actionBtn .= ' <a href="#" class="btn btn-sm btn-outline btn-success" data-id="'.asset('images/'.$data->id.'qrcode.png').'" data-toggle="modal" data-target=".modal-scan"><i class="mdi mdi-barcode-scan"></i></a>';
+                        $actionBtn .= ' <a href="#" class="btn btn-sm btn-outline btn-success" data-nama_peserta="'.$data->name.'" data-id="'.asset('images/'.$data->id.'qrcode.png').'" data-toggle="modal" data-target=".modal-scan"><i class="mdi mdi-barcode-scan"></i></a>';
                         return $actionBtn;
                     })
             ->rawColumns(['nilai','action','kabupaten','tgllahir'])
@@ -124,7 +124,7 @@ class PesertaCont extends Controller
                         ->addColumn('action', function($data){
                             $actionBtn = ' <a href="#" data-id="'.$data->id.'" data-toggle="modal" data-target="#hapusData" class="btn btn-sm btn-outline btn-danger "><i class="fa fa-trash"></i></a>';
                             $actionBtn .= ' <a href="/diklat-profile-peserta/'.$data->id.'/'.$data->pelatihan->program->id.'/'.$data->pelatihan->id.'/admin" class="btn btn-sm btn-outline btn-info "><i class="fa fa-user"></i></a>';
-                            $actionBtn .= ' <a href="#" class="btn btn-sm btn-outline btn-success" data-id="'.asset('images/'.$data->id.'qrcode.png').'" data-toggle="modal" data-target=".modal-scan"><i class="mdi mdi-barcode-scan"></i></a>';
+                            $actionBtn .= ' <a href="#" class="btn btn-sm btn-outline btn-success" data-nama_peserta="'.$data->name.'" data-id="'.asset('images/'.$data->id.'qrcode.png').'" data-toggle="modal" data-target=".modal-scan"><i class="mdi mdi-barcode-scan"></i></a>';
                             return $actionBtn;
                         })
                 ->rawColumns(['nilai','action','kabupaten','tgllahir'])
@@ -548,7 +548,7 @@ class PesertaCont extends Controller
                         ->addColumn('action', function($data){
                             $actionBtn = ' <a href="#" data-id="'.$data->id.'" data-toggle="modal" data-target="#hapusData" class="btn btn-sm btn-outline btn-danger "><i class="fa fa-trash"></i></a>';
                             $actionBtn .= ' <a href="/diklat-profile-peserta/'.$data->id.'/'.$data->pelatihan->program->id.'/'.$data->pelatihan->id.'/admin" class="btn btn-sm btn-outline btn-info "><i class="fa fa-user"></i></a>';
-                            $actionBtn .= ' <a href="#" class="btn btn-sm btn-outline btn-success" data-id="'.asset('images/'.$data->id.'qrcode.png').'" data-toggle="modal" data-target=".modal-scan"><i class="mdi mdi-barcode-scan"></i></a>';
+                            $actionBtn .= ' <a href="#" class="btn btn-sm btn-outline btn-success" data-nama_peserta="'.$data->name.'" data-id="'.asset('images/'.$data->id.'qrcode.png').'" data-toggle="modal" data-target=".modal-scan"><i class="mdi mdi-barcode-scan"></i></a>';
                             return $actionBtn;
                         })
                 ->rawColumns(['nilai','action','kabupaten','program'])
@@ -818,7 +818,7 @@ class PesertaCont extends Controller
                         ->addColumn('action', function($data){
                             $actionBtn = ' <a href="#" data-id="'.$data->id.'" data-toggle="modal" data-target="#hapusData" class="btn btn-sm btn-outline btn-danger "><i class="fa fa-trash"></i></a>';
                             $actionBtn .= ' <a href="/diklat-profile-peserta/'.$data->id.'/'.$data->pelatihan->program->id.'/'.$data->pelatihan->id.'/admin" class="btn btn-sm btn-outline btn-info "><i class="fa fa-user"></i></a>';
-                            $actionBtn .= ' <a href="#" class="btn btn-sm btn-outline btn-success" data-id="'.asset('images/'.$data->id.'qrcode.png').'" data-toggle="modal" data-target=".modal-scan"><i class="mdi mdi-barcode-scan"></i></a>';
+                            $actionBtn .= ' <a href="#" class="btn btn-sm btn-outline btn-success" data-nama_peserta="'.$data->name.'" data-id="'.asset('images/'.$data->id.'qrcode.png').'" data-toggle="modal" data-target=".modal-scan"><i class="mdi mdi-barcode-scan"></i></a>';
                             return $actionBtn;
                         })
                 ->rawColumns(['nilai','action','kabupaten','program','tgllahir'])

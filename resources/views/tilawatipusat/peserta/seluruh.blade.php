@@ -255,6 +255,9 @@
                                                 <div class="card-body">
                                                     <div class="container-fluid text-center">
                                                         <img src="" alt="qr-code" id="qr-code" width="150px" height="150px">
+                                                        <div class="text-center text-uppercase" style="margin-top: 10px">
+                                                            <p class="text-info" id="nama_peserta"></p>
+                                                        </div>
                                                     </div><!-- container fluid -->
                                                 </div>
                                             </div>
@@ -298,7 +301,9 @@
             $('.modal-scan').on('show.bs.modal', function(event) {
                 var button = $(event.relatedTarget)
                 id = button.data('id')
+                nama_peserta = button.data('nama_peserta')
                 var modal = $(this)
+                $('#nama_peserta').html(nama_peserta);
                 document.getElementById("qr-code").src = id;
             })
             $('.bs-example-modal-diklat-hapus').on('show.bs.modal', function(event) {
