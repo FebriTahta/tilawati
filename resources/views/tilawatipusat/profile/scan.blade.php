@@ -37,6 +37,7 @@
 
                         <div class="mt-3 text-uppercase">
                             <a href="#" class="text-dark font-weight-medium font-size-16">{{ $peserta->name }}</a>
+                            <br>
                             @if ($peserta->nilai->count() == 0)
                                 <span class="badge badge-danger text-capitalize">Belum dinilai</span>
                             @else
