@@ -25,6 +25,6 @@ class HomeController extends Controller
     {
         // return view('home');
         // return redirect('dashboard');
-        return redirect('/diklat-cabang');
+        return redirect('/diklat-dashboard');
     }
 }

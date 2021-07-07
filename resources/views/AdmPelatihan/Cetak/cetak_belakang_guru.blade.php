@@ -212,13 +212,13 @@
 	</style>
 	@endif
 	@foreach($peserta as $key=> $p)
-<div class="container page-break paksatengah" style="margin-top: 147px">
+<div class="container page-break paksatengah" style="margin-top: 100px">
 	<center>
 		<p class="syahadah">No. Syahadah : {{ $p->pelatihan->id }} / 2021 / {{ $p->id }}</p>
 	</center>
 		<table 
 		@if ($pelatihan->keterangan == 'instruktur')
-		style="width: 800px"
+		style="width: 700px"
 		@else
 		style="width: 600px"
 		@endif  class="table1 center">
