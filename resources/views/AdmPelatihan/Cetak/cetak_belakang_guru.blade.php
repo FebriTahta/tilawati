@@ -213,7 +213,7 @@
 	@endif
 	@foreach($peserta as $key=> $p)
 	<center>
-		<p @if ($pelatihan->keterangan == 'instruktur') style="margin-top: 137px" @else style="margin-top: 147px" @endif class="syahadah">No. Syahadah : {{ $p->pelatihan->id }} / 2021 / {{ $p->id }}</p>
+		<p @if ($pelatihan->keterangan == 'instruktur') style="margin-top: 147px" @else style="margin-top: 147px" @endif class="syahadah">No. Syahadah : {{ $p->pelatihan->id }} / 2021 / {{ $p->id }}</p>
 	</center>
 		<table 
 		@if ($pelatihan->keterangan == 'instruktur')
