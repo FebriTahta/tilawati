@@ -54,7 +54,7 @@
                             <br>
                             <span >{{ Carbon\Carbon::parse($peserta->tanggal)->isoFormat('D MMMM Y') }}</span>
                             <br>
-                            <span>{{ $program->name }}</span>
+                            <span class="text-capitalize">{{ $program->name }}</span>
                         </div>
 
                         <div class="row mt-4 border border-left-0 border-right-0 p-3">
