@@ -92,7 +92,8 @@
                     <div class="tab-pane active" id="experience" role="tabpanel">
                         <div class="form-group" style="margin-top: 20px">
                             <div class="text-center">
-                                <h3 class="text-uppercase text-primary">Informasi Peserta</h3>
+                                <h3 class="text-uppercase text-primary">Informasi</h3>
+                                <hr>
                             </div>
                             <div style="text-align: justify">
                                 <p>Peserta @if($program->name !== 'munaqosyah santri') Diklat @endif dengan Nama <br><b class="text-capitalize">{{ $peserta->name }}</b><br> 
