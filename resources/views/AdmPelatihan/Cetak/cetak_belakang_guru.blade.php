@@ -212,9 +212,8 @@
 	</style>
 	@endif
 	@foreach($peserta as $key=> $p)
-<div class="container page-break paksatengah" @if ($pelatihan->keterangan == 'instruktur') style="margin-top: 137px" @else style="margin-top: 147px" @endif >
 	<center>
-		<p class="syahadah">No. Syahadah : {{ $p->pelatihan->id }} / 2021 / {{ $p->id }}</p>
+		<p @if ($pelatihan->keterangan == 'instruktur') style="margin-top: 137px" @else style="margin-top: 147px" @endif class="syahadah">No. Syahadah : {{ $p->pelatihan->id }} / 2021 / {{ $p->id }}</p>
 	</center>
 		<table 
 		@if ($pelatihan->keterangan == 'instruktur')
@@ -261,44 +260,6 @@
 				</tr>
 				@endif
 			@endforeach
-			{{-- <tr>
-				<td class="pop"></td>
-				<td class="pop2">&nbsp; &nbsp; &nbsp; &nbsp;a. Fashohah</td>
-				<td class="nilai">&nbsp; &nbsp;28</td>
-				<td class="nilai2">&nbsp; &nbsp;25</td>
-				<td class="nilai3">&nbsp; &nbsp;{{ $p->fs }}</td>
-				<td style="border-top: 0;border-bottom: 0;"></td>
-			</tr>
-			<tr>
-				<td class="pop"></td>
-				<td class="pop2">&nbsp; &nbsp; &nbsp; &nbsp;b. Tajwid</td>
-				<td class="nilai">&nbsp; &nbsp;45</td>
-				<td class="nilai2">&nbsp; &nbsp;38</td>
-				<td class="nilai3">&nbsp; &nbsp;{{ $p->tj }}</td>
-				<td style="border-top: 0;border-bottom: 0;"></td>
-			</tr>
-			<tr>
-				<td class="pop"></td>
-				<td class="pop2">&nbsp; &nbsp; &nbsp; &nbsp;c. Ghorib Musyikilat</td>
-				<td class="nilai">&nbsp; &nbsp;10</td>
-				<td class="nilai2">&nbsp; &nbsp;7</td>
-				<td class="nilai3">&nbsp; &nbsp;{{ $p->gm }}</td>
-				<td style="border-top: 0;border-bottom: 0;"></td>
-			</tr>
-			<tr>
-				<td class="pop"></td>
-				<td class="pop2">&nbsp; &nbsp; &nbsp; &nbsp;d. Suara Lagu</td>
-				<td class="nilai">&nbsp; &nbsp;7</td>
-				<td class="nilai2">&nbsp; &nbsp;5</td>
-				<td class="nilai3">&nbsp; &nbsp;{{ $p->sl }}</td>
-				<td style="border-top: 0;border-bottom: 0;"></td>
-			</tr> --}}
-			{{-- <tr>
-				<th>2</th>
-				<td class="nilai6">&nbsp; &nbsp;<b> MICROTEACHING</b></th>
-				<th colspan="3" class="nilai5"></th>
-				<th >{{ $p->mt }}</th>
-			</tr> --}}
 			<tr>
 				<th></th>
 				<td class="nilai6">&nbsp; &nbsp;<b> RATA - RATA NILAI</b></th>
@@ -328,8 +289,6 @@
 				<div class="alignleft" style="margin-left: 180px">Baik : 85 - 95</div>
 				<div class="alignright" style="margin-right: 180px">Cukup : 75 - 84</div>
 			</div>
-</div>
-
 	@endforeach
 </body>
 </html>	
