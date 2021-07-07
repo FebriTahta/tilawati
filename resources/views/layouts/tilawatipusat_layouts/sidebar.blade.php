@@ -4,8 +4,9 @@
     <div class="h-100">
 
         <div class="user-wid text-center py-4">
-            <div class="user-img">
-                <img src="{{ asset('assets/images/tilawati.png') }}" alt="" class="avatar-md rounded-circle">
+            <div class="">
+                <img src="{{ asset('assets/images/tilawati.png') }}" alt="" class="avatar-lg mx-auto img-thumbnail rounded-circle">
+                <div class="online-circle"></div>
             </div>
 
             <div class="mt-3">

@@ -212,7 +212,7 @@
 	</style>
 	@endif
 	@foreach($peserta as $key=> $p)
-<div class="container page-break paksatengah" style="margin-top: 100px">
+<div class="container page-break paksatengah" style="margin-top: 147px">
 	<center>
 		<p class="syahadah">No. Syahadah : {{ $p->pelatihan->id }} / 2021 / {{ $p->id }}</p>
 	</center>

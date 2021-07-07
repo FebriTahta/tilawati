@@ -32,7 +32,7 @@
                     <div class="text-center">
                         <div class="">
                             <img src="{{ asset('assets/images/tilawati.png') }}" alt="" class="avatar-lg mx-auto img-thumbnail rounded-circle">
-                            <div class="online-circle"><i class="fas fa-circle text-success"></i></div>
+                            <div class="online-circle"></div>
                         </div>
 
                         <div class="mt-3 text-uppercase">
