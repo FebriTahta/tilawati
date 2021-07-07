@@ -110,22 +110,32 @@
                                 @endif
                                 </p>
                             </div>
-                            <br><hr><h5 class="text-uppercase text-primary">Detail Nilai</h5>
-
+                            <br><hr><h3 class="text-uppercase text-primary">Detail Nilai</h3>
+                            <div class="text-center">
+                                <h5 class="text-primary">Al-Qur'an</h5>
+                            </div>
+                            <hr>
                             @foreach ($peserta->nilai as $item)
                                 @if ($item->kategori !== 'skill')
-                                <hr>
-                                <p>Al Qur'an</p>
                                     <div class="row text-capitalize" style="margin-top: 5px">
                                         <span class="col-6 col-md-6 text-left">{{ $item->penilaian->name }}</span>
                                         <span class="col-6 col-md-6 text-right text-info">{{ $item->nominal }}</span>
                                     </div>
-                                @else
-                                <hr>
-                                <p>Skill</p>
+                                @endif
+                            @endforeach
+                            <hr>
+                            <div class="text-center">
+                                <h5 class="text-primary">Kemampuan</h5>
+                            </div>
+                            @foreach ($peserta->nilai as $item)
+                                @if ($item->kategori == 'skill')
                                     <div class="row text-capitalize" style="margin-top: 5px">
                                         <span class="col-12 col-md-12">{{ $item->penilaian->name }}</span>
                                         <span class="col-12 col-md-12 text-info">{{ $item->nominal }}</span>
+                                    </div>
+                                @else
+                                    <div class="text-center">
+                                        <span class="text-danger">__________</span>
                                     </div>
                                 @endif
                             @endforeach
