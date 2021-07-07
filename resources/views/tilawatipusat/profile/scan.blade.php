@@ -37,7 +37,8 @@
 
                         <div class="mt-3 text-uppercase">
                             <a href="#" class="text-dark font-weight-medium font-size-16">{{ $peserta->name }}</a>
-                            <p class="text-body mt-1 mb-1 text-capitalize">{{ $peserta->pelatihan->program->name }}</p>
+                            <?php $krits = strtolower($peserta->kriteria)?>
+                            <p class="text-body mt-1 mb-1 text-capitalize">{{ $krits }}</p>
                             <span >{{ Carbon\Carbon::parse($peserta->tanggal)->isoFormat('D MMMM Y') }}</span>
                             <br>
                             @if ($peserta->nilai->count() == 0)
@@ -110,7 +111,8 @@
                                 @endif
                                 </p>
                             </div>
-                            <br><hr><h3 class="text-uppercase text-primary">Rincian Penilaian</h3>
+                            <br><hr>
+                            <div class="text-center"><h3 class="text-uppercase text-primary">Rincian Penilaian</h3></div>
                             <div class="text-center">
                                 <h5 class="text-primary">Al-Qur'an</h5>
                             </div>
