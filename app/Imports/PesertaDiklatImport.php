@@ -97,7 +97,7 @@ class PesertaDiklatImport implements ToCollection
                     $id = $dt_pel->id;
                     \QrCode::size(150)
                     ->format('png')
-                    ->generate('https://www.tilawatipusat.com/diklat-profile-peserta/'.$id, public_path('images/'.$id.'qrcode.png'));
+                    ->generate('https://www.tilawatipusat.com/diklat-profile-peserta/'.$data->id.'/'.$data->pelatihan->program->id.'/'.$data->pelatihan->id, public_path('images/'.$id.'qrcode.png'));
             }   
         }
     }
