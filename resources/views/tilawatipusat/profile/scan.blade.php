@@ -96,7 +96,7 @@
                                 <p>Peserta @if($program->name !== 'munaqosyah santri') Diklat @endif dengan Nama <br><b class="text-capitalize">{{ $peserta->name }}</b><br> 
                                 Telah mengikuti Program @if($program->name !== 'munaqosyah santri') Diklat @endif <br><b class="text-capitalize"> {{ $program->name }} </b> <br>
                                 Yang diadakan oleh Cabang <br><b class="text-capitalize"> {{ $pelatihan->cabang->name }} - {{ $pelatihan->cabang->kabupaten->nama }} </b>
-                                </br> Pada tanggal <i>{{ $pelatihan->tanggal }}</i> <br>
+                                </br> Pada tanggal <br><i>{{ Carbon\Carbon::parse($pelatihan->tanggal)->isoFormat('D MMMM Y') }}</i> <br>
                                 Bertempat di <br><b> {{ $pelatihan->tempat }} </b></p>
                                 <p>Dengan hasil akhir penilaian yang telah diberikan, maka. <br>
                                     <b class="text-capitalize">{{ $peserta->name }}</b><br> Dinyatakan <br>
