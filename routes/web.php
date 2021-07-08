@@ -249,13 +249,16 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga']], funct
     Route::get('/diklat-peserta/{id}',[PesertaCont::class, 'index'])->name('diklat.peserta');
     Route::get('/diklat-peserta-data',[PesertaCont::class, 'seluruh_peserta'])->name('diklat.seluruh_peserta');
     Route::get('/diklat-seluruh-peserta-data',[PesertaCont::class, 'seluruh_peserta_data'])->name('diklat.seluruh_peserta_data');
-    // Route::get('/diklat-peserta-data-kabupaten')
+    Route::get('/diklat-peserta-data-kabupaten/{kabupaten_id}/data', [PesertaCont::class, 'seluruh_peserta_data_kabupaten'])->name('diklat.peserta_data_kab');
     Route::get('/diklat-peserta-data/{id}',[PesertaCont::class, 'peserta_data'])->name('diklat.peserta_data');
     Route::get('/diklat-peserta-data-kabupaten/{kabupaten_id}',[PesertaCont::class, 'peserta_kabupaten_view'])->name('diklat.peserta_kab_view');
     Route::get('/diklat-peserta-total',[PesertaCont::class, 'peserta_total'])->name('diklat.peserta_tot');
+    Route::get('/diklat-peserta-kabupaten-total/{kabupaten_id}',[PesertaCont::class, 'peserta_kabupaten_total_data'])->name('diklat.peserta_kabu_tot');
     Route::get('/diklat-peserta-kabupaten-total',[PesertaCont::class, 'peserta_kabupaten_total'])->name('diklat.peserta_kabupaten_tot');
+    Route::get('/diklat-peserta-kabupaten-total-cabang/{kabupaten_id}',[PesertaCont::class, 'peserta_kabupaten_total_cabang'])->name('diklat.peserta_kab_tot_cab');
     Route::get('/diklat-peserta-kabupaten',[PesertaCont::class,'peserta_kabupaten'])->name('diklat.peserta_kab');
     Route::get('/diklat-peserta-cabang-pilih',[PesertaCont::class, 'peserta_cabang_pilih'])->name('diklat.peserta_cabang_pilih');
+    Route::get('/diklat-peserta-kabupaten-cabang-pilih/{kabupaten_id}',[PesertaCont::class, 'peserta_kabupaten_cabang_pilih'])->name('diklat.peserta_kabupaten_cabang_pilih');
     Route::get('/diklat-peserta-diklat-cabang/{cabang_id}',[PesertaCont::class, 'peserta_cabang'])->name('diklat.peserta_cabang');
     Route::get('/diklat-peserta-diklat-cabang-data/{cabang_id}',[PesertaCont::class, 'peserta_cabang_data'])->name('diklat.peserta_cabang_data');
     Route::get('/diklat-peserta-diklat-cabang-total/{cabang_id}',[PesertaCont::class, 'peserta_cabang_total'])->name('diklat.peserta_cabang_tot');

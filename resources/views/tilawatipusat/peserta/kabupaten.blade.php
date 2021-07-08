@@ -19,6 +19,7 @@
          @slot('title') Peeserta {{ $kabupaten->nama }}   @endslot
          @slot('title_li') DIKLAT   @endslot
     @endcomponent
+    <input type="hidden" id="kabupaten_id" value="{{ $kabupaten->id }}">
                     <div class="row">
                         <div class="col-xl-12 col-md-12">
                             <div class="card">
@@ -67,7 +68,7 @@
                         <div class="col-xl-4">
                             @component('common-tilawatipusat.dashboard-widget')
                             
-                                @slot('title') <a href="#" data-toggle="modal" data-target="#mod_kabupaten"> <b id="cb3"> ??? </b><br><small> Kota / Kabupaten Daerah Asal </small></a>@endslot
+                                @slot('title') <a href="#" data-toggle="modal" data-target="#mod_kabupaten"> <b id="cb3"> ??? </b><br><small> Kota / Kabupaten Asal Peserta </small></a>@endslot
                                 @slot('iconClass') mdi mdi-city  @endslot
                                 @slot('price')   @endslot
                                 
@@ -297,6 +298,8 @@
         <script src="{{ URL::asset('tilawatipusat/js/pages/datatables.init.js')}}"></script>
 
         <script>
+            var kabupaten_id = $('#kabupaten_id').val();
+
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             $('.modal-scan').on('show.bs.modal', function(event) {
                 var button = $(event.relatedTarget)
@@ -377,7 +380,7 @@
 
                     //total diklat dan cabang yang mengadakan diklat
                     $.ajax({
-                        url:'{{ route("diklat.peserta_tot") }}',
+                        url:'/diklat-peserta-kabupaten-total/'+kabupaten_id,
                         type: 'get',
                         dataType: 'json',
                         data:{dari:dari, sampai:sampai},
@@ -387,7 +390,7 @@
                         }
                     });
                     $.ajax({
-                        url:'{{ route("diklat.diklat_cabang_tot") }}',
+                        url:'/diklat-peserta-kabupaten-total-cabang/'+kabupaten_id,
                         type: 'get',
                         dataType: 'json',
                         data:{dari:dari, sampai:sampai},
@@ -415,7 +418,7 @@
                         processing: true,
                         serverSide: true,
                         ajax: {
-                            url:'{{ route("diklat.seluruh_peserta_data") }}',
+                            url:'/diklat-peserta-data-kabupaten/'+kabupaten_id+'/data',
                             data:{dari:dari, sampai:sampai}
                         },
                         columns: [
@@ -499,13 +502,13 @@
                         processing: true,
                         serverSide: true,
                         ajax: {
-                            url:'{{ route("diklat.peserta_cabang_pilih") }}',
+                            url:'/diklat-peserta-kabupaten-cabang-pilih/'+kabupaten_id,
                             data:{dari:dari, sampai:sampai}
                         },
                         columns: [
                             {
                             data:'cabang',
-                            name:'cabang.name'
+                            name:'cabang'
                             },
                             {
                             data:'action',

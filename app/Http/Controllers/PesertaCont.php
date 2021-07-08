@@ -691,6 +691,54 @@ class PesertaCont extends Controller
         }
     }
 
+    public function peserta_kabupaten_total_data(Request $request, $kabupaten_id)
+    {
+        if (request()->ajax()) {
+            # code...
+            if(!empty($request->dari))
+            {
+                $data = DB::table('pesertas')->where('kabupaten_id', $kabupaten_id)
+                ->whereBetween('tanggal', array($request->dari, $request->sampai))
+                ->select('kabupaten_id', DB::raw('count(*) as total'))
+                ->groupBy('kabupaten_id')
+                ->get()->count();
+                return response()->json($data,200);
+            }
+            else
+            {
+                $data = DB::table('pesertas')->where('kabupaten_id', $kabupaten_id)
+                ->select('kabupaten_id', DB::raw('count(*) as total'))
+                ->groupBy('kabupaten_id')
+                ->get()->count();
+                return response()->json($data,200);
+            }
+        }
+    }
+
+    public function peserta_kabupaten_total_cabang(Request $request, $kabupaten_id)
+    {
+        if (request()->ajax()) {
+            # code...
+            if(!empty($request->dari))
+            {
+                $data = DB::table('pesertas')->where('kabupaten_id', $kabupaten_id)
+                ->whereBetween('tanggal', array($request->dari, $request->sampai))
+                ->select('cabang_id', DB::raw('count(*) as total'))
+                ->groupBy('cabang_id')
+                ->get()->count();
+                return response()->json($data,200);
+            }
+            else
+            {
+                $data = DB::table('pesertas')->where('kabupaten_id', $kabupaten_id)
+                ->select('cabang_id', DB::raw('count(*) as total'))
+                ->groupBy('cabang_id')
+                ->get()->count();
+                return response()->json($data,200);
+            }
+        }
+    }
+
     public function peserta_kabupaten_cabang_total(Request $request,$cabang_id)
     {
         if (request()->ajax()) {
@@ -812,6 +860,39 @@ class PesertaCont extends Controller
                 })
                 ->addColumn('action', function ($data) {
                     $btn = '<a href="/diklat-peserta-diklat-cabang/'.$data->cabang->id.'" class="btn btn-sm btn-info"> check </a>';
+                    return $btn;
+                })
+                ->rawColumns(['cabang','action'])
+                ->make(true);
+            }
+        }
+    }
+
+    public function peserta_kabupaten_cabang_pilih(Request $request, $kabupaten_id)
+    {
+        if(request()->ajax())
+        {
+            if(!empty($request->dari))
+            {
+                $data   = Pelatihan::where('kabupaten_id', $kabupaten_id)->whereBetween('tanggal', array($request->dari, $request->sampai))->with('cabang')->select('cabang_id')->distinct();
+                return DataTables::of($data)
+                ->addColumn('cabang', function ($data) {
+                    return $data->cabang->name;
+                })
+                ->addColumn('action', function ($data) {
+                    $btn = '<a href="/diklat-peserta-diklat-cabang/'.$data->cabang->id.'" class="btn btn-sm btn-info"> check </a>';
+                    return $btn;
+                })
+                ->rawColumns(['cabang','action'])
+                ->make(true);
+            }else{
+                $data   = Peserta::where('kabupaten_id',$kabupaten_id)->with('cabang')->select('cabang_id')->distinct();
+                return DataTables::of($data)
+                ->addColumn('cabang', function ($data) {
+                    return $data->cabang->name;
+                })
+                ->addColumn('action', function ($data) {
+                    $btn = '<a href="#" class="btn btn-sm btn-info"> check </a>';
                     return $btn;
                 })
                 ->rawColumns(['cabang','action'])

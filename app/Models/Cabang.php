@@ -37,8 +37,6 @@ class Cabang extends Model
         return $this->belongsTo(Kabupaten::class);
     }
 
-    
-
     public function lembaga()
     {
         return $this->hasMany(Lembaga::class);

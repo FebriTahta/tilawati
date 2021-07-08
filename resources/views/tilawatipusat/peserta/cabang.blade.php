@@ -50,8 +50,8 @@
                         <div class="col-xl-4">
                             @component('common-tilawatipusat.dashboard-widget')
                             
-                                @slot('title') <b id="cb"> ??? </b> Peserta  @endslot
-                                @slot('iconClass')  mdi mdi-account-group  @endslot
+                                @slot('title') <b id="cb2" class="text-capitalize"> Cabang {{ $cabang->name }} </b> @endslot
+                                @slot('iconClass') mdi mdi-bank-outline  @endslot
                                 @slot('price')   @endslot
                                 
                             @endcomponent
@@ -59,8 +59,8 @@
                         <div class="col-xl-4">
                             @component('common-tilawatipusat.dashboard-widget')
                             
-                                @slot('title') <b id="cb2" class="text-capitalize"> Cabang {{ $cabang->name }} </b> @endslot
-                                @slot('iconClass') mdi mdi-bank-outline  @endslot
+                                @slot('title') <b id="cb"> ??? </b> Peserta  @endslot
+                                @slot('iconClass')  mdi mdi-account-group  @endslot
                                 @slot('price')   @endslot
                                 
                             @endcomponent
@@ -206,7 +206,7 @@
                         <div class="modal-dialog modal-md">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">DAFTAR CABANG YANG MENGADAKAN DIKLAT</h5>
+                                    <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">DAFTAR KABUPATEN YANG MENGADAKAN DIKLAT</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
