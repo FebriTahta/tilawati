@@ -59,7 +59,7 @@
                     <ul class="sub-menu" aria-expanded="true">
                         <li><a href="{{ route('diklat.cabang') }}">Cabang</a></li>
                         <li><a href="{{ route('diklat.lembaga') }}">Lembaga</a></li>
-                        <li><a href="#">Teritorial</a></li>
+                        {{-- <li><a href="#">Teritorial</a></li> --}}
                         <li><a href="{{ route('diklat.kepala') }}">Kepala Bagian</a></li>
                         <li><a href="{{ route('diklat.jenjang') }}">Kelembagaan</a></li>
                         <li><a href="{{ route('diklat.program') }}">Program</a></li>

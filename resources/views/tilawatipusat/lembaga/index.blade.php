@@ -265,7 +265,7 @@
                     </div>
 
                     <div class="modal fade bs-example-modal-kepala-bagian-lama" id="mod_cabang2" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-scrollable modal-xl">
+                        <div class="modal-dialog modal-dialog-scrollable modal-md">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">DAFTAR KEPALA BAGIAN</h5>
