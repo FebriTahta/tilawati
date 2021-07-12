@@ -115,9 +115,23 @@ class CabangCont extends Controller
                 $data   = Cabang::with('provinsi','kabupaten','kepala');
                 return DataTables::of($data)
                 ->addColumn('provinsi', function ($data) {
-                    return $data->provinsi->nama;
+                    if ($data->provinsi == null) {
+                        # code...
+                    } else {
+                        # code...
+                        return $data->provinsi->nama;
+                    }
+                    
+                    
                 })
                 ->addColumn('kabupaten', function ($data) {
+                    if ($data->kabupaten == null) {
+                        # code...
+                    } else {
+                        # code...
+                        return $data->provinsi->nama;
+                    }
+                    
                     return $data->kabupaten->nama;
                 })
                 ->addColumn('kepala', function($data){
