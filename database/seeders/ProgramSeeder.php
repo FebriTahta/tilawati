@@ -20,7 +20,12 @@ class ProgramSeeder extends Seeder
                 'updated_at' => null,
             ],
             [
-                'name' => "standarisasi guru al qur'an",
+                'name' => "standarisasi guru al qur'an level 1",
+                'created_at' => new \DateTime,
+                'updated_at' => null,
+            ],
+            [
+                'name' => "standarisasi guru al qur'an level 2",
                 'created_at' => new \DateTime,
                 'updated_at' => null,
             ],

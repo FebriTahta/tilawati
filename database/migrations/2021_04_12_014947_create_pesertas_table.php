@@ -45,7 +45,7 @@ class CreatePesertasTable extends Migration
             $table->string('jilid')->nullable();
             $table->string('kriteria')->nullable();
             $table->string('munaqisy')->nullable();
-            $table->string('status')->nullable();
+            // $table->string('status')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

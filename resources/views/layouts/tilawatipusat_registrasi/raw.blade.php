@@ -11,25 +11,25 @@
 
     <!-- Favicons-->
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" type="image/x-icon" href="img/apple-touch-icon-57x57-precomposed.png">
-    <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="img/apple-touch-icon-72x72-precomposed.png">
-    <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="img/apple-touch-icon-114x114-precomposed.png">
-    <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="img/apple-touch-icon-144x144-precomposed.png">
+    <link rel="apple-touch-icon" type="image/x-icon" href="{{ asset('tilawatipusat/registrasi/img/apple-touch-icon-57x57-precomposed.png') }}">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="{{ asset('tilawatipusat/registrasi/img/apple-touch-icon-72x72-precomposed.png') }}">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="{{ asset('tilawatipusat/registrasi/img/apple-touch-icon-114x114-precomposed.png') }}">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="{{ asset('tilawatipusat/registrasi/img/apple-touch-icon-144x144-precomposed.png') }}">
 
     <!-- GOOGLE WEB FONT -->
     <link href="https://fonts.googleapis.com/css?family=Work+Sans:400,500,600" rel="stylesheet">
 
     <!-- BASE CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-	<link href="css/menu.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-	<link href="css/vendors.css" rel="stylesheet">
+    <link href="{{ asset('tilawatipusat/registrasi/css/bootstrap.min.css') }}" rel="stylesheet">
+	<link href="{{ asset('tilawatipusat/registrasi/css/menu.css') }}" rel="stylesheet">
+    <link href="{{ asset('tilawatipusat/registrasi/css/style.css') }}" rel="stylesheet">
+	<link href="{{ asset('tilawatipusat/registrasi/css/vendors.css') }}" rel="stylesheet">
 
     <!-- YOUR CUSTOM CSS -->
-    <link href="css/custom.css" rel="stylesheet">
+    <link href="{{ asset('tilawatipusat/registrasi/css/custom.css') }}" rel="stylesheet">
 	
 	<!-- MODERNIZR MENU -->
-	<script src="js/modernizr.js"></script>
+	<script src="{{ asset('tilawatipusat/registrasi/js/modernizr.js') }}"></script>
 
 </head>
 
@@ -60,7 +60,7 @@
 	    <div class="row row-height">
 	        <div class="col-xl-4 col-lg-4 content-left">
 	            <div class="content-left-wrapper">
-	                <a href="index.html" id="logo"><img src="img/logo.png" alt="" width="45" height="45"></a>
+	                <a href="index.html" id="logo"><img src="{{ asset('tilawatipusat/registrasi/img/logo.png') }}" alt="" width="45" height="45"></a>
 	                <div id="social">
 	                    <ul>
 	                        <li><a href="#0"><i class="icon-facebook"></i></a></li>
@@ -71,7 +71,7 @@
 	                </div>
 	                <!-- /social -->
 	                <div>
-	                    <figure><img src="img/info_graphic_1.svg" alt="" class="img-fluid" width="270" height="270"></figure>
+	                    <figure><img src="{{ asset('tilawatipusat/registrasi/img/info_graphic_1.svg') }}" alt="" class="img-fluid" width="270" height="270"></figure>
 	                    <h2>We are Hiring</h2>
 	                    <p>Tation argumentum et usu, dicit viderer evertitur te has. Eu dictas concludaturque usu, facete detracto patrioque an per, lucilius pertinacia eu vel.</p>
 	                    <a href="#0" class="btn_1 rounded yellow">Purchase this template</a>
@@ -358,14 +358,14 @@
 	<!-- /.modal -->
 	
 	<!-- COMMON SCRIPTS -->
-	<script src="js/jquery-3.5.1.min.js"></script>
-    <script src="js/common_scripts.min.js"></script>
-	<script src="js/velocity.min.js"></script>
-	<script src="js/common_functions.js"></script>
-	<script src="js/file-validator.js"></script>
+	<script src="{{ asset('tilawatipusat/registrasi/js/jquery-3.5.1.min.js') }}"></script>
+    <script src="{{ asset('tilawatipusat/registrasi/js/common_scripts.min.js') }}"></script>
+	<script src="{{ asset('tilawatipusat/registrasi/js/velocity.min.js') }}"></script>
+	<script src="{{ asset('tilawatipusat/registrasi/js/common_functions.js') }}"></script>
+	<script src="{{ asset('tilawatipusat/registrasi/js/file-validator.js') }}"></script>
 
 	<!-- Wizard script-->
-	<script src="js/func_1.js"></script>
+	<script src="{{ asset('tilawatipusat/registrasi/js/func_1.js') }}"></script>
 
 </body>
 </html>
