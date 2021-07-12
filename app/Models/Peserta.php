@@ -30,6 +30,10 @@ class Peserta extends Model
     ];
     protected $dates = ['deleted_at'];
 
+    public function filepeserta()
+    {
+        return $this->hasMany(Filepeserta::class);
+    }
     public function pelatihan()
     {
         return $this->belongsTo(Pelatihan::class);

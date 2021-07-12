@@ -30,6 +30,7 @@ use App\Http\Controllers\ProfileCont;
 use App\Http\Controllers\NilaiCont;
 use App\Http\Controllers\TeritoriCont;
 use App\Http\Controllers\KepalaCont;
+use App\Http\Controllers\RegistrasiCont;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -185,6 +186,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga']], funct
 //new route tilawati
 Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga']], function () {
     Route::get('/diklat-cabang',[CabangCont::class, 'index'])->name('diklat.cabang');
+    Route::post('/diklat-cabang-store',[CabangCont::class, 'store'])->name('diklat.cabang_store');
     Route::get('/diklat-cabang-data',[CabangCont::class, 'cabang_data'])->name('diklat.cabang_data');
     Route::get('/diklat-cabang-total',[CabangCont::class, 'cabang_total'])->name('diklat.cabang_tot');
     Route::get('/diklat-cabang-kabupaten-total',[CabangCont::class, 'cabang_kabupaten'])->name('diklat.cabang_kab');
@@ -201,6 +203,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga']], funct
     Route::post('/diklat-kepala-bagian-delete',[KepalaCont::class, 'kepala_delete'])->name('diklat.kepala_delete');
     Route::get('/dikalt-kepala-bagian-show',[KepalaCont::class, 'kepala_show'])->name('diklat.kepala_show');
     Route::post('/dikalt-kepala-bagian-store',[KepalaCont::class, 'kepala_store'])->name('diklat.kepala_store');
+    Route::get('/diklat-kepala-bagian-detail/{kepala_id}',[KepalaCont::class,'kepala_detail'])->name('diklat.kepala_detail');
     Route::get('/diklat-kepala-pilih',[KepalaCont::class, 'pilih_kepala'])->name('diklat.kepala_pilih');
     Route::post('/diklat-kepala-bagian-pilih',[KepalaCont::class, 'pilih_kepala_bagian'])->name('diklat.kepala_bagian_pilih');
     Route::post('/diklat-kepala-bagian-pilih-cabang',[KepalaCont::class, 'pilih_kepala_bagian_cabang'])->name('diklat.kepala_bagian_pilih_cabang');
@@ -290,4 +293,5 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga']], funct
 
     Route::get('/diklat-dashboard',[DashboardCont::class,'index'])->name('diklat.dashboard');
     
+    Route::get('/diklat-registrasi/{diklat_id}',[RegistrasiCont::class,'index'])->name('diklat.registrasi');
 });

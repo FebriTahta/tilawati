@@ -12,6 +12,11 @@ class Program extends Model
     protected $fillable = ['name'];
     protected $dates = ['deleted_at'];
 
+    public function registrasi()
+    {
+        return $this->hasMany(Registrasi::class);
+    }
+
     public function pelatihan()
     {
         return $this->hasMany(Pelatihan::class);

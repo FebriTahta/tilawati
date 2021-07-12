@@ -45,7 +45,7 @@
                                                     <th>Alamat</th>
                                                     <th>Telephone</th>
                                                     
-                                                    <th>Bagians</th>
+                                                    <th>Kepala</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
@@ -60,7 +60,7 @@
                                                     <th>Alamat</th>
                                                     <th>Telephone</th>
                                                     
-                                                    <th>Bagians</th>
+                                                    <th>Kepala</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </tfoot>

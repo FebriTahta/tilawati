@@ -16,6 +16,11 @@ class KepalaCont extends Controller
         return view('tilawatipusat.kepala.index');
     }
 
+    public function kepala_detail(Request $request,$kepala_id){
+        $data = Kepala::find($kepala_id);
+        return view('tilawatipusat.kepala.detail',compact('data'));
+    }
+
     public function kepala_data(Request $request)
     {
         if(request()->ajax())
@@ -62,7 +67,7 @@ class KepalaCont extends Controller
                         ->addColumn('action', function ($data) {
                             $btn = ' <button class="btn btn-sm btn-danger" data-id="'.$data->id.'" data-toggle="modal" data-target=".bs-example-modal-kepala-hapus"><i class="fa fa-trash"></i></button>';
                             $btn .= ' <a href="/diklat-kepala-bagian-edit/'.$data->id.'" class="btn btn-sm btn-primary"><i class="mdi mdi-pencil"> </i></a>';
-                            $btn .= ' <button class="btn btn-sm btn-info"><i class="fa fa-user"></i></button>';
+                            $btn .= ' <a href="/diklat-kepala-bagian-detail/'.$data->id.'" class="btn btn-sm btn-info"><i class="fa fa-user"></i></a>';
                             return $btn;
                         })
                         ->addColumn('kabupaten', function ($data) {
@@ -82,7 +87,40 @@ class KepalaCont extends Controller
 
     public function kepala_store(Request $request)
     {
-
+        $data = Kepala::updateOrCreate(
+            [
+              'id' => $request->id
+            ],
+            [
+                'nik'          => $request->nik,
+                'name'       => $request->name,
+                'tmptlahir'          => $request->tmptlahir,
+                'tgllahir'        => $request->tgllahir,
+                'provinsi_id'   => $request->provinsi_id,
+                'kabupaten_id'  => $request->kabupaten_id,
+                'kecamatan_id'  => $request->kecamatan_id,
+                'kelurahan_id'  => $request->kelurahan_id,
+                'alamat'        => $request->alamat,
+                'gender'           => $request->gender,
+                'telp'          => $request->telp,
+                'pekerjaan'     => $request->pekerjaan,
+                'pendidikanter' => $request->pendidikanter,
+                'tahunlulus'    => $request->tahunlulus,
+                'photo'         => $request->photo,
+            ]
+        );
+        if($request -> hasFile('photo'))
+                {
+                    $request->file('photo')->move('photo/',$request->file('photo')->getClientOriginalName());
+                    $data->photo = $request->file('photo')->getClientOriginalName();
+                    $data->save();
+                }
+        return response()->json(
+            [
+              'success' => 'Lembaga Baru Berhasil Ditambahkan!',
+              'message' => 'Lembaga Baru Berhasil Ditambahkan!'
+            ]
+        );
     }
 
     public function kepala_edit($id)

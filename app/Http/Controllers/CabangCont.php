@@ -3,14 +3,84 @@
 namespace App\Http\Controllers;
 use DB;
 use App\Models\Cabang;
+use App\Models\Provinsi;
 use DataTables;
+use Illuminate\Support\Facades\Hash;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class CabangCont extends Controller
 {
     public function index(Request $request)
     {
-        return view('tilawatipusat.cabang.index');
+        $dt_props2 = Provinsi::all();
+        return view('tilawatipusat.cabang.index',compact('dt_props2'));
+    }
+
+    public function store(Request $request)
+    {
+        $username_baru      = $request->name;
+        $dt_usr             = new User;
+        $dt_usr->username   = $username_baru;
+        $dt_usr->email      = $request->email;
+        $dt_usr->password   = Hash::make('cabang_nf');
+        $dt_usr->role       = 'cabang';
+        $dt_usr->created_at = new \DateTime;
+        $dt_usr->save();
+        $kode = mt_rand(100000, 999999);
+        
+        $cek_kode_cabang    = Cabang::where('kode', $kode)->first();
+        if ($cek_kode_cabang == null) {
+            # code...
+            Cabang::updateOrCreate(
+                [
+                  'id' => $request->id
+                ],
+                [
+                    'kode'          => $kode,
+                    'user_id'       => $dt_usr->id,
+                    'name'          => $username_baru,
+                    'status'        => $request->status,
+                    'provinsi_id'   => $request->provinsi_id,
+                    'kabupaten_id'  => $request->kabupaten_id,
+                    'kecamatan_id'  => $request->kecamatan_id,
+                    'kelurahan_id'  => $request->kelurahan_id,
+                    'alamat'        => $request->alamat,
+                    'pos'           => $request->pos,
+                    'telp'          => $request->telp,
+                    'ekspedisi'     => $request->ekspedisi,
+                ]
+            );
+        } else {
+            # code...
+            $kode2  = mt_rand(100000, 999999);
+            Cabang::updateOrCreate(
+                [
+                  'id' => $request->id
+                ],
+                [
+                    'kode'          => $kode2,
+                    'user_id'       => $dt_usr->id,
+                    'name'          => $username_baru,
+                    'status'        => $request->status,
+                    'provinsi_id'   => $request->provinsi_id,
+                    'kabupaten_id'  => $request->kabupaten_id,
+                    'kecamatan_id'  => $request->kecamatan_id,
+                    'kelurahan_id'  => $request->kelurahan_id,
+                    'alamat'        => $request->alamat,
+                    'pos'           => $request->pos,
+                    'telp'          => $request->telp,
+                    'ekspedisi'     => $request->ekspedisi,
+                ]
+            );
+        }
+
+        return response()->json(
+            [
+              'success' => 'Cabang Baru Berhasil Ditambahkan!',
+              'message' => 'Cabang Baru Berhasil Ditambahkan!'
+            ]
+        );
     }
 
     public function cabang_data(Request $request)

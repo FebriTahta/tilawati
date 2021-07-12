@@ -53,7 +53,7 @@
                                     <p class="card-title-desc">Ter-update berdasarkan Tahun 2021 </br><code>Data Import dan Eksport Berbeda Format (Berhati-hati ketika meng-importkan data baru)</code></p>
                                     <button class="btn btn-sm btn-success  mr-1" style="width:130px ; margin-bottom: 5px" data-toggle="modal" data-target=".bs-example-modal-cabang"><i class="mdi mdi-cloud-upload"></i> import cabang</button>
                                     <button class="btn btn-sm btn-success  mr-1" style="width:130px ; margin-bottom: 5px" data-toggle="modal" data-target=".bs-example-modal-rpq" ><i class="mdi mdi-cloud-upload"></i> import rpq</button>
-                                    <button class="btn btn-sm btn-success mb-2 mr-1" style="width:130px " data-toggle="modal" data-target=".bs-example-modal-tambah-lembaga"><i class="mdi mdi-plus"></i> tambah cabang</button>
+                                    <button class="btn btn-sm btn-success mb-2 mr-1" style="width:130px " data-toggle="modal" data-target=".bs-example-modal-tambah-cabang"><i class="mdi mdi-plus"></i> tambah cabang</button>
                     
                                     <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
                                         <table id="datatable-buttons" class="table table-cabang table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
@@ -211,7 +211,7 @@
                             <div class="modal-dialog modal-dialog-centered modal-md">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title mt-0 text-uppercase">menambahkan kepala lembaga</h5>
+                                        <h5 class="modal-title mt-0 text-capitalize">menambahkan kepala lembaga</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
@@ -234,11 +234,11 @@
 
                     {{-- tambah cabang baru --}}
                     <div class="col-sm-6 col-md-3 m-t-30">
-                        <div class="modal fade bs-example-modal-tambah-lembaga" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                        <div class="modal fade bs-example-modal-tambah-cabang" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered modal-lg">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title mt-0">Tambah Lembaga Baru </h5>
+                                        <h5 class="modal-title mt-0">Tambah Cabang Baru </h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
@@ -248,72 +248,62 @@
                                         <div class="col-xl-12">
                                             <div class="card m-b-30">
                                                 <div class="card-body">
-                                                    <form method="POST" id="tambahlembaga">@csrf
+                                                    <form method="POST" id="form_tambah_cabang">@csrf
                                                         <div class="row">
                                                             
-                                                            <div class="form-group col-sm-4">
-                                                                <input type="hidden" class="form-control" name="kabupaten" id="kabupaten" readonly>
-                                                                <input type="text" class="form-control" id="kabupaten_id" name="kabupaten_id" value="2. Kabupaten / Kota" readonly>
-                                                            </div>
-                                                            <div class="form-group col-sm-4">
-                                                                <select name="kecamatan_id" id="kecamatan_id" class="form-control" required>
-                                                                    <option value=""><i class="text-danger">3. </i> Kecamatan</option>
+                                                            <div class="form-group col-xl-3">
+                                                                <select name="provinsi_id" id="mySelect" class="form-control" >
+                                                                    <option value="">1* Provinsi</option>
+                                                                    @foreach ($dt_props2 as $item)
+                                                                    <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                                                                    @endforeach
                                                                 </select>
                                                             </div>
-                                                            <div class="form-group col-sm-4">
-                                                                <select name="kelurahan_id" id="kelurahan_id" class="form-control" required>
-                                                                    <option value=""><i class="text-danger">4. </i> Kelurahan</option>
+                                                            <div class="form-group col-xl-3">
+                                                                <select id="kabupaten_id" name="kabupaten_id" class="form-control" >
+                                                                    <option value="">2* Kabupaten / Kota</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="form-group col-xl-3">
+                                                                <select id="kecamatan_id" name="kecamatan_id" class="form-control" >
+                                                                    <option value="">3* Kecamatan</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="form-group col-xl-3">
+                                                                <select id="kelurahan_id" name="kelurahan_id" class="form-control " >
+                                                                    <option value="">4* Kelurahan</option>
                                                                 </select>
                                                             </div>
                                                             <div class="form-group col-xl-6">
                                                                 <label for=""><i class="text-danger">* </i>Nama Cabang</label>
-                                                                <input type="text" class="form-control" name="name" required>
+                                                                <input type="text" class="form-control text-capitalize" name="name" required>
                                                             </div>
                                                             <div class="form-group col-xl-6">
-                                                                <label for=""><i class="text-danger">* </i>Telp Lembaga</label>
+                                                                <label for=""><i class="text-danger">* </i>Telp Cabang</label>
                                                                 <input type="number" class="form-control" name="telp" required>
                                                             </div>
                                                             <div class="form-group col-xl-6">
-                                                                <label for=""><i class="text-danger"> </i>Email Lembaga</label>
+                                                                <label for=""><i class="text-danger"> </i>Email Cabang</label>
                                                                 <input type="email" class="form-control" name="email">
                                                             </div>
                                                             <div class="form-group col-xl-6">
-                                                                <label for=""><i class="text-danger"> </i>Website Lembaga</label>
-                                                                <input type="text" class="form-control" name="website">
+                                                                <label for=""><i class="text-danger">* </i>Status</label>
+                                                                <select name="status" id="" class="form-control text-capitalize">
+                                                                    <option value="CABANG">CABANG</option>
+                                                                    <option value="RPQ">RPQ</option>
+                                                                </select>
                                                             </div>
                                                             <div class="form-group col-xl-12">
-                                                                <label for=""><i class="text-danger">* </i>Alamat Lembaga (lokasi lembaga)</label>
-                                                                <textarea name="alamat" class="form-control" id="" cols="5" rows="3" required></textarea>
-                                                            </div>
-                                                            <div class="form-group col-xl-6">
-                                                                <select name="jenjang_id" class="form-control" id="" required>
-                                                                    <option value=""><i class="text-danger">*</i> Kelembagaan</option>
-                                                                    
-                                                                </select>
-                                                            </div>
-                                                            <div class="form-group col-xl-6">
-                                                                <select name="kelembagaan" class="form-control" id="" required>
-                                                                    <option value=""><i class="text-danger">*</i> Pengelolaan</option>
-                                                                    <option value="Yayasan">1. Yayasan</option>
-                                                                    <option value="Masjid">2. Masjid</option>
-                                                                    <option value="Pribadi">3. Pribadi</option>
-                                                                </select>
+                                                                <label for=""><i class="text-danger ">* </i>Alamat Cabang</label>
+                                                                <textarea name="alamat" class="text-capitalize form-control" id="" cols="5" rows="3" required></textarea>
                                                             </div>
                                                             <div class="form-group col-xl-3">
                                                                 <label for=""><i class="text-danger">* </i>Kode Pos</label>
                                                                 <input type="number" class="form-control" name="pos" required>
                                                             </div>
-                                                            <div class="form-group col-xl-3">
-                                                                <label for=""><i class="text-danger">* </i>Tahun Masuk</label>
-                                                                <input type="date" class="form-control" name="tahunmasuk" required>
-                                                            </div>
-                                                            <div class="form-group col-xl-3">
-                                                                <label for=""><i class="text-danger">* </i>Jumlah Guru</label>
-                                                                <input type="number" class="form-control" name="jml_guru" required>
-                                                            </div>
-                                                            <div class="form-group col-xl-3">
-                                                                <label for=""><i class="text-danger">* </i>Jumlah Santri</label>
-                                                                <input type="number" class="form-control" name="jml_santri" required>
+                                                            <div class="form-group col-xl-12">
+                                                                <label for=""><i class="text-danger">* </i>Alamat Ekspedisi (untuk pengiriman)</label>
+                                                                <textarea name="ekspedisi" class="form-control text-capitalize" id="" cols="5" rows="3" required></textarea>
                                                             </div>
                                                             <div class="form-group col-xl-12 col-12">
                                                                 <input type="submit" id="tambahlembaga_btn" style="width: 100%" class="btn btn-info" value="Submit!">
@@ -349,6 +339,42 @@
 
         <script>
             var kode;
+            $('#form_tambah_cabang').submit(function(e) {
+                e.preventDefault();
+                var formData = new FormData(this);
+                $.ajax({
+                type:'POST',
+                url: "{{ route('diklat.cabang_store')}}",
+                data: formData,
+                cache:false,
+                contentType: false,
+                processData: false,
+                beforeSend:function(){
+                    $('#tambahlembaga_btn').attr('disabled','disabled');
+                    $('#tambahlembaga_btn').val('Proses Menyimpan Data');
+                    
+                },
+                success: function(data){
+                    if(data.success)
+                    {
+                        $("#form_tambah_cabang")[0].reset();
+                        var oTable = $('#datatable-buttons').dataTable();
+                        oTable.fnDraw(false);
+                        $('#tambahlembaga_btn').val('Submit!');
+                        $('.bs-example-modal-tambah-cabang').modal('hide');
+                        $('#tambahlembaga_btn').attr('disabled',false);
+                        swal({ title: "Success!",
+                            text: "Cabang Baru Berhasil Di Tabahkan!",
+                            type: "success"})
+                    }
+                },
+                error: function(data)
+                {
+                    console.log(data);
+                    }
+                });
+            });
+
             function tutup_pilih_kepala() {
                 $("#pilih_kepala_bagian_form")[0].reset();
             }
@@ -407,7 +433,132 @@
             });
 
             $(document).ready(function(){
+                $('select[name="provinsi_id"]').on('change', function() {
+                //mencari kota/kab dari provinsi 3 tingkat
+                var provinsi_id = $(this).val();
+                console.log(provinsi_id);
+                if(provinsi_id) {
+                    
+                    $.ajax({
+                        url: '/fetch/' + provinsi_id,
+                        type: "GET",
+                        dataType: "json",
+                        success:function(data) {                     
+                            $('select[name="kabupaten_id"]').empty();
+                            $.each(data, function(key, value) {
+                            $('select[name="kabupaten_id"]').append('<option value="'+ key +'">'+ value +'</option>');
+                            });
+                            console.log(data);
+                            var a = $( "#kabupaten_id option:selected" ).val();
+                            console.log("kabupaten"+a);
+                            if(a) {
+                            $.ajax({
+                                    url: '/fetch2/' + a,
+                                    type: "GET",
+                                    dataType: "json",
+                                    success:function(data) {                      
+                                        $('select[name="kecamatan_id"]').empty();
+                                        $.each(data, function(key, value) {
+                                        $('select[name="kecamatan_id"]').append('<option value="'+ key +'">'+ value +'</option>');
+                                        });
+                                        console.log(data);
+                                        var x = $( "#kecamatan_id option:selected" ).val();
+                                        console.log("kecamatan"+x);
+                                        if(x) {
+                                        $.ajax({
+                                                url: '/fetch3/' + x,
+                                                type: "GET",
+                                                dataType: "json",
+                                                success:function(data) {                      
+                                                    $('select[name="kelurahan_id"]').empty();
+                                                    $.each(data, function(key, value) {
+                                                    $('select[name="kelurahan_id"]').append('<option value="'+ key +'">'+ value +'</option>');
+                                                    });
+                                                    console.log(data);
+                                                    var x = $( "#kelurahan_id option:selected" ).val();
+                                                    console.log("kelurahan"+x);
+                                                }
+                                            });
+                                        }else{
+                                            $('select[name="kelurahan_id"]').empty().disabled();
+                                        }
+                                    }
+                                });
+                            }else{
+                                $('select[name="kecamatan_id"]').empty().disabled();
+                            }
+                        }
+                    });
+                }else{
+                    $('select[name="kabupaten_id"]').empty().disabled();
+                }
+            });
 
+            $('select[name="kabupaten_id"]').on('change', function() {
+                //mencari kecamatan dari kota/kab 2 tingkat
+                var kabupaten_id = $(this).val();
+                console.log(kabupaten_id);
+                if(kabupaten_id) {
+                    
+                    $.ajax({
+                        url: '/fetch2/' + kabupaten_id,
+                        type: "GET",
+                        dataType: "json",
+                        success:function(data) {                      
+                            $('select[name="kecamatan_id"]').empty();
+                            $.each(data, function(key, value) {
+                            $('select[name="kecamatan_id"]').append('<option value="'+ key +'">'+ value +'</option>');
+                            });
+                            console.log(data);
+                            var x = $( "#kecamatan_id option:selected" ).val();
+                            console.log("kecamatan"+x);
+                            if(x) {
+                                $.ajax({
+                                    url: '/fetch3/' + x,
+                                    type: "GET",
+                                    dataType: "json",
+                                    success:function(data) {                      
+                                        $('select[name="kelurahan_id"]').empty();
+                                        $.each(data, function(key, value) {
+                                        $('select[name="kelurahan_id"]').append('<option value="'+ key +'">'+ value +'</option>');
+                                        });
+                                        console.log(data);
+                                        var x = $( "#kelurahan_id option:selected" ).val();
+                                        console.log("kelurahan"+x);
+                                    }
+                                });
+                            }else{
+                                $('select[name="kelurahan_id"]').empty().disabled();
+                            }
+                        }
+                    });
+                }else{
+                    $('select[name="kecamatan_id"]').empty().disabled();
+                }
+            });
+            
+            $('select[name="kecamatan_id"]').on('change', function() {
+                //mencari kelurahan dari kecamatan
+                var kecamatan_id = $(this).val();
+                console.log(kecamatan_id);
+                if(kecamatan_id) {
+                    
+                    $.ajax({
+                        url: '/fetch3/' + kecamatan_id,
+                        type: "GET",
+                        dataType: "json",
+                        success:function(data) {                      
+                            $('select[name="kelurahan_id"]').empty();
+                            $.each(data, function(key, value) {
+                            $('select[name="kelurahan_id"]').append('<option value="'+ key +'">'+ value +'</option>');
+                            });
+                            console.log(data);
+                        }
+                    });
+                }else{
+                    $('select[name="kelurahan_id"]').empty().disabled();
+                }
+            });
                 $('#datatable-buttons2').DataTable({
                 //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
                 destroy: true,
