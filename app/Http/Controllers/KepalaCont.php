@@ -159,33 +159,36 @@ class KepalaCont extends Controller
                         ->addColumn('bagian', function ($data) {
                             if ($data->cabang->count() !== 0 && $data->lembaga->count() == 0) {
                                 # code...
-                                foreach ($data->cabang as $key => $value) {
-                                    # code...
-                                    $cabang[] = $value->name;
-                                    $kab_c[] = $value->kabupaten->nama;
-                                }
-                                return 'cabang '.implode($cabang).' <b>('.implode($kab_c).')</b>';
+                                // foreach ($data->cabang as $key => $value) {
+                                //     # code...
+                                //     $cabang[] = $value->name;
+                                //     $kab_c[] = $value->kabupaten->nama;
+                                // }
+                                // return 'cabang '.implode($cabang).' <b>('.implode($kab_c).')</b>';
+                                return 'cabang';
                             }elseif ($data->cabang->count() == 0 && $data->lembaga->count() !== 0) {
                                 # code...
-                                foreach ($data->lembaga as $key => $value) {
-                                    # code...
-                                    $lembaga[] = $value->name;
-                                    $kab_l[] = $value->kabupaten->nama;
-                                }
-                                return 'lembaga '.implode($lembaga).' <b>('.implode($kab_l).')</b>';
+                                // foreach ($data->lembaga as $key => $value) {
+                                //     # code...
+                                //     $lembaga[] = $value->name;
+                                //     $kab_l[] = $value->kabupaten->nama;
+                                // }
+                                // return 'lembaga '.implode($lembaga).' <b>('.implode($kab_l).')</b>';
+                                return 'lembaga';
                             }elseif ($data->cabang->count() !== 0 && $data->lembaga->count() !== 0) {
                                 # code...
-                                foreach ($data->cabang as $key => $value) {
-                                    # code...
-                                    $cabang[] = $value->name;
-                                    $kab_c[] = $value->kabupaten->nama;
-                                }
-                                foreach ($data->lembaga as $key => $value) {
-                                    # code...
-                                    $lembaga[] = $value->name;
-                                    $kab_l[] = $value->kabupaten->nama;
-                                }
-                                return 'cabang '.implode($cabang).' <b> ( '.implode($kab_c).' ) </b> ' .' & '.' lembaga ' .implode($lembaga).' | <b> ( '.implode($kab_l).' ) </b> ';
+                                // foreach ($data->cabang as $key => $value) {
+                                //     # code...
+                                //     $cabang[] = $value->name;
+                                //     $kab_c[] = $value->kabupaten->nama;
+                                // }
+                                // foreach ($data->lembaga as $key => $value) {
+                                //     # code...
+                                //     $lembaga[] = $value->name;
+                                //     $kab_l[] = $value->kabupaten->nama;
+                                // }
+                                // return 'cabang '.implode($cabang).' <b> ( '.implode($kab_c).' ) </b> ' .' & '.' lembaga ' .implode($lembaga).' | <b> ( '.implode($kab_l).' ) </b> ';
+                                return 'cabang & lembaga';
                             }else{
                                 return 'kosong';
                             }
