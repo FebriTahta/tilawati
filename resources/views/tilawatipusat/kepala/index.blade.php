@@ -14,7 +14,7 @@
          @slot('title_li') Bagian   @endslot
     @endcomponent
                     <div class="row">
-                        <div class="col-xl-4">
+                        {{-- <div class="col-xl-4">
                             @component('common-tilawatipusat.dashboard-widget')
                             
                                 @slot('title') <b id="cb"> ??? </b> Kepala bagian  @endslot
@@ -22,7 +22,7 @@
                                 @slot('price')   @endslot
                                 
                             @endcomponent
-                        </div>
+                        </div> --}}
                     </div>
 
                     <div class="row">
