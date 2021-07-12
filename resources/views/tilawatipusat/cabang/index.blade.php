@@ -252,7 +252,7 @@
                                                         <div class="row">
                                                             
                                                             <div class="form-group col-xl-3">
-                                                                <select name="provinsi_id" id="mySelect" class="form-control" >
+                                                                <select name="provinsi_id" id="mySelect" class="form-control" required>
                                                                     <option value="">1* Provinsi</option>
                                                                     @foreach ($dt_props2 as $item)
                                                                     <option value="{{ $item->id }}">{{ $item->nama }}</option>
@@ -260,17 +260,17 @@
                                                                 </select>
                                                             </div>
                                                             <div class="form-group col-xl-3">
-                                                                <select id="kabupaten_id" name="kabupaten_id" class="form-control" >
+                                                                <select id="kabupaten_id" name="kabupaten_id" class="form-control" required>
                                                                     <option value="">2* Kabupaten / Kota</option>
                                                                 </select>
                                                             </div>
                                                             <div class="form-group col-xl-3">
-                                                                <select id="kecamatan_id" name="kecamatan_id" class="form-control" >
+                                                                <select id="kecamatan_id" name="kecamatan_id" class="form-control" required>
                                                                     <option value="">3* Kecamatan</option>
                                                                 </select>
                                                             </div>
                                                             <div class="form-group col-xl-3">
-                                                                <select id="kelurahan_id" name="kelurahan_id" class="form-control " >
+                                                                <select id="kelurahan_id" name="kelurahan_id" class="form-control " required>
                                                                     <option value="">4* Kelurahan</option>
                                                                 </select>
                                                             </div>
