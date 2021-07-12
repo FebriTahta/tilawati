@@ -199,7 +199,7 @@ class DiklatCont extends Controller
                 'cabang_id' => $request->cabang_id,
                 'program_id' => $request->program_id,
                 'tanggal' => $request->tanggal,
-                'name' => $request->name,
+                // 'name' => $request->name,
                 'tempat' => $request->tempat,
                 'keterangan' => $request->keterangan,
             ]

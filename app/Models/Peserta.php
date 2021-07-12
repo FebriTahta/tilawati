@@ -10,7 +10,7 @@ class Peserta extends Model
     use HasFactory;
 
     protected $fillable = [
-        
+        'nik',
         'pelatihan_id',
         'cabang_id',
         'lembaga_id',

@@ -1,6 +1,6 @@
 @extends('layouts.tilawatipusat_layouts.master')
 
-@section('title') Update Kepala Bagian @endsection
+@section('title') Kepala Bagian Baru @endsection
 @section('css')
 
     <!-- DataTables -->
@@ -16,37 +16,44 @@
 @section('content')
 
     @component('common-tilawatipusat.breadcrumb')
-         @slot('title') Update   @endslot
+         @slot('title') CREATE   @endslot
          @slot('title_li') Kepala Bagian   @endslot
     @endcomponent
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="card">
                                 <div class="card-body">
-                    
-                                    <h4 class="card-title">Update Data Kepala Bagian</h4>
-                                    <p class="card-title-desc">Ter-update berdasarkan Tahun 2021 </br><code>Pastikan seluruh data kepala bagian diisi dengan benar</code></p>
+                                    <?php 
+                                        $datax = App\Models\Cabang::where('kode',$data2->kode)->first();
+                                        $datay = App\Models\Lembaga::where('kode',$data2->kode)->first();
+                                    ?>
+                                    <input type="hidden" id="cabang_lembaga" class="form-control" @if($datax == null && $datay !== null) value="lembaga" @elseif($datax !== null && $datay == null) value="cabang" @endif>
+                                    <h4 class="card-title">Data Kepala Bagian <b class="text-info text-capitalize">
+                                        @if($datax == null && $datay !== null) lembaga @elseif($datax !== null && $datay == null) cabang @endif
+                                        {{ strtolower($data2->name) }} </b>
+                                    </h4>
+                                    <p class="card-title-desc"><code>Pastikan seluruh data kepala bagian diisi dengan benar</code></p>
                                     <form method="post" id="formkepala" enctype="multipart/form-data">@csrf 
                                     <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
                                         <footer class="blockquote-footer">  <cite title="Source Title">Data Diri</cite></footer>
                                         <div class="row">
                                             <div class="form-group col-xl-6">
-                                                <input type="hidden" name="id" id="kepala_id" class="form-control" value="{{ $data->id }}">
+                                                <input type="hidden" name="kode" id="kode" class="form-control" value="{{ $data2->kode }}">
+                                                <input type="hidden" name="id" id="kepala_id" class="form-control" value="">
                                                 <i class="text-danger">* </i><label for="NIK">NIK</label>
-                                                <input type="text" class="form-control" placeholder="NIK (16 digit)" maxlength="16" minlength="16" size="16" name="nik" value="{{ $data->nik }}" required>
+                                                <input type="text" class="form-control" placeholder="NIK (16 digit)" maxlength="16" minlength="16" size="16" name="nik" value="" required>
                                             </div>
                                             <div class="form-group col-xl-6">
                                                 <i class="text-danger">* </i><label for="NAMA">Nama Lengkap</label>
-                                                <input type="text" class="form-control" name="name" value="{{ $data->name }}" required>
+                                                <input type="text" class="form-control" name="name" value="" required>
                                             </div>
                                             <div class="form-group col-xl-6">
                                                 <i class="text-danger">* </i><label for="TELP">Telephone</label>
-                                                <input type="number" name="telp" value="{{ $data->telp }}" class="form-control" required>
+                                                <input type="number" name="telp" value="" class="form-control" required>
                                             </div>
                                             <div class="form-group col-xl-6">
                                                 <i class="text-danger">* </i><label for="GENDER">Gender</label>
                                                 <select name="gender" id="" class="form-control" required>
-                                                    <option value="{{ $data->gender }}">{{ $data->gender }}</option>
                                                     <option value="">*</option>
                                                     <option value="L">Laki-laki</option>
                                                     <option value="P">Perempuan</option>
@@ -54,11 +61,11 @@
                                             </div>
                                             <div class="form-group col-xl-6">
                                                 <i class="text-danger">* </i><label for="">Tempat Lahir (Kota / Kab)</label>
-                                                <input type="text" value="{{ $data->tmptlahir }}" name="tmptlahir" class="form-control text-capitalize" required>
+                                                <input type="text" value="" name="tmptlahir" class="form-control text-capitalize" required>
                                             </div>
                                             <div class="form-group col-xl-6">
                                                 <i class="text-danger">* </i><label for="">Tanggal Lahir</label>
-                                                <input type="date" value="{{ $data->tgllahir }}" name="tgllahir" class="form-control" required>
+                                                <input type="date" value="" name="tgllahir" class="form-control" required>
                                             </div>
                                         </div><hr>
                                         <footer class="blockquote-footer">  <cite title="Source Title">Bio Data (Sesuai KTP)</cite></footer>
@@ -66,63 +73,41 @@
                                             <div class="form-group col-xl-6">
                                                 <label><i class="text-danger">*</i> Provinsi</label>
                                                 <select name="provinsi_id" id="mySelect" class="form-control" >
-                                                    @if ($data->provinsi_id == null)
+                                                    
                                                         <option value="">*</option>
                                                         @foreach ($dt_props2 as $item)
                                                         <option value="{{ $item->id }}">{{ $item->nama }}</option>
                                                         @endforeach
-                                                    @else
-                                                        <option value="{{ $data->provinsi_id }}">{{ $data->provinsi->nama }}</option>
-                                                        @foreach ($dt_props2 as $item)
-                                                        <option value="{{ $item->id }}">{{ $item->nama }}</option>
-                                                        @endforeach
-                                                    @endif
+
                                                 </select>
                                             </div>
                                             <div class="form-group col-xl-6">
                                                 <label><i class="text-danger">*</i> Kabupaten / Kota</label>
                                                 <select id="kabupaten_id" name="kabupaten_id" class="form-control" >
-                                                    @if ($data->kabupaten_id ==null)
+                                                    
                                                         <option value="">*</option>
-                                                    @else
-                                                        <option value="{{ $data->kabupaten_id }}">{{ $data->kabupaten->nama }}</option>
-                                                        <?php $kabs = App\Models\Kabupaten::where('provinsi_id', $data->provinsi_id)->get()?>
-                                                        @foreach ($kabs as $kab)
-                                                        <option value="{{ $kab->id }}">{{ $kab->nama }}</option>
-                                                        @endforeach
-                                                    @endif
+                                                    
                                                 </select>
                                             </div>
                                             <div class="form-group col-xl-6">
                                                 <label><i class="text-danger">*</i> Kecamatan</label>
                                                 <select id="kecamatan_id" name="kecamatan_id" class="form-control" >
-                                                    @if ($data->kecamatan_id == null)
+                                                    
                                                         <option value="">*</option>
-                                                    @else
-                                                    <option value="{{ $data->kecamatan_id }}">{{ $data->kecamatan->nama }}</option>
-                                                    <?php $kecs = App\Models\Kecamatan::where('kabupaten_id', $data->kabupaten_id)->get()?>
-                                                        @foreach ($kecs as $kec)
-                                                            <option value="{{ $kec->id }}">{{ $kec->nama }}</option>
-                                                        @endforeach
-                                                    @endif
+                                                    
                                                 </select>
                                             </div>
                                             <div class="form-group col-xl-6">
                                                 <label><i class="text-danger">*</i> Kelurahan</label>
                                                 <select id="kelurahan_id" name="kelurahan_id" class="form-control" >
-                                                    @if ($data->kelurahan_id == null)
+                                                   
                                                         <option value="">*</option>
-                                                    @else
-                                                    <?php $kels = App\Models\Kelurahan::where('kecamatan_id', $data->kecamatan_id)->get()?>
-                                                        @foreach ($kels as $kel)
-                                                            <option value="{{ $kel->id }}">{{ $kel->nama }}</option>
-                                                        @endforeach
-                                                    @endif
+                                                    
                                                 </select>
                                             </div>
                                             <div class="form-group col-xl-6">
                                                 <i class="text-danger">* </i><label for="">Alamat</label>
-                                                <textarea name="alamat" id="" cols="30" rows="5" class="form-control">{{ $data->alamat }}</textarea>
+                                                <textarea name="alamat" id="" cols="30" rows="5" class="form-control"></textarea>
                                             </div>
                                         </div>
                                         <hr>
@@ -130,28 +115,28 @@
                                         <div class="row">
                                             <div class="form-group col-xl-6">
                                                 <i class="text-danger">* </i><label for="">Pendidikan terakhir</label>
-                                                <input type="text" name="pendidikanter" value="{{ $data->pendidikanter }}" class="form-control">
+                                                <input type="text" name="pendidikanter" value="" class="form-control">
                                             </div>
                                             <div class="form-group col-xl-6">
                                                 <i class="text-danger">* </i><label for="">Tahun Lulus</label>
-                                                <input type="date" name="tahunlulus" class="form-control" value="{{ $data->tahunlulus }}" required>
+                                                <input type="date" name="tahunlulus" class="form-control" value="" required>
                                             </div>
                                             <div class="form-group col-xl-6">
                                                 <i class="text-danger">* </i><label for="">Pekerjaan</label>
-                                                <input type="text" value="{{ $data->pekerjaan }}" name="pekerjaan" class="form-control">
+                                                <input type="text" value="" name="pekerjaan" class="form-control">
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="form-group col-xl-6">
                                                 <i class="text-danger"></i><label for="">Foto <span class="text-warning">(boleh tidak diisi)</span></label>
                                                     <div class="input-group my-3">
-                                                        <input type="file" name="photo" value="{{ $data->photo }}" class="file" accept="image/*">
+                                                        <input type="file" name="photo" value="" class="file" accept="image/*">
                                                         <input type="text" class="form-control" disabled placeholder="Upload File" id="file">
                                                         <div class="input-group-append">
                                                             <button type="button" class="browse btn btn-primary">Browse...</button>
                                                         </div>
                                                     </div>
-                                                        <img @if ($data->photo == null) src="https://placehold.it/80x80" @else src="{{ asset('photo/'.$data->photo) }}" @endif id="preview" class="img-thumbnail">
+                                                        <img  src="https://placehold.it/80x80"  id="preview" class="img-thumbnail">
                                             </div>
                                         </div>
                                             <div class="form-group text-right">
@@ -298,13 +283,15 @@
                 cache: true
             }
         });
-            
+        
+        
         $('#formkepala').submit(function(e) {
-        e.preventDefault();
+            if (cabang_lembaga == 'cabang') {
+                e.preventDefault();
                 var formData = new FormData(this);
                 $.ajax({
                 type:'POST',
-                url: "{{ route('diklat.kepala_store')}}",
+                url: "{{ route('diklat.kepala_cabang_store')}}",
                 data: formData,
                 cache:false,
                 contentType: false,
@@ -324,9 +311,16 @@
                             text: "Kepala Bagian Baru Berhasil Di Tabahkan!",
                             type: "success"}).then(okay => {
                             if (okay) {
-                                window.location.href = "/diklat-kepala-bagian";
+                                window.location.href = "/diklat-cabang";
                             }
                         });
+                    }
+                    else{
+                        $('#btnsubmit').val('Buat Baru');
+                        $('#btnsubmit').attr('disabled',false);
+                        swal({ title: "Error!",
+                            text: "NIK sudah terdaftar, silahkan masukan NIK sesuai KTP",
+                            type: "error"})
                     }
                 },
                 error: function(data)
@@ -334,8 +328,54 @@
                     console.log(data);
                     }
                 });
-            });
+            } else {
+                e.preventDefault();
+                var formData = new FormData(this);
+                $.ajax({
+                type:'POST',
+                url: "{{ route('diklat.kepala_lembaga_store')}}",
+                data: formData,
+                cache:false,
+                contentType: false,
+                processData: false,
+                beforeSend:function(){
+                    $('#btnsubmit').attr('disabled','disabled');
+                    $('#btnsubmit').val('Proses Menyimpan Data');
+                    
+                },
+                success: function(data){
+                    if(data.success)
+                    {
+                        $("#formkepala")[0].reset();
+                        $('#btnsubmit').val('Submit!');
+                        $('#btnsubmit').attr('disabled',false);
+                        swal({ title: "Success!",
+                            text: "Kepala Bagian Baru Berhasil Di Tabahkan!",
+                            type: "success"}).then(okay => {
+                            if (okay) {
+                                window.location.href = "/diklat-lembaga";
+                            }
+                        });
+                    }else{
+                        $('#btnsubmit').val('Buat Baru');
+                        $('#btnsubmit').attr('disabled',false);
+                        swal({ title: "Error!",
+                            text: "NIK sudah terdaftar, silahkan masukan NIK sesuai KTP",
+                            type: "error"})
+                    }
+                },
+                error: function(data)
+                {
+                    console.log(data);
+                    }
+                });
+            }
+        
+        });
         $(document).ready(function() {
+            var cabang_lembaga = $('#cabang_lembaga').val();
+            console.log(cabang_lembaga);
+
             $('select[name="provinsi_id"]').on('change', function() {
             //mencari kota/kab dari provinsi 3 tingkat
                 var provinsi_id = $(this).val();

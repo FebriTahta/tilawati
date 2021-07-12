@@ -16,9 +16,24 @@ class KepalaCont extends Controller
         return view('tilawatipusat.kepala.index');
     }
 
+    public function create_kepala_cabang(Request $request,$kode)
+    {
+        $dt_props2  = Provinsi::all();
+        $data2     = Cabang::where('kode',$kode)->first();
+        return view('tilawatipusat.kepala.create',compact('dt_props2','data2'));
+    }
+
+    public function create_kepala_lembaga(Request $request,$kode)
+    {
+        $dt_props2  = Provinsi::all();
+        $data2     = Lembaga::where('kode',$kode)->first();
+        return view('tilawatipusat.kepala.create',compact('dt_props2','data2'));
+    }
+
     public function kepala_detail(Request $request,$kepala_id){
         $data = Kepala::find($kepala_id);
-        return view('tilawatipusat.kepala.detail',compact('data'));
+        $dt_props2 = Provinsi::all();
+        return view('tilawatipusat.kepala.detail',compact('data','dt_props2'));
     }
 
     public function kepala_data(Request $request)
@@ -92,16 +107,16 @@ class KepalaCont extends Controller
               'id' => $request->id
             ],
             [
-                'nik'          => $request->nik,
-                'name'       => $request->name,
-                'tmptlahir'          => $request->tmptlahir,
-                'tgllahir'        => $request->tgllahir,
+                'nik'           => $request->nik,
+                'name'          => $request->name,
+                'tmptlahir'     => $request->tmptlahir,
+                'tgllahir'      => $request->tgllahir,
                 'provinsi_id'   => $request->provinsi_id,
                 'kabupaten_id'  => $request->kabupaten_id,
                 'kecamatan_id'  => $request->kecamatan_id,
                 'kelurahan_id'  => $request->kelurahan_id,
                 'alamat'        => $request->alamat,
-                'gender'           => $request->gender,
+                'gender'        => $request->gender,
                 'telp'          => $request->telp,
                 'pekerjaan'     => $request->pekerjaan,
                 'pendidikanter' => $request->pendidikanter,
@@ -117,10 +132,110 @@ class KepalaCont extends Controller
                 }
         return response()->json(
             [
-              'success' => 'Lembaga Baru Berhasil Ditambahkan!',
-              'message' => 'Lembaga Baru Berhasil Ditambahkan!'
+              'success' => 'Kepala Bagian Baru Berhasil Ditambahkan!',
+              'message' => 'Kepala Bagian Baru Berhasil Ditambahkan!'
             ]
         );
+    }
+
+    public function tambah_kepala_cabang(Request $request)
+    {
+        $cek_nik = Kepala::where('nik', $request->nik)->first();
+        if ($cek_nik == null) {
+            # belum terdaftar (benar)
+            $data   = Kepala::updateOrCreate(
+                [
+                  'id' => $request->id
+                ],
+                [
+                    'nik'           => $request->nik,
+                    'name'          => $request->name,
+                    'tmptlahir'     => $request->tmptlahir,
+                    'tgllahir'      => $request->tgllahir,
+                    'provinsi_id'   => $request->provinsi_id,
+                    'kabupaten_id'  => $request->kabupaten_id,
+                    'kecamatan_id'  => $request->kecamatan_id,
+                    'kelurahan_id'  => $request->kelurahan_id,
+                    'alamat'        => $request->alamat,
+                    'gender'        => $request->gender,
+                    'telp'          => $request->telp,
+                    'pekerjaan'     => $request->pekerjaan,
+                    'pendidikanter' => $request->pendidikanter,
+                    'tahunlulus'    => $request->tahunlulus,
+                    'photo'         => $request->photo,
+                ]
+            );
+            $data2  = Cabang::where('kode', $request->kode)->update(['kepala_id'=>$data->id]);
+            if($request -> hasFile('photo'))
+                    {
+                        $request->file('photo')->move('photo/',$request->file('photo')->getClientOriginalName());
+                        $data->photo = $request->file('photo')->getClientOriginalName();
+                        $data->save();
+                    }
+            return response()->json(
+                [
+                  'success' => 'Kepala Cabang Baru Berhasil Ditambahkan!',
+                  'message' => 'Kepala Cabang Baru Berhasil Ditambahkan!'
+                ]
+            );
+        } else {
+            # code...
+            return response()->json(
+                [
+                  'error' => 'NIK sudah terdaftar, Silahkan masukan NIK anda sesuai KTP!',
+                  'message' => 'NIK sudah terdaftar, Silahkan masukan NIK anda sesuai KTP!'
+                ]
+            );
+        }
+    }
+
+    public function tambah_kepala_lembaga(Request $request)
+    {
+        $cek_nik = Kepala::where('nik', $request->nik)->first();
+        if ($cek_nik == null) {
+            $data   = Kepala::updateOrCreate(
+                [
+                  'id' => $request->id
+                ],
+                [
+                    'nik'           => $request->nik,
+                    'name'          => $request->name,
+                    'tmptlahir'     => $request->tmptlahir,
+                    'tgllahir'      => $request->tgllahir,
+                    'provinsi_id'   => $request->provinsi_id,
+                    'kabupaten_id'  => $request->kabupaten_id,
+                    'kecamatan_id'  => $request->kecamatan_id,
+                    'kelurahan_id'  => $request->kelurahan_id,
+                    'alamat'        => $request->alamat,
+                    'gender'        => $request->gender,
+                    'telp'          => $request->telp,
+                    'pekerjaan'     => $request->pekerjaan,
+                    'pendidikanter' => $request->pendidikanter,
+                    'tahunlulus'    => $request->tahunlulus,
+                    'photo'         => $request->photo,
+                ]
+            );
+            $data2  = Lembaga::where('kode', $request->kode)->update(['kepala_id'=>$data->id]);
+            if($request -> hasFile('photo'))
+                    {
+                        $request->file('photo')->move('photo/',$request->file('photo')->getClientOriginalName());
+                        $data->photo = $request->file('photo')->getClientOriginalName();
+                        $data->save();
+                    }
+            return response()->json(
+                [
+                  'success' => 'Kepala Lembaga Baru Berhasil Ditambahkan!',
+                  'message' => 'Kepala Lembaga Baru Berhasil Ditambahkan!'
+                ]
+            );
+        }else{
+            return response()->json(
+                [
+                  'error' => 'NIK sudah terdaftar, Silahkan masukan NIK anda sesuai KTP!',
+                  'message' => 'NIK sudah terdaftar, Silahkan masukan NIK anda sesuai KTP!'
+                ]
+            );
+        }
     }
 
     public function kepala_edit($id)

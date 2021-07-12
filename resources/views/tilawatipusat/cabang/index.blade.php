@@ -211,7 +211,7 @@
                             <div class="modal-dialog modal-dialog-centered modal-md">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title mt-0 text-capitalize">menambahkan kepala lembaga</h5>
+                                        <h5 class="modal-title mt-0 text-capitalize">Menambahkan Kepala Cabang</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
@@ -223,7 +223,7 @@
                                                 <button class="btn btn-info text-capitalize" style="width: 100%; height: 59px;" onclick="kepala_bagian()">kepala bagian yang sudah ada</button>
                                             </div>
                                             <div class="form-group col-xl-6">
-                                                <button class="btn btn-success text-capitalize" style="width: 100%; height: 59px;">kepala bagian baru</button>
+                                                <a href="" id="kepala_baru" class="btn btn-success text-capitalize" style="width: 100%; height: 59px;">kepala bagian baru</a>
                                             </div>
                                         </div>
                                     </div>
@@ -382,8 +382,8 @@
                 var button = $(event.relatedTarget)
                 id = button.data('kode')
                 var modal = $(this)
+                $('#kepala_baru').attr('href', '/diklat-kepala-bagian-cabang-create/'+id);
                 kode = modal.find('.modal-body #id').val(id);
-                
             })
 
             function kepala_bagian() {

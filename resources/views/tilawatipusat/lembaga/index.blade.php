@@ -255,7 +255,7 @@
                                                 <button class="btn btn-info text-capitalize" style="width: 100%; height: 59px;" onclick="kepala_bagian()">kepala bagian yang sudah ada</button>
                                             </div>
                                             <div class="form-group col-xl-6">
-                                                <button class="btn btn-success text-capitalize" style="width: 100%; height: 59px;">kepala bagian baru</button>
+                                                <a id="kepala_baru" href="" class="btn btn-success text-capitalize" style="width: 100%; height: 59px;">kepala bagian baru</a>
                                             </div>
                                         </div>
                                     </div>
@@ -373,6 +373,7 @@
                 var button = $(event.relatedTarget)
                 id = button.data('kode')
                 var modal = $(this)
+                $('#kepala_baru').attr('href', '/diklat-kepala-bagian-lembaga-create/'+id);
                 kode = modal.find('.modal-body #id').val(id);
                 
             })

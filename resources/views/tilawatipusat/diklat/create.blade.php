@@ -46,10 +46,10 @@
                                                         </div>
                                                      </div>
                                                  </div>
-                                                 <div class="form-group">
+                                                 {{-- <div class="form-group">
                                                     <label for="">Nama Pelatihan</label>
                                                      <input type="text" name="name" class="form-control text-capitalize" required>
-                                                 </div>
+                                                 </div> --}}
                                                  <div class="form-group">
                                                     <label for="">Program</label>
                                                      <select name="program_id" class="form-control text-capitalize" id="" required>

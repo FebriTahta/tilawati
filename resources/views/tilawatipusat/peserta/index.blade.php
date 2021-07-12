@@ -43,7 +43,7 @@
                         <div class="col-lg-12">
                             <div class="card">
                                 <div class="card-body">
-                    
+                                    <input type="hidden" id="jenis_program" value="{{ $diklat->program->name }}">
                                     <h4 class="card-title text-capitalize">Data Peserta Pelatihan </h4>
                                     @if ($diklat->program->penilaian->count() == 0)
                                         <code>Tambahkan kategori penilaian pada program diklat terlebih dahulu pada menu program</code>
@@ -58,6 +58,9 @@
                                             <thead class="text-bold text-primary" style="text-transform: capitalize">
                                                 <tr>
                                                     <th>peserta</th>
+                                                    @if ($diklat->program->name == "standarisasi guru al qur'an level 1")
+                                                        <th>jilid</th>
+                                                    @endif
                                                     <th>kota/kabupaten</th>
                                                     <th>telp</th>
                                                     <th>email</th>
@@ -67,13 +70,14 @@
                                                     <th>Option</th>
                                                 </tr>
                                             </thead>
-    
                                             <tbody style=" font-size: 12px" class="text-uppercase">
                                             </tbody>
-
                                             <tfoot class="text-primary" style="text-transform: capitalize">
                                                 <tr>
                                                     <th>peserta</th>
+                                                    @if ($diklat->program->name == "standarisasi guru al qur'an level 1")
+                                                        <th>jilid</th>
+                                                    @endif
                                                     <th>kota/kabupaten</th>
                                                     <th>telp</th>
                                                     <th>email</th>
@@ -435,6 +439,8 @@
                 console.log(nominal);
             })
             $(document).ready(function(){
+                var jenis_program = $('#jenis_program').val();
+                console.log(jenis_program);
                 var k = $('#kriteria_id').text();
                 var pel_id = $('#pelatihan_id').val();
                 document.getElementById('kriterias').value=k;
@@ -449,51 +455,103 @@
                     }
                 });
 
-                $('#datatable-buttons').DataTable({
-                //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
-                destroy: true,
-                processing: true,
-                serverSide: true,
-                ajax: {
-                    url:'/diklat-peserta-data'+ '/'+pel_id,
-                },
-                columns: [
-                    
-                    {
-                    data:'name',
-                    name:'name'
+                if (jenis_program == "standarisasi guru al qur'an level 1") {
+                    $('#datatable-buttons').DataTable({
+                    //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
+                    destroy: true,
+                    processing: true,
+                    serverSide: true,
+                    ajax: {
+                        url:'/diklat-peserta-data'+ '/'+pel_id,
                     },
-                    {
-                    data:'kabupaten',
-                    name:'kabupaten.nama'
+                    columns: [
+                        
+                        {
+                        data:'name',
+                        name:'name'
+                        },
+                        {
+                        data:'jilid',
+                        name:'jilid'
+                        },
+                        {
+                        data:'kabupaten',
+                        name:'kabupaten.nama'
+                        },
+                        {
+                        data:'telp',
+                        name:'telp'
+                        },
+                        {
+                        data:'email',
+                        name:'email'
+                        },
+                        {
+                        data:'nilai',
+                        name:'nilai'
+                        },
+                        {
+                        data:'alamat',
+                        name:'alamat'
+                        },
+                        {
+                        data:'kriteria',
+                        name:'kriteria'
+                        },
+                        {
+                        data:'action',
+                        name:'action'
+                        },
+                        
+                    ]
+                    });
+                } else {
+                    $('#datatable-buttons').DataTable({
+                    //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
+                    destroy: true,
+                    processing: true,
+                    serverSide: true,
+                    ajax: {
+                        url:'/diklat-peserta-data'+ '/'+pel_id,
                     },
-                    {
-                    data:'telp',
-                    name:'telp'
-                    },
-                    {
-                    data:'email',
-                    name:'email'
-                    },
-                    {
-                    data:'nilai',
-                    name:'nilai'
-                    },
-                    {
-                    data:'alamat',
-                    name:'alamat'
-                    },
-                    {
-                    data:'kriteria',
-                    name:'kriteria'
-                    },
-                    {
-                    data:'action',
-                    name:'action'
-                    },
-                    
-                ]
-                });
+                    columns: [
+                        
+                        {
+                        data:'name',
+                        name:'name'
+                        },
+                        {
+                        data:'kabupaten',
+                        name:'kabupaten.nama'
+                        },
+                        {
+                        data:'telp',
+                        name:'telp'
+                        },
+                        {
+                        data:'email',
+                        name:'email'
+                        },
+                        {
+                        data:'nilai',
+                        name:'nilai'
+                        },
+                        {
+                        data:'alamat',
+                        name:'alamat'
+                        },
+                        {
+                        data:'kriteria',
+                        name:'kriteria'
+                        },
+                        {
+                        data:'action',
+                        name:'action'
+                        },
+                        
+                    ]
+                    });
+                }
             })
             
         </script>

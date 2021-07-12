@@ -32,8 +32,6 @@
                     
                                     <h4 class="card-title">Data Kepala Bagian</h4>
                                     <p class="card-title-desc">Ter-update berdasarkan Tahun 2021 </br><code>Data Import dan Eksport Berbeda Format (Berhati-hati ketika meng-importkan data baru)</code></p>
-                                    <button class="btn btn-sm btn-success  mr-1" style="width:130px ; margin-bottom: 5px" data-toggle="modal" data-target=".bs-example-modal-kepala"><i class="mdi mdi-cloud-upload"></i> import kepala</button>
-                                    <button class="btn btn-sm btn-success  mr-1" style="width:130px ; margin-bottom: 5px" data-toggle="modal" data-target=".bs-example-modal-rpq" ><i class="mdi mdi-cloud-upload"></i> import rpq</button>
                                     <button class="btn btn-sm btn-success  mr-1" style="width:130px ; margin-bottom: 5px"><i class="mdi mdi-plus"></i> tambah kepala</button>
                     
                                     <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">

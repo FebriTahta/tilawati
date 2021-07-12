@@ -198,11 +198,15 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga']], funct
     Route::get('/diklat-teritori-cabang',[TeritoriCont::class,'cabang_duplikat_kabupaten'])->name('diklat.duplikat_cabang');
 
     Route::get('/diklat-kepala-bagian',[KepalaCont::class, 'index'])->name('diklat.kepala');
+    Route::get('/diklat-kepala-bagian-cabang-create/{kode}',[KepalaCont::class, 'create_kepala_cabang'])->name('diklat.kepala_create_cabang');
+    Route::get('/diklat-kepala-bagian-lembaga-create/{kode}',[KepalaCont::class, 'create_kepala_lembaga'])->name('diklat.kepala_create_lembaga');
     Route::get('/diklat-kepala-bagian-data',[KepalaCont::class, 'kepala_data'])->name('diklat.kepala_data');
     Route::get('/diklat-kepala-bagian-edit/{id}',[KepalaCont::class, 'kepala_edit'])->name('diklat.kepala_edit');
     Route::post('/diklat-kepala-bagian-delete',[KepalaCont::class, 'kepala_delete'])->name('diklat.kepala_delete');
     Route::get('/dikalt-kepala-bagian-show',[KepalaCont::class, 'kepala_show'])->name('diklat.kepala_show');
     Route::post('/dikalt-kepala-bagian-store',[KepalaCont::class, 'kepala_store'])->name('diklat.kepala_store');
+    Route::post('/diklat-kepala-bagian-cabang-store',[KepalaCont::class, 'tambah_kepala_cabang'])->name('diklat.kepala_cabang_store');
+    Route::post('/diklat-kepala-bagian-lembaga-store',[KepalaCont::class, 'tambah_kepala_lembaga'])->name('diklat.kepala_lembaga_store');
     Route::get('/diklat-kepala-bagian-detail/{kepala_id}',[KepalaCont::class,'kepala_detail'])->name('diklat.kepala_detail');
     Route::get('/diklat-kepala-pilih',[KepalaCont::class, 'pilih_kepala'])->name('diklat.kepala_pilih');
     Route::post('/diklat-kepala-bagian-pilih',[KepalaCont::class, 'pilih_kepala_bagian'])->name('diklat.kepala_bagian_pilih');
