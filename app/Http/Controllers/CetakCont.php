@@ -23,11 +23,11 @@ class CetakCont extends Controller
         return view('tilawatipusat.cetak.belakang.index',compact('dt_pel','dt_pro'));
     }
 
-    public function depan_santri()
+    public function detail_peserta(Request $request)
     {
         $dt_pel = Pelatihan::all();
         $dt_pro = Program::all();
-        return view('tilawatipusat.cetak.depan.santri',compact('dt_pel','dt_pro'));
+        return view('tilawatipusat.cetak.detail.index',compact('dt_pel','dt_pro'));
     }
 
     public function cetak_depan(Request $request)
@@ -54,7 +54,7 @@ class CetakCont extends Controller
             $direktur   = $pelatihan->cabang->kepala->name;
             
             $pdf        = PDF::loadview('AdmPelatihan.Cetak.cetak_depan',compact('peserta','direktur','kepala','kabupaten','cabang','pelatihan'))->setPaper($customPaper, 'portrait');
-            return $pdf->download('ijazah-depan-peserta-pdf_'.$pelatihan->name.'.pdf','I');
+            return $pdf->download('ijazah-depan-peserta-_'.$pelatihan->name.'.pdf','I');
         }
     }
 
@@ -64,6 +64,16 @@ class CetakCont extends Controller
         $peserta    = Peserta::where('pelatihan_id', $id)->where('kriteria','<>','')->where('bersyahadah', 1)->get();
         $customPaper = array(0,0,792,612);
     	$pdf = PDF::loadview('AdmPelatihan.Cetak.cetak_belakang_guru',compact('peserta','pelatihan'))->setPaper($customPaper, 'portrait');
-    	return $pdf->download('ijazah-belakang-peserta-pdf_'.$pelatihan->name.'.pdf','I');
+    	return $pdf->download('ijazah-belakang-peserta-_'.$pelatihan->name.'.pdf','I');
     }
+
+    public function cetak_detail_peserta(Request $request)
+    {
+        $id = $request->pelatihan_id;
+        $pelatihan = Pelatihan::find($id);        
+        $peserta    = Peserta::where('pelatihan_id', $id)->get();
+    	$pdf = PDF::loadview('tilawatipusat.cetak.detail.cetak_detail',compact('peserta','pelatihan'))->setPaper('a4', 'portrait');
+    	return $pdf->download('detail-peserta-_'.$pelatihan->name.'.pdf');
+    }
+
 }

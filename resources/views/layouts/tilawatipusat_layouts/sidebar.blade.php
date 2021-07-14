@@ -87,10 +87,16 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{ route('diklat.belakang') }}">CETAK IJAZAH</a></li>
-                        {{-- <li><a href="ui-buttons">Santri</a></li>
-                        <li><a href="ui-buttons">Instruktur</a></li>
-                        <li><a href="ui-buttons">Tahfidz</a></li>
-                        <li><a href="ui-buttons">Munaqys</a></li> --}}
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="mdi mdi-clipboard-list-outline"></i>
+                        <span>Detail</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{ route('diklat.detail_peserta') }}">CETAK DETAIL PESERTA</a></li>
                     </ul>
                 </li>
 

@@ -1,139 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Program Pelatihan Tilawati Nurul Falah</title>
-    <link rel="stylesheet" type="text/css" href="{{ asset('lgnfrm/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('lgnfrm/css/fontawesome-all.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('lgnfrm/css/iofrm-style.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('lgnfrm/css/iofrm-theme8.css') }}">
-    <meta name="csrf-token" content="{{ csrf_token() }}" />
-</head>
-<body>
-    <div class="form-body">
-        <div class="website-logo">
-            <a href="index.html">
-                <div class="logo">
-                    <img class="logo-size" src="{{ asset('lgnfrm/images/logo-light.svg') }}" alt="">
-                </div>
-            </a>
-        </div>
-        <div class="row">
-            <div class="img-holder">
-                <div class="bg"></div>
-                <div class="info-holder">
-                    <h3>SELAMAT DATANG DI APLIKASI MANAJEMEN PROGRAM PELATIHAN TILAWATI.</h3>
-                    <p>Silahkan login berdasarkan akun cabang tilawati anda</p>
-                    <img src="{{ asset('lgnfrm/images/graphic4.svg') }}" alt="">
-                </div>
-            </div>
-            <div class="form-holder">
-                <div class="form-content">
-                    <div class="form-items">
-                        <div class="website-logo-inside">
-                            <a href="/">
-                                <div class="">
-                                    {{-- <img class="logo-size" src="{{ asset('lgnfrm/images/logo-light.svg') }}" alt=""> --}}
-                                    <img class="" style="width: 330px" src="{{ asset('assets/images/tilawati-white.png') }}">
-                                </div>
-                            </a>
-                        </div>
-                        <div class="page-links">
-                            <a href="/" class="active">Login</a>
-                            {{-- <a href="register8.html">Register</a> --}}
-                        </div>
-                        <form method="POST" action="{{ route('login') }}">@csrf
-                            <input class="form-control" type="text" name="username" placeholder="Username / E-mail Address" required>
-                            <input class="form-control" type="password" name="password" placeholder="Password" required>
-                            <div class="form-button">
-                                <button id="submit" type="submit" class="ibtn">Login</button> <a href="#">Forget password?</a>
-                            </div>
-                        </form>
-                        <div class="other-links">
-                            {{-- <span>Or login with</span><a href="#">Facebook</a><a href="#">Google</a><a href="#">Linkedin</a> --}}
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/64d58efce2.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        .grid-container {
+          display: grid;
+          grid-template-columns: auto;
+          grid-gap: 10px;
+          width: 100%;
+            height: 450px;
+            overflow: auto;
+        }
+        .grid-container > div {
+          background-color: rgba(255, 255, 255, 0.8);
+          text-align: center;
+          font-size: 20px;
+        }
+        
+        .item1 {
+          grid-row: 1 / span 2;
+        }
+        .card {
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+        padding: 20px;
+        }
+        .card:hover {
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        }.daftar{
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        }
+
+    </style>
+    <link rel="stylesheet" href="{{ asset('tilawatipusat/newlogin/style.css') }}" />
+    <title>Sign in & Sign up Form</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="forms-container">
+        <div class="signin-signup">
+          <form action="#" class="sign-in-form grid-container">
+                <div class="card">
+                    <div class="card-body">
+                        <div style="font-size: 16px; text-align:left" class="title item">Diklat <br/> Standarisasi Guru Al Qur'an Level 2 <br /> Cabang Cahaya Amanah - Surabaya 
+                            <br />12 Juni 2020 <br/>
+                            <button class="daftar btn" style="height: 40px">daftar</button>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-<script src="{{ asset('lgnfrm/js/jquery.min.js') }}"></script>
-<script src="{{ asset('lgnfrm/js/popper.min.js') }}"></script>
-<script src="{{ asset('lgnfrm/js/bootstrap.min.js') }}"></script>
-<script src="{{ asset('lgnfrm/js/main.js') }}"></script>
-</body>
-</html>
-
-{{-- @extends('layouts.app')
-
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
-
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Username or Email') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="username" type="username" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required  autofocus>
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                <div class="card">
+                    <div class="card-body">
+                        <div style="font-size: 16px; text-align:left" class="title item">Diklat <br/> Standarisasi Guru Al Qur'an Level 2 <br /> Cabang Cahaya Amanah - Surabaya 
+                            <br />12 Juni 2020 <br/>
+                            <div style="text-align: right">
+                                <button class="daftar btn" style="height: 40px">daftar</button>
                             </div>
                         </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                    </form>
+                    </div>
                 </div>
+          </form>
+          <form method="POST" action="{{ route('login') }}" class="sign-up-form">@csrf
+            <h2 class="title">Logo NF & Tilawati</h2>
+            <div class="input-field">
+              <i class="fas fa-user"></i>
+              <input type="text" class="form-control" name="username" placeholder="Username" />
             </div>
+            <div class="input-field">
+              <i class="fas fa-lock"></i>
+              <input type="password" name="password" placeholder="Password" />
+            </div>
+            <input type="submit" class="btn" value="Login" />
+            <p class="social-text"></p>
+          </form>
         </div>
+      </div>
+
+      <div class="panels-container">
+        <div class="panel left-panel">
+          <div class="content">
+            <h3><img src="{{ asset('assets/images/tilawati-white.png') }}" width="150px" alt=""></h3>
+            <p>
+                Selamat datang di sistem pendaftaran program diklat TILAWATI <br/>
+            </p>
+            <button class="btn transparent" style="width: 170px" id="sign-up-btn">
+              Masuk / Cek Status
+            </button>
+          </div>
+          <img src="{{ asset('tilawatipusat/newlogin/img/register.svg') }}" class="image" alt="" />
+        </div>
+        <div class="panel right-panel">
+          <div class="content">
+            <h3>Bergabung Mengikuti Diklat ?</h3>
+            <p>
+              Cek daftar diklat yang akan datang dibawah ini
+            </p>
+            <button class="btn transparent" id="sign-in-btn">
+              Jadwal
+            </button>
+          </div>
+          <img src="{{ asset('tilawatipusat/newlogin/img/register.svg') }}" class="image" alt="" />
+        </div>
+      </div>
     </div>
-</div>
-@endsection --}}
+
+    <script src="{{ asset('tilawatipusat/newlogin/app.js') }}"></script>
+  </body>
+</html>

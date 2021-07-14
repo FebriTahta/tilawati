@@ -289,9 +289,11 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga']], funct
 
     Route::get('/diklat-ijazah-depan-guru',[CetakCont::class, 'depan_guru'])->name('diklat.depan_guru');
     Route::get('/diklat-ijazah-belakang',[CetakCont::class, 'belakang'])->name('diklat.belakang');
+    Route::get('/diklat-detail-ijazah-peserta',[CetakCont::class, 'detail_peserta'])->name('diklat.detail_peserta');
     Route::get('/diklat-ijazah-depan-santri',[CetakCont::class, 'depan_santri'])->name('diklat.depan_santri');
     Route::post('/diklat-cetak-depan-print', [CetakCont::class, 'cetak_depan'])->name('diklat.depan_cetak');
     Route::post('/diklat-cetak-belakang-print', [CetakCont::class, 'cetak_belakang'])->name('diklat.belakang_cetak');
+    Route::post('/diklat-cetak-detail-peserta-print',[CetakCont::class, 'cetak_detail_peserta'])->name('diklat.detail_cetak');
 
     Route::post('/diklat-import-peserta',[ImportController::class,'importPesertaDiklat'])->name('diklat.import_peserta');
 

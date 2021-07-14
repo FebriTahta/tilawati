@@ -1,6 +1,6 @@
 @extends('layouts.tilawatipusat_layouts.master')
 
-@section('title') ijazah belakang @endsection
+@section('title') cetak detail peserta @endsection
 @section('css')
 
     <!-- DataTables -->
@@ -10,29 +10,18 @@
 @section('content')
 
     @component('common-tilawatipusat.breadcrumb')
-         @slot('title') ijazah belakang    @endslot
+         @slot('title') detail peserta    @endslot
          @slot('title_li') CETAK   @endslot
     @endcomponent
-                    {{-- <div class="row">
-                        <div class="col-xl-4">
-                            @component('common-tilawatipusat.dashboard-widget')
-                            
-                                @slot('title') <b id="cb"> 2,456 </b> ijazah depan guru  @endslot
-                                @slot('iconClass') mdi mdi-tag-plus-outline  @endslot
-                                @slot('price')   @endslot
-                                
-                            @endcomponent
-                        </div>
-                    </div> --}}
-
+                    
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="card-title">Data Ijazah Belakang</h4>
+                                    <h4 class="card-title">Data Ijazah Depan</h4>
                                     <p class="card-title-desc">Ter-update berdasarkan Tahun 2021 </br></p>
                                     <blockquote class="blockquote font-size-16 mb-0 mt-2">
-                                        <form target="_blank" action="{{ route('diklat.belakang_cetak') }}" method="POST">@csrf
+                                        <form target="_blank" action="{{ route('diklat.detail_cetak') }}" method="POST">@csrf
                                             <div class="form-group">
                                                 <label for="">Jenis Program</label>
                                                 <select name="program_id" id="" class="form-control text-capitalize" required>

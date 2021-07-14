@@ -60,43 +60,6 @@
                     </div>
                     <!-- end row -->
 
-                    <!--modal import ijazah depan guru-->
-                    <div class="col-sm-6 col-md-3 m-t-30">
-                        <div class="modal fade bs-example-modal-ijazah-depan-guru" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered modal-lg">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title mt-0">IMPORT DATA ijazah depan guru </h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="col-xl-12">
-                                            <div class="card m-b-30">
-                                                <div class="card-body">
-                                                    <div class="container-fluid">
-                                                        <form id="importijazah_depan_guru"  method="POST" enctype="multipart/form-data">@csrf
-                                                            <input type="hidden" id="import_tipe" value="munaqisy">
-                                                            <div class="form-group">
-                                                                <label for="">Import Data "ijazah depan guru" (hanya Excel File format .xlsx)</label>
-                                                                <input type="file" class="form-control" name="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" required>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <input type="submit" name="import" id="btnimport" class="btn btn-info" value="Import" />
-                                                            </div>
-                                                        </form>
-                                                    </div><!-- container fluid -->
-                                                </div>
-                                            </div>
-                                        </div> <!-- end col -->
-                                    </div>
-                                </div><!-- /.modal-content -->
-                            </div><!-- /.modal-dialog -->
-                        </div><!-- /.modal -->
-                    </div>
-                    <!--modal import rpq-->
-
 @endsection
 
 @section('script')
@@ -129,7 +92,7 @@
                                     var tmp = data.toString().split(',');                  
                                     $('select[name="pelatihan_id"]').empty();
                                     $.each(data, function(key, value) {
-                                    $('select[name="pelatihan_id"]').append('<option value="'+ value.id +'">'+ value.id + " | " + value.name + " | " + value.tanggal + " | " + value.tempat + '</option>');
+                                    $('select[name="pelatihan_id"]').append('<option value="'+ value.id +'">'+ value.cabang.name + " | " + value.program.name + " | " + value.tanggal + " | " + value.tempat + '</option>');
                                     });
                                     console.log(data);
                                 }

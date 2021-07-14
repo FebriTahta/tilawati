@@ -58,7 +58,7 @@ class SubController extends Controller
     }
 
     public function fetchpp($id){
-        $pelatihan = Pelatihan::where("program_id", $id)->get();
+        $pelatihan = Pelatihan::where("program_id", $id)->with('program','cabang')->get();
         return json_encode($pelatihan);
     }
 
