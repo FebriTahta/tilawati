@@ -82,7 +82,7 @@
                                                     <th>kode</th>
                                                     <th>diklat</th>
                                                     <th>tanggal</th>
-                                                    <th>program</th>
+                                                    
                                                     <th>tempat</th>
                                                     <th>peserta</th>
                                                 </tr>
@@ -96,7 +96,7 @@
                                                     <th>kode</th>
                                                     <th>diklat</th>
                                                     <th>tanggal</th>
-                                                    <th>program</th>
+                                                    
                                                     <th>tempat</th>
                                                     <th>peserta</th>
                                                 </tr>
@@ -176,17 +176,14 @@
                             name:'id'
                             },
                             {
-                            data:'name',
-                            name:'name'
+                            data:'program',
+                            name:'program.name'
                             },
                             {
                             data:'tanggal',
                             name:'tanggal'
                             },
-                            {
-                            data:'program',
-                            name:'program.name'
-                            },
+                            
                             {
                             data:'tempat',
                             name:'tempat'
