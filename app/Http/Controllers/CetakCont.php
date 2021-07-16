@@ -70,9 +70,10 @@ class CetakCont extends Controller
     public function cetak_detail_peserta(Request $request)
     {
         $id = $request->pelatihan_id;
-        $pelatihan = Pelatihan::find($id);        
+        $pelatihan = Pelatihan::where('id',$id)->with('program','cabang')->first();        
         $peserta    = Peserta::where('pelatihan_id', $id)->get();
     	$pdf = PDF::loadview('tilawatipusat.cetak.detail.cetak_detail',compact('peserta','pelatihan'))->setPaper('a4', 'portrait');
+        // $pdf->setBasePath($webRoot);
     	return $pdf->download('detail-peserta-_'.$pelatihan->name.'.pdf');
     }
 

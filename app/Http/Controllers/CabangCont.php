@@ -129,10 +129,8 @@ class CabangCont extends Controller
                         # code...
                     } else {
                         # code...
-                        return $data->provinsi->nama;
+                        return $data->kabupaten->nama;
                     }
-                    
-                    return $data->kabupaten->nama;
                 })
                 ->addColumn('kepala', function($data){
                     if ($data->kepala !== null) {

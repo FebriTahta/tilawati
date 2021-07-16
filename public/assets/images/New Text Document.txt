@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+    body {
+        height: 842px;
+        width: 595px;
+        /* to centre page on screen*/
+        margin-left: auto;
+        margin-right: auto;
+    }
+	.bg{
+		
+        /* The image used */
+        background-image: url('assets/images/a4.jpg');
+        
+	}
+    </style>
+  </head>
+  <body>
+	<div class="bg">
+	aaaa
+	</div>
+  </body>
+</html>
