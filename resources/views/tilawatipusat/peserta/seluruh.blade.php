@@ -87,9 +87,10 @@
                                             <thead class="text-bold text-primary" style="text-transform: capitalize">
                                                 <tr>
                                                     <th>peserta</th>
-                                                    <th>asal</th>
                                                     <th>program pelatihan</th>
                                                     <th>cabang</th>
+                                                    <th>tanggal</th>
+                                                    <th>asal</th>
                                                     <th>telp</th>
                                                     <th>email</th>
                                                     <th>nilai</th>
@@ -106,9 +107,10 @@
                                             <tfoot class="text-primary" style="text-transform: capitalize">
                                                 <tr>
                                                     <th>peserta</th>
-                                                    <th>asal</th>
                                                     <th>program pelatihan</th>
                                                     <th>cabang</th>
+                                                    <th>tanggal</th>
+                                                    <th>asal</th>
                                                     <th>telp</th>
                                                     <th>email</th>
                                                     <th>nilai</th>
@@ -424,10 +426,6 @@
                             name:'name',
                             },
                             {
-                            data:'kabupaten',
-                            name:'kabupaten.nama'
-                            },
-                            {
                             data:'program',
                             name:'program.name',
                             searchable: false,
@@ -438,6 +436,14 @@
                             name:'cabang.name',
                             searchable: false,
                             orderable: false,
+                            },
+                            {
+                            data:'tanggal',
+                            name:'tanggal'
+                            },
+                            {
+                            data:'kabupaten',
+                            name:'kabupaten.nama'
                             },
                             {
                             data:'telp',
