@@ -90,8 +90,9 @@
                                                     <th>peserta</th>
                                                     <th>asal</th>
                                                     <th>program pelatihan</th>
-                                                    <th>cabang</th>
                                                     <th>tanggal</th>
+                                                    <th>cabang</th>
+                                                    
                                                     <th>telp</th>
                                                     <th>email</th>
                                                     <th>nilai</th>
@@ -110,8 +111,9 @@
                                                     <th>peserta</th>
                                                     <th>asal</th>
                                                     <th>program pelatihan</th>
-                                                    <th>cabang</th>
                                                     <th>tanggal</th>
+                                                    <th>cabang</th>
+                                                    
                                                     <th>telp</th>
                                                     <th>email</th>
                                                     <th>nilai</th>
@@ -427,15 +429,16 @@
                             orderable: false,
                             },
                             {
+                            data:'tanggal',
+                            name:'tanggal'
+                            },
+                            {
                             data:'cabang',
                             name:'cabang.name',
                             searchable: false,
                             orderable: false,
                             },
-                            {
-                            data:'tanggal',
-                            name:'tanggal'
-                            },
+                            
                             {
                             data:'telp',
                             name:'telp'
