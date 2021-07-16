@@ -91,6 +91,7 @@
                                                     <th>asal</th>
                                                     <th>program pelatihan</th>
                                                     <th>cabang</th>
+                                                    <th>tanggal</th>
                                                     <th>telp</th>
                                                     <th>email</th>
                                                     <th>nilai</th>
@@ -110,6 +111,7 @@
                                                     <th>asal</th>
                                                     <th>program pelatihan</th>
                                                     <th>cabang</th>
+                                                    <th>tanggal</th>
                                                     <th>telp</th>
                                                     <th>email</th>
                                                     <th>nilai</th>
@@ -429,6 +431,10 @@
                             name:'cabang.name',
                             searchable: false,
                             orderable: false,
+                            },
+                            {
+                            data:'tanggal',
+                            name:'tanggal'
                             },
                             {
                             data:'telp',
