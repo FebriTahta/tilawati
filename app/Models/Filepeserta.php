@@ -15,6 +15,11 @@ class Filepeserta extends Model
         'status'
     ];
 
+    public function setFilenamesAttribute($value)
+    {
+        $this->attributes['file'] = json_encode($value);
+    }
+
     public function peserta()
     {
         return $this->belongsTo(Peserta::class);

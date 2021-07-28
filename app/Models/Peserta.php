@@ -26,10 +26,16 @@ class Peserta extends Model
         'kriteria_id',
         'kriteria',
         'bersyahadah',
-        'kota'
+        'kota',
+        'status'
+
     ];
     protected $dates = ['deleted_at'];
 
+    public function certificate()
+    {
+        return $this->hasMany(Certificate::class);
+    }
     public function filepeserta()
     {
         return $this->hasMany(Filepeserta::class);

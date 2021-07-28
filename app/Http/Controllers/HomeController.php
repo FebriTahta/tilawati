@@ -23,6 +23,15 @@ class HomeController extends Controller
      */
     public function index()
     {
+        // if (auth()->user()->role == 'pusat') {
+        //     # code...
+        //     return redirect('/diklat-dashboard');
+
+        // }elseif(auth()->user()->role == 'bendahara'){
+        //     # code...
+        //     return redirect('/');
+        // }
+
         return redirect('/diklat-dashboard');
     }
 }

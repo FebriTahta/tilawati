@@ -6,8 +6,8 @@ jQuery(function($) {
     // PHPMailer text/html > phpmailer/send_email_1_phpmailer.php
     // PHPMailer text/html SMTP > phpmailer/send_email_1_phpmailer_smtp.php
     // PHPMailer with html template > phpmailer/send_email_1_phpmailer_template.php
-    // PHPMailer with html template SMTP > phpmailer/send_email_1_phpmailer_template_smtp.php
-    $('form#wrapped').attr('action', 'send_email_1.php');
+    // PHPMailer with html template SMTP > phpmailer/send_email_1_phpmailer_template_smtp.php 
+    $('form#wrapped').attr('action', '/pendaftaran-peserta-diklat');
     $("#wizard_container").wizard({
         stepsWrapper: "#wrapped",
         submit: ".submit",
@@ -58,11 +58,11 @@ $("form#wrapped")
         rules: {
             fileupload: {
                 fileType: {
-                    types: ["pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document"]
+                    types: ["image/*","jpg","png","jpeg","pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document"]
                 },
                 maxFileSize: {
                     "unit": "KB",
-                    "size": 150
+                    "size": 15000
                 },
                 minFileSize: {
                     "unit": "KB",
@@ -87,5 +87,11 @@ function getVals(formControl, controlType) {
             var value = $(formControl).val();
             $("#email_field").text(value);
             break;
+        
+            case 'nik_field':
+                // Get the value for input
+                var value = $(formControl).val();
+                $("#nik_field").text(value);
+                break;
     }
 }

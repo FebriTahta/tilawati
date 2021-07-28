@@ -31,6 +31,7 @@ use App\Http\Controllers\NilaiCont;
 use App\Http\Controllers\TeritoriCont;
 use App\Http\Controllers\KepalaCont;
 use App\Http\Controllers\RegistrasiCont;
+use App\Http\Controllers\LandingCont;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -43,13 +44,49 @@ use App\Http\Controllers\RegistrasiCont;
 */
 
 Route::get('/', function () {
-    return redirect('/login');
+    return redirect('/homepage');
 });
 Auth::routes();
+//homepage
+Route::get('/homepage',[LandingCont::class,'index'])->name('homepage');
+Route::get('/cetak/e-certificate/diklat/{diklat_id}',[LandingCont::class,'daftar_esertifikat']);
+Route::get('/cetak/e-certificate/peserta-diklat/{diklat_id}',[LandingCont::class,'daftar_esertifikat_peserta']);
+Route::group(['middleware' => ['auth', 'CheckRole:pusat,bendahara']], function () {
+    Route::post('/import/e-certificate',[LandingCont::class,'import_e_sertifikat'])->name('import.e_certificate');
+});
+
+//profile
 Route::get('/diklat-profile-peserta/{id_peserta}/{id_program}/{id_pelatihan}/admin',[ProfileCont::class,'index'])->name('diklat.profile_peserta');
 Route::get('/diklat-profile-peserta/{id_peserta}/{id_program}/{id_pelatihan}',[ProfileCont::class,'scan'])->name('diklat.profile_peserta_scan');
+//registrasi
+Route::get('/registrasi/{program_id}/{diklat_id}',[RegistrasiCont::class,'index'])->name('diklat.registrasi');
+//sub controller ajax
+//fetch propinsi, kabupaten/kota, kecamatan, kelurahan
+//sub controller ajax
+//fetch propinsi dan kota
+// Route::get('/fetch/{id}',[SubController::class, 'fetch'])->name('fetch');
+//fetch program dan pelatihan untuk print
+Route::get('/fetchpp/{id}',[SubController::class, 'fetchpp']);
+Route::get('/fetch/{id}',[SubController::class, 'fetch']);
+Route::get('/fetch2/{id}',[SubController::class, 'fetch2']);
+Route::get('/fetch3/{id}',[SubController::class, 'fetch3']);
+Route::get('/fetch4/{id}',[SubController::class, 'fetch4']);
+Route::get('/fetch5/{id}',[SubController::class, 'fetch5']);
+Route::get('/fetch6/{id}',[SubController::class, 'fetch6']);
+Route::get('/fetch7/{id}',[SubController::class, 'fetch7']);
+Route::get('/fetch8/{id}',[SubController::class, 'fetch8']);
 
+//fetch program dan pelatihan untuk print
+Route::get('/fetchpp/{id}',[SubController::class, 'fetchpp']);
+//submit registrasi pendaftaran online
+Route::post('/pendaftaran-peserta-diklat',[RegistrasiCont::class,'registrasi'])->name('diklat.registrasi');
+Route::get('/pendaftaran-data-calon-peserta-diklat-sukses/{program_id}/{diklat_id}/{peserta_id}', [RegistrasiCont::class,'sukses'])->name('diklat.registrasi.sukses');
 Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga']], function () {
+    //syarat regis
+    Route::get('/diklat-persyaratan',[RegistrasiCont::class,'syarat'])->name('diklat.syarat.registrasi');
+    Route::get('/diklat-data-persyaratan',[RegistrasiCont::class,'data_syarat'])->name('diklat.syarat.data');
+    Route::post('/diklat-post-data-persyaratan',[RegistrasiCont::class,'submit_syarat'])->name('diklat.syarat.submit');
+    Route::post('/diklat-post-data-persyaratan-delete',[RegistrasiCont::class,'delete'])->name('diklat.syarat.delete');
     //dashboard
     Route::post('/dashboard-chart',[DashboardController::class,'dataForChart'])->name('dashboard.chart');// data untuk chart bar di dashboar
     Route::post('/dashboard-chart-2',[DashboardController::class,'dataForChart2'])->name('dashboard.chart2');// data untuk chart pie di dashboar
@@ -93,20 +130,6 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga']], funct
     Route::get('/pelatihan-teritorial',[TeritorialController::class, 'index'])->name('teritorial.index');
     Route::post('/pelatihan-teritorial-post',[TeritorialControllerito::class, 'store'])->name('teritorial.store');
     Route::get('/pelatihan-teritorial-get',[TeritorialController::class, 'get'])->name('teritorial.get');
-
-    //sub controller ajax
-    //fetch propinsi, kabupaten/kota, kecamatan, kelurahan
-    Route::get('/fetch/{id}',[SubController::class, 'fetch']);
-    Route::get('/fetch2/{id}',[SubController::class, 'fetch2']);
-    Route::get('/fetch3/{id}',[SubController::class, 'fetch3']);
-    Route::get('/fetch4/{id}',[SubController::class, 'fetch4']);
-    Route::get('/fetch5/{id}',[SubController::class, 'fetch5']);
-    Route::get('/fetch6/{id}',[SubController::class, 'fetch6']);
-    Route::get('/fetch7/{id}',[SubController::class, 'fetch7']);
-    Route::get('/fetch8/{id}',[SubController::class, 'fetch8']);
-    
-    //fetch program dan pelatihan untuk print
-    Route::get('/fetchpp/{id}',[SubController::class, 'fetchpp']);
 
     //import
     Route::post('/importPeserta',[ImportController::class,'importPeserta'])->name('import.peserta');
@@ -165,11 +188,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga']], funct
     Route::get('/pelatihan-cetak-belakang-tahfidz',[CetakController::class,'ijazahbelakangtahfidz'])->name('pelatihan.c_belakang_tahfidz');
     Route::get('/pelatihan-cetak-belakang-munaqys',[CetakController::class,'ijazahbelakangmunaqisy'])->name('pelatihan.c_belakang_munaqisy');
     Route::post('/pelatihan-cetak-belakang-munaqisy-print',[CetakController::class, 'cetak_belakang_munaqisy'])->name('belakang.cetakmunaqisy');
-    //sub controller ajax
-    //fetch propinsi dan kota
-    Route::get('/fetch/{id}',[SubController::class, 'fetch'])->name('fetch');
-    //fetch program dan pelatihan untuk print
-    Route::get('/fetchpp/{id}',[SubController::class, 'fetchpp']);
+    
     //hapus data
     Route::post('/hapus-pelatihan-cabang', [SubController::class, 'hapuscabang'])->name('cabang.hapus');
     //import
@@ -184,7 +203,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga']], funct
 });
 
 //new route tilawati
-Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga']], function () {
+Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara']], function () {
     Route::get('/diklat-cabang',[CabangCont::class, 'index'])->name('diklat.cabang');
     Route::post('/diklat-cabang-store',[CabangCont::class, 'store'])->name('diklat.cabang_store');
     Route::get('/diklat-cabang-data',[CabangCont::class, 'cabang_data'])->name('diklat.cabang_data');
@@ -298,6 +317,10 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga']], funct
     Route::post('/diklat-import-peserta',[ImportController::class,'importPesertaDiklat'])->name('diklat.import_peserta');
 
     Route::get('/diklat-dashboard',[DashboardCont::class,'index'])->name('diklat.dashboard');
-    
-    Route::get('/diklat-registrasi/{diklat_id}',[RegistrasiCont::class,'index'])->name('diklat.registrasi');
+
+});
+
+Route::group(['middleware' => ['auth', 'CheckRole:bendahara']], function () {
+    Route::get('/data-calon-peserta-diklat/{program_id}/{diklat_id}',[RegistrasiCont::class, 'konfirmasi']);
+    Route::get('/konfirmasi-data-calon-peserta-diklat/{diklat_id}',[RegistrasiCont::class, 'data_calon_peserta']);
 });

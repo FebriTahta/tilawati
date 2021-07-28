@@ -12,6 +12,7 @@ class Registrasi extends Model
         
         'program_id',
         'name',
+        'jenis'
     ];
 
     public function program()

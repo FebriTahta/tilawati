@@ -7,7 +7,8 @@ jQuery(function($) {
     // PHPMailer text/html SMTP > phpmailer/send_email_2_phpmailer_smtp.php
     // PHPMailer with html template > phpmailer/send_email_2_phpmailer_template.php
     // PHPMailer with html template SMTP > phpmailer/send_email_2_phpmailer_template_smtp.php
-    $('form#wrapped').attr('action', 'send_email_2.php');
+    // $('form#wrapped').attr('action', 'send_email_2.php');
+    $('form#wrapped').attr('action', '/pendaftaran-peserta-diklat');
     $("#wizard_container").wizard({
         stepsWrapper: "#wrapped",
         submit: ".submit",
@@ -58,11 +59,12 @@ $("form#wrapped")
         rules: {
             fileupload: {
                 fileType: {
-                    types: ["pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document"]
+                    // types: ["image/*","pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document"]
+                    types: ["jpg","jpeg","png","pdf","doc","docx"]
                 },
                 maxFileSize: {
                     "unit": "KB",
-                    "size": 150
+                    "size": 15000
                 },
                 minFileSize: {
                     "unit": "KB",

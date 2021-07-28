@@ -100,12 +100,12 @@
                     </ul>
                 </li>
 
-                <li class="menu-title">Hak Akses</li>
+                <li class="menu-title">Persyaratan</li>
 
                 <li>
-                    <a href="javascript: void(0);" class="waves-effect">
+                    <a href="{{ route('diklat.syarat.registrasi') }}" class="waves-effect">
                         <i class="mdi mdi-emoticon-happy-outline"></i>
-                        <span>User</span>
+                        <span>Registrasi</span>
                     </a>
                 </li>
 
