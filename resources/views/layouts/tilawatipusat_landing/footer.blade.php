@@ -24,7 +24,7 @@
                         <div class="logo">
                             <a href="index.html"><img src="{{ asset('assets/images/nf_logo_white.png') }}" width="130px" alt="" /></a>
                         </div>
-                        <div class="copyright">&copy; 2021 <a href="index.html">foodily</a> All Rights Reserved.</div>
+                        <div class="copyright">&copy; 2021 <a href="#">Management & IT </a> Tilawati Pusat.</div>
                     </div>
                 </div>
                 
@@ -32,7 +32,8 @@
                 <div class="footer-column col-lg-4 col-md-6 col-sm-12">
                     <div class="footer-widget visit-widget">
                         <h6>Visit</h6>
-                        <div class="text">6Fifth Avenue 5501, Broadway, <br> New York Morris Street <br> London 1234</div>
+                        <div class="text">
+                            Jl. Ketintang Timur PTT VB, Pesantren Nurul Falah
                     </div>
                 </div>
                 
