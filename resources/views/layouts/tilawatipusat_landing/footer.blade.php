@@ -22,7 +22,7 @@
                 <div class="footer-column col-lg-4 col-md-12 col-sm-12">
                     <div class="footer-widget logo-widget">
                         <div class="logo">
-                            <a href="index.html"><img src="{{ asset('assets/images/nf_logo_white.png') }}" width="130px" alt="" /></a>
+                            <a href="#"><img src="{{ asset('assets/images/nf_logo_white.png') }}" width="130px" alt="" /></a>
                         </div>
                         <div class="copyright">&copy; 2021 <a href="#">Management & IT </a> Tilawati Pusat.</div>
                     </div>
