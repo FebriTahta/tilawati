@@ -14,12 +14,12 @@
 <link rel="shortcut icon" href="{{ asset('tilawatipusat/landing/images/favicon.png') }}" type="image/x-icon">
 <link rel="icon" href="{{ asset('tilawatipusat/landing/images/favicon.png') }}" type="image/x-icon">
 {{-- tag --}}
-<meta property="og:site_name" content="Diklat Tilawati">
+{{-- <meta property="og:site_name" content="Diklat Tilawati">
 <meta property="og:title" content="Download E-Certificate" />
 <meta property="og:description" content="Diklat Standarisasi Level 1 Nasional (10-11 Juli 2021)" />
 <meta property="og:image" itemprop="image" content="{{ asset('assets/images/tagtil.png') }}">
 <meta property="og:type" content="website" />
-<meta property="og:updated_time" content="1440432930" />
+<meta property="og:updated_time" content="1440432930" /> --}}
 
 <!-- Responsive -->
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -184,7 +184,7 @@
 							<div class="logo">
 								<a href="#"><img src="{{ asset('assets/images/nf_logo.png') }}" alt="" /></a>
 							</div>
-							<div class="content-box">
+							{{-- <div class="content-box">
 								<h2>About Us</h2>
 								<p class="text">The argument in favor of using filler text goes something like this: If you use real content in the Consulting Process, anytime you reach a review point you’ll end up reviewing and negotiating the content itself and not the design.</p>
 								<a href="contact.html" class="theme-btn btn-style-one clearfix"><span class="icon"></span>Consultation</a>
@@ -197,7 +197,7 @@
 									<li><span class="icon fa fa-envelope"></span>foodily@gmail.com</li>
 									<li><span class="icon fa fa-clock-o"></span>Week Days: 09.00 to 18.00 Sunday: Closed</li>
 								</ul>
-							</div>
+							</div> --}}
 							<!-- Social Box -->
 							<ul class="social-box">
 								<li class="facebook"><a href="https://www.facebook.com/pes.nurulfalah" class="fa fa-facebook-f"></a></li>
