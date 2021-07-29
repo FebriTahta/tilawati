@@ -43,13 +43,12 @@
 					<!-- Accordian Box -->
 					<ul class="accordion-box">	
 						<!--Block-->
-						<li class="accordion block">
-							<div class="acc-btn"><div class="icon-outer"><span class="icon icon-plus flaticon-plus-symbol"></span> <span class="icon icon-minus flaticon-substract"></span></div><span>{{ $key+1 }}. </span> {{ $item->program->name }}</div>
+						<li class="accordion block"> <?php date_default_timezone_set('Asia/Jakarta'); $date=$item->tanggal;?>
+							<div class="acc-btn"><div class="icon-outer"><span class="icon icon-plus flaticon-plus-symbol"></span> <span class="icon icon-minus flaticon-substract"></span></div><span> {{ Carbon\Carbon::parse($date)->isoFormat('D MMMM Y') }} -</span> {{ $item->program->name }}</div>
 							<div class="acc-content">
 								<div class="content">
-									<div class="text" style="padding: 3%">
-                                        <?php date_default_timezone_set('Asia/Jakarta'); $date=$item->tanggal;?>
-										<p class="text-capitalize">{{ Carbon\Carbon::parse($date)->isoFormat('D MMMM Y') }} <br/>
+									<div class="text">
+										<p class="text-capitalize">
                                         {{ strtoupper($item->cabang->name) }} - {{ $item->cabang->kabupaten->nama }}  <br/>
                                         Tempat pelaksanaan : {{ $item->tempat }}</p>
                                         <hr>

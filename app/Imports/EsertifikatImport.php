@@ -33,14 +33,15 @@ class EsertifikatImport implements ToCollection, WithChunkReading, ShouldQueue
                     $dt_pel = new Peserta;
                     $dt_pel->pelatihan_id = $this->id;
                     $dt_pel->tanggal = $this->tanggal;
-                    $dt_pel->name = $row[0];
+                    $dt_pel->name = $row[1];
                     $dt_pel->status = 3;
                     $dt_pel->created_at = new \DateTime;
                     $dt_pel->save();
 
                     $dt_n = new Certificate;
                     $dt_n->peserta_id = $dt_pel->id;
-                    $dt_n->link = $row[1];
+                    $dt_n->no = $row[0];
+                    $dt_n->link = $row[2];
                     $dt_n->created_at = new \DateTime;
                     $dt_n->save();
             }   
@@ -49,11 +50,11 @@ class EsertifikatImport implements ToCollection, WithChunkReading, ShouldQueue
 
     public function batchSize(): int
     {
-        return 10;
+        return 1000;
     }
 
     public function chunkSize(): int
     {
-        return 10;
+        return 1000;
     }
 }

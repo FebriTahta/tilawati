@@ -7,14 +7,14 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href="{{ URL::asset('tilawatipusat/libs/datatables/datatables.min.css')}}" rel="stylesheet" type="text/css" />
     <style>
-        table.dataTable.peserta td:nth-child(2) {
+        table.dataTable.peserta td:nth-child(3) {
         width: 150px;
         max-width: 150px;
         word-break: break-all;
         white-space: pre-line;
         text-align: center;
         }
-        table.dataTable.peserta th:nth-child(2) {
+        table.dataTable.peserta th:nth-child(3) {
         width: 150px;
         max-width: 150px;
         word-break: break-all;
@@ -55,6 +55,7 @@
                         <table id="data" class="table peserta table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
                             <thead style="text-transform: capitalize" class="text-success">
                                 <tr>
+                                    <th>no</th>
                                     <th>nama</th>
                                     <th>....</th>
                                 </tr>
@@ -181,6 +182,10 @@
                     url:'/data/e-certificate/'+diklat,
                 },
                 columns: [
+                    {
+                    data:'no',
+                    name:'no'
+                    },
                     {
                     data:'name',
                     name:'peserta.name'

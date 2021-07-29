@@ -196,6 +196,7 @@ class DiklatCont extends Controller
         $program = Program::where('id', $request->program_id)->first();
         $diklat  = Pelatihan::all()->count();
         $tanggal = Carbon::parse($request->tanggal)->isoFormat('D MMMM Y');
+        $cabang  = Cabang::where('id',$request->cabang_id)->first();
         Pelatihan::updateOrCreate(
             [
               'id' => $request->id
@@ -204,7 +205,7 @@ class DiklatCont extends Controller
                 'cabang_id' => $request->cabang_id,
                 'program_id' => $request->program_id,
                 'tanggal' => $request->tanggal,
-                'slug' => Str::slug(($diklat+1).'-'.$tanggal.'-'.$program->name),
+                'slug' => Str::slug($cabang->name.'-'.$tanggal.'-'.$program->name),
                 'tempat' => $request->tempat,
                 'keterangan' => $request->keterangan,
             ]
