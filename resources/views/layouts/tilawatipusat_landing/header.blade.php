@@ -96,7 +96,7 @@
 										<li><a href="#">Blog Diklat</a></li>
 									</ul>
 								</li>
-								<li><a href="#">Contact us</a></li>
+								<li><a href="/login">Login</a></li>
 							</ul>
 						</div>
 					</nav>
