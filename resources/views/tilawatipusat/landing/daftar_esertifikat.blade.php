@@ -32,7 +32,8 @@
                 <div class="title">Unduh E-Certificate</div>
                 <h2>{{ $diklat->program->name }}</h2>
                 <?php date_default_timezone_set('Asia/Jakarta'); $date=$diklat->tanggal;?>
-                <p>( {{ Carbon\Carbon::parse($date)->isoFormat('D MMMM Y') }} )</p>
+                {{-- <p>( {{ Carbon\Carbon::parse($date)->isoFormat('D MMMM Y') }} )</p> --}}
+                <p>(10 - 11 Juli 2021)</p>
                 <div class="separate"></div>
             </div>
         </div>
