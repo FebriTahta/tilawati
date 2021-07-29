@@ -54,7 +54,7 @@
                                         Tempat pelaksanaan : {{ $item->tempat }}</p>
                                         <hr>
                                         <div class="form-group text-right">
-                                            <a href="/cetak/e-certificate/diklat/{{ $item->id }}/{{ $item->program->slug }}" class="btn btn-sm btn-success">masuk</a>
+                                            <a href="/e-certificate/{{ $item->slug }}" class="btn btn-sm btn-success">masuk</a>
                                         </div>
 									</div>
 								</div>

@@ -46,13 +46,14 @@ use App\Http\Controllers\LandingCont;
 Route::get('/', function () {
     return redirect('/homepage');
 });
-Route::get('/e-certificate/{diklat_id}/{slug_prgram}',[LandingCont::class,'tes']);
+Route::get('/e-certificate/{slug_diklat}',[LandingCont::class,'ecertificate']);
+Route::get('/data/e-certificate/{diklat_id}',[LandingCont::class,'ecertificate_data']);
 Route::get('/tes_data',[LandingCont::class,'tes_data']);
 Auth::routes();
 //homepage
 Route::get('/homepage',[LandingCont::class,'index'])->name('homepage');
 Route::get('/cetak/e-certificate/diklat',[LandingCont::class,'daftar_esertifikat']);
-Route::get('/cetak/e-certificate/peserta-diklat/{diklat_id}/{slug_program}',[LandingCont::class,'daftar_esertifikat_peserta']);
+Route::get('/cetak/e-certificate/{slug_diklat}',[LandingCont::class,'daftar_esertifikat_peserta']);
 Route::group(['middleware' => ['auth', 'CheckRole:pusat,bendahara']], function () {
     Route::post('/import/e-certificate',[LandingCont::class,'import_e_sertifikat'])->name('import.e_certificate');
 });

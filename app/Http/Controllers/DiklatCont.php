@@ -7,6 +7,8 @@ use App\Models\Peserta;
 use DB;
 use App\Models\Cabang;
 use DataTables;
+use Carbon\Carbon;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 class DiklatCont extends Controller
@@ -191,6 +193,9 @@ class DiklatCont extends Controller
 
     public function store(Request $request)
     {
+        $program = Program::where('id', $request->program_id)->first();
+        $diklat  = Pelatihan::all()->count();
+        $tanggal = Carbon::parse($request->tanggal)->isoFormat('D MMMM Y');
         Pelatihan::updateOrCreate(
             [
               'id' => $request->id
@@ -199,7 +204,7 @@ class DiklatCont extends Controller
                 'cabang_id' => $request->cabang_id,
                 'program_id' => $request->program_id,
                 'tanggal' => $request->tanggal,
-                // 'name' => $request->name,
+                'slug' => Str::slug(($diklat+1).'-'.$tanggal.'-'.$program->name),
                 'tempat' => $request->tempat,
                 'keterangan' => $request->keterangan,
             ]

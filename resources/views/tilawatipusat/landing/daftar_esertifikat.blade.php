@@ -30,7 +30,7 @@
             <!-- Sec Title -->
             <div class="sec-title centered">
                 <div class="title">Unduh E-Certificate</div>
-                <h2>{{ $program->name }}</h2>
+                <h2>{{ $diklat->program->name }}</h2>
                 <?php date_default_timezone_set('Asia/Jakarta'); $date=$diklat->tanggal;?>
                 <p>( {{ Carbon\Carbon::parse($date)->isoFormat('D MMMM Y') }} )</p>
                 <div class="separate"></div>
@@ -169,6 +169,7 @@
     </script>
     <script>
         var diklat = $('#diklat').val();
+        console.log(diklat);
         $('#data').DataTable({
                 //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
                 destroy: true,
@@ -176,7 +177,7 @@
                 serverSide: true,
                 buttons: ['pdf'],
                 ajax: {
-                    url:'/tes_data',
+                    url:'/data/e-certificate/'+diklat,
                 },
                 columns: [
                     {

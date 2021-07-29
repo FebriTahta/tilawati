@@ -12,12 +12,17 @@ class Pelatihan extends Model
         'tanggal',
         'cabang_id',
         'program_id',
-        // 'slug',
+        'slug',
         'keterangan',
         'tempat'
     ];
     protected $dates = ['deleted_at'];
 
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+    
     public function cabang()
     {
         return $this->belongsTo(Cabang::class);

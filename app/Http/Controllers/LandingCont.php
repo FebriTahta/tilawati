@@ -18,11 +18,11 @@ class LandingCont extends Controller
         return view('tilawatipusat.landing.index',compact('diklat'));
     }
 
-    public function daftar_esertifikat(Request $request, $diklat_id, $slug_program)
+    public function daftar_esertifikat(Request $request, $slug_diklat)
     {
-        $program=Program::where('slug',$slug_program)->first();
-        $diklat = Pelatihan::where('id',$diklat_id)->first();
-        return view('tilawatipusat.landing.daftar_esertifikat',compact('diklat','program'));
+        $diklat = Pelatihan::where('slug',$slug_diklat)->first();
+        return $diklat;
+        return view('tilawatipusat.landing.daftar_esertifikat',compact('diklat'));
     }
 
     public function daftar_esertifikat_peserta(Request $request)
@@ -63,7 +63,13 @@ class LandingCont extends Controller
         return view('tilawatipusat.landing.daftar_esertifikat',compact('diklat','program'));
     }
 
-    public function tes_data()
+    public function ecertificate($slug_diklat)
+    {
+        $diklat = Pelatihan::where('slug',$slug_diklat)->first();
+        return view('tilawatipusat.landing.daftar_esertifikat',compact('diklat'));
+    }
+
+    public function ecertificate_data($diklat_id)
     {
         if(request()->ajax())
         {
