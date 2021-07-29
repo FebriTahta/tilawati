@@ -16,7 +16,8 @@
 {{-- tag --}}
 <meta property="og:site_name" content="Diklat Tilawati">
 <meta property="og:title" content="Download E-Certificate" />
-<meta property="og:description" content="Silahkan Download E-Certificate anda pada halaman ini" />
+<meta property="og:description" content="Diklat Standarisasi Level 1 Nasional
+(10-11 Juli 2021)" />
 <meta property="og:image" itemprop="image" content="{{ asset('assets/images/tagtil.png') }}">
 <meta property="og:type" content="website" />
 <meta property="og:updated_time" content="1440432930" />
