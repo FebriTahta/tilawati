@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Pelatihan;
 use App\Models\Peserta;
+use App\Models\Program;
 use App\Models\Certificate;
 use DataTables;
 use Excel;
@@ -17,13 +18,14 @@ class LandingCont extends Controller
         return view('tilawatipusat.landing.index',compact('diklat'));
     }
 
-    public function daftar_esertifikat(Request $request, $diklat_id)
+    public function daftar_esertifikat(Request $request, $diklat_id, $slug_program)
     {
+        $program=Program::where('slug',$slug_program)->first();
         $diklat = Pelatihan::where('id',$diklat_id)->first();
-        return view('tilawatipusat.landing.daftar_esertifikat',compact('diklat'));
+        return view('tilawatipusat.landing.daftar_esertifikat',compact('diklat','program'));
     }
 
-    public function daftar_esertifikat_peserta(Request $request,$diklat_id)
+    public function daftar_esertifikat_peserta(Request $request)
     {
         if(request()->ajax())
         {
@@ -52,5 +54,31 @@ class LandingCont extends Controller
             $data,
             'success'=>'E-Sertifikat Peserta Berhasil Ditambahkan Melalui file Excel'
         ]);
+    }
+
+    public function tes($diklat_id,$slug_program)
+    {
+        $program= Program::where('slug',$slug_program)->first(); 
+        $diklat = Pelatihan::where('id',$diklat_id)->first();
+        return view('tilawatipusat.landing.daftar_esertifikat',compact('diklat','program'));
+    }
+
+    public function tes_data()
+    {
+        if(request()->ajax())
+        {
+            $data   = Certificate::with('peserta');
+                return DataTables::of($data)
+                        ->addColumn('name',function($data){
+                            $name = strtolower($data->peserta->name);
+                            return $name;
+                        })
+                        ->addColumn('download',function($data){
+                            $ok = '<a href="'.$data->link.'" target="_blank" class="btn btn-sm btn-success text-white">unduh</a>';
+                            return $ok;
+                        })
+                ->rawColumns(['download','name'])
+                ->make(true);
+        }
     }
 }

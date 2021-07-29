@@ -9,9 +9,14 @@ class Program extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name','slug'];
     protected $dates = ['deleted_at'];
 
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+    
     public function registrasi()
     {
         return $this->hasMany(Registrasi::class);

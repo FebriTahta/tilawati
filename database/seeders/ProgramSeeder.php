@@ -1,7 +1,7 @@
 <?php
 
 namespace Database\Seeders;
-
+use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 
 class ProgramSeeder extends Seeder
@@ -15,32 +15,38 @@ class ProgramSeeder extends Seeder
     {
         $pro = [
             [
-                'name' => "munaqosyah santri",
+                $name = 'name' => "munaqosyah santri",
+                'slug' => Str::slug("munaqosyah santri",),
                 'created_at' => new \DateTime,
                 'updated_at' => null,
             ],
             [
-                'name' => "standarisasi guru al qur'an level 1",
+                $name = 'name' => "standarisasi guru al qur'an level 1",
+                'slug' => Str::slug("standarisasi guru al qur'an level 1"),
                 'created_at' => new \DateTime,
                 'updated_at' => null,
             ],
             [
-                'name' => "standarisasi guru al qur'an level 2",
+                $name = 'name' => "standarisasi guru al qur'an level 2",
+                'slug' => Str::slug("standarisasi guru al qur'an level 2"),
                 'created_at' => new \DateTime,
                 'updated_at' => null,
             ],
             [
-                'name' => "tahfidz",
+                $name = 'name' => "tahfidz",
+                'slug' => Str::slug("tahfidz"),
                 'created_at' => new \DateTime,
                 'updated_at' => null,
             ],
             [
-                'name' => "training of trainer",
+                $name = 'name' => "training of trainer",
+                'slug' => Str::slug("training of trainer"),
                 'created_at' => new \DateTime,
                 'updated_at' => null,
             ],
             [
-                'name' => "munaqisy",
+                $name = 'name' => "munaqisy",
+                'slug' => Str::slug("munaqisy"),
                 'created_at' => new \DateTime,
                 'updated_at' => null,
             ],

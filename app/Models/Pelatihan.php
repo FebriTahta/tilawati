@@ -12,7 +12,7 @@ class Pelatihan extends Model
         'tanggal',
         'cabang_id',
         'program_id',
-        // 'name',
+        // 'slug',
         'keterangan',
         'tempat'
     ];

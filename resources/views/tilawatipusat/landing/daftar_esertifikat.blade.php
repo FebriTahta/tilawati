@@ -30,7 +30,9 @@
             <!-- Sec Title -->
             <div class="sec-title centered">
                 <div class="title">Unduh E-Certificate</div>
-                <h2>{{ $diklat->program->name }}</h2>
+                <h2>{{ $program->name }}</h2>
+                <?php date_default_timezone_set('Asia/Jakarta'); $date=$diklat->tanggal;?>
+                <p>( {{ Carbon\Carbon::parse($date)->isoFormat('D MMMM Y') }} )</p>
                 <div class="separate"></div>
             </div>
         </div>
@@ -174,7 +176,7 @@
                 serverSide: true,
                 buttons: ['pdf'],
                 ajax: {
-                    url:'/cetak/e-certificate/peserta-diklat/'+ diklat,
+                    url:'/tes_data',
                 },
                 columns: [
                     {
@@ -185,6 +187,7 @@
                     data:'download',
                     name:'download'
                     },
+                   
                 ]
                 });
     </script>

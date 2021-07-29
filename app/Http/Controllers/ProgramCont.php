@@ -6,17 +6,13 @@ use App\Models\Program;
 use App\Models\Penilaian;
 use DataTables;
 use App\Models\Kabupaten;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 class ProgramCont extends Controller
 {
     public function index(Request $request)
     {
-        // $data   = Program::with('penilaian')->get();
-        // foreach ($data as $key => $value) {
-        //     # code...
-        //     return $value->penilaian;
-        // }
 
         return view('tilawatipusat.program.index');
     }
@@ -102,6 +98,7 @@ class ProgramCont extends Controller
             ],
             [
                 'name' => $request->name,
+                'slug' => Str::slug($request->name)
             ]
         );
         return response()->json(
