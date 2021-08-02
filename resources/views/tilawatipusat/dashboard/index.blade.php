@@ -19,7 +19,7 @@
 @endsection
 
 @section('content')
-    @component('common-tilawatipusat.breadcrumb')
+	@component('common-tilawatipusat.breadcrumb')
          @slot('title') Dashboard   @endslot
          @slot('title_li')   @endslot
      @endcomponent

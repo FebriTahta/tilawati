@@ -44,7 +44,7 @@ use App\Http\Controllers\LandingCont;
 */
 
 Route::get('/', function () {
-    return redirect('/homepage');
+    return redirect('/welcome');
 });
 Route::get('/e-certificate/{slug_diklat}',[LandingCont::class,'ecertificate']);
 Route::get('/data/e-certificate/{diklat_id}',[LandingCont::class,'ecertificate_data']);
