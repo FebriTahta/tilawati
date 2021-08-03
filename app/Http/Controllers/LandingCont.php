@@ -48,8 +48,7 @@ class LandingCont extends Controller
     {
         $id = $request->id ;
         $pelatihan = Pelatihan::find($id);
-        $tanggal = $request->tanggal;
-        $data = Excel::queueImport(new EsertifikatImport($id, $tanggal), $request->file('file'));
+        $data = Excel::queueImport(new EsertifikatImport($id), $request->file('file'));
         return Response()->json([
             $data,
             'success'=>'E-Sertifikat Peserta Berhasil Ditambahkan Melalui file Excel'

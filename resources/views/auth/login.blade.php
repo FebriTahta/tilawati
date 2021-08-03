@@ -46,28 +46,10 @@
     <div class="container">
       <div class="forms-container">
         <div class="signin-signup">
-          <form action="#" class="sign-in-form grid-container">
-                <div class="card">
-                    <div class="card-body">
-                        <div style="font-size: 16px; text-align:left" class="title item">Diklat <br/> Standarisasi Guru Al Qur'an Level 2 <br /> Cabang Cahaya Amanah - Surabaya 
-                            <br />12 Juni 2020 <br/>
-                            <button class="daftar btn" style="height: 40px">daftar</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-body">
-                        <div style="font-size: 16px; text-align:left" class="title item">Diklat <br/> Standarisasi Guru Al Qur'an Level 2 <br /> Cabang Cahaya Amanah - Surabaya 
-                            <br />12 Juni 2020 <br/>
-                            <div style="text-align: right">
-                                <button class="daftar btn" style="height: 40px">daftar</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-          </form>
           <form method="POST" action="{{ route('login') }}" class="sign-up-form">@csrf
-            <h2 class="title">Logo NF & Tilawati</h2>
+            <h2 class="title">
+              <img src="{{ asset('assets/images/tilawati-blue.png') }}" width="150px" alt="">
+            </h2>
             <div class="input-field">
               <i class="fas fa-user"></i>
               <input type="text" class="form-control" name="username" placeholder="Username" />
@@ -90,26 +72,25 @@
                 Selamat datang di sistem pendaftaran program diklat TILAWATI <br/>
             </p>
             <button class="btn transparent" style="width: 170px" id="sign-up-btn">
-              Masuk / Cek Status
+              Masuk
             </button>
           </div>
           <img src="{{ asset('tilawatipusat/newlogin/img/register.svg') }}" class="image" alt="" />
         </div>
         <div class="panel right-panel">
           <div class="content">
-            <h3>Bergabung Mengikuti Diklat ?</h3>
+            <h3>Download Template Data Import Peserta Diklat ?</h3>
             <p>
-              Cek daftar diklat yang akan datang dibawah ini
+              Cek daftar template peserta diklat berikut ini
             </p>
             <button class="btn transparent" id="sign-in-btn">
-              Jadwal
+              Template
             </button>
           </div>
           <img src="{{ asset('tilawatipusat/newlogin/img/register.svg') }}" class="image" alt="" />
         </div>
       </div>
     </div>
-
     <script src="{{ asset('tilawatipusat/newlogin/app.js') }}"></script>
   </body>
 </html>

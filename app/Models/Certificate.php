@@ -9,13 +9,20 @@ class Certificate extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'pelatihan_id',
         'peserta_id',
         'no',
+        'name',
         'link',
     ];
 
     public function peserta()
     {
         return $this->belongsTo(Peserta::class);
+    }
+
+    public function pelatihan()
+    {
+        return $this->belongsTo(Pelatihan::class);
     }
 }

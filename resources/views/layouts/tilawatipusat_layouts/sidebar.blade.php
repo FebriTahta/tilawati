@@ -43,9 +43,16 @@
                 </li>
                 <li>
                     <a href="{{ route('diklat.seluruh_peserta') }}" class="waves-effect">
-                        <i class="mdi mdi-smart-card-outline"></i>
+                        <i class="fa fa-book"></i>
                         <span class="badge badge-pill badge-danger float-right"></span>
                         <span>Seluruh Peserta Diklat</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('sertifikat') }}" class="waves-effect">
+                        <i class="mdi mdi-smart-card-outline"></i>
+                        <span class="badge badge-pill badge-danger float-right"></span>
+                        <span>E-Sertifikat</span>
                     </a>
                 </li>
 

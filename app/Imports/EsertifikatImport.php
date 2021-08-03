@@ -15,12 +15,11 @@ use Maatwebsite\Excel\Concerns\ToCollection;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Maatwebsite\Excel\Concerns\WithChunkReading;
 
-class EsertifikatImport implements ToCollection, WithChunkReading, ShouldQueue
+class EsertifikatImport implements ToCollection
 {
-    public function __construct($id,$tanggal)
+    public function __construct($id)
     {
         $this->id=$id;
-        $this->tanggal=$tanggal;
     }
     /**
     * @param Collection $collection
@@ -30,31 +29,14 @@ class EsertifikatImport implements ToCollection, WithChunkReading, ShouldQueue
         foreach ($collection as $key => $row) {
             # code...
             if ($key >= 1) {
-                    $dt_pel = new Peserta;
-                    $dt_pel->pelatihan_id = $this->id;
-                    $dt_pel->tanggal = $this->tanggal;
-                    $dt_pel->name = $row[1];
-                    $dt_pel->status = 3;
-                    $dt_pel->created_at = new \DateTime;
-                    $dt_pel->save();
-
                     $dt_n = new Certificate;
-                    $dt_n->peserta_id = $dt_pel->id;
+                    $dt_n->pelatihan_id = $this->id;
                     $dt_n->no = $row[0];
+                    $dt_n->name = $row[1];
                     $dt_n->link = $row[2];
                     $dt_n->created_at = new \DateTime;
                     $dt_n->save();
             }   
         }
-    }
-
-    public function batchSize(): int
-    {
-        return 1000;
-    }
-
-    public function chunkSize(): int
-    {
-        return 1000;
     }
 }

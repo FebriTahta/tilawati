@@ -32,6 +32,7 @@ use App\Http\Controllers\TeritoriCont;
 use App\Http\Controllers\KepalaCont;
 use App\Http\Controllers\RegistrasiCont;
 use App\Http\Controllers\LandingCont;
+use App\Http\Controllers\SertifikatCont;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -44,7 +45,7 @@ use App\Http\Controllers\LandingCont;
 */
 
 Route::get('/', function () {
-    return redirect('/welcome');
+    return redirect('/login');
 });
 Route::get('/e-certificate/{slug_diklat}',[LandingCont::class,'ecertificate']);
 Route::get('/data/e-certificate/{diklat_id}',[LandingCont::class,'ecertificate_data']);
@@ -320,6 +321,10 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     Route::post('/diklat-import-peserta',[ImportController::class,'importPesertaDiklat'])->name('diklat.import_peserta');
 
     Route::get('/diklat-dashboard',[DashboardCont::class,'index'])->name('diklat.dashboard');
+
+    Route::get('/sertifikat',[SertifikatCont::class,'index'])->name('sertifikat');
+    Route::get('/sertifikat-daftar-pelatihan',[SertifikatCont::class,'daftar_pelatihan'])->name('sertifikat.daftar.pelatihan');
+    Route::post('/import/certificate',[SertifikatCont::class,'import_e_sertifikat'])->name('import.certificate');
 
 });
 
