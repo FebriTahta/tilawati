@@ -59,7 +59,7 @@
                                                     <th>pelaksana</th>
                                                     <th>tanggal</th>
                                                     <th>sertifikat</th>
-                                                    <th>Option</th>
+                                                    <th>...</th>
                                                 </tr>
                                             </thead>
     
@@ -72,7 +72,7 @@
                                                     <th>pelaksana</th>
                                                     <th>tanggal</th>
                                                     <th>sertifikat</th>
-                                                    <th>Option</th>
+                                                    <th>...</th>
                                                 </tr>
                                             </tfoot>
                                         </table>
