@@ -29,13 +29,17 @@ class EsertifikatImport implements ToCollection
         foreach ($collection as $key => $row) {
             # code...
             if ($key >= 1) {
-                    $dt_n = new Certificate;
-                    $dt_n->pelatihan_id = $this->id;
-                    $dt_n->no = $row[0];
-                    $dt_n->name = $row[1];
-                    $dt_n->link = $row[2];
-                    $dt_n->created_at = new \DateTime;
-                    $dt_n->save();
+                    $data = Certificate::where('name', $row[1])->first();
+                    if ($data == null) {
+                        # code...
+                        $dt_n = new Certificate;
+                        $dt_n->pelatihan_id = $this->id;
+                        $dt_n->no = $row[0];
+                        $dt_n->name = $row[1];
+                        $dt_n->link = $row[2];
+                        $dt_n->created_at = new \DateTime;
+                        $dt_n->save();
+                    }
             }   
         }
     }
