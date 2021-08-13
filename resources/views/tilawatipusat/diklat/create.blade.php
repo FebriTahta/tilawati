@@ -46,10 +46,6 @@
                                                         </div>
                                                      </div>
                                                  </div>
-                                                 {{-- <div class="form-group">
-                                                    <label for="">Nama Pelatihan</label>
-                                                     <input type="text" name="name" class="form-control text-capitalize" required>
-                                                 </div> --}}
                                                  <div class="form-group">
                                                     <label for="">Program</label>
                                                      <select name="program_id" class="form-control text-capitalize" id="" required>
@@ -72,6 +68,16 @@
                                                          <option value="instruktur">INSTRUKTUR</option>
                                                      </select>
                                                  </div>
+                                                 <div class="form-group">
+                                                    <i class="text-danger"></i><label for="">Foto <span class="text-success">(Flyer)</span></label>
+                                                        <div class="input-group" style="margin-bottom: 30px">
+                                                            <div class="custom-file">
+                                                                <input type="file" class="custom-file-input" name="image" id="inputGroupFile02" id="file"/>
+                                                                <label class="custom-file-label" for="inputGroupFile02">Pilih file</label>
+                                                            </div>
+                                                        </div>
+                                                            <img  src="https://placehold.it/80x80"  id="preview" class="img-thumbnail">
+                                                </div>
                                             </div>
                                             <div class="form-group text-right col-md-12">
                                                 <button class="btn btn-primary" id="z" type="submit"> <i class="fa fa-save"></i> Save</button>
@@ -151,7 +157,18 @@
                     }
                 });
             });
+            $('input[type="file"]').change(function(e) {
+                var fileName = e.target.files[0].name;
+                $("#file").val(fileName);
 
+                var reader = new FileReader();
+                reader.onload = function(e) {   
+                // get loaded data and render thumbnail.
+                document.getElementById("preview").src = e.target.result;
+                };
+                // read the image file as a data URL.
+                reader.readAsDataURL(this.files[0]);
+            });
             $('#diklat_store').submit(function(e) {
                 e.preventDefault();
                 var formData = new FormData(this);

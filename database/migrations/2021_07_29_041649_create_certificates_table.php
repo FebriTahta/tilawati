@@ -16,7 +16,7 @@ class CreateCertificatesTable extends Migration
         Schema::create('certificates', function (Blueprint $table) {
             $table->id();
 			$table->unsignedBigInteger('pelatihan_id');
-            $table->unsignedBigInteger('peserta_id')->nullable();
+            $table->unsignedBigInteger('peserta_id');
 			$table->string('name');
             $table->integer('no')->nullable();
             $table->string('link');
@@ -24,7 +24,7 @@ class CreateCertificatesTable extends Migration
         });
 
         Schema::table('certificates', function (Blueprint $table){
-            $table->foreign('peserta_id')->references('id')->on('pesertas')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('pelatihan_id')->references('id')->on('pelatihans')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

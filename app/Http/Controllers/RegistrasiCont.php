@@ -15,14 +15,12 @@ use Illuminate\Http\Request;
 
 class RegistrasiCont extends Controller
 {
-    public function index(Request $request,$program_id, $diklat_id)
+    public function index(Request $request,$slug_diklat)
     {
-        // return view('layouts.tilawatipusat_registrasi.raw');
-        $diklat = Pelatihan::find($diklat_id);
-        $diklat_id = $diklat->id;
+        $diklat = Pelatihan::where('slug', $slug_diklat)->first();
         $dt_props2 = Provinsi::all();
-        $registrasi = Registrasi::where('program_id',$program_id)->get();
-        return view('tilawatipusat.registrasi.index',compact('diklat_id','diklat','dt_props2','registrasi'));
+        $registrasi = Registrasi::where('program_id',$diklat->program_id)->get();
+        return view('tilawatipusat.registrasi.index',compact('diklat','dt_props2','registrasi'));
     }
 
     public function syarat(Request $request)
@@ -32,79 +30,92 @@ class RegistrasiCont extends Controller
 
     public function registrasi(Request $request)
     {
-        $data["email"] = $request->email;
-        $data["title"] = "From tilawatipusat.com";
-        $data["body"] = "This is Demo";
-
-        // $files = [
-        //     public_path('files/160031367318.pdf'),
-        //     public_path('files/1599882252.png'),
-        // ];
-
-        // Mail::send('tilawatipusat.emails.online_registrasi', $data, function($message)use($data, $files) {
-        Mail::send('tilawatipusat.emails.online_registrasi', $data, function($message)use($data) {
-            $message->to($data["email"], $data["email"])
-                    ->subject($data["title"]);
- 
-            // foreach ($files as $file){
-            //     $message->attach($file);
-            // }
-            
-        });
-
-        $diklat         = Pelatihan::where('id', $request->pelatihan_id)->first();
-        $tanggal        = $diklat->tanggal;
-        $kabupaten_kota = Kabupaten::where('id',$request->kabupaten_id)->first();
-        $kota           = $kabupaten_kota->nama; 
-        $peserta        = Peserta::updateOrCreate(
-            [
-                'id' => $request->id
-            ],
-            [
-                'nik' => $request->nik,
-                'pelatihan_id' => $request->pelatihan_id,
-                'cabang_id' => $request->cabang_id,
-                'lembaga_id' => $request->lembaga_id,
-                'provinsi_id' => $request->provinsi_id,
-                'kabupaten_id' => $request->kabupaten_id,
-                'kecamatan_id' => $request->kecamatan_id,
-                'kelurahan_id' => $request->kelurahan_id,
-                'tanggal' => $tanggal,
-                'name' => $request->name,
-                'tmptlahir' => $request->tmptlahir,
-                'tgllahir' => $request->tgllahir,
-                'alamat' => $request->alamat,
-                'kota' => $request->nama,
-                'telp' => $request->phone,
-                'email' => $request->email,
-                'bersyahadah' => $request->bersyahadah,
-                'jilid' => $request->jilid,
-                'kriteria' => $request->kriteria,
-                'munaqisy' => $request->munaqisy,
-                'status' => '0',
-            ]
-        );
-
-        if (count($request->fileupload) > 0) {
-            # code...
-            if($request->hasfile('fileupload'))
-            {
-                foreach($request->file('fileupload') as $key=>$image)
-                {
-                    $name=$image->getClientOriginalName();
-                    $image->move(public_path().'/file_peserta/', $name);  // your folder path
-                    $data_file_name[] = $name;
-                    $data = array(
-                            'peserta_id'=> $peserta->id,
-                            'registrasi_id'=> $request->registrasi_id[$key],
-                            'file'=>$name,
-                        );
-                    Filepeserta::insert($data);    
-                }
-            }
-        }
+        $nik = $request->nik;
+        $dpp = $request->pelatihan_id;
+        $dp  = Peserta::where('nik', $nik)->where('pelatihan_id',$dpp)->first();
         
-        return redirect('/pendaftaran-data-calon-peserta-diklat-sukses/'.$diklat->program->id.'/'.$diklat->id.'/'.$peserta->id);
+        if ($dp == null) {
+            # code...
+            if (count($request->fileupload) > 0) {
+                # code...
+    
+                $data["email"] = $request->email;
+                $data["title"] = "From tilawatipusat.com";
+                $data["body"] = "This is Demooo Pendaftaran";
+    
+                // $files = [
+                //     public_path('files/160031367318.pdf'),
+                //     public_path('files/1599882252.png'),
+                // ];
+    
+                // Mail::send('tilawatipusat.emails.online_registrasi', $data, function($message)use($data, $files) {
+                Mail::send('tilawatipusat.emails.online_registrasi', $data, function($message)use($data) {
+                    $message->to($data["email"], $data["email"])
+                            ->subject($data["title"]);
+        
+                    // foreach ($files as $file){
+                    //     $message->attach($file);
+                    // }
+                    
+                });
+    
+                $diklat         = Pelatihan::where('id', $request->pelatihan_id)->first();
+                $tanggal        = $diklat->tanggal;
+                $kabupaten_kota = Kabupaten::where('id',$request->kabupaten_id)->first();
+                $kota           = $kabupaten_kota->nama; 
+                $peserta        = Peserta::updateOrCreate(
+                    [
+                        'id' => $request->id
+                    ],
+                    [
+                        'nik' => $request->nik,
+                        'pelatihan_id' => $request->pelatihan_id,
+                        'cabang_id' => $request->cabang_id,
+                        'lembaga_id' => $request->lembaga_id,
+                        'provinsi_id' => $request->provinsi_id,
+                        'kabupaten_id' => $request->kabupaten_id,
+                        'kecamatan_id' => $request->kecamatan_id,
+                        'kelurahan_id' => $request->kelurahan_id,
+                        'tanggal' => $tanggal,
+                        'name' => $request->name,
+                        'tmptlahir' => $request->tmptlahir,
+                        'tgllahir' => $request->tgllahir,
+                        'alamat' => $request->alamat,
+                        'kota' => $request->nama,
+                        'telp' => $request->phone,
+                        'email' => $request->email,
+                        'bersyahadah' => $request->bersyahadah,
+                        'jilid' => $request->jilid,
+                        'kriteria' => $request->kriteria,
+                        'munaqisy' => $request->munaqisy,
+                        'status' => '0',
+                    ]
+                );
+                #code
+                if($request->hasfile('fileupload'))
+                {
+                    foreach($request->file('fileupload') as $key=>$image)
+                    {
+                        $name=$image->getClientOriginalName();
+                        $image->move(public_path().'/file_peserta/', $name);  // your folder path
+                        $data_file_name[] = $name;
+                        $data = array(
+                                'peserta_id'=> $peserta->id,
+                                'registrasi_id'=> $request->registrasi_id[$key],
+                                'file'=>$name,
+                                'status'=>'0',
+                            );
+                        Filepeserta::insert($data);    
+                    }
+                }
+                return redirect('/pendaftaran-data-calon-peserta-diklat-sukses/'.$diklat->program->id.'/'.$diklat->id.'/'.$peserta->id);
+            }else{
+                return "Antum belum menyertakan lembar bukti persyaratan pendaftaran";
+            }
+        } else {
+            # code...
+            return "NIK anda sudah terdaftar pada diklat ini";
+        }
     }
 
     public function data_syarat(Request $request)

@@ -135,7 +135,7 @@
                                                         <div class="input-group-append">
                                                             <button type="button" class="browse btn btn-primary">Browse...</button>
                                                         </div>
-                                                    </div>
+                                                    </div> 
                                                         <img  src="https://placehold.it/80x80"  id="preview" class="img-thumbnail">
                                             </div>
                                         </div>

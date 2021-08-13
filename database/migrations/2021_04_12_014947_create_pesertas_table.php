@@ -16,7 +16,8 @@ class CreatePesertasTable extends Migration
         Schema::create('pesertas', function (Blueprint $table) {
             $table->bigIncrements('id')->startingValue(223300);
             $table->bigInteger('nik')->nullable();
-            $table->unsignedBigInteger('pelatihan_id');
+            $table->unsignedBigInteger('acara_id')->nullable();
+            $table->unsignedBigInteger('pelatihan_id')->nullable();
             $table->unsignedBigInteger('cabang_id')->nullable();
             $table->unsignedBigInteger('lembaga_id')->nullable();
             $table->unsignedBigInteger('provinsi_id')->nullable();
@@ -32,15 +33,15 @@ class CreatePesertasTable extends Migration
             $table->string('kota')->nullable()->index();
             $table->string('telp')->nullable()->index();
             $table->string('email')->nullable();
-            $table->integer('tf')->nullable();
-            $table->integer('fs')->nullable();
-            $table->integer('tj')->nullable();
-            $table->integer('gm')->nullable();
-            $table->integer('sl')->nullable();
-            $table->integer('mt')->nullable();
-            $table->integer('im')->nullable();
-            $table->integer('il')->nullable();
-            $table->integer('i')->nullable();
+            // $table->integer('tf')->nullable();
+            // $table->integer('fs')->nullable();
+            // $table->integer('tj')->nullable();
+            // $table->integer('gm')->nullable();
+            // $table->integer('sl')->nullable();
+            // $table->integer('mt')->nullable();
+            // $table->integer('im')->nullable();
+            // $table->integer('il')->nullable();
+            // $table->integer('i')->nullable();
             $table->string('bersyahadah')->nullable();
             $table->string('jilid')->nullable();
             $table->string('kriteria')->nullable();

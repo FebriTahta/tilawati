@@ -18,6 +18,7 @@ class CreateFilepesertasTable extends Migration
             $table->unsignedBigInteger('peserta_id');
             $table->unsignedBigInteger('registrasi_id');
             $table->string('file');
+            $table->string('status');
             $table->timestamps();
         });
     }

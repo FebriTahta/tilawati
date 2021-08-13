@@ -8,6 +8,7 @@ use DB;
 use App\Models\Cabang;
 use DataTables;
 use Carbon\Carbon;
+use App\Models\Flyer;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
@@ -197,7 +198,8 @@ class DiklatCont extends Controller
         $diklat  = Pelatihan::all()->count();
         $tanggal = Carbon::parse($request->tanggal)->isoFormat('D MMMM Y');
         $cabang  = Cabang::where('id',$request->cabang_id)->first();
-        Pelatihan::updateOrCreate(
+        //create pure pelatihan
+        $data    = Pelatihan::updateOrCreate(
             [
               'id' => $request->id
             ],
@@ -210,6 +212,22 @@ class DiklatCont extends Controller
                 'keterangan' => $request->keterangan,
             ]
         );
+        //menambahkan gambar flyer
+        $data2  = Flyer::updateOrCreate(
+            [
+                'id' => $request->id
+            ],
+            [
+                'pelatihan_id' => $data->id,
+                'image' => $request->image,
+            ]
+        );
+        if($request -> hasFile('image'))
+        {
+            $request->file('image')->move('image_flyer/',$request->file('image')->getClientOriginalName());
+            $data2->image = $request->file('image')->getClientOriginalName();
+            $data2->save();
+        }
       
         return response()->json(
             [

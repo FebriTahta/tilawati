@@ -24,6 +24,7 @@ use App\Http\Controllers\KriteriaCont;
 use App\Http\Controllers\CetakCont;
 use App\Http\Controllers\DiklatCont;
 use App\Http\Controllers\PesertaCont;
+use App\Http\Controllers\AcaraCont;
 use App\Http\Controllers\DashboardCont;
 use App\Http\Controllers\PenilaianCont;
 use App\Http\Controllers\ProfileCont;
@@ -32,7 +33,11 @@ use App\Http\Controllers\TeritoriCont;
 use App\Http\Controllers\KepalaCont;
 use App\Http\Controllers\RegistrasiCont;
 use App\Http\Controllers\LandingCont;
+use App\Http\Controllers\KonfirmasiCont;
 use App\Http\Controllers\SertifikatCont;
+use App\Http\Controllers\BroadcastController;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\MyTestMail;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -63,7 +68,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,bendahara']], function (
 Route::get('/diklat-profile-peserta/{id_peserta}/{id_program}/{id_pelatihan}/admin',[ProfileCont::class,'index'])->name('diklat.profile_peserta');
 Route::get('/diklat-profile-peserta/{id_peserta}/{id_program}/{id_pelatihan}',[ProfileCont::class,'scan'])->name('diklat.profile_peserta_scan');
 //registrasi
-Route::get('/registrasi/{program_id}/{diklat_id}',[RegistrasiCont::class,'index'])->name('diklat.registrasi');
+Route::get('/registrasi/{slug_diklat}',[RegistrasiCont::class,'index'])->name('diklat.registrasi');
 //sub controller ajax
 //fetch propinsi, kabupaten/kota, kecamatan, kelurahan
 //sub controller ajax
@@ -85,7 +90,7 @@ Route::get('/fetchpp/{id}',[SubController::class, 'fetchpp']);
 //submit registrasi pendaftaran online
 Route::post('/pendaftaran-peserta-diklat',[RegistrasiCont::class,'registrasi'])->name('diklat.registrasi');
 Route::get('/pendaftaran-data-calon-peserta-diklat-sukses/{program_id}/{diklat_id}/{peserta_id}', [RegistrasiCont::class,'sukses'])->name('diklat.registrasi.sukses');
-Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga']], function () {
+Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara']], function () {
     //syarat regis
     Route::get('/diklat-persyaratan',[RegistrasiCont::class,'syarat'])->name('diklat.syarat.registrasi');
     Route::get('/diklat-data-persyaratan',[RegistrasiCont::class,'data_syarat'])->name('diklat.syarat.data');
@@ -141,7 +146,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga']], funct
     Route::post('/importPesertaToT',[ImportController::class,'importPesertaToT'])->name('import.pesertaToT');
 });
 
-Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga']], function () {
+Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara,']], function () {
     //dashboard
     Route::get('/dashboard',[DashboardController::class, 'index'])->name('dashboard');
 
@@ -326,9 +331,32 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     Route::get('/sertifikat-daftar-pelatihan',[SertifikatCont::class,'daftar_pelatihan'])->name('sertifikat.daftar.pelatihan');
     Route::post('/import/certificate',[SertifikatCont::class,'import_e_sertifikat'])->name('import.certificate');
 
+    Route::get('/diklat-acara',[AcaraCont::class,'index'])->name('acara');
+    Route::get('/diklat-acara-data',[AcaraCont::class,'data_acara'])->name('acara.data');
+    Route::post('/diklat-data-post',[AcaraCont::class,'store'])->name('acara.store');
+
 });
 
 Route::group(['middleware' => ['auth', 'CheckRole:bendahara']], function () {
     Route::get('/data-calon-peserta-diklat/{program_id}/{diklat_id}',[RegistrasiCont::class, 'konfirmasi']);
     Route::get('/konfirmasi-data-calon-peserta-diklat/{diklat_id}',[RegistrasiCont::class, 'data_calon_peserta']);
+
+    Route::get('/daftar-diklat-menunggu-konfirmasi',[KonfirmasiCont::class, 'index'])->name('daftar_diklat_konfirmasi');
+    Route::get('/data-diklat-menunggu-konfirmasi',[KonfirmasiCont::class, 'data_diklat_menunggu_konfirmasi'])->name('data_diklat_konfirmasi');
+    Route::get('/daftar-data-peserta/{slug_diklat}',[KonfirmasiCont::class, 'daftar_peserta_diklat_menunggu_konfirmasi'])->name('daftar_peserta_diklat_konfirmasi');
+    Route::get('/konfirmasi-data-peserta/{diklat_id}',[KonfirmasiCont::class, 'data_peserta_diklat_menunggu_konfirmasi'])->name('data_peserta_diklat_konfirmasi');
 });
+
+Route::post('/broadcast',[BroadcastController::class, 'broadcast_pelatihan'])->name('broadcast');
+
+// Route::get('send-mail', function () {
+   
+//     $details = [
+//         'title' => 'Mail from tilawatipusat.com',
+//         'body' => 'This is for testing email using smtp'
+//     ];
+   
+//     Mail::to('febrirtah@gmail.com')->send(new MyTestMail($details));
+   
+//     dd("Email is Sent broo.");
+// });

@@ -11,6 +11,7 @@ class Peserta extends Model
 
     protected $fillable = [
         'nik',
+        'acara_id',
         'pelatihan_id',
         'cabang_id',
         'lembaga_id',
@@ -31,6 +32,11 @@ class Peserta extends Model
 
     ];
     protected $dates = ['deleted_at'];
+
+    public function acara()
+    {
+        return $this->hasMany(Acara::class);
+    }
 
     public function certificate()
     {
@@ -73,5 +79,10 @@ class Peserta extends Model
     public function cabang()
     {
         return $this->belongsTo(Cabang::class);
+    }
+
+    public function status()
+    {
+        return $this->hasOne(Status::class);
     }
 }

@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Potenza - Job Application Form Wizard with Resume upload and Branch feature">
     <meta name="author" content="Ansonika">
-    <title style="text-transform: capitalize">Registrasi | {{ $diklat->program->name }}</title>
+    <title style="text-transform: uppercase">registrasi | {{ $diklat->program->name }}</title>
 
     <!-- Favicons-->
     <link rel="shortcut icon" href="{{ asset('tilawatipusat/registrasi/img/favicon.ico') }}" type="image/x-icon">
@@ -71,9 +71,9 @@
 	                </div>
 	                <!-- /social -->
 	                <div><?php date_default_timezone_set('Asia/Jakarta'); $date=$diklat->tanggal;?>
-	                    <figure><img src="{{ asset('tilawatipusat/registrasi/img/info_graphic_1.svg') }}" alt="" class="img-fluid" width="270" height="270"></figure>
+	                    <figure><img src="{{ asset('assets/images/ya.jpeg') }}" alt="" class="img-fluid" width="270" height="270"></figure>
 	                    <h2 style="text-transform: uppercase">{{ $diklat->program->name }}</h2>
-	                    <p>Diklat {{ $diklat->program->name }} <br/> diadakan oleh Cabang {{ $diklat->cabang->name }} - {{ $diklat->cabang->kabupaten->nama }} 
+	                    <p>Diklat {{ $diklat->program->name }} <br/> diadakan oleh {{ $diklat->cabang->name }} - {{ $diklat->cabang->kabupaten->nama }} 
 						<br/>Pada Tanggal {{ Carbon\Carbon::parse($date)->isoFormat('D MMMM Y') }}</p>
 	                    <a href="#0" class="btn_1 rounded yellow">Periksa data anda</a>
 	                    <a href="#start" class="btn_1 rounded mobile_btn yellow">Periksa data anda</a>
@@ -143,7 +143,7 @@
 	                                </label>
 	                                <div class="row">
 										<div class="form-group col-12 col-xl-12">
-											<input type="hidden" id="diklat_id" name="pelatihan_id" value="{{ $diklat_id }}">
+											<input type="hidden" id="diklat_id" name="pelatihan_id" value="{{ $diklat->id }}">
 										</div>
 										@if ($diklat->keterangan == 'santri')
 										<div class="form-group col-12 col-xl-12">
@@ -190,27 +190,37 @@
 	                        </div>
 
 	                        <!-- /Work Availability > Full-time ============================== -->
-	                        <div class="branch" id="Full-time">
+							<div class="branch" id="Full-time">
 	                            <div class="step" data-state="end">
 	                                <h2 class="section_title">Dokumen Persyaratan</h2>
 	                                <h3 class="main_question">Lampirkan dokumen persyaratan yang diminta</h3>
-									@foreach ($registrasi as $item)
-									<div class="form-group add_bottom_30 add_top_20">
-										<input type="hidden" name="registrasi_id[]" value="{{ $item->id }}">
-										<label style="text-transform: uppercase">{{ $item->name }}</label>
-										<div class="fileupload">
-											<input type="file" name="fileupload[]" accept="{{ $item->jenis }}" class="required">
-											<br><small>(Jenis File: {{ $item->jenis }})</small>
+									@if ($registrasi->count() !== 0)
+										@foreach ($registrasi as $item)
+										<div class="form-group add_bottom_30 add_top_20">
+											<input type="hidden" name="registrasi_id[]" value="{{ $item->id }}">
+											<label style="text-transform: uppercase">{{ $item->name }}</label>
+											<div class="fileupload">
+												<input type="file" name="fileupload[]" accept="{{ $item->jenis }}" class="required">
+												<br><small>(Jenis File: {{ $item->jenis }})</small>
+											</div>
 										</div>
-									</div>
-									@endforeach
-	                                <label class="custom">Data yang anda unggah sudah sesuai dengan persyaratan ?</label>
-	                                <div class="form-group radio_input">
-	                                    <label class="container_radio mr-3">Yes
-	                                        <input type="radio" name="remotely_full_time" value="Yes" class="required">
-	                                        <span class="checkmark"></span>
-	                                    </label>
-	                                </div>
+										@endforeach
+										<label class="custom">Data yang anda unggah sudah sesuai dengan persyaratan ?</label>
+										<div class="form-group radio_input">
+											<label class="container_radio mr-3">Yes
+												<input type="radio" name="remotely_full_time" value="Yes" class="required">
+												<span class="checkmark"></span>
+											</label>
+										</div>
+									@else
+										<label class="custom">Tidak ada permintaan dokumen khusus. pilih "Yes" dan lanjutkan ke tahap berikutnya</label>
+										<div class="form-group radio_input">
+											<label class="container_radio mr-3">Yes
+												<input type="radio" name="remotely_full_time" value="Yes" class="required">
+												<span class="checkmark"></span>
+											</label>
+										</div>
+									@endif
 	                            </div>
 	                        </div>
 	                        <!-- /step-->

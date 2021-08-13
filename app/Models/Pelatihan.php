@@ -41,4 +41,9 @@ class Pelatihan extends Model
     {
         return $this->hasMany(Certificate::class);
     }
+
+    public function flyer()
+    {
+        return $this->hasMany(Flyer::class);
+    }
 }

@@ -35,6 +35,13 @@
 
                 <li class="menu-title">Input Data Diklat</li>
                 <li>
+                    <a href="{{ route('acara') }}" class="waves-effect">
+                        <i class="mdi mdi-city-variant-outline"></i>
+                        <span class="badge badge-pill badge-danger float-right"></span>
+                        <span>Acara</span>
+                    </a>
+                </li>
+                <li>
                     <a href="{{ route('diklat.diklat') }}" class="waves-effect">
                         <i class="mdi mdi-pencil-box-multiple-outline"></i>
                         <span class="badge badge-pill badge-danger float-right"></span>
@@ -107,12 +114,19 @@
                     </ul>
                 </li>
 
-                <li class="menu-title">Persyaratan</li>
+                <li class="menu-title">Syarat Pendaftaran Online</li>
 
                 <li>
                     <a href="{{ route('diklat.syarat.registrasi') }}" class="waves-effect">
-                        <i class="mdi mdi-emoticon-happy-outline"></i>
+                        <i class="mdi mdi-clipboard-list-outline"></i>
                         <span>Registrasi</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ route('daftar_diklat_konfirmasi') }}" class="waves-effect">
+                        <i class="mdi mdi-clipboard-list-outline"></i>
+                        <span>Konfirmasi</span>
                     </a>
                 </li>
 
