@@ -81,6 +81,11 @@ class Peserta extends Model
         return $this->belongsTo(Cabang::class);
     }
 
+    public function donatur()
+    {
+        return $this->hasOne(Donatur::class);
+    }
+
     public function status()
     {
         return $this->hasOne(Status::class);
