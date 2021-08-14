@@ -31,6 +31,16 @@
                                 @slot('title') <b id="pv"> {{ App\Models\Peserta::whereHas('donatur',function($ya){
                                     $ya->where('data','=',1);
                                 })->count() }} </b>  Total Donatur  @endslot
+                                @slot('iconClass') mdi mdi-clipboard-list-outline
+                                @endslot
+                                @slot('price')  @endslot
+                                
+                            @endcomponent
+                        </div>
+                        <div class="col-xl-4">
+                            @component('common-tilawatipusat.dashboard-widget')
+                            
+                                @slot('title') <b id="pv"> {{ $data_kab = App\Models\Peserta::where('acara_id',$acara->id)->select('kabupaten_id')->distinct()->count() }} </b>  Asal Kota/Kabupaten  @endslot
                                 @slot('iconClass') mdi mdi-city-variant-outline
                                 @endslot
                                 @slot('price')  @endslot
