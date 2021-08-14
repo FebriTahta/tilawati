@@ -24,6 +24,8 @@ class Peserta extends Model
         'telp',
         'provinsi_id',
         'kabupaten_id',
+        'kecamatan_id',
+        'kelurahan_id',
         'kriteria_id',
         'kriteria',
         'bersyahadah',
@@ -36,6 +38,11 @@ class Peserta extends Model
     public function acara()
     {
         return $this->hasMany(Acara::class);
+    }
+
+    public function kecamatan()
+    {
+        return $this->belongsTo(Kecamatan::class);
     }
 
     public function certificate()

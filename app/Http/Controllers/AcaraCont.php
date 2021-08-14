@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 use App\Models\Acara;
 use App\Models\Flyer;
+use App\Models\Peserta;
 Use Image;
+use Excel;
+use App\Exports\PesertaAcaraExport;
 use DataTables;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -33,7 +36,7 @@ class AcaraCont extends Controller
             })
             ->addColumn('peserta',function($data){
                 $peserta = $data->peserta->count();
-                return $peserta;
+                return '<a class="text-success" href="/peserta-acara/'.$data->id.'">'.$peserta.' peserta'.'<a>';
             })
             ->addColumn('option', function ($data) {
                 $btn = ' <button class="btn btn-sm btn-warning" data-toggle="modal" data-target=".bs-example-modal-kriteria-update"
@@ -105,5 +108,55 @@ class AcaraCont extends Controller
               'message' => 'Acara Baru Berhasil Ditambahkan!'
             ]
         );
+    }
+
+    public function daftar_peserta_acara($acara_id)
+    {
+        $acara = Acara::find($acara_id);
+        return view('tilawatipusat.acara.peserta',compact('acara'));
+    }
+
+    public function export_peserta_acara($acara_id)
+    {
+        $acara = Acara::find($acara_id);
+        return Excel::download(new PesertaAcaraExport($acara_id),'event-'.$acara->judul.'-'.$acara->tanggal.'.xlsx');
+        // return Peserta::where('acara_id',$acara_id)->select('name','email')->with(['donatur' => function ($query) {
+        //     $query->where('data', 1);
+        // }])->get();
+
+        // return Peserta::with('donatur',function($a){
+        //     $a->select('data','peserta_id');
+        // })->get();
+    }
+
+    public function data_peserta_acara(Request $request, $acara_id){
+        if(request()->ajax())
+        {
+            $data   = Peserta::where('acara_id',$acara_id)->with('provinsi','kabupaten','kecamatan','donatur');
+            return DataTables::of($data)
+            ->addColumn('provinsi',function($data){
+                return $data->provinsi->nama;
+                
+            })
+            ->addColumn('kabupaten',function($data){
+                return $data->kabupaten->nama;
+            })
+            ->addColumn('kecamatan', function ($data) {
+                return $data->kecamatan->nama;
+            })
+            ->addColumn('donatur', function ($data) {
+                if ($data->donatur->data == 1) {
+                    # code...
+                    return 'DONATUR LAZIZ';
+                } else {
+                    # code...
+                    return '-';
+                }
+                
+            })
+            ->rawColumns(['provinsi','kabupaten','kecamatan','donatur'])
+            ->make(true);
+            
+        }
     }
 }

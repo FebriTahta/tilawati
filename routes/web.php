@@ -334,6 +334,10 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     Route::get('/diklat-acara',[AcaraCont::class,'index'])->name('acara');
     Route::get('/diklat-acara-data',[AcaraCont::class,'data_acara'])->name('acara.data');
     Route::post('/diklat-data-post',[AcaraCont::class,'store'])->name('acara.store');
+    Route::get('/peserta-acara/{acara_id}',[AcaraCont::class,'daftar_peserta_acara'])->name('acara.peserta');
+    Route::get('/data-peserta-acara/{acara_id}',[AcaraCont::class,'data_peserta_acara'])->name('acara.data_peserta');
+
+    Route::get('/export-peserta-acara/{acara_id}',[AcaraCont::class,'export_peserta_acara'])->name('export.peserta.acara');
 
 });
 
