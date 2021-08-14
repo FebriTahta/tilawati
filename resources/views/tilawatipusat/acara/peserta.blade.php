@@ -19,7 +19,7 @@
                             @component('common-tilawatipusat.dashboard-widget')
                             
                                 @slot('title') <b id="pv"> {{ $acara->peserta->count() }} </b>  Total Peserta  @endslot
-                                @slot('iconClass') mdi mdi-city-variant-outline
+                                @slot('iconClass') mdi mdi-smart-card-outline
                                 @endslot
                                 @slot('price')  @endslot
                                 
