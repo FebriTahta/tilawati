@@ -16,7 +16,7 @@ class CreateCertificatesTable extends Migration
         Schema::create('certificates', function (Blueprint $table) {
             $table->id();
 			$table->unsignedBigInteger('pelatihan_id');
-            $table->unsignedBigInteger('peserta_id');
+            $table->unsignedBigInteger('peserta_id')->nullable();
 			$table->string('name');
             $table->integer('no')->nullable();
             $table->string('link');
