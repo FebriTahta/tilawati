@@ -212,23 +212,25 @@ class DiklatCont extends Controller
                 'keterangan' => $request->keterangan,
             ]
         );
-        //menambahkan gambar flyer
-        $data2  = Flyer::updateOrCreate(
-            [
-                'id' => $request->id
-            ],
-            [
-                'pelatihan_id' => $data->id,
-                'image' => $request->image,
-            ]
-        );
-        if($request -> hasFile('image'))
-        {
-            $request->file('image')->move('image_flyer/',$request->file('image')->getClientOriginalName());
-            $data2->image = $request->file('image')->getClientOriginalName();
-            $data2->save();
+        //menambahkan gambar flyer jika ada isinya
+        if ($request->image !== null) {
+            # code...
+            $data2  = Flyer::updateOrCreate(
+                [
+                    'id' => $request->id
+                ],
+                [
+                    'pelatihan_id' => $data->id,
+                    'image' => $request->image,
+                ]
+            );
+            if($request -> hasFile('image'))
+            {
+                $request->file('image')->move('image_flyer/',$request->file('image')->getClientOriginalName());
+                $data2->image = $request->file('image')->getClientOriginalName();
+                $data2->save();
+            }
         }
-      
         return response()->json(
             [
               'success' => 'Diklat Baru Berhasil Dibuat',

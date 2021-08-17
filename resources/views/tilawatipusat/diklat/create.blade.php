@@ -69,7 +69,7 @@
                                                      </select>
                                                  </div>
                                                  <div class="form-group">
-                                                    <i class="text-danger"></i><label for="">Foto <span class="text-success">(Flyer)</span></label>
+                                                    <i class="text-danger"></i><label for="">Foto Flyer Pelatihan<span class="text-primary">(bisa tidak diisi)</span></label>
                                                         <div class="input-group" style="margin-bottom: 30px">
                                                             <div class="custom-file">
                                                                 <input type="file" class="custom-file-input" name="image" id="inputGroupFile02" id="file"/>
