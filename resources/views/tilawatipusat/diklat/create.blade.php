@@ -80,7 +80,8 @@
                                                 </div> --}}
                                             </div>
                                             <div class="form-group text-right col-md-12">
-                                                <button class="btn btn-primary" id="z" type="submit"> <i class="fa fa-save"></i> Save</button>
+                                                {{-- <button class="btn btn-primary" id="z" type="submit"> <i class="fa fa-save"></i> Save</button> --}}
+                                                <input type="submit" id="z" value="Buat Baru!" class="btn btn-outline btn-primary">
                                             </div>
                                         </form>
                                         <footer class="blockquote-footer">Updated at  <cite title="Source Title">2021</cite></footer>
@@ -180,8 +181,8 @@
                 contentType: false,
                 processData: false,
                 beforeSend:function(){
-                    $('#store').attr('disabled','disabled');
-                    $('#store').val('Proses Menyimpan Data');
+                    $('#z').attr('disabled','disabled');
+                    $('#z').val('Proses Menyimpan Data');
                 },
                 success: function(data){
                     if(data.success)
@@ -189,8 +190,8 @@
                         //sweetalert and redirect
                         $("#diklat_store")[0].reset();
                         toastr.success(data.success);
-                        $('#store').val('Buat Baru');
-                        $('#store').attr('disabled',false);
+                        $('#z').val('Buat Baru');
+                        $('#z').attr('disabled',false);
                         swal({ title: "Success!",
                             text: "Diklat Baru Berhasil Dibuat!",
                             type: "success"}).then(okay => {
@@ -202,8 +203,8 @@
                     if(data.error)
                     {
                         $('#message').html('<div class="alert alert-danger">'+data.error+'</div>');
-                        $('#btnimport').attr('disabled',false);
-                        $('#btnimport').val('Import');
+                        $('#z').attr('disabled',false);
+                        $('#z').val('Import');
                     }
                 },
                 error: function(data)
