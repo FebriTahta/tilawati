@@ -5,6 +5,7 @@ use App\Models\Pelatihan;
 use DataTables;
 use Carbon;
 use Excel;
+use App\Models\Certificate;
 use App\Imports\EsertifikatImport;
 use Illuminate\Http\Request;
 
@@ -108,7 +109,7 @@ class SertifikatCont extends Controller
     public function import_e_sertifikat(Request $request)
     {
         $id = $request->id ;
-        $pelatihan = Pelatihan::find($id);
+        $sertifikat_lama = Certificate::where('pelatihan_id',$id)->delete();
         $data = Excel::Import(new EsertifikatImport($id), $request->file('file'));
         return Response()->json([
             $data,

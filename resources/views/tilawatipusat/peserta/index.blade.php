@@ -16,7 +16,7 @@
          @slot('title')peserta {{ $diklat->program->name }}   @endslot
          @slot('title_li')   @endslot
     @endcomponent
-    <input type="hidden" id="pelatihan_id" value="{{ $diklat->id }}">
+    <input type="text" id="pelatihan_id2" value="{{ $diklat->id }}">
                     <div class="row">
                         <div class="col-xl-8">
                             @component('common-tilawatipusat.dashboard-widget')
@@ -445,6 +445,7 @@
                 var pel_id = $('#pelatihan_id').val();
                 document.getElementById('kriterias').value=k;
                 var pelatihan_id = $('#pelatihan_id').val();
+                console.log(pel_id);
                 $.ajax({
                     url:'/diklat-total-peserta-pelatihan/'+pelatihan_id,
                     type: 'get',
@@ -512,7 +513,7 @@
                     processing: true,
                     serverSide: true,
                     ajax: {
-                        url:'/diklat-peserta-data'+ '/'+pel_id,
+                        url:'/diklat-peserta-data/'+pel_id,
                     },
                     columns: [
                         
