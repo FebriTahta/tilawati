@@ -68,7 +68,7 @@
                                                          <option value="instruktur">INSTRUKTUR</option>
                                                      </select>
                                                  </div>
-                                                 <div class="form-group">
+                                                 {{-- <div class="form-group">
                                                     <i class="text-danger"></i><label for="">Foto Flyer Pelatihan<span class="text-primary">(bisa tidak diisi)</span></label>
                                                         <div class="input-group" style="margin-bottom: 30px">
                                                             <div class="custom-file">
@@ -77,7 +77,7 @@
                                                             </div>
                                                         </div>
                                                             <img  src="https://placehold.it/80x80"  id="preview" class="img-thumbnail">
-                                                </div>
+                                                </div> --}}
                                             </div>
                                             <div class="form-group text-right col-md-12">
                                                 <button class="btn btn-primary" id="z" type="submit"> <i class="fa fa-save"></i> Save</button>
@@ -157,18 +157,18 @@
                     }
                 });
             });
-            $('input[type="file"]').change(function(e) {
-                var fileName = e.target.files[0].name;
-                $("#file").val(fileName);
+            // $('input[type="file"]').change(function(e) {
+            //     var fileName = e.target.files[0].name;
+            //     $("#file").val(fileName);
 
-                var reader = new FileReader();
-                reader.onload = function(e) {   
-                // get loaded data and render thumbnail.
-                document.getElementById("preview").src = e.target.result;
-                };
-                // read the image file as a data URL.
-                reader.readAsDataURL(this.files[0]);
-            });
+            //     var reader = new FileReader();
+            //     reader.onload = function(e) {   
+            //     // get loaded data and render thumbnail.
+            //     document.getElementById("preview").src = e.target.result;
+            //     };
+            //     // read the image file as a data URL.
+            //     reader.readAsDataURL(this.files[0]);
+            // });
             $('#diklat_store').submit(function(e) {
                 e.preventDefault();
                 var formData = new FormData(this);
