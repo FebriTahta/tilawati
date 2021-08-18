@@ -27,7 +27,6 @@ class PesertaDiklatImport implements ToCollection
     */
     public function collection(Collection $collection)
     {
-
         foreach ($collection as $key => $row) {
             # code...
             if ($key >= 1) {
@@ -38,6 +37,7 @@ class PesertaDiklatImport implements ToCollection
                     $dt_pel->name = $row[0];
                     $dt_pel->alamat = $row[1];
                     $dt_pel->kota = $row[2];
+                    $dt_pel->status =1;
                     //inisialisasi kota / kabupaten yang diinput
                     $kab     = strtoupper($row[2]);
                     $kab_kab = 'KAB. '.$kab;

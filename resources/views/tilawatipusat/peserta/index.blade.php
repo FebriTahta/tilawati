@@ -496,8 +496,8 @@
                         name:'alamat'
                         },
                         {
-                        data:'kriteria',
-                        name:'kriteria'
+                        data:'krits',
+                        name:'kriteria',
                         },
                         {
                         data:'action',
@@ -542,7 +542,7 @@
                         name:'alamat'
                         },
                         {
-                        data:'kriteria',
+                        data:'krits',
                         name:'kriteria'
                         },
                         {

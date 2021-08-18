@@ -32,57 +32,7 @@ class PesertaCont extends Controller
     {
         if(request()->ajax())
         {
-            if(!empty($request->dari))
-            {
-                $data   = Peserta::wherebetween('tanggal', array($request->dari, $request->sampai))->where('pelatihan_id', $id)->with('pelatihan')->with('kabupaten')->with('nilai')->where('status',1);
-            return DataTables::of($data)
-                    ->addColumn('nilai', function ($data) {
-                        if ($data->nilai->count() == 0) {
-                            # code...
-                            return $button = '<a href="#" data-toggle="modal" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-danger">belum dinilai</a>';
-                        }else{
-                            // return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-info">sudah dinilai</a>';
-                                $total = $data->nilai->where("kategori","al-qur'an")->sum('nominal');
-                                $total2 = $data->nilai->where("kategori","skill")->sum('nominal');
-                                $total3 = $data->nilai->where("kategori","skill")->count();
-                                
-                                // $rata2 = $data->nilai->sum('nominal');
-                                $rata2 = ($total + $total2)/($total3+1);
-                                if ($rata2 > 84) {
-                                    # code...
-                                    return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-primary">'.$rata2.' (baik)</a>';
-                                }
-                                elseif($rata2 < 84 && $rata2 < 75){
-                                    return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-warning">'.$rata2.' (belum bersyahadah)</a>';
-                                }
-                                else {
-                                    # code...
-                                    return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-info">'.$rata2.' (cukup)</a>';
-                                }
-                            
-                        }
-                        return $button;
-                    })
-                    ->addColumn('pelatihan', function ($data) {
-                        return $data->pelatihan->program->name;
-                    })
-                    ->addColumn('kabupaten', function ($data) {
-                        return $data->kabupaten->nama;
-                    })
-                    ->addColumn('tgllahir', function ($data) {
-                        $a = Carbon::parse($data->tgllahir)->isoFormat('D MMMM Y');
-                        return $a;
-                    })
-                    ->addColumn('action', function($data){
-                        $actionBtn = ' <a href="#" data-id="'.$data->id.'" data-toggle="modal" data-target="#hapusData" class="btn btn-sm btn-outline btn-danger "><i class="fa fa-trash"></i></a>';
-                        $actionBtn .= ' <a href="/diklat-profile-peserta/'.$data->id.'/'.$data->pelatihan->program->id.'/'.$data->pelatihan->id.'/admin" class="btn btn-sm btn-outline btn-info "><i class="fa fa-user"></i></a>';
-                        $actionBtn .= ' <a href="#" class="btn btn-sm btn-outline btn-success" data-nama_peserta="'.$data->name.'" data-id="'.asset('images/'.$data->id.'qrcode.png').'" data-toggle="modal" data-target=".modal-scan"><i class="mdi mdi-barcode-scan"></i></a>';
-                        return $actionBtn;
-                    })
-            ->rawColumns(['nilai','action','kabupaten','tgllahir'])
-            ->make(true);
-            }else{
-                $data   = Peserta::where('pelatihan_id', $id)->with('pelatihan')->with('kabupaten')->with('nilai')->where('status',1);
+            $data   = Peserta::where('pelatihan_id', $id)->with('pelatihan')->with('kabupaten')->with('nilai')->where('status',1);
                 return DataTables::of($data)
                         ->addColumn('nilai', function ($data) {
                             if ($data->nilai->count() == 0) {
@@ -127,9 +77,19 @@ class PesertaCont extends Controller
                             $actionBtn .= ' <a href="#" class="btn btn-sm btn-outline btn-success" data-nama_peserta="'.$data->name.'" data-id="'.asset('images/'.$data->id.'qrcode.png').'" data-toggle="modal" data-target=".modal-scan"><i class="mdi mdi-barcode-scan"></i></a>';
                             return $actionBtn;
                         })
-                ->rawColumns(['nilai','action','kabupaten','tgllahir'])
+                        ->addColumn('krits', function ($data) {
+                            if ($data->kriteria == null) {
+                                # code...
+                                return '<a href="$" class="badge badge-warning">menunggu penilaian</a>';
+
+                            } else {
+                                # code...
+                                return '<p class="text-success">'.$data->kriteria.'</p>';
+                            }
+                            
+                        })
+                ->rawColumns(['nilai','action','kabupaten','tgllahir','krits'])
                 ->make(true);
-            }
         }
     }
 
@@ -139,50 +99,6 @@ class PesertaCont extends Controller
             # code...
             if(!empty($request->dari))
             {
-                $data   = Peserta::wherebetween('tanggal', array($request->dari, $request->sampai))->with('pelatihan')->with('kabupaten')->with('nilai')->orderBy('id','desc');
-                return DataTables::of($data)
-                        ->addColumn('nilai', function ($data) {
-                            if ($data->nilai->count() == 0) {
-                                # code...
-                                return $button = '<a href="#" data-toggle="modal" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-danger">belum dinilai</a>';
-                            }else{
-                                // return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-info">sudah dinilai</a>';
-                                $total = $data->nilai->where("kategori","al-qur'an")->sum('nominal');
-                                    $total2 = $data->nilai->where("kategori","skill")->sum('nominal');
-                                    $total3 = $data->nilai->where("kategori","skill")->count();
-                                    // $rata2 = $data->nilai->sum('nominal');
-                                    $rata2 = ($total + $total2)/($total3+1);
-                                    if ($rata2 > 85) {
-                                        # code...
-                                        return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-primary">'.$rata2.' (baik)</a>';
-                                    }
-                                    elseif($rata2 < 85 && $rata2 < 75){
-                                        return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-warning">'.$rata2.' (belum bersyahadah)</a>';
-                                    }
-                                    else {
-                                        # code...
-                                        return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-info">'.$rata2.' (cukup)</a>';
-                                    }
-                                
-                            }
-                            return $button;
-                        })
-                        ->addColumn('program', function ($data) {
-                            return $data->pelatihan->program->name;
-                        })
-                        ->addColumn('kabupaten', function ($data) {
-                            return $data->kabupaten->nama;
-                        })
-                        ->addColumn('cabang', function ($data) {
-                            return $data->pelatihan->cabang->name;
-                        })
-                        ->addColumn('tgllahir', function ($data) {
-                            $a = Carbon::parse($data->tgllahir)->isoFormat('D MMMM Y');
-                            return $a;
-                        })
-                ->rawColumns(['nilai','kabupaten','cabang','program','tgllahir'])
-                ->make(true);
-            }else{
                 $data   = Peserta::with('pelatihan')->with('kabupaten')->with('nilai')->orderBy('id','desc');
                 return DataTables::of($data)
                         ->addColumn('nilai', function ($data) {
@@ -224,9 +140,9 @@ class PesertaCont extends Controller
                             $a = Carbon::parse($data->tgllahir)->isoFormat('D MMMM Y');
                             return $a;
                         })
+                        
                 ->rawColumns(['nilai','kabupaten','cabang','program','tgllahir'])
                 ->make(true);
-            
             }
         }
     }
@@ -369,6 +285,7 @@ class PesertaCont extends Controller
                         'provinsi_id' => $provinsi_id,
                         'kabupaten_id' => $kabupaten_id,
                         'kota' => $kota,
+                        'status'=>1
                     ]
                 );
                 $program = Pelatihan::where('id', $data->pelatihan_id)->first();
@@ -413,6 +330,7 @@ class PesertaCont extends Controller
                     'provinsi_id' => $provinsi_id,
                     'kabupaten_id' => $kabupaten_id,
                     'kota' => $kota,
+                    'status'=>1
                 ]
             );
             $program = Pelatihan::where('id', $data->pelatihan_id)->first();
