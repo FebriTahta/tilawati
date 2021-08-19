@@ -105,6 +105,59 @@ class PesertaCont extends Controller
             # code...
             if(!empty($request->dari))
             {
+                $data   = Peserta::with('pelatihan')->with('kabupaten')->with('nilai')->orderBy('id','desc')
+                ->whereBetween('tanggal', array($request->dari, $request->sampai));
+                return DataTables::of($data)
+                        ->addColumn('nilai', function ($data) {
+                            if ($data->nilai->count() == 0) {
+                                # code...
+                                return $button = '<a href="#" data-toggle="modal" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-danger">belum dinilai</a>';
+                            }else{
+                                // return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-info">sudah dinilai</a>';
+                                $total = $data->nilai->where("kategori","al-qur'an")->sum('nominal');
+                                    $total2 = $data->nilai->where("kategori","skill")->sum('nominal');
+                                    $total3 = $data->nilai->where("kategori","skill")->count();
+                                    // $rata2 = $data->nilai->sum('nominal');
+                                    $rata2 = ($total + $total2)/($total3+1);
+                                    if ($rata2 > 85) {
+                                        # code...
+                                        return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-primary">'.$rata2.' (baik)</a>';
+                                    }
+                                    elseif($rata2 < 85 && $rata2 < 75){
+                                        return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-warning">'.$rata2.' (belum bersyahadah)</a>';
+                                    }
+                                    else {
+                                        # code...
+                                        return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-info">'.$rata2.' (cukup)</a>';
+                                    }
+                                
+                            }
+                            return $button;
+                        })
+                        ->addColumn('program', function ($data) {
+                            return $data->pelatihan->program->name;
+                        })
+                        ->addColumn('kabupaten', function ($data) {
+                            if ($data->kabupaten !== null) {
+                                # code...
+                                return $data->kabupaten->nama;
+                            } else {
+                                # code...
+                                return '<span class="badge badge-warning">kosong</span>';
+                            }
+                        })
+                        ->addColumn('cabang', function ($data) {
+                            return $data->pelatihan->cabang->name;
+                        })
+                        ->addColumn('tgllahir', function ($data) {
+                            $a = Carbon::parse($data->tgllahir)->isoFormat('D MMMM Y');
+                            return $a;
+                        })
+                        
+                ->rawColumns(['nilai','kabupaten','cabang','program','tgllahir'])
+                ->make(true);
+            }else {
+                # code...
                 $data   = Peserta::with('pelatihan')->with('kabupaten')->with('nilai')->orderBy('id','desc');
                 return DataTables::of($data)
                         ->addColumn('nilai', function ($data) {
@@ -137,7 +190,13 @@ class PesertaCont extends Controller
                             return $data->pelatihan->program->name;
                         })
                         ->addColumn('kabupaten', function ($data) {
-                            return $data->kabupaten->nama;
+                            if ($data->kabupaten !== null) {
+                                # code...
+                                return $data->kabupaten->nama;
+                            } else {
+                                # code...
+                                return '<span class="badge badge-warning">kosong</span>';
+                            }
                         })
                         ->addColumn('cabang', function ($data) {
                             return $data->pelatihan->cabang->name;
@@ -412,7 +471,13 @@ class PesertaCont extends Controller
                             return $data->pelatihan->program->name;
                         })
                         ->addColumn('kabupaten', function ($data) {
-                            return $data->kabupaten->nama;
+                            if ($data->kabupaten !== null) {
+                                # code...
+                                return $data->kabupaten->nama;
+                            } else {
+                                # code...
+                                return '<span class="badge badge-warning">kosong</span>';
+                            }
                         })
                         ->addColumn('program', function ($data) {
                             return $data->pelatihan->program->name;
@@ -461,7 +526,13 @@ class PesertaCont extends Controller
                             return $data->pelatihan->program->name;
                         })
                         ->addColumn('kabupaten', function ($data) {
-                            return $data->kabupaten->nama;
+                            if ($data->kabupaten !== null) {
+                                # code...
+                                return $data->kabupaten->nama;
+                            } else {
+                                # code...
+                                return '<span class="badge badge-warning">kosong</span>';
+                            }
                         })
                         ->addColumn('program', function ($data) {
                             return $data->pelatihan->program->name;
@@ -521,7 +592,13 @@ class PesertaCont extends Controller
                             return $data->pelatihan->program->name;
                         })
                         ->addColumn('kabupaten', function ($data) {
-                            return $data->kabupaten->nama;
+                            if ($data->kabupaten !== null) {
+                                # code...
+                                return $data->kabupaten->nama;
+                            } else {
+                                # code...
+                                return '<span class="badge badge-warning">kosong</span>';
+                            }
                         })
                         ->addColumn('program', function ($data) {
                             return $data->pelatihan->program->name;
@@ -570,7 +647,13 @@ class PesertaCont extends Controller
                             return $data->pelatihan->program->name;
                         })
                         ->addColumn('kabupaten', function ($data) {
-                            return $data->kabupaten->nama;
+                            if ($data->kabupaten !== null) {
+                                # code...
+                                return $data->kabupaten->nama;
+                            } else {
+                                # code...
+                                return '<span class="badge badge-warning">kosong</span>';
+                            }
                         })
                         ->addColumn('program', function ($data) {
                             return $data->pelatihan->program->name;
@@ -870,7 +953,13 @@ class PesertaCont extends Controller
                             return $data->pelatihan->program->name;
                         })
                         ->addColumn('kabupaten', function ($data) {
-                            return $data->kabupaten->nama;
+                            if ($data->kabupaten !== null) {
+                                # code...
+                                return $data->kabupaten->nama;
+                            } else {
+                                # code...
+                                return '<span class="badge badge-warning">kosong</span>';
+                            }
                         })
                         ->addColumn('program', function ($data) {
                             return $data->pelatihan->program->name;
@@ -923,7 +1012,13 @@ class PesertaCont extends Controller
                             return $data->pelatihan->program->name;
                         })
                         ->addColumn('kabupaten', function ($data) {
-                            return $data->kabupaten->nama;
+                            if ($data->kabupaten !== null) {
+                                # code...
+                                return $data->kabupaten->nama;
+                            } else {
+                                # code...
+                                return '<span class="badge badge-warning">kosong</span>';
+                            }
                         })
                         ->addColumn('program', function ($data) {
                             return $data->pelatihan->program->name;
