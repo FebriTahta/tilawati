@@ -96,7 +96,7 @@
                                         <form id="formimport" action="" class="was-validate" enctype="multipart/form-data">@csrf
                                             <div class="card">
                                                 <div class="card-body">
-                                                    <input type="hidden" id="id" name="id">
+                                                    <input type="text" id="id" name="id">
                                                     <h4 class="card-title">File import</h4>
                                                     <p class="card-title-desc">Pastikan file yang akan anda import sudah sesuai dengan format ketentuan yang berlaku</p>
                                                     <div class="input-group">

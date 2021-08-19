@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Pelatihan;
+use App\Models\Peserta;
 use DataTables;
 use Carbon;
 use Excel;
@@ -110,6 +111,7 @@ class SertifikatCont extends Controller
     {
         $id = $request->id ;
         $sertifikat_lama = Certificate::where('pelatihan_id',$id)->delete();
+        // $peserta_lama    = Peserta::where('pelatihan_id',$id)->delete();
         $data = Excel::Import(new EsertifikatImport($id), $request->file('file'));
         return Response()->json([
             $data,

@@ -65,7 +65,13 @@ class PesertaCont extends Controller
                             return $data->pelatihan->program->name;
                         })
                         ->addColumn('kabupaten', function ($data) {
-                            return $data->kabupaten->nama;
+                            if ($data->kabupaten !== null) {
+                                # code...
+                                return $data->kabupaten->nama;
+                            } else {
+                                # code...
+                                return '<span class="badge badge-warning">kosong</span>';
+                            }
                         })
                         ->addColumn('tgllahir', function ($data) {
                             $a = Carbon::parse($data->tgllahir)->isoFormat('D MMMM Y');
