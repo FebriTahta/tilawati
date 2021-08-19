@@ -16,7 +16,7 @@
          @slot('title')peserta {{ $diklat->program->name }}   @endslot
          @slot('title_li')   @endslot
     @endcomponent
-    <input type="text" id="pelatihan_id2" value="{{ $diklat->id }}">
+    <input type="hidden" id="pelatihan_id2" value="{{ $diklat->id }}">
                     <div class="row">
                         <div class="col-xl-8">
                             @component('common-tilawatipusat.dashboard-widget')

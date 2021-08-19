@@ -38,6 +38,7 @@ class EsertifikatImport implements ToCollection
                         # code...
                         $dt_p = new Peserta;
                         $dt_p->pelatihan_id = $this->id;
+                        $dt_p->cabang_id    = $data->cabang_id;
                         $dt_p->name         = $row[1];
                         $dt_p->tanggal      = $data->tanggal;
                         $dt_p->status       = 1;

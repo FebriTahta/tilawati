@@ -779,11 +779,23 @@ class PesertaCont extends Controller
                 $data   = Peserta::whereBetween('tanggal', array($request->dari, $request->sampai))->with('kabupaten')->select('kabupaten_id')->distinct();
                 return DataTables::of($data)
                 ->addColumn('kabupaten', function ($data) {
-                    return $data->kabupaten->nama;
+                    if ($data->kabupaten !== null) {
+                        # code...
+                        return $data->kabupaten->nama;
+                    } else {
+                        # code...
+                        return '<span class="badge badge-warning">kosong</span>';
+                    }
+                    
                 })
                 ->addColumn('action', function ($data) {
-                    $btn = '<a href="/diklat-peserta-data-kabupaten/'.$data->kabupaten->id.'" class="btn btn-sm btn-info"> check </a>';
-                    return $btn;
+                    if ($data->kabupaten !== null) {
+                        $btn = '<a href="/diklat-peserta-data-kabupaten/'.$data->kabupaten->id.'" class="btn btn-sm btn-info"> check </a>';
+                        return $btn;
+                    }else{
+                        return '-';
+                    }
+                    
                 })
                 ->rawColumns(['kabupaten','action'])
                 ->make(true);
@@ -791,11 +803,21 @@ class PesertaCont extends Controller
                 $data   = Peserta::with('kabupaten')->select('kabupaten_id')->distinct();
                 return DataTables::of($data)
                 ->addColumn('kabupaten', function ($data) {
-                    return $data->kabupaten->nama;
+                    if ($data->kabupaten !== null) {
+                        # code...
+                        return $data->kabupaten->nama;
+                    } else {
+                        # code...
+                        return '<span class="badge badge-warning">kosong</span>';
+                    }
                 })
                 ->addColumn('action', function ($data) {
-                    $btn = '<a href="/diklat-peserta-data-kabupaten/'.$data->kabupaten->id.'" class="btn btn-sm btn-info"> check </a>';
-                    return $btn;
+                    if ($data->kabupaten !== null) {
+                        $btn = '<a href="/diklat-peserta-data-kabupaten/'.$data->kabupaten->id.'" class="btn btn-sm btn-info"> check </a>';
+                        return $btn;
+                    }else{
+                        return '-';
+                    }
                 })
                 ->rawColumns(['kabupaten','action'])
                 ->make(true);
@@ -818,7 +840,13 @@ class PesertaCont extends Controller
                 $data   = Peserta::where('cabang_id',$cabang_id)->whereBetween('tanggal', array($request->dari, $request->sampai))->with('kabupaten')->select('kabupaten_id')->distinct();
                 return DataTables::of($data)
                 ->addColumn('kabupaten', function ($data) {
-                    return $data->kabupaten->nama;
+                    if ($data->kabupaten !== null) {
+                        # code...
+                        return $data->kabupaten->nama;
+                    } else {
+                        # code...
+                        return '<span class="badge badge-warning">kosong</span>';
+                    }
                 })
                 ->addColumn('action', function ($data) {
                     $btn = '<a href="#" class="btn btn-sm btn-info"> check </a>';
@@ -830,7 +858,13 @@ class PesertaCont extends Controller
                 $data   = Peserta::where('cabang_id',$cabang_id)->with('kabupaten')->select('kabupaten_id')->distinct();
                 return DataTables::of($data)
                 ->addColumn('kabupaten', function ($data) {
-                    return $data->kabupaten->nama;
+                    if ($data->kabupaten !== null) {
+                        # code...
+                        return $data->kabupaten->nama;
+                    } else {
+                        # code...
+                        return '<span class="badge badge-warning">kosong</span>';
+                    }
                 })
                 ->addColumn('action', function ($data) {
                     $btn = '<a href="#" class="btn btn-sm btn-info"> check </a>';
