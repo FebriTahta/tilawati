@@ -101,7 +101,7 @@ class PesertaCont extends Controller
                                 return $bersertifikat;
                             } else {
                                 # code...
-                                $bersertifikat = '<a href="'.$data->certificate->link.'" class="badge badge-success">bersertifikat</a>';
+                                $bersertifikat = '<a href="'.$data->certificate->link.'" target="_blank" class="badge badge-success">bersertifikat</a>';
                                 return $bersertifikat;
                             }
                         })
