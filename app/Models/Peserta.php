@@ -47,7 +47,7 @@ class Peserta extends Model
 
     public function certificate()
     {
-        return $this->hasMany(Certificate::class);
+        return $this->hasOne(Certificate::class);
     }
     public function filepeserta()
     {
