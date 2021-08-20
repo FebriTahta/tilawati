@@ -21,7 +21,7 @@
                         <div class="col-xl-8">
                             @component('common-tilawatipusat.dashboard-widget')
                             
-                                @slot('title') <b id=""> Cabang {{ $diklat->cabang->name }} - {{ $diklat->cabang->kabupaten->nama }} - <span class="text-info">{{ Carbon\Carbon::parse($diklat->tanggal)->isoFormat('D MMMM Y') }}</span></b>  @endslot
+                                @slot('title') <b id="" class="text-capitalize"> {{ $diklat->cabang->name }} - {{ strtolower($diklat->cabang->kabupaten->nama) }} - <span class="text-info">{{ Carbon\Carbon::parse($diklat->tanggal)->isoFormat('D MMMM Y') }}</span></b>  @endslot
                                 @slot('iconClass')mdi mdi-account-group  @endslot
                                 @slot('price')   @endslot
                                 
@@ -49,7 +49,7 @@
                                         <code>Tambahkan kategori penilaian pada program diklat terlebih dahulu pada menu program</code>
                                     @endif
                                     <p class="card-title-desc">Ter-update berdasarkan Tahun 2021 </br></p>
-                                    <a class="btn btn-sm btn-success  mr-1 text-white" style="width:130px " @if($diklat->program->penilaian->count() == 0) disabled @else href="{{ route('diklat.peserta_create', $pelatihan_id) }}" @endif><i class="mdi mdi-plus"></i> tambah peserta</a>
+                                    <a class="btn btn-sm btn-success  mr-1 text-white" style="width:130px" @if($diklat->program->penilaian->count() == 0) disabled @else href="{{ route('diklat.peserta_create', $pelatihan_id) }}" @endif><i class="mdi mdi-plus"></i> tambah peserta</a>
                                     <button class="btn btn-sm btn-success  mr-1" style="width:130px " data-toggle="modal" @if($diklat->program->penilaian->count() == 0) disabled @else data-target=".bs-example-modal-peserta" @endif><i class="mdi mdi-cloud-upload"></i> import peserta</button>
                                     <input type="hidden" id="pelatihan_id" value="{{ $pelatihan_id }}">
                                     <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
