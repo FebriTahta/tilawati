@@ -147,6 +147,65 @@
                         </div><!-- /.modal -->
                     </div>
 
+                    <div class="col-sm-6 col-md-3 m-t-30">
+                        <div class="modal fade bs-example-modal-diklat-edit" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <div class="col-xl-12">
+                                            <div class="card m-b-30">
+                                                <div class="card-body">
+                                                    <form id="diklat_store" class="text-capitalize"  method="POST" enctype="multipart/form-data">@csrf
+                                                        <input type="hidden" id="id_edit" name="id" value="" required>
+                                                        <div class="row">
+                                                            <div class="col-md-6 col-12 form-group">
+                                                                <label for="">tanggal</label>
+                                                                <input type="date" id="tanggal_edit" name="tanggal" class="form-control text-capitalize" required>
+                                                            </div>
+                                                            <div class="col-md-6 col-12 form-group">
+                                                                <label for="">cabang</label>
+                                                                <?php $cb = App\Models\Cabang::all()?>
+                                                                <select name="cabang_id" id="cabang_edit" class="form-control text-capitalize" required>
+                                                                    @foreach ($cb as $item)
+                                                                    <option value="{{$item->id}}">{{$item->name}} - {{strtolower($item->kabupaten->nama)}}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-md-6 col-12 form-group">
+                                                                <label for="">program</label>
+                                                                <select name="program_id" id="program_edit" class="form-control text-capitalize" required>
+                                                                    @foreach ($dt_program as $item)
+                                                                        <option value="{{$item->id}}">{{$item->name}}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-md-6 col-12 form-group">
+                                                                <label for="">tempat pelaksanaan</label>
+                                                                <textarea name="tempat" class="form-control text-capitalize" id="tempat_edit" cols="30" rows="3" required></textarea>
+                                                            </div>
+                                                            <div class="col-md-6 col-12 form-group">
+                                                                <label for="">keterangan</label>
+                                                                <select name="keterangan" id="keterangan_edit" class="form-control text-capitalize">
+                                                                    <option value="guru">Guru</option>
+                                                                    <option value="santri">Santri</option>
+                                                                    <option value="instruktur">Instruktur</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <hr>
+                                                        <div class="form-group text-right">
+                                                            <input type="submit" id="z" class="btn btn-outline-primary" value="Update!">
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div> <!-- end col -->
+                                    </div>
+                                </div><!-- /.modal-content -->
+                            </div><!-- /.modal-dialog -->
+                        </div><!-- /.modal -->
+                    </div>
+
                     <div class="modal fade bs-example-modal-xl-2" id="mod_cabang2" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-md">
                             <div class="modal-content">
@@ -215,11 +274,70 @@
 
         <script>
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+            $('#diklat_store').submit(function(e) {
+                e.preventDefault();
+                var formData = new FormData(this);
+                $.ajax({
+                type:'POST',
+                url: "{{ route('diklat.store')}}",
+                data: formData,
+                cache:false,
+                contentType: false,
+                processData: false,
+                beforeSend:function(){
+                    $('#z').attr('disabled','disabled');
+                    $('#z').val('Proses Menyimpan Data');
+                },
+                success: function(data){
+                    if(data.success)
+                    {
+                        //sweetalert and redirect
+                        $("#diklat_store")[0].reset();
+                        toastr.success(data.success);
+                        $('#z').val('Buat Baru');
+                        $('#z').attr('disabled',false);
+                        var oTable = $('#datatable-buttons').dataTable();
+                        oTable.fnDraw(false);
+                        swal({ title: "Success!",
+                            text: "Diklat Baru Berhasil Dibuat!",
+                            type: "success"})
+                    }
+                    if(data.error)
+                    {
+                        $('#message').html('<div class="alert alert-danger">'+data.error+'</div>');
+                        $('#z').attr('disabled',false);
+                        $('#z').val('Import');
+                    }
+                },
+                error: function(data)
+                {
+                    console.log(data);
+                    }
+                });
+            });
+
             $('.bs-example-modal-diklat-hapus').on('show.bs.modal', function(event) {
                 var button = $(event.relatedTarget)
                 id = button.data('id')
                 var modal = $(this)
                 modal.find('.modal-body #id').val(id);
+            })
+            $('.bs-example-modal-diklat-edit').on('show.bs.modal', function(event) {
+                var button  = $(event.relatedTarget)
+                var id      = button.data('id')
+                var tempat  = button.data('tempat')
+                var keterangan = button.data('keterangan')
+                var tanggal = button.data('tanggal')
+                var program_id = button.data('program')
+                var cabang_id = button.data('cabang')
+                var modal   = $(this)
+                modal.find('.modal-body #id_edit').val(id);
+                modal.find('.modal-body #tempat_edit').val(tempat);
+                modal.find('.modal-body #keterangan_edit').val(keterangan);
+                modal.find('.modal-body #tanggal_edit').val(tanggal);
+                modal.find('.modal-body #program_edit').val(program_id);
+                modal.find('.modal-body #cabang_edit').val(cabang_id);
+                
             })
             $('#hapusdiklat').submit(function(e) {
                 e.preventDefault();

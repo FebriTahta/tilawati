@@ -16,12 +16,6 @@ class DiklatCont extends Controller
 {
     public function index(Request $request)
     {
-        // $data   = Pelatihan::with('cabang','program')->withCount('peserta')->get();
-        // foreach ($data as $key => $value) {
-        //     # code...
-        //     $x = $value->peserta_count;
-        // }
-        // return $x;
         $dt_program = Program::all();
         return view('tilawatipusat.diklat.index',compact('dt_program'));
     }
@@ -75,7 +69,9 @@ class DiklatCont extends Controller
                             return $data->program->name;
                         })
                         ->addColumn('action', function($data){
-                            $actionBtn = ' <a href="#" data-toggle="modal" data-target=".bs-example-modal-diklat-hapus" data-id="'.$data->id.'" class="btn btn-sm btn-outline btn-danger fa fa-pencil-square"><i class="fa fa-trash"></i></a>';
+                            $actionBtn = ' <a href="#" data-toggle="modal" data-target=".bs-example-modal-diklat-hapus" data-id="'.$data->id.'" class="btn btn-sm btn-outline btn-danger"><i class="fa fa-trash"></i></a> ';
+                            $actionBtn.= ' <a href="#" data-toggle="modal" data-target=".bs-example-modal-diklat-edit" data-id="'.$data->id.'" data-tanggal="'.$data->tanggal.'" data-cabang="'.$data->cabang_id.'"
+                            data-program="'.$data->program_id.'" data-tempat="'.$data->tempat.'" data-keterangan="'.$data->keterangan.'" class="btn btn-sm btn-outline btn-primary"><i class="fa fa-edit"></i></a>';
                             return $actionBtn;
                         })
                 ->rawColumns(['cabang','program','action','peserta'])
