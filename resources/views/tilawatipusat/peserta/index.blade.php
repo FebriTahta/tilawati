@@ -63,11 +63,11 @@
                                                     @endif
                                                     <th>kota/kabupaten</th>
                                                     <th>telp</th>
-                                                    <th>email</th>
+                                                    <th>nilai</th>
                                                     <th>Certificate</th>
                                                     <th>alamat</th>
                                                     <th>Kriteria</th>
-                                                    <th>nilai</th>
+                                                    <th>email</th>
                                                     <th>Option</th>
                                                 </tr>
                                             </thead>
@@ -81,11 +81,11 @@
                                                     @endif
                                                     <th>kota/kabupaten</th>
                                                     <th>telp</th>
-                                                    <th>email</th>
+                                                    <th>nilai</th>
                                                     <th>Certificate</th>
                                                     <th>alamat</th>
                                                     <th>Kriteria</th>
-                                                    <th>nilai</th>
+                                                    <th>email</th>
                                                     <th>Option</th>
                                                 </tr>
                                             </tfoot>
@@ -486,9 +486,10 @@
                         name:'telp'
                         },
                         {
-                        data:'email',
-                        name:'email'
+                        data:'nilai',
+                        name:'nilai'
                         },
+                        
                         
                         {
                         data:'certificate',
@@ -503,8 +504,8 @@
                         name:'kriteria',
                         },
                         {
-                        data:'nilai',
-                        name:'nilai'
+                        data:'email',
+                        name:'email'
                         },
                         {
                         data:'action',
@@ -537,9 +538,10 @@
                         name:'telp'
                         },
                         {
-                        data:'email',
-                        name:'email'
+                        data:'nilai',
+                        name:'nilai'
                         },
+                        
                         {
                         data:'certificate',
                         name:'certificate'
@@ -554,8 +556,8 @@
                         name:'kriteria'
                         },
                         {
-                        data:'nilai',
-                        name:'nilai'
+                        data:'email',
+                        name:'email'
                         },
                         {
                         data:'action',
