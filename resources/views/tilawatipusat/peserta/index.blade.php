@@ -64,10 +64,10 @@
                                                     <th>kota/kabupaten</th>
                                                     <th>telp</th>
                                                     <th>email</th>
-                                                    <th>nilai</th>
+                                                    <th>Certificate</th>
                                                     <th>alamat</th>
                                                     <th>Kriteria</th>
-                                                    <th>Certificate</th>
+                                                    <th>nilai</th>
                                                     <th>Option</th>
                                                 </tr>
                                             </thead>
@@ -82,10 +82,10 @@
                                                     <th>kota/kabupaten</th>
                                                     <th>telp</th>
                                                     <th>email</th>
-                                                    <th>nilai</th>
+                                                    <th>Certificate</th>
                                                     <th>alamat</th>
                                                     <th>Kriteria</th>
-                                                    <th>Certificate</th>
+                                                    <th>nilai</th>
                                                     <th>Option</th>
                                                 </tr>
                                             </tfoot>
@@ -489,9 +489,10 @@
                         data:'email',
                         name:'email'
                         },
+                        
                         {
-                        data:'nilai',
-                        name:'nilai'
+                        data:'certificate',
+                        name:'certificate',
                         },
                         {
                         data:'alamat',
@@ -502,8 +503,8 @@
                         name:'kriteria',
                         },
                         {
-                        data:'certificate',
-                        name:'certificate',
+                        data:'nilai',
+                        name:'nilai'
                         },
                         {
                         data:'action',
@@ -540,9 +541,10 @@
                         name:'email'
                         },
                         {
-                        data:'nilai',
-                        name:'nilai'
+                        data:'certificate',
+                        name:'certificate'
                         },
+                        
                         {
                         data:'alamat',
                         name:'alamat'
@@ -552,8 +554,8 @@
                         name:'kriteria'
                         },
                         {
-                        data:'certificate',
-                        name:'certificate'
+                        data:'nilai',
+                        name:'nilai'
                         },
                         {
                         data:'action',
