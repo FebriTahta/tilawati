@@ -85,6 +85,7 @@
                                                     <th>tanggal</th>
                                                     <th>tempat</th>
                                                     <th>Peserta</th>
+                                                    <th>Pendaftaran</th>
                                                     <th>Option</th>
                                                 </tr>
                                             </thead>
@@ -99,6 +100,7 @@
                                                     <th>tanggal</th>
                                                     <th>tempat</th>
                                                     <th>Peserta</th>
+                                                    <th>Pendaftaran</th>
                                                     <th>Option</th>
                                                 </tr>
                                             </tfoot>
@@ -197,6 +199,29 @@
                                                             <input type="submit" id="z" class="btn btn-outline-primary" value="Update!">
                                                         </div>
                                                     </form>
+                                                </div>
+                                            </div>
+                                        </div> <!-- end col -->
+                                    </div>
+                                </div><!-- /.modal-content -->
+                            </div><!-- /.modal-dialog -->
+                        </div><!-- /.modal -->
+                    </div>
+
+                    <div class="col-sm-6 col-md-3 m-t-30">
+                        <div class="modal fade bs-example-modal-diklat-link" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <div class="col-xl-12">
+                                            <div class="card m-b-30">
+                                                <div class="card-body">
+                                                    <div class="form-gorup" style="margin-bottom: 20px">
+                                                        <textarea name="" id="link" cols="30" rows="2" class="form-control" disabled></textarea>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="button" onclick="myFunction()" id="btn-copy" value="salin link!" class="btn btn-sm btn-outline-primary">
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div> <!-- end col -->
@@ -322,6 +347,26 @@
                 var modal = $(this)
                 modal.find('.modal-body #id').val(id);
             })
+            $('.bs-example-modal-diklat-link').on('show.bs.modal', function(event) {
+                var button = $(event.relatedTarget)
+                var slug = button.data('slug')
+                var modal = $(this)
+                modal.find('.modal-body #link').val(slug);
+            })
+            function myFunction() {
+                /* Get the text field */
+                var copyText = document.getElementById("link");
+
+                /* Select the text field */
+                copyText.select();
+                copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+                /* Copy the text inside the text field */
+                navigator.clipboard.writeText(copyText.value);
+                
+                /* Alert the copied text */
+                alert("Copied the text: " + copyText.value);
+            }
             $('.bs-example-modal-diklat-edit').on('show.bs.modal', function(event) {
                 var button  = $(event.relatedTarget)
                 var id      = button.data('id')
@@ -454,6 +499,10 @@
                             {
                             data:'peserta',
                             name:'peserta'
+                            },
+                            {
+                            data:'linkpendaftaran',
+                            name:'linkpendaftaran'
                             },
                             {
                             data:'action',

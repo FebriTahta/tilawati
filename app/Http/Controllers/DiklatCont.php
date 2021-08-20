@@ -44,11 +44,15 @@ class DiklatCont extends Controller
                         ->addColumn('program', function ($data) {
                             return $data->program->name;
                         })
+                        ->addColumn('linkpendaftaran', function ($data) {
+                            return '<input type="button" value="link pendaftaran!" data-id="'.$data->id.'" data-toggle="modal" data-target=".bs-example-modal-diklat-link"
+                            data-slug="https://registrasi.tilawatipusat.com/registrasi/'.$data->slug.'" class="btn btn-sm btn-outline-primary">';
+                        })
                         ->addColumn('action', function($data){
                             $actionBtn = ' <a href="#" data-toggle="modal" data-target=".bs-example-modal-diklat-hapus" data-id="'.$data->id.'" class="btn btn-sm btn-outline btn-danger fa fa-pencil-square"><i class="fa fa-trash"></i></a>';
                             return $actionBtn;
                         })
-                ->rawColumns(['cabang','program','action','peserta'])
+                ->rawColumns(['cabang','program','action','peserta','linkpendaftaran'])
                 ->make(true);
             }else{
                 $data   = Pelatihan::with('cabang','program')->withCount('peserta')->orderBy('id','desc');
@@ -68,13 +72,17 @@ class DiklatCont extends Controller
                         ->addColumn('program', function ($data) {
                             return $data->program->name;
                         })
+                        ->addColumn('linkpendaftaran', function ($data) {
+                            return '<input type="button" value="link pendaftaran!" data-id="'.$data->id.'" data-toggle="modal" data-target=".bs-example-modal-diklat-link"
+                            data-slug="https://registrasi.tilawatipusat.com/registrasi/'.$data->slug.'" class="btn btn-sm btn-outline-primary">';
+                        })
                         ->addColumn('action', function($data){
                             $actionBtn = ' <a href="#" data-toggle="modal" data-target=".bs-example-modal-diklat-hapus" data-id="'.$data->id.'" class="btn btn-sm btn-outline btn-danger"><i class="fa fa-trash"></i></a> ';
                             $actionBtn.= ' <a href="#" data-toggle="modal" data-target=".bs-example-modal-diklat-edit" data-id="'.$data->id.'" data-tanggal="'.$data->tanggal.'" data-cabang="'.$data->cabang_id.'"
                             data-program="'.$data->program_id.'" data-tempat="'.$data->tempat.'" data-keterangan="'.$data->keterangan.'" class="btn btn-sm btn-outline btn-primary"><i class="fa fa-edit"></i></a>';
                             return $actionBtn;
                         })
-                ->rawColumns(['cabang','program','action','peserta'])
+                ->rawColumns(['cabang','program','action','peserta','linkpendaftaran'])
                 ->make(true);
             }
         }
