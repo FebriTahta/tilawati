@@ -32,7 +32,7 @@ class PesertaCont extends Controller
     {
         if(request()->ajax())
         {
-            $data   = Peserta::where('pelatihan_id', $id)->with('pelatihan')->with('kabupaten')->with('nilai')->where('status',1);
+            $data   = Peserta::where('pelatihan_id', $id)->with('certificate')->with('pelatihan')->with('kabupaten')->with('nilai')->where('status',1);
                 return DataTables::of($data)
                         ->addColumn('nilai', function ($data) {
                             if ($data->nilai->count() == 0) {
@@ -94,7 +94,18 @@ class PesertaCont extends Controller
                             }
                             
                         })
-                ->rawColumns(['nilai','action','kabupaten','tgllahir','krits'])
+                        ->addColumn('certificate', function($data){
+                            if ($data->certificate == null) {
+                                # code...
+                                $bersertifikat = '<span class="badge badge-warning">tidak bersertifikat</span>';
+                                return $bersertifikat;
+                            } else {
+                                # code...
+                                $bersertifikat = '<span class="badge badge-success">bersertifikat</span>';
+                                return $bersertifikat;
+                            }
+                        })
+                ->rawColumns(['nilai','action','kabupaten','tgllahir','krits','certificate'])
                 ->make(true);
         }
     }

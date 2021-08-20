@@ -67,6 +67,7 @@
                                                     <th>nilai</th>
                                                     <th>alamat</th>
                                                     <th>Kriteria</th>
+                                                    <th>Certificate</th>
                                                     <th>Option</th>
                                                 </tr>
                                             </thead>
@@ -84,6 +85,7 @@
                                                     <th>nilai</th>
                                                     <th>alamat</th>
                                                     <th>Kriteria</th>
+                                                    <th>Certificate</th>
                                                     <th>Option</th>
                                                 </tr>
                                             </tfoot>
@@ -500,6 +502,10 @@
                         name:'kriteria',
                         },
                         {
+                        data:'certificate',
+                        name:'certificate',
+                        },
+                        {
                         data:'action',
                         name:'action'
                         },
@@ -544,6 +550,10 @@
                         {
                         data:'krits',
                         name:'kriteria'
+                        },
+                        {
+                        data:'certificate',
+                        name:'certificate'
                         },
                         {
                         data:'action',
