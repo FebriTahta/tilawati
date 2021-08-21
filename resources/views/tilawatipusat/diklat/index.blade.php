@@ -83,9 +83,10 @@
                                                     <th>program diklat</th>
                                                     <th>cabang</th>
                                                     <th>tanggal</th>
-                                                    <th>tempat</th>
-                                                    <th>Peserta</th>
                                                     <th>Pendaftaran</th>
+                                                    
+                                                    <th>Peserta</th>
+                                                    <th>tempat</th>
                                                     <th>Option</th>
                                                 </tr>
                                             </thead>
@@ -98,9 +99,10 @@
                                                     <th>program diklat</th>
                                                     <th>cabang</th>
                                                     <th>tanggal</th>
-                                                    <th>tempat</th>
-                                                    <th>Peserta</th>
                                                     <th>Pendaftaran</th>
+                                                   
+                                                    <th>Peserta</th>
+                                                    <th>tempat</th>
                                                     <th>Option</th>
                                                 </tr>
                                             </tfoot>
@@ -493,16 +495,17 @@
                             name:'tanggal'
                             },
                             {
-                            data:'tempat',
-                            name:'tempat'
+                            data:'linkpendaftaran',
+                            name:'linkpendaftaran'
                             },
+                            
                             {
                             data:'peserta',
                             name:'peserta'
                             },
                             {
-                            data:'linkpendaftaran',
-                            name:'linkpendaftaran'
+                            data:'tempat',
+                            name:'tempat'
                             },
                             {
                             data:'action',
