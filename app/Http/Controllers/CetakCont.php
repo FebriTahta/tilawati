@@ -36,11 +36,9 @@ class CetakCont extends Controller
         $pelatihan  = Pelatihan::find($id);
         $cabang     = $pelatihan->cabang->kabupaten->nama;
         $kabupaten  = substr($cabang, 5);
-        // $peserta    = Peserta::where('pelatihan_id', $id)
-        //                   ->where('bersyahadah', 1)->where('kriteria','<>','')->get();
         $peserta    = Peserta::where('pelatihan_id', $id)->where('kriteria','<>','')->get();
         $customPaper = array(0,0,792,612);
-        if ($cabang == 'KOTA SURABAYA') {
+        if ($pelatihan->cabang->name == 'Cahaya Amanah') {
             # code...
             $direktur   = "Dr. KH. Umar Jaeni M.Pd";
             $jabatan    = "Direktur Eksekutif";
