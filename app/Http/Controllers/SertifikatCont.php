@@ -62,10 +62,10 @@ class SertifikatCont extends Controller
                             $total = $data->certificate->count();
                             if ($total == 0) {
                                 # code...
-                                return '<p class="text-danger">'.$total.' - sertifikat'.'</p>';
+                                return '<a href="https://sertifikat.tilawatipusat.com/'.$data->slug.'" class="text-danger">'.$total.' - sertifikat'.'</a>';
                             } else {
                                 # code...
-                                return '<p class="text-success">'.$total.' - sertifikat'.'</p>';
+                                return '<a href="https://sertifikat.tilawatipusat.com/'.$data->slug.'" class="text-success">'.$total.' - sertifikat'.'</a>';
                             }
                         })
                         ->addColumn('cabang', function ($data) {
