@@ -90,19 +90,7 @@
             @endcomponent
             </div>
         </div>
-        <div class="row">
-            <div class="col-xl-12">
-                <div class="card">
-                    <div class="card-body">
-                        <i> Berikut Daftar Cabang Yang Memiliki Daerah Teritorial </i><br>
-                        <a class="text-info" href="#"><i>check</i></a>
-                        @foreach ($x as $item)
-                            <?php $data = App\Models\Cabang::where('kabupaten_id', $item->kabupaten_id)->get()?>
-                        @endforeach
-                    </div>
-                </div>
-            </div>
-        </div>
+        
     
         <div class="row">
             <div class="col-xl-5">

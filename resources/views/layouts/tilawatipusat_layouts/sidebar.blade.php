@@ -113,22 +113,23 @@
                         <li><a href="{{ route('diklat.detail_peserta') }}">CETAK DETAIL PESERTA</a></li>
                     </ul>
                 </li>
+                <div style="display: none">
+                    <li class="menu-title">Syarat Pendaftaran Online</li>
 
-                <li class="menu-title">Syarat Pendaftaran Online</li>
-
-                <li>
-                    <a href="{{ route('diklat.syarat.registrasi') }}" class="waves-effect">
-                        <i class="mdi mdi-clipboard-list-outline"></i>
-                        <span>Registrasi</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="{{ route('daftar_diklat_konfirmasi') }}" class="waves-effect">
-                        <i class="mdi mdi-clipboard-list-outline"></i>
-                        <span>Konfirmasi</span>
-                    </a>
-                </li>
+                    <li>
+                        <a href="{{ route('diklat.syarat.registrasi') }}" class="waves-effect">
+                            <i class="mdi mdi-clipboard-list-outline"></i>
+                            <span>Registrasi</span>
+                        </a>
+                    </li>
+    
+                    <li>
+                        <a href="{{ route('daftar_diklat_konfirmasi') }}" class="waves-effect">
+                            <i class="mdi mdi-clipboard-list-outline"></i>
+                            <span>Konfirmasi</span>
+                        </a>
+                    </li>
+                </div>
 
             </ul>
         </div>

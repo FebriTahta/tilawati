@@ -7,8 +7,20 @@
       src="https://kit.fontawesome.com/64d58efce2.js"
       crossorigin="anonymous"
     ></script>
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+      select {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+      </style>
     <style>
         .grid-container {
           display: grid;
@@ -41,6 +53,7 @@
     </style>
     <link rel="stylesheet" href="{{ asset('tilawatipusat/newlogin/style.css') }}" />
     <title>Sign in & Sign up Form</title>
+    
   </head>
   <body>
     <div class="container">
@@ -61,6 +74,20 @@
             <input type="submit" class="btn" value="Login" />
             <p class="social-text"></p>
           </form>
+
+          <form method="POST" action="/download-template" class="sign-in-form">@csrf
+            <div class="input-field">
+              <i class="fas fa-book"></i>
+              
+              <select name="jenis" class="form-control" style="text-transform: capitalize" id="" required>
+                <option value="">pilih template</option>
+                <option value="">Import (Guru / Standarisasi)</option>
+                <option value="">Import (Santri / Munaqosyah, Munaqisy, Tahfidz)</option>  
+              </select>
+            </div>
+            <input type="submit" style="width: 200px" class="btn" value="Download Template" />
+            <p class="social-text"></p>
+          </form>
         </div>
       </div>
 
@@ -75,7 +102,8 @@
               Masuk
             </button>
           </div>
-          <img src="{{ asset('tilawatipusat/newlogin/img/register.svg') }}" class="image" alt="" />
+          <img src="{{ asset('assets/images/gedung.png') }}" class="image" alt="" />
+          {{-- <img src="{{ asset('tilawatipusat/newlogin/img/register.svg') }}" class="image" alt="" /> --}}
         </div>
         <div class="panel right-panel">
           <div class="content">
@@ -87,7 +115,8 @@
               Template
             </button>
           </div>
-          <img src="{{ asset('tilawatipusat/newlogin/img/register.svg') }}" class="image" alt="" />
+          {{-- <img src="{{ asset('tilawatipusat/newlogin/img/register.svg') }}" class="image" alt="" /> --}}
+          <img src="{{ asset('assets/images/gedung.png') }}" class="image" alt="" />
         </div>
       </div>
     </div>

@@ -36,6 +36,7 @@ use App\Http\Controllers\LandingCont;
 use App\Http\Controllers\KonfirmasiCont;
 use App\Http\Controllers\SertifikatCont;
 use App\Http\Controllers\BroadcastController;
+use App\Http\Controllers\TemplateDownloadCont;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\MyTestMail;
 /*
@@ -52,6 +53,8 @@ use App\Mail\MyTestMail;
 Route::get('/', function () {
     return redirect('/login');
 });
+Route::get('/download-template/{jenis}',[TemplateDownloadCont::class,'download_template']);
+
 Route::get('/e-certificate/{slug_diklat}',[LandingCont::class,'ecertificate']);
 Route::get('/data/e-certificate/{diklat_id}',[LandingCont::class,'ecertificate_data']);
 Route::get('/tes_data',[LandingCont::class,'tes_data']);

@@ -19,28 +19,7 @@ class PesertaAcaraExport implements FromView
     /**
     * @return \Illuminate\Support\Collection
     */
-    // public function collection()
-    // {
-    //     return new Collection([
-    //         ['nama','email']
-    //     ]);
-    //     // return Peserta::all();
-    //     // dd (Peserta::with('donatur')->select('name','email','donatur_data')->get());
-    //     // return DB::table('pesertas')->select('name')->get();
-
-    //     // return $data = Peserta::select('name','email')->with('donatur',function($data){
-            
-    //     //     if ($data->donatur!==null) {
-    //     //         # code...
-    //     //         $x = $data->donatur->select('data','peserta_id');
-                
-    //     //     }
-    //     // })->get();
-    //     // return Peserta::with('donatur',function($a){
-    //     //     $a->select('data','peserta_id');
-    //     // })->get();
-    //     // return Peserta::with('donatur:data')->get();
-    // }
+    
 
     public function view(): View
     {

@@ -84,7 +84,6 @@
                                                     <th>cabang</th>
                                                     <th>tanggal</th>
                                                     <th>Pendaftaran</th>
-                                                    
                                                     <th>Peserta</th>
                                                     <th>tempat</th>
                                                     <th>Option</th>
@@ -100,7 +99,6 @@
                                                     <th>cabang</th>
                                                     <th>tanggal</th>
                                                     <th>Pendaftaran</th>
-                                                   
                                                     <th>Peserta</th>
                                                     <th>tempat</th>
                                                     <th>Option</th>
@@ -109,7 +107,6 @@
                                         </table>
                                         <footer class="blockquote-footer">Updated at  <cite title="Source Title">2021</cite></footer>
                                     </blockquote>
-                                    
                                 </div>
                             </div>
                         </div>

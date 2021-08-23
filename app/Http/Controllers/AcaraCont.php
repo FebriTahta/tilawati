@@ -79,18 +79,6 @@ class AcaraCont extends Controller
             $name=$image->getClientOriginalName();
             $image->move(public_path().'/flyer_acara/', $name);  // your folder path
 
-            // $image_name = time() . '.' . $image->getClientOriginalExtension();
-            // $destinationPath = public_path('/images');
-            // $resize_image = Image::make($request->file('image')->getRealPath());
-            // $resize_image->resize(150, 150, function($constraint){
-            // $constraint->aspectRatio();
-            // })->save($destinationPath . '/' . $image_name);
-
-            // $destinationPath = public_path('/images');
-            // $image->move($destinationPath, $image_name);
-            // $image_resize = Image::make($gambar->getRealPath());
-            // $image_resize->resize(250,150);
-            // $image_resize->save(public_path('images/'.$name));
             //save name image to db
             $data2 = Flyer::updateOrCreate(
                 [
@@ -120,13 +108,6 @@ class AcaraCont extends Controller
     {
         $acara = Acara::find($acara_id);
         return Excel::download(new PesertaAcaraExport($acara_id),'event-'.$acara->judul.'-'.$acara->tanggal.'.xlsx');
-        // return Peserta::where('acara_id',$acara_id)->select('name','email')->with(['donatur' => function ($query) {
-        //     $query->where('data', 1);
-        // }])->get();
-
-        // return Peserta::with('donatur',function($a){
-        //     $a->select('data','peserta_id');
-        // })->get();
     }
 
     public function data_peserta_acara(Request $request, $acara_id){
