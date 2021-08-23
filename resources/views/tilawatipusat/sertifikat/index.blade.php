@@ -58,7 +58,7 @@
                                                     <th>program diklat</th>
                                                     <th>pelaksana</th>
                                                     <th>tanggal</th>
-                                                    <th>sertifikat</th>
+                                                    <th>link sertifikat</th>
                                                     <th>...</th>
                                                 </tr>
                                             </thead>
@@ -71,7 +71,7 @@
                                                     <th>program diklat</th>
                                                     <th>pelaksana</th>
                                                     <th>tanggal</th>
-                                                    <th>sertifikat</th>
+                                                    <th>link sertifikat</th>
                                                     <th>...</th>
                                                 </tr>
                                             </tfoot>
