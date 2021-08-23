@@ -75,7 +75,7 @@
             <p class="social-text"></p>
           </form>
 
-          <form method="POST" action="/download-template" class="sign-in-form">@csrf
+          <form method="POST" action="#" class="sign-in-form">@csrf
             <div class="input-field">
               <i class="fas fa-book"></i>
               
