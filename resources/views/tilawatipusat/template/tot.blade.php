@@ -15,6 +15,9 @@
             <th>Tajwid</th>
             <th>Ghorib Musykilat</th>
             <th>Suara dan Lagu</th>
+            <th>MSM</th>
+            <th>MS</th>
+            <th>PK</th>
         </tr>
     </thead>
     <tbody>
@@ -33,6 +36,9 @@
             <td>38 (contoh)</td>
             <td>10 (contoh)</td>
             <td>5 (contoh)</td>
+            <td>80 (contoh)</td>
+            <td>85 (contoh)</td>
+            <td>90 (contoh)</td>
         </tr>
     </tbody>
 </table>

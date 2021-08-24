@@ -1,19 +1,17 @@
 <?php
 
 namespace App\Exports;
-use App\Models\Peserta;
-use DB;
 use Illuminate\Support\Collection;
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\FromView;
 
 // class TemplateDownloadExport implements FromCollection
-class PesertaAcaraExport implements FromView
+class TemplateDownloadExport implements FromView
 {
-    public function __construct($jenis_template)
+    public function __construct($jenis)
     {
-        $this->jenis=$jenis_template;
+        $this->jenis=$jenis;
     }
 
     /**
@@ -29,9 +27,12 @@ class PesertaAcaraExport implements FromView
         if ($this->jenis == 'guru') {
             # code...
             return view('tilawatipusat.template.guru');
-        } else {
+        } elseif ($this->jenis == 'santri') {
             # code...
             return view('tilawatipusat.template.santri');
+        } else{
+            # code...
+            return view('tilawatipusat.template.tot');
         }
     }
 }

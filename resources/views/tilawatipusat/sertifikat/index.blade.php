@@ -13,17 +13,6 @@
          @slot('title') Sertifikat    @endslot
          @slot('title_li') IMPORT   @endslot
     @endcomponent
-                    {{-- <div class="row">
-                        <div class="col-xl-4">
-                            @component('common-tilawatipusat.dashboard-widget')
-                            
-                                @slot('title') <b id="cb"> 2,456 </b> ijazah depan guru  @endslot
-                                @slot('iconClass') mdi mdi-tag-plus-outline  @endslot
-                                @slot('price')   @endslot
-                                
-                            @endcomponent
-                        </div>
-                    </div> --}}
 
                     <div class="row">
                         <div class="col-lg-12">
@@ -32,26 +21,6 @@
                                     <h4 class="card-title">Data Sertifikat</h4>
                                     <p class="card-title-desc">Data Sertifikat Berdasarkan Diklat </br></p>
                                     <blockquote class="blockquote font-size-16 mb-0 mt-2">
-                                        {{-- <form target="_blank" action="{{ route('diklat.belakang_cetak') }}" method="POST">@csrf
-                                            <div class="form-group">
-                                                <label for="">Jenis Program</label>
-                                                <select name="program_id" id="" class="form-control text-capitalize" required>
-                                                    <option value="">= Pilih Jenis Program =</option>
-                                                    @foreach ($dt_pro as $item)
-                                                        <option class="text-capitalize" value="{{ $item->id }}">{{ $item->name }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="">Program Pelatihan</label>
-                                                <select name="pelatihan_id" id="" class="form-control text-capitalize" required>
-                                                    <option class="text-capitalize" value="">= Pilih Program Pelatihan =</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <button type="submit" class="btn btn-primary btn-sm"> <i class="fa fa-print"></i> Cetak</button>
-                                            </div>
-                                        </form> --}}
                                         <table id="data-diklat" class="table table-diklat table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
                                             <thead class="text-bold text-primary" style="text-transform: capitalize">
                                                 <tr>

@@ -27,6 +27,7 @@ class CreatePesertasTable extends Migration
             $table->unsignedBigInteger('kriteria_id')->nullable();
             $table->date('tanggal');
             $table->string('name')->index();
+            $table->string('slug')->nullable();
             $table->string('tmptlahir')->nullable()->index();
             $table->string('tgllahir')->nullable();
             $table->longText('alamat')->nullable();

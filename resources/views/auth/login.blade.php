@@ -52,7 +52,7 @@
 
     </style>
     <link rel="stylesheet" href="{{ asset('tilawatipusat/newlogin/style.css') }}" />
-    <title>Sign in & Sign up Form</title>
+    <title>tilawati pusat</title>
     
   </head>
   <body>
@@ -75,14 +75,15 @@
             <p class="social-text"></p>
           </form>
 
-          <form method="POST" action="#" class="sign-in-form">@csrf
+          <form method="POST" action="{{route('download.template')}}" target="_blank" class="sign-in-form">@csrf
+            <label for="" style="text-transform: uppercase; margin-top: 0px">Download Template Peserta Diklat</label>
             <div class="input-field">
               <i class="fas fa-book"></i>
-              
               <select name="jenis" class="form-control" style="text-transform: capitalize" id="" required>
                 <option value="">pilih template</option>
-                <option value="">Import (Guru / Standarisasi)</option>
-                <option value="">Import (Santri / Munaqosyah, Munaqisy, Tahfidz)</option>  
+                <option value="guru">Import (Guru / Standarisasi)</option>
+                <option value="santri">Import (Santri / Munaqosyah, Munaqisy, Tahfidz)</option>
+                <option value="training_of_trainer">Import (Training Of Trainer)</option>
               </select>
             </div>
             <input type="submit" style="width: 200px" class="btn" value="Download Template" />

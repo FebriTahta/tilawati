@@ -49,11 +49,10 @@ use App\Mail\MyTestMail;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', function () {
     return redirect('/login');
 });
-Route::get('/download-template/{jenis}',[TemplateDownloadCont::class,'download_template']);
+Route::post('/download-template',[TemplateDownloadCont::class,'download_template'])->name('download.template');
 
 Route::get('/e-certificate/{slug_diklat}',[LandingCont::class,'ecertificate']);
 Route::get('/data/e-certificate/{diklat_id}',[LandingCont::class,'ecertificate_data']);
