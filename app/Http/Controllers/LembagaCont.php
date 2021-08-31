@@ -174,14 +174,14 @@ class lembagaCont extends Controller
     public function store(Request $request)
     {
         //create_user
-                $username_baru      = $request->name;
-                $dt_usr             = new User;
-                $dt_usr->username   = $username_baru;
-                $dt_usr->email      = $request->email;
-                $dt_usr->password   = Hash::make('lembaga_nf');
-                $dt_usr->role       = 'lembaga';
-                $dt_usr->created_at = new \DateTime;
-                $dt_usr->save();
+        $username_baru      = $request->name;
+        $dt_usr             = new User;
+        $dt_usr->username   = $username_baru;
+        $dt_usr->email      = $request->email;
+        $dt_usr->password   = Hash::make('lembaga_nf');
+        $dt_usr->role       = 'lembaga';
+        $dt_usr->created_at = new \DateTime;
+        $dt_usr->save();
         $kab = Kabupaten::where('id', $request->kabupaten)->first();
         $pro = $kab->provinsi_id;
         $kode = mt_rand(100000, 999999);
@@ -205,6 +205,7 @@ class lembagaCont extends Controller
                     'name'          => $request->name,
                     'telp'          => $request->telp,
                     'website'       => $request->website,
+                    'daerah'        => substr($kab, 5),
                     'alamat'        => $request->alamat,
                     'pos'           => $request->pos,
                     'pengelola'     => $request->pengelola,
@@ -233,6 +234,7 @@ class lembagaCont extends Controller
                     'name'          => $request->name,
                     'telp'          => $request->telp,
                     'website'       => $request->website,
+                    'daerah'        => substr($kab, 5),
                     'alamat'        => $request->alamat,
                     'pos'           => $request->pos,
                     'pengelola'     => $request->pengelola,

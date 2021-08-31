@@ -22,7 +22,6 @@
                 <div class="chase-dot"></div>
                 <div class="chase-dot"></div>
                 <div class="chase-dot"></div>
-                <div class="chase-dot"></div>
             </div>
         </div>
     </div>

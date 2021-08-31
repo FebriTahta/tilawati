@@ -27,7 +27,7 @@
 	</style>
 		@foreach ($peserta as $item)
 		<div class="print">
-			<table style="height: 180px; width: 720px;margin-left:109px;margin-top:290px" class="dalam">
+			<table style="height: 180px; width: 720px;margin-left:116px;margin-top:290px" class="dalam">
 				<tbody>
 				<tr class="atas" style="height: 10px;">
 				<td class="atas" style="width: 200px; height: 10px;">Nama&nbsp;</td>
@@ -55,7 +55,8 @@
 				<tr class="atas" style="height: 10px;">
 					<td class="atas" style="width: 200px; height: 10px;">Asal Lembaga</td>
 					<td class="atas" style="width: 11px; height: 10px;">:</td>
-					<td class="atas" style="width: 562px; height: 10px; font-weight: bold;text-transform: uppercase" >{{ $item->lembaga->name }}</td>
+					{{-- <td class="atas" style="width: 562px; height: 10px; font-weight: bold;text-transform: uppercase" >{{ $item->lembaga->name }}</td> --}}
+					<td class="atas" style="width: 562px; height: 10px; font-weight: bold;text-transform: uppercase" >Baitul Ghufron</td>
 					<td class="atas" style="width: 52px; height: 10px;">&nbsp;</td>
 				</tr>
 				@endif
@@ -73,7 +74,7 @@
 				</tr>
 				</tbody>
 			</table>			
-			<table style="margin-left:109px; margin-top: 4px">
+			<table style="margin-left:116px; margin-top: 4px">
 				<tbody>
 				<tr style="height: 27px;"><?php $tahun = date('Y')?>
 				<td class="bawah" style="width: 210px; height: 27px; "><small> </small></td>
@@ -84,9 +85,9 @@
 				<td class="bawah" style="width: 210px; height: 70px;"><img src="images/{{ $item->id }}qrcode.png" alt="" width="70px" height="70px"></td>
 				<td class="bawah" style="width: 210px; height: 70px;">&nbsp;</td>
 				<td class="bawah" style="width: 241px; height: 70px;">
-					@if ($cabang=='KOTA SURABAYA')
+					{{-- @if ($cabang=='KOTA SURABAYA')
 					<img src="assets/images/pu2.png" alt="" width="140px" height="70px">
-					@endif
+					@endif --}}
 				</td>
 				</tr>
 				<tr style="height: 5px;">

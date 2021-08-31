@@ -78,12 +78,14 @@ class LembagaImport implements ToCollection, WithChunkReading, ShouldQueue
                         $kabupaten_id = $tes_kab->id;
                         $dt_lem->kabupaten_id = $kabupaten_id;
                         $dt_lem->provinsi_id = $tes_kab->provinsi->id;
+                        $dt_lem->daerah = $kab;
                     } 
                     if ($tes_kot !== null) {
                         # code...
                         $kabupaten_id = $tes_kot->id;
                         $dt_lem->kabupaten_id = $kabupaten_id;
                         $dt_lem->provinsi_id = $tes_kot->provinsi->id;
+                        $dt_lem->daerah = $kab;
                     }
 
                     $dt_lem->jml_guru = $row[7];
@@ -176,12 +178,14 @@ class LembagaImport implements ToCollection, WithChunkReading, ShouldQueue
                         $kabupaten_id = $tes_kab->id;
                         $dt_lem->kabupaten_id = $kabupaten_id;
                         $dt_lem->provinsi_id = $tes_kab->provinsi->id;
+                        $dt_lem->daerah = $kab;
                     } 
                     if ($tes_kot !== null) {
                         # code...
                         $kabupaten_id = $tes_kot->id;
                         $dt_lem->kabupaten_id = $kabupaten_id;
                         $dt_lem->provinsi_id = $tes_kot->provinsi->id;
+                        $dt_lem->daerah = $kab;
                     }
                     
                     $dt_lem->jml_guru = $row[7];
@@ -276,12 +280,14 @@ class LembagaImport implements ToCollection, WithChunkReading, ShouldQueue
                     $kabupaten_id = $tes_kab->id;
                     $dt_lem->kabupaten_id = $kabupaten_id;
                     $dt_lem->provinsi_id = $tes_kab->provinsi->id;
+                    $dt_lem->daerah = $kab;
                 } 
                 if ($tes_kot !== null) {
                     # code...
                     $kabupaten_id = $tes_kot->id;
                     $dt_lem->kabupaten_id = $kabupaten_id;
                     $dt_lem->provinsi_id = $tes_kot->provinsi->id;
+                    $dt_lem->daerah = $kab;
                 }
                 
                 $dt_lem->jml_guru = $row[7];

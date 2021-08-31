@@ -50,8 +50,8 @@ use App\Mail\MyTestMail;
 |
 */
 Route::get('/', function () {
-    // return redirect('/login');
-    return view('maintenance');
+    return redirect('/login');
+    // return view('maintenance');
 });
 Route::post('/download-template',[TemplateDownloadCont::class,'download_template'])->name('download.template');
 

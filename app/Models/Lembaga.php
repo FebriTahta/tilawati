@@ -13,6 +13,7 @@ class Lembaga extends Model
         'user_id',
         'cabang_id',
         'name',
+        'daerah',
         'alamat',
         'provinsi_id',
         'kabupaten_id',

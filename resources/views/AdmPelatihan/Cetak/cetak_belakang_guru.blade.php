@@ -212,15 +212,18 @@
 	</style>
 	@endif
 	@foreach($peserta as $key=> $p)
-	<center>
+	{{-- <center>
 		<p @if ($pelatihan->keterangan == 'instruktur') style="margin-top: 147px" @else style="margin-top: 147px" @endif class="syahadah">No. Syahadah : {{ $p->pelatihan->id }} / 2021 / {{ $p->id }}</p>
-	</center>
+	</center> --}}
+	<div style="margin-left: 347px">
+		<p @if ($pelatihan->keterangan == 'instruktur') style="margin-top: 147px" @else style="margin-top: 147px" @endif class="syahadah">No. Syahadah : {{ $p->pelatihan->id }} / 2021 / {{ $p->id }}</p>
+	</div>
 		<table 
 		@if ($pelatihan->keterangan == 'instruktur')
 		style="width: 700px"
 		@else
-		style="width: 600px"
-		@endif  class="table1 center">
+		style="width: 782px; margin-left:154px"
+		@endif  class="table1">
 			<tr>
 					<th rowspan="2">No.</th>
 					<th rowspan="2">Bidang Penilaian</th>
@@ -246,9 +249,9 @@
 					<tr>
 						<td class="pop"></td>
 						<td class="pop2" >&nbsp; &nbsp;&nbsp;<span style="text-transform: capitalize">{{ $item->penilaian->name }}</span></td>
-						<td class="nilai">&nbsp; &nbsp;{{ $item->penilaian->max }}</td>
-						<td class="nilai2">&nbsp; &nbsp;{{ $item->penilaian->min }}</td>
-						<td class="nilai3">&nbsp; &nbsp;{{ $item->nominal }}</td>
+						<td class="nilai" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->max }}</td>
+						<td class="nilai2" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->min }}</td>
+						<td class="nilai3" style="text-align: center">&nbsp; &nbsp;{{ $item->nominal }}</td>
 						<td style="border-top: 0;border-bottom: 0;"></td>
 					</tr>
 				@else
@@ -287,7 +290,7 @@
 		</table>
 			<div id="textbox" style="margin-top: 20px">
 				<div class="alignleft" style="margin-left: 180px">Baik : 85 - 95</div>
-				<div class="alignright" style="margin-right: 180px">Cukup : 75 - 84</div>
+				<div class="alignright" style="margin-right: 220px">Cukup : 75 - 84</div>
 			</div>
 	@endforeach
 </body>

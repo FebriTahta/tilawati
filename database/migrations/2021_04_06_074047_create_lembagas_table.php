@@ -19,7 +19,8 @@ class CreateLembagasTable extends Migration
             $table->bigInteger('kode');
             $table->unsignedBigInteger('user_id')->nullable();
             $table->unsignedBigInteger('cabang_id')->nullable();
-            $table->longText('name')->nullable();
+            $table->string('name')->nullable();
+            $table->string('daerah')->nullable();
             $table->longText('alamat')->nullable();
             $table->unsignedBigInteger('kepala_id')->nullable();
             $table->unsignedBigInteger('jenjang_id')->nullable();
