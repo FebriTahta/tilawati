@@ -62,7 +62,7 @@
                                                         <th>jilid</th>
                                                     @endif
                                                     <th>kota/kabupaten</th>
-                                                    <th>telp</th>
+                                                    <th>phone</th>
                                                     <th>nilai</th>
                                                     <th>Certificate</th>
                                                     <th>alamat</th>
@@ -80,7 +80,7 @@
                                                         <th>jilid</th>
                                                     @endif
                                                     <th>kota/kabupaten</th>
-                                                    <th>telp</th>
+                                                    <th>phone</th>
                                                     <th>nilai</th>
                                                     <th>Certificate</th>
                                                     <th>alamat</th>

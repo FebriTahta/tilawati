@@ -15,7 +15,7 @@ use Maatwebsite\Excel\Concerns\WithChunkReading;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\WithStartRow;
 
-class PesertaDiklatImport implements ToCollection, WithChunkReading, ShouldQueue, WithStartRow
+class PesertaDiklatImport implements ToCollection, WithChunkReading, ShouldQueue
 {
 
     public function __construct($id,$tanggal,$cabang_id)
@@ -23,11 +23,6 @@ class PesertaDiklatImport implements ToCollection, WithChunkReading, ShouldQueue
         $this->id=$id;
         $this->tanggal=$tanggal;
         $this->cabang_id=$cabang_id;
-    }
-
-    public function startRow(): int
-    {
-        return 2;
     }
 
     /**
