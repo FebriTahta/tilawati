@@ -38,7 +38,7 @@ class ImportController extends Controller
         $pelatihan = Pelatihan::find($id);
         $cabang_id = $pelatihan->cabang_id;
         $tanggal = $request->tanggal;
-        $data = Excel::import(new PesertaDiklatImport($id, $tanggal, $cabang_id), $request->file('file'));
+        $data = Excel::queueImport(new PesertaDiklatImport($id, $tanggal, $cabang_id), $request->file('file'));
         return Response()->json([
             $data,
             'success'=>'Peserta Berhasil Ditambahkan Melalui file Excel'

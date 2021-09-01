@@ -10,9 +10,11 @@ use App\Models\Lembaga;
 use DB;
 use SimpleSoftwareIO\QrCode\Generator;
 use Illuminate\Support\Collection;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Maatwebsite\Excel\Concerns\WithChunkReading;
 use Maatwebsite\Excel\Concerns\ToCollection;
 
-class PesertaDiklatImport implements ToCollection
+class PesertaDiklatImport implements ToCollection, WithChunkReading, ShouldQueue
 {
 
     public function __construct($id,$tanggal,$cabang_id)
@@ -58,7 +60,6 @@ class PesertaDiklatImport implements ToCollection
                         $dt_pel->provinsi_id = $tes_kot->provinsi->id;
                     }
 
-
                     $dt_pel->telp =$row[3];
                     $dt_pel->tmptlahir = $row[4];
                     
@@ -100,5 +101,15 @@ class PesertaDiklatImport implements ToCollection
                     ->generate('https://www.tilawatipusat.com/diklat-profile-peserta/'.$dt_pel->id.'/'.$dt_pel->pelatihan->program->id.'/'.$dt_pel->pelatihan->id, public_path('images/'.$id.'qrcode.png'));
             }   
         }
+    }
+
+    public function batchSize(): int
+    {
+        return 400;
+    }
+
+    public function chunkSize(): int
+    {
+        return 400;
     }
 }
