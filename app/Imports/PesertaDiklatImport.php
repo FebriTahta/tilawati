@@ -13,8 +13,9 @@ use Illuminate\Support\Collection;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Maatwebsite\Excel\Concerns\WithChunkReading;
 use Maatwebsite\Excel\Concerns\ToCollection;
+use Maatwebsite\Excel\Concerns\WithStartRow;
 
-class PesertaDiklatImport implements ToCollection, WithChunkReading, ShouldQueue
+class PesertaDiklatImport implements ToCollection, WithChunkReading, ShouldQueue, WithStartRow
 {
 
     public function __construct($id,$tanggal,$cabang_id)
@@ -24,6 +25,11 @@ class PesertaDiklatImport implements ToCollection, WithChunkReading, ShouldQueue
         $this->cabang_id=$cabang_id;
     }
 
+    public function startRow(): int
+    {
+        return 2;
+    }
+
     /**
     * @param Collection $collection
     */
@@ -31,8 +37,10 @@ class PesertaDiklatImport implements ToCollection, WithChunkReading, ShouldQueue
     {
         foreach ($collection as $key => $row) {
             # code...
-            if ($key >= 1) {
-                $dt_pel = new Peserta;
+            // if ($key >= 1) {
+                
+            // }
+            $dt_pel = new Peserta;
                     $dt_pel->pelatihan_id = $this->id;
                     $dt_pel->cabang_id = $this->cabang_id;
                     $dt_pel->tanggal = $this->tanggal;
@@ -98,18 +106,17 @@ class PesertaDiklatImport implements ToCollection, WithChunkReading, ShouldQueue
                     $id = $dt_pel->id;
                     \QrCode::size(150)
                     ->format('png')
-                    ->generate('https://www.tilawatipusat.com/diklat-profile-peserta/'.$dt_pel->id.'/'.$dt_pel->pelatihan->program->id.'/'.$dt_pel->pelatihan->id, public_path('images/'.$id.'qrcode.png'));
-            }   
+                    ->generate('https://www.tilawatipusat.com/diklat-profile-peserta/'.$dt_pel->id.'/'.$dt_pel->pelatihan->program->id.'/'.$dt_pel->pelatihan->id, public_path('images/'.$id.'qrcode.png'));   
         }
     }
 
     public function batchSize(): int
     {
-        return 10;
+        return 5;
     }
 
     public function chunkSize(): int
     {
-        return 10;
+        return 5;
     }
 }
