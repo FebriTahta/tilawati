@@ -212,11 +212,12 @@
 	</style>
 	@endif
 	@foreach($peserta as $key=> $p)
+	<div style="page-break-inside: avoid">
 	{{-- <center>
 		<p @if ($pelatihan->keterangan == 'instruktur') style="margin-top: 147px" @else style="margin-top: 147px" @endif class="syahadah">No. Syahadah : {{ $p->pelatihan->id }} / 2021 / {{ $p->id }}</p>
 	</center> --}}
-	<div style="margin-left: 347px">
-		<p @if ($pelatihan->keterangan == 'instruktur') style="margin-top: 147px" @else style="margin-top: 147px" @endif class="syahadah">No. Syahadah : {{ $p->pelatihan->id }} / 2021 / {{ $p->id }}</p>
+	<div>
+		<p @if ($pelatihan->keterangan == 'instruktur') style="margin-top: 160px;margin-left: 358px" @else style="margin-top: 160px;margin-left: 358px" @endif class="syahadah">No. Syahadah : {{ $p->pelatihan->id }}/2021/{{ $p->id }}</p>
 	</div>
 		<table 
 		@if ($pelatihan->keterangan == 'instruktur')
@@ -290,8 +291,9 @@
 		</table>
 			<div id="textbox" style="margin-top: 20px">
 				<div class="alignleft" style="margin-left: 180px">Baik : 85 - 95</div>
-				<div class="alignright" style="margin-right: 220px">Cukup : 75 - 84</div>
+				<div class="alignright" style="margin-right: 210px">Cukup : 75 - 84</div>
 			</div>
+	</div>
 	@endforeach
 </body>
 </html>	

@@ -15,7 +15,7 @@ use Maatwebsite\Excel\Concerns\WithChunkReading;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\WithStartRow;
 
-class PesertaDiklatImport implements ToCollection, WithChunkReading, ShouldQueue
+class PesertaDiklatImport implements ToCollection, WithStartRow, WithChunkReading, ShouldQueue
 {
 
     public function __construct($id,$tanggal,$cabang_id)
@@ -26,6 +26,14 @@ class PesertaDiklatImport implements ToCollection, WithChunkReading, ShouldQueue
     }
 
     /**
+     * @return int
+     */
+    public function startRow(): int
+    {
+        return 2;
+    }
+
+    /**
     * @param Collection $collection
     */
     public function collection(Collection $collection)
@@ -33,9 +41,7 @@ class PesertaDiklatImport implements ToCollection, WithChunkReading, ShouldQueue
         foreach ($collection as $key => $row) {
             # code...
             // if ($key >= 1) {
-                
-            // }
-            $dt_pel = new Peserta;
+                $dt_pel = new Peserta;
                     $dt_pel->pelatihan_id = $this->id;
                     $dt_pel->cabang_id = $this->cabang_id;
                     $dt_pel->tanggal = $this->tanggal;
@@ -62,6 +68,7 @@ class PesertaDiklatImport implements ToCollection, WithChunkReading, ShouldQueue
                         $dt_pel->kabupaten_id = $kabupaten_id;
                         $dt_pel->provinsi_id = $tes_kot->provinsi->id;
                     }
+
 
                     $dt_pel->telp =$row[3];
                     $dt_pel->tmptlahir = $row[4];
@@ -101,7 +108,8 @@ class PesertaDiklatImport implements ToCollection, WithChunkReading, ShouldQueue
                     $id = $dt_pel->id;
                     \QrCode::size(150)
                     ->format('png')
-                    ->generate('https://www.tilawatipusat.com/diklat-profile-peserta/'.$dt_pel->id.'/'.$dt_pel->pelatihan->program->id.'/'.$dt_pel->pelatihan->id, public_path('images/'.$id.'qrcode.png'));   
+                    ->generate('https://www.tilawatipusat.com/diklat-profile-peserta/'.$dt_pel->id.'/'.$dt_pel->pelatihan->program->id.'/'.$dt_pel->pelatihan->id, public_path('images/'.$id.'qrcode.png'));
+            // }   
         }
     }
 

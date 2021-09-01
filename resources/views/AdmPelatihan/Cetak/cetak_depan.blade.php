@@ -27,7 +27,12 @@
 	</style>
 		@foreach ($peserta as $item)
 		<div class="print">
-			<table style="height: 180px; width: 720px;margin-left:116px;margin-top:290px" class="dalam">
+			<table 
+			@if ($pelatihan->keterangan == 'guru')
+			style="height: 180px; width: 720px;margin-left:113px;margin-top:290px"
+			@else
+			style="height: 180px; width: 720px;margin-left:116px;margin-top:290px"
+			@endif class="dalam">
 				<tbody>
 				<tr class="atas" style="height: 10px;">
 				<td class="atas" style="width: 200px; height: 10px;">Nama&nbsp;</td>
@@ -74,7 +79,13 @@
 				</tr>
 				</tbody>
 			</table>			
-			<table style="margin-left:116px; margin-top: 4px">
+			<table 
+			@if ($pelatihan->keterangan=='guru')
+			style="margin-left:113px; margin-top: 4px"
+			@else
+			style="margin-left:116px; margin-top: 10px"
+			@endif
+			>
 				<tbody>
 				<tr style="height: 27px;"><?php $tahun = date('Y')?>
 				<td class="bawah" style="width: 210px; height: 27px; "><small> </small></td>
