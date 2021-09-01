@@ -104,7 +104,7 @@
                     </ul>
                 </li>
 
-                <li>
+                <li style="display: none">
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="mdi mdi-clipboard-list-outline"></i>
                         <span>Detail</span>
@@ -113,7 +113,7 @@
                         <li><a href="{{ route('diklat.detail_peserta') }}">CETAK DETAIL PESERTA</a></li>
                     </ul>
                 </li>
-                <div style="display: none">
+                <div>
                     <li class="menu-title">Syarat Pendaftaran Online</li>
 
                     <li>

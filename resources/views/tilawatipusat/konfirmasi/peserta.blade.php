@@ -73,7 +73,7 @@
                                         <div id="message"></div>
                                         <table id="datatable-buttons" class="table table-peserta table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
                                             <thead class="text-bold text-primary" style="text-transform: capitalize">
-                                                <tr>
+                                                <tr> 
                                                     <th>peserta</th>
                                                     <th>phone</th>
                                                     <th>dokumen</th>
@@ -174,64 +174,20 @@
                     </div>
 
                     <div class="col-sm-6 col-md-3 m-t-30">
-                        <div class="modal fade bs-example-modal-peserta" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered modal-lg">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title mt-0">IMPORT DATA PESERTA </h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="col-xl-12">
-                                            <div class="card m-b-30">
-                                                <div class="card-body">
-                                                    <div class="container-fluid">
-                                                        <form id="importpeserta"  method="POST" enctype="multipart/form-data">@csrf
-                                                            <div class="form-group">
-                                                                <label for="" class="text-capitalize">Import Data "peserta diklat {{ $diklat->program->name }}" (hanya Excel File format .xlsx)</label>
-                                                                <input type="file" class="form-control" name="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" required>
-                                                            </div>
-                                                            <input type="hidden" name="tanggal" value="{{ $diklat->tanggal }}">
-                                                            <input type="hidden" name="id" value="{{ $diklat->id }}">
-                                                            <div class="form-group">
-                                                                <input type="submit" name="import" id="btnimport" class="btn btn-info" value="Import" />
-                                                            </div>
-                                                        </form>
-                                                    </div><!-- container fluid -->
-                                                </div>
-                                            </div>
-                                        </div> <!-- end col -->
-                                    </div>
-                                </div><!-- /.modal-content -->
-                            </div><!-- /.modal-dialog -->
-                        </div><!-- /.modal -->
-                    </div>
-
-                    <div class="col-sm-6 col-md-3 m-t-30">
-                        <div class="modal fade modal-scan" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                        <div class="modal fade modal-acc" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered modal-md">
                                 <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title mt-0">SCAN QR CODE PESERTA </h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="col-xl-12">
-                                            <div class="card m-b-30">
-                                                <div class="card-body">
-                                                    <div class="container-fluid text-center">
-                                                        <img src="" alt="qr-code" id="qr-code" width="150px" height="150px">
-                                                        <div class="text-center text-uppercase" style="margin-top: 10px">
-                                                            <p class="text-info" id="nama_peserta"></p>
-                                                        </div>
-                                                    </div><!-- container fluid -->
-                                                </div>
+                                    <div class="modal-body text-center">
+                                        <p class="text-uppercase">Konfirmasi Pendaftaran</p>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="form-group col-6 col-xl-6">
+                                                <button class="btn btn-success">Terima!</button>
                                             </div>
-                                        </div> <!-- end col -->
+                                            <div class="form-group col-6 col-xl-6">
+                                                <button class="btn btn-secondary" data-dismiss="modal">Cancel!</button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div><!-- /.modal-content -->
                             </div><!-- /.modal-dialog -->
@@ -267,7 +223,8 @@
         <script src="{{ URL::asset('tilawatipusat/js/pages/datatables.init.js')}}"></script>
 
         <script>
-            $('.modal-scan').on('show.bs.modal', function(event) {
+            //terima pendaftaran
+            $('.modal-acc').on('show.bs.modal', function(event) {
                 var button = $(event.relatedTarget)
                 id = button.data('id')
                 nama_peserta = button.data('nama_peserta')
@@ -275,59 +232,13 @@
                 $('#nama_peserta').html(nama_peserta);
                 document.getElementById("qr-code").src = id;
             })
-
-            $('#modal_file').on('show.bs.modal', function(event) {
-                var button = $(event.relatedTarget)
-                var file = button.data('file')
-                var img_name = button.data('img_name')
-                var name = button.data('name')
-                var modal = $(this)
-                $('#img_name').html(img_name);
-                $('#peserta_name').html(name);
-                document.getElementById("img_file").src = file;
-            })
-
+            //tolak pendaftaran
             $('#hapusData').on('show.bs.modal', function(event) {
                 var button = $(event.relatedTarget)
                 id = button.data('id')
                 var modal = $(this)
                 modal.find('.modal-body #id').val(id);
             })
-
-            $('#hapusPeserta').submit(function(e) {
-                e.preventDefault();
-                var formData = new FormData(this);
-                $.ajax({
-                type:'POST',
-                url: "{{ route('diklat.peserta_delete')}}",
-                data: formData,
-                cache:false,
-                contentType: false,
-                processData: false,
-                beforeSend:function(){
-                    $('#btnhapus').attr('disabled','disabled');
-                    $('#btnhapus').val('Proses Hapus Data');
-                },
-                success: function(data){
-                    if(data.success)
-                    {
-                        //sweetalert and redirect
-                        var oTable = $('#datatable-buttons').dataTable();
-                        oTable.fnDraw(false);
-                        $('#btnhapus').val('Ya, Hapus!');
-                        $('#hapusData').modal('hide');
-                        $('#btnhapus').attr('disabled',false);
-                        swal({ title: "Success!",
-                            text: "Kriteria Tersebut Berhasil Di Dihapus!",
-                            type: "success"})
-                    }
-                },
-                error: function(data)
-                {
-                    console.log(data);
-                    }
-                });
-            });
 
             $(document).ready(function(){
                 var jenis_program = $('#jenis_program').val();

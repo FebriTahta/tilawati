@@ -138,8 +138,7 @@ class KonfirmasiCont extends Controller
                         
                         ->addColumn('action', function($data){
                             $actionBtn = ' <a style="width:50px" href="#" data-id="'.$data->id.'" data-toggle="modal" data-target="#hapusData" class="btn btn-sm btn-outline btn-danger "><i class="fa fa-close"></i></a>';
-                            $actionBtn .= ' <a style="width:50px" href="/diklat-profile-peserta/'.$data->id.'/'.$data->pelatihan->program->id.'/'.$data->pelatihan->id.'/admin" class="btn btn-sm btn-outline btn-success "><i class="fa fa-check"></i></a>';
-                            // $actionBtn .= ' <a href="#" class="btn btn-sm btn-outline btn-success" data-nama_peserta="'.$data->name.'" data-id="'.asset('images/'.$data->id.'qrcode.png').'" data-toggle="modal" data-target=".modal-scan"><i class="mdi mdi-barcode-scan"></i></a>';
+                            $actionBtn .= ' <a style="width:50px" href="#" data-id="'.$data->id.'" data-toggle="modal" data-target=".modal-acc" class="btn btn-sm btn-outline btn-success "><i class="fa fa-check"></i></a>';
                             return $actionBtn;
                         })
                 ->rawColumns(['action','kabupaten','registrasi','status'])
