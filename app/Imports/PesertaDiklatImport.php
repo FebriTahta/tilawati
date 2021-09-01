@@ -105,11 +105,11 @@ class PesertaDiklatImport implements ToCollection, WithChunkReading, ShouldQueue
 
     public function batchSize(): int
     {
-        return 400;
+        return 10;
     }
 
     public function chunkSize(): int
     {
-        return 400;
+        return 10;
     }
 }
