@@ -34,7 +34,7 @@
                 </li>
 
                 <li class="menu-title">Input Data Diklat</li>
-                <li>
+                <li style="display: none">
                     <a href="{{ route('acara') }}" class="waves-effect">
                         <i class="mdi mdi-city-variant-outline"></i>
                         <span class="badge badge-pill badge-danger float-right"></span>

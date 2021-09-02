@@ -12,7 +12,9 @@ use App\Models\Lembaga;
 use App\Models\Cabang;
 use App\Models\Kabupaten;
 use App\Models\Kriteria;
+use Illuminate\Support\Str;
 use Carbon\Carbon;
+use File;
 use Illuminate\Http\Request;
 
 class PesertaCont extends Controller
@@ -20,12 +22,15 @@ class PesertaCont extends Controller
     public function index($id)
     {
         $pelatihan_id = $id;
-        $diklat = Pelatihan::where('id', $id)->first();
+        $diklat     = Pelatihan::where('id', $id)->first();
         $program_id = $diklat->program->id;
-        $kriteria = Kriteria::where('program_id',$program_id)->get();
-        $penilaian = Penilaian::where('program_id',$program_id)->get();
-        
-        return view('tilawatipusat.peserta.index',compact('penilaian','pelatihan_id','diklat','kriteria'));
+        $kriteria   = Kriteria::where('program_id',$program_id)->get();
+        $penilaian  = Penilaian::where('program_id',$program_id)->get();
+        $kab_kosong = Peserta::where('pelatihan_id',$pelatihan_id)->where('kabupaten_id', null)->count();
+        $lulus      = Peserta::where('pelatihan_id',$pelatihan_id)->where('bersyahadah', 1)->count();
+        $seluruh    = Peserta::where('pelatihan_id',$pelatihan_id)->count();
+        $belum_lulus= $seluruh-$lulus;
+        return view('tilawatipusat.peserta.index',compact('penilaian','pelatihan_id','diklat','kriteria','kab_kosong','lulus','belum_lulus'));
     }
 
     public function peserta_data(Request $request,$id)
@@ -40,7 +45,7 @@ class PesertaCont extends Controller
                                 return $button = '<a href="#" data-toggle="modal" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-danger">belum dinilai</a>';
                             }else{
                                 // return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-info">sudah dinilai</a>';
-                                $total = $data->nilai->where("kategori","al-qur'an")->sum('nominal');
+                                    $total  = $data->nilai->where("kategori","al-qur'an")->sum('nominal');
                                     $total2 = $data->nilai->where("kategori","skill")->sum('nominal');
                                     $total3 = $data->nilai->where("kategori","skill")->count();
                                     
@@ -70,7 +75,7 @@ class PesertaCont extends Controller
                                 return $data->kabupaten->nama;
                             } else {
                                 # code...
-                                return '<span class="badge badge-warning">kosong</span>';
+                                return '<button data-target="#addkota" data-id="'.$data->id.'" data-toggle="modal" class="btn btn-sm btn-danger">kosong / salah penulisan</button>';
                             }
                         })
                         ->addColumn('tgllahir', function ($data) {
@@ -80,13 +85,13 @@ class PesertaCont extends Controller
                         ->addColumn('action', function($data){
                             $actionBtn = ' <a href="#" data-id="'.$data->id.'" data-toggle="modal" data-target="#hapusData" class="btn btn-sm btn-outline btn-danger "><i class="fa fa-trash"></i></a>';
                             $actionBtn .= ' <a href="/diklat-profile-peserta/'.$data->id.'/'.$data->pelatihan->program->id.'/'.$data->pelatihan->id.'/admin" class="btn btn-sm btn-outline btn-info "><i class="fa fa-user"></i></a>';
-                            $actionBtn .= ' <a href="#" class="btn btn-sm btn-outline btn-success" data-nama_peserta="'.$data->name.'" data-id="'.asset('images/'.$data->id.'qrcode.png').'" data-toggle="modal" data-target=".modal-scan"><i class="mdi mdi-barcode-scan"></i></a>';
+                            $actionBtn .= ' <a href="#" class="btn btn-sm btn-outline btn-success" data-nama_peserta="'.$data->name.'" data-id="'.asset('images/'.$data->slug.'-qrcode.png').'" data-toggle="modal" data-target=".modal-scan"><i class="mdi mdi-barcode-scan"></i></a>';
                             return $actionBtn;
                         })
                         ->addColumn('krits', function ($data) {
                             if ($data->kriteria == null) {
                                 # code...
-                                return '<a href="$" class="badge badge-warning">menunggu penilaian</a>';
+                                return '<a href="#" class="badge badge-warning">menunggu penilaian</a>';
 
                             } else {
                                 # code...
@@ -339,6 +344,7 @@ class PesertaCont extends Controller
         $tmptlahir      = substr($tmptlahir->nama,4);
         $provinsi_id    = $kabupaten->provinsi->id;
         $lembaga        = Lembaga::where('id',$request->lembaga_id)->first();
+        $slug           = Str::slug($request->name.'-'.$diklat->program->name.'-'.Carbon::parse($tanggal)->isoFormat('MMMM-D-Y').'-'.$diklat->cabang->name.'-'.$diklat->cabang->kabupaten->nama);
         if ($lembaga !== null) {
             # code...
             if ($lembaga->status == 'Aktif') {
@@ -354,6 +360,7 @@ class PesertaCont extends Controller
                         'tanggal' => $tanggal,
                         'name' => $request->name,
                         'email' => $request->email,
+                        'slug' => $slug,
                         'tmptlahir' => $tmptlahir,
                         'tgllahir' => $request->tgllahir,
                         'alamat' => $request->alamat,
@@ -368,7 +375,8 @@ class PesertaCont extends Controller
                 $program_id = $program->program_id;
                 $qr = \QrCode::size(200)
                     ->format('png')
-                    ->generate('https://www.tilawatipusat.com/diklat-profile-peserta/'.$data->id.'/'.$program_id.'/'.$data->pelatihan_id, public_path('images/'.$data->id.'qrcode.png'));
+                    // ->generate('https://www.tilawatipusat.com/diklat-profile-peserta/'.$data->id.'/'.$program_id.'/'.$data->pelatihan_id, public_path('images/'.$data->id.'qrcode.png'));
+                    ->generate('https://www.profile.tilawatipusat.com/'.$slug, public_path('images/'.$slug.'-qrcode.png'));
                     return response()->json(
                     [
                        $data,$qr,
@@ -401,6 +409,7 @@ class PesertaCont extends Controller
                     'email' => $request->email,
                     'tmptlahir' => $tmptlahir,
                     'tgllahir' => $request->tgllahir,
+                    'slug'=>$slug,
                     'alamat' => $request->alamat,
                     'telp' => $request->telp,
                     'provinsi_id' => $provinsi_id,
@@ -413,7 +422,8 @@ class PesertaCont extends Controller
             $program_id = $program->program_id;
             $qr = \QrCode::size(100)
                 ->format('png')
-                ->generate('https://www.tilawatipusat.com/diklat-profile-peserta/'.$data->id.'/'.$program_id.'/'.$data->pelatihan_id, public_path('images/'.$data->id.'qrcode.png'));
+                // ->generate('https://www.tilawatipusat.com/diklat-profile-peserta/'.$data->id.'/'.$program_id.'/'.$data->pelatihan_id, public_path('images/'.$data->id.'qrcode.png'));
+                ->generate('https://www.profile.tilawatipusat.com/'.$slug, public_path('images/'.$slug.'qrcode.png'));
                 return response()->json(
                 [
                    $data,$qr,
@@ -425,11 +435,12 @@ class PesertaCont extends Controller
     }
     public function delete(Request $request)
     {
-        $id = $request->id;
-        Peserta::find(
-            $id
-        )->delete();
-        
+        $id     = $request->id;
+        $data   =Peserta::find($id);
+        //hapus qr
+        File::delete('images/'.$data->slug.'-qrcode.png');
+        //hapus data
+        $data->delete();
         return response()->json(
             [
               'success' => 'Peserta Berhasil Dihapus!',
@@ -554,7 +565,7 @@ class PesertaCont extends Controller
                         ->addColumn('action', function($data){
                             $actionBtn = ' <a href="#" data-id="'.$data->id.'" data-toggle="modal" data-target="#hapusData" class="btn btn-sm btn-outline btn-danger "><i class="fa fa-trash"></i></a>';
                             $actionBtn .= ' <a href="/diklat-profile-peserta/'.$data->id.'/'.$data->pelatihan->program->id.'/'.$data->pelatihan->id.'/admin" class="btn btn-sm btn-outline btn-info "><i class="fa fa-user"></i></a>';
-                            $actionBtn .= ' <a href="#" class="btn btn-sm btn-outline btn-success" data-nama_peserta="'.$data->name.'" data-id="'.asset('images/'.$data->id.'qrcode.png').'" data-toggle="modal" data-target=".modal-scan"><i class="mdi mdi-barcode-scan"></i></a>';
+                            $actionBtn .= ' <a href="#" class="btn btn-sm btn-outline btn-success" data-nama_peserta="'.$data->name.'" data-id="'.asset('images/'.$data->slug.'-qrcode.png').'" data-toggle="modal" data-target=".modal-scan"><i class="mdi mdi-barcode-scan"></i></a>';
                             return $actionBtn;
                         })
                 ->rawColumns(['nilai','action','kabupaten','program'])
@@ -675,7 +686,7 @@ class PesertaCont extends Controller
                         ->addColumn('action', function($data){
                             $actionBtn = ' <a href="#" data-id="'.$data->id.'" data-toggle="modal" data-target="#hapusData" class="btn btn-sm btn-outline btn-danger "><i class="fa fa-trash"></i></a>';
                             $actionBtn .= ' <a href="/diklat-profile-peserta/'.$data->id.'/'.$data->pelatihan->program->id.'/'.$data->pelatihan->id.'/admin" class="btn btn-sm btn-outline btn-info "><i class="fa fa-user"></i></a>';
-                            $actionBtn .= ' <a href="#" class="btn btn-sm btn-outline btn-success" data-nama_peserta="'.$data->name.'" data-id="'.asset('images/'.$data->id.'qrcode.png').'" data-toggle="modal" data-target=".modal-scan"><i class="mdi mdi-barcode-scan"></i></a>';
+                            $actionBtn .= ' <a href="#" class="btn btn-sm btn-outline btn-success" data-nama_peserta="'.$data->name.'" data-id="'.asset('images/'.$data->slug.'-qrcode.png').'" data-toggle="modal" data-target=".modal-scan"><i class="mdi mdi-barcode-scan"></i></a>';
                             return $actionBtn;
                         })
                 ->rawColumns(['nilai','action','kabupaten','program'])
@@ -1078,7 +1089,7 @@ class PesertaCont extends Controller
                         ->addColumn('action', function($data){
                             $actionBtn = ' <a href="#" data-id="'.$data->id.'" data-toggle="modal" data-target="#hapusData" class="btn btn-sm btn-outline btn-danger "><i class="fa fa-trash"></i></a>';
                             $actionBtn .= ' <a href="/diklat-profile-peserta/'.$data->id.'/'.$data->pelatihan->program->id.'/'.$data->pelatihan->id.'/admin" class="btn btn-sm btn-outline btn-info "><i class="fa fa-user"></i></a>';
-                            $actionBtn .= ' <a href="#" class="btn btn-sm btn-outline btn-success" data-nama_peserta="'.$data->name.'" data-id="'.asset('images/'.$data->id.'qrcode.png').'" data-toggle="modal" data-target=".modal-scan"><i class="mdi mdi-barcode-scan"></i></a>';
+                            $actionBtn .= ' <a href="#" class="btn btn-sm btn-outline btn-success" data-nama_peserta="'.$data->name.'" data-id="'.asset('images/'.$data->slug.'-qrcode.png').'" data-toggle="modal" data-target=".modal-scan"><i class="mdi mdi-barcode-scan"></i></a>';
                             return $actionBtn;
                         })
                 ->rawColumns(['nilai','action','kabupaten','program','tgllahir'])
@@ -1087,4 +1098,43 @@ class PesertaCont extends Controller
             
         }
     }
+
+    public function add_kota(Request $request)
+    {
+        if(request()->ajax())
+        {
+            if ($request->peserta_id !== null) {
+                # code...
+                $pes_id = $request->peserta_id;
+                $kab_id = $request->sel_kab;
+                $data = Peserta::where('id',$pes_id)->update([
+                    'kabupaten_id' => $kab_id
+                ]);
+                return response()->json(
+                    [
+                    'success' => 'Data Kota Peserta Berhasil Diperbarui',
+                    'message' => 'Data Kota Peserta Berhasil Diperbarui'
+                    ]
+                );
+            }else{
+               
+                return response()->json(
+                    [
+                    'error' => 'Jangan diurutkan berdasarkan kabupaten',
+                    'message' => 'Tidak bisa merubah data apabila diurutkan berdasarkan kabupaten yang kosong'
+                    ]
+                );
+            }
+        }
+    }
+
+    public function peserta_yang_kabupatennya_kosong(Request $request, $pelatihan_id)
+    {
+        if(request()->ajax())
+        {
+            $data = Peserta::where('pelatihan_id',$pelatihan_id)->where('kabupaten_id', null)->count();
+            return response()->json($data,200);
+        }
+    }
+
 }

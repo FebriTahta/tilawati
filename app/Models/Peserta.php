@@ -20,6 +20,7 @@ class Peserta extends Model
         'email',
         'tmptlahir',
         'tgllahir',
+        'slug',
         'alamat',
         'telp',
         'provinsi_id',
@@ -34,7 +35,10 @@ class Peserta extends Model
 
     ];
     protected $dates = ['deleted_at'];
-
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
     public function acara()
     {
         return $this->hasMany(Acara::class);

@@ -93,7 +93,7 @@
 				<td class="atas" style="width: 241px; height: 27px; text-transform: lowercase;text-transform: capitalize">{{ $lokasicetak }}, {{ Carbon\Carbon::now()->isoFormat('D MMMM Y') }}</td>
 				</tr>
 				<tr style="height: 78px;">
-				<td class="bawah" style="width: 210px; height: 70px;"><img src="images/{{ $item->id }}qrcode.png" alt="" width="70px" height="70px"></td>
+				<td class="bawah" style="width: 210px; height: 70px;"><img src="images/{{ $item->slug }}-qrcode.png" alt="" width="70px" height="70px"></td>
 				<td class="bawah" style="width: 210px; height: 70px;">&nbsp;</td>
 				<td class="bawah" style="width: 241px; height: 70px;">
 					{{-- @if ($cabang=='KOTA SURABAYA')

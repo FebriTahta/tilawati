@@ -31,12 +31,45 @@
                         <div class="col-xl-4">
                             @component('common-tilawatipusat.dashboard-widget')
                             
-                                @slot('title') <b id="cb"> ??? </b> Peserta  @endslot
+                                @slot('title') <b id="cb" class="text-success"> ??? </b> <span>Peserta</span>  @endslot
                                 @slot('iconClass')mdi mdi-account-group  @endslot
                                 @slot('price')   @endslot
                                 
                             @endcomponent
                         </div>
+
+                        @if ($kab_kosong != 0)
+                        <div class="col-xl-4">
+                            @component('common-tilawatipusat.dashboard-widget')
+                            
+                                @slot('title') <b id="kabkos" class="text-danger"> ??? </b> Kab - Kota Kosong / Salah Penulisan @endslot
+                                @slot('iconClass')mdi mdi-city-variant-outline  @endslot
+                                @slot('price')   @endslot
+                                
+                            @endcomponent
+                        </div>
+                        @endif
+
+                        <div class="col-xl-4">
+                            @component('common-tilawatipusat.dashboard-widget')
+                            
+                                @slot('title') <b id="kabkos" class="text-info"> {{$lulus}} </b> Bersyahadah  @endslot
+                                @slot('iconClass')mdi mdi-city-variant-outline  @endslot
+                                @slot('price')   @endslot
+                                
+                            @endcomponent
+                        </div>
+
+                        <div class="col-xl-4">
+                            @component('common-tilawatipusat.dashboard-widget')
+                            
+                                @slot('title') <b id="kabkos" class="text-danger"> {{$belum_lulus}} </b> Belum Bersyahadah  @endslot
+                                @slot('iconClass')mdi mdi-city-variant-outline  @endslot
+                                @slot('price')   @endslot
+                                
+                            @endcomponent
+                        </div>
+
                     </div>
 
                     <div class="row">
@@ -210,6 +243,29 @@
                     </div>
 
                     <div class="col-sm-6 col-md-3 m-t-30">
+                        <div class="modal fade bs-example-modal-kota" id="addkota" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-md">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <form id="tambahkota" method="POST" enctype="multipart/form-data">@csrf
+                                            <input type="hidden" id="idpeserta" name="peserta_id">
+                                            <div class="form-group text-center col-12">
+                                                <p>Daftar Kota & Kabupaten</p>
+                                                <select name="sel_kab" id="sel_kab" style="text-transform: lowercase; max-width: auto;" class="form-control select2" required>
+                                                    <option value=""> Cari & Pilih Kab / Kota</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group text-center">
+                                                <input type="submit" id="tambah" value="Tambahkan" class="btn btn-sm btn-primary">
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div><!-- /.modal-content -->
+                            </div><!-- /.modal-dialog -->
+                        </div><!-- /.modal -->
+                    </div>
+
+                    <div class="col-sm-6 col-md-3 m-t-30">
                         <div class="modal fade bs-example-modal-peserta" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered modal-lg">
                                 <div class="modal-content">
@@ -303,6 +359,27 @@
         <script src="{{ URL::asset('tilawatipusat/js/pages/datatables.init.js')}}"></script>
 
         <script>
+            $('#sel_kab').select2({
+                placeholder: 'Pilih Kota / Kabupaten yang Tepat sesuai data sensus 2021',
+                class: 'form-control',
+                ajax: {
+                    url: "{{route('kabupaten')}}",
+                    dataType: 'json',
+                    delay: 250,
+                    processResults: function (data) {
+                    return {
+                        results:  $.map(data, function (item) {
+                            return {
+                                text: item.id,
+                                text: item.nama,
+                                id: item.id
+                            }
+                        })
+                    };
+                    },
+                    cache: true
+                }
+		    });
             $('.modal-scan').on('show.bs.modal', function(event) {
                 var button = $(event.relatedTarget)
                 id = button.data('id')
@@ -352,6 +429,86 @@
                 });
             });
 
+            //tambahkota
+            $('#tambahkota').submit(function(e) {
+                var pelatihan_id = $('#pelatihan_id').val();
+                e.preventDefault();
+                var formData = new FormData(this);
+                $.ajax({
+                type:'POST',
+                url: "{{ route('add_kota')}}",
+                data: formData,
+                cache:false,
+                contentType: false,
+                processData: false,
+                beforeSend:function(){
+                    $('#tambah').attr('disabled','disabled');
+                    $('#tambah').val('Proses Menambahkan Kota');
+                },
+                success: function(data){
+                    if(data.success)
+                    {
+                        $('#sel_kab').select2({
+                            placeholder: 'Pilih Kota / Kabupaten yang Tepat sesuai data sensus 2021',
+                            class: 'form-control',
+                            ajax: {
+                                url: "{{route('kabupaten')}}",
+                                dataType: 'json',
+                                delay: 250,
+                                processResults: function (data) {
+                                return {
+                                    results:  $.map(data, function (item) {
+                                        return {
+                                            text: item.id,
+                                            text: item.nama,
+                                            id: item.id
+                                        }
+                                    })
+                                };
+                                },
+                                cache: true
+                            }
+                        });
+                        $.ajax({
+                            url:'/peserta_yang_kabupatennya_kosong/'+pelatihan_id,
+                            type: 'get',
+                            dataType: 'json',
+                            success:function(data) {
+                                document.getElementById('kabkos').innerHTML = data;
+                                console.log(data);
+                            }
+                        });
+                        $("#tambahkota")[0].reset();
+                        toastr.success(data.success);
+                        var oTable = $('#datatable-buttons').dataTable();
+                        oTable.fnDraw(false);
+                        $('#tambah').val('Tambah!');
+                        $('#tambah').attr('disabled',false);
+                        $('#addkota').modal('hide');
+                        // swal("Done!", data.message, "success");
+                    }else{
+                        $("#tambahkota")[0].reset();
+                        swal("Error!", data.message, "error");
+                        $('#tambah').val('Tambah!');
+                        $('#tambah').attr('disabled',false);
+                        $('#addkota').modal('hide');
+                    }
+                },
+                error: function(data)
+                {
+                    console.log(data);
+                    }
+                });
+            });
+
+            $('#addkota').on('show.bs.modal', function(event) {
+                var button = $(event.relatedTarget)
+                var id = button.data('id')
+                var modal = $(this)
+                console.log(id);
+                modal.find('.modal-body #idpeserta').val(id);
+            })
+
             $('#hapusData').on('show.bs.modal', function(event) {
                 var button = $(event.relatedTarget)
                 id = button.data('id')
@@ -360,6 +517,7 @@
             })
 
             $('#hapusPeserta').submit(function(e) {
+                var pelatihan_id = $('#pelatihan_id').val();
                 e.preventDefault();
                 var formData = new FormData(this);
                 $.ajax({
@@ -376,6 +534,16 @@
                 success: function(data){
                     if(data.success)
                     {
+                        //mendapatkan total peserta baru
+                        $.ajax({
+                            url:'/diklat-total-peserta-pelatihan/'+pelatihan_id,
+                            type: 'get',
+                            dataType: 'json',
+                            success:function(data) {
+                                document.getElementById('cb').innerHTML = data;
+                                console.log(data);
+                            }
+                        });
                         //sweetalert and redirect
                         var oTable = $('#datatable-buttons').dataTable();
                         oTable.fnDraw(false);
@@ -448,12 +616,23 @@
                 document.getElementById('kriterias').value=k;
                 var pelatihan_id = $('#pelatihan_id').val();
                 console.log(pel_id);
+
                 $.ajax({
                     url:'/diklat-total-peserta-pelatihan/'+pelatihan_id,
                     type: 'get',
                     dataType: 'json',
                     success:function(data) {
                         document.getElementById('cb').innerHTML = data;
+                        console.log(data);
+                    }
+                });
+
+                $.ajax({
+                    url:'/peserta_yang_kabupatennya_kosong/'+pelatihan_id,
+                    type: 'get',
+                    dataType: 'json',
+                    success:function(data) {
+                        document.getElementById('kabkos').innerHTML = data;
                         console.log(data);
                     }
                 });

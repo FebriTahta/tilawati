@@ -25,9 +25,9 @@ class CreatePesertasTable extends Migration
             $table->unsignedBigInteger('kecamatan_id')->nullable();
             $table->unsignedBigInteger('kelurahan_id')->nullable();
             $table->unsignedBigInteger('kriteria_id')->nullable();
+            $table->text('slug')->nullable();
             $table->date('tanggal');
             $table->string('name')->index();
-            $table->string('slug')->nullable();
             $table->string('tmptlahir')->nullable()->index();
             $table->string('tgllahir')->nullable();
             $table->longText('alamat')->nullable();

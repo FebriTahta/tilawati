@@ -58,7 +58,7 @@ class SubController extends Controller
     }
 
     public function fetchpp($id){
-        $pelatihan = Pelatihan::where("program_id", $id)->with('program','cabang')->get();
+        $pelatihan = Pelatihan::where("program_id", $id)->with('program','cabang')->orderBy('id','desc')->get();
         return json_encode($pelatihan);
     }
 
@@ -77,6 +77,22 @@ class SubController extends Controller
         $id = $request->id;
         Jenjang::find($id)->delete();
         return redirect()->back()->with('danger', 'jenjang tersebut telah dihapus');
+    }
+    //kabupaten
+    public function fetch_kabupaten(Request $request)
+    {
+        $data = [];
+
+        if($request->has('q')){
+            $search = $request->q;
+            $data = Kabupaten::select('id','nama')
+                    ->where('id','LIKE','%' .$search . '%')
+                    ->orWhere('nama', 'LIKE', '%' .$search . '%')
+                    ->get();
+        }else{
+            $data = Kabupaten::select('id','nama')->get();
+        }
+        return response()->json($data);
     }
 
 }

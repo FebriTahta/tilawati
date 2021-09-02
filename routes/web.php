@@ -58,6 +58,8 @@ Route::post('/download-template',[TemplateDownloadCont::class,'download_template
 Route::get('/e-certificate/{slug_diklat}',[LandingCont::class,'ecertificate']);
 Route::get('/data/e-certificate/{diklat_id}',[LandingCont::class,'ecertificate_data']);
 Route::get('/tes_data',[LandingCont::class,'tes_data']);
+Route::get('/pilih-daftar-kabupaten',[SubController::class, 'fetch_kabupaten'])->name('kabupaten');
+Route::post('/pilih-tambah-kota',[PesertaCont::class, 'add_kota'])->name('add_kota');
 Auth::routes();
 //homepage
 Route::get('/homepage',[LandingCont::class,'index'])->name('homepage');
@@ -310,6 +312,8 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     Route::get('/diklat-peserta-kota-select',[PesertaCont::class, 'peserta_kota_select'])->name('diklat.peserta_kota_select');
     Route::post('/diklat-peserta-delete',[PesertaCont::class,'delete'])->name('diklat.peserta_delete');
     Route::get('/diklat-peserta-keseluruhan',[PesertaCont::class, 'peserta_data_keseluruhan'])->name('diklat.peserta_data_keseluruhan');
+
+    Route::get('/peserta_yang_kabupatennya_kosong/{pelatihan_id}',[PesertaCont::class,'peserta_yang_kabupatennya_kosong']);
 
     Route::post('/diklat-penilaian-store',[PenilaianCont::class,'store'])->name('diklat.penilaian_store'); //insert sekaligus update
     Route::post('/diklat-penilaian-delete',[PenilaianCont::class, 'delete'])->name('diklat.penilaian_delete');
