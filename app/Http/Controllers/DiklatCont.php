@@ -255,7 +255,7 @@ class DiklatCont extends Controller
         $peserta = Peserta::where('pelatihan_id',$id)->get();
         foreach ($peserta as $key => $item) {
             # code...
-            File::delete('images/'.$item->slug.'-qrcode.png');
+            File::delete('images/'.$item->slug.'.png');
         }
         $peserta2 = Peserta::where('pelatihan_id',$id)->delete();
         $pelatihan->delete();

@@ -126,7 +126,7 @@ class PesertaDiklatImport implements ToCollection, WithStartRow, WithChunkReadin
                         \QrCode::size(150)
                         ->format('png') 
                         // ->generate('https://www.tilawatipusat.com/diklat-profile-peserta/'.$dt_pel->id.'/'.$dt_pel->pelatihan->program->id.'/'.$dt_pel->pelatihan->id, public_path('images/'.$id.'qrcode.png'));
-                        ->generate('https://www.profile.tilawatipusat.com/'.$dt_pel->slug, public_path('images/'.$dt_pel->slug.'-qrcode.png'));
+                        ->generate('https://www.profile.tilawatipusat.com/'.$dt_pel->slug, public_path('images/'.$dt_pel->slug.'.png'));
                     }
             // }   
         }
