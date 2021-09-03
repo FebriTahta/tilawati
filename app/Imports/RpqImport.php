@@ -13,7 +13,7 @@ use Maatwebsite\Excel\Concerns\WithChunkReading;
 use Illuminate\Support\Facades\Hash;
 
 class RpqImport implements ToCollection, WithChunkReading, ShouldQueue
-{
+{ 
     /**
     * @param Collection $collection
     */

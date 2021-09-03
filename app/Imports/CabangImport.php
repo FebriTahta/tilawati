@@ -114,6 +114,6 @@ class CabangImport implements ToCollection, WithChunkReading, ShouldQueue
 
     public function chunkSize(): int
     {
-        return 500;
+        return 500; 
     }
 }
