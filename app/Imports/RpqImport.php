@@ -31,6 +31,66 @@ class RpqImport implements ToCollection, WithChunkReading, ShouldQueue
                 if ($cek_username !== null) {
                     # code...
                     //tidak kosong pilih id user
+                    $dt_cab     = new Cabang;
+                    $dt_cab->user_id    = $cek_username->id;
+                    $dt_cab->name       = $row[1];
+                    $dt_cab->status     = 'CABANG';
+                    $dt_cab->alamat     = $row[3];
+                    
+                    $kode = mt_rand(100000, 999999);
+                    
+                    $cek_kode_cabang    = Cabang::where('kode', $kode)->first();
+                    if ($cek_kode_cabang == null) {
+                        # code...
+                        $dt_cab->kode       = $kode;
+                    } else {
+                        # code...
+                        $kode  = mt_rand(100000, 999999);
+                        $hasil = $kode + $key;
+                        $dt_cab->kode       = $hasil;
+                    }
+
+                    //inisialisasi kota / kabupaten yang diinput
+                    $kab     = strtoupper($row[4]);
+                    $kab_kab = 'KAB. '.$kab;
+                    $kab_kot = 'KOTA '.$kab;
+                    $tes_kab = Kabupaten::select('*')->whereIn('nama',[$kab_kab])->first();
+                    $tes_kot = Kabupaten::select('*')->whereIn('nama',[$kab_kot])->first();
+                    //proses logika untuk mendapatkan kabupaten id & menginput provinsi id otomatis dari kabupaten
+                    if ($tes_kab !== null) {
+                        # code...
+                        $kabupaten_id = $tes_kab->id;
+                        $dt_cab->kabupaten_id = $kabupaten_id;
+                        $dt_cab->provinsi_id = $tes_kab->provinsi->id;
+                    } 
+                    if ($tes_kot !== null) {
+                        # code...
+                        $kabupaten_id = $tes_kot->id;
+                        $dt_cab->kabupaten_id = $kabupaten_id;
+                        $dt_cab->provinsi_id = $tes_kot->provinsi->id;
+                    }
+                    //lanut protses insert data
+                    $dt_cab->telp       = $row[7];
+                    $dt_cab->created_at = new \DateTime;
+                    // $dt_cab->save();
+                    
+                    //inisialisasi kepala cabang ada atau tidak
+                    if ($cek_kepala !== null) {
+                        # code...
+                        // $dt_cab->kepala()->attach($cek_kepala);
+                        $kepala_id = $cek_kepala->id;
+                        $dt_cab->kepala_id = $kepala_id;
+                        $dt_cab->save();
+
+                    }else{
+                        $dt_kep = new Kepala;
+                        $dt_kep->name   = $kepala_cabang;
+                        $dt_kep->save();
+                        // $dt_cab->kepala()->attach($dt_kep);
+                        $kepala_id = $dt_kep->id;
+                        $dt_cab->kepala_id = $kepala_id;
+                        $dt_cab->save();
+                    }
 
                 } else {
                     # code...
