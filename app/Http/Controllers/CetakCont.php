@@ -49,10 +49,15 @@ class CetakCont extends Controller
         }else{
             $jabatan    = "Kacab. ".strtolower($kabupaten);
             $kepala     = ucwords($jabatan);
-            $direktur   = $pelatihan->cabang->kepala->name;
-            
-            $pdf        = PDF::loadview('AdmPelatihan.Cetak.cetak_depan',compact('peserta','direktur','kepala','kabupaten','cabang','pelatihan'))->setPaper($customPaper, 'portrait');
-            return $pdf->download('ijazah-depan-peserta-_'.$pelatihan->name.'.pdf','I');
+            if ($pelatihan->cabang->kepala == null) {
+                # code...
+                return redirect::back()->withFail('Tidak ada Kepala Cabang yang terdaftar pada Cabang - '.$pelatihan->cabang->name.'');
+            } else {
+                # code...
+                $direktur   = $pelatihan->cabang->kepala->name;
+                $pdf        = PDF::loadview('AdmPelatihan.Cetak.cetak_depan',compact('peserta','direktur','kepala','kabupaten','cabang','pelatihan'))->setPaper($customPaper, 'portrait');
+                return $pdf->download('ijazah-depan-peserta-_'.$pelatihan->name.'.pdf','I');
+            }
         }
     }
 

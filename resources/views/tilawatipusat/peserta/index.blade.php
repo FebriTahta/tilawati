@@ -659,7 +659,8 @@
                         },
                         {
                         data:'kabupaten',
-                        name:'kabupaten.nama'
+                        name:'kabupaten.nama',
+                        orderable:false,
                         },
                         {
                         data:'telp',

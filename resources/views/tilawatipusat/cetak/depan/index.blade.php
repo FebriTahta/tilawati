@@ -26,6 +26,11 @@
                     </div> --}}
 
                     <div class="row">
+                        @if(Session::has('fail'))
+                            <div class="col-lg-12 alert alert-danger">
+                            {{Session::get('fail')}}
+                            </div>
+                        @endif
                         <div class="col-lg-12">
                             <div class="card">
                                 <div class="card-body">
