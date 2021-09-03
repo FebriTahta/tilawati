@@ -37,7 +37,7 @@
                                     <h4 class="card-title">Data Ijazah Depan</h4>
                                     <p class="card-title-desc">Ter-update berdasarkan Tahun 2021 </br></p>
                                     <blockquote class="blockquote font-size-16 mb-0 mt-2">
-                                        <form target="_blank" action="{{ route('diklat.depan_cetak') }}" method="POST">@csrf
+                                        <form action="{{ route('diklat.depan_cetak') }}" method="POST">@csrf
                                             <div class="form-group">
                                                 <label for="">Jenis Program</label>
                                                 <select name="program_id" id="" class="form-control text-capitalize" required>

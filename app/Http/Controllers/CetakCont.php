@@ -5,6 +5,7 @@ use App\Models\Program;
 use App\Models\Pelatihan;
 use App\Models\Peserta;
 use PDF;
+use Redirect;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -51,7 +52,7 @@ class CetakCont extends Controller
             $kepala     = ucwords($jabatan);
             if ($pelatihan->cabang->kepala == null) {
                 # code...
-                return redirect::back()->withFail('Tidak ada Kepala Cabang yang terdaftar pada Cabang - '.$pelatihan->cabang->name.'');
+                return Redirect::back()->withFail('Tidak ada Kepala Cabang yang terdaftar pada Cabang - '.$pelatihan->cabang->name.'');
             } else {
                 # code...
                 $direktur   = $pelatihan->cabang->kepala->name;
