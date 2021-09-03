@@ -73,9 +73,9 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-lg-12">
+                        <div class="col-lg-12" >
                             <div class="card">
-                                <div class="card-body">
+                                <div class="card-body" >
                                     <input type="hidden" id="jenis_program" value="{{ $diklat->program->name }}">
                                     <h4 class="card-title text-capitalize">Data Peserta Pelatihan </h4>
                                     @if ($diklat->program->penilaian->count() == 0)
@@ -505,7 +505,7 @@
                 var button = $(event.relatedTarget)
                 var id = button.data('id')
                 var modal = $(this)
-                console.log(id);
+                // console.log(id);
                 modal.find('.modal-body #idpeserta').val(id);
             })
 
@@ -534,6 +534,7 @@
                 success: function(data){
                     if(data.success)
                     {
+                        toastr.info(data.success);
                         //mendapatkan total peserta baru
                         $.ajax({
                             url:'/diklat-total-peserta-pelatihan/'+pelatihan_id,
@@ -541,7 +542,7 @@
                             dataType: 'json',
                             success:function(data) {
                                 document.getElementById('cb').innerHTML = data;
-                                console.log(data);
+                                // console.log(data);
                             }
                         });
                         //sweetalert and redirect
@@ -550,9 +551,9 @@
                         $('#btnhapus').val('Ya, Hapus!');
                         $('#hapusData').modal('hide');
                         $('#btnhapus').attr('disabled',false);
-                        swal({ title: "Success!",
-                            text: "Kriteria Tersebut Berhasil Di Dihapus!",
-                            type: "success"})
+                        // swal({ title: "Success!",
+                        //     text: "Kriteria Tersebut Berhasil Di Dihapus!",
+                        //     type: "success"})
                     }
                 },
                 error: function(data)
@@ -606,16 +607,16 @@
                 var modal = $(this)
                 modal.find('.modal-body #id').val(id);
                 modal.find('.modal-body #nominal').val(nominal);
-                console.log(nominal);
+                // console.log(nominal);
             })
             $(document).ready(function(){
                 var jenis_program = $('#jenis_program').val();
-                console.log(jenis_program);
+                // console.log(jenis_program);
                 var k = $('#kriteria_id').text();
                 var pel_id = $('#pelatihan_id').val();
                 document.getElementById('kriterias').value=k;
                 var pelatihan_id = $('#pelatihan_id').val();
-                console.log(pel_id);
+                // console.log(pel_id);
 
                 $.ajax({
                     url:'/diklat-total-peserta-pelatihan/'+pelatihan_id,
@@ -623,7 +624,7 @@
                     dataType: 'json',
                     success:function(data) {
                         document.getElementById('cb').innerHTML = data;
-                        console.log(data);
+                        // console.log(data);
                     }
                 });
 
@@ -633,7 +634,7 @@
                     dataType: 'json',
                     success:function(data) {
                         document.getElementById('kabkos').innerHTML = data;
-                        console.log(data);
+                        // console.log(data);
                     }
                 });
 

@@ -8,6 +8,7 @@ use DB;
 use App\Models\Cabang;
 use DataTables;
 use Carbon\Carbon;
+use File;
 use App\Models\Flyer;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -250,8 +251,14 @@ class DiklatCont extends Controller
     public function delete(Request $request)
     {
         $id = $request->id;
-        $pelatihan = Pelatihan::find($id)->delete();
-        $peserta = Peserta::where('pelatihan_id',$id)->delete();
+        $pelatihan = Pelatihan::find($id);
+        $peserta = Peserta::where('pelatihan_id',$id)->get();
+        foreach ($peserta as $key => $item) {
+            # code...
+            File::delete('images/'.$item->slug.'-qrcode.png');
+        }
+        $peserta2 = Peserta::where('pelatihan_id',$id)->delete();
+        $pelatihan->delete();
 
         return response()->json(
             [
