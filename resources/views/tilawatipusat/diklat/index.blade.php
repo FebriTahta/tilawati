@@ -407,7 +407,7 @@
                         $('.bs-example-modal-diklat-hapus').modal('hide');
                         $('#btnhapus').attr('disabled',false);
                         swal({ title: "Success!",
-                            text: "Kriteria Tersebut Berhasil Di Dihapus!",
+                            text: "Diklat Berhasil Di Dihapus!",
                             type: "success"})
                     }
                 },
