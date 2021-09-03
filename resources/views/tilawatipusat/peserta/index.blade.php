@@ -446,7 +446,7 @@
                     $('#tambah').val('Proses Menambahkan Kota');
                 },
                 success: function(data){
-                    if(data.success)
+                    if(data.success) 
                     {
                         $('#sel_kab').select2({
                             placeholder: 'Pilih Kota / Kabupaten yang Tepat sesuai data sensus 2021',

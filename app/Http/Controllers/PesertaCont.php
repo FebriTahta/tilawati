@@ -37,7 +37,7 @@ class PesertaCont extends Controller
     {
         if(request()->ajax())
         {
-            $data   = Peserta::where('pelatihan_id', $id)->with('certificate')->with('pelatihan')->with('kabupaten')->with('nilai')->where('status',1);
+            $data   = Peserta::where('pelatihan_id', $id)->with('certificate')->with('pelatihan')->with('kabupaten')->with('nilai')->where('status',1)->orderBy('id','asc');
                 return DataTables::of($data)
                         ->addColumn('nilai', function ($data) {
                             if ($data->nilai->count() == 0) {
@@ -121,7 +121,7 @@ class PesertaCont extends Controller
             # code...
             if(!empty($request->dari))
             {
-                $data   = Peserta::with('pelatihan')->with('kabupaten')->with('nilai')->orderBy('id','desc')
+                $data   = Peserta::with('pelatihan')->with('kabupaten')->with('nilai')
                 ->whereBetween('tanggal', array($request->dari, $request->sampai));
                 return DataTables::of($data)
                         ->addColumn('nilai', function ($data) {
@@ -174,7 +174,7 @@ class PesertaCont extends Controller
                 ->make(true);
             }else {
                 # code...
-                $data   = Peserta::with('pelatihan')->with('kabupaten')->with('nilai')->orderBy('id','desc');
+                $data   = Peserta::with('pelatihan')->with('kabupaten')->with('nilai');
                 return DataTables::of($data)
                         ->addColumn('nilai', function ($data) {
                             if ($data->nilai->count() == 0) {
@@ -439,7 +439,7 @@ class PesertaCont extends Controller
         $data   =Peserta::find($id);
         //hapus qr
         File::delete('images/'.$data->slug.'-qrcode.png');
-        //hapus data
+        //hapus data 
         $data->delete();
         return response()->json(
             [

@@ -251,7 +251,7 @@ class DiklatCont extends Controller
     public function delete(Request $request)
     {
         $id = $request->id;
-        $pelatihan = Pelatihan::find($id);
+        $pelatihan = Pelatihan::find($id); 
         $peserta = Peserta::where('pelatihan_id',$id)->get();
         foreach ($peserta as $key => $item) {
             # code...
