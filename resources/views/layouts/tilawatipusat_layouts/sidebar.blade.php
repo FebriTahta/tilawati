@@ -48,13 +48,13 @@
                         <span>Data Diklat</span>
                     </a>
                 </li>
-                <li>
+                {{-- <li>
                     <a href="{{ route('diklat.seluruh_peserta') }}" class="waves-effect">
                         <i class="fa fa-book"></i>
                         <span class="badge badge-pill badge-danger float-right"></span>
                         <span>Seluruh Peserta Diklat</span>
                     </a>
-                </li>
+                </li> --}}
                 <li>
                     <a href="{{ route('sertifikat') }}" class="waves-effect">
                         <i class="mdi mdi-smart-card-outline"></i>
@@ -101,6 +101,16 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{ route('diklat.belakang') }}">CETAK IJAZAH</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="mdi mdi-clipboard-list-outline"></i>
+                        <span>Laporan Peserta</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{ route('diklat.seluruh_peserta') }}">Cetak Laporan Peserta</a></li>
                     </ul>
                 </li>
 

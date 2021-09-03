@@ -34,6 +34,7 @@ use App\Http\Controllers\KepalaCont;
 use App\Http\Controllers\RegistrasiCont;
 use App\Http\Controllers\LandingCont;
 use App\Http\Controllers\KonfirmasiCont;
+use App\Http\Controllers\ExportCont;
 use App\Http\Controllers\SertifikatCont;
 use App\Http\Controllers\BroadcastController;
 use App\Http\Controllers\TemplateDownloadCont;
@@ -345,7 +346,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     Route::get('/data-peserta-acara/{acara_id}',[AcaraCont::class,'data_peserta_acara'])->name('acara.data_peserta');
 
     Route::get('/export-peserta-acara/{acara_id}',[AcaraCont::class,'export_peserta_acara'])->name('export.peserta.acara');
-
+    Route::get('/export-seluruh-peserta',[ExportCont::class,'export_seluruh_peserta'])->name('export.seluruh.peserta');
 });
 
 Route::group(['middleware' => ['auth', 'CheckRole:bendahara']], function () {

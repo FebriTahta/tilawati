@@ -22,15 +22,20 @@
                     <div class="row">
                         <div class="col-xl-12 col-md-12">
                             <div class="card">
+                                @if(Session::has('fail'))
+                                    <div class="col-lg-12 alert alert-danger">
+                                    {{Session::get('fail')}}
+                                    </div>
+                                @endif
                                 <div class="row p-3">
                                     <div class="col-6 col-xl-4 form-group">
                                         <label>Dari :</label>
-                                        <input type="date" name="dari" id="dari" class="form-control">
+                                        <input type="date" onchange="myfunction()" name="dari" id="dari" class="form-control">
                                         <span class="red dari" style="color: red"></span>
                                     </div>
                                     <div class="col-6 col-xl-4 form-group">
                                         <label>Sampai :</label>
-                                        <input type="date" name="sampai" id="sampai" class="form-control">
+                                        <input type="date" onchange="myfunction2()" name="sampai" id="sampai" class="form-control">
                                         <span class="red sampai" style="color: red"></span>
                                     </div>
                                     <div class="form-group col-6 col-xl-2">
@@ -46,6 +51,7 @@
                                 </div>
                             </div>
                         </div>
+                        
                         <div class="col-xl-4">
                             @component('common-tilawatipusat.dashboard-widget')
                             
@@ -78,51 +84,62 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="card">
+                                <div class="row p-3">
+                                    <div class="form-group col-6 col-xl-6">
+                                        <form action="#">
+                                            <button class="btn btn-sm btn-info"><i class="fa fa-download"></i> Info Peserta</button>
+                                        </form>
+                                    </div>
+                                    <div class="form-group col-6 col-xl-6 text-right">
+                                        <form action="{{route('export.seluruh.peserta')}}" method="GET" enctype="multipart/form-data" id="export_data_peserta">@csrf
+                                            <input type="hidden" name="from" id="from">
+                                            <input type="hidden" name="till" id="till">
+                                            <button type="submit" class="btn btn-sm btn-info"><i class="fa fa-download"></i> Data Peserta</button>
+                                        </form>
+                                    </div>
+                                </div>
                                 <div class="card-body">
                     
                                     <h4 class="card-title">Data Peserta Diklat</h4>
                     
-                                    <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
-                                        <table id="datatable-buttons" class="table table-diklat table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
-                                            <thead class="text-bold text-primary" style="text-transform: capitalize">
-                                                <tr>
-                                                    <th>peserta</th>
-                                                    <th>program pelatihan</th>
-                                                    <th>cabang</th>
-                                                    <th>tanggal</th>
-                                                    <th>asal</th>
-                                                    <th>telp</th>
-                                                    <th>email</th>
-                                                    <th>nilai</th>
-                                                    <th>tanggal lahir</th>
-                                                    <th>alamat</th>
-                                                    <th>Kriteria</th>
-                                                    <th>Option</th>
-                                                </tr>
-                                            </thead>
-    
-                                            <tbody style=" font-size: 12px" class="text-uppercase">
-                                            </tbody>
+                                    <table id="datatable-buttons" class="table table-diklat table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
+                                        <thead class="text-bold text-primary" style="text-transform: capitalize">
+                                            <tr>
+                                                <th>peserta</th>
+                                                <th>asal</th>
+                                                <th>program pelatihan</th>
+                                                <th>tanggal</th>
+                                                <th>cabang</th>
+                                                <th>telp</th>
+                                                <th>email</th>
+                                                <th>nilai</th>
+                                                <th>tanggal lahir</th>
+                                                <th>alamat</th>
+                                                <th>Kriteria</th>
+                                                <th>Option</th>
+                                            </tr>
+                                        </thead>
 
-                                            <tfoot class="text-primary" style="text-transform: capitalize">
-                                                <tr>
-                                                    <th>peserta</th>
-                                                    <th>program pelatihan</th>
-                                                    <th>cabang</th>
-                                                    <th>tanggal</th>
-                                                    <th>asal</th>
-                                                    <th>telp</th>
-                                                    <th>email</th>
-                                                    <th>nilai</th>
-                                                    <th>tanggal lahir</th>
-                                                    <th>alamat</th>
-                                                    <th>Kriteria</th>
-                                                    <th>Option</th>
-                                                </tr>
-                                            </tfoot>
-                                        </table>
-                                        <footer class="blockquote-footer">Updated at  <cite title="Source Title">2021</cite></footer>
-                                    </blockquote>
+                                        <tbody style=" font-size: 12px" class="text-uppercase">
+                                        </tbody>
+
+                                        <tfoot class="text-primary" style="text-transform: capitalize">
+                                            <tr>
+                                                <th>peserta</th>
+                                                <th>asal</th>
+                                                <th>program pelatihan</th>
+                                                <th>tanggal</th>
+                                                <th>cabang</th>
+                                                <th>telp</th>
+                                                <th>email</th>
+                                                <th>nilai</th>
+                                                <th>tanggal lahir</th>
+                                                <th>alamat</th>
+                                                <th>Kriteria</th>
+                                                <th>Option</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
                                     
                                 </div>
                             </div>
@@ -426,14 +443,12 @@
                             name:'name',
                             },
                             {
-                            data:'program',
-                            name:'program.name',
-                            searchable: false,
-                            orderable: false,
+                            data:'kabupaten',
+                            name:'kabupaten.nama'
                             },
                             {
-                            data:'cabang',
-                            name:'cabang.name',
+                            data:'program',
+                            name:'program.name',
                             searchable: false,
                             orderable: false,
                             },
@@ -442,8 +457,10 @@
                             name:'tanggal'
                             },
                             {
-                            data:'kabupaten',
-                            name:'kabupaten.nama'
+                            data:'cabang',
+                            name:'cabang.name',
+                            searchable: false,
+                            orderable: false,
                             },
                             {
                             data:'telp',
@@ -476,6 +493,7 @@
                             
                         ]
                     });
+                    //export peserta
 
                     $('#datatable-buttons3').DataTable({
                         //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
@@ -530,16 +548,28 @@
                     }
                     else
                     {
-                        alert('Both Date is required');
+                        alert('Kedua tanggal harus diisi');
                     }
                 });
 
                 $('#refresh').click(function(){
                     $('#dari').val('');
                     $('#sampai').val('');
+                    $('#from').val('');
+                    $('#till').val('');
                     load_data();
                 });
             });
+
+            function myfunction() {
+                var x = document.getElementById("dari").value;
+                document.getElementById("from").value = x;
+            }
+
+            function myfunction2() {
+                var y = document.getElementById("sampai").value;
+                document.getElementById("till").value = y;
+            }
             
         </script>
 @endsection
