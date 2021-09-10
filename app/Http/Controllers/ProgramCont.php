@@ -21,7 +21,7 @@ class ProgramCont extends Controller
     {
         if(request()->ajax())
         {
-            $data   = Program::with('penilaian')->get();
+            $data   = Program::with('penilaian')->where('status',1)->get();
                 return DataTables::of($data)
                     ->addColumn('penilaian', function ($data) {
                         if ($data->penilaian->count()==0) {
@@ -77,14 +77,14 @@ class ProgramCont extends Controller
             # code...
             if(!empty($request->dari))
             {
-                $data = DB::table('programs')
+                $data = DB::table('programs')->where('status',1)
                 ->whereBetween('created_at', array($request->dari, $request->sampai))
                 ->get()->count();
                 return response()->json($data,200);
             }
             else
             {
-                $data = DB::table('programs')
+                $data = DB::table('programs')->where('status',1)
                 ->get()->count();
                 return response()->json($data,200);
             }

@@ -58,7 +58,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <input type="hidden" id="jenis_program" value="{{ $diklat->program->name }}">
-                                    <h4 class="card-title text-capitalize">Data Peserta Pelatihan </h4>
+                                    <h4 class="card-title text-capitalize">Data Pendaftaran Peserta Pelatihan </h4>
                                     @if ($diklat->program->penilaian->count() == 0)
                                         <code>Diklat ini belum memiliki kategori penilaian -> <a href="/diklat-program">tentukan kategori penilaian </a></code><br>
                                     @endif
@@ -75,17 +75,19 @@
                                             <thead class="text-bold text-primary" style="text-transform: capitalize">
                                                 <tr> 
                                                     <th>peserta</th>
+                                                    <th>kab / kota</th>
                                                     <th>phone</th>
                                                     <th>dokumen</th>
                                                     <th>status</th>
                                                     <th>...</th>
                                                 </tr>
                                             </thead>
-                                            <tbody style=" font-size: 12px" class="text-uppercase">
+                                            <tbody style=" font-size: 12px">
                                             </tbody>
                                             <tfoot class="text-primary" style="text-transform: capitalize">
                                                 <tr>
                                                     <th>peserta</th>
+                                                    <th>kab / kota</th>
                                                     <th>phone</th>
                                                     <th>dokumen</th>
                                                     <th>status</th>
@@ -267,6 +269,10 @@
                         {
                         data:'name',
                         name:'name'
+                        },
+                        {
+                        data:'kabupaten',
+                        name:'kabupaten.nama'
                         },
                         {
                         data:'telp',

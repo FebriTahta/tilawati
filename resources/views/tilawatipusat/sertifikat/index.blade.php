@@ -10,16 +10,16 @@
 @section('content')
 
     @component('common-tilawatipusat.breadcrumb')
-         @slot('title') Sertifikat    @endslot
-         @slot('title_li') IMPORT   @endslot
+         @slot('title') sertifikat    @endslot
+         @slot('title_li')    @endslot
     @endcomponent
 
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="card-title">Data Sertifikat</h4>
-                                    <p class="card-title-desc">Data Sertifikat Berdasarkan Diklat </br></p>
+                                    {{-- <h4 class="card-title">Data Sertifikat</h4> --}}
+                                    <button class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#modal-sertifikat"><i class="fa fa-plus"></i> sertifikat baru</button>
                                     <blockquote class="blockquote font-size-16 mb-0 mt-2">
                                         <table id="data-diklat" class="table table-diklat table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
                                             <thead class="text-bold text-primary" style="text-transform: capitalize">
@@ -85,6 +85,45 @@
                             </div>
                         </div><!-- /.modal -->
                     </div>
+
+                    {{-- modal sertifikat baru --}}
+                    <div class="col-sm-6 col-md-3 m-t-30">
+                        <div class="modal fade" id="modal-sertifikat" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <div class="sec-title centered">
+                                            <div class="title"></div>
+                                            <div class="separate"></div>
+                                        </div>
+                                        <form id="" action="" class="was-validate" enctype="multipart/form-data">@csrf
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="row">
+                                                        <div class="form-group col-12 col-xl-12 border-bottom">
+                                                            <input type="radio" id="1" name="waktu" value="1" onclick="myFunction2()" checked >
+                                                            <label for="1">satu hari</label><br>
+                                                            <input type="radio" id="2" name="waktu" value="2"  onclick="myFunction()">
+                                                            <label for="2">lebih dari satu hari</label>
+                                                        </div>
+                                                        
+                                                        <div class="form-group col-6 col-xl-6">
+                                                            <label for="tanggal">Tanggal</label>
+                                                            <input type="date" id="tanggal" class="form-control" required>
+                                                        </div>
+                                                        <div class="form-group col-6 col-xl-6" id="tgl" style="display: none">
+                                                            <label for="sampai">Sampai</label>
+                                                            <input type="date" id="sampai" class="form-control" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- /.modal -->
+                    </div>
 @endsection
 
 @section('script')
@@ -103,6 +142,16 @@
         <!-- Datatable init js -->
         <script src="{{ URL::asset('tilawatipusat/js/pages/datatables.init.js')}}"></script>
         
+        <script>
+            function myFunction() {
+                document.getElementById("tgl").style.removeProperty( 'display' );
+                console.log('kelihatan');
+            }
+            function myFunction2() {
+                document.getElementById("tgl").style.display = "none";
+                console.log('hilang');
+            }
+        </script>
         <script>
             $('#inputGroupFile02').on('change',function(){
                 //get the file name

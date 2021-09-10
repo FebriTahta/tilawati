@@ -85,7 +85,6 @@
                                                     <th>tanggal</th>
                                                     <th>Pendaftaran</th>
                                                     <th>Peserta</th>
-                                                    <th>tempat</th>
                                                     <th>Option</th>
                                                 </tr>
                                             </thead>
@@ -100,7 +99,6 @@
                                                     <th>tanggal</th>
                                                     <th>Pendaftaran</th>
                                                     <th>Peserta</th>
-                                                    <th>tempat</th>
                                                     <th>Option</th>
                                                 </tr>
                                             </tfoot>
@@ -112,6 +110,37 @@
                         </div>
                     </div>
                     <!-- end row -->
+
+                    <div class="col-sm-6 col-md-3 m-t-30">
+                        <div class="modal fade bs-example-modal-diklat-kirim" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-md">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <div class="card" style="text-align: center">
+                                            <div class="card-header" style="margin-bottom: 10px">
+                                                <div class="form-group text-center">
+                                                    <h5>CETAK INFORMASI SURAT PENGIRIMAN</h5>
+                                                </div>
+                                            </div>
+                                            <form action="/diklat-cetak-surat-pengiriman"  method="POST" enctype="multipart/form-data">@csrf
+                                                <div class="row" >
+                                                    <input type="hidden" style="border: none" class="form-control text-capitalize" id="id" name="id" required>
+                                                    <div class="form-group col-6 col-xl-6">
+                                                        <input type="submit" name="cetak_surat" id="btnhapus" class="btn btn-success" value="Ya, Cetak!" />
+                                                    </div>
+                                                    <div class="form-group col-6 col-xl-6">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                                            No, Cancel!
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div><!-- /.modal-content -->
+                            </div><!-- /.modal-dialog -->
+                        </div><!-- /.modal -->
+                    </div>
 
                     <div class="col-sm-6 col-md-3 m-t-30">
                         <div class="modal fade bs-example-modal-diklat-hapus" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
@@ -220,6 +249,7 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <input type="button" onclick="myFunction()" id="btn-copy" value="salin link!" class="btn btn-sm btn-outline-primary">
+                                                        <a id="bukalink" target="_blank" class="btn btn-sm btn-outline-primary text-primary"> buka link!</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -339,7 +369,12 @@
                     }
                 });
             });
-
+            $('.bs-example-modal-diklat-kirim').on('show.bs.modal', function(event) {
+                var button = $(event.relatedTarget)
+                id = button.data('id')
+                var modal = $(this)
+                modal.find('.modal-body #id').val(id);
+            })
             $('.bs-example-modal-diklat-hapus').on('show.bs.modal', function(event) {
                 var button = $(event.relatedTarget)
                 id = button.data('id')
@@ -351,6 +386,9 @@
                 var slug = button.data('slug')
                 var modal = $(this)
                 modal.find('.modal-body #link').val(slug);
+                // modal.find('.modal-body #bukalink').attr(slug);
+                var a = document.getElementById("bukalink");
+                a.href = slug;
             })
             function myFunction() {
                 /* Get the text field */
@@ -366,6 +404,7 @@
                 /* Alert the copied text */
                 alert("Copied the text: " + copyText.value);
             }
+            
             $('.bs-example-modal-diklat-edit').on('show.bs.modal', function(event) {
                 var button  = $(event.relatedTarget)
                 var id      = button.data('id')
@@ -383,6 +422,8 @@
                 modal.find('.modal-body #cabang_edit').val(cabang_id);
                 
             })
+
+            
             $('#hapusdiklat').submit(function(e) {
                 e.preventDefault();
                 var formData = new FormData(this);
@@ -499,10 +540,6 @@
                             {
                             data:'peserta',
                             name:'peserta'
-                            },
-                            {
-                            data:'tempat',
-                            name:'tempat'
                             },
                             {
                             data:'action',

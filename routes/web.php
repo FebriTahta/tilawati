@@ -39,6 +39,7 @@ use App\Http\Controllers\SertifikatCont;
 use App\Http\Controllers\BroadcastController;
 use App\Http\Controllers\TemplateDownloadCont;
 use Illuminate\Support\Facades\Mail;
+use App\Http\Controllers\KodeAdminCont;
 use App\Mail\MyTestMail;
 /*
 |--------------------------------------------------------------------------
@@ -330,6 +331,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     Route::post('/diklat-cetak-depan-print', [CetakCont::class, 'cetak_depan'])->name('diklat.depan_cetak');
     Route::post('/diklat-cetak-belakang-print', [CetakCont::class, 'cetak_belakang'])->name('diklat.belakang_cetak');
     Route::post('/diklat-cetak-detail-peserta-print',[CetakCont::class, 'cetak_detail_peserta'])->name('diklat.detail_cetak');
+    Route::post('/diklat-cetak-surat-pengiriman',[CetakCont::class,'cetak_surat_pengiriman'])->name('diklat.cetak_surat_pengiriman');
 
     Route::post('/diklat-import-peserta',[ImportController::class,'importPesertaDiklat'])->name('diklat.import_peserta');
 
@@ -347,6 +349,13 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
 
     Route::get('/export-peserta-acara/{acara_id}',[AcaraCont::class,'export_peserta_acara'])->name('export.peserta.acara');
     Route::get('/export-seluruh-peserta',[ExportCont::class,'export_seluruh_peserta'])->name('export.seluruh.peserta');
+
+    Route::get('/kode-negara',[KodeAdminCont::class,'page_negara'])->name('negara');
+    Route::get('/data-kode-negara',[KodeAdminCont::class,'data_negara'])->name('data_negara');
+    Route::get('/data-kode-phone-negara',[KodeAdminCont::class,'data_phonecode'])->name('data_phonecode');
+    Route::post('/import-data-kode-negara',[KodeAdminCont::class,'import_kode'])->name('import_kode');
+    Route::post('/import-data-kode-negara-aksen-indo',[KodeAdminCont::class,'import_kode2'])->name('import_kode2');
+    Route::get('/kode-phone',[KodeAdminCont::class,'page_phone'])->name('phone');
 });
 
 Route::group(['middleware' => ['auth', 'CheckRole:bendahara']], function () {

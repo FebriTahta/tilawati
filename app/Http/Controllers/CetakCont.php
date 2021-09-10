@@ -74,11 +74,20 @@ class CetakCont extends Controller
     public function cetak_detail_peserta(Request $request)
     {
         $id = $request->pelatihan_id;
-        $pelatihan = Pelatihan::where('id',$id)->with('program','cabang')->first();        
+        $pelatihan  = Pelatihan::where('id',$id)->with('program','cabang')->first();        
         $peserta    = Peserta::where('pelatihan_id', $id)->get();
-    	$pdf = PDF::loadview('tilawatipusat.cetak.detail.cetak_detail',compact('peserta','pelatihan'))->setPaper('a4', 'portrait');
+    	$pdf        = PDF::loadview('tilawatipusat.cetak.detail.cetak_detail',compact('peserta','pelatihan'))->setPaper('a4', 'portrait');
         // $pdf->setBasePath($webRoot);
     	return $pdf->download('detail-peserta-_'.$pelatihan->name.'.pdf');
+    }
+
+    public function cetak_surat_pengiriman(Request $request)
+    {
+        $id = $request->id;
+        $pelatihan  = Pelatihan::where('id',$id)->with('program')->first();
+        $peserta    = Peserta::where('pelatihan_id',$id)->where('bersyahadah','1')->get();
+        $pdf        = PDF::loadview('tilawatipusat.cetak.detail.surat_pengiriman',compact('peserta','pelatihan'))->setpaper('A4','portrait');
+        return $pdf->download('surat-pengiriman-'.$pelatihan->program->name.'-'.Carbon::parse($pelatihan->tanggal)->isoFormat('D-MMMM-Y').'.pdf');
     }
 
 }

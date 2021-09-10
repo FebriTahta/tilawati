@@ -9,7 +9,7 @@ class Program extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name','slug'];
+    protected $fillable = ['name','slug','status'];
     protected $dates = ['deleted_at'];
 
     public function getRouteKeyName()

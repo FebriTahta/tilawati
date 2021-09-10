@@ -10,11 +10,14 @@ class Pelatihan extends Model
     use HasFactory;
     protected $fillable = [
         'tanggal',
+        'sampai_tanggal',
         'cabang_id',
         'program_id',
         'slug',
+        'groupwa',
         'keterangan',
-        'tempat'
+        'tempat',
+        'status'
     ];
     protected $dates = ['deleted_at'];
 

@@ -27,7 +27,7 @@ class DiklatCont extends Controller
         {
             if(!empty($request->dari))
             {
-                $data   = Pelatihan::with('cabang','program')->withCount('peserta')->orderBy('id','desc')
+                $data   = Pelatihan::with('cabang','program')->withCount('peserta')->orderBy('tanggal','desc')
                 ->whereBetween('tanggal', array($request->dari, $request->sampai));
                 return DataTables::of($data)
                         ->addColumn('peserta', function($data){
@@ -46,17 +46,26 @@ class DiklatCont extends Controller
                             return $data->program->name;
                         })
                         ->addColumn('linkpendaftaran', function ($data) {
-                            return '<input type="button" value="link pendaftaran!" data-id="'.$data->id.'" data-toggle="modal" data-target=".bs-example-modal-diklat-link"
-                            data-slug="https://registrasi.tilawatipusat.com/registrasi/'.$data->slug.'" class="btn btn-sm btn-outline-primary">';
+                            return '<a href="#" data-id="'.$data->id.'" data-toggle="modal" data-target=".bs-example-modal-diklat-link" 
+                            data-slug="https://registrasi.tilawatipusat.com/'.$data->slug.'" >Link Pendaftaran!</a>';
+                        })
+                        ->addColumn('tanggal', function($data){
+                            return Carbon::parse($data->tanggal)->isoFormat('D MMMM Y');
                         })
                         ->addColumn('action', function($data){
-                            $actionBtn = ' <a href="#" data-toggle="modal" data-target=".bs-example-modal-diklat-hapus" data-id="'.$data->id.'" class="btn btn-sm btn-outline btn-danger fa fa-pencil-square"><i class="fa fa-trash"></i></a>';
-                            return $actionBtn;
+                            $actionBtn = ' <a href="#" data-toggle="modal" data-target=".bs-example-modal-diklat-hapus" data-id="'.$data->id.'" class="btn btn-sm btn-outline btn-danger"><i class="fa fa-trash"></i></a> ';
+                            $actionBtn.= ' <a href="#" data-toggle="modal" data-target=".bs-example-modal-diklat-edit" data-id="'.$data->id.'" data-tanggal="'.$data->tanggal.'" data-cabang="'.$data->cabang_id.'"
+                            data-program="'.$data->program_id.'" data-tempat="'.$data->tempat.'" data-keterangan="'.$data->keterangan.'" class="btn btn-sm btn-outline btn-primary"><i class="fa fa-edit"></i></a>';
+                            $actionBtn.= 
+                            ' <button class="btn btn-sm btn-success" data-toggle="modal" data-target=".bs-example-modal-diklat-kirim"
+                            data-id="'.$data->id.'" data-name="'.$data->program->name.'" 
+                            data-tanggal="'.Carbon::parse($data->tanggal)->isoFormat('D MMMM Y').'">
+                            <i class="fa fa-file-import"></i></button>';
                         })
-                ->rawColumns(['cabang','program','action','peserta','linkpendaftaran'])
+                ->rawColumns(['cabang','program','action','peserta','linkpendaftaran','tanggal'])
                 ->make(true);
             }else{
-                $data   = Pelatihan::with('cabang','program')->withCount('peserta')->orderBy('id','desc');
+                $data   = Pelatihan::with('cabang','program')->withCount('peserta')->orderBy('tanggal','desc');
                 return DataTables::of($data)
                         ->addColumn('peserta', function($data){
                             if ($data->peserta_count == 0) {
@@ -78,16 +87,24 @@ class DiklatCont extends Controller
                             return $data->program->name;
                         })
                         ->addColumn('linkpendaftaran', function ($data) {
-                            return '<input type="button" value="link pendaftaran!" data-id="'.$data->id.'" data-toggle="modal" data-target=".bs-example-modal-diklat-link"
-                            data-slug="https://registrasi.tilawatipusat.com/registrasi/'.$data->slug.'" class="btn btn-sm btn-outline-primary">';
+                            return '<a href="#" data-id="'.$data->id.'" data-toggle="modal" data-target=".bs-example-modal-diklat-link" 
+                            data-slug="https://registrasi.tilawatipusat.com/'.$data->slug.'" >Pendaftaran!</a>';
                         })
                         ->addColumn('action', function($data){
                             $actionBtn = ' <a href="#" data-toggle="modal" data-target=".bs-example-modal-diklat-hapus" data-id="'.$data->id.'" class="btn btn-sm btn-outline btn-danger"><i class="fa fa-trash"></i></a> ';
                             $actionBtn.= ' <a href="#" data-toggle="modal" data-target=".bs-example-modal-diklat-edit" data-id="'.$data->id.'" data-tanggal="'.$data->tanggal.'" data-cabang="'.$data->cabang_id.'"
                             data-program="'.$data->program_id.'" data-tempat="'.$data->tempat.'" data-keterangan="'.$data->keterangan.'" class="btn btn-sm btn-outline btn-primary"><i class="fa fa-edit"></i></a>';
+                            $actionBtn.= 
+                            ' <button class="btn btn-sm btn-success" data-toggle="modal" data-target=".bs-example-modal-diklat-kirim"
+                            data-id="'.$data->id.'" data-name="'.$data->program->name.'" 
+                            data-tanggal="'.Carbon::parse($data->tanggal)->isoFormat('D MMMM Y').'"
+                            ><i class="fa fa-file-import"></i></button>';
                             return $actionBtn;
                         })
-                ->rawColumns(['cabang','program','action','peserta','linkpendaftaran'])
+                        ->addColumn('tanggal', function($data){
+                            return Carbon::parse($data->tanggal)->isoFormat('D MMMM Y');
+                        })
+                ->rawColumns(['cabang','program','action','peserta','linkpendaftaran','tanggal'])
                 ->make(true);
             }
         }
@@ -219,6 +236,7 @@ class DiklatCont extends Controller
                 'slug' => Str::slug($cabang->name.'-'.$tanggal.'-'.$program->name),
                 'tempat' => $request->tempat,
                 'keterangan' => $request->keterangan,
+                'status' => 1
             ]
         );
         //menambahkan gambar flyer jika ada isinya
@@ -251,7 +269,7 @@ class DiklatCont extends Controller
     public function delete(Request $request)
     {
         $id = $request->id;
-        $pelatihan = Pelatihan::find($id); 
+        $pelatihan = Pelatihan::find($id);
         $peserta = Peserta::where('pelatihan_id',$id)->get();
         foreach ($peserta as $key => $item) {
             # code...

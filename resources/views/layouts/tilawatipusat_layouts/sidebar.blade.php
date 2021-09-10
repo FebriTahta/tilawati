@@ -81,6 +81,19 @@
                     </ul>
                 </li>
 
+                <li class="menu-title">Pusat Data Administrasi & Daerah</li>
+
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="mdi mdi-checkbox-multiple-blank-outline"></i>
+                        <span>Dinas Administrasi</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="true">
+                        <li style="display: none"><a href="{{route('negara')}}">Kode Negara</a></li>
+                        <li><a href="{{route('phone')}}">Kode Telephone</a></li>
+                    </ul>
+                </li>
+
                 <li class="menu-title">Cetak</li>
 
                 <li>

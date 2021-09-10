@@ -11,7 +11,9 @@
     ></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <title>Document</title>
+    
+    
+    <title>Profile</title>
 <style>
 :root {
   --blue: #5e72e4;
@@ -1405,7 +1407,8 @@ button.bg-white:focus {
 } */
 
 .bg-gradient-default {
-  background: linear-gradient(87deg, #236e64 0, #5dffff 100%) !important;
+  /* background: linear-gradient(87deg, #00af7b 0, #5dffc9 100%) !important; */
+  background: rgb(3, 145, 131) !important;
 }
 
 @keyframes floating-lg {
@@ -2046,7 +2049,10 @@ p {
 #navbar .navbar {
   margin-bottom: 20px;
 }
+.tepi { border: 2px dashed black; 
+}
 </style>
+<link rel="stylesheet" href="{{asset('assets/style.css')}}">
 </head>
 
 <?php 
@@ -2063,15 +2069,15 @@ $rata2  = ($total + $total2)/($total3+1);
       </div>
     </nav>
     <!-- Header -->
-    <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 600px; background-image: url({{asset('assets/images/gedung.png')}}); background-size: cover; background-position: center top;">
+    {{-- <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 200px; background-image: url({{asset('assets/images/gedung.png')}}); background-size: cover; background-position: center top;"> --}}
       <!-- Mask -->
+      <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 200px; background-size: cover; background-position: center top;">
       <span class="mask bg-gradient-default opacity-8"></span>
       <!-- Header container -->
       <div class="container-fluid d-flex align-items-center">
         <div class="row">
-          <div class="col-lg-7 col-md-10">
-            <h1 class="display-2 text-white">Hello "{{$peserta->name}}"</h1>
-            <p class="text-white mt-0 mb-5">berikut ini adalah bukti bahwa kamu menjadi peserta dalam salah satu pelatihan yang kami adakan, sertifikat dan data ini berlaku hanya dalam kurun waktu 5 tahun</p>
+          <div class="col-lg-12 col-md-12">
+            {{-- <p class="text-white mt-0" style="text-transform: uppercase; font-size: 12px">Berikut adalah tanda bukti bahwa anda telah mengikuti pelatihan yang kami adakan</p> --}}
             {{-- <a href="#!" class="btn btn-info">Edit profile</a> --}}
           </div>
         </div>
@@ -2086,7 +2092,7 @@ $rata2  = ($total + $total2)/($total3+1);
               <div class="col-lg-3 order-lg-2">
                 <div class="card-profile-image">
                   <a href="#">
-                    <img src="https://demos.creative-tim.com/argon-dashboard/assets/img/theme/team-4.jpg" class="rounded-circle">
+                    <img src="{{asset('assets/images/logoprofile.png')}}" class="rounded-circle">
                   </a>
                 </div>
               </div>
@@ -2117,18 +2123,7 @@ $rata2  = ($total + $total2)/($total3+1);
                 </div>
               </div>
               <div class="text-center">
-                <h3 style="text-transform: capitalize">
-                  {{strtolower($peserta->name)}}<span class="font-weight-light"></span>
-                </h3>
-                <div class="h5 font-weight-300" style="text-transform: capitalize">
-                  <i class="ni location_pin mr-2"></i>
-                  @if ($peserta->kabupaten == null)
-                      {{strtolower(substr($peserta->cabang->kabupaten->nama,5))}} - {{strtolower($peserta->cabang->provinsi->nama)}}
-                  @else
-                      {{$peserta->kabupaten->nama}}
-                  @endif
-                </div>
-                <div class="h5 mt-4">
+                <div class="h5">
                   <i class="ni business_briefcase-24 "></i>
                     @if ($peserta->nilai->count() == 0)
                         <p href="#" class="btn btn-sm btn-default ">BELUM DINILAI</p>
@@ -2142,28 +2137,50 @@ $rata2  = ($total + $total2)/($total3+1);
                         @endif
                     @endif
                 </div>
-                <div><?php $krits = strtolower($peserta->kriteria)?>
-                  <i class="ni education_hat"></i>
-                  @if ($krits==null)
-                    
+                <h3 style="text-transform: capitalize">
+                  {{strtolower($peserta->name)}}<span class="font-weight-light"></span>
+                </h3>
+                <div class="h5 font-weight-300" style="text-transform: capitalize">
+                  <i class="ni location_pin mr-2"></i>
+                  @if ($peserta->kabupaten == null)
+                      {{strtolower(substr($peserta->cabang->kabupaten->nama,5))}} - {{strtolower($peserta->cabang->provinsi->nama)}}
                   @else
-                    {{$krits}}
+                      {{$peserta->kabupaten->nama}}
+                  @endif
+                </div>
+                
+                <div><?php $krits = strtolower($peserta->kriteria)?>
+                  <i class="ni education_hat" ></i>
+                  @if ($krits==null)
+                  @else
+                    <p style="text-transform: capitalize; font-size: 12px">{{$krits}}</p>
                   @endif
                 </div>
                 <hr class="my-4">
-                <p style="border-bottom: 5px; text-transform: capitalize">
-                    {{ Carbon\Carbon::parse($peserta->tanggal)->isoFormat('D MMMM Y') }} <br>
+                <p style="border-bottom: 5px; text-transform: capitalize font-size: 12px">
+                    <span>{{ Carbon\Carbon::parse($peserta->tanggal)->isoFormat('D MMMM Y') }}</span><br>
                     {{ $program->name }} <br>
                     {{$peserta->cabang->name}} - {{strtolower(substr($peserta->cabang->kabupaten->nama,5))}}
                 </p>
-                @if ($peserta->nilai->count() !== 0)
+                {{-- @if ($peserta->nilai->count() !== 0)
                     <p style="color: blue">NILAI - {{$rata2}}
-                @endif
+                @endif --}}
                 </p>
               </div>
             </div>
           </div>
         </div>
+
+        {{-- <div class="col-xl-8 order-xl-1">
+          <div class="card">
+            <div class="row">
+                  <div class="form-group col-4">
+                    <div class="tepi" style="width: 115px; padding: 5px">
+                      <img src="{{asset('images/'.$peserta->slug.'.png')}}" alt=""><br>
+                    </div>
+                  </div>
+              </div>
+          </div> --}}
         <div class="col-xl-8 order-xl-1">
           <div class="card bg-secondary shadow">
             <div class="card-header bg-white border-0">
@@ -2174,22 +2191,65 @@ $rata2  = ($total + $total2)/($total3+1);
               </div>
             </div>
             <div class="card-body">
-                <div class="form-group">
-                    <h6 class="heading-small text-muted mb-4">E-Certificate <br> {{$program->name}}</h6>
-                    @if ($peserta->certificate !== null)
-                        <a href="{{$peserta->certificate->link}}" target="_blank" class="btn btn-sm btn-primary float-right"><i class="fa fa-download"></i> Unduh</a>
-                        <p style="text-transform: capitalize">{{ Carbon\Carbon::parse($peserta->tanggal)->isoFormat('dddd - D MMMM Y') }} </p>
-                    @else
-                        <div style="text-transform: uppercase">
-                            <p style="color: red">certificate anda belum dikeluarkan oleh pusat</p>    
-                        </div>    
-                    @endif
-                </div>
-                <div class="row">
-                    <div class="form-group col-4">
-                        <img src="{{asset('images/'.$peserta->id.'qrcode.png')}}" alt=""><br>
-                    </div>
-                </div>
+              @if ($peserta->pelatihan->program->status == 2)
+              <div class="form-group">
+                  <h6 class="heading-small text-muted mb-4">Sertifikat Online <br> {{$program->name}}</h6>
+                  @if ($peserta->certificate !== null)
+                      <a href="{{$peserta->certificate->link}}" target="_blank" class="btn btn-sm btn-primary float-right"><i class="fa fa-download"></i> Unduh</a>
+                      <p style="text-transform: capitalize">{{ Carbon\Carbon::parse($peserta->tanggal)->isoFormat('dddd - D MMMM Y') }} </p>
+                  @else
+                      <div style="text-transform: uppercase">
+                          <p style="color: red">Sertifikat anda belum dikeluarkan oleh pusat</p>    
+                      </div>    
+                  @endif
+              </div>
+              @endif
+              @if ($peserta->pelatihan->program->status == 1)
+              <div class="form-group">
+                  <h6 class="heading-small text-muted mb-4">Informasi Nilai <br> {{$program->name}}</h6>
+                  <hr class="my-4">
+                  @if ($peserta->certificate !== null)
+                      <a href="{{$peserta->certificate->link}}" target="_blank" class="btn btn-sm btn-primary float-right"><i class="fa fa-download"></i> Unduh</a>
+                      <p style="text-transform: capitalize">{{ Carbon\Carbon::parse($peserta->tanggal)->isoFormat('dddd - D MMMM Y') }} </p>
+                  @else
+                      <div style="text-transform: capitalize; font-size: 14px;">
+                          <table style="width: 100%;">
+                            <tbody style="text-transform: uppercase">
+                              @foreach ($peserta->nilai as $item)
+                                @if ($item->kategori !== 'skill')
+                                  <tr>
+                                    <td class="text-left">{{$item->penilaian->name}}</td>
+                                    <td class="text-right">{{$item->nominal}}</td>
+                                  </tr>
+                                @endif
+                              @endforeach
+                            </tbody>
+                          </table>
+                          <hr class="my-4">
+                          <table style="width: 100%">
+                            <tbody style="text-transform: uppercase">
+                              @foreach ($peserta->nilai as $item)
+                                @if ($item->kategori == 'skill')
+                                  <tr>
+                                    <td class="text-left">{{$item->penilaian->name}}</td>
+                                    <td class="text-right">{{$item->nominal}}</td>
+                                  </tr>
+                                @endif
+                              @endforeach
+                            </tbody>
+                          </table>
+                          <br>
+                          <table style="width: 100%">
+                            <tbody>
+                              <tr>
+                                <td class="text-right"><p>Nilai Rata-rata : <u>{{$rata2}}</u></p></td>
+                              </tr>
+                            </tbody>
+                          </table>
+                      </div>    
+                  @endif
+              </div>
+              @endif
             </div>
           </div>
         </div>
