@@ -131,7 +131,7 @@ class SertifikatCont extends Controller
         {
             if(!empty($request->dari))
             {
-                $data   = Induksertifikat::with('cabang','program')
+                $data   = Induksertifikat::with('cabang','program')->orderBy('tgl_awal','desc')
                 ->whereBetween('tgl_awal', array($request->dari, $request->sampai));
                 return DataTables::of($data)
                     ->addColumn('cabang', function ($data) {
@@ -140,7 +140,7 @@ class SertifikatCont extends Controller
                 ->rawColumns(['cabang'])
                 ->make(true);
             }else{
-                $data   = Induksertifikat::with('cabang','program');
+                $data   = Induksertifikat::with('cabang','program')->orderBy('tgl_awal','desc');
                 return DataTables::of($data)
                     ->addColumn('cabang', function ($data) {
                         return $data->cabang->name;
