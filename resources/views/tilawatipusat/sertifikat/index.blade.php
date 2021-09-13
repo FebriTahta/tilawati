@@ -337,8 +337,8 @@
                             name:'cabang_name'
                             },
                             {
-                            data:'certificat',
-                            name:'certificat'
+                            data:'certificate',
+                            name:'certificate'
                             },
                             
                         ]
