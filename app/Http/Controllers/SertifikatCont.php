@@ -156,14 +156,16 @@ class SertifikatCont extends Controller
                         }
                     })
                     ->addColumn('certificate', function ($data) {
-                        return $data->certificate->count().' Sertifikat';
+                        $total = $data->certificate->count().' Sertifikat';
+                        if ($total == 0) {
+                            # code...
+                            return '<a href="https://sertifikat.tilawatipusat.com/'.$data->slug.'" target="_blank" class="text-danger">'.$total.' - sertifikat'.'</a>';
+                        } else {
+                            # code...
+                            return '<a href="https://sertifikat.tilawatipusat.com/'.$data->slug.'" target="_blank" class="text-success">'.$total.' - sertifikat'.'</a>';
+                        }
                     })
-                    ->addColumn('action', function ($data) {
-                        $btn = '<a href="#" data-id="'.$data->id.'" data-toggle="modal" data-target="#modal-generatex">generate</a>';
-                        return $btn;
-                    })
-                   
-                ->rawColumns(['cabang','certificate','tanggal','action'])
+                ->rawColumns(['cabang','certificate','tanggal'])
                 ->make(true);
             }
         }
