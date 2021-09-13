@@ -236,7 +236,7 @@ class DiklatCont extends Controller
                 'slug' => Str::slug($cabang->name.'-'.$tanggal.'-'.$program->name),
                 'tempat' => $request->tempat,
                 'keterangan' => $request->keterangan,
-                'status' => 1
+                'status' => '1',
             ]
         );
         //menambahkan gambar flyer jika ada isinya
