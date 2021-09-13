@@ -40,8 +40,7 @@
                                             <thead class="text-bold text-primary" style="text-transform: capitalize">
                                                 <tr>
                                                     <th>Sertifikat Program</th>
-                                                    <th>Tanggal 1</th>
-                                                    <th>Tanggal 2</th>
+                                                    <th>Tanggal</th>
                                                     <th>Pelaksana</th>
                                                     <th>Certificate</th>
                                                 </tr>
@@ -53,8 +52,7 @@
                                             <tfoot class="text-primary" style="text-transform: capitalize">
                                                 <tr>
                                                     <th>Sertifikat Program</th>
-                                                    <th>Tanggal 1</th>
-                                                    <th>Tanggal 2</th>
+                                                    <th>Tanggal</th>
                                                     <th>Pelaksana</th>
                                                     <th>Certificate</th>
                                                 </tr>
@@ -325,12 +323,8 @@
                             name:'program_name'
                             },
                             {
-                            data:'tgl_awal',
+                            data:'tanggal',
                             name:'tgl_awal'
-                            },
-                            {
-                            data:'tgl_akhir',
-                            name:'tgl_akhir'
                             },
                             {
                             data:'cabang',

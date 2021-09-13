@@ -7,7 +7,7 @@ use App\Models\Program;
 use App\Models\Cabang;
 use App\Models\Induksertifikat;
 use DataTables;
-use Carbon;
+use Carbon\Carbon;
 use Excel;
 use App\Models\Certificate;
 use App\Imports\EsertifikatImport;
@@ -145,11 +145,14 @@ class SertifikatCont extends Controller
                     ->addColumn('cabang', function ($data) {
                         return $data->cabang->name;
                     })
+                    ->addColumn('tanggal', function ($data) {
+                        return Carbon::parse($data->tgl_awal)->isoFormat('D MMMM Y');
+                    })
                     ->addColumn('certificate', function ($data) {
                         return $data->certificate->count().' Sertifikat';
                     })
                    
-                ->rawColumns(['cabang','certificate'])
+                ->rawColumns(['cabang','certificate','tanggal'])
                 ->make(true);
             }
         }
