@@ -171,15 +171,11 @@ class SertifikatCont extends Controller
 
     public function generate_program_id(Request $request)
     {
-        $program_id = $request->program_id;
-        $tanggal    = $request->tgl_awal;
-        $serti = Certificate::where('program_id',$program_id)->where('tanggal',$tanggal)->get();
-        $pelat = Induksertifikat::where('program_id',$program_id)->where('tgl_awal',$tanggal)->first();
-        foreach ($serti as $key => $value) {
-            # code...
-            $value->induksertifikat_id = $pelat->id;
-            $value->update();
-        }
+        $id = $request->id;
+        $pelat = Induksertifikat::where('id',$id)->with('cabang','program')->first();
+        $tanggal = Carbon::parse($pelat->tgl_awal)->isoFormat('D MMMM Y');
+        $pelat->slug = Str::slug($pelat->cabang->name.'-'.$tanggal.'-'.$pelat->program->name);
+        $pelat->update();
         return redirect()->back();
     }
 
