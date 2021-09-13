@@ -5,6 +5,7 @@ use App\Models\Peserta;
 use App\Models\Kriteria;
 use App\Models\Kabupaten;
 use App\Models\Pelatihan;
+use App\Models\Induksertifikat;
 use App\Models\Nilai;
 use App\Models\Lembaga;
 use App\Models\Certificate;
