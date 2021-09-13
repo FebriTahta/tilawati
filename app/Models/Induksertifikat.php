@@ -15,7 +15,8 @@ class Induksertifikat extends Model
         'tgl_awal',
         'tgl_akhir',
         'cabang_id',
-        'tempat'
+        'tempat',
+        'slug'
     ];
 
     public function program()

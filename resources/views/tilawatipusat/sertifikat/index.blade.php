@@ -43,6 +43,7 @@
                                                     <th>Tanggal</th>
                                                     <th>Pelaksana</th>
                                                     <th>Certificate</th>
+                                                    <th>Action</th>
                                                 </tr>
                                             </thead>
     
@@ -55,6 +56,7 @@
                                                     <th>Tanggal</th>
                                                     <th>Pelaksana</th>
                                                     <th>Certificate</th>
+                                                    <th>Action</th>
                                                 </tr>
                                             </tfoot>
                                         </table>
@@ -108,8 +110,7 @@
                                             <div class="separate"></div>
                                         </div>
                                         <form action="/generate-program-id" method="POST">@csrf
-                                            <input type="text" name="program_id" id="program_id">
-                                            <input type="text" name="tgl_awal" id="tgl_awal">
+                                            <input type="text" id="id" name="id">
                                             <button type="submit"> generate </button>
                                         </form>
                                     </div>
@@ -261,11 +262,9 @@
 
             $('#modal-generatex').on('show.bs.modal', function(event) {
                 var button = $(event.relatedTarget)
-                var program_id = button.data('program_id')
-                var tgl_awal = button.data('tgl_awal')
+                var id = button.data('id')
                 var modal = $(this)
-                modal.find('.modal-body #program_id').val(program_id);
-                modal.find('.modal-body #tgl_awal').val(tgl_awal);
+                modal.find('.modal-body #id').val(id);
             })
 
             $('#formimport').submit(function(e) {
@@ -333,6 +332,10 @@
                             {
                             data:'certificate',
                             name:'certificate'
+                            },
+                            {
+                            data:'action',
+                            name:'action'
                             },
                             
                         ]

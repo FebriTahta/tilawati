@@ -158,8 +158,12 @@ class SertifikatCont extends Controller
                     ->addColumn('certificate', function ($data) {
                         return $data->certificate->count().' Sertifikat';
                     })
+                    ->addColumn('action', function ($data) {
+                        $btn = '<a href="#" data-id="'.$data->id.'" data-toggle="modal" data-target="#modal-generatex">generate</a>';
+                        return $btn;
+                    })
                    
-                ->rawColumns(['cabang','certificate','tanggal'])
+                ->rawColumns(['cabang','certificate','tanggal','action'])
                 ->make(true);
             }
         }
@@ -185,6 +189,7 @@ class SertifikatCont extends Controller
         $cabang_name    = $request->cabang;
         $cek_program    = Program::where('name',$program_name)->first();
         $cek_cabang     = Cabang::where('name',$cabang_name)->first();
+        $tanggal        = Carbon::parse($request->tgl_awal)->isoFormat('D MMMM Y');
 
         if ($cek_program !== null) {
             # code...
@@ -199,7 +204,8 @@ class SertifikatCont extends Controller
                         'program_id'    => $cek_program->id,
                         'program_name'  => $cek_program->name,
                         'cabang_id'     => $cek_cabang->id,
-                        'tempat'        => $request->tempat
+                        'tempat'        => $request->tempat,
+                        'slug'          => Str::slug($cek_cabang->name.'-'.$tanggal.'-'.$cek_program->name)
                     ]
                 );
                 return redirect()->back();
@@ -228,7 +234,8 @@ class SertifikatCont extends Controller
                         'program_id'    => $dtpro->id,
                         'program_name'  => $program_name,
                         'cabang_id'     => $cek_cabang->id,
-                        'tempat'        => $request->tempat
+                        'tempat'        => $request->tempat,
+                        'slug'          => Str::slug($cek_cabang->name.'-'.$tanggal.'-'.$dt_pro->name)
                     ]
                 );
                 return redirect()->back();
