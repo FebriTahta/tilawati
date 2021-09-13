@@ -148,7 +148,12 @@ class SertifikatCont extends Controller
                     ->addColumn('action', function ($data){
                         if ($data->program !== null) {
                             # code...
-                            $action = '<a href="/generate_sertifikat_peserta/'.$data->program->id.'">generate peserta</a>';
+                            // $action = '<form method="POST" action="/generate-program-id/'.$data->program_id.'/'.$data->tgl_awal.'">
+                            
+                            // <button type="submit">generate</button>
+                            // </form>';
+                            $action = '<a href="#" data-program_id="'.$data->program_id.'" data-tgl_awal="'.$data->tgl_awal.'" data-target="#modal-generatex" data-toggle="modal" >generate</a>';
+
                             return $action;
                         }
                     })
@@ -160,11 +165,13 @@ class SertifikatCont extends Controller
 
     public function generate_program_id(Request $request)
     {
-        $serti = Certificate::where('pelatihan_id',5095)->get();
-        $pelat = Pelatihan::where('id',5095)->first();
+        $program_id = $request->program_id;
+        $tanggal    = $request->tgl_awal;
+        $serti = Certificate::where('program_id',$program_id)->where('tanggal',$tanggal)->get();
+        $pelat = Induksertifikat::where('program_id',$program_id)->where('tgl_awal',$tanggal)->first();
         foreach ($serti as $key => $value) {
             # code...
-            $value->tanggal = $pelat->tanggal;
+            $value->induksertifikat_id = $pelat->id;
             $value->update();
         }
         return redirect()->back();

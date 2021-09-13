@@ -9,6 +9,7 @@ class Certificate extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'induksertifikat_id',
         'pelatihan_id',
         'program_id',
         'cabang_id',
@@ -27,5 +28,10 @@ class Certificate extends Model
     public function pelatihan()
     {
         return $this->belongsTo(Pelatihan::class);
+    }
+
+    public function induksertifikat()
+    {
+        return $this->belongsTo(Induksertifikat::class);
     }
 }

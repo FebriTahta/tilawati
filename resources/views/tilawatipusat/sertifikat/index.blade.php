@@ -102,6 +102,26 @@
                         </div><!-- /.modal -->
                     </div>
 
+                    <div class="col-sm-6 col-md-3 m-t-30">
+                        <div class="modal fade" id="modal-generatex" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-body text-danger">
+                                        <div class="sec-title centered">
+                                            <div class="title"></div>
+                                            <div class="separate"></div>
+                                        </div>
+                                        <form action="/generate-program-id" method="POST">@csrf
+                                            <input type="text" name="program_id" id="program_id">
+                                            <input type="text" name="tgl_awal" id="tgl_awal">
+                                            <button type="submit"> generate </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- /.modal -->
+                    </div>
+
                     {{-- modal sertifikat baru --}}
                     <div class="col-sm-6 col-md-3 m-t-30">
                         <div class="modal fade" id="modal-sertifikat" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
@@ -241,6 +261,15 @@
                 var modal = $(this)
                 $('#id').val(id);
                 console.log(id);
+            })
+
+            $('#modal-generatex').on('show.bs.modal', function(event) {
+                var button = $(event.relatedTarget)
+                var program_id = button.data('program_id')
+                var tgl_awal = button.data('tgl_awal')
+                var modal = $(this)
+                modal.find('.modal-body #program_id').val(program_id);
+                modal.find('.modal-body #tgl_awal').val(tgl_awal);
             })
 
             $('#formimport').submit(function(e) {

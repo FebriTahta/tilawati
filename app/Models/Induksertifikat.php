@@ -27,4 +27,9 @@ class Induksertifikat extends Model
     {
         return $this->belongsTo(Cabang::class);
     }
+
+    public function certificate()
+    {
+        return $this->hasMany(Certificate::class);
+    }
 }
