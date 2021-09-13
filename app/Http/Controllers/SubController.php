@@ -44,6 +44,14 @@ class SubController extends Controller
         $cb = Kabupaten::find($id);
         return json_encode($cb);
     }
+
+// nama program dari sertifikat
+    public function fetchnampro($namaprogram)
+    {
+        $np = Program::where('name', $namaprogram);
+        return json_encode($np);
+    }
+
 //nama kepala
     public function fetch4($id)
     {

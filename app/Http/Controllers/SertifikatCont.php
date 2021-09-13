@@ -3,18 +3,24 @@
 namespace App\Http\Controllers;
 use App\Models\Pelatihan;
 use App\Models\Peserta;
+use App\Models\Program;
+use App\Models\Cabang;
+use App\Models\Induksertifikat;
 use DataTables;
 use Carbon;
 use Excel;
 use App\Models\Certificate;
 use App\Imports\EsertifikatImport;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 class SertifikatCont extends Controller
 {
     public function index()
     {
-        return view('tilawatipusat.sertifikat.index');
+        $cabang  = Cabang::select('id','name')->get();
+        $program = Program::select('id','name')->get();
+        return view('tilawatipusat.sertifikat.index',compact('program','cabang'));
     }
 
     public function daftar_pelatihan(Request $request)
@@ -117,5 +123,110 @@ class SertifikatCont extends Controller
             $data,
             'success'=>'E-Sertifikat Peserta Berhasil Ditambahkan Melalui file Excel'
         ]);
+    }
+
+    public function data_induksertifikat()
+    {
+        if(request()->ajax())
+        {
+            if(!empty($request->dari))
+            {
+                $data   = Induksertifikat::with('cabang','program')
+                ->whereBetween('tgl_awal', array($request->dari, $request->sampai));
+                return DataTables::of($data)
+                    ->addColumn('cabang', function ($data) {
+                        return $data->cabang->name;
+                    })
+                ->rawColumns(['cabang'])
+                ->make(true);
+            }else{
+                $data   = Induksertifikat::with('cabang','program');
+                return DataTables::of($data)
+                    ->addColumn('cabang', function ($data) {
+                        return $data->cabang->name;
+                    })
+                    ->addColumn('action', function ($data){
+                        if ($data->program !== null) {
+                            # code...
+                            $action = '<a href="/generate_sertifikat_peserta/'.$data->program->id.'">generate peserta</a>';
+                            return $action;
+                        }
+                    })
+                ->rawColumns(['cabang','action'])
+                ->make(true);
+            }
+        }
+    }
+
+    public function generate_program_id(Request $request)
+    {
+        $serti = Certificate::where('pelatihan_id',5092)->get();
+        $pelat = Pelatihan::find(5092);
+        foreach ($serti as $key => $value) {
+            # code...
+            $value->update([
+                'program_id' => $pelat->program->id
+            ]);
+        }
+        return redirect()->back();
+    }
+
+    public function store_induksertifikat(Request $request)
+    {
+        $program_name   = $request->program;
+        $cabang_name    = $request->cabang;
+        $cek_program    = Program::where('name',$program_name)->first();
+        $cek_cabang     = Cabang::where('name',$cabang_name)->first();
+
+        if ($cek_program !== null) {
+            # code...
+            if($cek_cabang !== null){
+                Induksertifikat::updateOrCreate(
+                    [
+                      'id' => $request->id
+                    ],
+                    [
+                        'tgl_awal'      => $request->tgl_awal,
+                        'tgl_akhir'     => $request->tgl_akhir,
+                        'program_id'    => $cek_program->id,
+                        'program_name'  => $cek_program->name,
+                        'cabang_id'     => $cek_cabang->id,
+                        'tempat'        => $request->tempat
+                    ]
+                );
+                return redirect()->back();
+            }else{
+                return redirect()->back()->withFail('Cabang '.$request->cabang.' Tidak Terdaftar, Pilih Dari Daftar Cabang Yang Terdaftar');;
+            }
+        }else{
+            if($cek_cabang !== null){
+                $dtpro      = Program::updateOrCreate(
+                    [
+                      'id'  => $request->id
+                    ],
+                    [
+                        'name' => $program_name,
+                        'slug' => Str::slug($program_name),
+                        'status' => 2,
+                    ]
+                );
+                Induksertifikat::updateOrCreate(
+                    [
+                      'id' => $request->id
+                    ],
+                    [
+                        'tgl_awal'      => $request->tgl_awal,
+                        'tgl_akhir'     => $request->tgl_akhir,
+                        'program_id'    => $dtpro->id,
+                        'program_name'  => $program_name,
+                        'cabang_id'     => $cek_cabang->id,
+                        'tempat'        => $request->tempat
+                    ]
+                );
+                return redirect()->back();
+            }else{
+                return redirect()->back()->withFail('Cabang '.$request->cabang.' Tidak Terdaftar, Pilih Dari Daftar Cabang Yang Terdaftar');;
+            }
+        }
     }
 }

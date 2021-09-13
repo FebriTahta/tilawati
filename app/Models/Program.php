@@ -36,4 +36,9 @@ class Program extends Model
     {
         return $this->hasMany(Kriteria::class);
     }
+
+    public function induksertifikat()
+    {
+        return $thihs->hasMany(Induksertifikat::class);
+    }
 }

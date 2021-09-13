@@ -5,8 +5,14 @@
 
     <!-- DataTables -->
     <link href="{{ URL::asset('tilawatipusat/libs/datatables/datatables.min.css')}}" rel="stylesheet" type="text/css" />
+    <!-- Select2 -->
+    <link href="{{URL::asset('tilawatipusat/libs/select2/select2.min.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{URL::asset('tilawatipusat/libs/bootstrap-datepicker/bootstrap-datepicker.min.css')}}" rel="stylesheet">
+    <link href="{{URL::asset('tilawatipusat/libs/bootstrap-colorpicker/bootstrap-colorpicker.min.css')}}" rel="stylesheet">
+    <link href="{{URL::asset('tilawatipusat/libs/bootstrap-touchspin/bootstrap-touchspin.min.css')}}" rel="stylesheet" />
 
 @endsection
+
 @section('content')
 
     @component('common-tilawatipusat.breadcrumb')
@@ -16,6 +22,15 @@
 
                     <div class="row">
                         <div class="col-lg-12">
+                            @if(Session::has('fail'))
+                                <div class="col-lg-12 alert alert-danger">
+                                {{Session::get('fail')}}
+                                </div>
+                            @endif
+                            <form action="/generate-program-id" method="POST">
+                                @csrf
+                                <button type="submit">generate</button>
+                            </form>
                             <div class="card">
                                 <div class="card-body">
                                     {{-- <h4 class="card-title">Data Sertifikat</h4> --}}
@@ -24,11 +39,12 @@
                                         <table id="data-diklat" class="table table-diklat table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
                                             <thead class="text-bold text-primary" style="text-transform: capitalize">
                                                 <tr>
-                                                    <th>program diklat</th>
-                                                    <th>pelaksana</th>
-                                                    <th>tanggal</th>
-                                                    <th>link sertifikat</th>
-                                                    <th>...</th>
+                                                    <th>Sertifikat Program</th>
+                                                    <th>Tanggal 1</th>
+                                                    <th>Tanggal 2</th>
+                                                    <th>Pelaksana</th>
+                                                    <th>Tempat</th>
+                                                    <th>Action</th>
                                                 </tr>
                                             </thead>
     
@@ -37,11 +53,12 @@
 
                                             <tfoot class="text-primary" style="text-transform: capitalize">
                                                 <tr>
-                                                    <th>program diklat</th>
-                                                    <th>pelaksana</th>
-                                                    <th>tanggal</th>
-                                                    <th>link sertifikat</th>
-                                                    <th>...</th>
+                                                    <th>Sertifikat Program</th>
+                                                    <th>Tanggal 1</th>
+                                                    <th>Tanggal 2</th>
+                                                    <th>Pelaksana</th>
+                                                    <th>Tempat</th>
+                                                    <th>Action</th>
                                                 </tr>
                                             </tfoot>
                                         </table>
@@ -61,7 +78,6 @@
                                             <div class="title"></div>
                                             <div class="separate"></div>
                                         </div>
-                    
                                         <form id="formimport" action="" class="was-validate" enctype="multipart/form-data">@csrf
                                             <div class="card">
                                                 <div class="card-body">
@@ -96,7 +112,7 @@
                                             <div class="title"></div>
                                             <div class="separate"></div>
                                         </div>
-                                        <form id="" action="" class="was-validate" enctype="multipart/form-data">@csrf
+                                        <form action="{{route('store.induksertifikat')}}" method="POST" enctype="multipart/form-data">@csrf
                                             <div class="card">
                                                 <div class="card-body">
                                                     <div class="row">
@@ -106,14 +122,41 @@
                                                             <input type="radio" id="2" name="waktu" value="2"  onclick="myFunction()">
                                                             <label for="2">lebih dari satu hari</label>
                                                         </div>
-                                                        
-                                                        <div class="form-group col-6 col-xl-6">
+                                                    
+                                                        <div class="form-group col-12 col-xl-6">
                                                             <label for="tanggal">Tanggal</label>
-                                                            <input type="date" id="tanggal" class="form-control" required>
+                                                            <input type="date" id="tanggal" name="tgl_awal" class="form-control" required>
                                                         </div>
-                                                        <div class="form-group col-6 col-xl-6" id="tgl" style="display: none">
+                                                        <div class="form-group col-12 col-xl-6" id="tgl" style="display: none">
                                                             <label for="sampai">Sampai</label>
-                                                            <input type="date" id="sampai" class="form-control" required>
+                                                            <input type="date" id="sampai" name="tgl_akhir" class="form-control" >
+                                                        </div>
+                                                        
+                                                        <div class="form-group col-12 col-xl-6">
+                                                            <label for="program">Program</label>
+                                                            <input list="listprogram" name="program" class="form-control" id="program" required>
+                                                            <datalist id="listprogram">
+                                                                @foreach ($program as $pro)
+                                                                    <option value="{{$pro->name}}">
+                                                                @endforeach
+                                                            </datalist>
+                                                        </div>
+                                                        <div class="form-group col-12 col-xl-6">
+                                                            <label for="cabang">Pelaksana</label>
+                                                            <input list="listcabang" name="cabang" class="form-control" id="cabang" required>
+                                                            <datalist id="listcabang">
+                                                                @foreach ($cabang as $cab)
+                                                                    <option value="{{$cab->name}}">
+                                                                @endforeach
+                                                            </datalist>
+                                                        </div>
+                                                        <br>
+                                                        <div class="form-group col-12 col-xl-12">
+                                                            <label for="tempat">Tempat Penyelenggaraan</label>
+                                                            <textarea name="tempat" id="tempat" cols="30" rows="2" class="form-control" required></textarea>
+                                                        </div>
+                                                        <div class="form-group col-12 col-xl-12 text-right">
+                                                            <input type="submit" class="btn btn-sm btn-primary" value="Submit!">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -127,6 +170,16 @@
 @endsection
 
 @section('script')
+
+        <!-- Script Select2-->
+        <script src="{{URL::asset('/tilawatipusat/libs/select2/select2.min.js')}}"></script>
+        <script src="{{URL::asset('/tilawatipusat/libs/bootstrap-datepicker/bootstrap-datepicker.min.js')}}"></script>
+        <script src="{{URL::asset('/tilawatipusat/libs/bootstrap-colorpicker/bootstrap-colorpicker.min.js')}}"></script>
+        <script src="{{URL::asset('/tilawatipusat/libs/bootstrap-touchspin/bootstrap-touchspin.min.js')}}"></script>
+        <script src="{{URL::asset('/tilawatipusat/libs/bootstrap-maxlength/bootstrap-maxlength.min.js')}}"></script>
+ 
+        <!-- form advanced init -->
+        <script src="{{URL::asset('/tilawatipusat/js/pages/form-advanced.init.js')}}"></script>
 
         <!-- Toast -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.min.css">
@@ -142,6 +195,7 @@
         <!-- Datatable init js -->
         <script src="{{ URL::asset('tilawatipusat/js/pages/datatables.init.js')}}"></script>
         
+        
         <script>
             function myFunction() {
                 document.getElementById("tgl").style.removeProperty( 'display' );
@@ -153,6 +207,28 @@
             }
         </script>
         <script>
+            $(document).ready(function(){
+                $('#sel_cabang').select2({
+                    placeholder: 'Select an item',
+                    ajax: {
+                        url: "{{route('diklat.diklat_cabang_select')}}",
+                        dataType: 'json',
+                        delay: 250,
+                        processResults: function (data) {
+                        return {
+                            results:  $.map(data, function (item) {
+                                return {
+                                    text: item.kode,
+                                    text: item.name,
+                                    id: item.id   
+                                }
+                            })
+                        };
+                        },
+                        cache: true
+                    }
+                });
+            })
             $('#inputGroupFile02').on('change',function(){
                 //get the file name
                 var fileName = $(this).val();
@@ -214,24 +290,28 @@
                         processing: true,
                         serverSide: true,
                         ajax: {
-                            url:'{{ route("sertifikat.daftar.pelatihan") }}',
+                            url:'{{ route("data.induksertifikat") }}',
                         },
                         columns: [
                             {
-                            data:'program',
-                            name:'program.name'
+                            data:'program_name',
+                            name:'program_name'
+                            },
+                            {
+                            data:'tgl_awal',
+                            name:'tgl_awal'
+                            },
+                            {
+                            data:'tgl_akhir',
+                            name:'tgl_akhir'
                             },
                             {
                             data:'cabang',
-                            name:'cabang.name'
+                            name:'cabang_name'
                             },
                             {
-                            data:'tanggal',
-                            name:'tanggal'
-                            },
-                            {
-                            data:'certificate',
-                            name:'certificate'
+                            data:'tempat',
+                            name:'tempat'
                             },
                             {
                             data:'action',

@@ -26,12 +26,12 @@
                     </div> --}}
 
                     <div class="row">
-                        @if(Session::has('fail'))
-                            <div class="col-lg-12 alert alert-danger">
-                            {{Session::get('fail')}}
-                            </div>
-                        @endif
                         <div class="col-lg-12">
+                            @if(Session::has('fail'))
+                                <div class="col-lg-12 alert alert-danger">
+                                {{Session::get('fail')}}
+                                </div>
+                            @endif
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="card-title">Data Ijazah Depan</h4>

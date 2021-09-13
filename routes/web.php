@@ -92,6 +92,8 @@ Route::get('/fetch6/{id}',[SubController::class, 'fetch6']);
 Route::get('/fetch7/{id}',[SubController::class, 'fetch7']);
 Route::get('/fetch8/{id}',[SubController::class, 'fetch8']);
 
+Route::get('/fetchnampro/{namaprogram}',[SubController::class, 'fetchnampro']);
+
 //fetch program dan pelatihan untuk print
 Route::get('/fetchpp/{id}',[SubController::class, 'fetchpp']);
 //submit registrasi pendaftaran online
@@ -340,6 +342,9 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     Route::get('/sertifikat',[SertifikatCont::class,'index'])->name('sertifikat');
     Route::get('/sertifikat-daftar-pelatihan',[SertifikatCont::class,'daftar_pelatihan'])->name('sertifikat.daftar.pelatihan');
     Route::post('/import/certificate',[SertifikatCont::class,'import_e_sertifikat'])->name('import.certificate');
+    Route::post('/store-induksertifikat',[SertifikatCont::class,'store_induksertifikat'])->name('store.induksertifikat');
+    Route::get('/data-induk-sertifikat',[SertifikatCont::class,'data_induksertifikat'])->name('data.induksertifikat');
+    Route::post('/generate-program-id',[SertifikatCont::class,'generate_program_id']);
 
     Route::get('/diklat-acara',[AcaraCont::class,'index'])->name('acara');
     Route::get('/diklat-acara-data',[AcaraCont::class,'data_acara'])->name('acara.data');
@@ -356,6 +361,8 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     Route::post('/import-data-kode-negara',[KodeAdminCont::class,'import_kode'])->name('import_kode');
     Route::post('/import-data-kode-negara-aksen-indo',[KodeAdminCont::class,'import_kode2'])->name('import_kode2');
     Route::get('/kode-phone',[KodeAdminCont::class,'page_phone'])->name('phone');
+
+    
 });
 
 Route::group(['middleware' => ['auth', 'CheckRole:bendahara']], function () {
