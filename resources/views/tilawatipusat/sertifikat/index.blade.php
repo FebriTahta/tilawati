@@ -323,13 +323,13 @@
                     if(data.success)
                     {
                         //sweetalert and redirect
-                        var oTable = $('#datatable-buttons').dataTable();
+                        var oTable = $('#data-diklat').dataTable();
                         oTable.fnDraw(false);
                         $('#btnhapus').val('Ya, Hapus!');
                         $('#modal-hapus').modal('hide');
                         $('#btnhapus').attr('disabled',false);
                         swal({ title: "Success!",
-                            text: "Kriteria Tersebut Berhasil Di Dihapus!",
+                            text: "Induk Certificate Tersebut Berhasil Di Dihapus!",
                             type: "success"})
                     }
                 },

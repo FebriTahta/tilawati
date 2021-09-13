@@ -171,7 +171,7 @@ class SertifikatCont extends Controller
                     })
                     ->addColumn('action', function($data){
                         $actionBtn  = ' <button type="button" data-id="'.$data->id.'" data-toggle="modal" data-target="#modal-import" class="btn btn-success btn-sm"> <i class="fa fa-upload"></i> Import</button>';
-                        $actionBtn .= '<button type="button" data-id="'.$data->id.'" data-toggle="modal" data-target="#modal-hapus" class="btn btn-success btn-sm"> <i class="fa fa-upload"></i> Hapus!</button>';
+                        $actionBtn .= ' <button type="button" data-id="'.$data->id.'" data-toggle="modal" data-target="#modal-hapus" class="btn btn-danger btn-sm"> <i class="fa fa-trash"></i> Hapus!</button>';
                         return $actionBtn;
                     })
                 ->rawColumns(['cabang','certificate','tanggal','action'])
