@@ -12,6 +12,7 @@ class Certificate extends Model
         'pelatihan_id',
         'program_id',
         'cabang_id',
+        'tanggal',
         'peserta_id',
         'no',
         'name',
