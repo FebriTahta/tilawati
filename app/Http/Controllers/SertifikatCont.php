@@ -146,7 +146,14 @@ class SertifikatCont extends Controller
                         return $data->cabang->name;
                     })
                     ->addColumn('tanggal', function ($data) {
-                        return Carbon::parse($data->tgl_awal)->isoFormat('D MMMM Y');
+                        if ($data->tgl_akhir == null) {
+                            # code...
+                            return Carbon::parse($data->tgl_awal)->isoFormat('dddd, D MMMM Y');
+                        }else{
+                            $tanggal = Carbon::parse($data->tgl_awal)->isoFormat('dddd, D MMMM Y').
+                            ' - '.Carbon::parse($data->tgl_awal)->isoFormat('dddd, D MMMM Y');
+                            return $tanggal;
+                        }
                     })
                     ->addColumn('certificate', function ($data) {
                         return $data->certificate->count().' Sertifikat';
