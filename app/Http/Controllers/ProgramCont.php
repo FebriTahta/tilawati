@@ -98,7 +98,8 @@ class ProgramCont extends Controller
             ],
             [
                 'name' => $request->name,
-                'slug' => Str::slug($request->name)
+                'slug' => Str::slug($request->name),
+                'status' => 1,
             ]
         );
         return response()->json(
