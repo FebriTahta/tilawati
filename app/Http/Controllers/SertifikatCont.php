@@ -195,7 +195,7 @@ class SertifikatCont extends Controller
         $id = $request->id;
         Induksertifikat::find($id)->delete();
         $data = Certificate::where('induksertifikat_id', $id)->get();
-        if ($data->count !== null) {
+        if ($data->count() !== null) {
             # code...
             foreach ($data as $key => $value) {
                 # code...
