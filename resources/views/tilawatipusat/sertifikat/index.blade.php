@@ -27,10 +27,6 @@
                                 {{Session::get('fail')}}
                                 </div>
                             @endif
-                            <form action="/generate-program-id" method="POST">
-                                @csrf
-                                <button type="submit">generate</button>
-                            </form>
                             <div class="card">
                                 <div class="card-body">
                                     {{-- <h4 class="card-title">Data Sertifikat</h4> --}}
