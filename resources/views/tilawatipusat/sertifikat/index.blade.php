@@ -39,6 +39,7 @@
                                                     <th>Tanggal</th>
                                                     <th>Pelaksana</th>
                                                     <th>Certificate</th>
+                                                    <th>Action</th>
                                                 </tr>
                                             </thead>
     
@@ -51,6 +52,7 @@
                                                     <th>Tanggal</th>
                                                     <th>Pelaksana</th>
                                                     <th>Certificate</th>
+                                                    <th>Action</th>
                                                 </tr>
                                             </tfoot>
                                         </table>
@@ -326,6 +328,10 @@
                             {
                             data:'certificate',
                             name:'certificate'
+                            },
+                            {
+                            data:'action',
+                            name:'action'
                             },
                             
                         ]

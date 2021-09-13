@@ -165,7 +165,11 @@ class SertifikatCont extends Controller
                             return '<a href="https://sertifikat.tilawatipusat.com/'.$data->slug.'" target="_blank" class="text-success">'.$total.' - sertifikat'.'</a>';
                         }
                     })
-                ->rawColumns(['cabang','certificate','tanggal'])
+                    ->addColumn('action', function($data){
+                        $actionBtn = ' <button type="button" data-id="'.$data->id.'" data-toggle="modal" data-target="#modal-import" class="btn btn-success btn-sm"> <i class="fa fa-upload"></i> Import</button>';
+                        return $actionBtn;
+                    })
+                ->rawColumns(['cabang','certificate','tanggal','action'])
                 ->make(true);
             }
         }
