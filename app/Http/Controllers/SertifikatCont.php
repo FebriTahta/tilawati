@@ -160,8 +160,8 @@ class SertifikatCont extends Controller
 
     public function generate_program_id(Request $request)
     {
-        $serti = Certificate::where('pelatihan_id',5094)->get();
-        $pelat = Pelatihan::where('id',5094)->first();
+        $serti = Certificate::where('pelatihan_id',5090)->get();
+        $pelat = Pelatihan::where('id',5090)->first();
         foreach ($serti as $key => $value) {
             # code...
             $value->program_id = $pelat->cabang_id;
