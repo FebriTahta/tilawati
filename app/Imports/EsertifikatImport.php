@@ -31,7 +31,7 @@ class EsertifikatImport implements ToCollection
         foreach ($collection as $key => $row) {
             # code...
             if ($key >= 1) {
-                $sertifikat = Certificate::where('name',$row[1])->where('induksertifikat',$this->id)->first();
+                $sertifikat = Certificate::where('name',$row[1])->where('induksertifikat_id',$this->id)->first();
                 if ($sertifikat == null) {
                     # code...
                     $dt_n = new Certificate;
