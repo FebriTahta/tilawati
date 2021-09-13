@@ -11,6 +11,7 @@ class Certificate extends Model
     protected $fillable = [
         'pelatihan_id',
         'program_id',
+        'cabang_id',
         'peserta_id',
         'no',
         'name',
