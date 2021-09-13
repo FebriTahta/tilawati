@@ -217,7 +217,7 @@ class DiklatCont extends Controller
         $dt_program = Program::all();
         return view('tilawatipusat.diklat.create',compact('dt_program'));
     }
-
+ 
     public function store(Request $request)
     {
         $program = Program::where('id', $request->program_id)->first();
