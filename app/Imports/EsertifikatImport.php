@@ -26,43 +26,21 @@ class EsertifikatImport implements ToCollection
     */
     public function collection(Collection $collection)
     {
-        $data       = Pelatihan::find($this->id);
+        $data       = Induksertifikat::find($this->id);
         foreach ($collection as $key => $row) {
             # code...
             if ($key >= 1) {
-                $sertifikat = Certificate::where('name',$row[1])->where('pelatihan_id',$this->id)->first();
-                $peserta    = Peserta::where('name',$row[1])->where('pelatihan_id',$this->id)->first();
+                $sertifikat = Certificate::where('name',$row[1])->where('induksertifikat',$this->id)->first();
                 if ($sertifikat == null) {
                     # code...
-                    if ($peserta == null) {
-                        # code...
-                        $dt_p = new Peserta;
-                        $dt_p->pelatihan_id = $this->id;
-                        $dt_p->cabang_id    = $data->cabang_id;
-                        $dt_p->name         = $row[1];
-                        $dt_p->tanggal      = $data->tanggal;
-                        $dt_p->status       = 1;
-                        $dt_p->created_at   = new \DateTime;
-                        $dt_p->save();
-
-                        $dt_n = new Certificate;
-                        $dt_n->pelatihan_id = $this->id;
-                        $dt_n->peserta_id   = $dt_p->id;
-                        $dt_n->no           = $row[0];
-                        $dt_n->name         = $row[1];
-                        $dt_n->link         = $row[2];
-                        $dt_n->created_at   = new \DateTime;
-                        $dt_n->save();
-                    }else{
-                        $dt_n = new Certificate;
-                        $dt_n->pelatihan_id = $this->id;
-                        $dt_n->peserta_id   = $peserta->id;
-                        $dt_n->no           = $row[0];
-                        $dt_n->name         = $row[1];
-                        $dt_n->link         = $row[2];
-                        $dt_n->created_at   = new \DateTime;
-                        $dt_n->save();
-                    }
+                    $dt_n = new Certificate;
+                    $dt_n->induksertifikat_id = $this->id;
+                    $dt_n->no           = $row[0];
+                    $dt_n->name         = $row[1];
+                    $dt_n->link         = $row[2];
+                    $dt_n->created_at   = new \DateTime;
+                    $dt_n->save();
+                    
                 }
             }   
         }

@@ -116,7 +116,7 @@ class SertifikatCont extends Controller
     public function import_e_sertifikat(Request $request)
     {
         $id = $request->id ;
-        $sertifikat_lama = Certificate::where('pelatihan_id',$id)->delete();
+        $sertifikat_lama = Certificate::where('induksertifikat_id',$id)->delete();
         // $peserta_lama    = Peserta::where('pelatihan_id',$id)->delete();
         $data = Excel::Import(new EsertifikatImport($id), $request->file('file'));
         return Response()->json([
