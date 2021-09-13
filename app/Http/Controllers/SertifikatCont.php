@@ -170,7 +170,8 @@ class SertifikatCont extends Controller
                         }
                     })
                     ->addColumn('action', function($data){
-                        $actionBtn = ' <button type="button" data-id="'.$data->id.'" data-toggle="modal" data-target="#modal-import" class="btn btn-success btn-sm"> <i class="fa fa-upload"></i> Import</button>';
+                        $actionBtn  = ' <button type="button" data-id="'.$data->id.'" data-toggle="modal" data-target="#modal-import" class="btn btn-success btn-sm"> <i class="fa fa-upload"></i> Import</button>';
+                        $actionBtn .= '<button type="button" data-id="'.$data->id.'" data-toggle="modal" data-target="#modal-hapus" class="btn btn-success btn-sm"> <i class="fa fa-upload"></i> Hapus!</button>';
                         return $actionBtn;
                     })
                 ->rawColumns(['cabang','certificate','tanggal','action'])
@@ -187,6 +188,24 @@ class SertifikatCont extends Controller
         $pelat->slug = Str::slug($pelat->cabang->name.'-'.$tanggal.'-'.$pelat->program->name);
         $pelat->update();
         return redirect()->back();
+    }
+
+    public function delete_induksertifikat(Request $request)
+    {
+        $id = $request->id;
+        Induksertifikat::find($id)->delete();
+        $data = Certificate::where('induksertifikat_id', $id)->get();
+        if ($data->count !== null) {
+            # code...
+            foreach ($data as $key => $value) {
+                # code...
+                $value->delete();
+            }
+        }
+        return Response()->json([
+            $data,
+            'success'=>'E-Sertifikat Peserta Berhasil Dihapus'
+        ]);
     }
 
     public function store_induksertifikat(Request $request)

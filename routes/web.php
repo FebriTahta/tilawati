@@ -345,6 +345,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     Route::post('/store-induksertifikat',[SertifikatCont::class,'store_induksertifikat'])->name('store.induksertifikat');
     Route::get('/data-induk-sertifikat',[SertifikatCont::class,'data_induksertifikat'])->name('data.induksertifikat');
     Route::post('/generate-program-id',[SertifikatCont::class,'generate_program_id']);
+    Route::post('/delete-induk-sertifikat',[SertifikatCont::class, 'delete_induksertifikat'])->name('delete.induksertifikat');
 
     Route::get('/diklat-acara',[AcaraCont::class,'index'])->name('acara');
     Route::get('/diklat-acara-data',[AcaraCont::class,'data_acara'])->name('acara.data');
