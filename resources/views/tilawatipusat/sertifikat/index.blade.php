@@ -43,8 +43,7 @@
                                                     <th>Tanggal 1</th>
                                                     <th>Tanggal 2</th>
                                                     <th>Pelaksana</th>
-                                                    <th>Tempat</th>
-                                                    <th>Action</th>
+                                                    <th>Certificate</th>
                                                 </tr>
                                             </thead>
     
@@ -57,8 +56,7 @@
                                                     <th>Tanggal 1</th>
                                                     <th>Tanggal 2</th>
                                                     <th>Pelaksana</th>
-                                                    <th>Tempat</th>
-                                                    <th>Action</th>
+                                                    <th>Certificate</th>
                                                 </tr>
                                             </tfoot>
                                         </table>
@@ -339,12 +337,8 @@
                             name:'cabang_name'
                             },
                             {
-                            data:'tempat',
-                            name:'tempat'
-                            },
-                            {
-                            data:'action',
-                            name:'action'
+                            data:'certificat',
+                            name:'certificat'
                             },
                             
                         ]

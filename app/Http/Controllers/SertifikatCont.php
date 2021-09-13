@@ -140,24 +140,16 @@ class SertifikatCont extends Controller
                 ->rawColumns(['cabang'])
                 ->make(true);
             }else{
-                $data   = Induksertifikat::with('cabang','program')->orderBy('tgl_awal','desc');
+                $data   = Induksertifikat::with('cabang','program','certificate')->orderBy('tgl_awal','desc');
                 return DataTables::of($data)
                     ->addColumn('cabang', function ($data) {
                         return $data->cabang->name;
                     })
-                    ->addColumn('action', function ($data){
-                        if ($data->program !== null) {
-                            # code...
-                            // $action = '<form method="POST" action="/generate-program-id/'.$data->program_id.'/'.$data->tgl_awal.'">
-                            
-                            // <button type="submit">generate</button>
-                            // </form>';
-                            $action = '<a href="#" data-program_id="'.$data->program_id.'" data-tgl_awal="'.$data->tgl_awal.'" data-target="#modal-generatex" data-toggle="modal" >generate</a>';
-
-                            return $action;
-                        }
+                    ->addColumn('certificate', function ($data) {
+                        return $data->certificate->count().' Sertifikat';
                     })
-                ->rawColumns(['cabang','action'])
+                   
+                ->rawColumns(['cabang','certificate'])
                 ->make(true);
             }
         }
