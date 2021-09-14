@@ -667,14 +667,12 @@
                         name:'telp'
                         },
                         {
+                        data:'ttl',
+                        name:'ttl'
+                        },
+                        {
                         data:'nilai',
                         name:'nilai'
-                        },
-                        
-                        
-                        {
-                        data:'certificate',
-                        name:'certificate',
                         },
                         {
                         data:'alamat',

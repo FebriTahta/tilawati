@@ -96,7 +96,7 @@ class PesertaCont extends Controller
                             
                         })
                         ->addColumn('ttl', function($data){
-                            $ttl = Carbon::parse($data->tgllahir)->isoFormat('D MMMM Y');
+                            $ttl = $data->tmptlahir.' - '.Carbon::parse($data->tgllahir)->isoFormat('D MMMM Y');
                             return $ttl;
                         })
                 ->rawColumns(['nilai','action','kabupaten','ttl','krits'])
