@@ -238,17 +238,18 @@ class SertifikatCont extends Controller
                 return redirect()->back()->withFail('Cabang '.$request->cabang.' Tidak Terdaftar, Pilih Dari Daftar Cabang Yang Terdaftar');;
             }
         }else{
+
+            $dtpro      = Program::updateOrCreate(
+                [
+                  'id'  => $request->id
+                ],
+                [
+                    'name' => $program_name,
+                    'slug' => Str::slug($program_name),
+                    'status' => 2,
+                ]
+            );
             if($cek_cabang !== null){
-                $dtpro      = Program::updateOrCreate(
-                    [
-                      'id'  => $request->id
-                    ],
-                    [
-                        'name' => $program_name,
-                        'slug' => Str::slug($program_name),
-                        'status' => 2,
-                    ]
-                );
                 Induksertifikat::updateOrCreate(
                     [
                       'id' => $request->id
