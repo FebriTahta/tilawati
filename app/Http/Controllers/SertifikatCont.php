@@ -260,7 +260,7 @@ class SertifikatCont extends Controller
                                         'program_name'  => $program_name,
                                         'cabang_id'     => $cek_cabang->id,
                                         'tempat'        => $request->tempat,
-                                        'slug'          => Str::slug($cek_cabang->name.'-'.$tanggal.'-'.$dt_pro->name)
+                                        'slug'          => Str::slug($cek_cabang->name.'-'.$tanggal.'-'.$dtpro->name)
                                     ]
                                 );
                                 return redirect()->back();
