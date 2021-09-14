@@ -217,10 +217,20 @@ class SertifikatCont extends Controller
         $tanggal        = Carbon::parse($request->tgl_awal)->isoFormat('D MMMM Y');
         if ($cek_program !== null) {
             # code...
-            return $cek_program.$cek_cabang;
+            return 'ada';
         }else {
             # code...
-            return $program_name.$cabang_name;
+            $dtpro      = Program::updateOrCreate(
+                        [
+                          'id'  => $request->id
+                        ],
+                        [
+                            'name' => $program_name,
+                            'slug' => Str::slug($program_name),
+                            'status' => 2,
+                        ]
+                    );
+            return ''.'sukses input program baru'.$dtpro->name.'-'.$cabang_name;
         }
         // if ($cek_program !== null) {
         //     # code...
