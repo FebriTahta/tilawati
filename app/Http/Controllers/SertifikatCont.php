@@ -220,7 +220,7 @@ class SertifikatCont extends Controller
             return $cek_program.$cek_cabang;
         }else {
             # code...
-            return $program_name.$cabang_name
+            return $program_name.$cabang_name;
         }
         // if ($cek_program !== null) {
         //     # code...
