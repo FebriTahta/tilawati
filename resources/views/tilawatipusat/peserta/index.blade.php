@@ -96,8 +96,8 @@
                                                     @endif
                                                     <th>kota/kabupaten</th>
                                                     <th>phone</th>
+                                                    <th>TTL</th>
                                                     <th>nilai</th>
-                                                    <th>Certificate</th>
                                                     <th>alamat</th>
                                                     <th>Kriteria</th>
                                                     <th>email</th>
@@ -114,8 +114,8 @@
                                                     @endif
                                                     <th>kota/kabupaten</th>
                                                     <th>phone</th>
+                                                    <th>TTL</th>
                                                     <th>nilai</th>
-                                                    <th>Certificate</th>
                                                     <th>alamat</th>
                                                     <th>Kriteria</th>
                                                     <th>email</th>
@@ -719,15 +719,13 @@
                         name:'telp'
                         },
                         {
+                        data:'ttl',
+                        name:'ttl'
+                        },
+                        {
                         data:'nilai',
                         name:'nilai'
                         },
-                        
-                        {
-                        data:'certificate',
-                        name:'certificate'
-                        },
-                        
                         {
                         data:'alamat',
                         name:'alamat'

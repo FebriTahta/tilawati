@@ -78,10 +78,6 @@ class PesertaCont extends Controller
                                 return '<button data-target="#addkota" data-id="'.$data->id.'" data-toggle="modal" class="btn btn-sm btn-danger">kosong / salah penulisan</button>';
                             }
                         })
-                        ->addColumn('tgllahir', function ($data) {
-                            $a = Carbon::parse($data->tgllahir)->isoFormat('D MMMM Y');
-                            return $a;
-                        })
                         ->addColumn('action', function($data){
                             $actionBtn = ' <a href="#" data-id="'.$data->id.'" data-toggle="modal" data-target="#hapusData" class="btn btn-sm btn-outline btn-danger "><i class="fa fa-trash"></i></a>';
                             $actionBtn .= ' <a href="/diklat-profile-peserta/'.$data->id.'/'.$data->pelatihan->program->id.'/'.$data->pelatihan->id.'/admin" class="btn btn-sm btn-outline btn-info "><i class="fa fa-user"></i></a>';
@@ -99,18 +95,11 @@ class PesertaCont extends Controller
                             }
                             
                         })
-                        ->addColumn('certificate', function($data){
-                            if ($data->certificate == null) {
-                                # code...
-                                $bersertifikat = '<span class="badge badge-warning">tidak bersertifikat</span>';
-                                return $bersertifikat;
-                            } else {
-                                # code...
-                                $bersertifikat = '<a href="'.$data->certificate->link.'" target="_blank" class="badge badge-success">bersertifikat</a>';
-                                return $bersertifikat;
-                            }
+                        ->addColumn('ttl', function($data){
+                            $ttl = $data->kabupaten->nama.' - '.Carbon::parse($data->tgllahir)->isoFormat('D MMMM Y');
+                            return $ttl;
                         })
-                ->rawColumns(['nilai','action','kabupaten','tgllahir','krits','certificate'])
+                ->rawColumns(['nilai','action','kabupaten','ttl','krits'])
                 ->make(true);
         }
     }
