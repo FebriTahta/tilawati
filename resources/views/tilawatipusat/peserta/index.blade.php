@@ -712,7 +712,7 @@
                         },
                         {
                         data:'kabupaten',
-                        name:'kabupaten.nama'
+                        name:'kabupaten'
                         },
                         {
                         data:'telp',
