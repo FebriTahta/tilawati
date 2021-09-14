@@ -217,7 +217,25 @@ class SertifikatCont extends Controller
         $tanggal        = Carbon::parse($request->tgl_awal)->isoFormat('D MMMM Y');
         if ($cek_program !== null) {
             # code...
-            return 'ada';
+            if($cek_cabang !== null){
+                        Induksertifikat::updateOrCreate(
+                            [
+                              'id' => $request->id
+                            ],
+                            [
+                                'tgl_awal'      => $request->tgl_awal,
+                                'tgl_akhir'     => $request->tgl_akhir,
+                                'program_id'    => $cek_program->id,
+                                'program_name'  => $cek_program->name,
+                                'cabang_id'     => $cek_cabang->id,
+                                'tempat'        => $request->tempat,
+                                'slug'          => Str::slug($cek_cabang->name.'-'.$tanggal.'-'.$cek_program->name)
+                            ]
+                        );
+                        return redirect()->back();
+                    }else{
+                        return redirect()->back()->withFail('Cabang '.$request->cabang.' Tidak Terdaftar, Pilih Dari Daftar Cabang Yang Terdaftar');;
+                    }
         }else {
             # code...
             $dtpro      = Program::updateOrCreate(
@@ -230,60 +248,26 @@ class SertifikatCont extends Controller
                             'status' => 2,
                         ]
                     );
+                    if($cek_cabang !== null){
+                                Induksertifikat::updateOrCreate(
+                                    [
+                                      'id' => $request->id
+                                    ],
+                                    [
+                                        'tgl_awal'      => $request->tgl_awal,
+                                        'tgl_akhir'     => $request->tgl_akhir,
+                                        'program_id'    => $dtpro->id,
+                                        'program_name'  => $program_name,
+                                        'cabang_id'     => $cek_cabang->id,
+                                        'tempat'        => $request->tempat,
+                                        'slug'          => Str::slug($cek_cabang->name.'-'.$tanggal.'-'.$dt_pro->name)
+                                    ]
+                                );
+                                return redirect()->back();
+                            }else{
+                                return redirect()->back()->withFail('Cabang '.$request->cabang.' Tidak Terdaftar, Pilih Dari Daftar Cabang Yang Terdaftar');;
+                            }
             return ''.'sukses input program baru'.$dtpro->name.'-'.$cabang_name;
         }
-        // if ($cek_program !== null) {
-        //     # code...
-        //     if($cek_cabang !== null){
-        //         Induksertifikat::updateOrCreate(
-        //             [
-        //               'id' => $request->id
-        //             ],
-        //             [
-        //                 'tgl_awal'      => $request->tgl_awal,
-        //                 'tgl_akhir'     => $request->tgl_akhir,
-        //                 'program_id'    => $cek_program->id,
-        //                 'program_name'  => $cek_program->name,
-        //                 'cabang_id'     => $cek_cabang->id,
-        //                 'tempat'        => $request->tempat,
-        //                 'slug'          => Str::slug($cek_cabang->name.'-'.$tanggal.'-'.$cek_program->name)
-        //             ]
-        //         );
-        //         return redirect()->back();
-        //     }else{
-        //         return redirect()->back()->withFail('Cabang '.$request->cabang.' Tidak Terdaftar, Pilih Dari Daftar Cabang Yang Terdaftar');;
-        //     }
-        // }else{
-
-        //     $dtpro      = Program::updateOrCreate(
-        //         [
-        //           'id'  => $request->id
-        //         ],
-        //         [
-        //             'name' => $program_name,
-        //             'slug' => Str::slug($program_name),
-        //             'status' => 2,
-        //         ]
-        //     );
-        //     if($cek_cabang !== null){
-        //         Induksertifikat::updateOrCreate(
-        //             [
-        //               'id' => $request->id
-        //             ],
-        //             [
-        //                 'tgl_awal'      => $request->tgl_awal,
-        //                 'tgl_akhir'     => $request->tgl_akhir,
-        //                 'program_id'    => $dtpro->id,
-        //                 'program_name'  => $program_name,
-        //                 'cabang_id'     => $cek_cabang->id,
-        //                 'tempat'        => $request->tempat,
-        //                 'slug'          => Str::slug($cek_cabang->name.'-'.$tanggal.'-'.$dt_pro->name)
-        //             ]
-        //         );
-        //         return redirect()->back();
-        //     }else{
-        //         return redirect()->back()->withFail('Cabang '.$request->cabang.' Tidak Terdaftar, Pilih Dari Daftar Cabang Yang Terdaftar');;
-        //     }
-        // }
     }
 }
