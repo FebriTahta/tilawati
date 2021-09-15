@@ -84,6 +84,8 @@
                                                     <th>cabang</th>
                                                     <th>tanggal</th>
                                                     <th>Pendaftaran</th>
+                                                    <th>Link WA</th>
+                                                    <th>Image</th>
                                                     <th>Peserta</th>
                                                     <th>Option</th>
                                                 </tr>
@@ -98,6 +100,8 @@
                                                     <th>cabang</th>
                                                     <th>tanggal</th>
                                                     <th>Pendaftaran</th>
+                                                    <th>Link WA</th>
+                                                    <th>Image</th>
                                                     <th>Peserta</th>
                                                     <th>Option</th>
                                                 </tr>
@@ -178,6 +182,73 @@
                     </div>
 
                     <div class="col-sm-6 col-md-3 m-t-30">
+                        <div class="modal fade" id="modal-wa" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-md">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <div class="col-xl-12">
+                                            <div class="card m-b-30">
+                                                <div class="card-body">
+                                                    <div class="container-fluid">
+                                                        <form id="diklat_store2"  method="POST" enctype="multipart/form-data">@csrf
+                                                            <div class="form-group text-center">
+                                                                <h5>Tambahkan Link Group WhatsApp!</h5>
+                                                                <input type="hidden" class="form-control text-capitalize" id="id" name="id" required>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <textarea name="groupwa" class="form-control" id="groupwa" cols="30" rows="2" required></textarea>
+                                                            </div>
+                                                            <div class="form-group text-right">
+                                                                <input type="submit" id="submitwa" class="btn btn-sm text-white" style="background-color: rgb(84, 198, 236)" value="Submit!">
+                                                            </div>
+                                                        </form>
+                                                    </div><!-- container fluid -->
+                                                </div>
+                                            </div>
+                                        </div> <!-- end col -->
+                                    </div>
+                                </div><!-- /.modal-content -->
+                            </div><!-- /.modal-dialog -->
+                        </div><!-- /.modal -->
+                    </div>
+
+                    <div class="col-sm-6 col-md-3 m-t-30">
+                        <div class="modal fade" id="modal-flyer" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-body text-danger">
+                                        <div class="sec-title centered">
+                                            <div class="title"></div>
+                                            <div class="separate"></div>
+                                        </div>
+                                        <form id="diklat_store3" class="was-validate" enctype="multipart/form-data">@csrf
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <input type="hidden" id="id" name="id">
+                                                    <input type="hidden" id="flyerid" name="flyerid">
+                                                    <h4 class="card-title">Flyer Diklat</h4>
+                                                    <p class="card-title-desc">Tambahkan / ubah flyer diklat untuk e-registrasi dibawah Ini</p>
+                                                    <div class="input-group">
+                                                        <div class="custom-file">
+                                                            <input type="file" class="custom-file-input" id="inputGroupFile02" accept="image/*" name="image" required/>
+                                                            <label class="custom-file-label" for="inputGroupFile02">Choose file</label>
+                                                        </div>
+                                                        <div class="input-group-append">
+                                                            <input class="btn btn-primary" type="submit" id="btnimage" value="Submit Image!">
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                    <img  src="https://placehold.it/80x80"  id="preview" class="img-thumbnail">
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- /.modal -->
+                    </div>
+
+                    <div class="col-sm-6 col-md-3 m-t-30">
                         <div class="modal fade bs-example-modal-diklat-edit" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered modal-lg">
                                 <div class="modal-content">
@@ -208,6 +279,10 @@
                                                                         <option value="{{$item->id}}">{{$item->name}}</option>
                                                                     @endforeach
                                                                 </select>
+                                                            </div>
+                                                            <div class="col-md-6 col-12 form-group">
+                                                                <label for="">groupwa</label>
+                                                                <textarea name="groupwa" id="groupwa1" cols="30" rows="2" class="form-control" required>{{$item->groupwa}}</textarea>
                                                             </div>
                                                             <div class="col-md-6 col-12 form-group">
                                                                 <label for="">tempat pelaksanaan</label>
@@ -325,7 +400,26 @@
 
         <!-- Datatable init js -->
         <script src="{{ URL::asset('tilawatipusat/js/pages/datatables.init.js')}}"></script>
+        <script>
+            $('#inputGroupFile02').on('change',function(){
+                //get the file name
+                var fileName = $(this).val();
+                //replace the "Choose a file" label
+                $(this).next('.custom-file-label').html(fileName);
+            });
+            $('input[type="file"]').change(function(e) {
+            var fileName = e.target.files[0].name;
+            $("#file").val(fileName);
 
+            var reader = new FileReader();
+            reader.onload = function(e) {   
+            // get loaded data and render thumbnail.
+            document.getElementById("preview").src = e.target.result;
+            };
+            // read the image file as a data URL.
+            reader.readAsDataURL(this.files[0]);
+        });
+        </script>
         <script>
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             $('#diklat_store').submit(function(e) {
@@ -348,12 +442,13 @@
                         //sweetalert and redirect
                         $("#diklat_store")[0].reset();
                         toastr.success(data.success);
-                        $('#z').val('Buat Baru');
+                        $('.bs-example-modal-diklat-edit').modal('hide');
+                        $('#z').val('Update');
                         $('#z').attr('disabled',false);
                         var oTable = $('#datatable-buttons').dataTable();
                         oTable.fnDraw(false);
                         swal({ title: "Success!",
-                            text: "Diklat Baru Berhasil Dibuat!",
+                            text: "Diklat Baru Berhasil Diperbarui!",
                             type: "success"})
                     }
                     if(data.error)
@@ -369,12 +464,116 @@
                     }
                 });
             });
+
+            $('#diklat_store2').submit(function(e) {
+                e.preventDefault();
+                var formData = new FormData(this);
+                $.ajax({
+                type:'POST',
+                url: "{{ route('diklat.storeeditwa')}}",
+                data: formData,
+                cache:false,
+                contentType: false,
+                processData: false,
+                beforeSend:function(){
+                    $('#submitwa').attr('disabled','disabled');
+                    $('#submitwa').val('Proses Menyimpan Data');
+                },
+                success: function(data){
+                    if(data.success)
+                    {
+                        //sweetalert and redirect
+                        $("#diklat_store2")[0].reset();
+                        toastr.success(data.success);
+                        $('#modal-wa').modal('hide');
+                        $('#submitwa').val('Update');
+                        $('#submitwa').attr('disabled',false);
+                        var oTable = $('#datatable-buttons').dataTable();
+                        oTable.fnDraw(false);
+                    }
+                    if(data.error)
+                    {
+                        $('#message').html('<div class="alert alert-danger">'+data.error+'</div>');
+                        $('#z').attr('disabled',false);
+                        $('#z').val('Import');
+                    }
+                },
+                error: function(data)
+                {
+                    console.log(data);
+                    }
+                });
+            });
+
+            $('#diklat_store3').submit(function(e) {
+                e.preventDefault();
+                var formData = new FormData(this);
+                $.ajax({
+                type:'POST',
+                url: "{{ route('diklat.storeflyer')}}",
+                data: formData,
+                cache:false,
+                contentType: false,
+                processData: false,
+                beforeSend:function(){
+                    $('#btnimage').attr('disabled','disabled');
+                    $('#btnimage').val('Proses Menyimpan Data');
+                },
+                success: function(data){
+                    if(data.success)
+                    {
+                        //sweetalert and redirect
+                        $("#diklat_store3")[0].reset();
+                        toastr.success(data.success);
+                        $('#modal-flyer').modal('hide');
+                        $('#btnimage').val('Submit!');
+                        $('#btnimage').attr('disabled',false);
+                        var oTable = $('#datatable-buttons').dataTable();
+                        oTable.fnDraw(false);
+                    }
+                    if(data.error)
+                    {
+                        $('#message').html('<div class="alert alert-danger">'+data.error+'</div>');
+                        $('#z').attr('disabled',false);
+                        $('#z').val('Import');
+                    }
+                },
+                error: function(data)
+                {
+                    console.log(data);
+                    }
+                });
+            });
+
             $('.bs-example-modal-diklat-kirim').on('show.bs.modal', function(event) {
                 var button = $(event.relatedTarget)
                 id = button.data('id')
                 var modal = $(this)
                 modal.find('.modal-body #id').val(id);
             })
+
+            $('#modal-wa').on('show.bs.modal', function(event) {
+                var button = $(event.relatedTarget)
+                var linkwa = button.data('link')
+                var id = button.data('id')
+                var modal = $(this)
+                modal.find('.modal-body #groupwa').val(linkwa);
+                modal.find('.modal-body #id').val(id);
+                console.log(linkwa);
+            })
+
+            $('#modal-flyer').on('show.bs.modal', function(event) {
+                var button = $(event.relatedTarget)
+                var id = button.data('id')
+                var img = button.data('img')
+                var flyerid = button.data('flyerid')
+                var modal = $(this)
+                modal.find('.modal-body #id').val(id);
+                modal.find('.modal-body #flyerid').val(flyerid);
+                // modal.find('.modal-body #preview').src(img);
+                document.getElementById("preview").src = img;
+            })
+
             $('.bs-example-modal-diklat-hapus').on('show.bs.modal', function(event) {
                 var button = $(event.relatedTarget)
                 id = button.data('id')
@@ -413,6 +612,7 @@
                 var tanggal = button.data('tanggal')
                 var program_id = button.data('program')
                 var cabang_id = button.data('cabang')
+                var groupwa = button.data('groupwa')
                 var modal   = $(this)
                 modal.find('.modal-body #id_edit').val(id);
                 modal.find('.modal-body #tempat_edit').val(tempat);
@@ -420,6 +620,7 @@
                 modal.find('.modal-body #tanggal_edit').val(tanggal);
                 modal.find('.modal-body #program_edit').val(program_id);
                 modal.find('.modal-body #cabang_edit').val(cabang_id);
+                modal.find('.modal-body #groupwa1').val(groupwa);
                 
             })
 
@@ -536,7 +737,14 @@
                             data:'linkpendaftaran',
                             name:'linkpendaftaran'
                             },
-                            
+                            {
+                            data:'groupwa',
+                            name:'groupwa'
+                            },
+                            {
+                            data:'flyer',
+                            name:'flyer'
+                            },
                             {
                             data:'peserta',
                             name:'peserta'

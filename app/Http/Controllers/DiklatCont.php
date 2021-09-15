@@ -93,7 +93,7 @@ class DiklatCont extends Controller
                         ->addColumn('action', function($data){
                             $actionBtn = ' <a href="#" data-toggle="modal" data-target=".bs-example-modal-diklat-hapus" data-id="'.$data->id.'" class="btn btn-sm btn-outline btn-danger"><i class="fa fa-trash"></i></a> ';
                             $actionBtn.= ' <a href="#" data-toggle="modal" data-target=".bs-example-modal-diklat-edit" data-id="'.$data->id.'" data-tanggal="'.$data->tanggal.'" data-cabang="'.$data->cabang_id.'"
-                            data-program="'.$data->program_id.'" data-tempat="'.$data->tempat.'" data-keterangan="'.$data->keterangan.'" class="btn btn-sm btn-outline btn-primary"><i class="fa fa-edit"></i></a>';
+                            data-program="'.$data->program_id.'" data-tempat="'.$data->tempat.'" data-keterangan="'.$data->keterangan.'" data-groupwa="'.$data->groupwa.'" class="btn btn-sm btn-outline btn-primary"><i class="fa fa-edit"></i></a>';
                             $actionBtn.= 
                             ' <button class="btn btn-sm btn-success" data-toggle="modal" data-target=".bs-example-modal-diklat-kirim"
                             data-id="'.$data->id.'" data-name="'.$data->program->name.'" 
@@ -104,7 +104,24 @@ class DiklatCont extends Controller
                         ->addColumn('tanggal', function($data){
                             return Carbon::parse($data->tanggal)->isoFormat('D MMMM Y');
                         })
-                ->rawColumns(['cabang','program','action','peserta','linkpendaftaran','tanggal'])
+                        ->addColumn('groupwa', function($data){
+                            if ($data->groupwa == null) {
+                                # code...
+                                return '<a href="#" data-link="'.$data->groupwa.'" data-id="'.$data->id.'" data-toggle="modal" data-target="#modal-wa" class="text-danger">Kosong</a>';
+                            }else{
+                                return '<a href="#" data-link="'.$data->groupwa.'" data-id="'.$data->id.'" data-toggle="modal" data-target="#modal-wa" class="text-success">Siap</a>';
+                            }
+                        })
+                        ->addColumn('flyer', function($data){
+                            if ($data->flyer == null) {
+                                # code...
+                                return '<a href="#" data-id="'.$data->id.'" data-toggle="modal" data-target="#modal-flyer" class="text-danger">Kosong</a>';
+                            }else {
+                                # code...
+                                return '<a href="#" data-id="'.$data->id.'" data-flyerid="'.$data->flyer->id.'" data-img="'.asset('image_flyer/'.$data->flyer->image).'" data-toggle="modal" data-target="#modal-flyer" class="text-success">Siap</a>';
+                            }
+                        })
+                ->rawColumns(['cabang','groupwa','flyer','program','action','peserta','linkpendaftaran','tanggal'])
                 ->make(true);
             }
         }
@@ -217,6 +234,58 @@ class DiklatCont extends Controller
         $dt_program = Program::all();
         return view('tilawatipusat.diklat.create',compact('dt_program'));
     }
+
+    public function storeeditwa(Request $request)
+    {
+        $data   = Pelatihan::updateOrCreate(
+            [
+                'id' => $request->id
+            ],
+            [
+                'groupwa' => $request->groupwa
+            ]
+        );
+        return response()->json(
+            [
+              'success' => 'Link Wa Baru Berhasil Ditambahkan',
+              'message' => 'Link Wa Baru Berhasil Ditambahkan'
+            ]
+        );
+    }
+
+    public function storeflyer(Request $request)
+    {
+        $id             = $request->flyerid;
+        $pelatihan_id   = $request->id;
+        // ada
+        // if ($id == null) {
+            # code...
+            if ($request->image !== null) {
+                # code...
+                $data2  = Flyer::updateOrCreate(
+                    [
+                        'id' => $id
+                    ],
+                    [
+                        'pelatihan_id' => $pelatihan_id,
+                        'image' => $request->image,
+                    ]
+                );
+                if($request -> hasFile('image'))
+                {
+                    $request->file('image')->move('image_flyer/',$request->file('image')->getClientOriginalName());
+                    $data2->image = $request->file('image')->getClientOriginalName();
+                    $data2->save();
+                }
+            }
+        // }
+        return response()->json(
+            [
+              'success' => 'Flyer Diklat Baru Berhasil Ditambahakan',
+              'message' => 'Flyer Diklat Baru Berhasil Ditambahakan'
+            ]
+        );
+    }
  
     public function store(Request $request)
     {
@@ -233,6 +302,7 @@ class DiklatCont extends Controller
                 'cabang_id' => $request->cabang_id,
                 'program_id' => $request->program_id,
                 'tanggal' => $request->tanggal,
+                'groupwa' => $request->groupwa,
                 'slug' => Str::slug($cabang->name.'-'.$tanggal.'-'.$program->name),
                 'tempat' => $request->tempat,
                 'keterangan' => $request->keterangan,

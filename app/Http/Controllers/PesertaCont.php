@@ -344,11 +344,13 @@ class PesertaCont extends Controller
                     ],
                     [
                         'cabang_id' => $diklat->cabang_id,
+                        'phonegara_id' => 175,
                         'lembaga_id' => $request->lembaga_id,
                         'pelatihan_id' => $request->pelatihan_id,
                         'tanggal' => $tanggal,
                         'name' => $request->name,
                         'email' => $request->email,
+                        'pos' => $request->pos,
                         'slug' => $slug,
                         'tmptlahir' => $tmptlahir,
                         'tgllahir' => $request->tgllahir,

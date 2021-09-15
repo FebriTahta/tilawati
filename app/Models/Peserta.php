@@ -11,6 +11,7 @@ class Peserta extends Model
 
     protected $fillable = [
         'nik',
+        'phonegara_id',
         'acara_id',
         'pelatihan_id',
         'cabang_id',
@@ -20,9 +21,10 @@ class Peserta extends Model
         'email',
         'tmptlahir',
         'tgllahir',
-        'slug',
         'alamat',
+        'slug',
         'telp',
+        'pos',
         'provinsi_id',
         'kabupaten_id',
         'kecamatan_id',
@@ -35,10 +37,17 @@ class Peserta extends Model
 
     ];
     protected $dates = ['deleted_at'];
+
     public function getRouteKeyName()
     {
         return 'slug';
     }
+    
+    public function phonegara()
+    {
+        return $this->belongsTo(Phonegara::class);
+    }
+
     public function acara()
     {
         return $this->hasMany(Acara::class);

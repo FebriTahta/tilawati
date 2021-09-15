@@ -283,6 +283,8 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     Route::get('/diklat-diklat-create', [DiklatCont::class, 'create'])->name('diklat.create');
     Route::get('/diklat-diklat-cabang-id-select/{name}',[DiklatCont::class, 'diklat_cabang_select_id'])->name('diklat.diklat_cabang_id');
     Route::post('/diklat-diklat-store',[DiklatCont::class, 'store'])->name('diklat.store');
+    Route::post('/diklat-diklat-store-edit-wa',[DiklatCont::class, 'storeeditwa'])->name('diklat.storeeditwa');
+    Route::post('/diklat-diklat-store-image-flyer',[DiklatCont::class,'storeflyer'])->name('diklat.storeflyer');
     Route::post('/diklat-diklat-delete',[DiklatCont::class, 'delete'])->name('diklat.delete');
     Route::get('/diklat-diklat-cabang-total', [DiklatCont::class,'diklat_cabang_total'])->name('diklat.diklat_cabang_tot');
     Route::get('/diklat-diklat-cabang-data', [DiklatCont::class,'diklat_cabang_data'])->name('diklat.diklat_cabang_data');

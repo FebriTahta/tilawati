@@ -17,6 +17,7 @@ class CreatePesertasTable extends Migration
             $table->bigIncrements('id')->startingValue(223300);
             $table->bigInteger('nik')->nullable();
             $table->unsignedBigInteger('acara_id')->nullable();
+            $table->unsignedBigInteger('phonegara_id')->nullable();
             $table->unsignedBigInteger('pelatihan_id')->nullable();
             $table->unsignedBigInteger('cabang_id')->nullable();
             $table->unsignedBigInteger('lembaga_id')->nullable();
@@ -33,6 +34,7 @@ class CreatePesertasTable extends Migration
             $table->longText('alamat')->nullable();
             $table->string('kota')->nullable()->index();
             $table->string('telp')->nullable()->index();
+            $table->string('pos')->nullable();
             $table->string('email')->nullable();
             // $table->integer('tf')->nullable();
             // $table->integer('fs')->nullable();
