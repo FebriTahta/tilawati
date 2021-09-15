@@ -89,7 +89,7 @@ class KonfirmasiCont extends Controller
                                     # code...
                                     $x[] = 
                                     '<a href="#" class="text-white badge" style="background-color: rgb(112, 150, 255)" data-toggle="modal" data-target="#modal_file"
-                                    data-file="'.asset('file_peserta/'.$value->file).'"
+                                    data-file="https://registrasi.tilawatipusat.com/file_peserta/'.$value->file.'"
                                     data-name="'.$data->name.'"
                                     data-img_name="'.$value->registrasi->name.'"
                                     data-jenis="'.$value->registrasi->jenis.'">'.$value->registrasi->name.'</a>';
@@ -97,7 +97,7 @@ class KonfirmasiCont extends Controller
                                     # code...
                                     $x[] = 
                                     '<a href="#" class="text-white badge" style="background-color: red" data-toggle="modal" data-target="#modal_file"
-                                    data-file="'.asset('file_peserta/'.$value->file).'"
+                                    data-file="https://registrasi.tilawatipusat.com/file_peserta/'.$value->file.'"
                                     data-name="'.$data->name.'"
                                     data-img_name="'.$value->registrasi->name.'"
                                     data-jenis="'.$value->registrasi->jenis.'">'.$value->registrasi->name.'</a>';
@@ -105,7 +105,7 @@ class KonfirmasiCont extends Controller
                                     # code...
                                     $x[] = 
                                     '<a href="#" class="text-white badge" style="background-color: lightgreen" data-toggle="modal" data-target="#modal_file"
-                                    data-file="'.asset('file_peserta/'.$value->file).'"
+                                    data-file="https://registrasi.tilawatipusat.com/file_peserta/'.$value->file.'"
                                     data-name="'.$data->name.'"
                                     data-img_name="'.$value->registrasi->name.'"
                                     data-jenis="'.$value->registrasi->jenis.'">'.$value->registrasi->name.'</a>';
