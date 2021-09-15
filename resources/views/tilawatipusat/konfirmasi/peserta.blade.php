@@ -115,20 +115,6 @@
                                             <div class="card-body">
                                                 <img src="" id="img_file" style="width: auto; max-height: 100%; max-width: 100%" alt="">
                                             </div>
-                                            <div class="card-body">
-                                                
-                                                <div class="row">
-                                                    <div class="col-6 col-xl-6">
-                                                        <button style="max-width: 100%" class="btn btn-danger btn-outline btn-sm">TIDAK SESUAI</button>
-                                                    </div>
-                                                    <div class="col-6 col-xl-6">
-                                                        <button style="max-width: 100%" class="btn btn-success btn-outline btn-sm">BENAR/SESUAI</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="card-body">
-                                                
-                                            </div>
                                         </div>
                                     </div>
                                 </div><!-- /.modal-content -->
@@ -240,6 +226,14 @@
                 id = button.data('id')
                 var modal = $(this)
                 modal.find('.modal-body #id').val(id);
+            })
+            $('#modal_file').on('show.bs.modal', function(event) {
+                var button = $(event.relatedTarget)
+                file = button.data('file')
+                name = button.data('name')
+                img_name = button.data('img_name')
+                var modal = $(this)
+                document.getElementById("img_file").src = file;
             })
 
             $(document).ready(function(){
