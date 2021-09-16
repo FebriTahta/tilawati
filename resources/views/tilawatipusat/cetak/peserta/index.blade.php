@@ -8,8 +8,8 @@
             <th>Penyelenggara</th>
             <th>phone</th>
         </tr>
-    </thead>
-    <tbody>
+    </thead >
+    <tbody style="text-transform: uppercase; font-size: 12px">
         @foreach ($peserta as $item)
             <tr>
                 <td>{{ $item->name }}</td>

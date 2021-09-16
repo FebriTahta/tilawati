@@ -9,7 +9,7 @@
             <th>Tanggal Lahir</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody style="text-transform: uppercase; font-size: 12px">
         @foreach ($peserta as $item)
             <tr>
                 <td>{{ $item->name }}</td>

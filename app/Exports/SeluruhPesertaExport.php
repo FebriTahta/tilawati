@@ -5,10 +5,11 @@ use App\Models\Peserta;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\FromView;
 use Illuminate\Contracts\View\View;
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\FromCollection;
 
 // class SeluruhPesertaExport implements FromCollection
-class SeluruhPesertaExport implements FromView
+class SeluruhPesertaExport implements FromView,ShouldAutoSize
 {
 
     public function __construct($from,$till)

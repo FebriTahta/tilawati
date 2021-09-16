@@ -6,9 +6,10 @@ use App\Models\Pelatihan;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\FromView;
 use Illuminate\Contracts\View\View;
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\FromCollection;
 
-class PesertaPendaftaranExport implements FromView
+class PesertaPendaftaranExport implements FromView, ShouldAutoSize
 {
     public function __construct($pelatihan_id)
     {
