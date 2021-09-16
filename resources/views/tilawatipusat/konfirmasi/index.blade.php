@@ -117,14 +117,14 @@
                                             <div class="card m-b-30">
                                                 <div class="card-body">
                                                     <div class="container-fluid">
-                                                        <form id="z" action="#"  method="POST" enctype="multipart/form-data">@csrf
+                                                        <form id="" action="/export-peserta-pendaftaran"  method="POST" enctype="multipart/form-data">@csrf
                                                             <div class="form-group text-center">
-                                                                <h5>Anda yakin akan Mengunduh Daftar Peserta Pendaftaran ?</h5>
-                                                                <input type="hidden" class="form-control text-capitalize" id="id" name="id" required>
+                                                                <h5>Mengunduh Daftar Peserta Pendaftaran ?</h5>
+                                                                <input type="text" class="form-control text-capitalize" id="id" name="id" required>
                                                             </div>
                                                             <div class="row" style="text-align: center">
                                                                 <div class="form-group col-6 col-xl-6">
-                                                                    <input type="button" name="hapus" id="btnhapus" class="btn btn-primary" value="Ya, Unduh!" />
+                                                                    <input type="submit" id="btndownload" class="btn btn-primary" value="Ya, Unduh!" />
                                                                 </div>
                                                                 <div class="form-group col-6 col-xl-6">
                                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">
@@ -217,40 +217,12 @@
                 var modal = $(this)
                 modal.find('.modal-body #id').val(id);
             })
-            $('#hapusdiklat').submit(function(e) {
-                e.preventDefault();
-                var formData = new FormData(this);
-                $.ajax({
-                type:'POST',
-                url: "{{ route('diklat.delete')}}",
-                data: formData,
-                cache:false,
-                contentType: false,
-                processData: false,
-                beforeSend:function(){
-                    $('#btnhapus').attr('disabled','disabled');
-                    $('#btnhapus').val('Proses Hapus Data');
-                },
-                success: function(data){
-                    if(data.success)
-                    {
-                        //sweetalert and redirect
-                        var oTable = $('#datatable-buttons').dataTable();
-                        oTable.fnDraw(false);
-                        $('#btnhapus').val('Ya, Hapus!');
-                        $('.bs-example-modal-diklat-hapus').modal('hide');
-                        $('#btnhapus').attr('disabled',false);
-                        swal({ title: "Success!",
-                            text: "Kriteria Tersebut Berhasil Di Dihapus!",
-                            type: "success"})
-                    }
-                },
-                error: function(data)
-                {
-                    console.log(data);
-                    }
-                });
-            });
+            $('#modal-download').on('show.bs.modal', function(event) {
+                var button = $(event.relatedTarget)
+                var id = button.data('id')
+                var modal = $(this)
+                modal.find('.modal-body #id').val(id);
+            })
             
             $(document).ready(function(){
                 //ready load data

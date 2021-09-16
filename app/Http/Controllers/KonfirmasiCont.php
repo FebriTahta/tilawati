@@ -38,7 +38,11 @@ class KonfirmasiCont extends Controller
                         ->addColumn('program', function ($data) {
                             return $data->program->name;
                         })
-                ->rawColumns(['cabang','program','peserta'])
+                        ->addColumn('unduh', function($data){
+                            $actionBtn2 = '<button data-id="'.$data->id.'" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-download"><i class="fa fa-download"></i></button>';
+                            return $actionBtn2;
+                        })
+                ->rawColumns(['cabang','program','peserta','unduh'])
                 ->make(true);
             }else{
                 $data   = Pelatihan::with('cabang','program')->withCount('peserta')->orderBy('id','desc');
@@ -59,7 +63,7 @@ class KonfirmasiCont extends Controller
                             return $data->program->name;
                         })
                         ->addColumn('unduh', function($data){
-                            $actionBtn2 = '<button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-download"><i class="fa fa-download"></i></button>';
+                            $actionBtn2 = '<button data-id="'.$data->id.'" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-download"><i class="fa fa-download"></i></button>';
                             return $actionBtn2;
                         })
                 ->rawColumns(['cabang','program','peserta','unduh'])
@@ -99,10 +103,12 @@ class KonfirmasiCont extends Controller
                 $token = "dyr07JcBSmVsb1YrVBTB2A5zNKor0BZ9krv2WnQsjWHG1CRhSktdqazkfuOSY9qh";
                 $datas = [
                     'phone' => $data->telp,
-                    'message' => 'Pendaftaran anda telah kami terima, silahkan bergabung pada group whatsapp berikut 
+                    'message' => ' *PESAN OTOMATIS*
+                        Pendaftaran anda telah kami terima, silahkan bergabung pada group whatsapp berikut 
                         '.$data2->groupwa.'
 
-                        link group tersebut hanya diperuntukkan untuk peserta yang telah mendaftar melalui.
+                        Link group whatsapp tersebut tidak boleh diberikan / disebarkan kepada seiapapun.
+                        Link group tersebut diperuntukkan hanya untuk anda yang telah mendaftar melalui :
                         https://registrasi.tilawatipusat.com/'.$data2->slug.'
                     ',
                     'secret' => false, // or true
@@ -135,7 +141,8 @@ class KonfirmasiCont extends Controller
                 $token = "dyr07JcBSmVsb1YrVBTB2A5zNKor0BZ9krv2WnQsjWHG1CRhSktdqazkfuOSY9qh";
                 $datas = [
                     'phone' => $data->telp,
-                    'message' => 'Maaf, Pendaftaran anda belum dapat kami terima karena :  
+                    'message' => ' *PESAN OTOMATIS*
+                        Maaf, Pendaftaran anda belum dapat kami terima karena :  
                         '.$alasan.'
                     ',
                     'secret' => false, // or true
