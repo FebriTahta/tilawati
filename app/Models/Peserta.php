@@ -22,6 +22,7 @@ class Peserta extends Model
         'tmptlahir',
         'tgllahir',
         'alamat',
+        'alamatx',
         'slug',
         'telp',
         'pos',

@@ -124,12 +124,12 @@ class KonfirmasiCont extends Controller
                                 # code...
                                 $stat = '<span class="badge badge-warning">menunggu</span>';
                                 return $stat;
-                            }elseif ($data->status == 1) {
+                            }elseif ($data->status == 2) {
                                 # code...
-                                $stat = '<span class="badge badge-warning">ditolak</span>';
+                                $stat = '<span class="badge badge-danger">ditolak</span>';
                                 return $stat;
                             } 
-                            else {
+                            elseif ($data->status == 1) {
                                 # code...
                                 $stat = '<span class="badge badge-success">disetujui</span>';
                                 return $stat;
