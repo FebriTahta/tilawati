@@ -70,12 +70,101 @@ class KonfirmasiCont extends Controller
         return view('tilawatipusat.konfirmasi.peserta',compact('diklat'));
     }
 
+    public function acc(Request $request)
+    {
+        if(request()->ajax())
+        {
+
+            $data = Peserta::updateOrCreate(
+                [
+                  'id' => $request->id
+                ],
+                [
+                    'status' => $request->acc,
+                ]
+            );
+            $data2 = Pelatihan::where('id',$data->id)->first();
+            $linkwa= $data2->groupwa;
+
+            $alasan= $request->alasan;
+
+            if ($request->acc == 1) {
+                # code...
+                # send wa
+                $curl = curl_init();
+                $token = "dyr07JcBSmVsb1YrVBTB2A5zNKor0BZ9krv2WnQsjWHG1CRhSktdqazkfuOSY9qh";
+                $datas = [
+                    'phone' => $data->telp,
+                    'message' => 'Pendaftaran anda telah kami terima, silahkan bergabung pada group whatsapp berikut 
+                        '.$data2->groupwa.'
+                    ',
+                    'secret' => false, // or true
+                    'priority' => false, // or true
+                ];
+
+                curl_setopt($curl, CURLOPT_HTTPHEADER,
+                    array(
+                        "Authorization: $token",
+                    )
+                );
+                curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
+                curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($datas));
+                curl_setopt($curl, CURLOPT_URL, "https://simo.wablas.com/api/send-message");
+                curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
+                curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+                $result = curl_exec($curl);
+                curl_close($curl);
+                //
+                return response()->json(
+                    [
+                      'success' => 'Pendaftaran Peserta Telah Disetujui!',
+                      'message' => 'Pendaftaran Peserta Telah Disetujui!'
+                    ]
+                );
+            }else{
+                # send wa
+                $curl = curl_init();
+                $token = "dyr07JcBSmVsb1YrVBTB2A5zNKor0BZ9krv2WnQsjWHG1CRhSktdqazkfuOSY9qh";
+                $datas = [
+                    'phone' => $data->telp,
+                    'message' => 'Maaf, Pendaftaran anda belum dapat kami terima karena :  
+                        '.$alasan.'
+                    ',
+                    'secret' => false, // or true
+                    'priority' => false, // or true
+                ];
+
+                curl_setopt($curl, CURLOPT_HTTPHEADER,
+                    array(
+                        "Authorization: $token",
+                    )
+                );
+                curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
+                curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($datas));
+                curl_setopt($curl, CURLOPT_URL, "https://simo.wablas.com/api/send-message");
+                curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
+                curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+                $result = curl_exec($curl);
+                curl_close($curl);
+                //
+                return response()->json(
+                    [
+                      'success' => 'Pendaftaran Peserta Telah Ditolak!',
+                      'message' => 'Pendaftaran Peserta Telah Ditolak!'
+                    ]
+                );
+            }
+        }
+    }
+
     public function data_peserta_diklat_menunggu_konfirmasi(Request $request, $diklat_id)
     {
         if(request()->ajax())
         {
             
-                $data   = Peserta::where('pelatihan_id', $diklat_id)->where('status',0)->with('kabupaten')->with('pelatihan')->with('filepeserta');
+                $data   = Peserta::where('pelatihan_id', $diklat_id)->with('kabupaten')->with('pelatihan')->with('filepeserta');
                 return DataTables::of($data)
                     ->addColumn('registrasi', function ($data) {
                         if ($data->filepeserta->count()==0) {
@@ -133,12 +222,12 @@ class KonfirmasiCont extends Controller
                                 # code...
                                 $stat = '<span class="badge badge-success">disetujui</span>';
                                 return $stat;
-                            }
+                            } 
                         })
                         
                         ->addColumn('action', function($data){
                             $actionBtn = ' <a style="width:50px" href="#" data-id="'.$data->id.'" data-toggle="modal" data-target="#hapusData" class="btn btn-sm btn-outline btn-danger "><i class="fa fa-close"></i></a>';
-                            $actionBtn .= ' <a style="width:50px" href="#" data-id="'.$data->id.'" data-toggle="modal" data-target=".modal-acc" class="btn btn-sm btn-outline btn-success "><i class="fa fa-check"></i></a>';
+                            $actionBtn .= ' <a style="width:50px" href="#" data-id="'.$data->id.'" data-name="'.$data->name.'" data-toggle="modal" data-target=".modal-acc" class="btn btn-sm btn-outline btn-success "><i class="fa fa-check"></i></a>';
                             return $actionBtn;
                         })
                 ->rawColumns(['action','kabupaten','registrasi','status'])

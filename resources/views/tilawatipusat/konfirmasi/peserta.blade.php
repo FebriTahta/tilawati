@@ -132,17 +132,18 @@
                                             <div class="card m-b-30">
                                                 <div class="card-body">
                                                     <div class="container-fluid">
-                                                        <form id="hapusPeserta"  method="POST" enctype="multipart/form-data">@csrf
+                                                        <form id="formacc2"  method="POST" enctype="multipart/form-data">@csrf
                                                             <div class="form-group text-center">
                                                                 <h5>Tulis alasan pendaftaran peserta tersebut tidak diterima!</h5>
-                                                                <input type="hidden" class="form-control text-capitalize" id="id" name="id" required>
+                                                                <input type="text" class="form-control text-capitalize" id="id" name="id" required>
+                                                                <input type="text" value="2" name="acc">
                                                             </div>
                                                             <div class="row" style="text-align: center">
                                                                 <div class="form-group col-12 col-xl-12">
-                                                                    <textarea name="" id="" cols="10" rows="2" class="form-control"></textarea>
+                                                                    <textarea name="alasan" id="alasan" cols="10" rows="2" class="form-control" required></textarea>
                                                                 </div>
                                                                 <div class="form-group col-6 col-xl-6">
-                                                                    <input type="submit" name="hapus" id="btnhapus" class="btn btn-danger" value="Ya, Tolak!" />
+                                                                    <input type="submit" id="btntolak" class="btn btn-danger" value="Ya, Tolak!" />
                                                                 </div>
                                                                 <div class="form-group col-6 col-xl-6">
                                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">
@@ -166,16 +167,21 @@
                             <div class="modal-dialog modal-dialog-centered modal-md">
                                 <div class="modal-content">
                                     <div class="modal-body text-center">
-                                        <p class="text-uppercase">Konfirmasi Pendaftaran</p>
+                                        <span class="text-uppercase">Konfirmasi Pendaftaran</span>
+                                        <input type="text" id="nama_peserta" class="form-control text-uppercase" style="border: none; text-align: center">
                                         <hr>
-                                        <div class="row">
-                                            <div class="form-group col-6 col-xl-6">
-                                                <button class="btn btn-success">Terima!</button>
+                                        <form id="formacc" action="#" method="POST" enctype="multipart/form-data">@csrf
+                                            <div class="row">
+                                                <input type="hidden" name="id" id="id" required>
+                                                <input type="hidden" value="1" name="acc" id="acc" required>
+                                                <div class="form-group col-6 col-xl-6">
+                                                    <input type="submit" id="btnterima" class="btn btn-success" value="Terima!">
+                                                </div>
+                                                <div class="form-group col-6 col-xl-6">
+                                                    <button class="btn btn-secondary" data-dismiss="modal">Cancel!</button>
+                                                </div>
                                             </div>
-                                            <div class="form-group col-6 col-xl-6">
-                                                <button class="btn btn-secondary" data-dismiss="modal">Cancel!</button>
-                                            </div>
-                                        </div>
+                                        </form>
                                     </div>
                                 </div><!-- /.modal-content -->
                             </div><!-- /.modal-dialog -->
@@ -214,11 +220,12 @@
             //terima pendaftaran
             $('.modal-acc').on('show.bs.modal', function(event) {
                 var button = $(event.relatedTarget)
-                id = button.data('id')
-                nama_peserta = button.data('nama_peserta')
+                var id = button.data('id')
+                var name = button.data('name')
                 var modal = $(this)
-                $('#nama_peserta').html(nama_peserta);
-                document.getElementById("qr-code").src = id;
+                modal.find('.modal-body #nama_peserta').val(name);
+                modal.find('.modal-body #id').val(id);
+                console.log(name);
             })
             //tolak pendaftaran
             $('#hapusData').on('show.bs.modal', function(event) {
@@ -235,6 +242,72 @@
                 var modal = $(this)
                 document.getElementById("img_file").src = file;
             })
+
+            $('#formacc').submit(function(e) {
+                e.preventDefault();
+                var formData = new FormData(this);
+                $.ajax({
+                type:'POST',
+                url: "{{ route('acc')}}",
+                data: formData,
+                cache:false,
+                contentType: false,
+                processData: false,
+                beforeSend:function(){
+                    $('#btnterima').attr('disabled','disabled');
+                    $('#btnterima').val('Proses Terima Data');
+                },
+                success: function(data){
+                    if(data.success)
+                    {
+                        //sweetalert and redirect
+                        toastr.success(data.success);
+                        var oTable = $('#datatable-buttons').dataTable();
+                        oTable.fnDraw(false);
+                        $('#btnterima').val('Ya, Hapus!');
+                        $('.modal-acc').modal('hide');
+                        $('#btnterima').attr('disabled',false);
+                    }
+                },
+                error: function(data)
+                {
+                    console.log(data);
+                    }
+                });
+            });
+
+            $('#formacc2').submit(function(e) {
+                e.preventDefault();
+                var formData = new FormData(this);
+                $.ajax({
+                type:'POST',
+                url: "{{ route('acc')}}",
+                data: formData,
+                cache:false,
+                contentType: false,
+                processData: false,
+                beforeSend:function(){
+                    $('#btntolak').attr('disabled','disabled');
+                    $('#btntolak').val('Proses Data Ditolak');
+                },
+                success: function(data){
+                    if(data.success)
+                    {
+                        //sweetalert and redirect
+                        toastr.error(data.success);
+                        var oTable = $('#datatable-buttons').dataTable();
+                        oTable.fnDraw(false);
+                        $('#btntolak').val('Ya, Tolak!');
+                        $('#hapusData').modal('hide');
+                        $('#btntolak').attr('disabled',false);
+                    }
+                },
+                error: function(data)
+                {
+                    console.log(data);
+                    }
+                });
+            });
 
             $(document).ready(function(){
                 var jenis_program = $('#jenis_program').val();

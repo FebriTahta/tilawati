@@ -376,6 +376,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:bendahara']], function () {
     Route::get('/data-diklat-menunggu-konfirmasi',[KonfirmasiCont::class, 'data_diklat_menunggu_konfirmasi'])->name('data_diklat_konfirmasi');
     Route::get('/daftar-data-peserta/{slug_diklat}',[KonfirmasiCont::class, 'daftar_peserta_diklat_menunggu_konfirmasi'])->name('daftar_peserta_diklat_konfirmasi');
     Route::get('/konfirmasi-data-peserta/{diklat_id}',[KonfirmasiCont::class, 'data_peserta_diklat_menunggu_konfirmasi'])->name('data_peserta_diklat_konfirmasi');
+    Route::post('/konfirmasi-data-peserta-acc',[KonfirmasiCont::class,'acc'])->name('acc');
 });
 
 Route::post('/broadcast',[BroadcastController::class, 'broadcast_pelatihan'])->name('broadcast');
