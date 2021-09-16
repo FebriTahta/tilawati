@@ -73,11 +73,11 @@ class DiklatCont extends Controller
                                 return '<a href="/diklat-peserta/'.$data->id.'" class="text-danger">'.$data->peserta_count.' - '.$data->keterangan.'<a>';
                             } else {
                                 # code...
-                                // $jumlah_peserta = Pelatihan::whereHas('peserta', function ($query) {
-                                //     return $query->where('status', '=', 1);
-                                // })->count();
-                                // return '<a href="/diklat-peserta/'.$data->id.'" class="text-success">'.$jumlah_peserta.' - '.$data->keterangan.'<a>';
-                                return '<a href="/diklat-peserta/'.$data->id.'" class="text-danger">'.$data->peserta_count.' - '.$data->keterangan.'<a>';
+                                $jumlah_peserta = Pelatihan::where('id', $data->id)->whereHas('peserta', function ($query) {
+                                    return $query->where('status', '=', 1);
+                                })->count();
+                                return '<a href="/diklat-peserta/'.$data->id.'" class="text-success">'.$jumlah_peserta.' - peserta <a>';
+                                // return '<a href="/diklat-peserta/'.$data->id.'" class="text-danger">'.$data->peserta_count.' - '.$data->keterangan.'<a>';
                             }
                         })
                         ->addColumn('cabang', function ($data) {
