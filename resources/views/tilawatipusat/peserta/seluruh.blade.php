@@ -89,7 +89,7 @@
                                         <form action="#">
                                             <button class="btn btn-sm btn-info"><i class="fa fa-download"></i> Info Peserta</button>
                                         </form>
-                                    </div>
+                                    </div> 
                                     <div class="form-group col-6 col-xl-6 text-right">
                                         <form action="{{route('export.seluruh.peserta')}}" method="GET" enctype="multipart/form-data" id="export_data_peserta">@csrf
                                             <input type="hidden" name="from" id="from">

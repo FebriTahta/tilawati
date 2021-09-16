@@ -365,10 +365,6 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     Route::post('/import-data-kode-negara-aksen-indo',[KodeAdminCont::class,'import_kode2'])->name('import_kode2');
     Route::get('/kode-phone',[KodeAdminCont::class,'page_phone'])->name('phone');
 
-    
-});
-
-Route::group(['middleware' => ['auth', 'CheckRole:bendahara']], function () {
     Route::get('/data-calon-peserta-diklat/{program_id}/{diklat_id}',[RegistrasiCont::class, 'konfirmasi']);
     Route::get('/konfirmasi-data-calon-peserta-diklat/{diklat_id}',[RegistrasiCont::class, 'data_calon_peserta']);
 
@@ -377,6 +373,10 @@ Route::group(['middleware' => ['auth', 'CheckRole:bendahara']], function () {
     Route::get('/daftar-data-peserta/{slug_diklat}',[KonfirmasiCont::class, 'daftar_peserta_diklat_menunggu_konfirmasi'])->name('daftar_peserta_diklat_konfirmasi');
     Route::get('/konfirmasi-data-peserta/{diklat_id}',[KonfirmasiCont::class, 'data_peserta_diklat_menunggu_konfirmasi'])->name('data_peserta_diklat_konfirmasi');
     Route::post('/konfirmasi-data-peserta-acc',[KonfirmasiCont::class,'acc'])->name('acc');
+});
+
+Route::group(['middleware' => ['auth', 'CheckRole:bendahara']], function () {
+    
 });
 
 Route::post('/broadcast',[BroadcastController::class, 'broadcast_pelatihan'])->name('broadcast');

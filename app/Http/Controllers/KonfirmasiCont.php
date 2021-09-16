@@ -58,7 +58,11 @@ class KonfirmasiCont extends Controller
                         ->addColumn('program', function ($data) {
                             return $data->program->name;
                         })
-                ->rawColumns(['cabang','program','peserta'])
+                        ->addColumn('unduh', function($data){
+                            $actionBtn2 = '<button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-download"><i class="fa fa-download"></i></button>';
+                            return $actionBtn2;
+                        })
+                ->rawColumns(['cabang','program','peserta','unduh'])
                 ->make(true);
             }
         }

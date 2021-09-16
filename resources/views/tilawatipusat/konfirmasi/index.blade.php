@@ -82,6 +82,7 @@
                                                     <th>cabang</th>
                                                     <th>tanggal</th>
                                                     <th>Peserta</th>
+                                                    <th>...</th>
                                                 </tr>
                                             </thead>
     
@@ -94,6 +95,7 @@
                                                     <th>cabang</th>
                                                     <th>tanggal</th>
                                                     <th>Peserta</th>
+                                                    <th>...</th>
                                                 </tr>
                                             </tfoot>
                                         </table>
@@ -107,7 +109,7 @@
                     <!-- end row -->
 
                     <div class="col-sm-6 col-md-3 m-t-30">
-                        <div class="modal fade bs-example-modal-diklat-hapus" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="modal-download" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered modal-md">
                                 <div class="modal-content">
                                     <div class="modal-body">
@@ -115,14 +117,14 @@
                                             <div class="card m-b-30">
                                                 <div class="card-body">
                                                     <div class="container-fluid">
-                                                        <form id="hapusdiklat"  method="POST" enctype="multipart/form-data">@csrf
+                                                        <form id="z" action="#"  method="POST" enctype="multipart/form-data">@csrf
                                                             <div class="form-group text-center">
-                                                                <h5>Anda yakin akan menghapus Diklat tersebut ?</h5>
+                                                                <h5>Anda yakin akan Mengunduh Daftar Peserta Pendaftaran ?</h5>
                                                                 <input type="hidden" class="form-control text-capitalize" id="id" name="id" required>
                                                             </div>
                                                             <div class="row" style="text-align: center">
                                                                 <div class="form-group col-6 col-xl-6">
-                                                                    <input type="submit" name="hapus" id="btnhapus" class="btn btn-danger" value="Ya, Hapus!" />
+                                                                    <input type="button" name="hapus" id="btnhapus" class="btn btn-primary" value="Ya, Unduh!" />
                                                                 </div>
                                                                 <div class="form-group col-6 col-xl-6">
                                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">
@@ -327,6 +329,11 @@
                             data:'peserta',
                             name:'peserta'
                             },
+                            {
+                            data:'unduh',
+                            name:'unduh'
+                            },
+                            
                             
                         ]
                     });
