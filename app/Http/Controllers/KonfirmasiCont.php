@@ -83,7 +83,7 @@ class KonfirmasiCont extends Controller
                     'status' => $request->acc,
                 ]
             );
-            $data2 = Pelatihan::where('id',$data->id)->first();
+            $data2 = Pelatihan::where('id',$data->pelatihan_id)->first();
             $linkwa= $data2->groupwa;
 
             $alasan= $request->alasan;
