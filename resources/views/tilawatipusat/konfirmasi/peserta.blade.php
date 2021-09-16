@@ -135,8 +135,8 @@
                                                         <form id="formacc2"  method="POST" enctype="multipart/form-data">@csrf
                                                             <div class="form-group text-center">
                                                                 <h5>Tulis alasan pendaftaran peserta tersebut tidak diterima!</h5>
-                                                                <input type="text" class="form-control text-capitalize" id="id" name="id" required>
-                                                                <input type="text" value="2" name="acc">
+                                                                <input type="hidden" class="form-control text-capitalize" id="id" name="id" required>
+                                                                <input type="hidden" value="2" name="acc">
                                                             </div>
                                                             <div class="row" style="text-align: center">
                                                                 <div class="form-group col-12 col-xl-12">
