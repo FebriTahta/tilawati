@@ -81,16 +81,25 @@ class PesertaDiklatImport implements ToCollection, WithStartRow, WithChunkReadin
 
                         $phone = $row[3];
 
-                        if (substr($phone,0,1) != '0') {
+                        if (substr($phone,0,1) == '0') {
+                            # jika awalan angkanya 0 dari export maka langsung simpan
                             # code...
-                            $telephone = '0'.$phone;
+                            $telephone = $phone;
                             $dt_pel->telp = $telephone;
+                            
                         }else{
-                            $dt_pel->telp = $phone;
+                            # baca jika awalan tidak 0 melainkan 62 atau petik '
+                            if (substr($phone,0,2) == '62'){
+                                # code...
+                                $telephone = $phone;
+                                $dt_pel->telp = $telephone;
+                            }else{
+                                $potong = substr($phone,1,15);
+                                $dt_pel->telp = $potong;   
+                            }
                         }
-                        // $dt_pel->telp =$row[3];
                         $dt_pel->tmptlahir = $row[4];
-                        
+
                         $masuk = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row[5]);
                         $dt_pel->tgllahir = $masuk;
                         
@@ -128,6 +137,49 @@ class PesertaDiklatImport implements ToCollection, WithStartRow, WithChunkReadin
                         ->format('png') 
                         // ->generate('https://www.tilawatipusat.com/diklat-profile-peserta/'.$dt_pel->id.'/'.$dt_pel->pelatihan->program->id.'/'.$dt_pel->pelatihan->id, public_path('images/'.$id.'qrcode.png'));
                         ->generate('https://www.profile.tilawatipusat.com/'.$dt_pel->slug, public_path('images/'.$dt_pel->slug.'.png'));
+                    }else{
+                        $phone = $row[3];
+                        $telephone = 0;
+                        if (substr($phone,0,1) == '0') {
+                            # jika awalan angkanya 0 dari export maka langsung simpan
+                            # code...
+                            $telephone = $phone;
+                            
+                        }else{
+                            # baca jika awalan tidak 0 melainkan 62 atau petik '
+                            if (substr($phone,0,2) == '62'){
+                                # code...
+                                $telephone  = $phone;
+                            }else{
+                                $telephone  = substr($phone,1,15);
+                            }
+                        }
+                        
+                        Peserta::updateOrCreate(
+                            [
+                                'id' => $peserta->id
+                            ],
+                            [
+                                'telp'        => $telephone,
+                                'jilid'       => $row[7],
+                                'kriteria'    => $row[8],
+                                'bersyahadah' => $row[9],
+
+                            ]
+                        );
+                        foreach ( $peserta->pelatihan->program->penilaian as $key => $value) {
+                            # code...
+                            Nilai::updateOrCreate(
+                                [
+                                    'peserta_id'    => $peserta->id,
+                                    'penilaian_id'  => $value->id,
+                                ],
+                                [
+                                    'nominal'       => $row[10+$key],
+                                    'kategori'      => $value->kategori,
+                                ]
+                            );
+                        }
                     }
             // }   
         }

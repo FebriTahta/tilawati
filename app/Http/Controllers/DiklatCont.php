@@ -73,9 +73,7 @@ class DiklatCont extends Controller
                                 return '<a href="/diklat-peserta/'.$data->id.'" class="text-danger">'.$data->peserta_count.' - '.$data->keterangan.'<a>';
                             } else {
                                 # code...
-                                $jumlah_peserta = Pelatihan::where('id', $data->id)->whereHas('peserta', function ($query) {
-                                    return $query->where('status', '=', 1);
-                                })->count();
+                                $jumlah_peserta = Peserta::where('pelatihan_id',$data->id)->where('status',1)->count();
                                 if ($jumlah_peserta !== 0) {
                                     # code...
                                     return '<a href="/diklat-peserta/'.$data->id.'" class="text-success">'.$jumlah_peserta.' - peserta <a>';

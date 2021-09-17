@@ -219,7 +219,12 @@ class KonfirmasiCont extends Controller
                         }
                     })
                         ->addColumn('kabupaten', function ($data) {
-                            return $data->kabupaten->nama;
+                            if ($data->kabupaten == null) {
+                                # code...
+                                return "-";
+                            }else{
+                                return $data->kabupaten->nama;
+                            }
                         })
 
                         ->addColumn('status', function ($data) {

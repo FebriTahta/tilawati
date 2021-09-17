@@ -39,6 +39,10 @@ class Peserta extends Model
     ];
     protected $dates = ['deleted_at'];
 
+    protected $telp = [
+        'telp' => 'string',
+     ];
+
     public function getRouteKeyName()
     {
         return 'slug';

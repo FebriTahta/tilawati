@@ -1,3 +1,8 @@
+<style>
+    .notel {
+    mso-number-format: "\@";
+    }
+</style>
 <table>
     <thead>
         <tr>
@@ -21,9 +26,17 @@
                         {{ $item->kabupaten->nama }}
                     @endif
                 </td>
-                <td>{{ $item->telp }}</td>
+                <?php $phone=substr($item->telp,2,15)?>
+                @if (substr($item->telp,0,2)==62)
+                    <td class="notel">{{"0".$phone}}</td>
+                @elseif (substr($item->telp,0,1)==0)
+                    <td class="notel">{{$item->telp}}</td>
+                @endif
+                
+                
                 <td>{{ $item->tmptlahir }}</td>
-                <td>{{ $item->tgllahir }}</td>
+                <?php $date = \Carbon\Carbon::parse($item->tgllahir)->isoFormat('M/D/Y')?>
+                <td>{{ $date }}</td>
             </tr>
         @endforeach
     </tbody>
