@@ -16,19 +16,19 @@ class UserSeeder extends Seeder
         $usr = [
             [
                 // 'name' => "PUSAT",
-                'username' => "tilawati_pusat",
+                'username' => "admin",
                 'email'=> "nurulfalah2017@gmail.com",
                 'role' => "pusat",
-                'password'   => bcrypt("pes_nf_tilawatipusat"),
+                'password'   => bcrypt("tilawatipusat"),
                 'created_at' => new \DateTime,
                 'updated_at' => null,
             ],
             [
-                'username' => "bendahara_pusat",
+                'username' => "bendahara",
                 // 'name' => "CABANG1",
                 'email'=> "bendahara_nf@gmail.com",
                 'role' => "bendahara",
-                'password'   => bcrypt("pes_nf_bendahara"),
+                'password'   => bcrypt("tilawatipusat"),
                 'created_at' => new \DateTime,
                 'updated_at' => null,
             ],

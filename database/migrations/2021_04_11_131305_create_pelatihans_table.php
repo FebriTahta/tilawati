@@ -23,6 +23,7 @@ class CreatePelatihansTable extends Migration
             $table->text('groupwa')->nullable();
             $table->longText('tempat')->nullable();
             $table->text('keterangan');
+            $table->string('jenis')->nullable();
             $table->string('status')->nullable();
             $table->timestamps();
             $table->softDeletes();

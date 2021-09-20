@@ -15,7 +15,8 @@ class CreateCertificatesTable extends Migration
     {
         Schema::create('certificates', function (Blueprint $table) {
             $table->id();
-			$table->unsignedBigInteger('pelatihan_id');
+            $table->unsignedBigInteger('induksertifikat_id')->nullable();
+			$table->unsignedBigInteger('pelatihan_id')->nullable();
             $table->unsignedBigInteger('peserta_id')->nullable();
 			$table->string('name');
             $table->integer('no')->nullable();
@@ -24,7 +25,7 @@ class CreateCertificatesTable extends Migration
         });
 
         Schema::table('certificates', function (Blueprint $table){
-            $table->foreign('pelatihan_id')->references('id')->on('pelatihans')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('induksertifikat_id')->references('id')->on('induksertifikats')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

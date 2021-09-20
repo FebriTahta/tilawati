@@ -18,6 +18,7 @@ class CreateInduksertifikatsTable extends Migration
             $table->unsignedBigInteger('program_id')->nullable();
             $table->string('program_name');
             $table->date('tgl_awal');
+            $table->text('slug');
             $table->date('tgl_akhir')->nullable();
             $table->unsignedBigInteger('cabang_id')->nullable();
             $table->string('tempat');

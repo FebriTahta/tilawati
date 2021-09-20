@@ -17,7 +17,8 @@ class Pelatihan extends Model
         'groupwa',
         'keterangan',
         'tempat',
-        'status'
+        'status',
+        'jenis'
     ];
     protected $dates = ['deleted_at'];
 

@@ -31,10 +31,21 @@
                                         <form id="diklat_store" method="POST" enctype="multipart/form-data">@csrf
                                             <div class="form-group">
                                                  <div class="row">
+                                                     <input type="hidden" name="jenis" value="diklat" required>
+                                                    <div class="form-group col-12 col-xl-12 border-bottom">
+                                                        <input type="radio" id="1" name="waktu" value="1" onclick="myFunction2()" checked >
+                                                        <label for="1">satu hari</label><br>
+                                                        <input type="radio" id="2" name="waktu" value="2"  onclick="myFunction()">
+                                                        <label for="2">lebih dari satu hari</label>
+                                                    </div>
                                                      <div class="form-group col-xl-6">
                                                          <label for="">Tanggal</label>
                                                          <input type="date" name="tanggal" class="form-control " required>
                                                      </div>
+                                                     <div class="form-group col-12 col-xl-6" id="tgl" style="display: none">
+                                                        <label for="sampai">Sampai</label>
+                                                        <input type="date" id="sampai" name="sampai" class="form-control" >
+                                                    </div>
                                                      <div class="form-group col-xl-6">
                                                          <label for="">Cabang</label>
                                                          <input type="hidden" class="form-control text-capitalize" id="cabsid" name="cabang_id">
@@ -68,16 +79,7 @@
                                                          <option value="instruktur">INSTRUKTUR</option>
                                                      </select>
                                                  </div>
-                                                 {{-- <div class="form-group">
-                                                    <i class="text-danger"></i><label for="">Foto Flyer Pelatihan<span class="text-primary">(bisa tidak diisi)</span></label>
-                                                        <div class="input-group" style="margin-bottom: 30px">
-                                                            <div class="custom-file">
-                                                                <input type="file" class="custom-file-input" name="image" id="inputGroupFile02" id="file"/>
-                                                                <label class="custom-file-label" for="inputGroupFile02">Pilih file</label>
-                                                            </div>
-                                                        </div>
-                                                            <img  src="https://placehold.it/80x80"  id="preview" class="img-thumbnail">
-                                                </div> --}}
+                                                 <input type="hidden" name="jenis" value="diklat" id="" required>
                                             </div>
                                             <div class="form-group text-right col-md-12">
                                                 {{-- <button class="btn btn-primary" id="z" type="submit"> <i class="fa fa-save"></i> Save</button> --}}
@@ -120,6 +122,14 @@
         <script src="{{ URL::asset('tilawatipusat/js/pages/datatables.init.js')}}"></script>
 
         <script>
+            function myFunction() {
+                document.getElementById("tgl").style.removeProperty( 'display' );
+                console.log('kelihatan');
+            }
+            function myFunction2() {
+                document.getElementById("tgl").style.display = "none";
+                console.log('hilang');
+            }
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             
             $(document).ready(function(){

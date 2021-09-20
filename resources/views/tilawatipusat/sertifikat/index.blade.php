@@ -275,7 +275,7 @@
                         },
                         cache: true
                     }
-                });
+                }); 
             })
             $('#inputGroupFile02').on('change',function(){
                 //get the file name

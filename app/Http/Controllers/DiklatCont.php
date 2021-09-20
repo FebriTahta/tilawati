@@ -56,11 +56,7 @@ class DiklatCont extends Controller
                             $actionBtn = ' <a href="#" data-toggle="modal" data-target=".bs-example-modal-diklat-hapus" data-id="'.$data->id.'" class="btn btn-sm btn-outline btn-danger"><i class="fa fa-trash"></i></a> ';
                             $actionBtn.= ' <a href="#" data-toggle="modal" data-target=".bs-example-modal-diklat-edit" data-id="'.$data->id.'" data-tanggal="'.$data->tanggal.'" data-cabang="'.$data->cabang_id.'"
                             data-program="'.$data->program_id.'" data-tempat="'.$data->tempat.'" data-keterangan="'.$data->keterangan.'" class="btn btn-sm btn-outline btn-primary"><i class="fa fa-edit"></i></a>';
-                            $actionBtn.= 
-                            ' <button class="btn btn-sm btn-success" data-toggle="modal" data-target=".bs-example-modal-diklat-kirim"
-                            data-id="'.$data->id.'" data-name="'.$data->program->name.'" 
-                            data-tanggal="'.Carbon::parse($data->tanggal)->isoFormat('D MMMM Y').'">
-                            <i class="fa fa-file-import"></i></button>';
+                            
                         })
                 ->rawColumns(['cabang','program','action','peserta','linkpendaftaran','tanggal'])
                 ->make(true);
@@ -98,15 +94,16 @@ class DiklatCont extends Controller
                             $actionBtn = ' <a href="#" data-toggle="modal" data-target=".bs-example-modal-diklat-hapus" data-id="'.$data->id.'" class="btn btn-sm btn-outline btn-danger"><i class="fa fa-trash"></i></a> ';
                             $actionBtn.= ' <a href="#" data-toggle="modal" data-target=".bs-example-modal-diklat-edit" data-id="'.$data->id.'" data-tanggal="'.$data->tanggal.'" data-cabang="'.$data->cabang_id.'"
                             data-program="'.$data->program_id.'" data-tempat="'.$data->tempat.'" data-keterangan="'.$data->keterangan.'" data-groupwa="'.$data->groupwa.'" class="btn btn-sm btn-outline btn-primary"><i class="fa fa-edit"></i></a>';
-                            $actionBtn.= 
-                            ' <button class="btn btn-sm btn-success" data-toggle="modal" data-target=".bs-example-modal-diklat-kirim"
-                            data-id="'.$data->id.'" data-name="'.$data->program->name.'" 
-                            data-tanggal="'.Carbon::parse($data->tanggal)->isoFormat('D MMMM Y').'"
-                            ><i class="fa fa-file-import"></i></button>';
                             return $actionBtn;
                         })
                         ->addColumn('tanggal', function($data){
-                            return Carbon::parse($data->tanggal)->isoFormat('D MMMM Y');
+                            if ($data->sampai_tanggal !== null) {
+                                # code...
+                                return Carbon::parse($data->tanggal)->isoFormat('D MMMM Y').' - '.
+                                Carbon::parse($data->tanggal)->isoFormat('D MMMM Y');
+                            }else{
+                                return Carbon::parse($data->tanggal)->isoFormat('D MMMM Y');
+                            }
                         })
                         ->addColumn('groupwa', function($data){
                             if ($data->groupwa == null) {
@@ -306,10 +303,12 @@ class DiklatCont extends Controller
                 'cabang_id' => $request->cabang_id,
                 'program_id' => $request->program_id,
                 'tanggal' => $request->tanggal,
+                'sampai_tanggal' => $request->sampai,
                 'groupwa' => $request->groupwa,
                 'slug' => Str::slug($cabang->name.'-'.$tanggal.'-'.$program->name),
                 'tempat' => $request->tempat,
                 'keterangan' => $request->keterangan,
+                'jenis'=> $request->jenis,
                 'status' => '1',
             ]
         );
@@ -342,9 +341,16 @@ class DiklatCont extends Controller
 
     public function delete(Request $request)
     {
-        $id = $request->id;
-        $pelatihan = Pelatihan::find($id);
-        $peserta = Peserta::where('pelatihan_id',$id)->get();
+        $id         = $request->id;
+        $pelatihan  = Pelatihan::find($id);
+        $flyer      = Flyer::where('pelatihan_id',$id)->first();
+        $peserta    = Peserta::where('pelatihan_id',$id)->get();
+        // kalau ada gambar flyer maka hapus juga
+        if ($flyer !== null) {
+            # code...
+            File::delete('image_flyer/'.$flyer->image);
+        }
+        // hapus qr code kalau peserta ada qr codenya
         foreach ($peserta as $key => $item) {
             # code...
             File::delete('images/'.$item->slug.'.png');

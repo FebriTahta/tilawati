@@ -48,6 +48,13 @@
                         <span>Data Diklat</span>
                     </a>
                 </li>
+                <li>
+                    <a href="#" class="waves-effect">
+                        <i class="mdi mdi-city-variant-outline"></i>
+                        <span class="badge badge-pill badge-danger float-right"></span>
+                        <span>Data Webinar</span>
+                    </a>
+                </li>
                 {{-- <li>
                     <a href="{{ route('diklat.seluruh_peserta') }}" class="waves-effect">
                         <i class="fa fa-book"></i>
@@ -55,13 +62,6 @@
                         <span>Seluruh Peserta Diklat</span>
                     </a>
                 </li> --}}
-                <li>
-                    <a href="{{ route('sertifikat') }}" class="waves-effect">
-                        <i class="mdi mdi-smart-card-outline"></i>
-                        <span class="badge badge-pill badge-danger float-right"></span>
-                        <span>E-Sertifikat</span>
-                    </a>
-                </li>
 
                 <li class="menu-title">Menu</li>
 
@@ -150,6 +150,14 @@
                         <a href="{{ route('daftar_diklat_konfirmasi') }}" class="waves-effect">
                             <i class="mdi mdi-clipboard-list-outline"></i>
                             <span>Konfirmasi</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Data Sertifikat Peserta</li>
+                    <li>
+                        <a href="{{ route('sertifikat') }}" class="waves-effect">
+                            <i class="mdi mdi-smart-card-outline"></i>
+                            <span class="badge badge-pill badge-danger float-right"></span>
+                            <span>E-Sertifikat</span>
                         </a>
                     </li>
                 </div>
