@@ -46,7 +46,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-6">
+                        <div class="col-xl-4">
                             @component('common-tilawatipusat.dashboard-widget')
                             
                                 @slot('title') <b id="cb"> ??? </b><br><small> Total Diklat  </small>@endslot
@@ -55,11 +55,23 @@
                                 
                             @endcomponent
                         </div>
-                        <div class="col-xl-6">
+                        @if (auth()->user()->role == 'pusat')
+                        <div class="col-xl-4">
                             @component('common-tilawatipusat.dashboard-widget')
                             
                                 @slot('title') <a href="#" data-toggle="modal" data-target="#mod_cabang2"> <b id="cb2"> ??? </b><br><small> Cabang yang Mengadakan Diklat</small></a>@endslot
                                 @slot('iconClass') mdi mdi-bank-outline  @endslot
+                                @slot('price')   @endslot
+                                
+                            @endcomponent
+                        </div>
+                        @endif
+
+                        <div class="col-xl-4">
+                            @component('common-tilawatipusat.dashboard-widget')
+                            
+                                @slot('title') <a href="#" data-toggle="modal" data-target="#mod_program"> <b id="cb3"> ??? </b><br><small> Program Diklat</small></a>@endslot
+                                @slot('iconClass') fa fa-book  @endslot
                                 @slot('price')   @endslot
                                 
                             @endcomponent
@@ -75,7 +87,10 @@
                                     <p class="card-title-desc">Ter-update berdasarkan Tahun 2021 </br></p>
                                     {{-- <button class="btn btn-sm btn-success  mr-1" style="width:130px " data-toggle="modal" data-target=".bs-example-modal-diklat"><i class="mdi mdi-plus"></i> tambah diklat</button> --}}
                                     <a class="btn btn-sm btn-success  mr-1" style="width:130px " href="{{ route('diklat.create') }}"><i class="mdi mdi-plus"></i> tambah diklat</a>
-                    
+                                    <input type="hidden" id="user" value="{{auth()->user()->role}}">
+                                    @if (auth()->user()->role == 'cabang')
+                                        <input type="hidden" id="cabang" value="{{auth()->user()->cabang->id}}">
+                                    @endif
                                     <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
                                         <table id="datatable-buttons" class="table table-diklat table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
                                             <thead class="text-bold text-primary" style="text-transform: capitalize">
@@ -360,6 +375,44 @@
                                             <tfoot class="text-bold text-primary">
                                                 <tr>
                                                    <th>Cabang</th>
+                                                   <th>Action</th>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                        <footer class="blockquote-footer">Updated at  <cite title="Source Title">2021</cite></footer>
+                                    </blockquote>
+                                </div>
+                            </div>
+                            <!-- /.modal-content -->
+                        </div>
+                        <!-- /.modal-dialog -->
+                    </div>
+
+                    <div class="modal fade bs-example-modal-xl-2" id="mod_program" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-md">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">DAFTAR PROGRAM PELAKSANAAN</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
+                                        <table id="datatable-buttons3" class="table table-diklat-program table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
+                                            <thead class="text-bold text-primary">
+                                                <tr>
+                                                    <th>Program</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                    
+                                            <tbody style="text-transform: uppercase; font-size: 12px">
+                                            </tbody>
+                    
+                                            <tfoot class="text-bold text-primary">
+                                                <tr>
+                                                   <th>Program</th>
                                                    <th>Action</th>
                                                 </tr>
                                             </tfoot>
@@ -700,62 +753,123 @@
                         }
                     });
                     $.ajax({
-                        url:'{{ route("diklat.diklat_cabang_tot") }}',
-                        type: 'get',
-                        dataType: 'json',
-                        data:{dari:dari, sampai:sampai},
-                        success:function(data) {
-                            document.getElementById('cb2').innerHTML = data;
-                            console.log(data);
-                        }
-                    });
-
-                    //data diklat dan data cabang diklat
-                    $('.table-diklat').DataTable({
-                        //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
-                        destroy: true,
-                        processing: true,
-                        serverSide: true,
-                        ajax: {
-                            url:'{{ route("diklat.diklat_data") }}',
-                            data:{dari:dari, sampai:sampai}
-                        },
-                        columns: [
-                            {
-                            data:'program',
-                            name:'program.name'
+                            url:'{{ route("diklat.diklat_program_tot") }}',
+                            type: 'get',
+                            dataType: 'json',
+                            data:{dari:dari, sampai:sampai},
+                            success:function(data) {
+                                document.getElementById('cb3').innerHTML = data;
+                                console.log(data);
+                            }
+                        });
+                    var user    = $('#user').val();
+                    var cabang  = $('#cabang').val();
+                    if (user == 'pusat') {
+                        //keterangan cabang mengadakan diklat
+                        $.ajax({
+                            url:'{{ route("diklat.diklat_cabang_tot") }}',
+                            type: 'get',
+                            dataType: 'json',
+                            data:{dari:dari, sampai:sampai},
+                            success:function(data) {
+                                document.getElementById('cb2').innerHTML = data;
+                                console.log(data);
+                            }
+                        });
+                        //data diklat
+                        $('.table-diklat').DataTable({
+                            //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
+                            destroy: true,
+                            processing: true,
+                            serverSide: true,
+                            ajax: {
+                                url:'{{ route("diklat.diklat_data") }}',
+                                data:{dari:dari, sampai:sampai}
                             },
-                            {
-                            data:'cabang',
-                            name:'cabang.name'
+                            columns: [
+                                {
+                                data:'program',
+                                name:'program.name'
+                                },
+                                {
+                                data:'cabang',
+                                name:'cabang.name'
+                                },
+                                {
+                                data:'tanggal',
+                                name:'tanggal'
+                                },
+                                {
+                                data:'linkpendaftaran',
+                                name:'linkpendaftaran'
+                                },
+                                {
+                                data:'groupwa',
+                                name:'groupwa'
+                                },
+                                {
+                                data:'flyer',
+                                name:'flyer'
+                                },
+                                {
+                                data:'peserta',
+                                name:'peserta'
+                                },
+                                {
+                                data:'action',
+                                name:'action'
+                                },
+                                
+                            ]
+                        });
+                    }else{
+                        // data diklat cabang
+                        $('.table-diklat').DataTable({
+                            //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
+                            destroy: true,
+                            processing: true,
+                            serverSide: true,
+                            ajax: {
+                                url:'/diklat-diklat-data-cabang/'+cabang,
+                                data:{dari:dari, sampai:sampai}
                             },
-                            {
-                            data:'tanggal',
-                            name:'tanggal'
-                            },
-                            {
-                            data:'linkpendaftaran',
-                            name:'linkpendaftaran'
-                            },
-                            {
-                            data:'groupwa',
-                            name:'groupwa'
-                            },
-                            {
-                            data:'flyer',
-                            name:'flyer'
-                            },
-                            {
-                            data:'peserta',
-                            name:'peserta'
-                            },
-                            {
-                            data:'action',
-                            name:'action'
-                            },
-                            
-                        ]
-                    });
+                            columns: [
+                                {
+                                data:'program',
+                                name:'program.name'
+                                },
+                                {
+                                data:'cabang',
+                                name:'cabang.name'
+                                },
+                                {
+                                data:'tanggal',
+                                name:'tanggal'
+                                },
+                                {
+                                data:'linkpendaftaran',
+                                name:'linkpendaftaran'
+                                },
+                                {
+                                data:'groupwa',
+                                name:'groupwa'
+                                },
+                                {
+                                data:'flyer',
+                                name:'flyer'
+                                },
+                                {
+                                data:'peserta',
+                                name:'peserta'
+                                },
+                                {
+                                data:'action',
+                                name:'action'
+                                },
+                                
+                            ]
+                        });
+                    }
 
                     $('.table-diklat-cabang').DataTable({
                         //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
@@ -770,6 +884,28 @@
                             {
                             data:'cabang',
                             name:'cabang.name'
+                            },
+                            {
+                            data:'action',
+                            name:'action'
+                            },
+                            
+                        ]
+                    });
+
+                    $('.table-diklat-program').DataTable({
+                        //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
+                        destroy: true,
+                        processing: true,
+                        serverSide: true,
+                        ajax: {
+                            url:'{{ route("diklat.diklat_program_data") }}',
+                            data:{dari:dari, sampai:sampai}
+                        },
+                        columns: [
+                            {
+                            data:'program',
+                            name:'program.name'
                             },
                             {
                             data:'action',

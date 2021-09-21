@@ -26,6 +26,7 @@
         <div class="row">
             <div class="col-xl-7">
                 <div class="card" style="min-height: 265px">
+                    {{-- @if (auth()->user()->role == 'cabang') --}}
                     <div class="card-body">
                         <div class="mb-4 card-title">
                             <p class="text-info"><u class="text-info"> {{ $diklat_ini }} </u> Kegiatan Diklat Terbaru</p>
@@ -58,7 +59,6 @@
                                     @endforeach
                                 @endif
                             </div>
-            
                             <a class="carousel-control-prev" href="#reviewExampleControls" role="button" data-slide="prev">
                                 <i class="mdi mdi-chevron-left carousel-control-icon"></i>
                             </a>
@@ -67,6 +67,8 @@
                             </a>
                         </div>
                     </div>
+                    {{-- @elseif (auth()->user()->role == 'cabang')
+                    @endif --}}
                 </div>
             </div>
             <div class="col-xl-5">

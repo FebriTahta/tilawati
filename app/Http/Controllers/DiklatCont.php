@@ -50,7 +50,13 @@ class DiklatCont extends Controller
                             data-slug="https://registrasi.tilawatipusat.com/'.$data->slug.'" >Link Pendaftaran!</a>';
                         })
                         ->addColumn('tanggal', function($data){
-                            return Carbon::parse($data->tanggal)->isoFormat('D MMMM Y');
+                            if ($data->sampai_tanggal !== null) {
+                                # code...
+                                return Carbon::parse($data->tanggal)->isoFormat('dddd, D MMMM Y').' - '.
+                                Carbon::parse($data->tanggal)->isoFormat('dddd, D MMMM Y');
+                            }else{
+                                return Carbon::parse($data->tanggal)->isoFormat('dddd, D MMMM Y');
+                            }
                         })
                         ->addColumn('action', function($data){
                             $actionBtn = ' <a href="#" data-toggle="modal" data-target=".bs-example-modal-diklat-hapus" data-id="'.$data->id.'" class="btn btn-sm btn-outline btn-danger"><i class="fa fa-trash"></i></a> ';
@@ -58,7 +64,24 @@ class DiklatCont extends Controller
                             data-program="'.$data->program_id.'" data-tempat="'.$data->tempat.'" data-keterangan="'.$data->keterangan.'" class="btn btn-sm btn-outline btn-primary"><i class="fa fa-edit"></i></a>';
                             
                         })
-                ->rawColumns(['cabang','program','action','peserta','linkpendaftaran','tanggal'])
+                        ->addColumn('groupwa', function($data){
+                            if ($data->groupwa == null) {
+                                # code...
+                                return '<a href="#" data-link="'.$data->groupwa.'" data-id="'.$data->id.'" data-toggle="modal" data-target="#modal-wa" class="text-danger">Kosong</a>';
+                            }else{
+                                return '<a href="#" data-link="'.$data->groupwa.'" data-id="'.$data->id.'" data-toggle="modal" data-target="#modal-wa" class="text-success">Siap</a>';
+                            }
+                        })
+                        ->addColumn('flyer', function($data){
+                            if ($data->flyer == null) {
+                                # code...
+                                return '<a href="#" data-id="'.$data->id.'" data-toggle="modal" data-target="#modal-flyer" class="text-danger">Kosong</a>';
+                            }else {
+                                # code...
+                                return '<a href="#" data-id="'.$data->id.'" data-flyerid="'.$data->flyer->id.'" data-img="'.asset('image_flyer/'.$data->flyer->image).'" data-toggle="modal" data-target="#modal-flyer" class="text-success">Siap</a>';
+                            }
+                        })
+                ->rawColumns(['cabang','program','action','peserta','linkpendaftaran','tanggal','flyer','groupwa'])
                 ->make(true);
             }else{
                 $data   = Pelatihan::with('cabang','program')->withCount('peserta')->orderBy('tanggal','desc');
@@ -99,10 +122,10 @@ class DiklatCont extends Controller
                         ->addColumn('tanggal', function($data){
                             if ($data->sampai_tanggal !== null) {
                                 # code...
-                                return Carbon::parse($data->tanggal)->isoFormat('D MMMM Y').' - '.
-                                Carbon::parse($data->tanggal)->isoFormat('D MMMM Y');
+                                return Carbon::parse($data->tanggal)->isoFormat('dddd, D MMMM Y').' - '.
+                                Carbon::parse($data->tanggal)->isoFormat('dddd, D MMMM Y');
                             }else{
-                                return Carbon::parse($data->tanggal)->isoFormat('D MMMM Y');
+                                return Carbon::parse($data->tanggal)->isoFormat('dddd, D MMMM Y');
                             }
                         })
                         ->addColumn('groupwa', function($data){
@@ -156,8 +179,37 @@ class DiklatCont extends Controller
                             $actionBtn = ' <a href="/diklat-peserta/'.$data->id.'" class="btn btn-sm btn-outline btn-success fa fa-pencil-square"><i class="fa fa-user"></i></a>';
                             $actionBtn .= ' <a href="#" data-toggle="modal" data-target=".bs-example-modal-diklat-hapus" data-id="'.$data->id.'" class="btn btn-sm btn-outline btn-danger fa fa-pencil-square"><i class="fa fa-trash"></i></a>';
                             return $actionBtn;
+                        })->addColumn('groupwa', function($data){
+                            if ($data->groupwa == null) {
+                                # code...
+                                return '<a href="#" data-link="'.$data->groupwa.'" data-id="'.$data->id.'" data-toggle="modal" data-target="#modal-wa" class="text-danger">Kosong</a>';
+                            }else{
+                                return '<a href="#" data-link="'.$data->groupwa.'" data-id="'.$data->id.'" data-toggle="modal" data-target="#modal-wa" class="text-success">Siap</a>';
+                            }
                         })
-                ->rawColumns(['cabang','program','action','peserta'])
+                        ->addColumn('flyer', function($data){
+                            if ($data->flyer == null) {
+                                # code...
+                                return '<a href="#" data-id="'.$data->id.'" data-toggle="modal" data-target="#modal-flyer" class="text-danger">Kosong</a>';
+                            }else {
+                                # code...
+                                return '<a href="#" data-id="'.$data->id.'" data-flyerid="'.$data->flyer->id.'" data-img="'.asset('image_flyer/'.$data->flyer->image).'" data-toggle="modal" data-target="#modal-flyer" class="text-success">Siap</a>';
+                            }
+                        })
+                        ->addColumn('tanggal', function($data){
+                            if ($data->sampai_tanggal !== null) {
+                                # code...
+                                return Carbon::parse($data->tanggal)->isoFormat('dddd, D MMMM Y').' - '.
+                                Carbon::parse($data->tanggal)->isoFormat('dddd, D MMMM Y');
+                            }else{
+                                return Carbon::parse($data->tanggal)->isoFormat('dddd, D MMMM Y');
+                            }
+                        })
+                        ->addColumn('linkpendaftaran', function ($data) {
+                            return '<a href="#" data-id="'.$data->id.'" data-toggle="modal" data-target=".bs-example-modal-diklat-link" 
+                            data-slug="https://registrasi.tilawatipusat.com/'.$data->slug.'" >Link Pendaftaran!</a>';
+                        })
+                ->rawColumns(['cabang','tanggal','program','action','peserta','groupwa','flyer','linkpendaftaran'])
                 ->make(true);
             }else{
                 $data   = Pelatihan::where('cabang_id', $cabang_id)->with('cabang','program')->withCount('peserta')->orderBy('id','desc');
@@ -182,7 +234,37 @@ class DiklatCont extends Controller
                             $actionBtn .= ' <a href="#" data-toggle="modal" data-target=".bs-example-modal-diklat-hapus" data-id="'.$data->id.'" class="btn btn-sm btn-outline btn-danger fa fa-pencil-square"><i class="fa fa-trash"></i></a>';
                             return $actionBtn;
                         })
-                ->rawColumns(['cabang','program','action','peserta'])
+                        ->addColumn('groupwa', function($data){
+                            if ($data->groupwa == null) {
+                                # code...
+                                return '<a href="#" data-link="'.$data->groupwa.'" data-id="'.$data->id.'" data-toggle="modal" data-target="#modal-wa" class="text-danger">Kosong</a>';
+                            }else{
+                                return '<a href="#" data-link="'.$data->groupwa.'" data-id="'.$data->id.'" data-toggle="modal" data-target="#modal-wa" class="text-success">Siap</a>';
+                            }
+                        })
+                        ->addColumn('flyer', function($data){
+                            if ($data->flyer == null) {
+                                # code...
+                                return '<a href="#" data-id="'.$data->id.'" data-toggle="modal" data-target="#modal-flyer" class="text-danger">Kosong</a>';
+                            }else {
+                                # code...
+                                return '<a href="#" data-id="'.$data->id.'" data-flyerid="'.$data->flyer->id.'" data-img="'.asset('image_flyer/'.$data->flyer->image).'" data-toggle="modal" data-target="#modal-flyer" class="text-success">Siap</a>';
+                            }
+                        })
+                        ->addColumn('linkpendaftaran', function ($data) {
+                            return '<a href="#" data-id="'.$data->id.'" data-toggle="modal" data-target=".bs-example-modal-diklat-link" 
+                            data-slug="https://registrasi.tilawatipusat.com/'.$data->slug.'" >Link Pendaftaran!</a>';
+                        })
+                        ->addColumn('tanggal', function($data){
+                            if ($data->sampai_tanggal !== null) {
+                                # code...
+                                return Carbon::parse($data->tanggal)->isoFormat('dddd, D MMMM Y').' - '.
+                                Carbon::parse($data->tanggal)->isoFormat('dddd, D MMMM Y');
+                            }else{
+                                return Carbon::parse($data->tanggal)->isoFormat('dddd, D MMMM Y');
+                            }
+                        })
+                ->rawColumns(['cabang','tanggal','program','action','peserta','groupwa','flyer','linkpendaftaran'])
                 ->make(true);
             }
         }
@@ -386,6 +468,65 @@ class DiklatCont extends Controller
                 ->groupBy('cabang_id')
                 ->get()->count();
                 return response()->json($data,200);
+            }
+        }
+    }
+
+    public function diklat_program_total(Request $request)
+    {
+        if (request()->ajax()) {
+            # code...
+            if(!empty($request->dari))
+            {
+                $data = DB::table('pelatihans')
+                ->whereBetween('tanggal', array($request->dari, $request->sampai))
+                ->select('program_id', DB::raw('count(*) as total'))
+                ->groupBy('program_id')
+                ->get()->count();
+                return response()->json($data,200);
+            }
+            else
+            {
+                $data = DB::table('pelatihans')->where('jenis', 'diklat')
+                ->select('program_id', DB::raw('count(*) as total'))
+                ->groupBy('program_id')
+                ->get()->count();
+                return response()->json($data,200);
+            }
+        }
+    }
+
+    public function diklat_program_data(Request $request)
+    {
+        if(request()->ajax())
+        {
+            if(!empty($request->dari))
+            {
+                # code...
+                $data = Pelatihan::whereBetween('tanggal', array($request->dari, $request->sampai))->with('program')->select('program_id')->distinct();
+                return DataTables::of($data)
+                ->addColumn('program', function ($data) {
+                    return $data->program->name;
+                })
+                ->addColumn('action', function ($data) {
+                    $btn = '<a href="#" class="btn btn-sm btn-info"> check </a>';
+                    return $btn;
+                })
+                ->rawColumns(['program','action'])
+                ->make(true);
+            }else {
+                # code...
+                $data = Pelatihan::with('program')->select('program_id')->distinct();
+                return DataTables::of($data)
+                ->addColumn('program', function ($data) {
+                    return $data->program->name;
+                })
+                ->addColumn('action', function ($data) {
+                    $btn = '<a href="#" class="btn btn-sm btn-info"> check </a>';
+                    return $btn;
+                })
+                ->rawColumns(['program','action'])
+                ->make(true);
             }
         }
     }

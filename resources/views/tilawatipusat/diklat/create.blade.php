@@ -46,16 +46,20 @@
                                                         <label for="sampai">Sampai</label>
                                                         <input type="date" id="sampai" name="sampai" class="form-control" >
                                                     </div>
-                                                     <div class="form-group col-xl-6">
-                                                         <label for="">Cabang</label>
-                                                         <input type="hidden" class="form-control text-capitalize" id="cabsid" name="cabang_id">
-                                                         <div class="form-group">
-                                                            <input type="hidden" name="cabang_id" id="y">
-                                                            <select name="sel_cabang" id="sel_cabang" class="form-control select2">
-                                                                <option value="0"> PILIH CABANG</option>
-                                                            </select>
-                                                        </div>
-                                                     </div>
+                                                    @if (auth()->user()->role == 'pusat')
+                                                    <div class="form-group col-xl-6">
+                                                        <label for="">Cabang</label>
+                                                        <input type="hidden" class="form-control text-capitalize" id="cabsid" name="cabang_id">
+                                                        <div class="form-group">
+                                                           <input type="hidden" name="cabang_id" id="y">
+                                                           <select name="sel_cabang" id="sel_cabang" class="form-control select2">
+                                                               <option value="0"> PILIH CABANG</option>
+                                                           </select>
+                                                       </div>
+                                                    </div>
+                                                    @else
+                                                        <input type="hidden" name="cabang_id" value="{{auth()->user()->cabang->id}}" required>
+                                                    @endif
                                                  </div>
                                                  <div class="form-group">
                                                     <label for="">Program</label>
