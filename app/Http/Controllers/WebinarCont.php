@@ -12,31 +12,31 @@ use File;
 use App\Models\Flyer;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
- 
-class DiklatCont extends Controller
+
+class WebinarCont extends Controller
 {
     public function index(Request $request)
     {
         $dt_program = Program::all();
-        return view('tilawatipusat.diklat.index',compact('dt_program'));
+        return view('tilawatipusat.webinar.index',compact('dt_program'));
     }
 
-    public function diklat_data(Request $request)
+    public function webinar_data(Request $request)
     {
         if(request()->ajax())
         {
             if(!empty($request->dari))
             {
-                $data   = Pelatihan::with('cabang','program')->withCount('peserta')->orderBy('tanggal','desc')->where('jenis','diklat')
+                $data   = Pelatihan::with('cabang','program')->withCount('peserta')->orderBy('tanggal','desc')->where('jenis','webinar')
                 ->whereBetween('tanggal', array($request->dari, $request->sampai));
                 return DataTables::of($data)
                         ->addColumn('peserta', function($data){
                             if ($data->peserta_count == 0) {
                                 # code...
-                                return '<a href="/diklat-peserta/'.$data->id.'" class="text-danger">'.$data->peserta_count.' - '.$data->keterangan.'<a>';
+                                return '<a href="/webinar-peserta/'.$data->id.'" class="text-danger">'.$data->peserta_count.' - '.$data->keterangan.'<a>';
                             } else {
                                 # code...
-                                return '<a href="/diklat-peserta/'.$data->id.'" class="text-success">'.$data->peserta_count.' - '.$data->keterangan.'<a>';
+                                return '<a href="/webinar-peserta/'.$data->id.'" class="text-success">'.$data->peserta_count.' - '.$data->keterangan.'<a>';
                             }
                         })
                         ->addColumn('cabang', function ($data) {
@@ -46,7 +46,7 @@ class DiklatCont extends Controller
                             return $data->program->name;
                         })
                         ->addColumn('linkpendaftaran', function ($data) {
-                            return '<a href="#" data-id="'.$data->id.'" data-toggle="modal" data-target=".bs-example-modal-diklat-link" 
+                            return '<a href="#" data-id="'.$data->id.'" data-toggle="modal" data-target=".bs-example-modal-webinar-link" 
                             data-slug="https://registrasi.tilawatipusat.com/'.$data->slug.'" >Link Pendaftaran!</a>';
                         })
                         ->addColumn('tanggal', function($data){
@@ -84,23 +84,23 @@ class DiklatCont extends Controller
                 ->rawColumns(['cabang','program','action','peserta','linkpendaftaran','tanggal','flyer','groupwa'])
                 ->make(true);
             }else{
-                $data   = Pelatihan::with('cabang','program')->withCount('peserta')->orderBy('tanggal','desc')->where('jenis','diklat');
+                $data   = Pelatihan::with('cabang','program')->withCount('peserta')->orderBy('tanggal','desc')->where('jenis','webinar');
                 return DataTables::of($data)
                         ->addColumn('peserta', function($data){
                             if ($data->peserta_count == 0) {
                                 # code...
-                                return '<a href="/diklat-peserta/'.$data->id.'" class="text-danger">'.$data->peserta_count.' - '.$data->keterangan.'<a>';
+                                return '<a href="/webinar-peserta/'.$data->id.'" class="text-danger">'.$data->peserta_count.' - '.$data->keterangan.'<a>';
                             } else {
                                 # code...
                                 $jumlah_peserta = Peserta::where('pelatihan_id',$data->id)->where('status',1)->count();
                                 if ($jumlah_peserta !== 0) {
                                     # code...
-                                    return '<a href="/diklat-peserta/'.$data->id.'" class="text-success">'.$jumlah_peserta.' - peserta <a>';
+                                    return '<a href="/webinar-peserta/'.$data->id.'" class="text-success">'.$jumlah_peserta.' - peserta <a>';
                                 }else{
-                                    return '<a href="/diklat-peserta/'.$data->id.'" class="text-danger">'.$jumlah_peserta.' - peserta <a>';
+                                    return '<a href="/webinar-peserta/'.$data->id.'" class="text-danger">'.$jumlah_peserta.' - peserta <a>';
                                 }
                                 
-                                // return '<a href="/diklat-peserta/'.$data->id.'" class="text-danger">'.$data->peserta_count.' - '.$data->keterangan.'<a>';
+                                // return '<a href="/webinar-peserta/'.$data->id.'" class="text-danger">'.$data->peserta_count.' - '.$data->keterangan.'<a>';
                             }
                         })
                         ->addColumn('cabang', function ($data) {
@@ -110,7 +110,7 @@ class DiklatCont extends Controller
                             return $data->program->name;
                         })
                         ->addColumn('linkpendaftaran', function ($data) {
-                            return '<a href="#" data-id="'.$data->id.'" data-toggle="modal" data-target=".bs-example-modal-diklat-link" 
+                            return '<a href="#" data-id="'.$data->id.'" data-toggle="modal" data-target=".bs-example-modal-webinar-link" 
                             data-slug="https://registrasi.tilawatipusat.com/'.$data->slug.'" >Pendaftaran!</a>';
                         })
                         ->addColumn('action', function($data){
@@ -151,13 +151,13 @@ class DiklatCont extends Controller
         }
     }
 
-    public function diklat_data_cabang(Request $request, $cabang_id)
+    public function webinar_data_cabang(Request $request, $cabang_id)
     {
         if(request()->ajax())
         {
             if(!empty($request->dari))
             {
-                $data   = Pelatihan::where('cabang_id',$cabang_id)->with('cabang','program')->withCount('peserta')->orderBy('id','desc')->where('jenis','diklat')
+                $data   = Pelatihan::where('cabang_id',$cabang_id)->with('cabang','program')->withCount('peserta')->orderBy('id','desc')->where('jenis','webinar')
                 ->whereBetween('tanggal', array($request->dari, $request->sampai));
                 return DataTables::of($data)
                         ->addColumn('peserta', function($data){
@@ -176,8 +176,8 @@ class DiklatCont extends Controller
                             return $data->program->name;
                         })
                         ->addColumn('action', function($data){
-                            $actionBtn = ' <a href="/diklat-peserta/'.$data->id.'" class="btn btn-sm btn-outline btn-success fa fa-pencil-square"><i class="fa fa-user"></i></a>';
-                            $actionBtn .= ' <a href="#" data-toggle="modal" data-target=".bs-example-modal-diklat-hapus" data-id="'.$data->id.'" class="btn btn-sm btn-outline btn-danger fa fa-pencil-square"><i class="fa fa-trash"></i></a>';
+                            $actionBtn = ' <a href="/webinar-peserta/'.$data->id.'" class="btn btn-sm btn-outline btn-success fa fa-pencil-square"><i class="fa fa-user"></i></a>';
+                            $actionBtn .= ' <a href="#" data-toggle="modal" data-target=".bs-example-modal-webinar-hapus" data-id="'.$data->id.'" class="btn btn-sm btn-outline btn-danger fa fa-pencil-square"><i class="fa fa-trash"></i></a>';
                             return $actionBtn;
                         })->addColumn('groupwa', function($data){
                             if ($data->groupwa == null) {
@@ -206,21 +206,21 @@ class DiklatCont extends Controller
                             }
                         })
                         ->addColumn('linkpendaftaran', function ($data) {
-                            return '<a href="#" data-id="'.$data->id.'" data-toggle="modal" data-target=".bs-example-modal-diklat-link" 
+                            return '<a href="#" data-id="'.$data->id.'" data-toggle="modal" data-target=".bs-example-modal-webinar-link" 
                             data-slug="https://registrasi.tilawatipusat.com/'.$data->slug.'" >Link Pendaftaran!</a>';
                         })
                 ->rawColumns(['cabang','tanggal','program','action','peserta','groupwa','flyer','linkpendaftaran'])
                 ->make(true);
             }else{
-                $data   = Pelatihan::where('cabang_id', $cabang_id)->with('cabang','program')->withCount('peserta')->orderBy('id','desc')->where('jenis','diklat');
+                $data   = Pelatihan::where('cabang_id', $cabang_id)->with('cabang','program')->withCount('peserta')->orderBy('id','desc')->where('jenis','webinar');
                 return DataTables::of($data)
                         ->addColumn('peserta', function($data){
                             if ($data->peserta_count == 0) {
                                 # code...
-                                return '<a href="/diklat-peserta/'.$data->id.'" class="text-danger">'.$data->peserta_count.' - '.$data->keterangan.'<a>';
+                                return '<a href="/webinar-peserta/'.$data->id.'" class="text-danger">'.$data->peserta_count.' - '.$data->keterangan.'<a>';
                             } else {
                                 # code...
-                                return '<a href="/diklat-peserta/'.$data->id.'" class="text-success">'.$data->peserta_count.' - '.$data->keterangan.'<a>';
+                                return '<a href="/webinar-peserta/'.$data->id.'" class="text-success">'.$data->peserta_count.' - '.$data->keterangan.'<a>';
                             }
                         })
                         ->addColumn('cabang', function ($data) {
@@ -230,8 +230,8 @@ class DiklatCont extends Controller
                             return $data->program->name;
                         })
                         ->addColumn('action', function($data){
-                            $actionBtn = ' <a href="/diklat-peserta/'.$data->id.'" class="btn btn-sm btn-outline btn-success fa fa-pencil-square"><i class="fa fa-user"></i></a>';
-                            $actionBtn .= ' <a href="#" data-toggle="modal" data-target=".bs-example-modal-diklat-hapus" data-id="'.$data->id.'" class="btn btn-sm btn-outline btn-danger fa fa-pencil-square"><i class="fa fa-trash"></i></a>';
+                            $actionBtn = ' <a href="/webinar-peserta/'.$data->id.'" class="btn btn-sm btn-outline btn-success fa fa-pencil-square"><i class="fa fa-user"></i></a>';
+                            $actionBtn .= ' <a href="#" data-toggle="modal" data-target=".bs-example-modal-webinar-hapus" data-id="'.$data->id.'" class="btn btn-sm btn-outline btn-danger fa fa-pencil-square"><i class="fa fa-trash"></i></a>';
                             return $actionBtn;
                         })
                         ->addColumn('groupwa', function($data){
@@ -252,7 +252,7 @@ class DiklatCont extends Controller
                             }
                         })
                         ->addColumn('linkpendaftaran', function ($data) {
-                            return '<a href="#" data-id="'.$data->id.'" data-toggle="modal" data-target=".bs-example-modal-diklat-link" 
+                            return '<a href="#" data-id="'.$data->id.'" data-toggle="modal" data-target=".bs-example-modal-webinar-link" 
                             data-slug="https://registrasi.tilawatipusat.com/'.$data->slug.'" >Link Pendaftaran!</a>';
                         })
                         ->addColumn('tanggal', function($data){
@@ -270,27 +270,27 @@ class DiklatCont extends Controller
         }
     }
 
-    public function diklat_total(Request $request)
+    public function webinar_total(Request $request)
     {
         if (request()->ajax()) {
             # code...
             if(!empty($request->dari))
             {
-                $data = DB::table('pelatihans')->where('jenis','diklat')
+                $data = DB::table('pelatihans')->where('jenis','webinar')
                 ->whereBetween('tanggal', array($request->dari, $request->sampai))
                 ->get()->count();
                 return response()->json($data,200);
             }
             else
             {
-                $data = DB::table('pelatihans')->where('jenis','diklat')
+                $data = DB::table('pelatihans')->where('jenis','webinar')
                 ->get()->count();
                 return response()->json($data,200);
             }
         }
     }
 
-    public function diklat_cabang_select(Request $request)
+    public function webinar_cabang_select(Request $request)
     {
         $data = [];
 
@@ -306,7 +306,7 @@ class DiklatCont extends Controller
         return response()->json($data);
     }
 
-    public function diklat_cabang_select_id($name)
+    public function webinar_cabang_select_id($name)
     {
         $data = Cabang::where('name', $name)->select('id')->first();
         return response()->json($data,200);
@@ -315,7 +315,7 @@ class DiklatCont extends Controller
     public function create(Request $request)
     {
         $dt_program = Program::all();
-        return view('tilawatipusat.diklat.create',compact('dt_program'));
+        return view('tilawatipusat.webinar.create',compact('dt_program'));
     }
 
     public function storeeditwa(Request $request)
@@ -364,8 +364,8 @@ class DiklatCont extends Controller
         // }
         return response()->json(
             [
-              'success' => 'Flyer Diklat Baru Berhasil Ditambahakan',
-              'message' => 'Flyer Diklat Baru Berhasil Ditambahakan'
+              'success' => 'Flyer webinar Baru Berhasil Ditambahakan',
+              'message' => 'Flyer webinar Baru Berhasil Ditambahakan'
             ]
         );
     }
@@ -373,7 +373,7 @@ class DiklatCont extends Controller
     public function store(Request $request)
     {
         $program = Program::where('id', $request->program_id)->first();
-        // $diklat  = Pelatihan::all()->count();
+        // $webinar  = Pelatihan::all()->count();
         $tanggal = Carbon::parse($request->tanggal)->isoFormat('D MMMM Y');
         $cabang  = Cabang::where('id',$request->cabang_id)->first();
         //create pure pelatihan
@@ -415,8 +415,8 @@ class DiklatCont extends Controller
         }
         return response()->json(
             [
-              'success' => 'Diklat Baru Berhasil Dibuat',
-              'message' => 'Diklat Baru Berhasil Dibuat'
+              'success' => 'webinar Baru Berhasil Dibuat',
+              'message' => 'webinar Baru Berhasil Dibuat'
             ]
         );
     }
@@ -442,19 +442,19 @@ class DiklatCont extends Controller
 
         return response()->json(
             [
-              'success' => 'Diklat Berhasil Dihapus',
-              'message' => 'Diklat Berhasil Dihapus'
+              'success' => 'webinar Berhasil Dihapus',
+              'message' => 'webinar Berhasil Dihapus'
             ]
         );
     }
 
-    public function diklat_cabang_total(Request $request)
+    public function webinar_cabang_total(Request $request)
     {
         if (request()->ajax()) {
             # code...
             if(!empty($request->dari))
             {
-                $data = DB::table('pelatihans')->where('jenis','diklat')
+                $data = DB::table('pelatihans')->where('jenis','webinar')
                 ->whereBetween('tanggal', array($request->dari, $request->sampai))
                 ->select('cabang_id', DB::raw('count(*) as total'))
                 ->groupBy('cabang_id')
@@ -463,7 +463,7 @@ class DiklatCont extends Controller
             }
             else
             {
-                $data = DB::table('pelatihans')->where('jenis','diklat')
+                $data = DB::table('pelatihans')->where('jenis','webinar')
                 ->select('cabang_id', DB::raw('count(*) as total'))
                 ->groupBy('cabang_id')
                 ->get()->count();
@@ -472,13 +472,13 @@ class DiklatCont extends Controller
         }
     }
 
-    public function diklat_program_total(Request $request)
+    public function webinar_program_total(Request $request)
     {
         if (request()->ajax()) {
             # code...
             if(!empty($request->dari))
             {
-                $data = DB::table('pelatihans')->where('jenis','diklat')
+                $data = DB::table('pelatihans')->where('jenis','webinar')
                 ->whereBetween('tanggal', array($request->dari, $request->sampai))
                 ->select('program_id', DB::raw('count(*) as total'))
                 ->groupBy('program_id')
@@ -487,7 +487,7 @@ class DiklatCont extends Controller
             }
             else
             {
-                $data = DB::table('pelatihans')->where('jenis', 'diklat')
+                $data = DB::table('pelatihans')->where('jenis', 'webinar')
                 ->select('program_id', DB::raw('count(*) as total'))
                 ->groupBy('program_id')
                 ->get()->count();
@@ -496,14 +496,14 @@ class DiklatCont extends Controller
         }
     }
 
-    public function diklat_program_data(Request $request)
+    public function webinar_program_data(Request $request)
     {
         if(request()->ajax())
         {
             if(!empty($request->dari))
             {
                 # code...
-                $data = Pelatihan::whereBetween('tanggal', array($request->dari, $request->sampai))->where('jenis','diklat')->with('program')->select('program_id')->distinct();
+                $data = Pelatihan::whereBetween('tanggal', array($request->dari, $request->sampai))->where('jenis','webinar')->with('program')->select('program_id')->distinct();
                 return DataTables::of($data)
                 ->addColumn('program', function ($data) {
                     return $data->program->name;
@@ -516,7 +516,7 @@ class DiklatCont extends Controller
                 ->make(true);
             }else {
                 # code...
-                $data = Pelatihan::with('program')->where('jenis','diklat')->select('program_id')->distinct();
+                $data = Pelatihan::with('program')->where('jenis','webinar')->select('program_id')->distinct();
                 return DataTables::of($data)
                 ->addColumn('program', function ($data) {
                     return $data->program->name;
@@ -531,31 +531,31 @@ class DiklatCont extends Controller
         }
     }
 
-    public function diklat_cabang_data(Request $request)
+    public function webinar_cabang_data(Request $request)
     {
         if(request()->ajax())
         {
             if(!empty($request->dari))
             {
-                $data   = Pelatihan::whereBetween('tanggal', array($request->dari, $request->sampai))->where('jenis','diklat')->with('cabang')->select('cabang_id')->distinct();
+                $data   = Pelatihan::whereBetween('tanggal', array($request->dari, $request->sampai))->where('jenis','webinar')->with('cabang')->select('cabang_id')->distinct();
                 return DataTables::of($data)
                 ->addColumn('cabang', function ($data) {
                     return $data->cabang->name.' ( '.$data->cabang->kabupaten->nama.' ) ';
                 })
                 ->addColumn('action', function ($data) {
-                    $btn = '<a href="/diklat-diklat-cabang-data/'.$data->cabang->id.'" class="btn btn-sm btn-info"> check </a>';
+                    $btn = '<a href="/webinar-webinar-cabang-data/'.$data->cabang->id.'" class="btn btn-sm btn-info"> check </a>';
                     return $btn;
                 })
                 ->rawColumns(['cabang','action'])
                 ->make(true);
             }else{
-                $data   = Pelatihan::with('cabang')->where('jenis','diklat')->select('cabang_id')->distinct();
+                $data   = Pelatihan::with('cabang')->where('jenis','webinar')->select('cabang_id')->distinct();
                 return DataTables::of($data)
                 ->addColumn('cabang', function ($data) {
                     return $data->cabang->name.' ( '.$data->cabang->kabupaten->nama.' ) ';
                 })
                 ->addColumn('action', function ($data) {
-                    $btn = '<a href="/diklat-diklat-cabang-data/'.$data->cabang->id.'" class="btn btn-sm btn-info"> check </a>';
+                    $btn = '<a href="/webinar-webinar-cabang-data/'.$data->cabang->id.'" class="btn btn-sm btn-info"> check </a>';
                     return $btn;
                 })
                 ->rawColumns(['cabang','action'])
@@ -564,23 +564,22 @@ class DiklatCont extends Controller
         }
     }
 
-    public function diklat_cabang_data_view(Request $request, $cabang_id){
+    public function webinar_cabang_data_view(Request $request, $cabang_id){
         $data = Cabang::where('id',$cabang_id)->withCount('pelatihan')->first();
-        return view('tilawatipusat.diklat.diklat_cabang',compact('data'));
+        return view('tilawatipusat.webinar.webinar_cabang',compact('data'));
     }
 
-    public function total_diklat_cabang(Request $request, $cabang_id){
+    public function total_webinar_cabang(Request $request, $cabang_id){
         if(request()->ajax())
         {
             if(!empty($request->dari))
             {
-                $data = Pelatihan::where('cabang_id', $cabang_id)->where('jenis','diklat')->whereBetween('tanggal', array($request->dari, $request->sampai))->count();
+                $data = Pelatihan::where('cabang_id', $cabang_id)->where('jenis','webinar')->whereBetween('tanggal', array($request->dari, $request->sampai))->count();
                 return response()->json($data,200);
             }else{
-                $data = Pelatihan::where('cabang_id', $cabang_id)->where('jenis','diklat')->count();
+                $data = Pelatihan::where('cabang_id', $cabang_id)->where('jenis','webinar')->count();
                 return response()->json($data,200);
             }
         }
     }
-    
 }

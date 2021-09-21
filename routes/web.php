@@ -37,6 +37,7 @@ use App\Http\Controllers\KonfirmasiCont;
 use App\Http\Controllers\ExportCont;
 use App\Http\Controllers\SertifikatCont;
 use App\Http\Controllers\BroadcastController;
+use App\Http\Controllers\WebinarCont;
 use App\Http\Controllers\TemplateDownloadCont;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\KodeAdminCont;
@@ -275,6 +276,10 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     Route::get('/diklat-kriteria-total',[KriteriaCont::class, 'kriteria_total'])->name('diklat.kriteria_tot');
     Route::post('/diklat-kriteria-store',[KriteriaCont::class, 'store'])->name('diklat.kriteria_store');
     Route::post('/diklat-kriteria-delete',[KriteriaCont::class, 'delete'])->name('diklat.kriteria_delete');
+
+    Route::get('/diklat-webinar-cteate',[WebinarCont::class, 'create'])->name('webinar.create');
+    Route::get('/diklat-webinar',[WebinarCont::class, 'index'])->name('diklat.webinar');
+    Route::get('/diklat-webinar-data',[WebinarCont::class, 'webinar_data'])->name('diklat.webinar_data');
 
     Route::get('/diklat-diklat',[DiklatCont::class, 'index'])->name('diklat.diklat');
     Route::get('/diklat-diklat-data',[DiklatCont::class, 'diklat_data'])->name('diklat.diklat_data');
