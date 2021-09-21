@@ -743,7 +743,7 @@
 
                     //total diklat dan cabang yang mengadakan diklat
                     $.ajax({
-                        url:'{{ route("diklat.diklat_tot") }}',
+                        url:'{{ route("diklat.webinar_tot") }}',
                         type: 'get',
                         dataType: 'json',
                         data:{dari:dari, sampai:sampai},
@@ -753,7 +753,7 @@
                         }
                     });
                     $.ajax({
-                            url:'{{ route("diklat.diklat_program_tot") }}',
+                            url:'{{ route("diklat.webinar_program_tot") }}',
                             type: 'get',
                             dataType: 'json',
                             data:{dari:dari, sampai:sampai},
@@ -767,7 +767,7 @@
                     if (user == 'pusat') {
                         //keterangan cabang mengadakan diklat
                         $.ajax({
-                            url:'{{ route("diklat.diklat_cabang_tot") }}',
+                            url:'{{ route("diklat.webinar_cabang_tot") }}',
                             type: 'get',
                             dataType: 'json',
                             data:{dari:dari, sampai:sampai},
@@ -877,7 +877,7 @@
                         processing: true,
                         serverSide: true,
                         ajax: {
-                            url:'{{ route("diklat.diklat_cabang_data") }}',
+                            url:'{{ route("diklat.webinar_cabang_data") }}',
                             data:{dari:dari, sampai:sampai}
                         },
                         columns: [
@@ -899,7 +899,7 @@
                         processing: true,
                         serverSide: true,
                         ajax: {
-                            url:'{{ route("diklat.diklat_program_data") }}',
+                            url:'{{ route("diklat.webinar_program_data") }}',
                             data:{dari:dari, sampai:sampai}
                         },
                         columns: [
