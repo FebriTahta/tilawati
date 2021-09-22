@@ -126,8 +126,9 @@ class KonfirmasiCont extends Controller
                         Pendaftaran anda telah kami terima, silahkan bergabung pada group whatsapp berikut 
                         '.$data2->groupwa.'
 
-                        Link group whatsapp tersebut tidak boleh diberikan / disebarkan kepada seiapapun.
-                        Link group tersebut diperuntukkan hanya untuk anda yang telah mendaftar melalui :
+                        *PERINGATAN*
+                        Link group whatsapp tersebut tidak boleh diberikan / disebarkan kepada siapapun.
+                        Link group whatsapp tersebut diperuntukkan hanya untuk anda yang telah mendaftar melalui :
                         https://registrasi.tilawatipusat.com/'.$data2->slug.'
                     ',
                     'secret' => false, // or true
@@ -161,8 +162,11 @@ class KonfirmasiCont extends Controller
                 $datas = [
                     'phone' => $data->telp,
                     'message' => ' *PESAN OTOMATIS*
-                        Maaf, Pendaftaran anda belum dapat kami terima karena :  
-                        '.$alasan.'
+                        Yth. '.$data->name.' Maaf, Pendaftaran anda belum dapat kami terima karena :  
+                        *'.$alasan.'*.
+                        
+                        Perbarui data anda pada link berikut apabila ingin melanjutkan pendaftaran.
+                        https://registrasi.tilawatipusat.com/'.$data2->slug.'
                     ',
                     'secret' => false, // or true
                     'priority' => false, // or true

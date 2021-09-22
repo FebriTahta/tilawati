@@ -29,7 +29,7 @@
                     {{-- @if (auth()->user()->role == 'cabang') --}}
                     <div class="card-body">
                         <div class="mb-4 card-title">
-                            <p class="text-info"><u class="text-info"> {{ $diklat_ini }} </u> Kegiatan Diklat Terbaru</p>
+                            <p class="text-info"><u class="text-info"> {{ $diklat_ini }} </u> Kegiatan Terbaru</p>
                         </div>
                         <div class="mb-4">
                             <i class="fas fa-quote-left h4 text-primary"></i>
@@ -123,16 +123,24 @@
 
                 @component('common-tilawatipusat.dashboard-widget')
                 
-                    @slot('title') <a href="/diklat-diklat"><b id="dk">???</b> <b>Diklat</b> </a><br>   @endslot
+                    @slot('title') <a href="/diklat-diklat"><b id="dk">???</b> <b>Total Diklat</b> </a><br>   @endslot
                     @slot('iconClass') mdi mdi-home-analytics  @endslot
                     @slot('price')  @endslot
                     
                 
                 @endcomponent
+
+                @component('common-tilawatipusat.dashboard-widget')
+                            
+                    @slot('title') <a href="/diklat-webinar"><b id="cbx"> ??? </b> <b>Total Diklat</b> </a><br>@endslot
+                    @slot('iconClass') mdi mdi-home-analytics  @endslot
+                    @slot('price')   @endslot
+                                
+                @endcomponent
         
                 @component('common-tilawatipusat.dashboard-widget')
                 
-                    @slot('title')<a href="/diklat-peserta-data"> <b id="ps">???</b> <b>Peserta</b> </a><br>  @endslot
+                    @slot('title')<a href="/diklat-peserta-data"> <b id="ps">???</b> <b>Total Peserta</b> </a><br>  @endslot
                     @slot('iconClass') mdi mdi-account-group  @endslot
                     @slot('price')  @endslot
                     
@@ -337,6 +345,17 @@
                         console.log(data);
                     }
                 });
+
+                $.ajax({
+                        url:'{{ route("diklat.webinar_tot") }}',
+                        type: 'get',
+                        dataType: 'json',
+                        data:{dari:dari, sampai:sampai},
+                        success:function(data) {
+                            document.getElementById('cbx').innerHTML = data;
+                            console.log(data);
+                        }
+                    });
             //lembaga
             $.ajax({
                     url:'{{ route("diklat.lembaga_kab") }}',

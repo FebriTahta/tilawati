@@ -12,7 +12,7 @@ class DashboardCont extends Controller
     {
         $x = Cabang::select('kabupaten_id', DB::raw('count(*) as total'))->groupBy('kabupaten_id')->havingRaw('total > 1')->get();
 
-        $diklat = Pelatihan::orderBy('tanggal','desc')->get();
+        $diklat = Pelatihan::orderBy('tanggal','desc')->limit(5)->get();
         $diklat_ini = $diklat->count();
         return view('tilawatipusat.dashboard.index',compact('diklat','diklat_ini','x'));
     }
