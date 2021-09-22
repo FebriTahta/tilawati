@@ -54,7 +54,7 @@
                             @component('common-tilawatipusat.dashboard-widget')
                             
                                 @slot('title') <b id="kabkos" class="text-info"> {{$lulus}} </b> Bersyahadah  @endslot
-                                @slot('iconClass')mdi mdi-city-variant-outline  @endslot
+                                @slot('iconClass')mdi mdi-mdi mdi-contact-mail-outline  @endslot
                                 @slot('price')   @endslot
                                 
                             @endcomponent
@@ -64,7 +64,7 @@
                             @component('common-tilawatipusat.dashboard-widget')
                             
                                 @slot('title') <b id="kabkos" class="text-danger"> {{$belum_lulus}} </b> Belum Bersyahadah  @endslot
-                                @slot('iconClass')mdi mdi-city-variant-outline  @endslot
+                                @slot('iconClass')mdi mdi-smart-card-outline  @endslot
                                 @slot('price')   @endslot
                                 
                             @endcomponent
