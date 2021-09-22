@@ -1,9 +1,9 @@
 <?php
-
+ 
 namespace App\Http\Controllers;
 use App\Models\Pelatihan;
 use App\Models\Peserta;
-use Carbon;
+use Carbon\Carbon;
 use DataTables;
 use Illuminate\Http\Request;
 
@@ -42,7 +42,16 @@ class KonfirmasiCont extends Controller
                             $actionBtn2 = '<button data-id="'.$data->id.'" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-download"><i class="fa fa-download"></i></button>';
                             return $actionBtn2;
                         })
-                ->rawColumns(['cabang','program','peserta','unduh'])
+                        ->addColumn('tanggal', function($data){
+                            if ($data->sampai_tanggal !== null) {
+                                # code...
+                                return Carbon::parse($data->tanggal)->isoFormat('dddd, D MMMM Y').' - '.
+                                Carbon::parse($data->tanggal)->isoFormat('dddd, D MMMM Y');
+                            }else{
+                                return Carbon::parse($data->tanggal)->isoFormat('dddd, D MMMM Y');
+                            }
+                        })
+                ->rawColumns(['cabang','program','peserta','unduh','tanggal'])
                 ->make(true);
             }else{
                 $data   = Pelatihan::with('cabang','program')->withCount('peserta')->orderBy('id','desc');
@@ -67,7 +76,16 @@ class KonfirmasiCont extends Controller
                             $actionBtn2 .= ' <button class="btn btn-sm btn-success"><i class="fa fa-file-import"></i></button>';
                             return $actionBtn2;
                         })
-                ->rawColumns(['cabang','program','peserta','unduh'])
+                        ->addColumn('tanggal', function($data){
+                            if ($data->sampai_tanggal !== null) {
+                                # code...
+                                return Carbon::parse($data->tanggal)->isoFormat('dddd, D MMMM Y').' - '.
+                                Carbon::parse($data->tanggal)->isoFormat('dddd, D MMMM Y');
+                            }else{
+                                return Carbon::parse($data->tanggal)->isoFormat('dddd, D MMMM Y');
+                            }
+                        })
+                ->rawColumns(['cabang','program','peserta','unduh','tanggal'])
                 ->make(true);
             }
         }
