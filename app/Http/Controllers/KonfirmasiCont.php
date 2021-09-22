@@ -46,7 +46,7 @@ class KonfirmasiCont extends Controller
                             if ($data->sampai_tanggal !== null) {
                                 # code...
                                 return Carbon::parse($data->tanggal)->isoFormat('dddd, D MMMM Y').' - '.
-                                Carbon::parse($data->tanggal)->isoFormat('dddd, D MMMM Y');
+                                Carbon::parse($data->sampai_tanggal)->isoFormat('dddd, D MMMM Y');
                             }else{
                                 return Carbon::parse($data->tanggal)->isoFormat('dddd, D MMMM Y');
                             }
@@ -80,7 +80,7 @@ class KonfirmasiCont extends Controller
                             if ($data->sampai_tanggal !== null) {
                                 # code...
                                 return Carbon::parse($data->tanggal)->isoFormat('dddd, D MMMM Y').' - '.
-                                Carbon::parse($data->tanggal)->isoFormat('dddd, D MMMM Y');
+                                Carbon::parse($data->sampai_tanggal)->isoFormat('dddd, D MMMM Y');
                             }else{
                                 return Carbon::parse($data->tanggal)->isoFormat('dddd, D MMMM Y');
                             }
