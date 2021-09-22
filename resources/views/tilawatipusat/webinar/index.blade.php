@@ -853,7 +853,7 @@
                                 {
                                 data:'groupwa',
                                 name:'groupwa'
-                                },
+                                }, 
                                 {
                                 data:'flyer',
                                 name:'flyer'

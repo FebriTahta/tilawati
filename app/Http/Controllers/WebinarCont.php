@@ -446,7 +446,7 @@ class WebinarCont extends Controller
               'message' => 'webinar Berhasil Dihapus'
             ]
         );
-    }
+    } 
 
     public function webinar_cabang_total(Request $request)
     {
