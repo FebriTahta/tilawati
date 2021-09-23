@@ -19,6 +19,7 @@ class CreatePesertasTable extends Migration
             $table->unsignedBigInteger('acara_id')->nullable();
             $table->unsignedBigInteger('phonegara_id')->nullable();
             $table->unsignedBigInteger('pelatihan_id')->nullable();
+            $table->unsignedBigInteger('program_id')->nullable();
             $table->unsignedBigInteger('cabang_id')->nullable();
             $table->unsignedBigInteger('lembaga_id')->nullable();
             $table->unsignedBigInteger('provinsi_id')->nullable();

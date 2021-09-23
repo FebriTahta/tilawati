@@ -70,6 +70,7 @@ class RegistrasiCont extends Controller
                     [
                         'nik' => $request->nik,
                         'pelatihan_id' => $request->pelatihan_id,
+                        'program_id' => $diklat->program_id,
                         'cabang_id' => $request->cabang_id,
                         'lembaga_id' => $request->lembaga_id,
                         'provinsi_id' => $request->provinsi_id,

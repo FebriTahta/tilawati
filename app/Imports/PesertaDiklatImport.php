@@ -50,6 +50,7 @@ class PesertaDiklatImport implements ToCollection, WithStartRow, WithChunkReadin
                         $dt_pel = new Peserta;
                         $dt_pel->phonegara_id = 175;
                         $dt_pel->pelatihan_id = $this->id;
+                        $dt_pel->program_id = $diklat->program_id;
                         $dt_pel->cabang_id = $this->cabang_id;
                         $dt_pel->tanggal = $this->tanggal;
                         $dt_pel->name = $row[0];

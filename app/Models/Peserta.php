@@ -14,6 +14,7 @@ class Peserta extends Model
         'phonegara_id',
         'acara_id',
         'pelatihan_id',
+        'program_id',
         'cabang_id',
         'lembaga_id',
         'name',
