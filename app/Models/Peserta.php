@@ -54,10 +54,16 @@ class Peserta extends Model
         return $this->belongsTo(Phonegara::class);
     }
 
+    public function program()
+    {
+        return $this->belongsTo(Program::class);
+    }
+
     public function acara()
     {
         return $this->hasMany(Acara::class);
     }
+    
 
     public function kecamatan()
     {

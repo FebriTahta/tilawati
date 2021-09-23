@@ -22,6 +22,11 @@ class Program extends Model
         return $this->hasMany(Registrasi::class);
     }
 
+    public function peserta()
+    {
+        return $this->hasMany(Peserta::class);
+    }
+
     public function pelatihan()
     {
         return $this->hasMany(Pelatihan::class);
