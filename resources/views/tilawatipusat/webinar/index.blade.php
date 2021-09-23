@@ -297,6 +297,7 @@
                                                             </div>
                                                             <div class="col-md-6 col-12 form-group">
                                                                 <label for="">groupwa</label>
+                                                                <input type="hidden" name="jenis" value="webinar" required>
                                                                 <textarea name="groupwa" id="groupwa1" cols="30" rows="2" class="form-control" required>{{$item->groupwa}}</textarea>
                                                             </div>
                                                             <div class="col-md-6 col-12 form-group">

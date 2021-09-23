@@ -31,7 +31,7 @@
                                         <form id="diklat_store" method="POST" enctype="multipart/form-data">@csrf
                                             <div class="form-group">
                                                  <div class="row">
-                                                     <input type="hidden" name="jenis" value="diklat" required>
+                                                     <input type="hidden" name="jenis" value="webinar" required>
                                                     <div class="form-group col-12 col-xl-12 border-bottom">
                                                         <input type="radio" id="1" name="waktu" value="1" onclick="myFunction2()" checked >
                                                         <label for="1">satu hari</label><br>
