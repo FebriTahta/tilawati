@@ -94,8 +94,9 @@ class PesertaDiklatImport implements ToCollection, WithStartRow, WithChunkReadin
                                 $telephone = $phone;
                                 $dt_pel->telp = $telephone;
                             }else{
-                                $potong = substr($phone,1,15);
-                                $dt_pel->telp = $potong;   
+                                // $potong = substr($phone,1,15);
+                                $telephone = '0'.$phone;
+                                $dt_pel->telp = $telephone;   
                             }
                         }
                         $dt_pel->tmptlahir = $row[4];
