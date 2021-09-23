@@ -123,13 +123,14 @@ class KonfirmasiCont extends Controller
                 $datas = [
                     'phone' => $data->telp,
                     'message' => ' *PESAN OTOMATIS*
-                        Pendaftaran anda telah kami terima, silahkan bergabung pada group whatsapp berikut 
-                        '.$data2->groupwa.'
+                    *Yth. '.strtoupper($data->name).'*.
+                    Pendaftaran anda telah kami terima, silahkan bergabung pada group whatsapp berikut 
+                    '.$data2->groupwa.'
 
-                        *PERINGATAN*
-                        Link group whatsapp tersebut tidak boleh diberikan / disebarkan kepada siapapun.
-                        Link group whatsapp tersebut diperuntukkan hanya untuk anda yang telah mendaftar melalui :
-                        https://registrasi.tilawatipusat.com/'.$data2->slug.'
+                    *PERINGATAN*
+                    Link group whatsapp tersebut tidak boleh diberikan / disebarkan kepada siapapun.
+                    Link group whatsapp tersebut diperuntukkan hanya untuk anda yang telah mendaftar melalui :
+                    https://registrasi.tilawatipusat.com/'.$data2->slug.'
                     ',
                     'secret' => false, // or true
                     'priority' => false, // or true
@@ -162,11 +163,12 @@ class KonfirmasiCont extends Controller
                 $datas = [
                     'phone' => $data->telp,
                     'message' => ' *PESAN OTOMATIS*
-                        Yth. '.$data->name.' Maaf, Pendaftaran anda belum dapat kami terima karena :  
-                        *'.$alasan.'*.
+                    *Yth. '.strtoupper($data->name).'*.
+                    Maaf, Pendaftaran anda belum dapat kami terima karena :  
+                    *'.$alasan.'*.
                         
-                        Perbarui data anda pada link berikut apabila ingin melanjutkan pendaftaran.
-                        https://registrasi.tilawatipusat.com/'.$data2->slug.'
+                    Perbarui data anda pada link berikut apabila ingin melanjutkan pendaftaran.
+                    https://registrasi.tilawatipusat.com/'.$data2->slug.'
                     ',
                     'secret' => false, // or true
                     'priority' => false, // or true
