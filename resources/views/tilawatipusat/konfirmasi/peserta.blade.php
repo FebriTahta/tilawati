@@ -264,7 +264,7 @@
                         toastr.success(data.success);
                         var oTable = $('#datatable-buttons').dataTable();
                         oTable.fnDraw(false);
-                        $('#btnterima').val('Ya, Hapus!');
+                        $('#btnterima').val('Ya, Terima!');
                         $('.modal-acc').modal('hide');
                         $('#btnterima').attr('disabled',false);
                     }
