@@ -33,6 +33,20 @@ class PesertaCont extends Controller
         return view('tilawatipusat.peserta.index',compact('penilaian','pelatihan_id','diklat','kriteria','kab_kosong','lulus','belum_lulus'));
     }
 
+    public function index2($id)
+    {
+        $pelatihan_id = $id;
+        $diklat     = Pelatihan::where('id', $id)->first();
+        $program_id = $diklat->program->id;
+        $kriteria   = Kriteria::where('program_id',$program_id)->get();
+        $penilaian  = Penilaian::where('program_id',$program_id)->get();
+        $kab_kosong = Peserta::where('pelatihan_id',$pelatihan_id)->where('kabupaten_id', null)->count();
+        $lulus      = Peserta::where('pelatihan_id',$pelatihan_id)->where('bersyahadah', 1)->count();
+        $seluruh    = Peserta::where('pelatihan_id',$pelatihan_id)->count();
+        $belum_lulus= $seluruh-$lulus;
+        return view('tilawatipusat.peserta.index2',compact('penilaian','pelatihan_id','diklat','kriteria','kab_kosong','lulus','belum_lulus'));
+    }
+
     public function peserta_data(Request $request,$id)
     {
         if(request()->ajax())

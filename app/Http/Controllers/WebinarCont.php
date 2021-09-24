@@ -33,10 +33,10 @@ class WebinarCont extends Controller
                         ->addColumn('peserta', function($data){
                             if ($data->peserta_count == 0) {
                                 # code...
-                                return '<a href="/webinar-peserta/'.$data->id.'" class="text-danger">'.$data->peserta_count.' - '.$data->keterangan.'<a>';
+                                return '<a href="/diklat-peserta-webinar/'.$data->id.'" class="text-danger">'.$data->peserta_count.' - '.$data->keterangan.'<a>';
                             } else {
                                 # code...
-                                return '<a href="/webinar-peserta/'.$data->id.'" class="text-success">'.$data->peserta_count.' - '.$data->keterangan.'<a>';
+                                return '<a href="/diklat-peserta-webinar/'.$data->id.'" class="text-success">'.$data->peserta_count.' - '.$data->keterangan.'<a>';
                             }
                         })
                         ->addColumn('cabang', function ($data) {
@@ -89,18 +89,18 @@ class WebinarCont extends Controller
                         ->addColumn('peserta', function($data){
                             if ($data->peserta_count == 0) {
                                 # code...
-                                return '<a href="/webinar-peserta/'.$data->id.'" class="text-danger">'.$data->peserta_count.' - '.$data->keterangan.'<a>';
+                                return '<a href="/diklat-peserta-webinar/'.$data->id.'" class="text-danger">'.$data->peserta_count.' - '.$data->keterangan.'<a>';
                             } else {
                                 # code...
                                 $jumlah_peserta = Peserta::where('pelatihan_id',$data->id)->where('status',1)->count();
                                 if ($jumlah_peserta !== 0) {
                                     # code...
-                                    return '<a href="/webinar-peserta/'.$data->id.'" class="text-success">'.$jumlah_peserta.' - peserta <a>';
+                                    return '<a href="/diklat-peserta-webinar/'.$data->id.'" class="text-success">'.$jumlah_peserta.' - peserta <a>';
                                 }else{
-                                    return '<a href="/webinar-peserta/'.$data->id.'" class="text-danger">'.$jumlah_peserta.' - peserta <a>';
+                                    return '<a href="/diklat-peserta-webinar/'.$data->id.'" class="text-danger">'.$jumlah_peserta.' - peserta <a>';
                                 }
                                 
-                                // return '<a href="/webinar-peserta/'.$data->id.'" class="text-danger">'.$data->peserta_count.' - '.$data->keterangan.'<a>';
+                                // return '<a href="/diklat-peserta-webinar/'.$data->id.'" class="text-danger">'.$data->peserta_count.' - '.$data->keterangan.'<a>';
                             }
                         })
                         ->addColumn('cabang', function ($data) {
@@ -176,7 +176,7 @@ class WebinarCont extends Controller
                             return $data->program->name;
                         })
                         ->addColumn('action', function($data){
-                            $actionBtn = ' <a href="/webinar-peserta/'.$data->id.'" class="btn btn-sm btn-outline btn-success fa fa-pencil-square"><i class="fa fa-user"></i></a>';
+                            $actionBtn = ' <a href="/diklat-peserta-webinar/'.$data->id.'" class="btn btn-sm btn-outline btn-success fa fa-pencil-square"><i class="fa fa-user"></i></a>';
                             $actionBtn .= ' <a href="#" data-toggle="modal" data-target=".bs-example-modal-webinar-hapus" data-id="'.$data->id.'" class="btn btn-sm btn-outline btn-danger fa fa-pencil-square"><i class="fa fa-trash"></i></a>';
                             return $actionBtn;
                         })->addColumn('groupwa', function($data){
@@ -217,10 +217,10 @@ class WebinarCont extends Controller
                         ->addColumn('peserta', function($data){
                             if ($data->peserta_count == 0) {
                                 # code...
-                                return '<a href="/webinar-peserta/'.$data->id.'" class="text-danger">'.$data->peserta_count.' - '.$data->keterangan.'<a>';
+                                return '<a href="/diklat-peserta-webinar/'.$data->id.'" class="text-danger">'.$data->peserta_count.' - '.$data->keterangan.'<a>';
                             } else {
                                 # code...
-                                return '<a href="/webinar-peserta/'.$data->id.'" class="text-success">'.$data->peserta_count.' - '.$data->keterangan.'<a>';
+                                return '<a href="/diklat-peserta-webinar/'.$data->id.'" class="text-success">'.$data->peserta_count.' - '.$data->keterangan.'<a>';
                             }
                         })
                         ->addColumn('cabang', function ($data) {
@@ -230,7 +230,7 @@ class WebinarCont extends Controller
                             return $data->program->name;
                         })
                         ->addColumn('action', function($data){
-                            $actionBtn = ' <a href="/webinar-peserta/'.$data->id.'" class="btn btn-sm btn-outline btn-success fa fa-pencil-square"><i class="fa fa-user"></i></a>';
+                            $actionBtn = ' <a href="/diklat-peserta-webinar/'.$data->id.'" class="btn btn-sm btn-outline btn-success fa fa-pencil-square"><i class="fa fa-user"></i></a>';
                             $actionBtn .= ' <a href="#" data-toggle="modal" data-target=".bs-example-modal-webinar-hapus" data-id="'.$data->id.'" class="btn btn-sm btn-outline btn-danger fa fa-pencil-square"><i class="fa fa-trash"></i></a>';
                             return $actionBtn;
                         })

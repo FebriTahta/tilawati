@@ -145,7 +145,7 @@
                                                 <div class="row" >
                                                     <input type="hidden" style="border: none" class="form-control text-capitalize" id="id" name="id" required>
                                                     <div class="form-group col-6 col-xl-6">
-                                                        <input type="submit" name="cetak_surat" id="btnhapus" class="btn btn-success" value="Ya, Cetak!" />
+                                                        <input type="submit" name="cetak_surat" id="btncetak" class="btn btn-success" value="Ya, Cetak!" />
                                                     </div>
                                                     <div class="form-group col-6 col-xl-6">
                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">

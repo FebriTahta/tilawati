@@ -1,6 +1,6 @@
 @extends('layouts.tilawatipusat_layouts.master')
 
-@section('title') Peserta Diklat @endsection
+@section('title') Peserta Webinar @endsection
 @section('css')
 
     <!-- DataTables -->
@@ -13,12 +13,12 @@
 @section('content')
 
     @component('common-tilawatipusat.breadcrumb')
-         @slot('title')peserta {{ $diklat->program->name }}   @endslot
+         @slot('title'){{ $diklat->program->name }}   @endslot
          @slot('title_li')   @endslot
     @endcomponent
     <input type="hidden" id="pelatihan_id2" value="{{ $diklat->id }}">
                     <div class="row">
-                        <div class="col-xl-12">
+                        <div class="col-xl-8">
                             @component('common-tilawatipusat.dashboard-widget')
                             
                                 @slot('title') <b id="" class="text-capitalize"> {{ $diklat->cabang->name }} - {{ strtolower($diklat->cabang->kabupaten->nama) }} - <span class="text-info">{{ Carbon\Carbon::parse($diklat->tanggal)->isoFormat('D MMMM Y') }}</span></b>  @endslot
@@ -27,18 +27,6 @@
                                 
                             @endcomponent
                         </div>
-
-                        @if ($kab_kosong != 0)
-                        <div class="col-xl-12">
-                            @component('common-tilawatipusat.dashboard-widget')
-                            
-                                @slot('title') <b id="kabkos"> ??? </b> <b class="text-danger"> Peserta dengan Kab - Kota Kosong / Salah Penulisan </b> @endslot
-                                @slot('iconClass')mdi mdi-city-variant-outline  @endslot
-                                @slot('price')   @endslot
-                                
-                            @endcomponent
-                        </div>
-                        @endif
 
                         <div class="col-xl-4">
                             @component('common-tilawatipusat.dashboard-widget')
@@ -50,25 +38,17 @@
                             @endcomponent
                         </div>
 
-                        <div class="col-xl-4">
+                        @if ($kab_kosong !== 0)
+                        <div class="col-xl-12">
                             @component('common-tilawatipusat.dashboard-widget')
                             
-                                @slot('title') <b id="kabkos" class="text-info"> {{$lulus}} </b> Bersyahadah  @endslot
-                                @slot('iconClass')mdi mdi-mdi mdi-contact-mail-outline  @endslot
+                                @slot('title') <b id="kabkos"> ??? </b> <span class="text-danger"> Peserta dengan Kab - Kota Kosong / Salah Penulisan </span> @endslot
+                                @slot('iconClass')mdi mdi-city-variant-outline  @endslot
                                 @slot('price')   @endslot
                                 
                             @endcomponent
                         </div>
-
-                        <div class="col-xl-4">
-                            @component('common-tilawatipusat.dashboard-widget')
-                            
-                                @slot('title') <b id="kabkos" class="text-danger"> {{$belum_lulus}} </b> Belum Bersyahadah  @endslot
-                                @slot('iconClass')mdi mdi-smart-card-outline  @endslot
-                                @slot('price')   @endslot
-                                
-                            @endcomponent
-                        </div>
+                        @endif
 
                     </div>
 
@@ -78,12 +58,9 @@
                                 <div class="card-body" >
                                     <input type="hidden" id="jenis_program" value="{{ $diklat->program->name }}">
                                     <h4 class="card-title text-capitalize">Data Peserta Pelatihan </h4>
-                                    @if ($diklat->program->penilaian->count() == 0)
-                                        <code>Tambahkan kategori penilaian pada program diklat terlebih dahulu pada menu program</code>
-                                    @endif
                                     <p class="card-title-desc">Ter-update berdasarkan Tahun 2021 </br></p>
-                                    <a class="btn btn-sm btn-success  mr-1 text-white" style="width:130px" @if($diklat->program->penilaian->count() == 0) disabled @else href="{{ route('diklat.peserta_create', $pelatihan_id) }}" @endif><i class="mdi mdi-plus"></i> tambah peserta</a>
-                                    <button class="btn btn-sm btn-success  mr-1" style="width:130px " data-toggle="modal" @if($diklat->program->penilaian->count() == 0) disabled @else data-target=".bs-example-modal-peserta" @endif><i class="mdi mdi-cloud-upload"></i> import peserta</button>
+                                    <a class="btn btn-sm btn-success  mr-1 text-white" style="width:130px"  href="{{ route('diklat.peserta_create', $pelatihan_id) }}" ><i class="mdi mdi-plus"></i> tambah peserta</a>
+                                    <button class="btn btn-sm btn-success  mr-1" style="width:130px " data-toggle="modal"  data-target=".bs-example-modal-peserta" ><i class="mdi mdi-cloud-upload"></i> import peserta</button>
                                     <input type="hidden" id="pelatihan_id" value="{{ $pelatihan_id }}">
                                     <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
                                         <div id="message"></div>
