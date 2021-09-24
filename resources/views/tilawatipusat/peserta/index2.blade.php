@@ -68,16 +68,10 @@
                                             <thead class="text-bold text-primary" style="text-transform: capitalize">
                                                 <tr>
                                                     <th>peserta</th>
-                                                    @if ($diklat->program->name == "standarisasi guru al qur'an level 1")
-                                                        <th>jilid</th>
-                                                    @endif
                                                     <th>kota/kabupaten</th>
                                                     <th>phone</th>
                                                     <th>TTL</th>
-                                                    <th>nilai</th>
                                                     <th>alamat</th>
-                                                    <th>Kriteria</th>
-                                                    <th>email</th>
                                                     <th>Option</th>
                                                 </tr>
                                             </thead>
@@ -86,16 +80,10 @@
                                             <tfoot class="text-primary" style="text-transform: capitalize">
                                                 <tr>
                                                     <th>peserta</th>
-                                                    @if ($diklat->program->name == "standarisasi guru al qur'an level 1")
-                                                        <th>jilid</th>
-                                                    @endif
                                                     <th>kota/kabupaten</th>
                                                     <th>phone</th>
                                                     <th>TTL</th>
-                                                    <th>nilai</th>
                                                     <th>alamat</th>
-                                                    <th>Kriteria</th>
-                                                    <th>email</th>
                                                     <th>Option</th>
                                                 </tr>
                                             </tfoot>
@@ -631,10 +619,6 @@
                         name:'name'
                         },
                         {
-                        data:'jilid',
-                        name:'jilid'
-                        },
-                        {
                         data:'kabupaten',
                         name:'kabupaten.nama',
                         orderable:false,
@@ -648,20 +632,8 @@
                         name:'ttl'
                         },
                         {
-                        data:'nilai',
-                        name:'nilai'
-                        },
-                        {
                         data:'alamat',
                         name:'alamat'
-                        },
-                        {
-                        data:'krits',
-                        name:'kriteria',
-                        },
-                        {
-                        data:'email',
-                        name:'email'
                         },
                         {
                         data:'action',
@@ -698,20 +670,8 @@
                         name:'ttl'
                         },
                         {
-                        data:'nilai',
-                        name:'nilai'
-                        },
-                        {
                         data:'alamat',
                         name:'alamat'
-                        },
-                        {
-                        data:'krits',
-                        name:'kriteria'
-                        },
-                        {
-                        data:'email',
-                        name:'email'
                         },
                         {
                         data:'action',
