@@ -165,9 +165,6 @@ class KonfirmasiCont extends Controller
                     *Yth. '.strtoupper($data->name).'*.
                     Maaf, Pendaftaran anda belum dapat kami terima karena :  
                     *'.$alasan.'*.
-                        
-                    Perbarui data anda pada link berikut apabila ingin melanjutkan pendaftaran.
-                    https://registrasi.tilawatipusat.com/'.$data2->slug.'
                     ',
                     'secret' => false, // or true
                     'priority' => false, // or true
