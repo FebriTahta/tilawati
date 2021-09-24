@@ -128,9 +128,8 @@ class KonfirmasiCont extends Controller
                     '.$data2->groupwa.'
 
                     *PERINGATAN*
-                    Link group whatsapp tersebut tidak boleh diberikan / disebarkan kepada siapapun.
-                    Link group whatsapp tersebut diperuntukkan hanya untuk anda yang telah mendaftar melalui :
-                    https://registrasi.tilawatipusat.com/'.$data2->slug.'
+                    Group Whatsapp tersebut hanya untuk anda yang sudah melakukan registrasi.
+                    *TIDAK UNTUK DISEBAR LUASKAN*
                     ',
                     'secret' => false, // or true
                     'priority' => false, // or true
