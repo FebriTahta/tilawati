@@ -87,23 +87,24 @@ class DiklatCont extends Controller
                 $data   = Pelatihan::with('cabang','program','peserta')->withCount('peserta')->orderBy('tanggal','desc')->where('jenis','diklat');
                 return DataTables::of($data)
                         ->addColumn('peserta', function($data){
-                            $jumlah_peserta = Peserta::where('pelatihan_id',$data->id)->where('status',1)->count();
-                            if ($jumlah_peserta == 0) {
-                                # code...
-                                return '<a href="/diklat-peserta/'.$data->id.'" class="text-danger">'.$jumlah_peserta.' - '.$data->keterangan.'<a>';
-                            } else {
-                                # code...
-                                return '<a href="/diklat-peserta/'.$data->id.'" class="text-success">'.$jumlah_peserta.' - peserta <a>';
+                            // $jumlah_peserta = Peserta::where('pelatihan_id',$data->id)->where('status',1)->count();
+                            // if ($jumlah_peserta == 0) {
+                            //     # code...
+                            //     return '<a href="/diklat-peserta/'.$data->id.'" class="text-danger">'.$jumlah_peserta.' - '.$data->keterangan.'<a>';
+                            // } else {
+                            //     # code...
+                            //     return '<a href="/diklat-peserta/'.$data->id.'" class="text-success">'.$jumlah_peserta.' - peserta <a>';
 
-                                // if ($jumlah_peserta !== 0) {
-                                //     # code...
+                            //     // if ($jumlah_peserta !== 0) {
+                            //     //     # code...
                                     
-                                // }else{
-                                //     return '<a href="/diklat-peserta/'.$data->id.'" class="text-danger">'.$jumlah_peserta.' - peserta <a>';
-                                // }
+                            //     // }else{
+                            //     //     return '<a href="/diklat-peserta/'.$data->id.'" class="text-danger">'.$jumlah_peserta.' - peserta <a>';
+                            //     // }
                                 
-                                // return '<a href="/diklat-peserta/'.$data->id.'" class="text-danger">'.$data->peserta_count.' - '.$data->keterangan.'<a>';
-                            }
+                            //     // return '<a href="/diklat-peserta/'.$data->id.'" class="text-danger">'.$data->peserta_count.' - '.$data->keterangan.'<a>';
+                            // }
+                            return "dalam perbaikan";
                         })
                         ->addColumn('cabang', function ($data) {
                             return $data->cabang->name;
