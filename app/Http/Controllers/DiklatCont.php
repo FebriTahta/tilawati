@@ -84,28 +84,24 @@ class DiklatCont extends Controller
                 ->rawColumns(['cabang','program','action','peserta','linkpendaftaran','tanggal','flyer','groupwa'])
                 ->make(true);
             }else{
-                $data   = Pelatihan::with('cabang','program','peserta')->orderBy('tanggal','desc')->where('jenis','diklat');
+                $data   = Pelatihan::with('cabang','program')->withCount('peserta')->orderBy('tanggal','desc')->where('jenis','diklat');
                 return DataTables::of($data)
                         ->addColumn('peserta', function($data){
-                            // $jumlah_peserta = Peserta::where('pelatihan_id',$data->id)->where('status',1)->count();
-                            // if ($jumlah_peserta == 0) {
-                            //     # code...
-                            //     return '<a href="/diklat-peserta/'.$data->id.'" class="text-danger">'.$jumlah_peserta.' - '.$data->keterangan.'<a>';
-                            // } else {
-                            //     # code...
-                            //     return '<a href="/diklat-peserta/'.$data->id.'" class="text-success">'.$jumlah_peserta.' - peserta <a>';
-
-                            //     // if ($jumlah_peserta !== 0) {
-                            //     //     # code...
-                                    
-                            //     // }else{
-                            //     //     return '<a href="/diklat-peserta/'.$data->id.'" class="text-danger">'.$jumlah_peserta.' - peserta <a>';
-                            //     // }
+                            if ($data->peserta_count == 0) {
+                                # code...
+                                return '<a href="/diklat-peserta/'.$data->id.'" class="text-danger">'.$data->peserta_count.' - '.$data->keterangan.'<a>';
+                            } else {
+                                # code...
+                                $jumlah_peserta = Peserta::where('pelatihan_id',$data->id)->where('status',1)->count();
+                                if ($jumlah_peserta !== 0) {
+                                    # code...
+                                    return '<a href="/diklat-peserta/'.$data->id.'" class="text-success">'.$jumlah_peserta.' - peserta <a>';
+                                }else{
+                                    return '<a href="/diklat-peserta/'.$data->id.'" class="text-danger">'.$jumlah_peserta.' - peserta <a>';
+                                }
                                 
-                            //     // return '<a href="/diklat-peserta/'.$data->id.'" class="text-danger">'.$data->peserta_count.' - '.$data->keterangan.'<a>';
-                            // }
-                            $jumlah = Peserta::all()->count();
-                            return $jumlah;
+                                // return '<a href="/diklat-peserta/'.$data->id.'" class="text-danger">'.$data->peserta_count.' - '.$data->keterangan.'<a>';
+                            }
                         })
                         ->addColumn('cabang', function ($data) {
                             return $data->cabang->name;
