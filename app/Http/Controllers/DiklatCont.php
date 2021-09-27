@@ -104,7 +104,7 @@ class DiklatCont extends Controller
                                 
                             //     // return '<a href="/diklat-peserta/'.$data->id.'" class="text-danger">'.$data->peserta_count.' - '.$data->keterangan.'<a>';
                             // }
-                            $jumlah = Peserta::where('pelatihan_id',$data->id)->count();
+                            $jumlah = Peserta::all()->count();
                             return $jumlah;
                         })
                         ->addColumn('cabang', function ($data) {
