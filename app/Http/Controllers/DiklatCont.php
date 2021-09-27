@@ -84,7 +84,7 @@ class DiklatCont extends Controller
                 ->rawColumns(['cabang','program','action','peserta','linkpendaftaran','tanggal','flyer','groupwa'])
                 ->make(true);
             }else{
-                $data   = Pelatihan::with('cabang','program','peserta')->withCount('peserta')->orderBy('tanggal','desc')->where('jenis','diklat');
+                $data   = Pelatihan::with('cabang','program','peserta')->orderBy('tanggal','desc')->where('jenis','diklat');
                 return DataTables::of($data)
                         ->addColumn('peserta', function($data){
                             // $jumlah_peserta = Peserta::where('pelatihan_id',$data->id)->where('status',1)->count();
@@ -104,7 +104,7 @@ class DiklatCont extends Controller
                                 
                             //     // return '<a href="/diklat-peserta/'.$data->id.'" class="text-danger">'.$data->peserta_count.' - '.$data->keterangan.'<a>';
                             // }
-                            $jumlah = Peserta::where('pelatihan_id',$data->id)->where('status',1)->count();
+                            $jumlah = Peserta::where('pelatihan_id',$data->id)->count();
                             return $jumlah;
                         })
                         ->addColumn('cabang', function ($data) {
