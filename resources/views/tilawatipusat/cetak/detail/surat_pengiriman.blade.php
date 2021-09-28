@@ -35,7 +35,7 @@
             <td style="width: 20%">Kota / Kabu</td>
             <td style="width: 2%">:</td>
             <td><b>{{$pes->kabupaten->nama}}</b></td>
-        </tr>
+        </tr> 
         <tr>
             <td style="width: 20%">No. Telephone</td>
             <td style="width: 2%">:</td>
