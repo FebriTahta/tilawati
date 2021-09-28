@@ -73,7 +73,7 @@ class KonfirmasiCont extends Controller
                         })
                         ->addColumn('unduh', function($data){
                             $actionBtn2 = '<button data-id="'.$data->id.'" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-download"><i class="fa fa-download"></i></button>';
-                            $actionBtn2 .= ' <button data-id="'.$data->id.'" class="btn btn-sm btn-success" data-toggle="modal" data-target="#modal-download2"><i class="fa fa-import"></i></button>';
+                            $actionBtn2 .= ' <button data-id="'.$data->id.'" class="btn btn-sm btn-success" data-toggle="modal" data-target="#modal-download2"><i class="fa fa-download"></i></button>';
                             return $actionBtn2;
                         })
                         ->addColumn('tanggal', function($data){
