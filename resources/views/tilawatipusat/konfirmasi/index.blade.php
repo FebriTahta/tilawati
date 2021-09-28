@@ -155,7 +155,7 @@
                                                         <form id="" action="/diklat-cetak-surat-pengiriman"  method="POST" enctype="multipart/form-data">@csrf
                                                             <div class="form-group text-center">
                                                                 <h5>Cetak Surat Pengiriman ?</h5>
-                                                                <input type="text" class="form-control text-capitalize" id="id" name="id" required>
+                                                                <input type="hidden" class="form-control text-capitalize" id="id" name="id" required>
                                                             </div>
                                                             <div class="row" style="text-align: center">
                                                                 <div class="form-group col-6 col-xl-6">
