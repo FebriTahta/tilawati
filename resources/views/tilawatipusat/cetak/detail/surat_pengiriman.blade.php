@@ -29,7 +29,14 @@
         <tr>
             <td style="width: 20%">Alamat</td>
             <td style="width: 2%">:</td>
-            <td><b>{{$pes->alamat}}</b></td>
+            <td><b>
+                @if ($pes->alamatx == null)
+                ALAMAT PENGIRIMAN MODUL DI ALIHKAN KE ALAMAT PRIBADI PESERTA. 
+                {{$pes->alamat}}
+                @else
+                {{$pes->alamatx}}
+                @endif
+            </b></td>
         </tr>
         <tr>
             <td style="width: 20%">Kota / Kabu</td>
