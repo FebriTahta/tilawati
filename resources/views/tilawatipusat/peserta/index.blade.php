@@ -99,6 +99,7 @@
                                                     <th>TTL</th>
                                                     <th>nilai</th>
                                                     <th>alamat</th>
+                                                    <th>pengiriman modul</th>
                                                     <th>Kriteria</th>
                                                     <th>email</th>
                                                     <th>Option</th>
@@ -117,6 +118,7 @@
                                                     <th>TTL</th>
                                                     <th>nilai</th>
                                                     <th>alamat</th>
+                                                    <th>pengiriman modul</th>
                                                     <th>Kriteria</th>
                                                     <th>email</th>
                                                     <th>Option</th>
@@ -726,6 +728,10 @@
                         name:'alamat'
                         },
                         {
+                        data:'alamatmodul',
+                        name:'alamatx'
+                        },
+                        {
                         data:'krits',
                         name:'kriteria',
                         },
@@ -774,6 +780,10 @@
                         {
                         data:'alamat',
                         name:'alamat'
+                        },
+                        {
+                        data:'alamatmodul',
+                        name:'alamatx'
                         },
                         {
                         data:'krits',
