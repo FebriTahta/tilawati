@@ -114,7 +114,7 @@ class PesertaCont extends Controller
                             return $ttl;
                         })
                         ->addColumn('alamatmodul', function($data){
-                            $ttl = '<a href="#" data-id="'.$data->id.'" data-alamatx="'.$data->alamatx.'" data-toggle="modal" data-target="modal-modul">'.$data->alamatx.'</a>';
+                            $ttl = '<a href="#" data-id="'.$data->id.'" data-alamatx="'.$data->alamatx.'" data-toggle="modal" data-target="#modal-modul">'.$data->alamatx.'</a>';
                             return $ttl;
                         })
                 ->rawColumns(['nilai','action','kabupaten','ttl','krits','alamatmodul'])
