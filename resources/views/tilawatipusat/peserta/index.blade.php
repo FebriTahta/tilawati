@@ -480,7 +480,7 @@
                 processData: false,
                 beforeSend:function(){
                     $('#btnubah').attr('disabled','disabled');
-                    $('#btnubah').val('Importing Process');
+                    $('#btnubah').val('Alamat Diubah');
                 },
                 success: function(data){
                     if(data.success)
@@ -492,7 +492,7 @@
                         oTable.fnDraw(false);
                         $('#btnubah').val('Import');
                         $('#btnubah').attr('disabled',false);
-                        $('.bs-example-modal-peserta').modal('hide');
+                        $('#modal-modul').modal('hide');
                     }
                     if(data.error)
                     {
