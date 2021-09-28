@@ -331,7 +331,8 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     Route::get('/diklat-peserta-kota-select',[PesertaCont::class, 'peserta_kota_select'])->name('diklat.peserta_kota_select');
     Route::post('/diklat-peserta-delete',[PesertaCont::class,'delete'])->name('diklat.peserta_delete');
     Route::get('/diklat-peserta-keseluruhan',[PesertaCont::class, 'peserta_data_keseluruhan'])->name('diklat.peserta_data_keseluruhan');
- 
+    Route::post('/ubah-alamat-modul',[PesertaCont::class,'ubah_alamat_modul'])->name('diklat.peserta_alamatx');
+
     Route::get('/peserta_yang_kabupatennya_kosong/{pelatihan_id}',[PesertaCont::class,'peserta_yang_kabupatennya_kosong']);
 
     Route::post('/diklat-penilaian-store',[PenilaianCont::class,'store'])->name('diklat.penilaian_store'); //insert sekaligus update

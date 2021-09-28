@@ -256,8 +256,8 @@
                                                         <form id="ubahalamatmodul"  method="POST" enctype="multipart/form-data">@csrf
                                                             <div class="form-group text-center">
                                                                 <h5>Ubah Alamat Pengiriman Modul</h5>
-                                                                <input type="text" class="form-control text-capitalize" id="id" name="id" required>
-                                                                <textarea name="alamatx" id="alamatx" cols="30" rows="3"></textarea>
+                                                                <input type="hidden" class="form-control text-capitalize" id="id" name="id" required>
+                                                                <textarea name="alamatx" class="form-control" id="alamatx" cols="30" rows="3"></textarea>
                                                             </div>
                                                             <div class="row" style="text-align: center">
                                                                 <div class="form-group col-6 col-xl-6">
@@ -426,6 +426,7 @@
                 $('#nama_peserta').html(nama_peserta);
                 document.getElementById("qr-code").src = id;
             })
+
             $('#importpeserta').submit(function(e) {
                 e.preventDefault();
                 var formData = new FormData(this);
@@ -452,6 +453,46 @@
                         $('#btnimport').attr('disabled',false);
                         $('.bs-example-modal-peserta').modal('hide');
                         swal("Done!", data.message, "success");
+                    }
+                    if(data.error)
+                    {
+                        $('#message').html('<div class="alert alert-danger">'+data.error+'</div>');
+                        $('#btnimport').attr('disabled',false);
+                        $('#btnimport').val('Import');
+                    }
+                },
+                error: function(data)
+                {
+                    console.log(data);
+                    }
+                });
+            });
+
+            $('#ubahalamatmodul').submit(function(e) {
+                e.preventDefault();
+                var formData = new FormData(this);
+                $.ajax({
+                type:'POST',
+                url: "{{ route('diklat.peserta_alamatx')}}",
+                data: formData,
+                cache:false,
+                contentType: false,
+                processData: false,
+                beforeSend:function(){
+                    $('#btnubah').attr('disabled','disabled');
+                    $('#btnubah').val('Importing Process');
+                },
+                success: function(data){
+                    if(data.success)
+                    {
+                        //sweetalert and refresh datatable
+                        $("#ubahalamatmodul")[0].reset();
+                        toastr.success(data.success);
+                        var oTable = $('#datatable-buttons').dataTable();
+                        oTable.fnDraw(false);
+                        $('#btnubah').val('Import');
+                        $('#btnubah').attr('disabled',false);
+                        $('.bs-example-modal-peserta').modal('hide');
                     }
                     if(data.error)
                     {

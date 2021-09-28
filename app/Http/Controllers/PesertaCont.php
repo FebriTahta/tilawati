@@ -122,6 +122,25 @@ class PesertaCont extends Controller
         }
     }
 
+    public function ubah_alamat_modul(Request $request)
+    {
+        $data = Peserta::updateOrCreate(
+            [
+              'id' => $request->id
+            ],
+            [
+                'alamatx'=>$request->alamatx,
+            ]
+        );
+
+        return response()->json(
+            [
+            'success' => 'Alamat pengiriman modul diubah',
+            'message' => 'Alamat pengiriman modul diubah'
+            ]
+        );
+    }
+
     public function peserta_data_keseluruhan(Request $request)
     {
         if (request()->ajax()) {
