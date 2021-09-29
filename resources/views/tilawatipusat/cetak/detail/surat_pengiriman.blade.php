@@ -17,9 +17,10 @@
         }
     </style>
 </head>
-<body style="padding: 3%">
 @foreach ($peserta as $pes)
-<div class="wrapper" style="page-break-inside:auto">
+<body style="padding: 3%" style="page-break-inside: avoid">
+
+<div class="wrapper" >
     <table style="width: 100%" class="right">
         <tr>
             <td style="width: 10%">Penerima</td>
@@ -65,6 +66,7 @@
         </tr>
     </table>
 </div><br>
-@endforeach
+
 </body>
+@endforeach
 </html>
