@@ -233,14 +233,14 @@
                         <div class="modal-dialog modal-md">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">DAFTAR CABANG YANG MENGADAKAN DIKLAT</h5>
+                                    <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">DAFTAR PROGRAM DIKLAT</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
                                 <div class="modal-body">
                                     <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
-                                        <table id="datatable-buttons3" class="table table-diklat-program table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
+                                        <table id="datatable-buttons4" class="table table-diklat-program table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
                                             <thead class="text-bold text-primary">
                                                 <tr>
                                                     <th>Program</th>
@@ -597,7 +597,7 @@
                         ]
                     });
 
-                    $('.table-diklat-program').DataTable({
+                    $('#datatable-buttons4').DataTable({
                         //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
                         destroy: true,
                         processing: true,
