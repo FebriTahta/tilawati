@@ -22,16 +22,16 @@
 <div class="wrapper" style="page-break-inside: avoid">
     <table style="width: 100%" class="right">
         <tr>
-            <td style="width: 20%">Nama Penerima</td>
+            <td style="width: 10%">Penerima</td>
             <td style="width: 2%">:</td>
             <td><b>{{$pes->name}}</b></td>
         </tr>
         <tr>
-            <td style="width: 20%">Alamat</td>
+            <td style="width: 10%">Alamat</td>
             <td style="width: 2%">:</td>
             <td><b>
                 @if ($pes->alamatx == null)
-                ALAMAT PENGIRIMAN MODUL DI ALIHKAN KE ALAMAT PRIBADI PESERTA. 
+                <small>Alamat modul kosong dialihkan ke alamat peserta</small>
                 {{$pes->alamat}}
                 @else
                 {{$pes->alamatx}}
@@ -39,12 +39,12 @@
             </b></td>
         </tr>
         <tr>
-            <td style="width: 20%">Kota / Kabu</td>
+            <td style="width: 10%">Kota</td>
             <td style="width: 2%">:</td>
             <td><b>{{$pes->kabupaten->nama}}</b></td>
         </tr> 
         <tr>
-            <td style="width: 20%">No. Telephone</td>
+            <td style="width: 10%">Phone</td>
             <td style="width: 2%">:</td>
             <td><b>{{$pes->telp}}</b></td>
         </tr>
