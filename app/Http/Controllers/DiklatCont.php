@@ -509,7 +509,7 @@ class DiklatCont extends Controller
                     return $data->program->name;
                 })
                 ->addColumn('action', function ($data) {
-                    $btn = '<a href="#" class="btn btn-sm btn-info"> check </a>';
+                    $btn = '<a href="/diklat-diklat-program-data/'.$data->program->id.'" class="btn btn-sm btn-info"> check </a>';
                     return $btn;
                 })
                 ->rawColumns(['program','action'])
@@ -522,7 +522,7 @@ class DiklatCont extends Controller
                     return $data->program->name;
                 })
                 ->addColumn('action', function ($data) {
-                    $btn = '<a href="#" class="btn btn-sm btn-info"> check </a>';
+                    $btn = '<a href="/diklat-diklat-program-data/'.$data->program->id.'" class="btn btn-sm btn-info"> check </a>';
                     return $btn;
                 })
                 ->rawColumns(['program','action'])
@@ -567,6 +567,11 @@ class DiklatCont extends Controller
     public function diklat_cabang_data_view(Request $request, $cabang_id){
         $data = Cabang::where('id',$cabang_id)->withCount('pelatihan')->first();
         return view('tilawatipusat.diklat.diklat_cabang',compact('data'));
+    }
+
+    public function diklat_program_data_view(Request $request, $program_id){
+        $data = Program::where('id',$program_id)->withCount('pelatihan')->first();
+        return view('tilawatipusat.diklat.diklat_program',compact('data'));
     }
 
     public function total_diklat_cabang(Request $request, $cabang_id){

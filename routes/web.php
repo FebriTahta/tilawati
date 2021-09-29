@@ -303,6 +303,8 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     Route::get('/diklat-diklat-cabang-data/{cabang_id}',[DiklatCont::class,'diklat_cabang_data_view'])->name('diklat.diklat_cabang_data_view');
     Route::get('/diklat-diklat-data-cabang/{cabang_id}',[DiklatCont::class, 'diklat_data_cabang'])->name('diklat.diklat_data_cabang');
     Route::get('/diklat-diklat-total-diklat-cabang/{cabang_id}',[DiklatCont::class, 'total_diklat_cabang'])->name('diklat.diklat_cabang_total');
+    Route::get('/diklat-diklat-program-data/{program_id}',[DiklatCont::class,'diklat_program_data_view']);
+    Route::get('/diklat-diklat-data-program/{program_id}',[DiklatCont::class,'diklat_data_program']);
 
     Route::get('/diklat-peserta-webinar/{id}',[PesertaCont::class, 'index2'])->name('diklat.peserta_webinar');
     Route::get('/diklat-peserta/{id}',[PesertaCont::class, 'index'])->name('diklat.peserta');
