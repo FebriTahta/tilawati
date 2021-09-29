@@ -19,7 +19,7 @@
 </head>
 <body style="padding: 3%">
 @foreach ($peserta as $pes)
-<div class="wrapper">
+<div class="wrapper" style="page-break-inside:auto">
     <table style="width: 100%" class="right">
         <tr>
             <td style="width: 10%">Penerima</td>
