@@ -80,7 +80,6 @@
                                             <thead class="text-bold text-primary" style="text-transform: capitalize">
                                                 <tr>
                                                     <th>kode</th>
-                                                    <th>diklat</th>
                                                     <th>tanggal</th>
                                                     <th>pelaksana</th>
                                                     <th>peserta</th>
@@ -93,7 +92,6 @@
                                             <tfoot class="text-primary" style="text-transform: capitalize">
                                                 <tr>
                                                     <th>kode</th>
-                                                    <th>diklat</th>
                                                     <th>tanggal</th>
                                                     <th>pelaksana</th>
                                                     <th>peserta</th>
@@ -172,10 +170,6 @@
                             {
                             data:'id',
                             name:'id'
-                            },
-                            {
-                            data:'program',
-                            name:'program.name'
                             },
                             {
                             data:'tanggal',
