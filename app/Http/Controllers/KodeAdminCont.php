@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Negara;
+use App\Models\Kabupaten;
 use App\Models\Phonegara;
 use App\Imports\PhoneCodeImport;
 use App\Imports\PhoneCodeLogatIndoImport;
@@ -20,6 +21,12 @@ class KodeAdminCont extends Controller
     {
         $phone  = Phonegara::all()->count();
         return view('tilawatipusat.kode_administrasi.phone',compact('phone'));
+    }
+
+    public function page_kabupaten()
+    {
+        $kabupaten = Kabupaten::all()->count();
+        return view('tilawatipusat.kode_administrasi.kabupaten',compact('kabupaten'));
     }
 
     public function data_negara(Request $request)
@@ -46,6 +53,16 @@ class KodeAdminCont extends Controller
         if(request()->ajax())
         {
             $data   = Phonegara::orderBy('country_name','asc');
+            return DataTables::of($data)
+            ->make(true);
+        }
+    }
+
+    public function data_kabupaten(Request $request)
+    {
+        if(request()->ajax())
+        {
+            $data   = Kabupaten::orderBy('nama','asc');
             return DataTables::of($data)
             ->make(true);
         }

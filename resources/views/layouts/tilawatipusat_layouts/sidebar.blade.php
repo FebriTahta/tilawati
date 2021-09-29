@@ -89,8 +89,9 @@
                         <span>Dinas Administrasi</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="true">
-                        <li style="display: none"><a href="{{route('negara')}}">Kode Negara</a></li>
+                        {{-- <li style="display: none"><a href="{{route('negara')}}">Kode Negara</a></li> --}}
                         <li><a href="{{route('phone')}}">Kode Telephone</a></li>
+                        <li><a href="{{route('kabupaten')}}">Kota - Kabupaten</a></li>
                     </ul>
                 </li>
 
