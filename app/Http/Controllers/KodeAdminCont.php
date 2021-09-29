@@ -68,6 +68,10 @@ class KodeAdminCont extends Controller
                         return $data->provinsi->nama;  
                     })
                     ->rawColumns(['provinsi'])
+                    ->addColumn('provinsi_id', function ($data) {
+                        return $data->provinsi->id;  
+                    })
+                    ->rawColumns(['provinsi','provinsi_id'])
             ->make(true);
         }
     }

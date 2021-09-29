@@ -39,6 +39,7 @@
                                                 <tr>
                                                     <th>Id</th>
                                                     <th>Kabupaten</th>
+                                                    <th>Kode Provinsi</th>
                                                     <th>Provinsi</th>
                                                 </tr>
                                             </thead>
@@ -50,6 +51,7 @@
                                                 <tr>
                                                     <th>Id</th>
                                                     <th>Kabupaten</th>
+                                                    <th>Kode Provinsi</th>
                                                     <th>Provinsi</th>
                                                 </tr>
                                             </tfoot>
@@ -234,6 +236,10 @@
                     {
                     data:'nama',
                     name:'nama'
+                    },
+                    {
+                    data:'provinsi_id',
+                    name:'provinsi.id'
                     },
                     {
                     data:'provinsi',
