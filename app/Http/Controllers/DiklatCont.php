@@ -662,5 +662,19 @@ class DiklatCont extends Controller
             }
         }
     }
+
+    public function total_diklat_program(Request $request, $program_id){
+        if(request()->ajax())
+        {
+            if(!empty($request->dari))
+            {
+                $data = Pelatihan::where('program_id', $program_id)->where('jenis','diklat')->whereBetween('tanggal', array($request->dari, $request->sampai))->count();
+                return response()->json($data,200);
+            }else{
+                $data = Pelatihan::where('program_id', $program_id)->where('jenis','diklat')->count();
+                return response()->json($data,200);
+            }
+        }
+    }
     
 }

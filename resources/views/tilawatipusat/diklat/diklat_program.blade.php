@@ -148,16 +148,16 @@
 
                 function load_data(dari = '', sampai = '')
                 {
-                    // $.ajax({
-                    //     url:'/diklat-diklat-total-diklat-cabang/'+cabang_id,
-                    //     type: 'get',
-                    //     dataType: 'json',
-                    //     data:{dari:dari, sampai:sampai},
-                    //     success:function(data) {
-                    //         document.getElementById('cb').innerHTML = data;
-                    //         console.log(data);
-                    //     }
-                    // });
+                    $.ajax({
+                        url:'/diklat-diklat-total-diklat-program/'+program_id,
+                        type: 'get',
+                        dataType: 'json',
+                        data:{dari:dari, sampai:sampai},
+                        success:function(data) {
+                            document.getElementById('cb').innerHTML = data;
+                            console.log(data);
+                        }
+                    });
 
                     $('.table-diklat').DataTable({
                         //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
