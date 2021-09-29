@@ -270,6 +270,81 @@ class DiklatCont extends Controller
         }
     }
 
+    // data diklat berdasarkan program
+    public function diklat_data_program(Request $request, $program_id)
+    {
+        if(request()->ajax())
+        {
+            if(!empty($request->dari))
+            {
+                $data   = Pelatihan::where('program_id',$program_id)->with('cabang')->orderBy('id','desc')->where('jenis','diklat')
+                ->whereBetween('tanggal', array($request->dari, $request->sampai));
+                return DataTables::of($data)
+                        ->addColumn('peserta', function($data){
+                            $data_peserta = Peserta::where('pelatihan_id',$data->id)->where('status',1)->count();
+                            if ($data_peserta == 0) {
+                                # code...
+                                return '<span class="text-danger">'.$data->peserta_count.' - '.$data->keterangan.'<span>';
+                            } else {
+                                # code...
+                                return '<span class="text-success">'.$data->peserta_count.' - '.$data->keterangan.'<span>';
+                            }
+                        })
+                        ->addColumn('cabang', function ($data) {
+                            return $data->cabang->name;
+                        })
+                        ->addColumn('action', function($data){
+                            $actionBtn = ' <a href="/diklat-peserta/'.$data->id.'" class="btn btn-sm btn-outline btn-success fa fa-pencil-square"><i class="fa fa-user"></i></a>';
+                            $actionBtn .= ' <a href="#" data-toggle="modal" data-target=".bs-example-modal-diklat-hapus" data-id="'.$data->id.'" class="btn btn-sm btn-outline btn-danger fa fa-pencil-square"><i class="fa fa-trash"></i></a>';
+                            return $actionBtn;
+                        })
+                        ->addColumn('tanggal', function($data){
+                            if ($data->sampai_tanggal !== null) {
+                                # code...
+                                return Carbon::parse($data->tanggal)->isoFormat('dddd, D MMMM Y').' - '.
+                                Carbon::parse($data->sampai_tanggal)->isoFormat('dddd, D MMMM Y');
+                            }else{
+                                return Carbon::parse($data->tanggal)->isoFormat('dddd, D MMMM Y');
+                            }
+                        })
+                ->rawColumns(['cabang','tanggal','action','peserta'])
+                ->make(true);
+            }else{
+                $data   = Pelatihan::where('cabang_id', $cabang_id)->with('cabang','program')->withCount('peserta')->orderBy('id','desc')->where('jenis','diklat');
+                return DataTables::of($data)
+                        ->addColumn('peserta', function($data){
+                            $data_peserta = Peserta::where('pelatihan_id',$data->id)->where('status',1)->count();
+                            if ($data_peserta == 0) {
+                                # code...
+                                return '<span class="text-danger">'.$data->peserta_count.' - '.$data->keterangan.'<span>';
+                            } else {
+                                # code...
+                                return '<span class="text-success">'.$data->peserta_count.' - '.$data->keterangan.'<span>';
+                            }
+                        })
+                        ->addColumn('cabang', function ($data) {
+                            return $data->cabang->name;
+                        })
+                        ->addColumn('action', function($data){
+                            $actionBtn = ' <a href="/diklat-peserta/'.$data->id.'" class="btn btn-sm btn-outline btn-success fa fa-pencil-square"><i class="fa fa-user"></i></a>';
+                            $actionBtn .= ' <a href="#" data-toggle="modal" data-target=".bs-example-modal-diklat-hapus" data-id="'.$data->id.'" class="btn btn-sm btn-outline btn-danger fa fa-pencil-square"><i class="fa fa-trash"></i></a>';
+                            return $actionBtn;
+                        })
+                        ->addColumn('tanggal', function($data){
+                            if ($data->sampai_tanggal !== null) {
+                                # code...
+                                return Carbon::parse($data->tanggal)->isoFormat('dddd, D MMMM Y').' - '.
+                                Carbon::parse($data->sampai_tanggal)->isoFormat('dddd, D MMMM Y');
+                            }else{
+                                return Carbon::parse($data->tanggal)->isoFormat('dddd, D MMMM Y');
+                            }
+                        })
+                ->rawColumns(['cabang','tanggal','action','peserta'])
+                ->make(true);
+            }
+        }
+    }
+
     public function diklat_total(Request $request)
     {
         if (request()->ajax()) {
