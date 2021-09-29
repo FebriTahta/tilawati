@@ -122,14 +122,12 @@ class KonfirmasiCont extends Controller
                 $token = "dyr07JcBSmVsb1YrVBTB2A5zNKor0BZ9krv2WnQsjWHG1CRhSktdqazkfuOSY9qh";
                 $datas = [
                     'phone' => $data->telp,
-                    'message' => ' *PESAN OTOMATIS*
-                    *Yth. '.strtoupper($data->name).'*.
-                    Pendaftaran anda telah kami terima, silahkan bergabung pada group whatsapp berikut 
-                    '.$data2->groupwa.'
+                    'message' => '*TILAWATI PUSAT - '.strtoupper($data2->program->name).'*. 
+                    *Yth. '.strtoupper($data->name).'*. Pendaftaran anda telah kami terima, silahkan bergabung pada group whatsapp berikut ( '.$data2->groupwa.' )
 
-                    *PERINGATAN*
-                    Group Whatsapp tersebut hanya untuk anda yang sudah melakukan registrasi.
-                    *TIDAK UNTUK DISEBAR LUASKAN*
+                    *CATATAN*
+                    Simpan nomor ini untuk mengaktifkan link group Whatsapp diatas.
+                    *PESAN INI TIDAK UNTUK DISEBAR LUASKAN*
                     ',
                     'secret' => false, // or true
                     'priority' => false, // or true
@@ -161,9 +159,8 @@ class KonfirmasiCont extends Controller
                 $token = "dyr07JcBSmVsb1YrVBTB2A5zNKor0BZ9krv2WnQsjWHG1CRhSktdqazkfuOSY9qh";
                 $datas = [
                     'phone' => $data->telp,
-                    'message' => ' *PESAN OTOMATIS*
-                    *Yth. '.strtoupper($data->name).'*.
-                    Maaf, Pendaftaran anda belum dapat kami terima karena :  
+                    'message' => ' *TILAWATI PUSAT - '.strtoupper($data2->program->name).'*
+                    *Yth. '.strtoupper($data->name).'*. Maaf, Pendaftaran anda belum dapat kami terima karena :  
                     *'.$alasan.'*.
 
                     Untuk melanjutkan pendaftaran bisa klik link dibawah ini.
