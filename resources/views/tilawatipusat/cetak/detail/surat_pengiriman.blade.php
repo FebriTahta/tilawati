@@ -31,7 +31,7 @@
             <td style="width: 2%">:</td>
             <td><b>
                 @if ($pes->alamatx == null)
-                <small>Alamat pengiriman modul kosong</small><br>
+                <small style="color: red">Alamat pengiriman modul kosong</small><br>
                 {{$pes->alamat}}
                 @else
                 {{$pes->alamatx}}
