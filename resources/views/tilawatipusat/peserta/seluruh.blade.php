@@ -229,6 +229,44 @@
                         <!-- /.modal-dialog -->
                     </div>
 
+                    <div class="modal fade bs-example-modal-xl-2" id="mod_cabang3" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-md">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">DAFTAR CABANG YANG MENGADAKAN DIKLAT</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
+                                        <table id="datatable-buttons3" class="table table-diklat-program table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
+                                            <thead class="text-bold text-primary">
+                                                <tr>
+                                                    <th>Program</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                    
+                                            <tbody style="text-transform: uppercase; font-size: 12px">
+                                            </tbody>
+                    
+                                            <tfoot class="text-bold text-primary">
+                                                <tr>
+                                                   <th>Program</th>
+                                                   <th>Action</th>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                        <footer class="blockquote-footer">Updated at  <cite title="Source Title">2021</cite></footer>
+                                    </blockquote>
+                                </div>
+                            </div>
+                            <!-- /.modal-content -->
+                        </div>
+                        <!-- /.modal-dialog -->
+                    </div>
+
                     <div class="modal fade bs-example-modal-xl-3" id="mod_kabupaten" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-md">
                             <div class="modal-content">
@@ -559,19 +597,19 @@
                         ]
                     });
 
-                    $('.table-diklat-cabang').DataTable({
+                    $('.table-diklat-program').DataTable({
                         //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
                         destroy: true,
                         processing: true,
                         serverSide: true,
                         ajax: {
-                            url:'{{ route("diklat.peserta_cabang_pilih") }}',
+                            url:'{{ route("diklat.peserta_program_pilih") }}',
                             data:{dari:dari, sampai:sampai}
                         },
                         columns: [
                             {
-                            data:'cabang',
-                            name:'cabang.name'
+                            data:'program',
+                            name:'program.name'
                             },
                             {
                             data:'action',
