@@ -50,7 +50,7 @@
                         <div class="col-xl-6">
                             @component('common-tilawatipusat.dashboard-widget')
                             
-                                @slot('title') <b href="#" class="text-uppercase"> <b id="cb2" class="text-info"> CABANG  {{ $data->name }} </b> </b>@endslot
+                                @slot('title') <b href="#" class="text-uppercase"> <b id="cb2" class="text-info"> {{ $data->name }} </b> </b>@endslot
                                 @slot('iconClass') mdi mdi-bank-outline  @endslot
                                 @slot('price')  @endslot
                                 
@@ -148,16 +148,16 @@
 
                 function load_data(dari = '', sampai = '')
                 {
-                    $.ajax({
-                        url:'/diklat-diklat-total-diklat-cabang/'+cabang_id,
-                        type: 'get',
-                        dataType: 'json',
-                        data:{dari:dari, sampai:sampai},
-                        success:function(data) {
-                            document.getElementById('cb').innerHTML = data;
-                            console.log(data);
-                        }
-                    });
+                    // $.ajax({
+                    //     url:'/diklat-diklat-total-diklat-cabang/'+cabang_id,
+                    //     type: 'get',
+                    //     dataType: 'json',
+                    //     data:{dari:dari, sampai:sampai},
+                    //     success:function(data) {
+                    //         document.getElementById('cb').innerHTML = data;
+                    //         console.log(data);
+                    //     }
+                    // });
 
                     $('.table-diklat').DataTable({
                         //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
