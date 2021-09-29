@@ -992,6 +992,39 @@ class PesertaCont extends Controller
         }
     }
 
+    public function peserta_program_pilih(Request $request)
+    {
+        if(request()->ajax())
+        {
+            if(!empty($request->dari))
+            {
+                $data   = Pelatihan::whereBetween('tanggal', array($request->dari, $request->sampai))->with('cabang')->select('program_id')->distinct();
+                return DataTables::of($data)
+                ->addColumn('program', function ($data) {
+                    return $data->program->name;
+                })
+                ->addColumn('action', function ($data) {
+                    $btn = '<a href="#" class="btn btn-sm btn-info"> check </a>';
+                    return $btn;
+                })
+                ->rawColumns(['cabang','action'])
+                ->make(true);
+            }else{
+                $data   = Pelatihan::with('program')->select('program_id')->distinct();
+                return DataTables::of($data)
+                ->addColumn('program', function ($data) {
+                    return $data->program->name;
+                })
+                ->addColumn('action', function ($data) {
+                    $btn = '<a href="#" class="btn btn-sm btn-info"> check </a>';
+                    return $btn;
+                })
+                ->rawColumns(['cabang','action'])
+                ->make(true);
+            }
+        }
+    }
+
     public function peserta_kabupaten_cabang_pilih(Request $request, $kabupaten_id)
     {
         if(request()->ajax())
