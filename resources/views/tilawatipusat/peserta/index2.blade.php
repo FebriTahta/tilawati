@@ -75,7 +75,7 @@
                                                     <th>Option</th>
                                                 </tr>
                                             </thead>
-                                            <tbody style=" font-size: 12px" style="text-transform: uppercase">
+                                            <tbody style="text-transform: uppercase; font-size: 12px">
                                             </tbody>
                                             <tfoot class="text-primary">
                                                 <tr>

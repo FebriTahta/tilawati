@@ -120,7 +120,7 @@
                                             </tr>
                                         </thead>
 
-                                        <tbody style=" font-size: 12px" class="text-uppercase">
+                                        <tbody style="text-transform: uppercase; font-size: 12px">
                                         </tbody>
 
                                         <tfoot class="text-primary" >
