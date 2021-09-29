@@ -139,8 +139,8 @@
 
         <script>
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-            var cabang_id = $('#cabang_id').val();
-            console.log(cabang_id);
+            var program_id = $('#program_id').val();
+            console.log(program_id);
             
             $(document).ready(function(){
                 //ready load data
@@ -165,7 +165,7 @@
                         processing: true,
                         serverSide: true,
                         ajax: {
-                            url:'/diklat-diklat-data-cabang/'+cabang_id,
+                            url:'/diklat-diklat-data-program/'+program_id,
                             data:{dari:dari, sampai:sampai}
                         },
                         columns: [
