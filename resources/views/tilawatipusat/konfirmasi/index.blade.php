@@ -89,7 +89,7 @@
                                             <tbody style="text-transform: uppercase; font-size: 12px">
                                             </tbody>
 
-                                            <tfoot class="text-primary" style="text-transform: uppercase">
+                                            <tfoot class="text-primary">
                                                 <tr>
                                                     <th>program diklat</th>
                                                     <th>cabang</th>

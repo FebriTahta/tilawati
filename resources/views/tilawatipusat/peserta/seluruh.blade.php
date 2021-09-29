@@ -123,7 +123,7 @@
                                         <tbody style=" font-size: 12px" class="text-uppercase">
                                         </tbody>
 
-                                        <tfoot class="text-primary" style="text-transform: uppercase">
+                                        <tfoot class="text-primary" >
                                             <tr>
                                                 <th>peserta</th>
                                                 <th>asal</th>

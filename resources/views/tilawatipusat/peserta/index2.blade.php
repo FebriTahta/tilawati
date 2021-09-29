@@ -75,9 +75,9 @@
                                                     <th>Option</th>
                                                 </tr>
                                             </thead>
-                                            <tbody style=" font-size: 12px">
+                                            <tbody style=" font-size: 12px" style="text-transform: uppercase">
                                             </tbody>
-                                            <tfoot class="text-primary" style="text-transform: uppercase">
+                                            <tfoot class="text-primary">
                                                 <tr>
                                                     <th>peserta</th>
                                                     <th>kota/kabupaten</th>
