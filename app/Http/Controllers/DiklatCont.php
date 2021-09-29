@@ -284,10 +284,10 @@ class DiklatCont extends Controller
                             $data_peserta = Peserta::where('pelatihan_id',$data->id)->where('status',1)->count();
                             if ($data_peserta == 0) {
                                 # code...
-                                return '<span class="text-danger">'.$data->peserta_count.' - '.$data->keterangan.'<span>';
+                                return '<span class="text-danger">'.$data_peserta.' - '.$data->keterangan.'<span>';
                             } else {
                                 # code...
-                                return '<span class="text-success">'.$data->peserta_count.' - '.$data->keterangan.'<span>';
+                                return '<span class="text-success">'.$data_peserta.' - '.$data->keterangan.'<span>';
                             }
                         })
                         ->addColumn('cabang', function ($data) {
@@ -316,10 +316,10 @@ class DiklatCont extends Controller
                             $data_peserta = Peserta::where('pelatihan_id',$data->id)->where('status',1)->count();
                             if ($data_peserta == 0) {
                                 # code...
-                                return '<span class="text-danger">'.$data->peserta_count.' - '.$data->keterangan.'<span>';
+                                return '<span class="text-danger">'.$data_peserta.' - '.$data->keterangan.'<span>';
                             } else {
                                 # code...
-                                return '<span class="text-success">'.$data->peserta_count.' - '.$data->keterangan.'<span>';
+                                return '<span class="text-success">'.$data_peserta.' - '.$data->keterangan.'<span>';
                             }
                         })
                         ->addColumn('cabang', function ($data) {
