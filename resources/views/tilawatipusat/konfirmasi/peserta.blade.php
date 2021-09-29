@@ -84,7 +84,7 @@
                                             </thead>
                                             <tbody style="text-transform: uppercase; font-size: 12px">
                                             </tbody>
-                                            <tfoot class="text-primary" style="text-transform: capitalize">
+                                            <tfoot class="text-primary" style="text-transform: uppercase">
                                                 <tr>
                                                     <th>peserta</th>
                                                     <th>kab / kota</th>

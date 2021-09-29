@@ -106,7 +106,7 @@
                                             <tbody style=" font-size: 12px" class="text-uppercase">
                                             </tbody>
 
-                                            <tfoot class="text-primary" style="text-transform: capitalize">
+                                            <tfoot class="text-primary" style="text-transform: uppercase">
                                                 <tr>
                                                     <th>peserta</th>
                                                     <th>asal</th>
