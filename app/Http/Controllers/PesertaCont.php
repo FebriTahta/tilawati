@@ -114,8 +114,15 @@ class PesertaCont extends Controller
                             return $ttl;
                         })
                         ->addColumn('alamatmodul', function($data){
-                            $ttl = '<a href="#" data-id="'.$data->id.'" data-alamatx="'.$data->alamatx.'" data-toggle="modal" data-target="#modal-modul">'.$data->alamatx.'</a>';
-                            return $ttl;
+                            if ($data->alamatx == null) {
+                                # code...
+                                $ttl = '<a href="#" data-id="'.$data->id.'" style="text-danger" data-alamatx="'.$data->alamatx.'" data-toggle="modal" data-target="#modal-modul"> Kosong </a>';
+                                return $ttl;
+                            }else {
+                                # code...
+                                $ttl = '<a href="#" data-id="'.$data->id.'" data-alamatx="'.$data->alamatx.'" data-toggle="modal" data-target="#modal-modul">'.$data->alamatx.'</a>';
+                                return $ttl;
+                            }
                         })
                 ->rawColumns(['nilai','action','kabupaten','ttl','krits','alamatmodul'])
                 ->make(true);
