@@ -39,6 +39,7 @@
                                                 <tr>
                                                     <th>Id</th>
                                                     <th>Kabupaten</th>
+                                                    <th>Provinsi</th>
                                                 </tr>
                                             </thead>
     
@@ -49,6 +50,7 @@
                                                 <tr>
                                                     <th>Id</th>
                                                     <th>Kabupaten</th>
+                                                    <th>Provinsi</th>
                                                 </tr>
                                             </tfoot>
                                         </table>
@@ -232,6 +234,10 @@
                     {
                     data:'nama',
                     name:'nama'
+                    },
+                    {
+                    data:'provinsi',
+                    name:'provinsi.nama'
                     },
                 ]
                 });

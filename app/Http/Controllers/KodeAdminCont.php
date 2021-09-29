@@ -62,8 +62,12 @@ class KodeAdminCont extends Controller
     {
         if(request()->ajax())
         {
-            $data   = Kabupaten::orderBy('nama','asc');
+            $data   = Kabupaten::with('provinsi');
             return DataTables::of($data)
+                    ->addColumn('provinsi', function ($data) {
+                        return $data->provinsi->nama;  
+                    })
+                    ->rawColumns(['provinsi'])
             ->make(true);
         }
     }
