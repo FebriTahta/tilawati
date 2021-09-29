@@ -1007,7 +1007,7 @@ class PesertaCont extends Controller
                     $btn = '<a href="#" class="btn btn-sm btn-info"> check </a>';
                     return $btn;
                 })
-                ->rawColumns(['cabang','action'])
+                ->rawColumns(['program','action'])
                 ->make(true);
             }else{
                 $data   = Pelatihan::with('program')->select('program_id')->distinct();
@@ -1019,7 +1019,7 @@ class PesertaCont extends Controller
                     $btn = '<a href="#" class="btn btn-sm btn-info"> check </a>';
                     return $btn;
                 })
-                ->rawColumns(['cabang','action'])
+                ->rawColumns(['program','action'])
                 ->make(true);
             }
         }
