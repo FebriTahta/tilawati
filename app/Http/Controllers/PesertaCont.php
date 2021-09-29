@@ -757,6 +757,30 @@ class PesertaCont extends Controller
         }
     }
 
+    public function peserta_program_total(Request $request)
+    {
+        if (request()->ajax()) {
+            # code...
+            if(!empty($request->dari))
+            {
+                $data = DB::table('pesertas')
+                ->whereBetween('tanggal', array($request->dari, $request->sampai))
+                ->select('program_id', DB::raw('count(*) as total'))
+                ->groupBy('program_id')
+                ->get()->count();
+                return response()->json($data,200);
+            }
+            else
+            {
+                $data = DB::table('pesertas')
+                ->select('program_id', DB::raw('count(*) as total'))
+                ->groupBy('program_id')
+                ->get()->count();
+                return response()->json($data,200);
+            }
+        }
+    }
+
     public function peserta_kabupaten_total_data(Request $request, $kabupaten_id)
     {
         if (request()->ajax()) {

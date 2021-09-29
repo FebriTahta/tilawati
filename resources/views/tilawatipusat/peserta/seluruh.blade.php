@@ -52,29 +52,38 @@
                             </div>
                         </div>
                         
-                        <div class="col-xl-4">
+                        <div class="col-xl-3">
                             @component('common-tilawatipusat.dashboard-widget')
                             
-                                @slot('title') <b id="cb"> ??? </b><br><small> Total Peserta Diklat  </small>@endslot
+                                @slot('title') <b id="cb"> ??? </b><br><small> Peserta Diklat  </small>@endslot
                                 @slot('iconClass')  mdi mdi-account-group  @endslot
                                 @slot('price')   @endslot
                                 
                             @endcomponent
                         </div>
-                        <div class="col-xl-4">
+                        <div class="col-xl-3">
                             @component('common-tilawatipusat.dashboard-widget')
                             
-                                @slot('title') <a href="#" data-toggle="modal" data-target="#mod_cabang2"> <b id="cb2"> ??? </b><br><small> Asal Cabang Pelatihan </small></a>@endslot
+                                @slot('title') <a href="#" data-toggle="modal" data-target="#mod_cabang2"> <b id="cb2"> ??? </b><br><small> Pelaksana </small></a>@endslot
                                 @slot('iconClass') mdi mdi-bank-outline  @endslot
                                 @slot('price')   @endslot
                                 
                             @endcomponent
                         </div>
-                        <div class="col-xl-4">
+                        <div class="col-xl-3">
                             @component('common-tilawatipusat.dashboard-widget')
                             
-                                @slot('title') <a href="#" data-toggle="modal" data-target="#mod_kabupaten"> <b id="cb3"> ??? </b><br><small> Kota / Kabupaten Daerah Asal </small></a>@endslot
+                                @slot('title') <a href="#" data-toggle="modal" data-target="#mod_kabupaten"> <b id="cb3"> ??? </b><br><small> Asal Peserta </small></a>@endslot
                                 @slot('iconClass') mdi mdi-city  @endslot
+                                @slot('price')   @endslot
+                                
+                            @endcomponent
+                        </div>
+                        <div class="col-xl-3">
+                            @component('common-tilawatipusat.dashboard-widget')
+                            
+                                @slot('title') <a href="#" data-toggle="modal" data-target="#mod_kabupaten"> <b id="cb4"> ??? </b><br><small> Program </small></a>@endslot
+                                @slot('iconClass') fa fa-book  @endslot
                                 @slot('price')   @endslot
                                 
                             @endcomponent
@@ -423,6 +432,17 @@
                         data:{dari:dari, sampai:sampai},
                         success:function(data) {
                             document.getElementById('cb3').innerHTML = data;
+                            console.log(data);
+                        }
+                    });
+
+                    $.ajax({
+                        url:'{{ route("diklat.peserta_program_tot") }}',
+                        type: 'get',
+                        dataType: 'json',
+                        data:{dari:dari, sampai:sampai},
+                        success:function(data) {
+                            document.getElementById('cb4').innerHTML = data;
                             console.log(data);
                         }
                     });
