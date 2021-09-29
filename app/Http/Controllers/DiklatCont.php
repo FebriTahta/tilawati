@@ -310,7 +310,7 @@ class DiklatCont extends Controller
                 ->rawColumns(['cabang','tanggal','action','peserta'])
                 ->make(true);
             }else{
-                $data   = Pelatihan::where('cabang_id', $cabang_id)->with('cabang','program')->withCount('peserta')->orderBy('id','desc')->where('jenis','diklat');
+                $data   = Pelatihan::where('program_id', $program_id)->with('cabang','program')->orderBy('id','desc')->where('jenis','diklat');
                 return DataTables::of($data)
                         ->addColumn('peserta', function($data){
                             $data_peserta = Peserta::where('pelatihan_id',$data->id)->where('status',1)->count();
