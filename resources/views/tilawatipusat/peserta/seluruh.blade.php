@@ -82,7 +82,7 @@
                         <div class="col-xl-3">
                             @component('common-tilawatipusat.dashboard-widget')
                             
-                                @slot('title') <a href="#" data-toggle="modal" data-target="#mod_kabupaten"> <b id="cb4"> ??? </b><br><small> Program </small></a>@endslot
+                                @slot('title') <a href="#" data-toggle="modal" data-target="#mod_cabang3"> <b id="cb4"> ??? </b><br><small> Program </small></a>@endslot
                                 @slot('iconClass') fa fa-book  @endslot
                                 @slot('price')   @endslot
                                 
