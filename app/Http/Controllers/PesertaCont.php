@@ -1064,6 +1064,12 @@ class PesertaCont extends Controller
         return view('tilawatipusat.peserta.cabang',compact('cabang'));
     }
 
+    public function peserta_program(Request $request, $program_id)
+    {
+        $program = Program::find($program_id);
+        //return view('tilawatipusat.peserta.cabang',compact('cabang'));
+    }
+
     public function peserta_cabang_data(Request $request, $cabang_id)
     {
         if(request()->ajax())

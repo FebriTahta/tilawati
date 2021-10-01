@@ -119,7 +119,7 @@ class KonfirmasiCont extends Controller
                 # code...
                 # send wa
                 $curl = curl_init();
-                $token = "dyr07JcBSmVsb1YrVBTB2A5zNKor0BZ9krv2WnQsjWHG1CRhSktdqazkfuOSY9qh";
+                $token = "G0cspxzZh1aRPtvDJYaDM713fgr17xSJHZEatgLdJBtYJwEzdXPPWeVEu4otlhWZ";
                 $datas = [
                     'phone' => $data->telp,
                     'message' => '*TILAWATI PUSAT - '.strtoupper($data2->program->name).'*. 
@@ -156,7 +156,7 @@ class KonfirmasiCont extends Controller
             }else{
                 # send wa
                 $curl = curl_init();
-                $token = "dyr07JcBSmVsb1YrVBTB2A5zNKor0BZ9krv2WnQsjWHG1CRhSktdqazkfuOSY9qh";
+                $token = "G0cspxzZh1aRPtvDJYaDM713fgr17xSJHZEatgLdJBtYJwEzdXPPWeVEu4otlhWZ";
                 $datas = [
                     'phone' => $data->telp,
                     'message' => ' *TILAWATI PUSAT - '.strtoupper($data2->program->name).'*
