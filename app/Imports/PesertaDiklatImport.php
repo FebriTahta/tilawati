@@ -129,12 +129,15 @@ class PesertaDiklatImport implements ToCollection, WithStartRow, WithChunkReadin
 
                         foreach ( $dt_pel->pelatihan->program->penilaian as $key => $value) {
                             # code...
-                            $dt_n = new Nilai;
-                            $dt_n->peserta_id = $dt_pel->id;
-                            $dt_n->penilaian_id=$value->id;
-                            $dt_n->nominal=$row[10+$key];
-                            $dt_n->kategori=$value->kategori;
-                            $dt_n->save();
+                            if ($row[10+$key] !== null) {
+                                # code...
+                                $dt_n = new Nilai;
+                                $dt_n->peserta_id = $dt_pel->id;
+                                $dt_n->penilaian_id=$value->id;
+                                $dt_n->nominal=$row[10+$key];
+                                $dt_n->kategori=$value->kategori;
+                                $dt_n->save();
+                            }
                         }
                         
                         $id = $dt_pel->id;
