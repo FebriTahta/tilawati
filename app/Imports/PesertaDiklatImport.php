@@ -89,7 +89,7 @@ class PesertaDiklatImport implements ToCollection, WithStartRow, WithChunkReadin
                             $dt_pel->telp = $telephone;
                             
                         }else{
-                            # baca jika awalan tidak 0 melainkan 62 atau petik '
+                            # baca jika awalan tidak 0 melainkan 62 
                             if (substr($phone,0,2) == '62'){
                                 # code...
                                 $telephone = $phone;
@@ -136,9 +136,8 @@ class PesertaDiklatImport implements ToCollection, WithStartRow, WithChunkReadin
                         
                         $id = $dt_pel->id;
                         \QrCode::size(150)
-                        ->format('png') 
+                        ->format('png') ->generate('https://www.profile.tilawatipusat.com/'.$dt_pel->slug, public_path('images/'.$dt_pel->slug.'.png'));
                         // ->generate('https://www.tilawatipusat.com/diklat-profile-peserta/'.$dt_pel->id.'/'.$dt_pel->pelatihan->program->id.'/'.$dt_pel->pelatihan->id, public_path('images/'.$id.'qrcode.png'));
-                        ->generate('https://www.profile.tilawatipusat.com/'.$dt_pel->slug, public_path('images/'.$dt_pel->slug.'.png'));
                     }else{
                         $phone = $row[3];
                         $telephone = 0;
@@ -157,7 +156,7 @@ class PesertaDiklatImport implements ToCollection, WithStartRow, WithChunkReadin
                             }
                         }
                         
-                        Peserta::updateOrCreate(
+                        $dt_pel = Peserta::updateOrCreate(
                             [
                                 'id' => $peserta->id
                             ],
@@ -182,6 +181,8 @@ class PesertaDiklatImport implements ToCollection, WithStartRow, WithChunkReadin
                                 ]
                             );
                         }
+                        \QrCode::size(150)
+                        ->format('png') ->generate('https://www.profile.tilawatipusat.com/'.$dt_pel->slug, public_path('images/'.$dt_pel->slug.'.png'));
                     }
             // }   
         }
