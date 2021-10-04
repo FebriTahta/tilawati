@@ -5,9 +5,12 @@ use Illuminate\Support\Collection;
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\FromView;
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
+use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
+use Maatwebsite\Excel\Concerns\WithColumnFormatting;
 
 // class TemplateDownloadExport implements FromCollection
-class TemplateDownloadExport implements FromView
+class TemplateDownloadExport implements FromView, ShouldAutoSize, WithColumnFormatting
 {
     public function __construct($jenis)
     {
@@ -34,5 +37,12 @@ class TemplateDownloadExport implements FromView
             # code...
             return view('tilawatipusat.template.tot');
         }
+    }
+
+    public function columnFormats(): array
+    {
+        return [
+            'F' => NumberFormat::FORMAT_DATE_DDMMYYYY,
+        ];
     }
 }
