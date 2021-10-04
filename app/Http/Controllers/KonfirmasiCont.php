@@ -141,7 +141,7 @@ class KonfirmasiCont extends Controller
                 curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
                 curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
                 curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($datas));
-                curl_setopt($curl, CURLOPT_URL, "https://simo.wablas.com/api/send-message");
+                curl_setopt($curl, CURLOPT_URL, "https://simo.wablas.com");
                 curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
                 curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
                 $result = curl_exec($curl);
@@ -178,7 +178,7 @@ class KonfirmasiCont extends Controller
                 curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
                 curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
                 curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($datas));
-                curl_setopt($curl, CURLOPT_URL, "https://simo.wablas.com/api/send-message");
+                curl_setopt($curl, CURLOPT_URL, "https://simo.wablas.com");
                 curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
                 curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
                 $result = curl_exec($curl);
