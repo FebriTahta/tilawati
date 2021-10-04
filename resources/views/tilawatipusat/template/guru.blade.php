@@ -20,16 +20,16 @@
     </thead>
     <tbody>
         <tr>
-            <td>Nama Peserta</td>
-            <td>Detail Alamat</td>
-            <td>Surabaya (Pastikan Nama Kota / Kabupaten Benar Tidak Disingkat)</td>
+            <td>Nama + Gelar</td>
+            <td>Detail Alamat (tanpa kota)</td>
+            <td>Surabaya (tidak disingkat)</td>
             <td>083xxxxxxxxx</td>
-            <td>Surabaya (Pastikan Nama Kota / Kabupaten Benar Tidak Disingkat)</td>
+            <td>Surabaya (tidak disingkat)</td>
             <td>6/23/1995 (contoh)</td>
-            <td>Nama Lembaga (Pastikan Nama Lembaga Benar Sesuai Data yang Suda Tersimpan)</td>
+            <td>Boleh Kosong</td>
             <td>1 (1-5)</td>
-            <td>LULUS SEBAGAI ..... </td>
-            <td>1 Untuk Lulus dan 0 Untuk Belom lulus</td>
+            <td>LULUS SEBAGAI </td>
+            <td>1 / 0 / Beryahadah / belum</td>
             <td>26 (contoh)</td>
             <td>38 (contoh)</td>
             <td>10 (contoh)</td>

@@ -20,15 +20,15 @@
     <tbody>
         <tr>
             <td>Nama Peserta</td>
-            <td>Detail Alamat</td>
-            <td>Surabaya (Pastikan Nama Kota / Kabupaten Benar Tidak Disingkat)</td>
+            <td>Detail Alamat (tanpa kota)</td>
+            <td>Surabaya (tidak disingkat)</td>
             <td>083xxxxxxxxx</td>
-            <td>Surabaya (Pastikan Nama Kota / Kabupaten Benar Tidak Disingkat)</td>
+            <td>Surabaya (tidak disingkat)</td>
             <td>6/23/1995 (contoh)</td>
-            <td>Santri Wajib Isi namun Guru Tidak wajib (Pastikan Nama Lembaga Benar Sesuai Data yang Suda Tersimpan Apabila Diisi)</td>
-            <td>1 (1-5) (Santri tidak wajib diisi)</td>
-            <td>LULUS SEBAGAI ..... </td>
-            <td>1 Untuk Lulus dan 0 Untuk Belom lulus</td>
+            <td>Boleh Kosong</td>
+            <td>1 (1-5)</td>
+            <td>LULUS SEBAGAI </td>
+            <td>1 / 0 / Bersyahadah / Belum</td>
             <td>26 (contoh)</td>
             <td>38 (contoh)</td>
             <td>10 (contoh)</td>
