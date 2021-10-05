@@ -385,7 +385,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     Route::post('/import-data-kode-negara',[KodeAdminCont::class,'import_kode'])->name('import_kode');
     Route::post('/import-data-kode-negara-aksen-indo',[KodeAdminCont::class,'import_kode2'])->name('import_kode2');
     Route::get('/kode-phone',[KodeAdminCont::class,'page_phone'])->name('phone');
-    Route::get('/kode-kabupaten',[KodeAdminCont::class,'page_kabupaten'])->name('kabupaten');
+    Route::get('/kode-kabupaten',[KodeAdminCont::class,'page_kabupaten']);
 
     Route::get('/data-calon-peserta-diklat/{program_id}/{diklat_id}',[RegistrasiCont::class, 'konfirmasi']);
     Route::get('/konfirmasi-data-calon-peserta-diklat/{diklat_id}',[RegistrasiCont::class, 'data_calon_peserta']);
