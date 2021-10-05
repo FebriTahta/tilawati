@@ -129,15 +129,12 @@ class PesertaDiklatImport implements ToCollection, WithStartRow, WithChunkReadin
 
                         foreach ( $dt_pel->pelatihan->program->penilaian as $key => $value) {
                             # code...
-                            if ($row[10+$key] !== null) {
-                                # code...
-                                $dt_n = new Nilai;
+                            $dt_n = new Nilai;
                                 $dt_n->peserta_id = $dt_pel->id;
                                 $dt_n->penilaian_id=$value->id;
                                 $dt_n->nominal=$row[$key+10];
                                 $dt_n->kategori=$value->kategori;
                                 $dt_n->save();
-                            }
                         }
                         
                         $id = $dt_pel->id;
@@ -176,18 +173,16 @@ class PesertaDiklatImport implements ToCollection, WithStartRow, WithChunkReadin
                         );
                         foreach ( $peserta->pelatihan->program->penilaian as $key => $value) {
                             # code...
-                            if ($row[10+$key] !== null) {
-                                Nilai::updateOrCreate(
-                                    [
-                                        'peserta_id'    => $peserta->id,
-                                        'penilaian_id'  => $value->id,
-                                    ],
-                                    [
-                                        'nominal'       => $row[$key+10],
-                                        'kategori'      => $value->kategori,
-                                    ]
-                                );
-                            }
+                            Nilai::updateOrCreate(
+                                [
+                                    'peserta_id'    => $peserta->id,
+                                    'penilaian_id'  => $value->id,
+                                ],
+                                [
+                                    'nominal'       => $row[$key+10],
+                                    'kategori'      => $value->kategori,
+                                ]
+                            );
                         }
                         \QrCode::size(150)
                         ->format('png') ->generate('https://www.profile.tilawatipusat.com/'.$dt_pel->slug, public_path('images/'.$dt_pel->slug.'.png'));
