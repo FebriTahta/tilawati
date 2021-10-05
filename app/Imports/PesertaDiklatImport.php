@@ -176,16 +176,18 @@ class PesertaDiklatImport implements ToCollection, WithStartRow, WithChunkReadin
                         );
                         foreach ( $peserta->pelatihan->program->penilaian as $key => $value) {
                             # code...
-                            Nilai::updateOrCreate(
-                                [
-                                    'peserta_id'    => $peserta->id,
-                                    'penilaian_id'  => $value->id,
-                                ],
-                                [
-                                    'nominal'       => $row[$key+10],
-                                    'kategori'      => $value->kategori,
-                                ]
-                            );
+                            if ($row[10+$key] !== null) {
+                                Nilai::updateOrCreate(
+                                    [
+                                        'peserta_id'    => $peserta->id,
+                                        'penilaian_id'  => $value->id,
+                                    ],
+                                    [
+                                        'nominal'       => $row[$key+10],
+                                        'kategori'      => $value->kategori,
+                                    ]
+                                );
+                            }
                         }
                         \QrCode::size(150)
                         ->format('png') ->generate('https://www.profile.tilawatipusat.com/'.$dt_pel->slug, public_path('images/'.$dt_pel->slug.'.png'));
