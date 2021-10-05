@@ -527,27 +527,27 @@
                 success: function(data){
                     if(data.success) 
                     {
-                        $('#sel_kab').select2({
-                            placeholder: 'Pilih Kota / Kabupaten yang Tepat sesuai data sensus 2021',
-                            class: 'form-control',
-                            ajax: {
-                                url: "{{route('kabupaten')}}",
-                                dataType: 'json',
-                                delay: 250,
-                                processResults: function (data) {
-                                return {
-                                    results:  $.map(data, function (item) {
-                                        return {
-                                            text: item.id,
-                                            text: item.nama,
-                                            id: item.id
-                                        }
-                                    })
-                                };
-                                },
-                                cache: true
-                            }
-                        });
+                        // $('#sel_kab').select2({
+                        //     placeholder: 'Pilih Kota / Kabupaten yang Tepat sesuai data sensus 2021',
+                        //     class: 'form-control',
+                        //     ajax: {
+                        //         url: "{{route('kabupaten')}}",
+                        //         dataType: 'json',
+                        //         delay: 250,
+                        //         processResults: function (data) {
+                        //         return {
+                        //             results:  $.map(data, function (item) {
+                        //                 return {
+                        //                     text: item.id,
+                        //                     text: item.nama,
+                        //                     id: item.id
+                        //                 }
+                        //             })
+                        //         };
+                        //         },
+                        //         cache: true
+                        //     }
+                        // });
                         $.ajax({
                             url:'/peserta_yang_kabupatennya_kosong/'+pelatihan_id,
                             type: 'get',
