@@ -134,7 +134,7 @@ class PesertaDiklatImport implements ToCollection, WithStartRow, WithChunkReadin
                                 $dt_n = new Nilai;
                                 $dt_n->peserta_id = $dt_pel->id;
                                 $dt_n->penilaian_id=$value->id;
-                                $dt_n->nominal=$row[10+$key];
+                                $dt_n->nominal=$row[$key+10];
                                 $dt_n->kategori=$value->kategori;
                                 $dt_n->save();
                             }
@@ -182,7 +182,7 @@ class PesertaDiklatImport implements ToCollection, WithStartRow, WithChunkReadin
                                     'penilaian_id'  => $value->id,
                                 ],
                                 [
-                                    'nominal'       => $row[10+$key],
+                                    'nominal'       => $row[$key+10],
                                     'kategori'      => $value->kategori,
                                 ]
                             );
