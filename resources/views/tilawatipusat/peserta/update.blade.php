@@ -165,13 +165,25 @@
 @endsection
 
 @section('script')
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
-    {{-- <script src="{{asset('src/vendors/jquery/dist/jquery.min.js')}}"></script> --}}
-    <script src="{{asset('src/vendors/popper.js/dist/umd/popper.min.js')}}"></script>
-    <script src="{{asset('src/vendors/bootstrap/dist/js/bootstrap.min.js')}}"></script>
-    <script src="{{URL::asset('/tilawatipusat/libs/select2/select2.min.js')}}"></script>
+<script src="{{URL::asset('/tilawatipusat/libs/select2/select2.min.js')}}"></script>
+        <script src="{{URL::asset('/tilawatipusat/libs/bootstrap-datepicker/bootstrap-datepicker.min.js')}}"></script>
+        <script src="{{URL::asset('/tilawatipusat/libs/bootstrap-colorpicker/bootstrap-colorpicker.min.js')}}"></script>
+        <script src="{{URL::asset('/tilawatipusat/libs/bootstrap-touchspin/bootstrap-touchspin.min.js')}}"></script>
+        <script src="{{URL::asset('/tilawatipusat/libs/bootstrap-maxlength/bootstrap-maxlength.min.js')}}"></script>
+
+        <!-- form advanced init -->
+        <script src="{{URL::asset('/tilawatipusat/js/pages/form-advanced.init.js')}}"></script>
+
+        <!-- Toast -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.all.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+        
+        <!-- form mask -->
+        <script src="{{URL::asset('/tilawatipusat/libs/inputmask/inputmask.min.js')}}"></script>
+        <!-- form mask init -->
+        <script src="{{URL::asset('/tilawatipusat/js/pages/form-mask.init.js')}}"></script>
 <script>
     function save() {
         $('#daftar').val('Memproses Pendaftaran....');
