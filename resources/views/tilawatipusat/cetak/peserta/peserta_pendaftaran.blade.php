@@ -7,6 +7,7 @@
     <thead>
         <tr>
             <th>Nama Lengkap Peserta</th>
+            <th>Diklat</th>
             <th>Alamat Lengkap</th>
             <th>Kota / Kabupaten</th>
             <th>No WA</th>
@@ -17,7 +18,8 @@
     <tbody style="text-transform: uppercase; font-size: 12px">
         @foreach ($peserta as $item)
             <tr> 
-                <td>{{ $item->name }}</td>
+                <td>{{ strtoupper($item->name) }}</td>
+                <td>{{ strtoupper($item->program->name) }}</td>
                 <td>{{ $item->alamat }}</td>
                 <td>
                     @if ($item->kabupaten == null)
@@ -35,7 +37,7 @@
                 
                 
                 <td>{{ $item->tmptlahir }}</td>
-                <?php $date = \Carbon\Carbon::parse($item->tgllahir)->isoFormat('M/D/Y')?>
+                <?php $date = \Carbon\Carbon::parse($item->tgllahir)->isoFormat('D/M/Y')?>
                 <td>{{ $date }}</td>
             </tr>
         @endforeach
