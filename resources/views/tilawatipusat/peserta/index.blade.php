@@ -290,14 +290,19 @@
                                                 <div class="card-body">
                                                     <div class="container-fluid">
                                                         <form id="#"  method="POST" enctype="multipart/form-data">@csrf
-                                                            <div class="form-group text-center">
-                                                                <h5>Ubah Alamat Pengiriman Modul</h5>
-                                                                <input type="hidden" class="form-control text-capitalize" id="id" name="id" required>
-                                                                <textarea name="alamatx" class="form-control" id="alamatx" cols="30" rows="3"></textarea>
+                                                            <div class="form-group">
+                                                                <h5>UBAH DATA PESERTA</h5>
+                                                                <input type="text" class="form-control text-capitalize" id="id" name="id" required>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <input type="text" class="form-control" placeholder="NAMA PESERTA" name="name" required>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <textarea name="alamat" class="form-control" id="alamat" cols="30" rows="2"></textarea>
                                                             </div>
                                                             <div class="row" style="text-align: center">
                                                                 <div class="form-group col-6 col-xl-6">
-                                                                    <input type="submit" name="ubah" id="btnubah" class="btn btn-danger" value="Ya, Ubah!" />
+                                                                    <input type="submit" name="ubah" id="btnubah" class="btn btn-info" value="Ya, Ubah!" />
                                                                 </div>
                                                                 <div class="form-group col-6 col-xl-6">
                                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">
