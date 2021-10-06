@@ -1402,7 +1402,7 @@ class PesertaCont extends Controller
                             ],
                             [
                                 'nik'           => $request->nik,
-                                'phonegara_id'  => $kode_negara,
+                                // 'phonegara_id'  => $kode_negara,
                                 'pelatihan_id'  => $request->pelatihan_id,
                                 'program_id'    => $diklat->program_id,
                                 'cabang_id'     => $diklat->cabang->id,
