@@ -122,4 +122,9 @@ class Peserta extends Model
     {
         return $this->hasOne(Status::class);
     }
+
+    public function kelurahan()
+    {
+        return $this->belongsTo(Kelurahan::class);
+    }
 }
