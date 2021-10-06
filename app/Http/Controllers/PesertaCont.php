@@ -1414,7 +1414,7 @@ class PesertaCont extends Controller
                                 'slug'          => $slug,
                                 'tanggal'       => $dp->tanggal,
                                 'name'          => $request->name,
-                                'tmptlahir'     => $tempatlahir->nama,
+                                // 'tmptlahir'     => $tempatlahir->nama,
                                 'tgllahir'      => $request->tgllahir,
                                 'alamat'        => $request->alamat,
                                 'alamatx'       => $request->alamatx,
