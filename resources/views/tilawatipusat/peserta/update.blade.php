@@ -50,19 +50,25 @@
         <div class="form-group col-12 col-xl-6">
             <label for="kabupaten_id"><i class="text-danger">*</i> Kabupaten / Kota</label>
             <select name="kabupaten_id" id="kabupaten_id" class="form-control" style="max-height: 40px; color: rgb(0, 0, 0); font-size: 13px;" required>
-                <option value="{{$peserta->kabupaten_id}}">{{$peserta->kabupaten->nama}}</option>
+                @if ($peserta->kabupaten_id !== null)
+                    <option value="{{$peserta->kabupaten_id}}">{{$peserta->kabupaten->nama}}</option>
+                @endif
             </select>
         </div>
         <div class="form-group  col-12 col-xl-6">
             <label for="kecamatan_id"><i class="text-danger">*</i> Kecamatan</label>
             <select name="kecamatan_id" id="kecamatan_id" class="form-control" style="max-height: 40px; color: rgb(0, 0, 0); font-size: 13px;" required>
+                @if ($peserta->kecamatan_id !== null)
                 <option value="{{$peserta->kecamatan_id}}">{{$peserta->kecamatan->nama}}</option>
+                @endif
             </select>
         </div>
         <div class="form-group  col-12 col-xl-6">
             <label for="kelurahan_id"><i class="text-danger">*</i> Kelurahan</label>
             <select name="kelurahan_id" id="kelurahan_id" class="form-control" style="max-height: 40px; color: rgb(0, 0, 0); font-size: 13px;" required>
+                @if ($peserta->kelurahan_id !== null)
                 <option value="{{$peserta->kelurahan_id}}">{{$peserta->kelurahan->nama}}</option>
+                @endif
             </select>
         </div>
         <div class="form-group  col-12 col-xl-12">
