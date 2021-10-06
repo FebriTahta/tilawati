@@ -6,8 +6,9 @@
 @slot('title_li') PESERTA   @endslot
 @endcomponent
 <form action="{{route('update.data.peserta')}}" method="POST" enctype="multipart/form-data">@csrf
-    <div class="row" id="id">
+    <div class="row">
         <div class="form-group col-xl-6">
+            <input type="hidden" value="{{$peserta->id}}">
             <label for="nama">Nama Peserta</label>
             <input type="text" class="form-control" value="{{$peserta->name}}" id="nama" name="name" required>    
         </div>
@@ -63,7 +64,7 @@
             <label for="alamat"><i class="text-danger">*</i> Alamat Sesuai KTP</label>
             <textarea name="alamat" class="form-control" id="" cols="30" rows="5" required>{{$peserta->alamat}}</textarea>
         </div>
-        <div class="form-group">
+        <div class="form-group col-12">
             <button class="btn btn-info" type="submit">UPDATE DATA</button>
         </div>
     </div>
