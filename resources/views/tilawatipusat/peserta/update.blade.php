@@ -50,13 +50,13 @@
         <div class="form-group  col-12 col-xl-6">
             <label for="kecamatan_id"><i class="text-danger">*</i> Kecamatan</label>
             <select name="kecamatan_id" id="kecamatan_id" class="form-control" style="max-height: 40px; color: rgb(0, 0, 0); font-size: 13px;" required>
-                <option value="{{$peserta->kecamatan_id}}">{{$peserta->kecamatan_id}}</option>
+                <option value="{{$peserta->kecamatan_id}}">{{$peserta->kecamatan->nama}}</option>
             </select>
         </div>
         <div class="form-group  col-12 col-xl-6">
             <label for="kelurahan_id"><i class="text-danger">*</i> Kelurahan</label>
             <select name="kelurahan_id" id="kelurahan_id" class="form-control" style="max-height: 40px; color: rgb(0, 0, 0); font-size: 13px;" required>
-                <option value="{{$peserta->kelurahan_id}}">{{$peserta->kelurahan_id}}</option>
+                <option value="{{$peserta->kelurahan_id}}">{{$peserta->kelurahan->nama}}</option>
             </select>
         </div>
         <div class="form-group  col-12 col-xl-12">
