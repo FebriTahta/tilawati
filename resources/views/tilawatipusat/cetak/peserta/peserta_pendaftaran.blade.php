@@ -16,7 +16,7 @@
     </thead>
     <tbody style="text-transform: uppercase; font-size: 12px">
         @foreach ($peserta as $item)
-            <tr>
+            <tr> 
                 <td>{{ $item->name }}</td>
                 <td>{{ $item->alamat }}</td>
                 <td>
