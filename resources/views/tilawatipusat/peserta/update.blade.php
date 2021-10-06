@@ -60,6 +60,10 @@
             </select>
             <textarea name="0" class="form-control" id="" cols="30" rows="10"></textarea>
         </div>
+        <div class="form-group  col-12 col-xl-6">
+            <label for="alamat"><i class="text-danger">*</i> Alamat Sesuai KTP</label>
+            <textarea name="alamat" class="form-control" id="" cols="30" rows="10" required></textarea>
+        </div>
     </div>
 
 @endsection
