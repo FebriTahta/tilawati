@@ -76,7 +76,8 @@
             <textarea name="alamat" class="form-control" id="" cols="30" rows="5" required>{{$peserta->alamat}}</textarea>
         </div>
         <div class="form-group col-12">
-            <button class="btn btn-info" type="submit">UPDATE DATA</button>
+            {{-- <button class="btn btn-info" type="submit">UPDATE DATA</button> --}}
+            <input type="submit" class="btn btn-info" value="UPDATE DATA" id="daftar">
         </div>
     </div>
 </form>
