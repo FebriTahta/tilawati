@@ -7,6 +7,7 @@
     <thead>
         <tr>
             <th>Nama Lengkap Peserta</th>
+            <th>Diklat</th>
             <th>Alamat Lengkap</th>
             <th>Kota / Kabupaten</th>
             <th>No WA</th>
@@ -18,6 +19,7 @@
         @foreach ($peserta as $item)
             <tr>
                 <td>{{ $item->name }}</td>
+                <td>{{ $item->program->name }}</td>
                 <td>{{ $item->alamat }}</td>
                 <td>
                     @if ($item->kabupaten == null)
