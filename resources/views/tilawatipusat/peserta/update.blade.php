@@ -1,61 +1,9 @@
 @extends('layouts.tilawatipusat_layouts.master')
-@section('head')
-<style>
-    .select2-container--default .select2-selection--single,
-.select2-selection .select2-selection--single {
-    border: 1px solid #d2d6de;
-    border-radius: 0;
-    padding: 6px 12px;
-    height: 34px
-}
-
-.select2-container--default .select2-selection--single {
-    background-color: #fff;
-    border: 1px solid #aaa;
-    border-radius: 4px
-}
-
-.select2-container .select2-selection--single {
-    box-sizing: border-box;
-    cursor: pointer;
-    display: block;
-    height: 28px;
-    user-select: none;
-    -webkit-user-select: none
-}
-
-.select2-container .select2-selection--single .select2-selection__rendered {
-    padding-right: 10px
-}
-
-.select2-container .select2-selection--single .select2-selection__rendered {
-    padding-left: 0;
-    padding-right: 0;
-    height: auto;
-    margin-top: -3px
-}
-
-.select2-container--default .select2-selection--single .select2-selection__rendered {
-    color: #444;
-    line-height: 28px
-}
-
-.select2-container--default .select2-selection--single,
-.select2-selection .select2-selection--single {
-    border: 1px solid #d2d6de;
-    border-radius: 0 !important;
-    padding: 6px 12px;
-    height: 40px !important
-}
-
-.select2-container--default .select2-selection--single .select2-selection__arrow {
-    height: 26px;
-    position: absolute;
-    top: 6px !important;
-    right: 1px;
-    width: 20px
-}
-</style>
+@section('css')
+ <!-- DataTables -->
+ <link href="{{ URL::asset('tilawatipusat/libs/datatables/datatables.min.css')}}" rel="stylesheet" type="text/css" />
+ <!-- Select2 -->
+ <link href="{{URL::asset('tilawatipusat/libs/select2/select2.min.css')}}" rel="stylesheet" type="text/css" />
 @endsection
 @section('content')
 @component('common-tilawatipusat.breadcrumb')
