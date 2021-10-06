@@ -33,7 +33,7 @@
         </div>
         <div class="form-group col-9 col-xl-6">
             <label for="phone"><i class="text-danger">*</i> Nomor WA (AKTIF)</label>
-            <input type="number" value="{{$peserta->telp}}" pattern="[0-9]*" inputmode="numeric" id="phone" onkeypress="return hanyaAngka(event)" name="phone" class="form-control" style="max-height: 40px;" required>
+            <input type="number" value="{{substr($peserta->telp,2)}}" pattern="[0-9]*" inputmode="numeric" id="phone" onkeypress="return hanyaAngka(event)" name="phone" class="form-control" style="max-height: 40px;" required>
             <code style="" id="kodephone"></code>
         </div>
         <div class="form-group col-12 col-xl-3">
