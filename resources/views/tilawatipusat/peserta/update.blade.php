@@ -8,7 +8,7 @@
 <form action="{{route('update.data.peserta')}}" method="POST" enctype="multipart/form-data">@csrf
     <div class="row">
         <div class="form-group col-xl-6">
-            <input type="hidden" value="{{$peserta->id}}">
+            <input type="hidden" name="id" value="{{$peserta->id}}">
             <label for="nama">Nama Peserta</label>
             <input type="text" class="form-control" value="{{$peserta->name}}" id="nama" name="name" required>    
         </div>
