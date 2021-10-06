@@ -1389,7 +1389,7 @@ class PesertaCont extends Controller
         $telp           = $request->kode.$request->phone;
         $telp1          = $request->kode1.$request->phone1;
         $dpp            = $request->pelatihan_id;
-        $dp             = Peserta::find($request->id);
+        $dp             = Peserta::where('id',$request->id)->first();
         $tanggal        = $dp->tanggal;
         $kabupaten_kota = Kabupaten::where('id',$request->kabupaten_id)->first();
         $tempatlahir    = Kabupaten::where('id',$request->tmptlahir)->first();
