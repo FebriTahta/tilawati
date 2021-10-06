@@ -1390,12 +1390,12 @@ class PesertaCont extends Controller
         $telp1          = $request->kode1.$request->phone1;
         $dpp            = $request->pelatihan_id;
         $dp             = Peserta::where('id',$request->id)->first();
+        return $dp->tanggal;
         $kabupaten_kota = Kabupaten::where('id',$request->kabupaten_id)->first();
         $tempatlahir    = Kabupaten::where('id',$request->tmptlahir)->first();
         $slug           = Str::slug($request->name.'-'.$dp->program->name.'-'.
                           Carbon::parse($dp->tanggal)->isoFormat('D-MMMM-Y').'-'.$dp->cabang->name.'-'.
                           $dp->cabang->kabupaten->nama);
-                          return $dp->tanggal;
 
                           $peserta                = Peserta::updateOrCreate(
                             [
