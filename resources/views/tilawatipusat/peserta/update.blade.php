@@ -161,7 +161,7 @@
                             $('#daftar').removeClass('btn btn-danger');
                             $('#daftar').addClass('btn btn-success');
                             $('#daftar').attr('disabled',false);
-                            $('#daftar').val('Daftar!');
+                            $('#daftar').val('UPDATE DATA');
             }
         })
         $('#phone').keyup(function() {
@@ -201,7 +201,7 @@
                             $('#daftar').removeClass('btn btn-danger');
                             $('#daftar').addClass('btn btn-success');
                             $('#daftar').attr('disabled',false);
-                            $('#daftar').val('Daftar!');
+                            $('#daftar').val('UPDATE DATA');
                         }
                     }
                 }
@@ -238,7 +238,7 @@
                             $('#daftar').removeClass('btn btn-danger');
                             $('#daftar').addClass('btn btn-success');
                             $('#daftar').attr('disabled',false);
-                            $('#daftar').val('Daftar!');
+                            $('#daftar').val('UPDATE DATA');
                         }
                     }
                 }
