@@ -62,6 +62,7 @@
         <div class="form-group col-12">
             <label for="alamat"><i class="text-danger">*</i> Alamat Lengkap Sesuai KTP
             <textarea name="alamat" style="width: 100%" id="alamat" cols="30" rows="3" class="form-control" required></textarea>
+            <input type="text" class="form-control">
         </div>
     </div>
 
