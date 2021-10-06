@@ -1384,4 +1384,54 @@ class PesertaCont extends Controller
         return view('tilawatipusat.peserta.update',compact('peserta'));
     }
 
+    public function update_data_peserta(Request $request)
+    {
+        $telp           = $request->kode.$request->phone;
+        $telp1          = $request->kode1.$request->phone1;
+        $dpp            = $request->pelatihan_id;
+        $dp             = Peserta::where('pelatihan_id',$dpp)->where('name',$request->name)->where('telp',$telp)->first();
+        $dp1            = Peserta::where('pelatihan_id',$dpp)->where('name',$request->name)->where('telp',$telp1)->first();
+        $diklat         = Pelatihan::where('id', $request->pelatihan_id)->first();
+        $tanggal        = $diklat->tanggal;
+        $kabupaten_kota = Kabupaten::where('id',$request->kabupaten_id)->first();
+        $tempatlahir    = Kabupaten::where('id',$request->tmptlahir)->first();
+        $slug           = Str::slug($request->name.'-'.$diklat->program->name.'-'.
+                          Carbon::parse($tanggal)->isoFormat('D-MMMM-Y').'-'.$diklat->cabang->name.'-'.
+                          $diklat->cabang->kabupaten->nama);
+
+                          $peserta                = Peserta::updateOrCreate(
+                            [
+                                'id'            => $request->id
+                            ],
+                            [
+                                'nik'           => $request->nik,
+                                'phonegara_id'  => $kode_negara,
+                                'pelatihan_id'  => $request->pelatihan_id,
+                                'program_id'    => $diklat->program_id,
+                                'cabang_id'     => $diklat->cabang->id,
+                                'lembaga_id'    => $request->lembaga_id,
+                                'provinsi_id'   => $kabupaten_kota->provinsi_id,
+                                'kabupaten_id'  => $kabupaten_kota->id,
+                                'kecamatan_id'  => $request->kecamatan_id,
+                                'kelurahan_id'  => $request->kelurahan_id,
+                                'slug'          => $slug,
+                                'tanggal'       => $tanggal,
+                                'name'          => $request->name,
+                                'tmptlahir'     => $tempatlahir->nama,
+                                'tgllahir'      => $request->tgllahir,
+                                'alamat'        => $request->alamat,
+                                'alamatx'       => $request->alamatx,
+                                'kota'          => $kabupaten_kota->nama,
+                                'telp'          => $request->kode.$request->phone,
+                                'pos'           => $request->pos,
+                                'email'         => $request->email,
+                                'bersyahadah'   => $request->bersyahadah,
+                                'jilid'         => $request->jilid,
+                                'kriteria'      => $request->kriteria,
+                                'munaqisy'      => $request->munaqisy,
+                            ]
+                        );
+                        return redirect()->back();
+    }
+
 }

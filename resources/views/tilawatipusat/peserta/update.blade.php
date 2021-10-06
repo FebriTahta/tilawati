@@ -5,7 +5,7 @@
 @slot('title') UPDATE   @endslot
 @slot('title_li') PESERTA   @endslot
 @endcomponent
-
+<form action="{{route('update.data.peserta')}}" method="POST" enctype="multipart/form-data">@csrf
     <div class="row" id="id">
         <div class="form-group col-xl-6">
             <label for="nama">Nama Peserta</label>
@@ -64,7 +64,7 @@
             <textarea name="alamat" class="form-control" id="" cols="30" rows="5" required>{{$peserta->alamat}}</textarea>
         </div>
     </div>
-
+</form>
 @endsection
 
 @section('script')
