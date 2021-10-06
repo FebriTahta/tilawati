@@ -87,6 +87,7 @@
         <div class="form-group col-12">
             {{-- <button class="btn btn-info" type="submit">UPDATE DATA</button> --}}
             <input type="submit" class="btn btn-info" value="UPDATE DATA" id="daftar">
+            <a href="/diklat-peserta/{{$peserta->pelatihan_id}}" class="btn btn-secondary">Kembali</a>
         </div>
     </div>
 </form>
