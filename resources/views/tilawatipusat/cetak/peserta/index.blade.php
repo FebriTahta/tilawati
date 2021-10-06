@@ -18,8 +18,8 @@
     <tbody style="text-transform: uppercase; font-size: 12px">
         @foreach ($peserta as $item)
             <tr>
-                <td>{{ $item->name }}</td>
-                <td>{{ $item->program->name }}</td>
+                <td>{{ strtoupper($item->name) }}</td>
+                <td>{{ strtoupper($item->program->name) }}</td>
                 <td>{{ $item->alamat }}</td>
                 <td>
                     @if ($item->kabupaten == null)
@@ -36,7 +36,7 @@
                 @endif
 
                 <td>{{ $item->tmptlahir }}</td>
-                <?php $date = \Carbon\Carbon::parse($item->tgllahir)->isoFormat('M/D/Y')?>
+                <?php $date = \Carbon\Carbon::parse($item->tgllahir)->isoFormat('D/M/Y')?>
                 <td>{{ $date }}</td>
             </tr>
         @endforeach
