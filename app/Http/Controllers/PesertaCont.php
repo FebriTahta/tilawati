@@ -497,7 +497,10 @@ class PesertaCont extends Controller
         {
             if(!empty($request->dari))
             {
-                $data   = Peserta::where('jenis','diklat')->whereBetween('tanggal', array($request->dari, $request->sampai))->with('pelatihan')->with('kabupaten')->with('nilai');
+                $data   = Peserta::whereBetween('tanggal', array($request->dari, $request->sampai))->with('pelatihan')->with('kabupaten')->with('nilai')
+                ->whereHas('pelatihan', function($query){
+                    return $query->where('jenis','diklat');
+                });
                 return DataTables::of($data)
                         ->addColumn('nilai', function ($data) {
                             if ($data->nilai->count() == 0) {
@@ -552,7 +555,10 @@ class PesertaCont extends Controller
                 ->rawColumns(['nilai','action','kabupaten','program'])
                 ->make(true);
             }else{
-                $data   = Peserta::where('jenis','diklat')->with('pelatihan')->with('kabupaten')->with('nilai');
+                $data   = Peserta::with('pelatihan')->with('kabupaten')->with('nilai')
+                ->whereHas('pelatihan', function($query){
+                    return $query->where('jenis','diklat');
+                });;
                 return DataTables::of($data)
                         ->addColumn('nilai', function ($data) {
                             if ($data->nilai->count() == 0) {
