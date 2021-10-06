@@ -58,9 +58,8 @@
             <select name="kelurahan_id" id="kelurahan_id" class="form-control" style="max-height: 40px; color: rgb(0, 0, 0); font-size: 13px;" required>
                 <option value=""></option>
             </select>
-            <textarea name="0" class="form-control" id="" cols="30" rows="10"></textarea>
         </div>
-        <div class="form-group  col-12 col-xl-6">
+        <div class="form-group  col-12 col-xl-12">
             <label for="alamat"><i class="text-danger">*</i> Alamat Sesuai KTP</label>
             <textarea name="alamat" class="form-control" id="" cols="30" rows="10" required></textarea>
         </div>
