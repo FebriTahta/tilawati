@@ -20,7 +20,7 @@
             <tr> 
                 <td>{{ strtoupper($item->name) }}</td>
                 <td>{{ strtoupper($item->program->name) }}</td>
-                <td>{{ $item->alamat }}</td>
+                <td>{{ strtoupper($item->alamat) }}</td>
                 <td>
                     @if ($item->kabupaten == null)
                         -
