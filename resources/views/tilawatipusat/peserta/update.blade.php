@@ -33,35 +33,35 @@
         </div>
         <div class="form-group col-9 col-xl-6">
             <label for="phone"><i class="text-danger">*</i> Nomor WA (AKTIF)</label>
-            <input type="number" pattern="[0-9]*" inputmode="numeric" id="phone" onkeypress="return hanyaAngka(event)" name="phone" class="form-control" style="max-height: 40px;" required>
+            <input type="number" value="{{$peserta->telp}}" pattern="[0-9]*" inputmode="numeric" id="phone" onkeypress="return hanyaAngka(event)" name="phone" class="form-control" style="max-height: 40px;" required>
             <code style="" id="kodephone"></code>
         </div>
         <div class="form-group col-12 col-xl-3">
             <label for="pos"><i class="text-danger">*</i> Kode Pos</label>
-            <input type="number" id="pos" name="pos" class="form-control" style="max-height: 40px;" required>
+            <input type="number" value="{{$peserta->pos}}" id="pos" name="pos" class="form-control" style="max-height: 40px;" required>
             <code style="" id="kodepos"></code>
         </div>
         <div class="form-group col-12 col-xl-6">
             <label for="kabupaten_id"><i class="text-danger">*</i> Kabupaten / Kota</label>
             <select name="kabupaten_id" id="kabupaten_id" class="form-control" style="max-height: 40px; color: rgb(0, 0, 0); font-size: 13px;" required>
-                <option value=""></option>
+                <option value="{{$peserta->kabupaten_id}}">{{$peserta->kabupaten->nama}}</option>
             </select>
         </div>
         <div class="form-group  col-12 col-xl-6">
             <label for="kecamatan_id"><i class="text-danger">*</i> Kecamatan</label>
             <select name="kecamatan_id" id="kecamatan_id" class="form-control" style="max-height: 40px; color: rgb(0, 0, 0); font-size: 13px;" required>
-                <option value=""></option>
+                <option value="{{$peserta->kecamatan_id}}">{{$peserta->kecamatan_id}}</option>
             </select>
         </div>
         <div class="form-group  col-12 col-xl-6">
             <label for="kelurahan_id"><i class="text-danger">*</i> Kelurahan</label>
             <select name="kelurahan_id" id="kelurahan_id" class="form-control" style="max-height: 40px; color: rgb(0, 0, 0); font-size: 13px;" required>
-                <option value=""></option>
+                <option value="{{$peserta->kelurahan_id}}">{{$peserta->kelurahan_id}}</option>
             </select>
         </div>
         <div class="form-group  col-12 col-xl-12">
             <label for="alamat"><i class="text-danger">*</i> Alamat Sesuai KTP</label>
-            <textarea name="alamat" class="form-control" id="" cols="30" rows="5" required></textarea>
+            <textarea name="alamat" class="form-control" id="" cols="30" rows="5" required>{{$peserta->alamat}}</textarea>
         </div>
     </div>
 
