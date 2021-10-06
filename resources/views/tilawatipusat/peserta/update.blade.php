@@ -106,7 +106,7 @@
     $(document).ready(function(){
         var total = $('#total').val();
         console.log(total);
-        $('#negara_id').select2({
+        $('#negara_id').select2('destroy').select2({
             placeholder: 'Asal Negara',
             ajax: {
                 url: "{{route('negara')}}",
@@ -367,7 +367,7 @@
     });
 </script>
 <script>
-        $('#kabupaten_id').select2({
+        $('#kabupaten_id').select2('destroy').select2({
             // placeholder: 'Kab / kota asal',
             ajax: {
                 url: "{{route('kabupaten')}}",
@@ -386,7 +386,7 @@
                 cache: true
             }
         });
-        $('#tmptlahir').select2({
+        $('#tmptlahir').select2('destroy').select2({
             // placeholder: 'Kab / kota asal',
             ajax: {
                 url: "{{route('kabupaten')}}",
@@ -405,10 +405,10 @@
                 cache: true
             }
         });
-        $('#kecamatan_id').select2({
+        $('#kecamatan_id').select2('destroy').select2({
             // placeholder: 'Kab / kota asal',
         });
-        $('#kelurahan_id').select2({
+        $('#kelurahan_id').select2('destroy').select2({
             // placeholder: 'Kab / kota asal',
         });
 </script>
