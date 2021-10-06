@@ -267,14 +267,14 @@ class PesertaCont extends Controller
             # code...
             if(!empty($request->dari))
             {
-                $data = DB::table('pesertas')
+                $data = DB::table('pesertas')->where('jenis','diklat')
                 ->whereBetween('tanggal', array($request->dari, $request->sampai))
                 ->get()->count();
                 return response()->json($data,200);
             }
             else
             {
-                $data = DB::table('pesertas')
+                $data = DB::table('pesertas')->where('jenis','diklat')
                 ->get()->count();
                 return response()->json($data,200);
             }
