@@ -5,12 +5,12 @@
 @slot('title') UPDATE   @endslot
 @slot('title_li') PESERTA   @endslot
 @endcomponent
-<div class="row">
-    <div class="form-group col-xl-6">
-        <label for="nama">Nama Peserta</label>
-        <input type="text" class="form-control" value="{{$peserta->name}}" id="nama" name="name" required>    
-    </div>
+
     <div class="row" id="id">
+        <div class="form-group col-xl-6">
+            <label for="nama">Nama Peserta</label>
+            <input type="text" class="form-control" value="{{$peserta->name}}" id="nama" name="name" required>    
+        </div>
         <div class="form-group col-12">
             <h5>BIODATA</h5>
         </div>
@@ -64,7 +64,7 @@
             <textarea name="alamat" id="alamat" cols="30" rows="3" class="form-control" required></textarea>
         </div>
     </div>
-</div>    
+
 @endsection
 
 @section('script')
