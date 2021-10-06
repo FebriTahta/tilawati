@@ -1428,7 +1428,7 @@ class PesertaCont extends Controller
                                 'munaqisy'      => $request->munaqisy,
                             ]
                         );
-                        return redirect()->back();
+                        return redirect()->back()->with('success','Data Berasil Diperbarui');
     }
 
 }
