@@ -1412,7 +1412,7 @@ class PesertaCont extends Controller
                                 'kecamatan_id'  => $request->kecamatan_id,
                                 'kelurahan_id'  => $request->kelurahan_id,
                                 'slug'          => $slug,
-                                'tanggal'       => $tanggal,
+                                'tanggal'       => $dp->tanggal,
                                 'name'          => $request->name,
                                 'tmptlahir'     => $tempatlahir->nama,
                                 'tgllahir'      => $request->tgllahir,
