@@ -63,6 +63,9 @@
             <label for="alamat"><i class="text-danger">*</i> Alamat Sesuai KTP</label>
             <textarea name="alamat" class="form-control" id="" cols="30" rows="5" required>{{$peserta->alamat}}</textarea>
         </div>
+        <div class="form-group">
+            <button class="btn btn-info" type="submit">UPDATE DATA</button>
+        </div>
     </div>
 </form>
 @endsection
