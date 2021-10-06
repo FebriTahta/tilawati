@@ -17,7 +17,7 @@
         </div>
         <div class="form-group col-12 col-xl-6">
             <label for="tmptlahir"><i class="text-danger">*</i> Tempat Lahir (Kab / Kota)</label>
-            <select name="tmptlahir" id="tmptlahir" class="form-control" style="max-height: 40px; color: rgb(0, 0, 0); font-size: 13px;" required>
+            <select name="tmptlahir" id="tmptlahir" class="form-control" style="max-height: 40px; color: rgb(0, 0, 0); font-size: 13px;" >
                 <option value="">{{$peserta->tmptlahir}}</option>
             </select>
         </div>
