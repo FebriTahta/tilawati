@@ -1392,7 +1392,7 @@ class PesertaCont extends Controller
         $dp             = Peserta::where('id',$request->id)->first();
         $kabupaten_kota = Kabupaten::where('id',$request->kabupaten_id)->first();
         $tempatlahir    = Kabupaten::where('id',$request->tmptlahir)->first();
-        $slug           = Str::slug($request->name.'-'.$diklat->program->name.'-'.
+        $slug           = Str::slug($request->name.'-'.$dp->program->name.'-'.
                           Carbon::parse($dp->tanggal)->isoFormat('D-MMMM-Y').'-'.$dp->cabang->name.'-'.
                           $dp->cabang->kabupaten->nama);
                           return $dp->tanggal;
