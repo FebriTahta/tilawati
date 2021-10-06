@@ -269,7 +269,7 @@ class PesertaCont extends Controller
             {
                 $data = DB::table('pesertas')
                 ->whereBetween('tanggal', array($request->dari, $request->sampai))
-                ->wherHas('prlatihan', function($query){
+                ->whereHas('prlatihan', function($query){
                     return $query->where('jenis','diklat');
                 })
                 ->get()->count();
@@ -277,7 +277,7 @@ class PesertaCont extends Controller
             }
             else
             {
-                $data = DB::table('pesertas')->wherHas('prlatihan', function($query){
+                $data = DB::table('pesertas')->whereHas('prlatihan', function($query){
                     return $query->where('jenis','diklat');
                 })
                 ->get()->count();
