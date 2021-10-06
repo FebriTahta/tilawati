@@ -96,7 +96,7 @@ class PesertaCont extends Controller
                             $actionBtn = ' <a href="#" data-id="'.$data->id.'" data-toggle="modal" data-target="#hapusData" class="btn btn-sm btn-outline btn-danger "><i class="fa fa-trash"></i></a>';
                             $actionBtn .= ' <a href="/diklat-profile-peserta/'.$data->id.'/'.$data->pelatihan->program->id.'/'.$data->pelatihan->id.'/admin" class="btn btn-sm btn-outline btn-info "><i class="fa fa-user"></i></a>';
                             $actionBtn .= ' <a href="#" class="btn btn-sm btn-outline btn-success" data-nama_peserta="'.$data->name.'" data-id="'.asset('images/'.$data->slug.'.png').'" data-toggle="modal" data-target=".modal-scan"><i class="mdi mdi-barcode-scan"></i></a>';
-                            $actionBtn .= ' <a href="#" data-toggle="modal" data-target="#modal-edit" class="btn btn-sm btn-outline btn-primary "><i class="fa fa-pencil-square"></i></a>';
+                            $actionBtn .= ' <a href="#" class="btn btn-sm btn-outline btn-primary "><i class="fa fa-pencil-square"></i></a>';
                             return $actionBtn;
                         })
                         ->addColumn('krits', function ($data) {

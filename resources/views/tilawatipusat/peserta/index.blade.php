@@ -281,47 +281,6 @@
                     </div>
 
                     <div class="col-sm-6 col-md-3 m-t-30">
-                        <div class="modal fade" id="modal-edit" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered modal-lg">
-                                <div class="modal-content">
-                                    <div class="modal-body">
-                                        <div class="col-xl-12">
-                                            <div class="card m-b-30">
-                                                <div class="card-body">
-                                                    <div class="container-fluid">
-                                                        <form id="#"  method="POST" enctype="multipart/form-data">@csrf
-                                                            <div class="form-group">
-                                                                <h5>UBAH DATA PESERTA</h5>
-                                                                <input type="text" class="form-control text-capitalize" id="id" name="id" required>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <input type="text" class="form-control" placeholder="NAMA PESERTA" name="name" required>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <textarea name="alamat" class="form-control" id="alamat" cols="30" rows="2"></textarea>
-                                                            </div>
-                                                            <div class="row" style="text-align: center">
-                                                                <div class="form-group col-6 col-xl-6">
-                                                                    <input type="submit" name="ubah" id="btnubah" class="btn btn-info" value="Ya, Ubah!" />
-                                                                </div>
-                                                                <div class="form-group col-6 col-xl-6">
-                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                                                                        No, Cancel!
-                                                                    </button>
-                                                                </div>
-                                                            </div>
-                                                        </form>
-                                                    </div><!-- container fluid -->
-                                                </div>
-                                            </div>
-                                        </div> <!-- end col -->
-                                    </div>
-                                </div><!-- /.modal-content -->
-                            </div><!-- /.modal-dialog -->
-                        </div><!-- /.modal -->
-                    </div>
-
-                    <div class="col-sm-6 col-md-3 m-t-30">
                         <div class="modal fade bs-example-modal-kota" id="addkota" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered modal-md">
                                 <div class="modal-content">
