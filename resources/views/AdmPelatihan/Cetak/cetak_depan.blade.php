@@ -48,7 +48,6 @@
 								$string = implode($delimiter, array_map('ucfirst', explode($delimiter, $string)));
 							}
 						}
-						return $string;
 					// }
 				?>
 				{{-- Output nama dengan gelar --}}
