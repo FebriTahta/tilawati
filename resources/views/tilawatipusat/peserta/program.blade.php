@@ -343,7 +343,7 @@
 
                     //total diklat dan cabang yang mengadakan diklat
                     $.ajax({
-                        url:'/diklat-peserta-diklat-cabang-total/'+program_id,
+                        url:'/diklat-total-selruh-peserta-program/'+program_id,
                         type: 'get',
                         dataType: 'json',
                         data:{dari:dari, sampai:sampai},

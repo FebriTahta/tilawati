@@ -1433,12 +1433,17 @@ class PesertaCont extends Controller
 
     public function syahadah(Request $request, $program_id)
     {
-        $data   = Peserta::where('program_id', $program_id)->count();
         $data2  = Peserta::where('bersyahadah', 1)->count();
         $data3  = ($data - $data2);
 
         $result = $data2.'- telah bersyahadah & '.$data3.'- belum bersyahadah';
         return response()->json($result,200);
+    }
+
+    public function total_peserta_program(Request $request)
+    {
+        $data = Peserta::where('program_id', $program_id)->count();
+        return response()->json($data,200);
     }
 
 }

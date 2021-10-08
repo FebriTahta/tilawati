@@ -314,6 +314,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     Route::get('/diklat-peserta-data',[PesertaCont::class, 'seluruh_peserta'])->name('diklat.seluruh_peserta');
     Route::get('/diklat-seluruh-peserta-data',[PesertaCont::class, 'seluruh_peserta_data'])->name('diklat.seluruh_peserta_data');
     Route::get('/diklat-seluruh-syahadah-peserta/{program_id}',[PesertaCont::class, 'syahadah'])->name('diklat.syahadah_peserta');
+    Route::get('/diklat-total-selruh-peserta-program/{progra_id}',[PesertaCont::class, 'total_peserta_program'])->name('diklat.total_peserta_program');
     Route::get('/diklat-peserta-data-kabupaten/{kabupaten_id}/data', [PesertaCont::class, 'seluruh_peserta_data_kabupaten'])->name('diklat.peserta_data_kab');
     Route::get('/diklat-peserta-data/{id}',[PesertaCont::class, 'peserta_data'])->name('diklat.peserta_data');
     Route::get('/diklat-peserta-data-kabupaten/{kabupaten_id}',[PesertaCont::class, 'peserta_kabupaten_view'])->name('diklat.peserta_kab_view');
