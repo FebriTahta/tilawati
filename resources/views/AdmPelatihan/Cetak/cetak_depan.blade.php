@@ -55,7 +55,7 @@
 				<?php
 					$str = $item->name;
 				?>
-				<td class="atas" style="width: 562px; height: 10px; font-weight: bold; text-transform: uppercase">{{ $str }}</td>
+				<td class="atas" style="width: 562px; height: 10px; font-weight: bold; text-transform: uppercase">{{ ucname($str) }}</td>
 				<td class="atas" style="width: 52px; height: 10px; ">&nbsp;</td>
 				</tr>
 				<tr class="atas" style="height: 10px;">
