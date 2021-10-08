@@ -59,7 +59,7 @@
                         <div class="col-xl-4">
                             @component('common-tilawatipusat.dashboard-widget')
                             
-                                @slot('title') <b id="cb"> ??? </b> Peserta  @endslot
+                                @slot('title') <b id="cb"> ??? </b> Total Peserta Diklat  @endslot
                                 @slot('iconClass')  mdi mdi-account-group  @endslot
                                 @slot('price')   @endslot
                                 
@@ -68,7 +68,7 @@
                         <div class="col-xl-4">
                             @component('common-tilawatipusat.dashboard-widget')
                             
-                                @slot('title') <a href="#" data-toggle="modal" data-target="#mod_kabupaten" class="text-capitalize"> <b id="cb3"> ??? </b> Kota / Kabupaten</a>@endslot
+                                @slot('title') <a href="#"  class="text-capitalize"> <b id="cb3"> ??? </b> </a>@endslot
                                 @slot('iconClass') mdi mdi-city  @endslot
                                 @slot('price')   @endslot
                                 
@@ -193,44 +193,6 @@
                                             <tfoot class="text-bold text-primary">
                                                 <tr>
                                                    <th>Cabang</th>
-                                                   <th>Action</th>
-                                                </tr>
-                                            </tfoot>
-                                        </table>
-                                        <footer class="blockquote-footer">Updated at  <cite title="Source Title">2021</cite></footer>
-                                    </blockquote>
-                                </div>
-                            </div>
-                            <!-- /.modal-content -->
-                        </div>
-                        <!-- /.modal-dialog -->
-                    </div>
-
-                    <div class="modal fade bs-example-modal-xl-3" id="mod_kabupaten" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-md">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">DAFTAR KABUPATEN YANG MENGADAKAN DIKLAT</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
-                                        <table id="datatable-buttons3" class="table table-diklat-kabupaten table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
-                                            <thead class="text-bold text-primary">
-                                                <tr>
-                                                    <th>Kabupaten</th>
-                                                    <th>Action</th>
-                                                </tr>
-                                            </thead>
-                    
-                                            <tbody style="text-transform: uppercase; font-size: 12px">
-                                            </tbody>
-                    
-                                            <tfoot class="text-bold text-primary">
-                                                <tr>
-                                                   <th>Kabupaten</th>
                                                    <th>Action</th>
                                                 </tr>
                                             </tfoot>
@@ -392,7 +354,7 @@
                     });
 
                     $.ajax({
-                        url:'/diklat-peserta-diklat-cabang-kabupaten-total/'+program_id,
+                        url:'/diklat-seluruh-syahadah-peserta/'+program_id,
                         type: 'get',
                         dataType: 'json',
                         data:{dari:dari, sampai:sampai},
