@@ -41,18 +41,18 @@
 				<td class="atas" style="width: 11px; height: 10px;">:</td>
 				{{-- function penamaan gelar --}}
 				<?php 
-					public function ucname($str){
-						$string = ucwords(strtolower($str));
+					// public function ucname($str){
+						$string = ucwords(strtolower($item->name));
 						foreach (array('-','\'','.') as $delimiter) {
 							if (strpos($string, $delimiter) !== FALSE) {
 								$string = implode($delimiter, array_map('ucfirst', explode($delimiter, $string)));
 							}
 						}
 						return $string;
-					}
+					// }
 				?>
 				{{-- Output nama dengan gelar --}}
-				<td class="atas" style="width: 562px; height: 10px; font-weight: bold; text-transform: uppercase">{{ ucname($item->name) }}</td>
+				<td class="atas" style="width: 562px; height: 10px; font-weight: bold; text-transform: uppercase">{{ $string }}</td>
 				<td class="atas" style="width: 52px; height: 10px; ">&nbsp;</td>
 				</tr>
 				<tr class="atas" style="height: 10px;">
