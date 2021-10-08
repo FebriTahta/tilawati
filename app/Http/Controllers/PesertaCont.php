@@ -1437,7 +1437,7 @@ class PesertaCont extends Controller
         $data2  = Peserta::where('bersyahadah', 1)->count();
         $data3  = ($data - $data2);
 
-        $result = $data.$data2.'- Peserta Bersyahadah & '.$data3.'- Peserta belum bersyahadah';
+        $result = $data2.'- bersyahadah & '.$data3.'- belum bersyahadah';
         return response()->json($result,200);
     }
 

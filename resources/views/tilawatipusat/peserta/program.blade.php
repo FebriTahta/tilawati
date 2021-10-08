@@ -68,7 +68,7 @@
                         <div class="col-xl-4">
                             @component('common-tilawatipusat.dashboard-widget')
                             
-                                @slot('title') <a href="#"  class="text-capitalize"> <b id="cb3"> ??? </b> </a>@endslot
+                                @slot('title')  <b id="cb3"> ??? </b>@endslot
                                 @slot('iconClass') mdi mdi-city  @endslot
                                 @slot('price')   @endslot
                                 
