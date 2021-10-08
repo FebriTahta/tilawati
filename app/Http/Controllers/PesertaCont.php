@@ -1440,7 +1440,7 @@ class PesertaCont extends Controller
         return response()->json($result,200);
     }
 
-    public function total_peserta_program(Request $request)
+    public function total_peserta_program(Request $request,$program_id)
     {
         $data = Peserta::where('program_id', $program_id)->count();
         return response()->json($data,200);
