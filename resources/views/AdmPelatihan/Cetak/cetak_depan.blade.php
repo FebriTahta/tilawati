@@ -39,7 +39,23 @@
 				<tr class="atas" style="height: 10px;">
 				<td class="atas" style="width: 200px; height: 10px;">Nama&nbsp;</td>
 				<td class="atas" style="width: 11px; height: 10px;">:</td>
-				<td class="atas" style="width: 562px; height: 10px; font-weight: bold; text-transform: uppercase">{{ $item->name }}</td>
+				{{-- function penamaan gelar --}}
+				<?php 
+					function ucname($str){
+						$string = ucwords(strtolower($str));
+						foreach (array('-','\'','.') as $delimiter) {
+							if (strpos($string, $delimiter) !== FALSE) {
+								$string = implode($delimiter, array_map('ucfirst', explode($delimiter, $string)));
+							}
+						}
+						return $string;
+					}
+				?>
+				{{-- Output nama dengan gelar --}}
+				<?php
+					$str = $item->name;
+				?>
+				<td class="atas" style="width: 562px; height: 10px; font-weight: bold; text-transform: uppercase">{{ $str }}</td>
 				<td class="atas" style="width: 52px; height: 10px; ">&nbsp;</td>
 				</tr>
 				<tr class="atas" style="height: 10px;">
