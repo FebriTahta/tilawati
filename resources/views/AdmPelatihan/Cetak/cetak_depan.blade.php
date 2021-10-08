@@ -41,7 +41,7 @@
 				<td class="atas" style="width: 11px; height: 10px;">:</td>
 				{{-- function penamaan gelar --}}
 				<?php 
-					function yy($str){
+					private function ucname($str){
 						$string = ucwords(strtolower($str));
 						foreach (array('-','\'','.') as $delimiter) {
 							if (strpos($string, $delimiter) !== FALSE) {
@@ -55,7 +55,7 @@
 				<?php
 					$str = $item->name;
 				?>
-				<td class="atas" style="width: 562px; height: 10px; font-weight: bold; text-transform: uppercase">{{ yy($str) }}</td>
+				<td class="atas" style="width: 562px; height: 10px; font-weight: bold; text-transform: uppercase">{{ ucname($str) }}</td>
 				<td class="atas" style="width: 52px; height: 10px; ">&nbsp;</td>
 				</tr>
 				<tr class="atas" style="height: 10px;">
