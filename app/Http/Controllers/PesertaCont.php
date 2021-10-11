@@ -1129,10 +1129,10 @@ class PesertaCont extends Controller
                         ->addColumn('keterangan', function ($data) {
                             if ($data->bersyahadah == 1) {
                                 # lulus code...
-                                return '<span class"badge badge-primary">Bersyahadah</span>';
+                                return '<span class="badge badge-success">Bersyahadah</span>';
                             }else {
                                 # tidak lulus code...
-                                return '<span class"badge badge-danger">Belum Bersyahadah</span>';
+                                return '<span class="badge badge-danger">Belum Bersyahadah</span>';
                             }
                         })
                         ->addColumn('cabang', function ($data) {
@@ -1182,10 +1182,10 @@ class PesertaCont extends Controller
                         ->addColumn('keterangan', function ($data) {
                             if ($data->bersyahadah == 1) {
                                 # lulus code...
-                                return '<span class"badge badge-primary">Bersyahadah</span>';
+                                return '<span class="badge badge-success">Bersyahadah</span>';
                             }else {
                                 # tidak lulus code...
-                                return '<span class"badge badge-danger">Belum Bersyahadah</span>';
+                                return '<span class="badge badge-danger">Belum Bersyahadah</span>';
                             }
                         })
                         ->addColumn('kabupaten', function ($data) {
