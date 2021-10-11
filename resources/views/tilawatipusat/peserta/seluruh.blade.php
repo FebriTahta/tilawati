@@ -533,8 +533,8 @@
                             name:'nilai'
                             },
                             {
-                            data:'tgllahir',
-                            name:'tgllahir'
+                            data:'ttl',
+                            name:'ttl'
                             },
                             {
                             data:'alamat',
