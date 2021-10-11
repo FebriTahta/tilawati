@@ -1117,9 +1117,6 @@ class PesertaCont extends Controller
                             }
                             return $button;
                         })
-                        ->addColumn('pelatihan', function ($data) {
-                            return $data->pelatihan->program->name;
-                        })
                         ->addColumn('kabupaten', function ($data) {
                             if ($data->kabupaten !== null) {
                                 # code...
@@ -1129,22 +1126,31 @@ class PesertaCont extends Controller
                                 return '<span class="badge badge-warning">kosong</span>';
                             }
                         })
-                        ->addColumn('program', function ($data) {
-                            return $data->pelatihan->program->name;
+                        ->addColumn('keterangan', function ($data) {
+                            if ($data->bersyahadah !== null || $data->bersyahadah !== 0 || $data->bersyahadah !== 'belum'
+                            || $data->bersyahadah !== 'belum bersyahadah' || $data->bersyahadah !== 'belum lulus' || 
+                            $data->bersyahadah !== 'tidak lulus' || $data->bersyahadah !== 'tidak bersyahadah'
+                            ) {
+                                # lulus code...
+                                return '<span class"badge badge-success">Bersyahadah</span>';
+                            }else {
+                                # tidak lulus code...
+                                return '<span class"badge badge-danger">Belum Bersyahadah</span>';
+                            }
                         })
                         ->addColumn('cabang', function ($data) {
                             return $data->pelatihan->cabang->name.' ('.$data->pelatihan->cabang->kabupaten->nama.')';
                         })
                         ->addColumn('tgllahir', function ($data) {
                             $a = Carbon::parse($data->tgllahir)->isoFormat('D MMMM Y');
-                            return $a;
+                            return $data->tmptlahir.'-'.$a;
                         })
                         ->addColumn('action', function($data){
                             $actionBtn = ' <a href="#" data-id="'.$data->id.'" data-toggle="modal" data-target="#hapusData" class="btn btn-sm btn-outline btn-danger fa fa-pencil-square"><i class="fa fa-trash"></i></a>';
                             $actionBtn .= ' <a href="/diklat-profile-peserta/'.$data->id.'/'.$data->pelatihan->program->id.'/'.$data->pelatihan->id.'/admin" class="btn btn-sm btn-outline btn-info fa fa-pencil-square"><i class="fa fa-user"></i></a>';
                             return $actionBtn;
                         })
-                ->rawColumns(['nilai','action','kabupaten','program','tgllahir'])
+                ->rawColumns(['nilai','action','kabupaten','keterangan','tgllahir'])
                 ->make(true);
             }else{
                 $data   = Peserta::where('program_id', $program_id)->with('pelatihan')->with('kabupaten')->with('nilai')->with('cabang');
@@ -1176,8 +1182,17 @@ class PesertaCont extends Controller
                             }
                             return $button;
                         })
-                        ->addColumn('pelatihan', function ($data) {
-                            return $data->pelatihan->program->name;
+                        ->addColumn('keterangan', function ($data) {
+                            if ($data->bersyahadah !== null || $data->bersyahadah !== 0 || $data->bersyahadah !== 'belum'
+                            || $data->bersyahadah !== 'belum bersyahadah' || $data->bersyahadah !== 'belum lulus' || 
+                            $data->bersyahadah !== 'tidak lulus' || $data->bersyahadah !== 'tidak bersyahadah'
+                            ) {
+                                # lulus code...
+                                return '<span class"badge badge-success">Bersyahadah</span>';
+                            }else {
+                                # tidak lulus code...
+                                return '<span class"badge badge-danger">Belum Bersyahadah</span>';
+                            }
                         })
                         ->addColumn('kabupaten', function ($data) {
                             if ($data->kabupaten !== null) {
@@ -1188,15 +1203,12 @@ class PesertaCont extends Controller
                                 return '<span class="badge badge-warning">kosong</span>';
                             }
                         })
-                        ->addColumn('program', function ($data) {
-                            return $data->pelatihan->program->name;
-                        })
                         ->addColumn('cabang', function ($data) {
                             return $data->pelatihan->cabang->name.' ('.$data->pelatihan->cabang->kabupaten->nama.')';
                         })
                         ->addColumn('tgllahir', function ($data) {
                             $a = Carbon::parse($data->tgllahir)->isoFormat('D MMMM Y');
-                            return $a;
+                            return $data->tmptlahir.'-'.$a;
                         })
                         ->addColumn('action', function($data){
                             $actionBtn = ' <a href="#" data-id="'.$data->id.'" data-toggle="modal" data-target="#hapusData" class="btn btn-sm btn-outline btn-danger "><i class="fa fa-trash"></i></a>';
@@ -1204,7 +1216,7 @@ class PesertaCont extends Controller
                             $actionBtn .= ' <a href="#" class="btn btn-sm btn-outline btn-success" data-nama_peserta="'.$data->name.'" data-id="'.asset('images/'.$data->slug.'.png').'" data-toggle="modal" data-target=".modal-scan"><i class="mdi mdi-barcode-scan"></i></a>';
                             return $actionBtn;
                         })
-                ->rawColumns(['nilai','action','kabupaten','program','tgllahir'])
+                ->rawColumns(['nilai','action','kabupaten','tgllahir','keterangan'])
                 ->make(true);
             }
             
