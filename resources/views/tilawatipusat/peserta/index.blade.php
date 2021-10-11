@@ -91,17 +91,16 @@
                                             <thead class="text-bold text-primary" style="text-transform: capitalize">
                                                 <tr>
                                                     <th>peserta</th>
+                                                    <th>asal</th>
+                                                    <th>TTL</th>
+                                                    <th>phone</th>
+                                                    <th>alamat</th>
+                                                    <th>alamat "M"</th>
                                                     @if ($diklat->program->name == "standarisasi guru al qur'an level 1")
                                                         <th>jilid</th>
                                                     @endif
-                                                    <th>kota/kabupaten</th>
-                                                    <th>phone</th>
-                                                    <th>TTL</th>
                                                     <th>nilai</th>
-                                                    <th>alamat</th>
-                                                    <th>alamat modul</th>
                                                     <th>Kriteria</th>
-                                                    <th>email</th>
                                                     <th>Option</th>
                                                 </tr>
                                             </thead>
@@ -110,17 +109,16 @@
                                             <tfoot class="text-primary" >
                                                 <tr>
                                                     <th>peserta</th>
+                                                    <th>asal</th>
+                                                    <th>TTL</th>
+                                                    <th>phone</th>
+                                                    <th>alamat</th>
+                                                    <th>alamat "M"</th>
                                                     @if ($diklat->program->name == "standarisasi guru al qur'an level 1")
                                                         <th>jilid</th>
                                                     @endif
-                                                    <th>kota/kabupaten</th>
-                                                    <th>phone</th>
-                                                    <th>TTL</th>
                                                     <th>nilai</th>
-                                                    <th>alamat</th>
-                                                    <th>alamat modul</th>
                                                     <th>Kriteria</th>
-                                                    <th>email</th>
                                                     <th>Option</th>
                                                 </tr>
                                             </tfoot>
@@ -744,25 +742,17 @@
                         name:'name'
                         },
                         {
-                        data:'jilid',
-                        name:'jilid'
-                        },
-                        {
                         data:'kabupaten',
                         name:'kabupaten.nama',
                         orderable:false,
-                        },
-                        {
-                        data:'telp',
-                        name:'telp'
                         },
                         {
                         data:'ttl',
                         name:'ttl'
                         },
                         {
-                        data:'nilai',
-                        name:'nilai'
+                        data:'telp',
+                        name:'telp'
                         },
                         {
                         data:'alamat',
@@ -773,12 +763,16 @@
                         name:'alamatx'
                         },
                         {
-                        data:'krits',
-                        name:'kriteria',
+                        data:'jilid',
+                        name:'jilid'
                         },
                         {
-                        data:'email',
-                        name:'email'
+                        data:'nilai',
+                        name:'nilai'
+                        },
+                        {
+                        data:'krits',
+                        name:'kriteria',
                         },
                         {
                         data:'action',
@@ -804,19 +798,16 @@
                         },
                         {
                         data:'kabupaten',
-                        name:'kabupaten.nama'
-                        },
-                        {
-                        data:'telp',
-                        name:'telp'
+                        name:'kabupaten.nama',
+                        orderable:false,
                         },
                         {
                         data:'ttl',
                         name:'ttl'
                         },
                         {
-                        data:'nilai',
-                        name:'nilai'
+                        data:'telp',
+                        name:'telp'
                         },
                         {
                         data:'alamat',
@@ -827,12 +818,12 @@
                         name:'alamatx'
                         },
                         {
-                        data:'krits',
-                        name:'kriteria'
+                        data:'nilai',
+                        name:'nilai'
                         },
                         {
-                        data:'email',
-                        name:'email'
+                        data:'krits',
+                        name:'kriteria',
                         },
                         {
                         data:'action',

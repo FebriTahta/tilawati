@@ -90,8 +90,8 @@
                                                     <th>peserta</th>
                                                     <th>asal</th>
                                                     <th>TTL</th>
-                                                    <th>alamat</th>
                                                     <th>telp</th>
+                                                    <th>alamat</th>
                                                     <th>cabang</th>
                                                     <th>tanggal</th>
                                                     <th>keterangan</th>
@@ -108,8 +108,8 @@
                                                     <th>peserta</th>
                                                     <th>asal</th>
                                                     <th>TTL</th>
-                                                    <th>alamat</th>
                                                     <th>telp</th>
+                                                    <th>alamat</th>
                                                     <th>cabang</th>
                                                     <th>tanggal</th>
                                                     <th>keterangan</th>
@@ -242,12 +242,12 @@
                             name:'tgllahir',
                             },
                             {
-                            data:'alamat',
-                            name:'alamat'
-                            },
-                            {
                             data:'telp',
                             name:'telp'
+                            },
+                            {
+                            data:'alamat',
+                            name:'alamat'
                             },
                             {
                             data:'cabang',
