@@ -195,6 +195,27 @@
                     });
 
                     //total diklat dan cabang yang mengadakan diklat
+                    $.ajax({
+                        url:'/diklat-total-selruh-peserta-program/'+program_id,
+                        type: 'get',
+                        dataType: 'json',
+                        data:{dari:dari, sampai:sampai},
+                        success:function(data) {
+                            document.getElementById('cb').innerHTML = data;
+                            console.log(data);
+                        }
+                    });
+
+                    $.ajax({
+                        url:'/diklat-seluruh-syahadah-peserta/'+program_id,
+                        type: 'get',
+                        dataType: 'json',
+                        data:{dari:dari, sampai:sampai},
+                        success:function(data) {
+                            document.getElementById('cb3').innerHTML = data;
+                            console.log(data);
+                        }
+                    });
 
                     //data diklat dan data cabang diklat
                     
