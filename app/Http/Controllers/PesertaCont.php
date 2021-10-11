@@ -1464,8 +1464,18 @@ class PesertaCont extends Controller
 
     public function total_peserta_program(Request $request,$program_id)
     {
-        $data = Peserta::where('program_id', $program_id)->count();
-        return response()->json($data,200);
+        if(request()->ajax())
+        {
+            if(!empty($request->dari))
+            {
+                $data = Peserta::where('program_id', $program_id)
+                ->whereBetween('tanggal', array($request->dari, $request->sampai))->count();
+                return response()->json($data,200);
+            }else{
+                $data = Peserta::where('program_id', $program_id)->count();
+                return response()->json($data,200);
+            }
+        }
     }
 
 }
