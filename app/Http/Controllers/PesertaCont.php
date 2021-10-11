@@ -1183,10 +1183,7 @@ class PesertaCont extends Controller
                             return $button;
                         })
                         ->addColumn('keterangan', function ($data) {
-                            if ($data->bersyahadah !== null || $data->bersyahadah !== 0 || $data->bersyahadah !== 'belum'
-                            || $data->bersyahadah !== 'belum bersyahadah' || $data->bersyahadah !== 'belum lulus' || 
-                            $data->bersyahadah !== 'tidak lulus' || $data->bersyahadah !== 'tidak bersyahadah'
-                            ) {
+                            if ($data->bersyahadah == 1 || $data->bersyahadah == 'bersyahadah') {
                                 # lulus code...
                                 return '<span class"badge badge-success">Bersyahadah</span>';
                             }else {
