@@ -504,6 +504,7 @@ class PesertaCont extends Controller
             if(!empty($request->dari))
             {
                 $data   = Peserta::whereBetween('tanggal', array($request->dari, $request->sampai))->with('pelatihan')->with('kabupaten')->with('nilai')
+                ->with('cabang')->with('program')
                 ->whereHas('pelatihan', function($query){
                     return $query->where('jenis','diklat');
                 });
@@ -565,7 +566,7 @@ class PesertaCont extends Controller
                 ->rawColumns(['nilai','action','kabupaten','program','ttl'])
                 ->make(true);
             }else{
-                $data   = Peserta::with('pelatihan')->with('kabupaten')->with('nilai')
+                $data   = Peserta::with('pelatihan')->with('kabupaten')->with('nilai')->with('cabang')->with('program')
                 ->whereHas('pelatihan', function($query){
                     return $query->where('jenis','diklat');
                 });;

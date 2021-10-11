@@ -116,14 +116,13 @@
                                             <tr>
                                                 <th>peserta</th>
                                                 <th>asal</th>
-                                                <th>program pelatihan</th>
-                                                <th>tanggal</th>
-                                                <th>cabang</th>
-                                                <th>telp</th>
-                                                <th>email</th>
-                                                <th>nilai</th>
-                                                <th>tanggal lahir</th>
+                                                <th>TTL</th>
                                                 <th>alamat</th>
+                                                <th>telp</th>
+                                                <th>cabang</th>
+                                                <th>diklat</th>
+                                                <th>tanggal</th>
+                                                <th>nilai</th>
                                                 <th>Kriteria</th>
                                                 <th>Option</th>
                                             </tr>
@@ -136,14 +135,13 @@
                                             <tr>
                                                 <th>peserta</th>
                                                 <th>asal</th>
-                                                <th>program pelatihan</th>
-                                                <th>tanggal</th>
-                                                <th>cabang</th>
-                                                <th>telp</th>
-                                                <th>email</th>
-                                                <th>nilai</th>
-                                                <th>tanggal lahir</th>
+                                                <th>TTL</th>
                                                 <th>alamat</th>
+                                                <th>telp</th>
+                                                <th>cabang</th>
+                                                <th>diklat</th>
+                                                <th>tanggal</th>
+                                                <th>nilai</th>
                                                 <th>Kriteria</th>
                                                 <th>Option</th>
                                             </tr>
@@ -505,40 +503,32 @@
                             name:'kabupaten.nama'
                             },
                             {
-                            data:'program',
-                            name:'program.name',
-                            searchable: false,
-                            orderable: false,
-                            },
-                            {
-                            data:'tanggal',
-                            name:'tanggal'
-                            },
-                            {
-                            data:'cabang',
-                            name:'cabang.name',
-                            searchable: false,
-                            orderable: false,
-                            },
-                            {
-                            data:'telp',
-                            name:'telp'
-                            },
-                            {
-                            data:'email',
-                            name:'email'
-                            },
-                            {
-                            data:'nilai',
-                            name:'nilai'
-                            },
-                            {
                             data:'ttl',
                             name:'ttl'
                             },
                             {
                             data:'alamat',
                             name:'alamat'
+                            },
+                            {
+                            data:'telp',
+                            name:'telp'
+                            },
+                            {
+                            data:'cabang',
+                            name:'cabang.name',
+                            },
+                            {
+                            data:'program',
+                            name:'program.name',
+                            },
+                            {
+                            data:'tanggal',
+                            name:'tanggal'
+                            },
+                            {
+                            data:'nilai',
+                            name:'nilai'
                             },
                             {
                             data:'kriteria',
@@ -548,7 +538,6 @@
                             data:'action',
                             name:'action'
                             },
-                            
                         ]
                     });
                     //export peserta
