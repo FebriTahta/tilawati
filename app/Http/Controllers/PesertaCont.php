@@ -201,7 +201,7 @@ class PesertaCont extends Controller
                         })
                         ->addColumn('tgllahir', function ($data) {
                             $a = Carbon::parse($data->tgllahir)->isoFormat('D MMMM Y');
-                            return $a;
+                            return $data->tmptlahir.'-'.$a;
                         })
                         
                 ->rawColumns(['nilai','kabupaten','cabang','program','tgllahir'])
@@ -253,7 +253,7 @@ class PesertaCont extends Controller
                         })
                         ->addColumn('tgllahir', function ($data) {
                             $a = Carbon::parse($data->tgllahir)->isoFormat('D MMMM Y');
-                            return $a;
+                            return $data->tmptlahir.'-'.$a;
                         })
                         
                 ->rawColumns(['nilai','kabupaten','cabang','program','tgllahir'])
