@@ -96,7 +96,6 @@
                                                     <th>tanggal</th>
                                                     <th>nilai</th>
                                                     <th>Kriteria</th>
-                                                    <th>Option</th>
                                                 </tr>
                                             </thead>
     
@@ -114,7 +113,6 @@
                                                     <th>tanggal</th>
                                                     <th>nilai</th>
                                                     <th>Kriteria</th>
-                                                    <th>Option</th>
                                                 </tr>
                                             </tfoot>
                                         </table>
@@ -405,10 +403,6 @@
                             {
                             data:'kriteria',
                             name:'kriteria'
-                            },
-                            {
-                            data:'action',
-                            name:'action'
                             },
                             
                         ]

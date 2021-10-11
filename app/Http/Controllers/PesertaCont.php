@@ -1145,12 +1145,12 @@ class PesertaCont extends Controller
                             $a = Carbon::parse($data->tgllahir)->isoFormat('D MMMM Y');
                             return $data->tmptlahir.'-'.$a;
                         })
-                        ->addColumn('action', function($data){
-                            $actionBtn = ' <a href="#" data-id="'.$data->id.'" data-toggle="modal" data-target="#hapusData" class="btn btn-sm btn-outline btn-danger fa fa-pencil-square"><i class="fa fa-trash"></i></a>';
-                            $actionBtn .= ' <a href="/diklat-profile-peserta/'.$data->id.'/'.$data->pelatihan->program->id.'/'.$data->pelatihan->id.'/admin" class="btn btn-sm btn-outline btn-info fa fa-pencil-square"><i class="fa fa-user"></i></a>';
-                            return $actionBtn;
-                        })
-                ->rawColumns(['nilai','action','kabupaten','keterangan','tgllahir'])
+                        // ->addColumn('action', function($data){
+                        //     $actionBtn = ' <a href="#" data-id="'.$data->id.'" data-toggle="modal" data-target="#hapusData" class="btn btn-sm btn-outline btn-danger fa fa-pencil-square"><i class="fa fa-trash"></i></a>';
+                        //     $actionBtn .= ' <a href="/diklat-profile-peserta/'.$data->id.'/'.$data->pelatihan->program->id.'/'.$data->pelatihan->id.'/admin" class="btn btn-sm btn-outline btn-info fa fa-pencil-square"><i class="fa fa-user"></i></a>';
+                        //     return $actionBtn;
+                        // })
+                ->rawColumns(['nilai','kabupaten','keterangan','tgllahir'])
                 ->make(true);
             }else{
                 $data   = Peserta::where('program_id', $program_id)->with('pelatihan')->with('kabupaten')->with('nilai')->with('cabang');
@@ -1210,13 +1210,13 @@ class PesertaCont extends Controller
                             $a = Carbon::parse($data->tgllahir)->isoFormat('D MMMM Y');
                             return $data->tmptlahir.'-'.$a;
                         })
-                        ->addColumn('action', function($data){
-                            $actionBtn = ' <a href="#" data-id="'.$data->id.'" data-toggle="modal" data-target="#hapusData" class="btn btn-sm btn-outline btn-danger "><i class="fa fa-trash"></i></a>';
-                            $actionBtn .= ' <a href="/diklat-profile-peserta/'.$data->id.'/'.$data->pelatihan->program->id.'/'.$data->pelatihan->id.'/admin" class="btn btn-sm btn-outline btn-info "><i class="fa fa-user"></i></a>';
-                            $actionBtn .= ' <a href="#" class="btn btn-sm btn-outline btn-success" data-nama_peserta="'.$data->name.'" data-id="'.asset('images/'.$data->slug.'.png').'" data-toggle="modal" data-target=".modal-scan"><i class="mdi mdi-barcode-scan"></i></a>';
-                            return $actionBtn;
-                        })
-                ->rawColumns(['nilai','action','kabupaten','tgllahir','keterangan'])
+                        // ->addColumn('action', function($data){
+                        //     $actionBtn = ' <a href="#" data-id="'.$data->id.'" data-toggle="modal" data-target="#hapusData" class="btn btn-sm btn-outline btn-danger "><i class="fa fa-trash"></i></a>';
+                        //     $actionBtn .= ' <a href="/diklat-profile-peserta/'.$data->id.'/'.$data->pelatihan->program->id.'/'.$data->pelatihan->id.'/admin" class="btn btn-sm btn-outline btn-info "><i class="fa fa-user"></i></a>';
+                        //     $actionBtn .= ' <a href="#" class="btn btn-sm btn-outline btn-success" data-nama_peserta="'.$data->name.'" data-id="'.asset('images/'.$data->slug.'.png').'" data-toggle="modal" data-target=".modal-scan"><i class="mdi mdi-barcode-scan"></i></a>';
+                        //     return $actionBtn;
+                        // })
+                ->rawColumns(['nilai','kabupaten','tgllahir','keterangan'])
                 ->make(true);
             }
             
