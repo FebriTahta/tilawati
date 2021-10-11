@@ -94,6 +94,7 @@
                                                     <th>telp</th>
                                                     <th>cabang</th>
                                                     <th>tanggal</th>
+                                                    <th>keterangan</th>
                                                     <th>nilai</th>
                                                     <th>Kriteria</th>
                                                 </tr>
@@ -111,6 +112,7 @@
                                                     <th>telp</th>
                                                     <th>cabang</th>
                                                     <th>tanggal</th>
+                                                    <th>keterangan</th>
                                                     <th>nilai</th>
                                                     <th>Kriteria</th>
                                                 </tr>
@@ -395,6 +397,10 @@
                             {
                             data:'tanggal',
                             name:'tanggal'
+                            },
+                            {
+                            data:'keterangan',
+                            name:'keterangan'
                             },
                             {
                             data:'nilai',
