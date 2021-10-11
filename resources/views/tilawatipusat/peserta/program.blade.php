@@ -127,107 +127,11 @@
                     </div>
                     <!-- end row -->
 
-                    <div class="col-sm-6 col-md-3 m-t-30">
-                        <div class="modal fade bs-example-modal-diklat-hapus" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered modal-md">
-                                <div class="modal-content">
-                                    <div class="modal-body">
-                                        <div class="col-xl-12">
-                                            <div class="card m-b-30">
-                                                <div class="card-body">
-                                                    <div class="container-fluid">
-                                                        <form id="hapusdiklat"  method="POST" enctype="multipart/form-data">@csrf
-                                                            <div class="form-group text-center">
-                                                                <h5>Anda yakin akan menghapus Diklat tersebut ?</h5>
-                                                                <input type="hidden" class="form-control text-capitalize" id="id" name="id" required>
-                                                            </div>
-                                                            <div class="row" style="text-align: center">
-                                                                <div class="form-group col-6 col-xl-6">
-                                                                    <input type="submit" name="hapus" id="btnhapus" class="btn btn-danger" value="Ya, Hapus!" />
-                                                                </div>
-                                                                <div class="form-group col-6 col-xl-6">
-                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                                                                        No, Cancel!
-                                                                    </button>
-                                                                </div>
-                                                            </div>
-                                                        </form>
-                                                    </div><!-- container fluid -->
-                                                </div>
-                                            </div>
-                                        </div> <!-- end col -->
-                                    </div>
-                                </div><!-- /.modal-content -->
-                            </div><!-- /.modal-dialog -->
-                        </div><!-- /.modal -->
-                    </div>
-
-                    <div class="modal fade bs-example-modal-xl-2" id="mod_cabang2" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-md">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">DAFTAR CABANG YANG MENGADAKAN DIKLAT</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
-                                        <table id="datatable-buttons2" class="table table-diklat-cabang table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
-                                            <thead class="text-bold text-primary">
-                                                <tr>
-                                                    <th>Cabang</th>
-                                                    <th>Action</th>
-                                                </tr>
-                                            </thead>
                     
-                                            <tbody style="text-transform: uppercase; font-size: 12px">
-                                            </tbody>
-                    
-                                            <tfoot class="text-bold text-primary">
-                                                <tr>
-                                                   <th>Cabang</th>
-                                                   <th>Action</th>
-                                                </tr>
-                                            </tfoot>
-                                        </table>
-                                        <footer class="blockquote-footer">Updated at  <cite title="Source Title">2021</cite></footer>
-                                    </blockquote>
-                                </div>
-                            </div>
-                            <!-- /.modal-content -->
-                        </div>
-                        <!-- /.modal-dialog -->
-                    </div>
 
-                    <div class="col-sm-6 col-md-3 m-t-30">
-                        <div class="modal fade modal-scan" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered modal-md">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title mt-0">SCAN QR CODE PESERTA </h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="col-xl-12">
-                                            <div class="card m-b-30">
-                                                <div class="card-body">
-                                                    <div class="container-fluid text-center">
-                                                        <img src="" alt="qr-code" id="qr-code" width="150px" height="150px">
-                                                        <div class="text-center text-uppercase" style="margin-top: 10px">
-                                                            <p class="text-info" id="nama_peserta"></p>
-                                                        </div>
-                                                    </div><!-- container fluid -->
-                                                </div>
-                                            </div>
-                                        </div> <!-- end col -->
-                                    </div>
-                                </div><!-- /.modal-content -->
-                            </div><!-- /.modal-dialog -->
-                        </div><!-- /.modal -->
-                    </div>
+                    
+
+                    
 
 @endsection
 
@@ -260,52 +164,7 @@
         <script>
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             var program_id = $('#program_id').val();
-            $('.modal-scan').on('show.bs.modal', function(event) {
-                var button = $(event.relatedTarget)
-                id = button.data('id')
-                var modal = $(this)
-                document.getElementById("qr-code").src = id;
-            })
-            $('.bs-example-modal-diklat-hapus').on('show.bs.modal', function(event) {
-                var button = $(event.relatedTarget)
-                id = button.data('id')
-                var modal = $(this)
-                modal.find('.modal-body #id').val(id);
-            })
-            $('#hapusdiklat').submit(function(e) {
-                e.preventDefault();
-                var formData = new FormData(this);
-                $.ajax({
-                type:'POST',
-                url: "{{ route('diklat.delete')}}",
-                data: formData,
-                cache:false,
-                contentType: false,
-                processData: false,
-                beforeSend:function(){
-                    $('#btnhapus').attr('disabled','disabled');
-                    $('#btnhapus').val('Proses Hapus Data');
-                },
-                success: function(data){
-                    if(data.success)
-                    {
-                        //sweetalert and redirect
-                        var oTable = $('#datatable-buttons').dataTable();
-                        oTable.fnDraw(false);
-                        $('#btnhapus').val('Ya, Hapus!');
-                        $('.bs-example-modal-diklat-hapus').modal('hide');
-                        $('#btntambah').attr('disabled',false);
-                        swal({ title: "Success!",
-                            text: "Kriteria Tersebut Berhasil Di Dihapus!",
-                            type: "success"})
-                    }
-                },
-                error: function(data)
-                {
-                    console.log(data);
-                    }
-                });
-            });
+            
             
             $(document).ready(function(){
                 //ready load data
@@ -336,27 +195,6 @@
                     });
 
                     //total diklat dan cabang yang mengadakan diklat
-                    $.ajax({
-                        url:'/diklat-total-selruh-peserta-program/'+program_id,
-                        type: 'get',
-                        dataType: 'json',
-                        data:{dari:dari, sampai:sampai},
-                        success:function(data) {
-                            document.getElementById('cb').innerHTML = data;
-                            console.log(data);
-                        }
-                    });
-
-                    $.ajax({
-                        url:'/diklat-seluruh-syahadah-peserta/'+program_id,
-                        type: 'get',
-                        dataType: 'json',
-                        data:{dari:dari, sampai:sampai},
-                        success:function(data) {
-                            document.getElementById('cb3').innerHTML = data;
-                            console.log(data);
-                        }
-                    });
 
                     //data diklat dan data cabang diklat
                     
