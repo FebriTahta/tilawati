@@ -117,10 +117,8 @@
                                         </form>
                                     </div>
                                 </div>
-                                <div class="card-body">
-                    
+                                <div class="card-body table-responsive">
                                     <h4 class="card-title">Data Peserta Diklat</h4>
-                    
                                     <table id="datatable-buttons" class="table table-diklat table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
                                         <thead class="text-bold text-primary" style="text-transform: capitalize">
                                             <tr>
