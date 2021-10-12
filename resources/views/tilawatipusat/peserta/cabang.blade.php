@@ -47,7 +47,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-4">
+                        <div class="col-xl-6">
                             @component('common-tilawatipusat.dashboard-widget')
                             
                                 @slot('title') <b class="text-uppercase">{{ $cabang->name }}</b><br><b id="cb2" class="text-uppercase">"{{$cabang->kabupaten->nama}}"</b> @endslot
@@ -56,7 +56,16 @@
                                 
                             @endcomponent
                         </div>
-                        <div class="col-xl-4">
+                        <div class="col-xl-6">
+                            @component('common-tilawatipusat.dashboard-widget')
+                            
+                                @slot('title') <a class="text-uppercase" href="#" data-toggle="modal" data-target="#mod_kabupaten"> <b id="cb3"> ??? </b> Kota / Kabupaten</a>@endslot
+                                @slot('iconClass') mdi mdi-city  @endslot
+                                @slot('price')   @endslot
+                                
+                            @endcomponent
+                        </div>
+                        <div class="col-xl-6">
                             @component('common-tilawatipusat.dashboard-widget')
                             
                                 @slot('title') <b id="cb"> ??? </b><br><small class="text-uppercase"> Total Seluruh Peserta </small> @endslot
@@ -65,20 +74,11 @@
                                 
                             @endcomponent
                         </div>
-                        <div class="col-xl-4">
+                        <div class="col-xl-6">
                             @component('common-tilawatipusat.dashboard-widget')
                             
                                 @slot('title') <b id="cb5"> ??? </b><br><small class="text-uppercase">Telah & Belum Bersyahadah </small>@endslot
                                 @slot('iconClass') mdi mdi-mdi mdi-contact-mail-outline  @endslot
-                                @slot('price')   @endslot
-                                
-                            @endcomponent
-                        </div>
-                        <div class="col-xl-4">
-                            @component('common-tilawatipusat.dashboard-widget')
-                            
-                                @slot('title') <a class="text-uppercase" href="#" data-toggle="modal" data-target="#mod_kabupaten"> <b id="cb3"> ??? </b> Kota / Kabupaten</a>@endslot
-                                @slot('iconClass') mdi mdi-city  @endslot
                                 @slot('price')   @endslot
                                 
                             @endcomponent
