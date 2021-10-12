@@ -52,11 +52,20 @@
                             </div>
                         </div>
                         
-                        <div class="col-xl-3">
+                        <div class="col-xl-6">
                             @component('common-tilawatipusat.dashboard-widget')
                             
-                                @slot('title') <b id="cb"> ??? </b><br><small> Peserta Diklat  </small>@endslot
+                                @slot('title') <b id="cb"> ??? </b><br><small> Total Seluruh Peserta Diklat  </small>@endslot
                                 @slot('iconClass')  mdi mdi-account-group  @endslot
+                                @slot('price')   @endslot
+                                
+                            @endcomponent
+                        </div>
+                        <div class="col-xl-6">
+                            @component('common-tilawatipusat.dashboard-widget')
+                            
+                                @slot('title') <b id="cb5"> ??? </b><br><small>Telah & Belum Bersyahadah </small>@endslot
+                                @slot('iconClass') mdi mdi-mdi mdi-contact-mail-outline  @endslot
                                 @slot('price')   @endslot
                                 
                             @endcomponent
@@ -84,15 +93,6 @@
                             
                                 @slot('title') <a href="#" data-toggle="modal" data-target="#mod_cabang3"> <b id="cb4"> ??? </b><br><small> Program </small></a>@endslot
                                 @slot('iconClass') fa fa-book  @endslot
-                                @slot('price')   @endslot
-                                
-                            @endcomponent
-                        </div>
-                        <div class="col-xl-6">
-                            @component('common-tilawatipusat.dashboard-widget')
-                            
-                                @slot('title') <a href="#"> <b id="cb5"> ??? </b><br><small>Telah & Belum Bersyahadah </small></a>@endslot
-                                @slot('iconClass') mdi mdi-mdi mdi-contact-mail-outline  @endslot
                                 @slot('price')   @endslot
                                 
                             @endcomponent
