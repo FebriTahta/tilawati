@@ -89,17 +89,14 @@
                                                 <tr>
                                                     <th>peserta</th>
                                                     <th>asal</th>
-                                                    <th>program pelatihan</th>
-                                                    <th>tanggal</th>
-                                                    <th>cabang</th>
-                                                    
+                                                    <th>TTL</th>
                                                     <th>telp</th>
-                                                    <th>email</th>
-                                                    <th>nilai</th>
-                                                    <th>tanggal lahir</th>
                                                     <th>alamat</th>
+                                                    <th>cabang</th>
+                                                    <th>program</th>
+                                                    <th>tanggal</th>
+                                                    <th>nilai</th>
                                                     <th>Kriteria</th>
-                                                    <th>Option</th>
                                                 </tr>
                                             </thead>
     
@@ -110,17 +107,14 @@
                                                 <tr>
                                                     <th>peserta</th>
                                                     <th>asal</th>
-                                                    <th>program pelatihan</th>
-                                                    <th>tanggal</th>
-                                                    <th>cabang</th>
-                                                    
+                                                    <th>TTL</th>
                                                     <th>telp</th>
-                                                    <th>email</th>
-                                                    <th>nilai</th>
-                                                    <th>tanggal lahir</th>
                                                     <th>alamat</th>
+                                                    <th>cabang</th>
+                                                    <th>program</th>
+                                                    <th>tanggal</th>
+                                                    <th>nilai</th>
                                                     <th>Kriteria</th>
-                                                    <th>Option</th>
                                                 </tr>
                                             </tfoot>
                                         </table>
@@ -423,49 +417,36 @@
                             name:'kabupaten.nama'
                             },
                             {
-                            data:'program',
-                            name:'program.name',
-                            searchable: false,
-                            orderable: false,
+                            data:'tgllahir',
+                            name:'tgllahir',
                             },
-                            {
-                            data:'tanggal',
-                            name:'tanggal'
-                            },
-                            {
-                            data:'cabang',
-                            name:'cabang.name',
-                            searchable: false,
-                            orderable: false,
-                            },
-                            
                             {
                             data:'telp',
                             name:'telp'
-                            },
-                            {
-                            data:'email',
-                            name:'email'
-                            },
-                            {
-                            data:'nilai',
-                            name:'nilai'
-                            },
-                            {
-                            data:'tgllahir',
-                            name:'tgllahir',
                             },
                             {
                             data:'alamat',
                             name:'alamat'
                             },
                             {
-                            data:'kriteria',
-                            name:'kriteria'
+                            data:'cabang',
+                            name:'cabang.name',
                             },
                             {
-                            data:'action',
-                            name:'action'
+                            data:'program',
+                            name:'program.name',
+                            },
+                            {
+                            data:'tanggal',
+                            name:'tanggal'
+                            },
+                            {
+                            data:'nilai',
+                            name:'nilai'
+                            },
+                            {
+                            data:'kriteria',
+                            name:'kriteria'
                             },
                             
                         ]
