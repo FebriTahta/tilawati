@@ -308,7 +308,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     Route::get('/diklat-diklat-total-diklat-program/{program_id}',[DiklatCont::class, 'total_diklat_program']);
 
     Route::get('/halaman-update-data-peserta/{peserta_id}',[PesertaCont::class, 'update_peserta_view']);
-    
+    Route::get('/diklat-total-seluruh-peserta-bersyahadah',[PesertaCont::class, 'total_seluruh_peserta_bersyahadah']);
     Route::post('/update-data-peserta',[PesertaCont::class, 'update_data_peserta'])->name('update.data.peserta');
     Route::get('/diklat-peserta-webinar/{id}',[PesertaCont::class, 'index2'])->name('diklat.peserta_webinar');
     Route::get('/diklat-peserta/{id}',[PesertaCont::class, 'index'])->name('diklat.peserta');
