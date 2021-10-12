@@ -1493,7 +1493,7 @@ class PesertaCont extends Controller
         {
             if(!empty($request->dari))
             {
-                $data       = Peserta::whereHas('program', function($query){
+                $data       = Peserta::where('jenis','diklat')->whereHas('program', function($query){
                     $query->whereBetween('tanggal', array($request->dari, $request->sampai))->count();
                 });
                 $result1    = Peserta::where('bersyahadah',1)->whereBetween('tanggal', array($request->dari, $request->sampai))->count();
@@ -1508,7 +1508,9 @@ class PesertaCont extends Controller
                     return response()->json($hasil,200);
                 }
             }else{
-                $data       = Peserta::all()->count();
+                $data       = Peserta::whereHas('pelatihan', function($query){
+                    $query->where('jenis', 'diklat')->count();
+                });
                 $result1    = Peserta::where('bersyahadah',1)->count();
                 $result2    = ($data - $result1);
                 if ($result1 == 0) {
