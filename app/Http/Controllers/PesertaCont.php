@@ -1281,7 +1281,7 @@ class PesertaCont extends Controller
                         })
                         ->addColumn('tgllahir', function ($data) {
                             $a = Carbon::parse($data->tgllahir)->isoFormat('D MMMM Y');
-                            return $a;
+                            return $data->tmptlahir.' - '.$a;
                         })
                         ->addColumn('action', function($data){
                             $actionBtn = ' <a href="#" data-id="'.$data->id.'" data-toggle="modal" data-target="#hapusData" class="btn btn-sm btn-outline btn-danger fa fa-pencil-square"><i class="fa fa-trash"></i></a>';
@@ -1340,7 +1340,7 @@ class PesertaCont extends Controller
                         })
                         ->addColumn('tgllahir', function ($data) {
                             $a = Carbon::parse($data->tgllahir)->isoFormat('D MMMM Y');
-                            return $a;
+                            return $data->tmptlahir.' - '.$a;
                         })
                         ->addColumn('action', function($data){
                             $actionBtn = ' <a href="#" data-id="'.$data->id.'" data-toggle="modal" data-target="#hapusData" class="btn btn-sm btn-outline btn-danger "><i class="fa fa-trash"></i></a>';
