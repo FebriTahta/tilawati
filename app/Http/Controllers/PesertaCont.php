@@ -293,14 +293,20 @@ class PesertaCont extends Controller
             # code...
             if(!empty($request->dari))
             {
-                $data = DB::table('pesertas')->where('cabang_id', $cabang_id)
+                $data = Peserta::where('cabang_id', $cabang_id)
+                ->whereHas('pelatihan', function($query){
+                    return $query->where('jenis','diklat');
+                })
                 ->whereBetween('tanggal', array($request->dari, $request->sampai))
                 ->get()->count();
                 return response()->json($data,200);
             }
             else
             {
-                $data = DB::table('pesertas')->where('cabang_id', $cabang_id)
+                $data = Peserta::where('cabang_id', $cabang_id)
+                ->whereHas('pelatihan', function($query){
+                    return $query->where('jenis','diklat');
+                })
                 ->get()->count();
                 return response()->json($data,200);
             }
