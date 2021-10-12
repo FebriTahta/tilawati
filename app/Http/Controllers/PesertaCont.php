@@ -1527,4 +1527,36 @@ class PesertaCont extends Controller
         }
     }
 
+    public function total_seluruh_peserta_cabang_bersyahadah(Request $request, $cabang_id)
+    {
+        if(request()->ajax())
+        {
+            if(!empty($request->dari))
+            {
+                $data = Peserta::where('cabang_id',$cabang_id)->whereBetween('tanggal', array($request->dari, $request->sampai))->whereHas('pelatihan', function($query){
+                    return $query->where('jenis','diklat');
+                })->get()->count();
+                $result1    = Peserta::where('cabang_id',$cabang_id)->whereBetween('tanggal', array($request->dari, $request->sampai))->where('bersyahadah',1)->whereHas('pelatihan', function($query){
+                    return $query->where('jenis','diklat');
+                })->get()->count();
+
+                $result2    = $data - $result1;
+                $hasil      = '<span class="text-info">'.$result1.'</span>'.' & '.'<span class="text-danger">'.$result2.'</span>';
+                return response()->json($hasil,200);
+
+            }else{
+                $data = Peserta::where('cabang_id',$cabang_id)->whereHas('pelatihan', function($query){
+                    return $query->where('jenis','diklat');
+                })->get()->count();
+                $result1    = Peserta::where('cabang_id',$cabang_id)->where('bersyahadah',1)->whereHas('pelatihan', function($query){
+                    return $query->where('jenis','diklat');
+                })->get()->count();
+
+                $result2    = $data - $result1;
+                $hasil      = '<span class="text-info">'.$result1.'</span>'.' & '.'<span class="text-danger">'.$result2.'</span>';
+                return response()->json($hasil,200);
+            }
+        }
+    }
+
 }

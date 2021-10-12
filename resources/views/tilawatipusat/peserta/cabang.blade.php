@@ -68,6 +68,15 @@
                         <div class="col-xl-4">
                             @component('common-tilawatipusat.dashboard-widget')
                             
+                                @slot('title') <b id="cb5"> ??? </b><br><small class="text-uppercase">Telah & Belum Bersyahadah </small>@endslot
+                                @slot('iconClass') mdi mdi-mdi mdi-contact-mail-outline  @endslot
+                                @slot('price')   @endslot
+                                
+                            @endcomponent
+                        </div>
+                        <div class="col-xl-4">
+                            @component('common-tilawatipusat.dashboard-widget')
+                            
                                 @slot('title') <a class="text-uppercase" href="#" data-toggle="modal" data-target="#mod_kabupaten"> <b id="cb3"> ??? </b> Kota / Kabupaten</a>@endslot
                                 @slot('iconClass') mdi mdi-city  @endslot
                                 @slot('price')   @endslot
@@ -392,6 +401,17 @@
                         data:{dari:dari, sampai:sampai},
                         success:function(data) {
                             document.getElementById('cb3').innerHTML = data;
+                            console.log(data);
+                        }
+                    });
+
+                    $.ajax({
+                        url:'/diklat-peserta-data-cabang-bersyahadah/'+cabang_id,
+                        type: 'get',
+                        dataType: 'json',
+                        data:{dari:dari, sampai:sampai},
+                        success:function(data) {
+                            document.getElementById('cb5').innerHTML = data;
                             console.log(data);
                         }
                     });
