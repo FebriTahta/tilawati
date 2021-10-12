@@ -1487,4 +1487,25 @@ class PesertaCont extends Controller
         }
     }
 
+    public function total_seluruh_peserta_bersyahadah(Request $request)
+    {
+        if(request()->ajax())
+        {
+            if(!empty($request->dari))
+            {
+                $data       = Peserta::whereBetween('tanggal', array($request->dari, $request->sampai))->count();
+                $result1    = Peserta::where('bersyahadah',1)->whereBetween('tanggal', array($request->dari, $request->sampai))->count();
+                $result2    = ($data - $data1);
+                $hasil      = '<span class="text-info">'.$result1.'</span>'.' & '.'<span class="text-danger">'.$result2.'</span>';
+                return response()->json($hasil,200);
+            }else{
+                $data       = Peserta::all()->count();
+                $result1    = Peserta::where('bersyahadah',1)->count();
+                $result2    = ($data - $data1);
+                $hasil      = '<span class="text-info">'.$result1.'</span>'.' & '.'<span class="text-danger">'.$result2.'</span>';
+                return response()->json($hasil,200);
+            }
+        }
+    }
+
 }

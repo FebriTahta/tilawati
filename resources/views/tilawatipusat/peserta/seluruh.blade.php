@@ -88,6 +88,15 @@
                                 
                             @endcomponent
                         </div>
+                        <div class="col-xl-6">
+                            @component('common-tilawatipusat.dashboard-widget')
+                            
+                                @slot('title') <a href="#"> <b id="cb5"> ??? </b><br><small>Telah & Belum Bersyahadah </small></a>@endslot
+                                @slot('iconClass') mdi mdi-mdi mdi-contact-mail-outline  @endslot
+                                @slot('price')   @endslot
+                                
+                            @endcomponent
+                        </div>
                     </div>
 
                     <div class="row">
@@ -479,6 +488,17 @@
                         data:{dari:dari, sampai:sampai},
                         success:function(data) {
                             document.getElementById('cb4').innerHTML = data;
+                            console.log(data);
+                        }
+                    });
+
+                    $.ajax({
+                        url:'{{ route("total_seluruh_peserta_bersyahadah") }}',
+                        type: 'get',
+                        dataType: 'json',
+                        data:{dari:dari, sampai:sampai},
+                        success:function(data) {
+                            document.getElementById('cb5').innerHTML = data;
                             console.log(data);
                         }
                     });
