@@ -50,7 +50,7 @@
                         <div class="col-xl-4">
                             @component('common-tilawatipusat.dashboard-widget')
                             
-                                @slot('title') <b id="cb2" class="text-uppercase">{{ $cabang->name }} </b> @endslot
+                                @slot('title') <b>PELAKSANA</b><br><b id="cb2" class="text-uppercase">{{ $cabang->name }} </b> @endslot
                                 @slot('iconClass') mdi mdi-bank-outline  @endslot
                                 @slot('price')   @endslot
                                 
