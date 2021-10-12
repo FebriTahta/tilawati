@@ -1511,7 +1511,9 @@ class PesertaCont extends Controller
                 $data       = Peserta::with(['pelatihan' => function ($query) {
                     $query->where('jenis', '<>', 'diklat');
                 }])->count();
-                $result1    = Peserta::where('bersyahadah',1)->count();
+                $result1    = Peserta::where('bersyahadah',1)->with(['pelatihan' => function ($query) {
+                    $query->where('jenis', '<>', 'diklat');
+                }])->count();
                 $result2    = ($data - $result1);
                 if ($result1 == 0) {
                     # code...
