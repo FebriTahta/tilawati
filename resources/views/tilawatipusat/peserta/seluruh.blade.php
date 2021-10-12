@@ -70,7 +70,7 @@
                                 
                             @endcomponent
                         </div>
-                        <div class="col-xl-3">
+                        <div class="col-xl-4">
                             @component('common-tilawatipusat.dashboard-widget')
                             
                                 @slot('title') <a href="#" data-toggle="modal" data-target="#mod_cabang2"> <b id="cb2"> ??? </b><br><small> Pelaksana </small></a>@endslot
@@ -79,7 +79,7 @@
                                 
                             @endcomponent
                         </div>
-                        <div class="col-xl-3">
+                        <div class="col-xl-4">
                             @component('common-tilawatipusat.dashboard-widget')
                             
                                 @slot('title') <a href="#" data-toggle="modal" data-target="#mod_kabupaten"> <b id="cb3"> ??? </b><br><small> Asal Peserta </small></a>@endslot
@@ -88,7 +88,7 @@
                                 
                             @endcomponent
                         </div>
-                        <div class="col-xl-3">
+                        <div class="col-xl-4">
                             @component('common-tilawatipusat.dashboard-widget')
                             
                                 @slot('title') <a href="#" data-toggle="modal" data-target="#mod_cabang3"> <b id="cb4"> ??? </b><br><small> Program </small></a>@endslot
