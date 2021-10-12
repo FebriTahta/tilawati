@@ -1514,13 +1514,14 @@ class PesertaCont extends Controller
                 $result1    = Peserta::where('bersyahadah',1)->with(['pelatihan' => function ($query) {
                     $query->where('jenis', '<>', 'diklat');
                 }])->count();
-                $result2    = ($data - $result1);
+
                 if ($result1 == 0) {
                     # code...
                     $hasil      = '<span class="text-info">'.$result1.'</span>'.' & '.'<span class="text-danger">'.$data.'</span>';
                     return response()->json($hasil,200);
                 }else{
                     # ada peserta yang lulus
+                    $result2    = $data - $result1;
                     $hasil      = '<span class="text-info">'.$result1.'</span>'.' & '.'<span class="text-danger">'.$result2.'</span>';
                     return response()->json($hasil,200);
                 }
