@@ -50,7 +50,7 @@
                         <div class="col-xl-4">
                             @component('common-tilawatipusat.dashboard-widget')
                             
-                                @slot('title') <b id="cb2" class="text-capitalize"> Cabang {{ $cabang->name }} </b> @endslot
+                                @slot('title') <b id="cb2" class="text-uppercase">{{ $cabang->name }} </b> @endslot
                                 @slot('iconClass') mdi mdi-bank-outline  @endslot
                                 @slot('price')   @endslot
                                 
@@ -59,7 +59,7 @@
                         <div class="col-xl-4">
                             @component('common-tilawatipusat.dashboard-widget')
                             
-                                @slot('title') <b id="cb"> ??? </b> Peserta  @endslot
+                                @slot('title') <b id="cb"> ??? </b><br><small class="text-uppercase"> Total Seluruh Peserta </small> @endslot
                                 @slot('iconClass')  mdi mdi-account-group  @endslot
                                 @slot('price')   @endslot
                                 
@@ -68,7 +68,7 @@
                         <div class="col-xl-4">
                             @component('common-tilawatipusat.dashboard-widget')
                             
-                                @slot('title') <a href="#" data-toggle="modal" data-target="#mod_kabupaten" class="text-capitalize"> <b id="cb3"> ??? </b> Kota / Kabupaten</a>@endslot
+                                @slot('title') <a class="text-uppercase" href="#" data-toggle="modal" data-target="#mod_kabupaten"> <b id="cb3"> ??? </b> Kota / Kabupaten</a>@endslot
                                 @slot('iconClass') mdi mdi-city  @endslot
                                 @slot('price')   @endslot
                                 

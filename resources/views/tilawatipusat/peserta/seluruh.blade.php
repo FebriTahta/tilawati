@@ -55,7 +55,7 @@
                         <div class="col-xl-6">
                             @component('common-tilawatipusat.dashboard-widget')
                             
-                                @slot('title') <b id="cb"> ??? </b><br><small> Total Seluruh Peserta Diklat  </small>@endslot
+                                @slot('title') <b id="cb"> ??? </b><br><small class="text-uppercase"> Total Seluruh Peserta Diklat  </small>@endslot
                                 @slot('iconClass')  mdi mdi-account-group  @endslot
                                 @slot('price')   @endslot
                                 
@@ -64,7 +64,7 @@
                         <div class="col-xl-6">
                             @component('common-tilawatipusat.dashboard-widget')
                             
-                                @slot('title') <b id="cb5"> ??? </b><br><small>Telah & Belum Bersyahadah </small>@endslot
+                                @slot('title') <b id="cb5"> ??? </b><br><small class="text-uppercase">Telah & Belum Bersyahadah </small>@endslot
                                 @slot('iconClass') mdi mdi-mdi mdi-contact-mail-outline  @endslot
                                 @slot('price')   @endslot
                                 
@@ -73,7 +73,7 @@
                         <div class="col-xl-4">
                             @component('common-tilawatipusat.dashboard-widget')
                             
-                                @slot('title') <a href="#" data-toggle="modal" data-target="#mod_cabang2"> <b id="cb2"> ??? </b><br><small> Pelaksana </small></a>@endslot
+                                @slot('title') <a class="text-uppercase" href="#" data-toggle="modal" data-target="#mod_cabang2"> <b id="cb2"> ??? </b><br><small> Pelaksana </small></a>@endslot
                                 @slot('iconClass') mdi mdi-bank-outline  @endslot
                                 @slot('price')   @endslot
                                 
@@ -82,7 +82,7 @@
                         <div class="col-xl-4">
                             @component('common-tilawatipusat.dashboard-widget')
                             
-                                @slot('title') <a href="#" data-toggle="modal" data-target="#mod_kabupaten"> <b id="cb3"> ??? </b><br><small> Asal Peserta </small></a>@endslot
+                                @slot('title') <a class="text-uppercase" href="#" data-toggle="modal" data-target="#mod_kabupaten"> <b id="cb3"> ??? </b><br><small> Asal Peserta </small></a>@endslot
                                 @slot('iconClass') mdi mdi-city  @endslot
                                 @slot('price')   @endslot
                                 
@@ -91,7 +91,7 @@
                         <div class="col-xl-4">
                             @component('common-tilawatipusat.dashboard-widget')
                             
-                                @slot('title') <a href="#" data-toggle="modal" data-target="#mod_cabang3"> <b id="cb4"> ??? </b><br><small> Program </small></a>@endslot
+                                @slot('title') <a class="text-uppercase" href="#" data-toggle="modal" data-target="#mod_cabang3"> <b id="cb4"> ??? </b><br><small> Program </small></a>@endslot
                                 @slot('iconClass') fa fa-book  @endslot
                                 @slot('price')   @endslot
                                 
