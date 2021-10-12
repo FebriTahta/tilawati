@@ -1493,7 +1493,9 @@ class PesertaCont extends Controller
         {
             if(!empty($request->dari))
             {
-                $data       = Peserta::whereBetween('tanggal', array($request->dari, $request->sampai))->count();
+                $data       = Peserta::whereHas('program', function($query){
+                    $query->whereBetween('tanggal', array($request->dari, $request->sampai))->count();
+                });
                 $result1    = Peserta::where('bersyahadah',1)->whereBetween('tanggal', array($request->dari, $request->sampai))->count();
                 $result2    = ($data - $result1);
                 if ($result1 == 0) {
