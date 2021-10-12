@@ -1509,7 +1509,7 @@ class PesertaCont extends Controller
                 }
             }else{
                 $data       = Peserta::with('pelatihan', function($query){
-                    $query->where('jenis', 'diklat');
+                    $query->where('jenis','<>','diklat');
                 })->get()->count();
                 $result1    = Peserta::where('bersyahadah',1)->count();
                 $result2    = ($data - $result1);
