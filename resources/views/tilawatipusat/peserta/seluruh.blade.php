@@ -493,7 +493,7 @@
                     });
 
                     $.ajax({
-                        url:'{{ route("total_seluruh_peserta_bersyahadah") }}',
+                        url:'/diklat-total-seluruh-peserta-bersyahadah',
                         type: 'get',
                         dataType: 'json',
                         data:{dari:dari, sampai:sampai},
