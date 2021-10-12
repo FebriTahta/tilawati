@@ -1508,7 +1508,7 @@ class PesertaCont extends Controller
                     return response()->json($hasil,200);
                 }
             }else{
-                $data       = Peserta::whereHas('pelatihan', function($query){
+                $data       = Peserta::with('pelatihan', function($query){
                     $query->where('jenis', 'diklat')->count();
                 });
                 $result1    = Peserta::where('bersyahadah',1)->count();
