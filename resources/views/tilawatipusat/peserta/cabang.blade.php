@@ -59,7 +59,7 @@
                         <div class="col-xl-6">
                             @component('common-tilawatipusat.dashboard-widget')
                             
-                                @slot('title') <a class="text-uppercase" href="#" data-toggle="modal" data-target="#mod_kabupaten"> <b id="cb3"> ??? </b> Kota / Kabupaten</a>@endslot
+                                @slot('title') <a class="text-uppercase" href="#" data-toggle="modal" data-target="#mod_kabupaten"> <b id="cb3"> ??? </b> DAERAH ASAL PESERTA</a>@endslot
                                 @slot('iconClass') mdi mdi-city  @endslot
                                 @slot('price')   @endslot
                                 
