@@ -479,19 +479,19 @@
                         ]
                     });
 
-                    $('.table-diklat-cabang').DataTable({
+                    $('#datatable-buttonsprog').DataTable({
                         //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
                         destroy: true,
                         processing: true,
                         serverSide: true,
                         ajax: {
-                            url:'{{ route("diklat.diklat_cabang_data") }}',
+                            url:'/diklat-peserta-cabang-program-pilih/'+cabang_id,
                             data:{dari:dari, sampai:sampai}
                         },
                         columns: [
                             {
-                            data:'cabang',
-                            name:'cabang.name'
+                            data:'program',
+                            name:'program.name'
                             },
                             {
                             data:'action',
