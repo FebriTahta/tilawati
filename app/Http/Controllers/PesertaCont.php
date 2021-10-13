@@ -1071,6 +1071,7 @@ class PesertaCont extends Controller
                 ->make(true);
             }else {
                 # code...
+                $cabang = Cabang::where('id',$cabang_id)->first();
                 $data   = Peserta::where('cabang_id',$cabang_id)
                 ->with('program')
                 ->select('program_id')->distinct();
@@ -1079,8 +1080,8 @@ class PesertaCont extends Controller
                     return $data->program->name;
                 })
                 ->addColumn('action', function ($data) {
-                    $cabang = Cabang::find($cabang_id);
-                    $btn = '<a href="/halaman-data-peserta-berdasarkan-cabang-dan-program/'.$cabang->id.'/'.$data->program->id.'" class="btn btn-sm btn-info"> check </a>';
+                    $btn = $cabang;
+                    // $btn = '<a href="/halaman-data-peserta-berdasarkan-cabang-dan-program/'.$cabang->id.'/'.$data->program->id.'" class="btn btn-sm btn-info"> check </a>';
                     return $btn;
                 })
                 ->rawColumns(['program','action'])
