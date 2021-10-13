@@ -1632,4 +1632,13 @@ class PesertaCont extends Controller
         }
     }
 
+    // percabangan laporan data peserta 
+
+    public function halaman_peserta_cabang_program($cabang_id, $program_id)
+    {
+        $cabang = Cabang::find($cabang_id);
+        $program= Program::find($program_id);
+        return view('tilawatipusat.peserta.cabang_program',compct('cabang','program'));
+    }
+
 }

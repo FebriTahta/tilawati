@@ -347,6 +347,9 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     Route::post('/diklat-peserta-delete',[PesertaCont::class,'delete'])->name('diklat.peserta_delete');
     Route::get('/diklat-peserta-keseluruhan',[PesertaCont::class, 'peserta_data_keseluruhan'])->name('diklat.peserta_data_keseluruhan');
     Route::post('/ubah-alamat-modul',[PesertaCont::class,'ubah_alamat_modul'])->name('diklat.peserta_alamatx');
+//  Percabangan Laporan Peserta
+    Route::get('/halaman-data-peserta-berdasarkan-cabang-dan-program/{cabang_id}/{program_id}',[PesertaCont::class, 'halaman_peserta_cabang_program']);
+
 
     Route::get('/peserta_yang_kabupatennya_kosong/{pelatihan_id}',[PesertaCont::class,'peserta_yang_kabupatennya_kosong']);
 
