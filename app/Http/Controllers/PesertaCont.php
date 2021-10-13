@@ -1053,6 +1053,7 @@ class PesertaCont extends Controller
         if(request()->ajax())
         {
             //datatable
+            $cabang_id = $cabang_id;
             if(!empty($request->dari))
             {
                 # code...
