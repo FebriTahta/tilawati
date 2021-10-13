@@ -1051,6 +1051,9 @@ class PesertaCont extends Controller
     {
         if(request()->ajax())
         {
+            //cabang
+            $cabang = Cabang::find($cabang_id);
+            //datatable
             if(!empty($request->dari))
             {
                 # code...
@@ -1062,7 +1065,7 @@ class PesertaCont extends Controller
                     return $data->program->name;
                 })
                 ->addColumn('action', function ($data) {
-                    $btn = '<a href="/halaman-data-peserta-berdasarkan-cabang-dan-program/'.$data->cabang_id.'/'.$data->program_id.'" class="btn btn-sm btn-info"> check </a>';
+                    $btn = '<a href="/halaman-data-peserta-berdasarkan-cabang-dan-program/'.$cabang->id.'/'.$data->program_id.'" class="btn btn-sm btn-info"> check </a>';
                     return $btn;
                 })
                 ->rawColumns(['program','action'])
@@ -1071,15 +1074,13 @@ class PesertaCont extends Controller
                 # code...
                 $data   = Peserta::where('cabang_id',$cabang_id)
                 ->with('program')
-                ->whereHas('program', function($query){
-                    $query->distinct();
-                });
+                ->select('cabang_id')->distinct();
                 return DataTables::of($data)
                 ->addColumn('program', function ($data) {
                     return $data->program->name;
                 })
                 ->addColumn('action', function ($data) {
-                    $btn = '<a href="/halaman-data-peserta-berdasarkan-cabang-dan-program/'.'/'.'" class="btn btn-sm btn-info"> check </a>';
+                    $btn = '<a href="/halaman-data-peserta-berdasarkan-cabang-dan-program/'.$cabang->id.'/'.$data->program->id.'" class="btn btn-sm btn-info"> check </a>';
                     return $btn;
                 })
                 ->rawColumns(['program','action'])
