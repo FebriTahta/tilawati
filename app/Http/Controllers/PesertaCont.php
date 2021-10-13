@@ -1049,6 +1049,7 @@ class PesertaCont extends Controller
 
     public function peserta_cabang_program_pilih(Request $request,$cabang_id)
     {
+        $cabang_id = $cabang_id;
         if(request()->ajax())
         {
             //datatable
@@ -1080,7 +1081,7 @@ class PesertaCont extends Controller
                     return $data->program->name;
                 })
                 ->addColumn('action', function ($data) {
-                    $btn = $cabang;
+                    $btn = $cabang_id;
                     // $btn = '<a href="/halaman-data-peserta-berdasarkan-cabang-dan-program/'.$cabang->id.'/'.$data->program->id.'" class="btn btn-sm btn-info"> check </a>';
                     return $btn;
                 })
