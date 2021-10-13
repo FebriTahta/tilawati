@@ -47,7 +47,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-6">
+                        <div class="col-xl-4">
                             @component('common-tilawatipusat.dashboard-widget')
                             
                                 @slot('title') <b class="text-uppercase">{{ $cabang->name }}</b><br><small id="cb2" class="text-uppercase">{{$cabang->kabupaten->nama}}</small> @endslot
@@ -56,11 +56,20 @@
                                 
                             @endcomponent
                         </div>
-                        <div class="col-xl-6">
+                        <div class="col-xl-4">
                             @component('common-tilawatipusat.dashboard-widget')
                             
                                 @slot('title') <a class="text-uppercase" href="#" data-toggle="modal" data-target="#mod_kabupaten"> <b id="cb3"> ??? </b> </a><br><small>ASAL PESERTA</small>@endslot
                                 @slot('iconClass') mdi mdi-city  @endslot
+                                @slot('price')   @endslot
+                                
+                            @endcomponent
+                        </div>
+                        <div class="col-xl-4">
+                            @component('common-tilawatipusat.dashboard-widget')
+                            
+                                @slot('title') <a class="text-uppercase" href="#" data-toggle="modal" data-target="#mod_kabupaten"> <b id="cb4"> ??? </b> </a><br><small>PROGRAM</small>@endslot
+                                @slot('iconClass') fa fa-book  @endslot
                                 @slot('price')   @endslot
                                 
                             @endcomponent
