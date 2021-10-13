@@ -1054,7 +1054,8 @@ class PesertaCont extends Controller
             if(!empty($request->dari))
             {
                 # code...
-                $data   = Peserta::where('cabang_id',$cabang_id)->whereBetween('tanggal', array($request->dari, $request->sampai))
+                $data   = Peserta::where('cabang_id',$cabang_id)
+                ->whereBetween('tanggal', array($request->dari, $request->sampai))
                 ->with('program')->select('program_id')->distinct();
                 return DataTables::of($data)
                 ->addColumn('program', function ($data) {
@@ -1066,7 +1067,6 @@ class PesertaCont extends Controller
                 })
                 ->rawColumns(['program','action'])
                 ->make(true);
-
             }else {
                 # code...
                 $data   = Peserta::where('cabang_id',$cabang_id)
@@ -1081,7 +1081,6 @@ class PesertaCont extends Controller
                 })
                 ->rawColumns(['program','action'])
                 ->make(true);
-
             }
         }
     }
