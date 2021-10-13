@@ -68,7 +68,7 @@
                         <div class="col-xl-4">
                             @component('common-tilawatipusat.dashboard-widget')
                             
-                                @slot('title') <a class="text-uppercase" href="#" data-toggle="modal" data-target="#mod_kabupaten"> <b id="cb4"> ??? </b> </a><br><small>PROGRAM</small>@endslot
+                                @slot('title') <a class="text-uppercase" href="#" data-toggle="modal" data-target="#mod_program"> <b id="cb4"> ??? </b> </a><br><small>PROGRAM</small>@endslot
                                 @slot('iconClass') fa fa-book  @endslot
                                 @slot('price')   @endslot
                                 
@@ -145,79 +145,6 @@
                     </div>
                     <!-- end row -->
 
-                    <div class="col-sm-6 col-md-3 m-t-30">
-                        <div class="modal fade bs-example-modal-diklat-hapus" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered modal-md">
-                                <div class="modal-content">
-                                    <div class="modal-body">
-                                        <div class="col-xl-12">
-                                            <div class="card m-b-30">
-                                                <div class="card-body">
-                                                    <div class="container-fluid">
-                                                        <form id="hapusdiklat"  method="POST" enctype="multipart/form-data">@csrf
-                                                            <div class="form-group text-center">
-                                                                <h5>Anda yakin akan menghapus Diklat tersebut ?</h5>
-                                                                <input type="hidden" class="form-control text-capitalize" id="id" name="id" required>
-                                                            </div>
-                                                            <div class="row" style="text-align: center">
-                                                                <div class="form-group col-6 col-xl-6">
-                                                                    <input type="submit" name="hapus" id="btnhapus" class="btn btn-danger" value="Ya, Hapus!" />
-                                                                </div>
-                                                                <div class="form-group col-6 col-xl-6">
-                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                                                                        No, Cancel!
-                                                                    </button>
-                                                                </div>
-                                                            </div>
-                                                        </form>
-                                                    </div><!-- container fluid -->
-                                                </div>
-                                            </div>
-                                        </div> <!-- end col -->
-                                    </div>
-                                </div><!-- /.modal-content -->
-                            </div><!-- /.modal-dialog -->
-                        </div><!-- /.modal -->
-                    </div>
-
-                    <div class="modal fade bs-example-modal-xl-2" id="mod_cabang2" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-md">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">DAFTAR CABANG YANG MENGADAKAN DIKLAT</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
-                                        <table id="datatable-buttons2" class="table table-diklat-cabang table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
-                                            <thead class="text-bold text-primary">
-                                                <tr>
-                                                    <th>Cabang</th>
-                                                    <th>Action</th>
-                                                </tr>
-                                            </thead>
-                    
-                                            <tbody style="text-transform: uppercase; font-size: 12px">
-                                            </tbody>
-                    
-                                            <tfoot class="text-bold text-primary">
-                                                <tr>
-                                                   <th>Cabang</th>
-                                                   <th>Action</th>
-                                                </tr>
-                                            </tfoot>
-                                        </table>
-                                        <footer class="blockquote-footer">Updated at  <cite title="Source Title">2021</cite></footer>
-                                    </blockquote>
-                                </div>
-                            </div>
-                            <!-- /.modal-content -->
-                        </div>
-                        <!-- /.modal-dialog -->
-                    </div>
-
                     <div class="modal fade bs-example-modal-xl-3" id="mod_kabupaten" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
@@ -243,6 +170,44 @@
                                             <tfoot class="text-bold text-primary">
                                                 <tr>
                                                    <th>Kabupaten</th>
+                                                   <th>Action</th>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                        <footer class="blockquote-footer">Updated at  <cite title="Source Title">2021</cite></footer>
+                                    </blockquote>
+                                </div>
+                            </div>
+                            <!-- /.modal-content -->
+                        </div>
+                        <!-- /.modal-dialog -->
+                    </div>
+
+                    <div class="modal fade bs-example-modal-xl-3" id="mod_program" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">DAFTAR PROGRAM YANG DIADAKAN OLEH CABANG INI</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
+                                        <table id="datatable-buttonsprog" class="table table-diklat-kabupaten table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
+                                            <thead class="text-bold text-primary">
+                                                <tr>
+                                                    <th>Program</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                    
+                                            <tbody style="text-transform: uppercase; font-size: 12px">
+                                            </tbody>
+                    
+                                            <tfoot class="text-bold text-primary">
+                                                <tr>
+                                                   <th>Program</th>
                                                    <th>Action</th>
                                                 </tr>
                                             </tfoot>

@@ -1046,6 +1046,45 @@ class PesertaCont extends Controller
         }
     }
 
+    public function peserta_cabang_program_pilih(Request $request,$cabang_id)
+    {
+        if(request()->ajax())
+        {
+            if(!empty($request->dari))
+            {
+                # code...
+                $data   = Peserta::where('cabang_id',$cabang_id)->whereBetween('tanggal', array($request->dari, $request->sampai))
+                ->with('program')->select('program_id')->distinct();
+                return DataTables::of($data)
+                ->addColumn('program', function ($data) {
+                    return $data->program->name;
+                })
+                ->addColumn('action', function ($data) {
+                    $btn = '<a href="/diklat-peserta-diklat-program/'.$data->program->id.'" class="btn btn-sm btn-info"> check </a>';
+                    return $btn;
+                })
+                ->rawColumns(['program','action'])
+                ->make(true);
+
+            }else {
+                # code...
+                $data   = Peserta::where('cabang_id',$cabang_id)
+                ->with('program')->select('program_id')->distinct();
+                return DataTables::of($data)
+                ->addColumn('program', function ($data) {
+                    return $data->program->name;
+                })
+                ->addColumn('action', function ($data) {
+                    $btn = '<a href="/diklat-peserta-diklat-program/'.$data->program->id.'" class="btn btn-sm btn-info"> check </a>';
+                    return $btn;
+                })
+                ->rawColumns(['program','action'])
+                ->make(true);
+
+            }
+        }
+    }
+
     public function peserta_program_pilih(Request $request)
     {
         if(request()->ajax())
