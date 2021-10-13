@@ -798,14 +798,14 @@ class PesertaCont extends Controller
                 ->whereBetween('tanggal', array($request->dari, $request->sampai))
                 ->select('program_id', DB::raw('count(*) as total'))
                 ->groupBy('program_id')
-                ->count();
+                ->get()->count();
                 return response()->json($data,200);
             }else{
                 # code...
                 $data = Peserta::where('cabang_id', $cabang_id)
                 ->select('program_id', DB::raw('count(*) as total'))
                 ->groupBy('program_id')
-                ->count();
+                ->get()->count();
                 return response()->json($data,200);
             }
         }
