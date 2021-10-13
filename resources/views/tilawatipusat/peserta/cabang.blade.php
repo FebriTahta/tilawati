@@ -404,6 +404,17 @@
                     });
 
                     $.ajax({
+                        url:'/diklat-peserta-cabang-program-total/'+cabang_id,
+                        type: 'get',
+                        dataType: 'json',
+                        data:{dari:dari, sampai:sampai},
+                        success:function(data) {
+                            document.getElementById('cb4').innerHTML = data;
+                            console.log(data);
+                        }
+                    });
+
+                    $.ajax({
                         url:'/diklat-peserta-diklat-cabang-kabupaten-total/'+cabang_id,
                         type: 'get',
                         dataType: 'json',
