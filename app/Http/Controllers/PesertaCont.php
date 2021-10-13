@@ -1051,12 +1051,11 @@ class PesertaCont extends Controller
     {
         if(request()->ajax())
         {
-            //cabang
-            $cabang = Cabang::find($cabang_id);
             //datatable
             if(!empty($request->dari))
             {
                 # code...
+                $cabang = Cabang::find($cabang_id);
                 $data   = Peserta::where('cabang_id',$cabang_id)
                 ->whereBetween('tanggal', array($request->dari, $request->sampai))
                 ->with('program')->select('program_id')->distinct();
@@ -1072,6 +1071,7 @@ class PesertaCont extends Controller
                 ->make(true);
             }else {
                 # code...
+                $cabang = Cabang::find($cabang_id);
                 $data   = Peserta::where('cabang_id',$cabang_id)
                 ->with('program')
                 ->select('program_id')->distinct();
