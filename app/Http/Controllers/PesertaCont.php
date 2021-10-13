@@ -1071,13 +1071,13 @@ class PesertaCont extends Controller
                 # code...
                 $data   = Peserta::where('cabang_id',$cabang_id)
                 ->with('program','cabang')->select('cabang_id')
-                ->select('program_id');
+                ->select('cabang_id')->distinct();
                 return DataTables::of($data)
                 ->addColumn('program', function ($data) {
-                    return $data->program->name. $data->cabang;
+                    return $data->program->name;
                 })
                 ->addColumn('action', function ($data) {
-                    $btn = '<a href="/halaman-data-peserta-berdasarkan-cabang-dan-program/'.$data->cabang.'/'.$data->program->id.'" class="btn btn-sm btn-info"> check </a>';
+                    $btn = '<a href="/halaman-data-peserta-berdasarkan-cabang-dan-program/'.$data->cabang->id.'/'.$data->program->id.'" class="btn btn-sm btn-info"> check </a>';
                     return $btn;
                 })
                 ->rawColumns(['program','action'])
