@@ -1074,7 +1074,7 @@ class PesertaCont extends Controller
                 # code...
                 $data   = Peserta::where('cabang_id',$cabang_id)
                 ->with('program')
-                ->select('cabang_id')->distinct();
+                ->select('program_id')->distinct();
                 return DataTables::of($data)
                 ->addColumn('program', function ($data) {
                     return $data->program->name;
