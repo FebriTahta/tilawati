@@ -210,10 +210,10 @@
                     </div>
 
                     <div class="modal fade bs-example-modal-xl-3" id="mod_kabupaten" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-md">
+                        <div class="modal-dialog modal-lg">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">DAFTAR KABUPATEN YANG MENGADAKAN DIKLAT</h5>
+                                    <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">DAFTAR DAERAH ASAL PESERTA</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
