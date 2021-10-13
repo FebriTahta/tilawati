@@ -1074,7 +1074,7 @@ class PesertaCont extends Controller
                 ->select('cabang_id')->distinct();
                 return DataTables::of($data)
                 ->addColumn('program', function ($data) {
-                    return $data->program->name;
+                    return $data->cabang->name;
                 })
                 ->addColumn('action', function ($data) {
                     $btn = '<a href="/halaman-data-peserta-berdasarkan-cabang-dan-program/'.$data->cabang->id.'/'.$data->program->id.'" class="btn btn-sm btn-info"> check </a>';
