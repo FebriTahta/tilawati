@@ -93,9 +93,9 @@ class CetakCont extends Controller
     public function cetak_surat_pengiriman_satu(Request $request)
     {
         $id     = $request->id;
-        $pes    = Peserta::find($id);
+        $peserta= Peserta::find($id);
         $pdf    = PDF::loadview('tilawatipusat.cetak.detail.surat_pengiriman_satu',compact('pes'))->setpaper('A4','portrait');
-        return $pdf->download('surat-pengiriman-'.$pes->name.'-'.Carbon::parse($pes->tanggal)->isoFormat('D-MMMM-Y').'.pdf');
+        return $pdf->download('surat-pengiriman-'.$peserta->name.'-'.Carbon::parse($peserta->tanggal)->isoFormat('D-MMMM-Y').'.pdf');
     }
 
     public function cetak_surat_pengiriman_beberapa(Request $request)

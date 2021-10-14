@@ -25,29 +25,29 @@
         <tr>
             <td style="width: 10%">Penerima</td>
             <td style="width: 2%"> : </td>
-            <td><b>{{$pes->name}}</b></td>
+            <td><b>{{$peserta->name}}</b></td>
         </tr>
         <tr>
             <td style="width: 10%">Alamat</td>
             <td style="width: 2%"> : </td>
             <td><b>
-                @if ($pes->alamatx == null)
+                @if ($peserta->alamatx == null)
                 <small style="color: red" class="text-danger merah">Alamat pengiriman modul kosong</small><br>
-                {{$pes->alamat}}
+                {{$peserta->alamat}}
                 @else
-                {{$pes->alamatx}}
+                {{$peserta->alamatx}}
                 @endif
             </b></td>
         </tr>
         <tr>
             <td style="width: 10%">Kota</td>
             <td style="width: 2%"> : </td>
-            <td><b>{{$pes->kabupaten->nama}}</b></td>
+            <td><b>{{$peserta->kabupaten->nama}}</b></td>
         </tr> 
         <tr>
             <td style="width: 10%">Phone</td>
             <td style="width: 2%"> : </td>
-            <td><b>{{$pes->telp}}</b></td>
+            <td><b>{{$peserta->telp}}</b></td>
         </tr>
         <tr style="font-size: 14px">
             <td colspan="3"><hr style="border: dashed black"></td>            
