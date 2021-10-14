@@ -245,6 +245,41 @@
                     </div>
 
                     <div class="col-sm-6 col-md-3 m-t-30">
+                        <div class="modal fade" id="modal_cetak_surat" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-md">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <div class="col-xl-12">
+                                            <div class="card m-b-30">
+                                                <div class="card-body">
+                                                    <div class="container-fluid">
+                                                        <form id="formcetaksurat" action="{{route('diklat.cetak_surat_pengiriman_satu')}}"  method="POST" enctype="multipart/form-data">@csrf
+                                                            <div class="form-group text-center">
+                                                                <h5>CETAK SURAT PENGIRIMAN MODUL ?</h5>
+                                                                <input type="hidden" class="form-control text-capitalize" id="id" name="id" required>
+                                                            </div>
+                                                            <div class="row" style="text-align: center">
+                                                                <div class="form-group col-6 col-xl-6">
+                                                                    <input type="submit" name="cetaksurat" id="btncetaksurat" class="btn btn-outline-primary" value="Ya, Cetak!" />
+                                                                </div>
+                                                                <div class="form-group col-6 col-xl-6">
+                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                                                        No, Cancel!
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div><!-- container fluid -->
+                                                </div>
+                                            </div>
+                                        </div> <!-- end col -->
+                                    </div>
+                                </div><!-- /.modal-content -->
+                            </div><!-- /.modal-dialog -->
+                        </div><!-- /.modal -->
+                    </div>
+
+                    <div class="col-sm-6 col-md-3 m-t-30">
                         <div class="modal fade" id="modal-modul" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered modal-lg">
                                 <div class="modal-content">
@@ -591,6 +626,13 @@
             $('#hapusData').on('show.bs.modal', function(event) {
                 var button = $(event.relatedTarget)
                 id = button.data('id')
+                var modal = $(this)
+                modal.find('.modal-body #id').val(id);
+            })
+
+            $('#modal_ctak_surat').on('show.bs.modal', function(event) {
+                var button = $(event.relatedTarget)
+                var id = button.data('id')
                 var modal = $(this)
                 modal.find('.modal-body #id').val(id);
             })

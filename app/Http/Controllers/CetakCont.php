@@ -90,9 +90,23 @@ class CetakCont extends Controller
         return $pdf->download('surat-pengiriman-'.$pelatihan->program->name.'-'.Carbon::parse($pelatihan->tanggal)->isoFormat('D-MMMM-Y').'.pdf');
     }
 
+    public function cetak_surat_pengiriman_satu(Request $request)
+    {
+        $id     = $request->id;
+        $pes    = Peserta::find($id);
+        $pdf    = PDF::loadview('tilawatipusat.cetak.detail.surat_pengiriman_satu',compact('pes'))->setpaper('A4','portrait');
+        return $pdf->download('surat-pengiriman-'.$pes->name.'-'.Carbon::parse($pes->tanggal)->isoFormat('D-MMMM-Y').'.pdf');
+    }
+
+    public function cetak_surat_pengiriman_beberapa(Request $request)
+    {
+
+    }
+
     public function cetak_syahadah_depan_perseorangan(Request $request, $peserta_id)
     {
         
     }
+
 
 }
