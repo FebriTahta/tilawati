@@ -84,6 +84,21 @@
             <label for="alamat"><i class="text-danger">*</i> Alamat Sesuai KTP</label>
             <textarea name="alamat" class="form-control" id="" cols="30" rows="5"  >{{$peserta->alamat}}</textarea>
         </div>
+        <div class="form-group col-12 col-xl-12">
+            <label for="">Brsyahadah</label>
+            <select name="bersyahadah" id="" class="form-control">
+                <option value="{{$peserta->bersyahadah}}">
+                @if ($peserta->bersyahadah == 1)
+                    Bersyahadah
+                @else
+                    Belum Bersyahadah
+                @endif
+                </option>
+                <option value="1">Bersyahadah</option>
+                <option value="0">Belum Bersyahadah</option>
+            </select>
+            
+        </div>
         <div class="form-group col-12">
             {{-- <button class="btn btn-info" type="submit">UPDATE DATA</button> --}}
             <input type="submit" class="btn btn-info" value="UPDATE DATA" id="daftar">
