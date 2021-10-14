@@ -84,7 +84,7 @@
                                     <p class="card-title-desc">Ter-update berdasarkan Tahun 2021 </br></p>
                                     <a class="btn btn-sm btn-success  mr-1 text-white" style="width:130px" @if($diklat->program->penilaian->count() == 0) disabled @else href="{{ route('diklat.peserta_create', $pelatihan_id) }}" @endif><i class="mdi mdi-plus"></i> tambah peserta</a>
                                     <button class="btn btn-sm btn-success  mr-1" style="width:130px " data-toggle="modal" @if($diklat->program->penilaian->count() == 0) disabled @else data-target=".bs-example-modal-peserta" @endif><i class="mdi mdi-cloud-upload"></i> import peserta</button>
-                                    <button class="text-right float-right mr-1 btn btn-sm btn-outline-primary" id="cetak_all"><i class="fa fa-download"></i> download</button>
+                                    <button class="text-right float-right mr-1 btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#modal_cetak_surat" id="cetak_all"><i class="fa fa-download"></i> download</button>
 
                                     <input type="hidden" id="pelatihan_id" value="{{ $pelatihan_id }}">
                                     <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
@@ -900,20 +900,16 @@
             })
 
             $('#cetak_all').on('click', function(e) {
-
-
+            //get id data beberapa
             var allVals = [];  
             $(".sub_chk:checked").each(function() {  
                 allVals.push($(this).attr('data-id'));
-            });  
-
+            });
 
             if(allVals.length <=0)  
             {  
-                alert("Please select row.");  
-            }  else {  
-
-
+                alert("Pilih Peserta Yang Akan di Cetak Surat Jalan");  
+            }else {  
                 var check = confirm("Are you sure you want to delete this row?");  
                 if(check == true){  
                     var join_selected_values = allVals.join(","); 
