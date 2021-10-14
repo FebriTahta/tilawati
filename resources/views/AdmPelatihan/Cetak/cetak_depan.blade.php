@@ -40,7 +40,7 @@
 				<td class="atas" style="width: 200px; height: 10px;">Nama&nbsp;</td>
 				<td class="atas" style="width: 11px; height: 10px;">:</td>
 				{{-- Output nama dengan gelar --}}
-				<td class="atas" style="width: 562px; height: 10px; font-weight: bold;">{{ nama_gelar($item->name) }}</td>
+				<td class="atas" style="width: 562px; height: 10px; font-weight: bold;">{{ nama_gelar($item->name); }}</td>
 				<td class="atas" style="width: 52px; height: 10px; ">&nbsp;</td>
 				</tr>
 				<tr class="atas" style="height: 10px;">

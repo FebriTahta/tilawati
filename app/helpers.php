@@ -16,5 +16,5 @@ function nama_gelar($str){
 	}else{
 		return strtoupper(substr($string,0,-5)).substr($string,-5);
 	}
-    // return $string;
+	
 }
