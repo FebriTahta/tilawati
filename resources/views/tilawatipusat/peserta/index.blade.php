@@ -951,7 +951,7 @@
                 // }
                 $.ajax({
                     url:"{{route('diklat.cetak_surat_pengiriman_beberapa')}}",
-                    method:"post",
+                    method:"get",
                     data:{allVals:allVals},
                     success:function(data)
                     {

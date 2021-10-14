@@ -369,7 +369,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     Route::post('/diklat-cetak-detail-peserta-print',[CetakCont::class, 'cetak_detail_peserta'])->name('diklat.detail_cetak');
     Route::post('/diklat-cetak-surat-pengiriman',[CetakCont::class,'cetak_surat_pengiriman'])->name('diklat.cetak_surat_pengiriman');
     Route::post('/diklat-cetak-surat-pengiriman-satu',[CetakCont::class,'cetak_surat_pengiriman_satu'])->name('diklat.cetak_surat_pengiriman_satu');
-    Route::post('/diklat-cetak-surat-pengiriman-beberapa',[CetakCont::class,'cetak_surat_pengiriman_beberapa'])->name('diklat.cetak_surat_pengiriman_beberapa');
+    Route::get('/diklat-cetak-surat-pengiriman-beberapa',[CetakCont::class,'cetak_surat_pengiriman_beberapa'])->name('diklat.cetak_surat_pengiriman_beberapa');
 
     Route::post('/diklat-import-peserta',[ImportController::class,'importPesertaDiklat'])->name('diklat.import_peserta');
 
