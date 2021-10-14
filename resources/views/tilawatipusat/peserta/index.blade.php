@@ -339,7 +339,7 @@
                                                     <div class="container-fluid">
                                                         <form id="" action="/diklat-cetak-surat-pengiriman"  method="POST" enctype="multipart/form-data">@csrf
                                                             <div class="form-group text-center">
-                                                                <h5>Cetak Surat Pengiriman ?</h5>
+                                                                <h5>Cetak Seluruh Surat Pengiriman ?</h5>
                                                                 <input type="hidden" class="form-control text-capitalize" id="id" name="id" value="{{$diklat->id}}" required>
                                                             </div>
                                                             <div class="row" style="text-align: center">
