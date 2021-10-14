@@ -100,13 +100,12 @@ class CetakCont extends Controller
 
     public function cetak_surat_pengiriman_beberapa(Request $request)
     {
-        if(request()->ajax())
-        {
-            $peserta_id_array = $request->allVals;
+        
+            $peserta_id_array = $request->idcetaksurat;
             $peserta= Peserta::whereIn('id', $peserta_id_array)->get();
             $pdf    = PDF::loadview('tilawatipusat.cetak.detail.surat_pengiriman',compact('peserta'))->setpaper('A4','portrait');
             return $pdf->download('surat-pengiriman.pdf');
-        }
+        
     }
 
     public function cetak_syahadah_depan_perseorangan(Request $request, $peserta_id)
