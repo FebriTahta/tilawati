@@ -15,6 +15,7 @@ use App\Models\Kriteria;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
 use File;
+use SimpleSoftwareIO\QrCode\Generator;
 use Illuminate\Http\Request;
 
 class PesertaCont extends Controller
@@ -1530,6 +1531,8 @@ class PesertaCont extends Controller
                                 'munaqisy'      => $request->munaqisy,
                             ]
                         );
+                        \QrCode::size(150)
+                        ->format('png') ->generate('https://www.profile.tilawatipusat.com/'.$peserta->slug, public_path('images/'.$peserta->slug.'.png'));
                         return redirect()->back()->with('success','Data Berasil Diperbarui');
     }
 
