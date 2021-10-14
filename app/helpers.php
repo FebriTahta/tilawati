@@ -6,6 +6,10 @@ function nama_gelar($str){
     foreach (array('-',',','.') as $key => $delimiter) {
         if (strpos($string, $delimiter) !== FALSE) {
             $string = implode($delimiter, array_map('ucfirst', explode($delimiter, $string)));
+			return strtoupper(substr($string,0,-5)).substr($string,-5);
+		}
+		else{
+			return $string;
 		}
     }
 	// if(substr($str,0,2) == 'hj' || substr($str,0,2) == 'Hj' || substr($str,0,2) == 'HJ' || substr($str,0,2) == 'hJ' 
@@ -14,7 +18,7 @@ function nama_gelar($str){
 	// {
 	// 	return substr($string,0,2).strtoupper(substr($string,2,-5)).substr($string,-5);
 	// }else{
-		return strtoupper(substr($string,0,-5)).substr($string,-5);
+		
 	// }
 	// return $string;
 	
