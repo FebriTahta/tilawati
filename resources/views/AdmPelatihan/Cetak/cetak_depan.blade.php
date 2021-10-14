@@ -44,7 +44,7 @@
 				<td class="atas" style="width: 52px; height: 10px; ">&nbsp;</td>
 				</tr>
 				<tr class="atas" style="height: 10px;">
-				<td class="atas" style="width: 300px; height: 10px;">Alamat&nbsp;</td>
+				<td class="atas" style="width: 200px; height: 10px;">Alamat&nbsp;</td>
 				<td class="atas" style="width: 11px; height: 10px;">:</td>
 				<?php
 					$num_char = 100;
