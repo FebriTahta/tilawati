@@ -90,4 +90,9 @@ class CetakCont extends Controller
         return $pdf->download('surat-pengiriman-'.$pelatihan->program->name.'-'.Carbon::parse($pelatihan->tanggal)->isoFormat('D-MMMM-Y').'.pdf');
     }
 
+    public function cetak_syahadah_depan_perseorangan(Request $request, $peserta_id)
+    {
+        
+    }
+
 }

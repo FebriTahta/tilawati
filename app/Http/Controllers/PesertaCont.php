@@ -54,6 +54,9 @@ class PesertaCont extends Controller
         {
             $data   = Peserta::where('pelatihan_id', $id)->with('certificate')->with('pelatihan')->with('kabupaten')->with('nilai')->where('status',1)->orderBy('id','asc');
                 return DataTables::of($data)
+                        ->addColumn('check', function ($data) {
+                            return '<input type="checkbox" class="sub_chk" data-id="{{$product->id}}">';
+                        })
                         ->addColumn('nilai', function ($data) {
                             if ($data->nilai->count() == 0) {
                                 # code...
@@ -126,7 +129,7 @@ class PesertaCont extends Controller
                                 return $ttl;
                             }
                         })
-                ->rawColumns(['nilai','action','kabupaten','ttl','krits','alamatmodul'])
+                ->rawColumns(['nilai','check','action','kabupaten','ttl','krits','alamatmodul'])
                 ->make(true);
         }
     }
