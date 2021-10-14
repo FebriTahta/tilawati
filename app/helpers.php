@@ -2,8 +2,8 @@
 
 function nama_gelar($str){
     $string = ucwords(strtolower($str));
-	$tanda	= array('-',',','.');
-    foreach ($tanda as $key => $delimiter) {
+	
+    foreach (array('-',',','.') as $key => $delimiter) {
         if (strpos($string, $delimiter) !== FALSE) {
             $string = implode($delimiter, array_map('ucfirst', explode($delimiter, $string)));
 		}
@@ -14,7 +14,7 @@ function nama_gelar($str){
 	// {
 	// 	return substr($string,0,2).strtoupper(substr($string,2,-5)).substr($string,-5);
 	// }else{
-		return strtoupper(substr($string,0,-5));
+		return strtoupper(substr($string,0,-5)).substr($string,-5);
 	// }
 	// return $string;
 	
