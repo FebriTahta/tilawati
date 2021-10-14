@@ -31,7 +31,7 @@
 		<div class="print">
 			<table 
 			@if ($pelatihan->keterangan == 'guru')
-			style="height: 180px; width: 720px;margin-left:113px;margin-top:290px"
+			style="height: 180px; width: 900px;margin-left:113px;margin-top:290px"
 			@else
 			style="height: 180px; width: 720px;margin-left:116px;margin-top:290px"
 			@endif class="dalam">
