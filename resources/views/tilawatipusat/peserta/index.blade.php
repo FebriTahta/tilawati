@@ -90,7 +90,7 @@
                                         <table id="datatable-buttons" class="table table-peserta table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
                                             <thead class="text-bold text-primary" style="text-transform: capitalize">
                                                 <tr>
-                                                    <th style="10%"><input type="checkbox" id="master"></th>
+                                                    <th style="15%"><input type="checkbox" id="master"></th>
                                                     <th>peserta</th>
                                                     <th>asal</th>
                                                     <th>TTL</th>
@@ -109,7 +109,7 @@
                                             </tbody>
                                             <tfoot class="text-primary" style="text-transform: capitalize">
                                                 <tr>
-                                                    <th style="10%">pilih</th>
+                                                    <th style="15%">pilih</th>
                                                     <th>peserta</th>
                                                     <th>asal</th>
                                                     <th>TTL</th>
