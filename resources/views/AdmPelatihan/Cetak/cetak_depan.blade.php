@@ -31,7 +31,7 @@
 		<div class="print">
 			<table 
 			@if ($pelatihan->keterangan == 'guru')
-			style="height: 180px; width: 720px;margin-left:113px;margin-top:290px"
+			style="height: 180px; width: 900px;margin-left:113px;margin-top:290px"
 			@else
 			style="height: 180px; width: 720px;margin-left:116px;margin-top:290px"
 			@endif class="dalam">
@@ -40,7 +40,7 @@
 				<td class="atas" style="width: 170px; height: 10px;">Nama&nbsp;</td>
 				<td class="atas" style="width: 11px; height: 10px;">:</td>
 				{{-- Output nama dengan gelar --}}
-				<td class="atas" style="width: 562px; height: 10px; font-weight: bold;">{{ $item->name }}</td>
+				<td class="atas" style="width: 750px; height: 10px; font-weight: bold;">{{ $item->name }}</td>
 				<td class="atas" style="width: 52px; height: 10px; ">&nbsp;</td>
 				</tr>
 				<tr class="atas" style="height: 10px;">
@@ -57,34 +57,34 @@
 					}
 					
 					?>
-				<td class="atas" style="width: 562px; height: 10px; font-weight: bold;text-transform: uppercase" >{{ substr($text, 0, $num_char) }}</td>
+				<td class="atas" style="width: 750px; height: 10px; font-weight: bold;text-transform: uppercase" >{{ substr($text, 0, $num_char) }}</td>
 				<td class="atas" style="width: 52px; height: 10px;">&nbsp;</td>
 				</tr>
 				<tr class="atas" style="height: 10px;">
 				<td class="atas" style="width: 170px; height: 10px; ">Tempat Tanggal Lahir&nbsp;</td>
 				<td class="atas" style="width: 11px; height: 10px;">:</td><?php date_default_timezone_set('Asia/Jakarta'); $date=$item->tgllahir;?>
-				<td class="atas" style="width: 562px; height: 10px; font-weight: bold;text-transform: uppercase" >{{ $item->tmptlahir }}, {{ Carbon\Carbon::parse($date)->isoFormat('D MMMM Y') }}&nbsp;</td>
+				<td class="atas" style="width: 750px; height: 10px; font-weight: bold;text-transform: uppercase" >{{ $item->tmptlahir }}, {{ Carbon\Carbon::parse($date)->isoFormat('D MMMM Y') }}&nbsp;</td>
 				<td class="atas" style="width: 52px; height: 10px;">&nbsp;</td>
 				</tr>
 				@if ($pelatihan->keterangan == 'santri')
 				<tr class="atas" style="height: 10px;">
 					<td class="atas" style="width: 170px; height: 10px;">Asal Lembaga</td>
 					<td class="atas" style="width: 11px; height: 10px;">:</td>
-					{{-- <td class="atas" style="width: 562px; height: 10px; font-weight: bold;text-transform: uppercase" >{{ $item->lembaga->name }}</td> --}}
-					<td class="atas" style="width: 562px; height: 10px; font-weight: bold;text-transform: uppercase" >Baitul Ghufron</td>
+					{{-- <td class="atas" style="width: 750px; height: 10px; font-weight: bold;text-transform: uppercase" >{{ $item->lembaga->name }}</td> --}}
+					<td class="atas" style="width: 750px; height: 10px; font-weight: bold;text-transform: uppercase" >Baitul Ghufron</td>
 					<td class="atas" style="width: 52px; height: 10px;">&nbsp;</td>
 				</tr>
 				@endif
 				<tr class="atas" style="height: 10px;">
 				<td class="atas" style="width: 170px; height: 10px;">Dinyatakan</td>
 				<td class="atas" style="width: 11px; height: 10px;">:</td>
-				<td class="atas" style="width: 562px; height: 10px; font-weight: bold;text-transform: uppercase" >{{ $item->kriteria }}</td>
+				<td class="atas" style="width: 750px; height: 10px; font-weight: bold;text-transform: uppercase" >{{ $item->kriteria }}</td>
 				<td class="atas" style="width: 52px; height: 10px;">&nbsp;</td>
 				</tr>
 				<tr class="atas" style="height: 37px;">
 				<td class="atas" style="width: 170px; height: 37px;">&nbsp;</td>
 				<td class="atas" style="width: 11px; height: 37px;">&nbsp;</td>
-				<td class="atas" style="width: 562px; height: 37px;">&nbsp;</td>
+				<td class="atas" style="width: 750px; height: 37px;">&nbsp;</td>
 				<td class="atas" style="width: 52px; height: 37px;">&nbsp;</td>
 				</tr>
 				</tbody>
