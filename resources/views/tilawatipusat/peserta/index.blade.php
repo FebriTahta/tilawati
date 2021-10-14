@@ -293,7 +293,7 @@
                                                         <form id="formcetaksurat" action="{{route('diklat.cetak_surat_pengiriman_beberapa')}}"  method="POST" enctype="multipart/form-data">@csrf
                                                             <div class="form-group text-center">
                                                                 <h5>CETAK SURAT PENGIRIMAN MODUL ?</h5>
-                                                                <input type="hidden" class="form-control text-capitalize" id="id" name="id" required>
+                                                                <input type="text" class="form-control text-capitalize" id="idcetaksurat" name="idcetaksurats" required>
                                                             </div>
                                                             <div class="row" style="text-align: center">
                                                                 <div class="form-group col-6 col-xl-6">
@@ -945,20 +945,22 @@
             {  
                 alert("Pilih Peserta Yang Akan di Cetak Surat Jalan");  
             }else {  
-                // var check = confirm("Are you sure you want to delete this row?");  
-                // if(check == true){  
-                //     var join_selected_values = allVals.join(","); 
-                // }
-                $.ajax({
-                    url:"{{route('diklat.cetak_surat_pengiriman_beberapa')}}",
-                    method:"get",
-                    data:{allVals:allVals},
-                    success:function(data)
-                    {
-                        alert(data);
+                var check = confirm("Are you sure you want to delete this row?");  
+                if(check == true){  
+                    var join_selected_values = allVals.join(",");
+                    $('#myModal').modal('show');
+                    $('#idcetaksurat').val(join_selected_values);
+                }
+                // $.ajax({
+                //     url:"{{route('diklat.cetak_surat_pengiriman_beberapa')}}",
+                //     method:"get",
+                //     data:{allVals:allVals},
+                //     success:function(data)
+                //     {
+                //         alert(data);
 
-                    }
-                });
+                //     }
+                // });
             }  
             });
             
