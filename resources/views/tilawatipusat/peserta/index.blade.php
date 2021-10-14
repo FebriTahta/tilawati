@@ -739,7 +739,6 @@
                     columns: [
                         {
                         data:'check',
-                        name:'check'
                         },
                         {
                         data:'name',
