@@ -100,9 +100,7 @@
         </div>
         <div class="form-group col-12 col-xl-12">
             <label for="">Kriteria</label>
-            <textarea name="kriteria" class="form-control" name="" id="" cols="30" rows="2">
-                {{$peserta->kriteria}}
-            </textarea>
+            <textarea name="kriteria" class="form-control" name="" id="" cols="30" rows="2">{{$peserta->kriteria}}</textarea>
         </div>
         <div class="form-group col-12">
             {{-- <button class="btn btn-info" type="submit">UPDATE DATA</button> --}}
