@@ -97,7 +97,12 @@
                 <option value="1">Bersyahadah</option>
                 <option value="0">Belum Bersyahadah</option>
             </select>
-            
+        </div>
+        <div class="form-group col-12 col-xl-12">
+            <label for="">Kriteria</label>
+            <textarea class="form-control" name="" id="" cols="30" rows="2">
+                {{$peserta->kriteria}}
+            </textarea>
         </div>
         <div class="form-group col-12">
             {{-- <button class="btn btn-info" type="submit">UPDATE DATA</button> --}}
