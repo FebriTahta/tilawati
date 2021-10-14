@@ -94,7 +94,7 @@ class CetakCont extends Controller
     {
         $id     = $request->id;
         $peserta= Peserta::find($id);
-        $pdf    = PDF::loadview('tilawatipusat.cetak.detail.surat_pengiriman_satu',compact('pes'))->setpaper('A4','portrait');
+        $pdf    = PDF::loadview('tilawatipusat.cetak.detail.surat_pengiriman_satu',compact('peserta'))->setpaper('A4','portrait');
         return $pdf->download('surat-pengiriman-'.$peserta->name.'-'.Carbon::parse($peserta->tanggal)->isoFormat('D-MMMM-Y').'.pdf');
     }
 
