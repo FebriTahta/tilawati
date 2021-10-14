@@ -109,6 +109,7 @@
                                             </tbody>
                                             <tfoot class="text-primary" >
                                                 <tr>
+                                                    <th width="50px"><input type="checkbox" id="master"></th>
                                                     <th>peserta</th>
                                                     <th>asal</th>
                                                     <th>TTL</th>
