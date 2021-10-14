@@ -739,6 +739,7 @@
                     columns: [
                         {
                         data:'check',
+                        name:'check'
                         },
                         {
                         data:'name',
@@ -794,7 +795,10 @@
                         url:'/diklat-peserta-data/'+pel_id,
                     },
                     columns: [
-                        
+                        {
+                        data:'check',
+                        name:'check'
+                        },
                         {
                         data:'name',
                         name:'name'
