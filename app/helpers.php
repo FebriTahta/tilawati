@@ -14,8 +14,8 @@ function nama_gelar($str){
 	// {
 	// 	return substr($string,0,2).strtoupper(substr($string,2,-5)).substr($string,-5);
 	// }else{
-	// 	return strtoupper(substr($string,0,-5)).substr($string,-5);
+		return strtoupper(substr($string,0,-5));
 	// }
-	return $string;
+	// return $string;
 	
 }
