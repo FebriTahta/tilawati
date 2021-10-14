@@ -84,7 +84,8 @@
                                     <p class="card-title-desc">Ter-update berdasarkan Tahun 2021 </br></p>
                                     <a class="btn btn-sm btn-success  mr-1 text-white" style="width:130px" @if($diklat->program->penilaian->count() == 0) disabled @else href="{{ route('diklat.peserta_create', $pelatihan_id) }}" @endif><i class="mdi mdi-plus"></i> tambah peserta</a>
                                     <button class="btn btn-sm btn-success  mr-1" style="width:130px " data-toggle="modal" @if($diklat->program->penilaian->count() == 0) disabled @else data-target=".bs-example-modal-peserta" @endif><i class="mdi mdi-cloud-upload"></i> import peserta</button>
-                                    <button class="text-right">yaaa</button>
+                                    <button class="text-right float-right">yaaa</button>
+                                    <button class="text-right float-right">yy</button>
 
                                     <input type="hidden" id="pelatihan_id" value="{{ $pelatihan_id }}">
                                     <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
