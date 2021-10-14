@@ -256,7 +256,7 @@
                                                         <form id="formcetaksurat" action="{{route('diklat.cetak_surat_pengiriman_satu')}}"  method="POST" enctype="multipart/form-data">@csrf
                                                             <div class="form-group text-center">
                                                                 <h5>CETAK SURAT PENGIRIMAN MODUL ?</h5>
-                                                                <input type="hidden" class="form-control text-capitalize" id="id" name="id" required>
+                                                                <input type="text" class="form-control text-capitalize" id="id" name="id" required>
                                                             </div>
                                                             <div class="row" style="text-align: center">
                                                                 <div class="form-group col-6 col-xl-6">
