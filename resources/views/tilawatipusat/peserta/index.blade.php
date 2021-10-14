@@ -718,15 +718,15 @@
                     }
                 });
 
-                $.ajax({
-                    url:'/peserta_yang_kabupatennya_kosong/'+pelatihan_id,
-                    type: 'get',
-                    dataType: 'json',
-                    success:function(data) {
-                        document.getElementById('kabkos').innerHTML = data;
-                        // console.log(data);
-                    }
-                });
+                // $.ajax({
+                //     url:'/peserta_yang_kabupatennya_kosong/'+pelatihan_id,
+                //     type: 'get',
+                //     dataType: 'json',
+                //     success:function(data) {
+                //         document.getElementById('kabkos').innerHTML = data;
+                //         // console.log(data);
+                //     }
+                // });
 
                 if (jenis_program == "standarisasi guru al qur'an level 1") {
                     $('#datatable-buttons').DataTable({
