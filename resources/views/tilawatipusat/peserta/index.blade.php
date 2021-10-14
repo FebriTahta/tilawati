@@ -92,8 +92,8 @@
                                         <table id="datatable-buttons" class="table table-peserta table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
                                             <thead class="text-bold text-primary" style="text-transform: capitalize">
                                                 <tr>
-                                                    <th style="15%"><input type="checkbox" id="master"></th>
                                                     <th>peserta</th>
+                                                    <th style="5%"><input type="checkbox" id="master"></th>
                                                     <th>asal</th>
                                                     <th>TTL</th>
                                                     <th>phone</th>
@@ -111,8 +111,8 @@
                                             </tbody>
                                             <tfoot class="text-primary" style="text-transform: capitalize">
                                                 <tr>
-                                                    <th style="15%">pilih</th>
                                                     <th>peserta</th>
+                                                    <th style="5%">pilih</th>
                                                     <th>asal</th>
                                                     <th>TTL</th>
                                                     <th>phone</th>
@@ -828,13 +828,13 @@
                     },
                     columns: [
                         {
+                        data:'name',
+                        name:'name'
+                        },
+                        {
                         data:'check',
                         name:'check',
                         orderable:false,
-                        },
-                        {
-                        data:'name',
-                        name:'name'
                         },
                         {
                         data:'kabupaten',
@@ -887,13 +887,13 @@
                     },
                     columns: [
                         {
+                        data:'name',
+                        name:'name'
+                        },
+                        {
                         data:'check',
                         name:'check',
                         orderable:false,
-                        },
-                        {
-                        data:'name',
-                        name:'name'
                         },
                         {
                         data:'kabupaten',
