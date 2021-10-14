@@ -107,9 +107,9 @@
                                             </thead>
                                             <tbody style="text-transform: uppercase; font-size: 12px">
                                             </tbody>
-                                            <tfoot class="text-primary" >
+                                            <tfoot class="text-primary" style="text-transform: capitalize">
                                                 <tr>
-                                                    <th style="5%"><input type="checkbox" id="master"></th>
+                                                    <th style="5%">pilih</th>
                                                     <th>peserta</th>
                                                     <th>asal</th>
                                                     <th>TTL</th>
