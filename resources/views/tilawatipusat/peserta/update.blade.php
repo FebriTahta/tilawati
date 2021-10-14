@@ -100,7 +100,7 @@
         </div>
         <div class="form-group col-12 col-xl-12">
             <label for="">Kriteria</label>
-            <textarea class="form-control" name="" id="" cols="30" rows="2">
+            <textarea name="kriteria" class="form-control" name="" id="" cols="30" rows="2">
                 {{$peserta->kriteria}}
             </textarea>
         </div>
