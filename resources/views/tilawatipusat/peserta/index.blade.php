@@ -82,9 +82,21 @@
                                         <code>Tambahkan kategori penilaian pada program diklat terlebih dahulu pada menu program</code>
                                     @endif
                                     <p class="card-title-desc">Ter-update berdasarkan Tahun 2021 </br></p>
-                                    <a class="btn btn-sm btn-success  mr-1 text-white" style="width:130px" @if($diklat->program->penilaian->count() == 0) disabled @else href="{{ route('diklat.peserta_create', $pelatihan_id) }}" @endif><i class="mdi mdi-plus"></i> tambah peserta</a>
-                                    <button class="btn btn-sm btn-success  mr-1" style="width:130px " data-toggle="modal" @if($diklat->program->penilaian->count() == 0) disabled @else data-target=".bs-example-modal-peserta" @endif><i class="mdi mdi-cloud-upload"></i> import peserta</button>
-                                    <button class="text-right float-right p-3 mr-1 btn btn-sm btn-outline-primary" id="cetak_all"><i class="fa fa-download"></i> cetak pengiriman modul</button>
+                                    <div class="row p-3">
+                                        <div class="form-group col-3 col-xl-3 text-left">
+                                            <a class="btn btn-sm btn-success  mr-1 text-white" style="width:130px" @if($diklat->program->penilaian->count() == 0) disabled @else href="{{ route('diklat.peserta_create', $pelatihan_id) }}" @endif><i class="mdi mdi-plus"></i> tambah peserta</a>
+                                        </div>
+                                        <div class="form-group col-3 col-xl-3 text-left">
+                                            <button class="btn btn-sm btn-success  mr-1" style="width:130px " data-toggle="modal" @if($diklat->program->penilaian->count() == 0) disabled @else data-target=".bs-example-modal-peserta" @endif><i class="mdi mdi-cloud-upload"></i> import peserta</button>
+                                        </div>
+                                        <div class="form-group col-3 col-xl-3 text-right">
+                                            <button class="text-right btn btn-sm btn-outline-primary" id="cetak_all"><i class="fa fa-download"></i> cetak pengiriman modul</button>
+                                        </div>
+                                        <div class="form-group col-3 col-xl-3 text-right">
+                                            <button class="text-right btn btn-sm btn-outline-info" data-toggle="modal" data-target="#modal-download2" id="cetak_all"><i class="fa fa-download"></i> cetak semua pengiriman modul</button>
+                                        </div>
+
+                                    </div>
 
                                     <input type="hidden" id="pelatihan_id" value="{{ $pelatihan_id }}">
                                     <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
@@ -298,6 +310,41 @@
                                                             <div class="row" style="text-align: center">
                                                                 <div class="form-group col-6 col-xl-6">
                                                                     <input type="submit" name="cetaksurat" id="btncetaksurat" class="btn btn-outline-primary" value="Ya, Cetak!" />
+                                                                </div>
+                                                                <div class="form-group col-6 col-xl-6">
+                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                                                        No, Cancel!
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div><!-- container fluid -->
+                                                </div>
+                                            </div>
+                                        </div> <!-- end col -->
+                                    </div>
+                                </div><!-- /.modal-content -->
+                            </div><!-- /.modal-dialog -->
+                        </div><!-- /.modal -->
+                    </div>
+
+                    <div class="col-sm-6 col-md-3 m-t-30">
+                        <div class="modal fade" id="modal-download2" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-md">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <div class="col-xl-12">
+                                            <div class="card m-b-30">
+                                                <div class="card-body">
+                                                    <div class="container-fluid">
+                                                        <form id="" action="/diklat-cetak-surat-pengiriman"  method="POST" enctype="multipart/form-data">@csrf
+                                                            <div class="form-group text-center">
+                                                                <h5>Cetak Surat Pengiriman ?</h5>
+                                                                <input type="hidden" class="form-control text-capitalize" id="id" name="id" value="{{$diklat->id}}" required>
+                                                            </div>
+                                                            <div class="row" style="text-align: center">
+                                                                <div class="form-group col-6 col-xl-6">
+                                                                    <input type="submit" id="btndownload" class="btn btn-primary" value="Ya, Unduh!" />
                                                                 </div>
                                                                 <div class="form-group col-6 col-xl-6">
                                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">
