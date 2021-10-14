@@ -750,7 +750,8 @@
                     columns: [
                         {
                         data:'check',
-                        name:'check'
+                        name:'check',
+                        orderable:false,
                         },
                         {
                         data:'name',
@@ -808,7 +809,8 @@
                     columns: [
                         {
                         data:'check',
-                        name:'check'
+                        name:'check',
+                        orderable:false,
                         },
                         {
                         data:'name',
