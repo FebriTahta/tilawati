@@ -945,12 +945,13 @@
             {  
                 alert("Pilih Peserta Yang Akan di Cetak Surat Jalan");  
             }else {  
-                var check = confirm("Are you sure you want to delete this row?");  
-                if(check == true){  
-                    var join_selected_values = allVals.join(",");
+                // var check = confirm("Are you sure you want to delete this row?");  
+                // if(check == true){  
+                    
+                // }
+                var join_selected_values = allVals.join(",");
                     $('#myModal').modal('show');
                     $('#idcetaksurat').val(join_selected_values);
-                }
                 // $.ajax({
                 //     url:"{{route('diklat.cetak_surat_pengiriman_beberapa')}}",
                 //     method:"get",
