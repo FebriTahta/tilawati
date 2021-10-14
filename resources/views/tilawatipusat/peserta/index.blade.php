@@ -630,7 +630,7 @@
                 modal.find('.modal-body #id').val(id);
             })
 
-            $('#modal_ctak_surat').on('show.bs.modal', function(event) {
+            $('#modal_cetak_surat').on('show.bs.modal', function(event) {
                 var button = $(event.relatedTarget)
                 var id = button.data('id')
                 var modal = $(this)
