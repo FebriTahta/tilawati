@@ -39,7 +39,7 @@ class CetakCont extends Controller
         $kabupaten  = substr($cabang, 5);
         $peserta    = Peserta::where('pelatihan_id', $id)->where('kriteria','<>','')->get();
         $customPaper = array(0,0,792,612);
-        if ($pelatihan->cabang->name == 'Cahaya Amanah') {
+        if ($pelatihan->cabang->name == 'Cahaya Amanah' || $pelatihan->cabang->name == 'Tilawati Pusat') {
             # code...
             $direktur   = "Dr. KH. Umar Jaeni M.Pd";
             $jabatan    = "Direktur Eksekutif";

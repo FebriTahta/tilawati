@@ -48,7 +48,7 @@
 				<td class="atas" style="width: 11px; height: 10px;">:</td>
 				<?php
 					$num_char = 57;
-					$text = $item->alamat;
+					$text = $item->alamat.' '.$item->kabupaten->nama;
 					?>
 				<td class="atas" style="width: 562px; height: 10px; font-weight: bold;text-transform: uppercase" >{{ substr($text, 0, $num_char) }}</td>
 				<td class="atas" style="width: 52px; height: 10px;">&nbsp;</td>
