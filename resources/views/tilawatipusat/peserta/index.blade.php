@@ -950,7 +950,7 @@
                     
                 // }
                 var join_selected_values = allVals.join(",");
-                    $('#myModal').modal('show');
+                    $('#modal_cetak_surat2').modal('show');
                     $('#idcetaksurat').val(join_selected_values);
                 // $.ajax({
                 //     url:"{{route('diklat.cetak_surat_pengiriman_beberapa')}}",
