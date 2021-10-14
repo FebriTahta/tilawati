@@ -1514,7 +1514,7 @@ class PesertaCont extends Controller
                                 'kabupaten_id'  => $kabupaten_kota->id,
                                 'kecamatan_id'  => $request->kecamatan_id,
                                 'kelurahan_id'  => $request->kelurahan_id,
-                                'slug'          => $slug,
+                                // 'slug'          => $slug,
                                 'tanggal'       => $dp->tanggal,
                                 'name'          => $request->name,
                                 // 'tmptlahir'     => $tempatlahir->nama,
@@ -1533,9 +1533,9 @@ class PesertaCont extends Controller
                         );
                         // \QrCode::size(150)
                         // ->format('png') ->generate('https://www.profile.tilawatipusat.com/'.$peserta->slug, public_path('images/'.$peserta->slug.'.png'));
-                        $qr = \QrCode::size(100)
-                        ->format('png')
-                        ->generate('https://www.profile.tilawatipusat.com/'.$slug, public_path('images/'.$slug.'.png'));
+                        // $qr = \QrCode::size(100)
+                        // ->format('png')
+                        // ->generate('https://www.profile.tilawatipusat.com/'.$slug, public_path('images/'.$slug.'.png'));
                         return redirect()->back()->with('success','Data Berasil Diperbarui');
     }
 
