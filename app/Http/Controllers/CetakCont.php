@@ -101,9 +101,8 @@ class CetakCont extends Controller
     public function cetak_surat_pengiriman_beberapa(Request $request)
     {
         
-            $peserta_id_array = $request->idcetaksurat;
+            $peserta_id_array = $request->idcetaksurats;
             $peserta= Peserta::whereIn('id',explode(",",$peserta_id_array))->get();
-            return $peserta;
             $pdf    = PDF::loadview('tilawatipusat.cetak.detail.surat_pengiriman',compact('peserta'))->setpaper('A4','portrait');
             return $pdf->download('surat-pengiriman.pdf');
         
