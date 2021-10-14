@@ -37,8 +37,8 @@
                 
                 
                 <td>{{ $item->tmptlahir }}</td>
-                <?php $date = \Carbon\Carbon::parse($item->tgllahir)->isoFormat('D/M/Y')?>
-                <td>{{ $date }}</td>
+                
+                <td>{{ $item->tgllahir }}</td>
             </tr>
         @endforeach
     </tbody>
