@@ -1,7 +1,7 @@
 <?php
 
 function nama_gelar($str){
-    $string = ucwords(strtolower($str));
+    $string = ucwords(strtoupper($str));
 	$tanda	= array('-','\'','.');
     foreach ($tanda as $key => $delimiter) {
         if (strpos($string, $delimiter) !== FALSE) {
