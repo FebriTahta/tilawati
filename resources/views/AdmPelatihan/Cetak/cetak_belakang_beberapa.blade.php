@@ -266,9 +266,11 @@
                             <th >{{ $item->nominal }}</th>
                         </tr>
                     @endif
+                @else
+                    <?php $item->nominal = 0;?>
                 @endif
 			@endforeach
-			<tr><?php $item =0;?>
+			<tr>
 				<th></th>
 				<td class="nilai6">&nbsp; &nbsp;<b> RATA - RATA NILAI</b></th>
 				<th colspan="3" class="nilai5"></th>
