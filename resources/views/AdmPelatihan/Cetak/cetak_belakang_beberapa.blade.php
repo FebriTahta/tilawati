@@ -289,13 +289,15 @@
 				<td class="nilai6">&nbsp; &nbsp;<b> PRESTASI</b></th>
 				<th colspan="3" class="nilai5"></th> 
 				<th >
-                    @if ($rata2 !== null)
-                        @if ($rata2 >= 85)
-                            Baik
-                        @else
-                            Cukup
+                    @foreach ($p->nilai as $key=> $item)
+                        @if ($item !== null)
+                            @if ($rata2 >= 85)
+                                Baik
+                            @else
+                                Cukup
+                            @endif
                         @endif
-                    @endif
+                    @endforeach
                 </th>
 			</tr>
 		</table>
