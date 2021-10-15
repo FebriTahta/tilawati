@@ -25,7 +25,7 @@ use PhpOffice\PhpSpreadsheet\Shared\Date;
 
 
 // class PesertaPendaftaranExport implements FromView, ShouldAutoSize, WithColumnFormatting
-class PesertaPendaftaranExport implements FromQuery, WithHeadings, Date, ShouldAutoSize,  WithColumnFormatting, WithMapping
+class PesertaPendaftaranExport implements FromQuery, WithHeadings, ShouldAutoSize,  WithColumnFormatting, WithMapping
 {
     use Exportable;
 
@@ -51,7 +51,7 @@ class PesertaPendaftaranExport implements FromQuery, WithHeadings, Date, ShouldA
 
     public function map($row): array{
         return [
-            Date::dateTimeToExcel($row->tgllahir),
+            \PhpOffice\PhpSpreadsheet\Shared\Date::dateTimeToExcel($row->tgllahir),
         ];
     }
 
