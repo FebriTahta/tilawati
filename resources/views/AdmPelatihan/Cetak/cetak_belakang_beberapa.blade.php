@@ -276,7 +276,7 @@
 				<td class="nilai6">&nbsp; &nbsp;<b> RATA - RATA NILAI</b></th>
 				<th colspan="3" class="nilai5"></th>
 				<th>
-                    @if ($x == 1)
+                    @if ($x !== 1)
                         @if ($p->pelatihan->program->name=='munaqosyah santri')
                             {{ $rata2 = $jumlah }}
                         @else
