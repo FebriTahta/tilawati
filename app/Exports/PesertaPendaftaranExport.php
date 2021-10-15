@@ -48,7 +48,7 @@ class PesertaPendaftaranExport implements FromQuery, WithHeadings, ShouldAutoSiz
     //     return view('tilawatipusat.cetak.peserta.peserta_pendaftaran',compact('peserta'));
     // }
 
-    function nama_gelar($str){
+    public function nama_gelar($str){
         $string = ucwords(strtolower($str));
         $tanda	= array('-',',','.');
         foreach ($tanda as $key => $delimiter) {
@@ -62,7 +62,7 @@ class PesertaPendaftaranExport implements FromQuery, WithHeadings, ShouldAutoSiz
         {
             return substr($string,0,2).strtoupper(substr($string,2,-5)).substr($string,-5);
         }else{
-            substr($string,-5);
+            return strtoupper(substr($string,0,-5)).substr($string,-5);
         }
         
     }
