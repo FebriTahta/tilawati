@@ -53,9 +53,9 @@ class PesertaPendaftaranExport implements FromQuery, WithHeadings, ShouldAutoSiz
         return [
             $row->name,
             // \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject(strtotime($row->tgllahir)),
-            $row->program_id,
+            $row->program->name,
             $row->alamat,
-            $row->kabupaten_id,
+            $row->kabupaten->nama,
             $row->telp,
             $row->tmptlahir,
             Date::dateTimeToExcel(Carbon::parse($row->tgllahir)),
@@ -80,7 +80,7 @@ class PesertaPendaftaranExport implements FromQuery, WithHeadings, ShouldAutoSiz
         //     'G' => NumberFormat::FORMAT_DATE_DDMMYYYY
         // ];
         return [
-            // 'E' => NumberFormat::FORMAT_TEXT,
+            'E' => NumberFormat::FORMAT_TEXT,
             'G' => NumberFormat::FORMAT_DATE_DDMMYYYY
         ];
     }
