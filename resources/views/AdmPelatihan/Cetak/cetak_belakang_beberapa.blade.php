@@ -268,6 +268,7 @@
                     @endif
                 @else
                     <?php $item = 0;?>
+                    {{$item = 0}}
                 @endif
 			@endforeach
 			<tr>
