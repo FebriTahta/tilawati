@@ -246,7 +246,7 @@
 				<th colspan="3" class="pe3"></th>
 				<th >{{ $jumlah = $p->nilai->where("kategori","al-qur'an")->sum('nominal') }}</th>
 			</tr>
-			<?php $i = 2?>
+			<?php $i = 2; $x = 1?>
 			@foreach ($p->nilai as $key=> $item)
                 @if ($item !== null)
                     @if ($item->kategori !== 'skill')
@@ -265,20 +265,23 @@
                             <th colspan="3" class="nilai5"></th>
                             <th >{{ $item->nominal }}</th>
                         </tr>
+                        <?$x++?>
                     @endif
                 @else
-                    
+                    {{--  --}}
                 @endif
 			@endforeach
 			<tr>
 				<th></th>
 				<td class="nilai6">&nbsp; &nbsp;<b> RATA - RATA NILAI</b></th>
 				<th colspan="3" class="nilai5"></th>
-				<th >
-                    @if ($p->pelatihan->program->name=='munaqosyah santri')
-                        {{ $rata2 = $jumlah }}
-                    @else
-                        {{ $rata2 = ($jumlah+ $item->nominal)/2 }}
+				<th>
+                    @if ($x == 1)
+                        @if ($p->pelatihan->program->name=='munaqosyah santri')
+                            {{ $rata2 = $jumlah }}
+                        @else
+                            {{ $rata2 = ($jumlah+ $item->nominal)/2 }}
+                        @endif
                     @endif
 				</th>
 			</tr>
