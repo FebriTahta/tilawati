@@ -104,7 +104,7 @@
                             <div class="card">
                                 <div class="row p-3">
                                     <div class="form-group col-6 col-xl-6">
-                                        <button class="text-right btn btn-sm mr-1 btn-outline-info" id="depan_all"><i class="fa fa-print"></i> depan</button>
+                                        <button class="text-right btn btn-sm mr-1 btn-outline-info" id="depan_all"><i class="fa fa-print"></i> SYAHADAH DEPAN</button>
                                         {{-- <form action="#">
                                             <button class="btn btn-sm btn-info"><i class="fa fa-download"></i> Info Peserta</button>
                                         </form> --}}
@@ -362,7 +362,7 @@
                                                         <form id="" action="/pelatihan-cetak-depan-print-beberapa"  method="POST" enctype="multipart/form-data">@csrf
                                                             <div class="form-group text-center">
                                                                 <h5>CETAK SYAHADAH DEPAN ?</h5>
-                                                                <input type="text" class="form-control text-capitalize" id="idcetakdepan" name="id" required>
+                                                                <input type="hidden" class="form-control text-capitalize" id="idcetakdepan" name="id" required>
                                                             </div>
                                                             <div class="row" style="text-align: center">
                                                                 <div class="form-group col-6 col-xl-6">
