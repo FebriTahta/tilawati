@@ -267,10 +267,7 @@
                         </tr>
                     @endif
                 @else
-                    <?php 
-                        $x = 0;
-                        $item = $x;
-                    ?>
+                    
                 @endif
 			@endforeach
 			<tr>
@@ -278,12 +275,10 @@
 				<td class="nilai6">&nbsp; &nbsp;<b> RATA - RATA NILAI</b></th>
 				<th colspan="3" class="nilai5"></th>
 				<th >
-                    @if ($x !== 0)
-                        @if ($p->pelatihan->program->name=='munaqosyah santri')
-                            {{ $rata2 = $jumlah }}
-                        @else
-                            {{ $rata2 = ($jumlah+ $item->nominal)/2 }}
-                        @endif
+                    @if ($p->pelatihan->program->name=='munaqosyah santri')
+                        {{ $rata2 = $jumlah }}
+                    @else
+                        {{ $rata2 = ($jumlah+ $item->nominal)/2 }}
                     @endif
 				</th>
 			</tr>
