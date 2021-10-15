@@ -51,7 +51,7 @@ class PesertaPendaftaranExport implements FromQuery, WithHeadings, ShouldAutoSiz
 
     public function map($row): array{
         return [
-            \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row->tgllahir),
+            \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject(strtotime($row->tgllahir)),
         ];
     }
 
