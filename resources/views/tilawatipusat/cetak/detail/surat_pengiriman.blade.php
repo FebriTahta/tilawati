@@ -29,14 +29,15 @@
         <tr>
             <td style="width: 10%">Alamat</td>
             <td style="width: 2%"> : </td>
-            <td><b>
-                @if ($pes->alamatx == null)
-                <small style="color: red">Alamat pengiriman modul kosong</small><br>
-                {{$pes->alamat}}
-                @else
-                {{$pes->alamatx}}
-                @endif
-            </b></td>
+            <td>
+                <b>
+                    @if ($pes->alamatx == null)
+                    <span style="color: red">{{$pes->alamat}}</span>
+                    @else
+                    {{$pes->alamatx}}
+                    @endif
+                </b>
+            </td>
         </tr>
         <tr>
             <td style="width: 10%">Kota</td>
