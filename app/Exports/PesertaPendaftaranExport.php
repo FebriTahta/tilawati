@@ -3,14 +3,6 @@
 namespace App\Exports;
 use App\Models\Peserta;
 use App\Models\Pelatihan;
-// use Illuminate\Support\Collection;
-// use Maatwebsite\Excel\Concerns\FromView;
-// use Illuminate\Contracts\View\View;
-// use Maatwebsite\Excel\Concerns\FromCollection;
-// use Maatwebsite\Excel\Concerns\ShouldAutoSize;
-// use Maatwebsite\Excel\Concerns\WithColumnFormatting;
-// Use PhpOffice\PhpSpreadsheet\Shared\Date;
-// use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
 use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\WithHeadings;
@@ -36,17 +28,11 @@ class PesertaPendaftaranExport implements FromQuery, WithHeadings, ShouldAutoSiz
 
     public function query(){
         return Peserta::query()->where('pelatihan_id', $this->pelatihan_id)
-            ->select('name','program_id','alamat','kabupaten_id','telp','tmptlahir','tgllahir');
+            ->select('name','alamat','kabupaten_id','telp','tmptlahir','tgllahir');
     }
     /**
     * @return \Illuminate\Support\Collection
     */
-    // public function view(): View
-    // {
-    //     $peserta    = Peserta::where('pelatihan_id', $this->pelatihan_id)->with('pelatihan','kabupaten')->get();
-    //     (string)$peserta;
-    //     return view('tilawatipusat.cetak.peserta.peserta_pendaftaran',compact('peserta'));
-    // }
 
     public function nama_gelar($str){
         $string = ucwords(strtolower($str));
@@ -70,8 +56,6 @@ class PesertaPendaftaranExport implements FromQuery, WithHeadings, ShouldAutoSiz
     public function map($row): array{
         return [
             nama_gelar($row->name),
-            // \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject(strtotime($row->tgllahir)),
-            $row->program->name,
             strtoupper($row->alamat),
             $row->kabupaten->nama,
             $row->telp,
@@ -83,7 +67,6 @@ class PesertaPendaftaranExport implements FromQuery, WithHeadings, ShouldAutoSiz
     public function headings(): array{
         return [
             "NAMA PESERTA",
-            "DIKLAT",
             "ALAMAT LENGKAP",
             "ASAL",
             "No. WA",
@@ -94,8 +77,8 @@ class PesertaPendaftaranExport implements FromQuery, WithHeadings, ShouldAutoSiz
     public function columnFormats(): array
     {
         return [
-            'E' => NumberFormat::FORMAT_TEXT,
-            'G' => NumberFormat::FORMAT_DATE_DDMMYYYY
+            'D' => NumberFormat::FORMAT_TEXT,
+            'F' => NumberFormat::FORMAT_DATE_DDMMYYYY
         ];
     }
 }
