@@ -23,7 +23,9 @@
 		}
 		.dalam{
 			/* text-transform: uppercase; */
-		}
+		}.merah{
+            text-decoration-color: red;
+        }
 		/* .tepi { border: 1px solid; 
 		} */
 	</style>
@@ -47,13 +49,26 @@
 				<td class="atas" style="width: 170px; height: 10px;">Alamat&nbsp;</td>
 				<td class="atas" style="width: 11px; height: 10px;">:</td>
 				<?php
-					$num_char = 60;
+					$num_char       = 65;
+                    $panjangkata    = $item->alamat;
 					if (substr($item->kabupaten->nama,5,3)=='ADM') {
 						# code...
-						$text = $item->alamat.' '.substr($item->kabupaten->nama,10);
+                        if ($panjangkata > $num_char) {
+                            # code...
+                            '<span class="merah">'.$text = $item->alamat.' '.substr($item->kabupaten->nama,10).'</span>';
+                        }else {
+                            # code...
+                            $text = $item->alamat.' '.substr($item->kabupaten->nama,10);
+                        }
 					}else {
 						# code...
-						$text = $item->alamat.' '.substr($item->kabupaten->nama,5);
+                        if ($panjangkata > $num_char) {
+                            # code...
+                            '<span class="merah">'.$text = $item->alamat.' '.substr($item->kabupaten->nama,5).'</span>'
+                        }else {
+                            # code...
+                            $text = $item->alamat.' '.substr($item->kabupaten->nama,5);
+                        }
 					}
 					
 					?>
