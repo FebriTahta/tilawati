@@ -30,8 +30,8 @@ class PesertaPendaftaranExport implements FromView, ShouldAutoSize, WithColumnFo
     public function columnFormats(): array
     {
         return [
-            'D' => NumberFormat::FORMAT_TEXT,
-            'F' => NumberFormat::FORMAT_DATE_DDMMYYYY,
+            'E' => NumberFormat::FORMAT_TEXT,
+            'G' => NumberFormat::FORMAT_DATE_DDMMYYYY,
         ];
     }
 }
