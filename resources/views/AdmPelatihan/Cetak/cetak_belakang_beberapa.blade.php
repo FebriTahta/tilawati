@@ -268,7 +268,7 @@
                     @endif
                 @endif
 			@endforeach
-			<tr>
+			<tr><?php $item =0;?>
 				<th></th>
 				<td class="nilai6">&nbsp; &nbsp;<b> RATA - RATA NILAI</b></th>
 				<th colspan="3" class="nilai5"></th>
