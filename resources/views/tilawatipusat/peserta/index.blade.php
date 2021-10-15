@@ -81,24 +81,12 @@
                                     @if ($diklat->program->penilaian->count() == 0)
                                         <code>Tambahkan kategori penilaian pada program diklat terlebih dahulu pada menu program</code>
                                     @endif
-                                    <p class="card-title-desc">Ter-update berdasarkan Tahun 2021 </br></p>
-                                    <div class="row p-3">
-                                        <div class="form-group col-12 col-xl-3 text-left">
-                                            <a class="btn btn-sm btn-success  mr-1 text-white" style="width:130px" @if($diklat->program->penilaian->count() == 0) disabled @else href="{{ route('diklat.peserta_create', $pelatihan_id) }}" @endif><i class="mdi mdi-plus"></i> tambah peserta</a>
-                                        </div>
-                                        <div class="form-group col-12 col-xl-3 text-left">
-                                            <button class="btn btn-sm btn-success  mr-1" style="width:130px " data-toggle="modal" @if($diklat->program->penilaian->count() == 0) disabled @else data-target=".bs-example-modal-peserta" @endif><i class="mdi mdi-cloud-upload"></i> import peserta</button>
-                                        </div>
-                                        <div class="form-group col-12 col-xl-3 text-right">
-                                            {{-- <button class="text-right btn btn-sm btn-outline-primary" id="cetak_all"><i class="fa fa-download"></i> pengiriman modul</button> --}}
-                                        </div>
-                                        <div class="form-group col-12 col-xl-3 text-right">
-                                            {{-- <button class="text-right btn btn-sm btn-outline-info" data-toggle="modal" data-target="#modal-download2" id="cetak_all"><i class="fa fa-download"></i> semua pengiriman modul</button> --}}
-                                            <button class="text-right btn btn-sm btn-outline-primary" id="cetak_all"><i class="fa fa-download"></i> pengiriman modul</button>
-                                        </div>
-
-                                    </div>
-
+                                    {{-- <p class="card-title-desc">Ter-update berdasarkan Tahun 2021 </br></p> --}}
+                                    <a class="btn btn-sm btn-outline-success  mr-1 text-white" style="width:130px" @if($diklat->program->penilaian->count() == 0) disabled @else href="{{ route('diklat.peserta_create', $pelatihan_id) }}" @endif><i class="mdi mdi-plus"></i> tambah peserta</a>
+                                    <button class="btn btn-sm btn-success  mr-1" style="width:130px " data-toggle="modal" @if($diklat->program->penilaian->count() == 0) disabled @else data-target=".bs-example-modal-peserta" @endif><i class="mdi mdi-cloud-upload"></i> import peserta</button>
+                                    <button class="text-right btn btn-sm mr-1 btn-outline-primary" id="cetak_all"><i class="fa fa-download"></i> pengiriman modul</button>
+                                    <button class="text-right btn btn-sm mr-1 btn-outline-info"><i class="fa fa-export"></i> depan</button>
+                                    <button class="text-right btn btn-sm mr-1 btn-info"><i class="fa fa-export"></i> belakang</button>
                                     <input type="hidden" id="pelatihan_id" value="{{ $pelatihan_id }}">
                                     <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
                                         <div id="message"></div>
