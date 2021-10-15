@@ -267,7 +267,7 @@
                         </tr>
                     @endif
                 @else
-                    <?php $item->nominal = 0;?>
+                    <?php $item = 0;?>
                 @endif
 			@endforeach
 			<tr>
@@ -276,11 +276,15 @@
 				<th colspan="3" class="nilai5"></th>
 				<th >
 				@if ($p->pelatihan->program->name=='munaqosyah santri')
-					{{ $rata2 = $jumlah }}
+					@if ($item !== 0)
+                        {{ $rata2 = $jumlah }}
+                    @endif
 				@else
-                    {{ $rata2 = ($jumlah+ $item->nominal)/2 }}
+                    @if ($item !== 0)
+                        {{ $rata2 = ($jumlah+ $item->nominal)/2 }}
+                    @endif
 				@endif
-					</th>
+				</th>
 			</tr>
 			<tr>
 				<th></th>
