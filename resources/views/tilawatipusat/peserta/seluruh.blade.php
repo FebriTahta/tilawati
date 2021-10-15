@@ -104,6 +104,7 @@
                             <div class="card">
                                 <div class="row p-3">
                                     <div class="form-group col-6 col-xl-6">
+                                        <button class="text-right btn btn-sm mr-1 btn-outline-info" id="depan_all"><i class="fa fa-print"></i> depan</button>
                                         {{-- <form action="#">
                                             <button class="btn btn-sm btn-info"><i class="fa fa-download"></i> Info Peserta</button>
                                         </form> --}}
@@ -165,6 +166,7 @@
                     </div>
                     <!-- end row -->
 
+                    {{-- hapus peserta / diklat (tidak digunakan) --}}
                     <div class="col-sm-6 col-md-3 m-t-30">
                         <div class="modal fade bs-example-modal-diklat-hapus" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered modal-md">
@@ -200,6 +202,7 @@
                         </div><!-- /.modal -->
                     </div>
 
+                    {{-- daftar cabang --}}
                     <div class="modal fade bs-example-modal-xl-2" id="mod_cabang2" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
@@ -238,6 +241,7 @@
                         <!-- /.modal-dialog -->
                     </div>
 
+                    {{-- daftar program --}}
                     <div class="modal fade bs-example-modal-xl-2" id="mod_cabang3" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-md">
                             <div class="modal-content">
@@ -276,6 +280,7 @@
                         <!-- /.modal-dialog -->
                     </div>
 
+                    {{-- daftar asal daerah peserta --}}
                     <div class="modal fade bs-example-modal-xl-3" id="mod_kabupaten" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
@@ -314,6 +319,7 @@
                         <!-- /.modal-dialog -->
                     </div>
 
+                    {{-- qr code --}}
                     <div class="col-sm-6 col-md-3 m-t-30">
                         <div class="modal fade modal-scan" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered modal-md">
@@ -333,6 +339,42 @@
                                                         <div class="text-center text-uppercase" style="margin-top: 10px">
                                                             <p class="text-info" id="nama_peserta"></p>
                                                         </div>
+                                                    </div><!-- container fluid -->
+                                                </div>
+                                            </div>
+                                        </div> <!-- end col -->
+                                    </div>
+                                </div><!-- /.modal-content -->
+                            </div><!-- /.modal-dialog -->
+                        </div><!-- /.modal -->
+                    </div>
+
+                    {{-- modal download syahadah depan --}}
+                    <div class="col-sm-6 col-md-3 m-t-30">
+                        <div class="modal fade" id="modal-download-depan" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-md">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <div class="col-xl-12">
+                                            <div class="card m-b-30">
+                                                <div class="card-body">
+                                                    <div class="container-fluid">
+                                                        <form id="" action="/pelatihan-cetak-depan-print-beberapa"  method="POST" enctype="multipart/form-data">@csrf
+                                                            <div class="form-group text-center">
+                                                                <h5>CETAK SYAHADAH DEPAN ?</h5>
+                                                                <input type="text" class="form-control text-capitalize" id="idcetakdepan" name="id" required>
+                                                            </div>
+                                                            <div class="row" style="text-align: center">
+                                                                <div class="form-group col-6 col-xl-6">
+                                                                    <input type="submit" id="btndownload" class="btn btn-primary" value="Ya, Cetak!" />
+                                                                </div>
+                                                                <div class="form-group col-6 col-xl-6">
+                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                                                        No, Cancel!
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
                                                     </div><!-- container fluid -->
                                                 </div>
                                             </div>
@@ -678,6 +720,22 @@
                     $(".sub_chk").prop('checked',false);  
                 }  
             });
-            
+
+            // cetak syahadah depan
+            $('#depan_all').on('click', function(e) {
+            var allVals = [];  
+            $(".sub_chk:checked").each(function() {  
+                allVals.push($(this).attr('data-id'));
+            });
+
+            if(allVals.length <=0)  
+            {  
+                alert("PILIH PESERTA YANG AKAN DI CETAK SYAHADAH DEPAN");  
+            }else {  
+                var join_selected_values = allVals.join(",");
+                    $('#modal-download-depan').modal('show');
+                    $('#idcetakdepan').val(join_selected_values);
+            }  
+            });
         </script>
 @endsection
