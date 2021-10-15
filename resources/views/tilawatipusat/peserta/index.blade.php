@@ -330,11 +330,11 @@
                                                         <form id="" action="/pelatihan-cetak-depan-print-beberapa"  method="POST" enctype="multipart/form-data">@csrf
                                                             <div class="form-group text-center">
                                                                 <h5>CETAK SYAHADAH DEPAN ?</h5>
-                                                                <input type="text" class="form-control text-capitalize" id="id" name="id" required>
+                                                                <input type="text" class="form-control text-capitalize" id="idcetakdepan" name="id" required>
                                                             </div>
                                                             <div class="row" style="text-align: center">
                                                                 <div class="form-group col-6 col-xl-6">
-                                                                    <input type="submit" id="btndownload" class="btn btn-primary" value="Ya, Unduh!" />
+                                                                    <input type="submit" id="btndownload" class="btn btn-primary" value="Ya, Cetak!" />
                                                                 </div>
                                                                 <div class="form-group col-6 col-xl-6">
                                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">
@@ -1036,7 +1036,7 @@
             }else {  
                 var join_selected_values = allVals.join(",");
                     $('#modal-download-depan').modal('show');
-                    $('#id').val(join_selected_values);
+                    $('#idcetakdepan').val(join_selected_values);
             }  
             });
         </script>
