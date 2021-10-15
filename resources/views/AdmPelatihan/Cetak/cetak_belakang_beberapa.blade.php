@@ -272,32 +272,24 @@
 				<th></th>
 				<td class="nilai6">&nbsp; &nbsp;<b> RATA - RATA NILAI</b></th>
 				<th colspan="3" class="nilai5"></th>
-				<th>
+				<th >
 				@if ($p->pelatihan->program->name=='munaqosyah santri')
 					{{ $rata2 = $jumlah }}
 				@else
-                    @foreach ($p->nilai as $key=> $item)
-                        @if ($item !== null)
-                        {{ $rata2 = ($jumlah+ $item->nominal)/2 }}
-                        @endif
-                    @endforeach
+                    {{ $rata2 = ($jumlah+ $item->nominal)/2 }}
 				@endif
-				</th>
+					</th>
 			</tr>
 			<tr>
 				<th></th>
 				<td class="nilai6">&nbsp; &nbsp;<b> PRESTASI</b></th>
 				<th colspan="3" class="nilai5"></th> 
 				<th >
-                    @foreach ($p->nilai as $key=> $item)
-                        @if ($item !== null)
-                            @if ($rata2 >= 85)
-                                Baik
-                            @else
-                                Cukup
-                            @endif
-                        @endif
-                    @endforeach
+                    @if ($rata2 >= 85)
+                        Baik
+                    @else
+                        Cukup
+                    @endif
                 </th>
 			</tr>
 		</table>
