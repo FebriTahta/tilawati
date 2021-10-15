@@ -42,15 +42,16 @@ class PesertaPendaftaranExport implements FromQuery, WithHeadings, ShouldAutoSiz
                 $string = implode($delimiter, array_map('ucfirst', explode($delimiter, $string)));
             }
         }
-        if(substr($str,0,2) == 'hj' || substr($str,0,2) == 'Hj' || substr($str,0,2) == 'HJ' || substr($str,0,2) == 'hJ' 
+        if
+        (      substr($str,0,2) == 'hj' || substr($str,0,2) == 'Hj' || substr($str,0,2) == 'HJ' || substr($str,0,2) == 'hJ' 
             || substr($str,0,2) == 'Dr' || substr($str,0,2) == 'dr' || substr($str,0,2) == 'dR' || substr($str,0,2) == 'DR'
+            || substr($str,0,2) == 'Ir' || substr($str,0,2) == 'ir' || substr($str,0,2) == 'iR' || substr($str,0,2) == 'IR'
         )
         {
             return substr($string,0,2).strtoupper(substr($string,2,-5)).substr($string,-5);
         }else{
             return strtoupper(substr($string,0,-5)).substr($string,-5);
         }
-        
     }
 
     public function map($row): array{
