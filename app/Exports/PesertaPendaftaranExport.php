@@ -37,7 +37,7 @@ class PesertaPendaftaranExport implements FromQuery, WithHeadings, ShouldAutoSiz
     public function query(){
         // return Peserta::where('pelatihan_id', $this->pelatihan_id)->get();
         return Peserta::query()->where('pelatihan_id', $this->pelatihan_id)
-            ->select('name','tgllahir');
+            ->select('name','program_id','alamat','kabupaten_id','telp','tmptlahir','tgllahir');
     }
     /**
     * @return \Illuminate\Support\Collection
