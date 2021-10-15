@@ -49,11 +49,11 @@
 				<td class="atas" style="width: 170px; height: 10px;">Alamat&nbsp;</td>
 				<td class="atas" style="width: 11px; height: 10px;">:</td>
 				<?php
-					$num_char       = 55;
+					$num_char       = 65;
                     $panjangkata    = $item->alamat;
 					if (substr($item->kabupaten->nama,5,3)=='ADM') {
 						# code...
-                        if ($panjangkata > $num_char) {
+                        if ($panjangkata > 55) {
                             # code...
                             '<span class="merah">'.$text = $item->alamat.' '.substr($item->kabupaten->nama,10).'</span>';
                         }else {
@@ -62,7 +62,7 @@
                         }
 					}else {
 						# code...
-                        if ($panjangkata > $num_char) {
+                        if ($panjangkata > 55) {
                             # code...
                             '<span class="merah">'.$text = $item->alamat.' '.substr($item->kabupaten->nama,5).'</span>';
                         }else {
