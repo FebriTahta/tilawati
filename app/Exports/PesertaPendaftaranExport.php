@@ -25,7 +25,7 @@ use PhpOffice\PhpSpreadsheet\Shared\Date;
 
 
 // class PesertaPendaftaranExport implements FromView, ShouldAutoSize, WithColumnFormatting
-class PesertaPendaftaranExport implements FromQuery,  ShouldAutoSize,  WithColumnFormatting, WithMapping
+class PesertaPendaftaranExport implements FromQuery, WithHeadings, ShouldAutoSize,  WithColumnFormatting, WithMapping
 {
     use Exportable;
 
@@ -35,7 +35,9 @@ class PesertaPendaftaranExport implements FromQuery,  ShouldAutoSize,  WithColum
     }
 
     public function query(){
-        return Peserta::where('pelatihan_id', $this->pelatihan_id)->get();
+        // return Peserta::where('pelatihan_id', $this->pelatihan_id)->get();
+        return Peserta::query()
+            ->select('tgllahir');
     }
     /**
     * @return \Illuminate\Support\Collection
@@ -53,11 +55,20 @@ class PesertaPendaftaranExport implements FromQuery,  ShouldAutoSize,  WithColum
         ];
     }
 
+    public function headings(): array{
+        return [
+            "tanggal lahir"
+        ];
+    }
     public function columnFormats(): array
     {
+        // return [
+        //     'E' => NumberFormat::FORMAT_TEXT,
+        //     'G' => NumberFormat::FORMAT_DATE_DDMMYYYY
+        // ];
         return [
-            'E' => NumberFormat::FORMAT_TEXT,
-            'G' => NumberFormat::FORMAT_DATE_DDMMYYYY
+            // 'E' => NumberFormat::FORMAT_TEXT,
+            'A' => NumberFormat::FORMAT_DATE_DDMMYYYY
         ];
     }
 }
