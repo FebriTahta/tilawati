@@ -36,8 +36,8 @@ class PesertaPendaftaranExport implements FromQuery, WithHeadings, ShouldAutoSiz
 
     public function query(){
         // return Peserta::where('pelatihan_id', $this->pelatihan_id)->get();
-        return Peserta::query()
-            ->select('tgllahir');
+        return Peserta::query()->where('pelatihan_id', $this->pelatihan_id)
+            ->select('name','tgllahir');
     }
     /**
     * @return \Illuminate\Support\Collection
@@ -51,12 +51,14 @@ class PesertaPendaftaranExport implements FromQuery, WithHeadings, ShouldAutoSiz
 
     public function map($row): array{
         return [
+            $row->name,
             \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject(strtotime($row->tgllahir)),
         ];
     }
 
     public function headings(): array{
         return [
+            "nama peserta",
             "tanggal lahir"
         ];
     }
