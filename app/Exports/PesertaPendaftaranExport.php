@@ -35,7 +35,6 @@ class PesertaPendaftaranExport implements FromQuery, WithHeadings, ShouldAutoSiz
     }
 
     public function query(){
-        // return Peserta::where('pelatihan_id', $this->pelatihan_id)->get();
         return Peserta::query()->where('pelatihan_id', $this->pelatihan_id)
             ->select('name','program_id','alamat','kabupaten_id','telp','tmptlahir','tgllahir');
     }
@@ -56,7 +55,7 @@ class PesertaPendaftaranExport implements FromQuery, WithHeadings, ShouldAutoSiz
             $row->program->name,
             $row->alamat,
             $row->kabupaten->nama,
-            '+'.$row->telp,
+            $row->telp,
             $row->tmptlahir,
             Date::dateTimeToExcel(Carbon::parse($row->tgllahir)),
         ];
@@ -75,10 +74,6 @@ class PesertaPendaftaranExport implements FromQuery, WithHeadings, ShouldAutoSiz
     }
     public function columnFormats(): array
     {
-        // return [
-        //     'E' => NumberFormat::FORMAT_TEXT,
-        //     'G' => NumberFormat::FORMAT_DATE_DDMMYYYY
-        // ];
         return [
             'E' => NumberFormat::FORMAT_TEXT,
             'G' => NumberFormat::FORMAT_DATE_DDMMYYYY
