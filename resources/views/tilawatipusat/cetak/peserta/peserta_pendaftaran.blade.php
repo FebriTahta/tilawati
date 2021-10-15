@@ -3,6 +3,9 @@
     mso-number-format: "\@";
     }
 </style>
+<?php 
+    use PhpOffice\PhpSpreadsheet\Shared\Date;
+?>
 <table>
     <thead>
         <tr>
@@ -38,7 +41,9 @@
                 
                 <td>{{ $item->tmptlahir }}</td>
                 
-                <td>{{ $item->tgllahir }}</td>
+                <td>{{ 
+                Date::dateTimeToExcel($item->tgllahir),
+                }}</td>
             </tr>
         @endforeach
     </tbody>
