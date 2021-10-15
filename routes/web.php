@@ -196,7 +196,6 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     Route::get('/pelatihan-cetak-depan', [CetakController::class, 'ijazahdepan'])->name('pelatihan.c_depan');
     Route::get('/pelatihan-cetak-depan-santri', [CetakController::class, 'ijazahdepan_s'])->name('pelatihan.c_depan_s');
     Route::post('/pelatihan-cetak-depan-print', [CetakController::class, 'cetak_depan'])->name('depan.cetak');
-    Route::post('/pelatihan-cetak-depan-print-beberapa', [CetakController::class, 'cetak_depan_beberapa'])->name('depan.cetak_beberapa');
     Route::post('/pelatihan-cetak-depan-santri-print', [CetakController::class, 'cetak_depan_santri'])->name('depan.cetak_s');
     Route::get('/pelatihan-cetak-belakang-santri', [CetakController::class, 'ijazahbelakangsantri'])->name('pelatihan.c_belakang');
     Route::post('/pelatihan-cetak-belakang-santri-print', [CetakController::class, 'cetak_belakang_santri'])->name('belakang.cetaksantri');
@@ -371,6 +370,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     Route::post('/diklat-cetak-surat-pengiriman',[CetakCont::class,'cetak_surat_pengiriman'])->name('diklat.cetak_surat_pengiriman');
     Route::post('/diklat-cetak-surat-pengiriman-satu',[CetakCont::class,'cetak_surat_pengiriman_satu'])->name('diklat.cetak_surat_pengiriman_satu');
     Route::post('/diklat-cetak-surat-pengiriman-beberapa',[CetakCont::class,'cetak_surat_pengiriman_beberapa'])->name('diklat.cetak_surat_pengiriman_beberapa');
+    Route::post('/pelatihan-cetak-depan-print-beberapa', [CetakCont::class, 'cetak_depan_beberapa'])->name('depan.cetak_beberapa');
 
     Route::post('/diklat-import-peserta',[ImportController::class,'importPesertaDiklat'])->name('diklat.import_peserta');
 
