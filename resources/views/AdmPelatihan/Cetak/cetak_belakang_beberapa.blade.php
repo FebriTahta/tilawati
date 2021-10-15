@@ -248,24 +248,25 @@
 			</tr>
 			<?php $i = 2?>
 			@foreach ($p->nilai as $key=> $item)
-				
-				@if ($item->kategori !== 'skill')
-					<tr>
-						<td class="pop"></td>
-						<td class="pop2" >&nbsp; &nbsp;&nbsp;<span style="text-transform: capitalize">{{ $item->penilaian->name }}</span></td>
-						<td class="nilai" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->max }}</td>
-						<td class="nilai2" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->min }}</td>
-						<td class="nilai3" style="text-align: center">&nbsp; &nbsp;{{ $item->nominal }}</td>
-						<td style="border-top: 0;border-bottom: 0;"></td>
-					</tr>
-				@else
-				<tr>
-					<th>{{ $i++ }}</th>
-					<td class="nilai6" style="text-transform: uppercase">&nbsp; &nbsp;<b> {{ $item->penilaian->name }}</b></th>
-					<th colspan="3" class="nilai5"></th>
-					<th >{{ $item->nominal }}</th>
-				</tr>
-				@endif
+                @if ($item !== null)
+                    @if ($item->kategori !== 'skill')
+                        <tr>
+                            <td class="pop"></td>
+                            <td class="pop2" >&nbsp; &nbsp;&nbsp;<span style="text-transform: capitalize">{{ $item->penilaian->name }}</span></td>
+                            <td class="nilai" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->max }}</td>
+                            <td class="nilai2" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->min }}</td>
+                            <td class="nilai3" style="text-align: center">&nbsp; &nbsp;{{ $item->nominal }}</td>
+                            <td style="border-top: 0;border-bottom: 0;"></td>
+                        </tr>
+                    @else
+                        <tr>
+                            <th>{{ $i++ }}</th>
+                            <td class="nilai6" style="text-transform: uppercase">&nbsp; &nbsp;<b> {{ $item->penilaian->name }}</b></th>
+                            <th colspan="3" class="nilai5"></th>
+                            <th >{{ $item->nominal }}</th>
+                        </tr>
+                    @endif
+                @endif
 			@endforeach
 			<tr>
 				<th></th>
@@ -275,9 +276,7 @@
 				@if ($p->pelatihan->program->name=='munaqosyah santri')
 					{{ $rata2 = $jumlah }}
 				@else
-                    @if ($item->nominal !== null)
-                        {{ $rata2 = ($jumlah+ $item->nominal)/2 }}
-                    @endif
+                    {{ $rata2 = ($jumlah+ $item->nominal)/2 }}
 				@endif
 					</th>
 			</tr>
