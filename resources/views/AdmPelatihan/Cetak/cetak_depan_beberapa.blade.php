@@ -30,7 +30,7 @@
 		@foreach ($peserta as $item)
 		<div class="print">
 			<table 
-			@if ($peserta->pelatihan->keterangan == 'guru')
+			@if ($item->pelatihan->keterangan == 'guru')
 			style="height: 180px; width: 900px;margin-left:113px;margin-top:290px"
 			@else
 			style="height: 180px; width: 720px;margin-left:116px;margin-top:290px"
@@ -66,7 +66,7 @@
 				<td class="atas" style="width: 750px; height: 10px; font-weight: bold;text-transform: uppercase" >{{ $item->tmptlahir }}, {{ Carbon\Carbon::parse($date)->isoFormat('D MMMM Y') }}&nbsp;</td>
 				<td class="atas" style="width: 52px; height: 10px;">&nbsp;</td>
 				</tr>
-				@if ($peserta->pelatihan->keterangan == 'santri')
+				@if ($item->pelatihan->keterangan == 'santri')
 				<tr class="atas" style="height: 10px;">
 					<td class="atas" style="width: 170px; height: 10px;">Asal Lembaga</td>
 					<td class="atas" style="width: 11px; height: 10px;">:</td>
@@ -96,7 +96,7 @@
 				</tbody>
 			</table>			
 			<table 
-			@if ($peserta->pelatihan->keterangan=='guru')
+			@if ($item->pelatihan->keterangan=='guru')
 			style="margin-left:113px; margin-top: 4px"
 			@else
 			style="margin-left:116px; margin-top: 10px"
@@ -126,10 +126,10 @@
 				<td class="bawah" style="width: 210px; height: 5px;">&nbsp;</td>
 				<td class="atas" style="width: 241px; height: 5px; font-weight: bold">
                     {{-- {{ $direktur }} --}}
-                    @if ($peserta->pelatihan->cabang->name == 'Cahaya Amanah' || $peserta->pelatihan->cabang->name == 'Tilawati Pusat')
+                    @if ($item->pelatihan->cabang->name == 'Cahaya Amanah' || $item->pelatihan->cabang->name == 'Tilawati Pusat')
                     Dr. KH. Umar Jaeni M.Pd
                     @else
-                    {{$peserta->pelatihan->cabang->kepala->name}}
+                    {{$item->pelatihan->cabang->kepala->name}}
                     @endif
                 </td>
 				</tr>
@@ -138,10 +138,10 @@
 				<td class="bawah" style="width: 185px; height: 4px;">&nbsp;</td>
 				<td class="bawah" style="width: 241px; height: 2px; text-transform: capitalize">
                     {{-- {{ $kepala }} --}}
-                    @if ($peserta->pelatihan->cabang->name == 'Cahaya Amanah' || $peserta->pelatihan->cabang->name == 'Tilawati Pusat')
+                    @if ($item->pelatihan->cabang->name == 'Cahaya Amanah' || $item->pelatihan->cabang->name == 'Tilawati Pusat')
                     Direktur Eksekutif
                     @else
-                    {{ "Kacab".substr($peserta->pelatihan->cabang->name, 5) }}
+                    {{ "Kacab".substr($item->pelatihan->cabang->name, 5) }}
                     @endif
                 </td>
 				</tr>
