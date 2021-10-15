@@ -147,7 +147,7 @@
                         </a>
                     </li>
     
-                    <li>
+                    <li style="display: none">
                         <a href="{{ route('daftar_diklat_konfirmasi') }}" class="waves-effect">
                             <i class="mdi mdi-clipboard-list-outline"></i>
                             <span>Konfirmasi</span>
