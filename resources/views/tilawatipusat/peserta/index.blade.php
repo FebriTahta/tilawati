@@ -83,10 +83,10 @@
                                     @endif
                                     {{-- <p class="card-title-desc">Ter-update berdasarkan Tahun 2021 </br></p> --}}
                                     <a class="btn btn-sm btn-outline-success  mr-1" style="width:130px" @if($diklat->program->penilaian->count() == 0) disabled @else href="{{ route('diklat.peserta_create', $pelatihan_id) }}" @endif><i class="mdi mdi-plus"></i> tambah peserta</a>
-                                    <button class="btn btn-sm btn-success  mr-1" style="width:130px " data-toggle="modal" @if($diklat->program->penilaian->count() == 0) disabled @else data-target=".bs-example-modal-peserta" @endif><i class="mdi mdi-cloud-upload"></i> import peserta</button>
+                                    <button class="btn btn-sm btn-outline-success  mr-1" style="width:130px " data-toggle="modal" @if($diklat->program->penilaian->count() == 0) disabled @else data-target=".bs-example-modal-peserta" @endif><i class="mdi mdi-cloud-upload"></i> import peserta</button>
                                     <button class="text-right btn btn-sm mr-1 btn-outline-primary" id="cetak_all"><i class="fa fa-download"></i> pengiriman modul</button>
-                                    <button class="text-right btn btn-sm mr-1 btn-outline-info"><i class="fa fa-exports"></i> depan</button>
-                                    <button class="text-right btn btn-sm mr-1 btn-info"><i class="fa fa-exports"></i> belakang</button>
+                                    <button class="text-right btn btn-sm mr-1 btn-outline-info"><i class="fa fa-print"></i> depan</button>
+                                    <button class="text-right btn btn-sm mr-1 btn-outline-info"><i class="fa fa-print"></i> belakang</button>
                                     <input type="hidden" id="pelatihan_id" value="{{ $pelatihan_id }}">
                                     <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
                                         <div id="message"></div>
