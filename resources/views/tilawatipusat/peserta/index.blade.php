@@ -90,10 +90,11 @@
                                             <button class="btn btn-sm btn-success  mr-1" style="width:130px " data-toggle="modal" @if($diklat->program->penilaian->count() == 0) disabled @else data-target=".bs-example-modal-peserta" @endif><i class="mdi mdi-cloud-upload"></i> import peserta</button>
                                         </div>
                                         <div class="form-group col-12 col-xl-3 text-right">
-                                            <button class="text-right btn btn-sm btn-outline-primary" id="cetak_all"><i class="fa fa-download"></i> pengiriman modul</button>
+                                            {{-- <button class="text-right btn btn-sm btn-outline-primary" id="cetak_all"><i class="fa fa-download"></i> pengiriman modul</button> --}}
                                         </div>
                                         <div class="form-group col-12 col-xl-3 text-right">
-                                            <button class="text-right btn btn-sm btn-outline-info" data-toggle="modal" data-target="#modal-download2" id="cetak_all"><i class="fa fa-download"></i> semua pengiriman modul</button>
+                                            {{-- <button class="text-right btn btn-sm btn-outline-info" data-toggle="modal" data-target="#modal-download2" id="cetak_all"><i class="fa fa-download"></i> semua pengiriman modul</button> --}}
+                                            <button class="text-right btn btn-sm btn-outline-primary" id="cetak_all"><i class="fa fa-download"></i> pengiriman modul</button>
                                         </div>
 
                                     </div>
