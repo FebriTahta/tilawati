@@ -4,7 +4,8 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 </head>
 <body>
-	@if ($p->pelatihan->keterangan == 'instruktur')
+    @foreach ($peserta as $p)
+    @if ($p->pelatihan->keterangan == 'instruktur')
 	<style>
 		body{
 			font-family: Arial, Helvetica, sans-serif;
@@ -211,6 +212,8 @@
 		}
 	</style>
 	@endif
+    @endforeach
+	
 	@foreach($peserta as $key=> $p)
 	<div style="page-break-inside: avoid">
 	{{-- <center>
