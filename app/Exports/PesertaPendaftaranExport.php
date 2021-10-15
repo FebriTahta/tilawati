@@ -25,7 +25,7 @@ use PhpOffice\PhpSpreadsheet\Shared\Date;
 
 
 // class PesertaPendaftaranExport implements FromView, ShouldAutoSize, WithColumnFormatting
-class PesertaPendaftaranExport implements FromQuery, WithHeadings, ShouldAutoSize,  WithColumnFormatting, WithMapping
+class PesertaPendaftaranExport implements FromQuery, WithHeadings, DateTimeInterface, ShouldAutoSize,  WithColumnFormatting, WithMapping
 {
     use Exportable;
 
