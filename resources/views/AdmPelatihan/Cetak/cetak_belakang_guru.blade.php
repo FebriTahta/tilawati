@@ -272,7 +272,9 @@
 				@if ($p->pelatihan->program->name=='munaqosyah santri')
 					{{ $rata2 = $jumlah }}
 				@else
+					@if ($item->nominal !== null)
 					{{ $rata2 = ($jumlah+ $item->nominal)/2 }}
+					@endif
 				@endif
 					</th>
 			</tr>
