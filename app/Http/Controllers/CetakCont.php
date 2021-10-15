@@ -62,6 +62,16 @@ class CetakCont extends Controller
         }
     }
 
+    public function cetak_depan_beberapa(Request $request)
+    {
+        $peserta_id_array = $request->idcetaksurats;
+        $peserta    = Peserta::whereIn('id',explode(",",$peserta_id_array))->get();
+        $customPaper = array(0,0,792,612);
+        
+        $pdf        = PDF::loadview('AdmPelatihan.Cetak.cetak_depan_beberapa',compact('peserta'))->setPaper($customPaper, 'portrait');
+        return $pdf->download('ijazah-depan-peserta-pdf.pdf','I');
+    }
+
     public function cetak_belakang(Request $request){
         $id = $request->pelatihan_id;
         $pelatihan = Pelatihan::find($id);        
@@ -77,7 +87,6 @@ class CetakCont extends Controller
         $pelatihan  = Pelatihan::where('id',$id)->with('program','cabang')->first();        
         $peserta    = Peserta::where('pelatihan_id', $id)->get();
     	$pdf        = PDF::loadview('tilawatipusat.cetak.detail.cetak_detail',compact('peserta','pelatihan'))->setPaper('a4', 'portrait');
-        // $pdf->setBasePath($webRoot);
     	return $pdf->download('detail-peserta-_'.$pelatihan->name.'.pdf');
     }
 
@@ -101,10 +110,10 @@ class CetakCont extends Controller
     public function cetak_surat_pengiriman_beberapa(Request $request)
     {
         
-            $peserta_id_array = $request->idcetaksurats;
-            $peserta= Peserta::whereIn('id',explode(",",$peserta_id_array))->get();
-            $pdf    = PDF::loadview('tilawatipusat.cetak.detail.surat_pengiriman',compact('peserta'))->setpaper('A4','portrait');
-            return $pdf->download('surat-pengiriman.pdf');
+        $peserta_id_array = $request->idcetaksurats;
+        $peserta= Peserta::whereIn('id',explode(",",$peserta_id_array))->get();
+        $pdf    = PDF::loadview('tilawatipusat.cetak.detail.surat_pengiriman',compact('peserta'))->setpaper('A4','portrait');
+        return $pdf->download('surat-pengiriman.pdf');
         
     }
 

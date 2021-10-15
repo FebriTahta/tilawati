@@ -79,7 +79,7 @@
                                     <input type="hidden" id="jenis_program" value="{{ $diklat->program->name }}">
                                     <h4 class="card-title text-capitalize">Data Peserta Pelatihan </h4>
                                     @if ($diklat->program->penilaian->count() == 0)
-                                        <code>Tambahkan kategori penilaian pada program diklat terlebih dahulu pada menu program</code>
+                                        <code>Tambahkan kategori penilaian pada program diklat terlebih dahulu pada menu program</code><br>
                                     @endif
                                     {{-- <p class="card-title-desc">Ter-update berdasarkan Tahun 2021 </br></p> --}}
                                     <a class="btn btn-sm btn-outline-success  mr-1" style="width:130px" @if($diklat->program->penilaian->count() == 0) disabled @else href="{{ route('diklat.peserta_create', $pelatihan_id) }}" @endif><i class="mdi mdi-plus"></i> tambah peserta</a>
