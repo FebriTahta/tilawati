@@ -18,7 +18,7 @@ use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithStyles;
 use Maatwebsite\Excel\Concerns\WithColumnFormatting;
 use Maatwebsite\Excel\Concerns\WithMapping;
-
+use Carbon\Carbon;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
 use PhpOffice\PhpSpreadsheet\Shared\Date;
@@ -53,7 +53,7 @@ class PesertaPendaftaranExport implements FromQuery, WithHeadings, ShouldAutoSiz
         return [
             $row->name,
             // \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject(strtotime($row->tgllahir)),
-            Date::dateTimeToExcel($row->tgllahir)
+            Date::dateTimeToExcel(Carbon::parse($row->tgllahir))
         ];
     }
 
