@@ -520,6 +520,9 @@ class PesertaCont extends Controller
                     return $query->where('jenis','diklat');
                 });
                 return DataTables::of($data)
+                        ->addColumn('check', function ($data) {
+                            return '<input type="checkbox" class="sub_chk" data-id="'.$data->id.'">';
+                        })
                         ->addColumn('nilai', function ($data) {
                             if ($data->nilai->count() == 0) {
                                 # code...
@@ -575,7 +578,7 @@ class PesertaCont extends Controller
                             $a = Carbon::parse($data->tgllahir)->isoFormat('D MMMM Y');
                             return $data->tmptlahir.' - '.$a;
                         })
-                ->rawColumns(['nilai','action','kabupaten','program','ttl'])
+                ->rawColumns(['nilai','action','kabupaten','program','ttl','check'])
                 ->make(true);
             }else{
                 $data   = Peserta::with('pelatihan')->with('kabupaten')->with('nilai')->with('cabang')->with('program')
@@ -583,6 +586,9 @@ class PesertaCont extends Controller
                     return $query->where('jenis','diklat');
                 });;
                 return DataTables::of($data)
+                        ->addColumn('check', function ($data) {
+                            return '<input type="checkbox" class="sub_chk" data-id="'.$data->id.'">';
+                        })
                         ->addColumn('nilai', function ($data) {
                             if ($data->nilai->count() == 0) {
                                 # code...
@@ -638,7 +644,7 @@ class PesertaCont extends Controller
                             $actionBtn .= ' <a href="#" class="btn btn-sm btn-outline btn-success" data-nama_peserta="'.$data->name.'" data-id="'.asset('images/'.$data->slug.'.png').'" data-toggle="modal" data-target=".modal-scan"><i class="mdi mdi-barcode-scan"></i></a>';
                             return $actionBtn;
                         })
-                ->rawColumns(['nilai','action','kabupaten','program','ttl'])
+                ->rawColumns(['nilai','action','kabupaten','program','ttl','check'])
                 ->make(true);
             }
             
