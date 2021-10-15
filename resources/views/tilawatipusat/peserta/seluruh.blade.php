@@ -105,6 +105,7 @@
                                 <div class="row p-3">
                                     <div class="form-group col-6 col-xl-6">
                                         <button class="text-right btn btn-sm mr-1 btn-outline-info" id="depan_all"><i class="fa fa-print"></i> SYAHADAH DEPAN</button>
+                                        <button class="text-right btn btn-sm mr-1 btn-outline-info" id="belakang_all"><i class="fa fa-print"></i> SYAHADAH BELAKANG</button>
                                         {{-- <form action="#">
                                             <button class="btn btn-sm btn-info"><i class="fa fa-download"></i> Info Peserta</button>
                                         </form> --}}
@@ -362,6 +363,42 @@
                                                         <form id="" action="/pelatihan-cetak-depan-print-beberapa"  method="POST" enctype="multipart/form-data">@csrf
                                                             <div class="form-group text-center">
                                                                 <h5>CETAK SYAHADAH DEPAN ?</h5>
+                                                                <input type="hidden" class="form-control text-capitalize" id="idcetakbelakang" name="id" required>
+                                                            </div>
+                                                            <div class="row" style="text-align: center">
+                                                                <div class="form-group col-6 col-xl-6">
+                                                                    <input type="submit" id="btndownload" class="btn btn-primary" value="Ya, Cetak!" />
+                                                                </div>
+                                                                <div class="form-group col-6 col-xl-6">
+                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                                                        No, Cancel!
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div><!-- container fluid -->
+                                                </div>
+                                            </div>
+                                        </div> <!-- end col -->
+                                    </div>
+                                </div><!-- /.modal-content -->
+                            </div><!-- /.modal-dialog -->
+                        </div><!-- /.modal -->
+                    </div>
+
+                    {{-- modal download syahadah belakang --}}
+                    <div class="col-sm-6 col-md-3 m-t-30">
+                        <div class="modal fade" id="modal-download-belakang" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-md">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <div class="col-xl-12">
+                                            <div class="card m-b-30">
+                                                <div class="card-body">
+                                                    <div class="container-fluid">
+                                                        <form id="" action="/pelatihan-cetak-belakang-print-beberapa"  method="POST" enctype="multipart/form-data">@csrf
+                                                            <div class="form-group text-center">
+                                                                <h5>CETAK SYAHADAH BELAKANG ?</h5>
                                                                 <input type="hidden" class="form-control text-capitalize" id="idcetakdepan" name="id" required>
                                                             </div>
                                                             <div class="row" style="text-align: center">
@@ -735,6 +772,23 @@
                 var join_selected_values = allVals.join(",");
                     $('#modal-download-depan').modal('show');
                     $('#idcetakdepan').val(join_selected_values);
+            }  
+            });
+
+            // cetak syahadah belakang
+            $('#belakang_all').on('click', function(e) {
+            var allVals = [];  
+            $(".sub_chk:checked").each(function() {  
+                allVals.push($(this).attr('data-id'));
+            });
+
+            if(allVals.length <=0)  
+            {  
+                alert("PILIH PESERTA YANG AKAN DI CETAK SYAHADAH BELAKANG");  
+            }else {  
+                var join_selected_values = allVals.join(",");
+                    $('#modal-download-belakang').modal('show');
+                    $('#idcetakbelakang').val(join_selected_values);
             }  
             });
         </script>
