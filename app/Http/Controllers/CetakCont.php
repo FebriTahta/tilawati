@@ -66,7 +66,6 @@ class CetakCont extends Controller
     {
         $peserta_id_array = $request->id;
         $peserta        = Peserta::whereIn('id',explode(",",$peserta_id_array))->with('pelatihan')->get();
-        return $peserta;
         $customPaper    = array(0,0,792,612);
         $pdf            = PDF::loadview('AdmPelatihan.Cetak.cetak_depan_beberapa',compact('peserta'))->setPaper($customPaper, 'portrait');
         return $pdf->download('ijazah-depan-peserta-pdf.pdf','I');
