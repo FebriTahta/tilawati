@@ -4,7 +4,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 </head>
 <body>
-	@if ($pelatihan->keterangan == 'instruktur')
+	@if ($p->pelatihan->keterangan == 'instruktur')
 	<style>
 		body{
 			font-family: Arial, Helvetica, sans-serif;
