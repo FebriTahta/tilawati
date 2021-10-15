@@ -72,7 +72,7 @@ class PesertaPendaftaranExport implements FromQuery, WithHeadings, ShouldAutoSiz
             nama_gelar($row->name),
             // \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject(strtotime($row->tgllahir)),
             $row->program->name,
-            $row->alamat,
+            strtoupper($row->alamat),
             $row->kabupaten->nama,
             $row->telp,
             $row->tmptlahir,
