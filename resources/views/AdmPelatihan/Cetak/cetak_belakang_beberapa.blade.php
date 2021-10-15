@@ -289,10 +289,12 @@
 				<td class="nilai6">&nbsp; &nbsp;<b> PRESTASI</b></th>
 				<th colspan="3" class="nilai5"></th> 
 				<th >
-                    @if ($rata2 >= 85)
-                        Baik
-                    @else
-                        Cukup
+                    @if ($rata2 !== null)
+                        @if ($rata2 >= 85)
+                            Baik
+                        @else
+                            Cukup
+                        @endif
                     @endif
                 </th>
 			</tr>
