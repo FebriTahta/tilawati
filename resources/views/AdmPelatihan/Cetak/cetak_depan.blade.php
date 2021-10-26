@@ -47,7 +47,7 @@
 				<td class="atas" style="width: 170px; height: 10px;">Alamat&nbsp;</td>
 				<td class="atas" style="width: 11px; height: 10px;">:</td>
 				<?php
-					$num_char = 60;
+					$num_char = 45;
 					if (substr($item->kabupaten->nama,5,3)=='ADM') {
 						# code...
 						$text = $item->alamat.' '.substr($item->kabupaten->nama,10);
