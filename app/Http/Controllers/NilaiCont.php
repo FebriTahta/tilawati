@@ -6,6 +6,8 @@ use App\Models\Peserta;
 use App\Models\Kriteria;
 use App\Models\Program;
 use DB;
+use File;
+use SimpleSoftwareIO\QrCode\Generator;
 use Illuminate\Http\Request;
 
 class NilaiCont extends Controller
@@ -59,96 +61,7 @@ class NilaiCont extends Controller
     }
 
     public function update(Request $request){
-        // $peserta_id = $request->peserta_id;
-        // if (count($request->nominal) > 0) {
-        //     # code...
-        //     foreach ($request->nominal as $key => $value) {
-        //         # code...
-        //         $data = array(
-        //             'peserta_id'=> $peserta_id,
-        //             'penilaian_id'=> $request->penilaian_id[$key],
-        //             'nominal'=>$request->nominal[$key],
-        //             'kategori'=>$request->kategori[$key]
-        //         );
-        //         Nilai::where('peserta_id',$peserta_id)->update($data);
-        //     }
-        // }
-        // $data2 = Peserta::updateOrCreate(
-        //     [
-        //       'id' => $peserta_id
-        //     ],
-        //     [
-        //         'name'=>$request->name,
-        //         'tanggal'=>$request->tanggal,
-        //         'pelatihan_id' => $request->pelatihan_id,
-        //         'kriteria_id'=>$request->kriteria_id,
-        //         'kriteria'=>$request->kriteria
-        //     ]
-        // );
-        // return response()->json(
-        //     [
-        //        $data,$data2,
-        //       'success' => 'Peserta Telah Dinilai!',
-        //       'message' => 'Peserta Telah Dinilai!'
-        //     ]
-        // );
-
-        // $peserta_id = $request->peserta_id;
-        // $id= $request->id;
-        // if (count($request->nominal) > 0) {
-        //     # code...
-        //     foreach ($request->nominal as $key => $value) {
-        //         # code...
-        //         $data = array(
-        //             'peserta_id'=> $peserta_id,
-        //             // 'penilaian_id'=> $request->penilaian_id[$key],
-        //             'nominal'=>$request->nominal[$key],
-        //             // 'kategori'=>$request->kategori[$key]
-        //         );
-        //         $nilai = Nilai::where('peserta_id',$peserta_id)->update($data);
-        //         // Nilai::updateOrCreate(
-        //         //     [
-        //         //         'peserta_id'=>$peserta_id,
-        //         //         'penilaian_id'=>$request->penilaian_id[$key],
-        //         //     ],
-        //         //     [
-        //         //         'nominal'=>$request->nominal[$key],
-        //         //     ]
-        //         // );
-        //     }
-        // }
-        // $total  = Nilai::where('peserta_id',$peserta_id)->where("kategori","al-qur'an")->sum('nominal');
-        // $total2 = Nilai::where('peserta_id',$peserta_id)->where("kategori","skill")->sum('nominal');
-        // $total3 = Nilai::where('peserta_id',$peserta_id)->where("kategori","skill")->count();
-        // $rata2  = ($total + $total2)/($total3+1);
-        // $syahadah;
-        // if ($rata2 > 74) {
-        //     # code...
-        //     $syahadah = '1';
-        // } else {
-        //     # code...
-        //     $syahadah = '0';
-        // }
-        // $data2  = Peserta::updateOrCreate(
-        //     [
-        //       'id' => $peserta_id
-        //     ],
-        //     [
-        //         // 'kriteria_id'=>$request->kriteria_id,
-        //         'kriteria'=>$request->kriteria,
-        //         'bersyahadah' => $syahadah,
-        //     ]
-        // );     
-        // // return response()->json(
-        // //     [
-        // //        $data,$data2,
-        // //       'success' => 'Peserta Telah Dinilai!',
-        // //       'message' => 'Peserta Telah Dinilai!'
-        // //     ]
-        // // );
-
-        // return redirect()->back();
-
+        
         $peserta_id = $request->peserta_id;
         // update nilai
         foreach ($request->nominal as $key => $value) {
@@ -182,6 +95,15 @@ class NilaiCont extends Controller
         ->where('id', $peserta_id)  // find your user by their id
         ->update(array('bersyahadah' => $syahadah,'kriteria' => $request->mykriteria));  // update the record in the DB. 
         $data_peserta2= DB::table('pesertas')->where('id',$peserta_id)->first();
+
+        // cetak qr code
+        if ($data_peserta2->bersyahadah == 1) {
+            # code...
+            $qr = \QrCode::size(200)
+            ->format('png')
+            ->generate('https://www.profile.tilawatipusat.com/'.$data_peserta2->slug, public_path('images/'.$data_peserta2->slug.'.png'));
+        }
+
         return redirect()->back()->with(['success' => 'NILAI '.strtoupper($data_peserta2->name).' BERHASIL DI UPDATE '.$hasil_syahadah.' '.strtoupper($request->mykriteria)]);
     }
 
