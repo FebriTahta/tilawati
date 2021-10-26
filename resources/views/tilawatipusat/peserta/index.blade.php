@@ -193,13 +193,22 @@
                                                 @endif
                                             </div>
                                             <div class="form-group">
-                                                <label for="">Sebagai</label>
+                                                {{-- <label for="">Sebagai</label>
                                                 <select name="kriteria_id" onchange="pilihKriteria()" id="kriteria_id" class="form-control">
                                                     @foreach ($diklat->program->kriteria as $item)
                                                         <option value="{{ $item->id }}">{{ $item->name }}</option>
                                                     @endforeach
-                                                </select>
-                                                <input type="hidden" class="form-control" id="kriterias" name="kriteria">
+                                                </select> --}}
+                                                
+                                                {{-- <input type="text" class="form-control" id="kriterias" name="kriteria"> --}}
+                                                <?php $keiteria = App\Models\Kriteria::where('program_id',$diklat->program->id)->get()?>
+                                                <label for="program">KRITERIA</label>
+                                                    <input list="listkriteria" name="mykriteria" class="form-control">
+                                                    <datalist id="listkriteria">
+                                                        @foreach ($kriteria as $krit)
+                                                            <option value="{{$krit->name}}">
+                                                        @endforeach
+                                                    </datalist>
                                             </div>
                                             @if ($diklat->program->penilaian->count() !== 0)
                                                 <div class="form-group text-right">
@@ -863,9 +872,9 @@
 
                 var jenis_program = $('#jenis_program').val();
                 // console.log(jenis_program);
-                var k = $('#kriteria_id').text();
+                // var k = $('#kriteria_id').text();
                 var pel_id = $('#pelatihan_id').val();
-                document.getElementById('kriterias').value=k;
+                // document.getElementById('kriterias').value=k;
                 var pelatihan_id = $('#pelatihan_id').val();
                 // console.log(pel_id);
 

@@ -13,18 +13,18 @@
 @section('content')
 
     @component('common-tilawatipusat.breadcrumb')
-         @slot('title') {{ $peserta->name }} @endslot
+         @slot('title')Detail  @endslot
          @slot('title_li')  NILAI  @endslot
     @endcomponent
     <div class="row">
         <div class="col-xl-4">
             @component('common-tilawatipusat.dashboard-widget')
             
-                @slot('title') <p> Nilai </p> <b> {{ $rata2 }}</b> &nbsp;&nbsp;
-                @if ($rata2 > 82)
-                <b class="badge badge-info">lulus (Baik)</b>
+                @slot('title') <p><b> TOTAL NILAI RATA-RATA</b></p> <b> {{ $rata2 }}</b> &nbsp;&nbsp;
+                @if ($rata2 > 74)
+                <b class="badge badge-info">BERSYAHADAH</b>
                 @else
-                <b class="badge badge-warning">lulus (Cukup)</b>
+                <b class="badge badge-danger">BELUM BERSYAHADAH</b>
                 @endif  @endslot
                 @slot('iconClass') mdi mdi-tag-plus-outline  @endslot
                 @slot('price')   @endslot
@@ -34,7 +34,7 @@
         <div class="col-xl-8">
             @component('common-tilawatipusat.dashboard-widget')
             
-                @slot('title') <p>Program Diklat</p> <b class="text-capitalize"> {{ $peserta->pelatihan->program->name }}</b> &nbsp;&nbsp;
+                @slot('title') <p><b>{{ strtoupper($peserta->name) }}</b></p><b class="text-capitalize"> {{ $peserta->pelatihan->program->name }}</b> &nbsp;&nbsp;
                 @endslot
                 @slot('iconClass') mdi mdi-tag-plus-outline  @endslot
                 @slot('price')   @endslot
@@ -46,57 +46,41 @@
                         <div class="col-lg-12">
                             <div class="card">
                                 <div class="card-body">
-                                    
                                     <p class="card-title-desc">Rincian Nilai Peserta </br></p>
+                                    @if ($message = Session::get('success'))
+                                        <div class="alert alert-success alert-block">
+                                        <button type="button" class="close" data-dismiss="alert">×</button>    
+                                            <strong>{{ $message }}</strong>
+                                        </div>
+                                    @endif
                                     <blockquote class="blockquote font-size-16 mb-0 mt-2">
-                                        <form id="updateNilai" method="POST" enctype="multipart/form-data">@csrf
-                                            <input type="hidden" value="{{ $peserta->id }}" name="peserta_id">
-                                            <input type="hidden" value="{{ $peserta->pelatihan_id }}" name="pelatihan_id" id="id">
-                                            <input type="hidden" value="{{ $peserta->tanggal }}" name="tanggal">
-                                            <input type="hidden" name="name" value="{{ $peserta->name }}">
-                                            <div class="row">
-                                                @foreach ($peserta->nilai as $item)
-                                                    @if ($item->kategori !== 'skill')
+                                        <div id="menilai"  method="POST" enctype="multipart/form-data">
+                                            <form action="{{route('diklat.nilai_update')}}" method="POST">@csrf
+                                                <div class="form-group">
+                                                    <input type="hidden" id="id" value="{{$peserta->id}}" name="peserta_id">
+                                                </div>
+                                                <div class="row">
+                                                    @foreach ($peserta->nilai as $key=>$item)
                                                         <div class="form-group col-xl-6 col-12">
-                                                            <label for="" class="text-capitalize">{{ $item->penilaian->name }}
-                                                                @if ($item->penilaian->max !== null || $item->penilaian->min !== null)
-                                                                    <br><i class="text-danger">Min:{{ $item->penilaian->min }}</i> & <i class="text-danger">Max:{{ $item->penilaian->max }}</i>
-                                                                @endif
-                                                            </label>
-                                                            <input type="hidden" readonly name="id" value="{{ $item->id }}">
-                                                            <input type="hidden" name="kategori[]" value="{{ $item->penilaian->kategori }}">
-                                                            <input type="hidden" name="penilaian_id[]" value="{{ $item->penilaian->id }}">
-                                                            <input type="number" readonly id="nominal[]" value="{{ $item->nominal }}" name="nominal[]" min="{{ $item->penilaian->min }}" max="{{ $item->penilaian->max }}" class="form-control">
+                                                            <input type="hidden" class="form-control" name="id[{{$key}}]" value="{{$item->id}}" readonly>
+                                                            <input type="hidden" class="form-control" name="penilaian_id[{{$key}}]" value="{{$item->penilaian->id}}" readonly>
+                                                            <small>{{strtoupper($item->penilaian->name)}}</small>
+                                                            <input type="text" class="form-control" name="nominal[{{$key}}]" value="{{$item->nominal}}">  
                                                         </div>
-                                                    @else
-                                                        <div class="form-group col-xl-6 col-12">
-                                                            <label for="" class="text-capitalize">{{ $item->penilaian->name }}
-                                                                @if ($item->penilaian->max !== null || $item->penilaian->min !== null)
-                                                                    <br><i class="text-danger">Min:{{ $item->penilaian->min }}</i> & <i class="text-danger">Max:{{ $item->penilaian->max }}</i>
-                                                                @else<br><br>
-                                                                @endif
-                                                            </label>
-                                                            <input type="hidden" name="id" value="{{ $item->id }}">
-                                                            <input type="hidden" name="kategori[]" value="{{ $item->penilaian->kategori }}">
-                                                            <input type="hidden" name="penilaian_id[]" value="{{ $item->penilaian->id }}">
-                                                            <input type="number" readonly id="nominal[]" value="{{ $item->nominal }}" name="nominal[]" min="{{ $item->penilaian->min }}" max="{{ $item->penilaian->max }}" class="form-control">
-                                                        </div>
-                                                    @endif
-                                                @endforeach
-                                            </div>
-                                            {{-- <div class="form-group">
-                                                <label for="">Sebagai</label>
-                                                <select name="kriteria_id" id="kriteria_id" class="form-control">
-                                                    @foreach ($peserta->pelatihan->program->kriteria as $item)
-                                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
                                                     @endforeach
-                                                </select>
-                                                <input type="hidden" class="form-control" id="kriterias" name="kriteria">
-                                            </div> --}}
-                                            {{-- <div class="form-group text-right">
-                                                <input type="submit" class="form-control btn btn-info" id="btnsubmit" value="Update Nilai">
-                                            </div> --}}
-                                        </form>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="program">KRITERIA</label>
+                                                    <input list="listkriteria" name="mykriteria" value="{{$peserta->kriteria}}" class="form-control">
+                                                    <datalist id="listkriteria">
+                                                        @foreach ($kriteria as $krit)
+                                                            <option value="{{$krit->name}}">
+                                                        @endforeach
+                                                    </datalist>
+                                                </div>
+                                                <button type="submit" class="btn btn-sm btn-primary">UPDATE PENILAIAN</button>
+                                            </form>
+                                            <a style="margin-top: 10px"  href="/diklat-peserta/{{$peserta->pelatihan_id}}" type="btton" class="btn btn-sm btn-secondary">KEMBALI KE DAFTAR PESERTA</a>
                                         <footer class="blockquote-footer">Updated at  <cite title="Source Title">2021</cite></footer>
                                     </blockquote>
                                 </div>
