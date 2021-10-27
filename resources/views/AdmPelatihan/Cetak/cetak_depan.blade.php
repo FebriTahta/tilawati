@@ -57,7 +57,7 @@
 					}
 					
 					?>
-				<td class="atas" style="width: 750px; height: 10px; font-weight: bold;text-transform: uppercase" >{{ substr($text, 0, $num_char) }}</td>
+				<td class="atas" style="width: 750px; height: 10px; font-weight: bold;text-transform: uppercase" >{{ $text }}</td>
 				<td class="atas" style="width: 52px; height: 10px;">&nbsp;</td>
 				</tr>
 				<tr class="atas" style="height: 10px;">
