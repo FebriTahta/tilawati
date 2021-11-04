@@ -21,10 +21,14 @@
             </div>
             <hr>
         @endif
-        <div class="form-group col-xl-6">
+        <div class="form-group col-xl-4">
             <input type="hidden" name="id" value="{{$peserta->id}}">
             <label for="nama">Nama Peserta</label>
             <input type="text" class="form-control" value="{{$peserta->name}}" id="nama" name="name"  >    
+        </div>
+        <div class="form-group col-xl-2">
+            <label for="nama">Gelar</label>
+            <input type="text" class="form-control" value="{{$peserta->gelar}}" id="gelar" name="gelar"  >    
         </div>
         <div class="form-group col-12">
             <h5>BIODATA</h5>
@@ -48,7 +52,7 @@
         </div>
         <div class="form-group col-9 col-xl-6">
             <label for="phone"><i class="text-danger">*</i> Nomor WA (AKTIF)</label>
-            <input type="number" value="{{substr($peserta->telp,2)}}" pattern="[0-9]*" inputmode="numeric" id="phone" onkeypress="return hanyaAngka(event)" name="phone" class="form-control" style="max-height: 40px;"  >
+            <input type="number" value="{{$peserta->telp}}" pattern="[0-9]*" inputmode="numeric" id="phone" onkeypress="return hanyaAngka(event)" name="phone" class="form-control" style="max-height: 40px;"  >
             <code style="" id="kodephone"></code>
         </div>
         <div class="form-group col-12 col-xl-3">

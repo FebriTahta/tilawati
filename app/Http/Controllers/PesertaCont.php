@@ -1532,7 +1532,7 @@ class PesertaCont extends Controller
                                 'alamat'        => $request->alamat,
                                 'alamatx'       => $request->alamatx,
                                 'kota'          => $kabupaten_kota->nama,
-                                'telp'          => $request->kode.$request->phone,
+                                'telp'          => $request->phone,
                                 'pos'           => $request->pos,
                                 'email'         => $request->email,
                                 'bersyahadah'   => $request->bersyahadah,
