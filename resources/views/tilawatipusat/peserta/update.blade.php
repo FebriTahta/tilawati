@@ -13,7 +13,7 @@
 <form action="{{route('update.data.peserta')}}" method="POST" enctype="multipart/form-data">@csrf
     <div class="row">
         @if ($alertFm = Session::get('success'))
-            <div class="card card-body" style="width: 650px; max-width: 100%; margin-bottom: 20px;">
+            <div class="card card-body" style="max-width: 100%; margin-bottom: 20px;">
                 <div class="alert alert-success alert-block">
                     <button type="button" class="close" data-dismiss="alert">×</button>
                     <strong>{{ $alertFm }}</strong>
@@ -24,7 +24,7 @@
         <div class="form-group col-xl-4">
             <input type="hidden" name="id" value="{{$peserta->id}}">
             <label for="nama">Nama Peserta</label>
-            <input type="text" class="form-control" value="{{$peserta->name}}" id="nama" name="name"  >    
+            <input type="text" class="form-control text-uppercase" value="{{$peserta->name}}" id="nama" name="name"  >    
         </div>
         <div class="form-group col-xl-2">
             <label for="nama">Gelar</label>
