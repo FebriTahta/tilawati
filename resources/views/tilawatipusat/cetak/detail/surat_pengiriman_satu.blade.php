@@ -32,9 +32,9 @@
             <td style="width: 2%"> : </td>
             <td><b>
                 @if ($pes->alamatx == null)
-                    <span style="color: red">{{$pes->alamat}} - {{$pes->kelurahan->nama}} - {{$pes->kecamatan->nama}} - {{$pes->kabupaten->nama}}</span>
+                    <span style="color: red">{{$pes->alamat}} - {{$pes->kelurahan->nama}} - {{$pes->kecamatan->nama}} </span>
                 @else
-                    {{$pes->alamatx}} - {{$pes->kelurahan->nama}} - {{$pes->kecamatan->nama}} - {{$pes->kabupaten->nama}}
+                    {{$pes->alamatx}} - {{$pes->kelurahan->nama}} - {{$pes->kecamatan->nama}} 
                 @endif
                 </b>
             </td>
