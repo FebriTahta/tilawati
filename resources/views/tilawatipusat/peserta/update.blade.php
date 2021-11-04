@@ -86,11 +86,11 @@
         </div>
         <div class="form-group  col-12 col-xl-12">
             <label for="alamat"><i class="text-danger">*</i> Alamat Sesuai KTP</label>
-            <textarea name="alamat" class="form-control" id="" cols="30" rows="5"  >{{$peserta->alamat}}</textarea>
+            <textarea name="alamat" class="form-control text-uppercase" id="" cols="30" rows="5"  >{{$peserta->alamat}}</textarea>
         </div>
         <div class="form-group col-12 col-xl-12">
             <label for="">Brsyahadah</label>
-            <select name="bersyahadah" id="" class="form-control">
+            <select name="bersyahadah" id="" class="form-control text-uppercase">
                 <option value="{{$peserta->bersyahadah}}">
                 @if ($peserta->bersyahadah == 1)
                     Bersyahadah
