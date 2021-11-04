@@ -29,12 +29,12 @@
         <tr>
             <td style="width: 10%">Alamat</td>
             <td style="width: 2%"> : </td>
-            <td>
+            <td style="text-transform: uppercase">
                 <b>
                     @if ($pes->alamatx == null)
-                    <span style="color: red">{{$pes->alamat}}</span>
+                    <span style="color: red">{{$pes->alamat}} - {{$pes->kelurahan->nama}} - {{$pes->kecamatan->nama}} - {{$pes->kabupaten->nama}}</span>
                     @else
-                    {{$pes->alamatx}}
+                    {{$pes->alamatx}} - {{$pes->kelurahan->nama}} - {{$pes->kecamatan->nama}} - {{$pes->kabupaten->nama}}
                     @endif
                 </b>
             </td>

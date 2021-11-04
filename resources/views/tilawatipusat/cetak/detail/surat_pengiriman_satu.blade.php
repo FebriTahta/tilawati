@@ -31,13 +31,13 @@
             <td style="width: 10%">Alamat</td>
             <td style="width: 2%"> : </td>
             <td><b>
-                @if ($peserta->alamatx == null)
-                <small style="color: red" class="text-danger merah">Alamat pengiriman modul kosong</small><br>
-                {{$peserta->alamat}}
+                @if ($pes->alamatx == null)
+                    <span style="color: red">{{$pes->alamat}} - {{$pes->kelurahan->nama}} - {{$pes->kecamatan->nama}} - {{$pes->kabupaten->nama}}</span>
                 @else
-                {{$peserta->alamatx}}
+                    {{$pes->alamatx}} - {{$pes->kelurahan->nama}} - {{$pes->kecamatan->nama}} - {{$pes->kabupaten->nama}}
                 @endif
-            </b></td>
+                </b>
+            </td>
         </tr>
         <tr>
             <td style="width: 10%">Kota</td>
