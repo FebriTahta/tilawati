@@ -13,7 +13,7 @@
 <form action="{{route('update.data.peserta')}}" method="POST" enctype="multipart/form-data">@csrf
     <div class="row">
         @if ($alertFm = Session::get('success'))
-            <div class="card card-body" style="max-width: 100%; margin-bottom: 20px;">
+            <div class="card card-body col-xl-12" style="max-width: 100%; margin-bottom: 20px;">
                 <div class="alert alert-success alert-block">
                     <button type="button" class="close" data-dismiss="alert">×</button>
                     <strong>{{ $alertFm }}</strong>
