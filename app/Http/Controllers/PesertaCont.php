@@ -116,7 +116,7 @@ class PesertaCont extends Controller
                             
                         })
                         ->addColumn('ttl', function($data){
-                            if ($data->tgllahir !== null && $data->tmptlahir !== null) {
+                            if ($data->tmptlahir !== null) {
                                 # code...
                                 $ttl = $data->tmptlahir.' - '.Carbon::parse($data->tgllahir)->isoFormat('D MMMM Y');
                                 return $ttl;
