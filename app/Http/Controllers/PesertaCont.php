@@ -123,7 +123,7 @@ class PesertaCont extends Controller
                             // }else{
                             //     return '-';
                             // }
-                            return $data->tmptlahir;
+                            return $data->tgllahir;
                         })
                         ->addColumn('alamatmodul', function($data){
                             if ($data->alamatx == null) {
