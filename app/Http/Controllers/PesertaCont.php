@@ -116,8 +116,13 @@ class PesertaCont extends Controller
                             
                         })
                         ->addColumn('ttl', function($data){
-                            $ttl = $data->tmptlahir.' - '.Carbon::parse($data->tgllahir)->isoFormat('D MMMM Y');
-                            return $ttl;
+                            if ($data->tgllahir !== null) {
+                                # code...
+                                $ttl = $data->tmptlahir.' - '.Carbon::parse($data->tgllahir)->isoFormat('D MMMM Y');
+                                return $ttl;
+                            }else{
+                                return '-';
+                            }
                         })
                         ->addColumn('alamatmodul', function($data){
                             if ($data->alamatx == null) {
