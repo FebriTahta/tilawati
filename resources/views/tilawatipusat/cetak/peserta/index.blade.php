@@ -37,7 +37,7 @@
 
                 <td>{{ $item->tmptlahir }}</td>
                 
-                <td>{{ $item->tmptlahir }}</td>
+                <td>{{ $item->tgllahir }}</td>
             </tr>
         @endforeach
     </tbody>
