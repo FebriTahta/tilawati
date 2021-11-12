@@ -27,11 +27,6 @@ class ExportCont extends Controller
     {
         $pelatihan_id = $request->id;
         $data = Pelatihan::find($pelatihan_id);
-        if ($data->status == 'diklat') {
-            # code...
-            return Excel::download(new PesertaPendaftaranExport($pelatihan_id),'data-peserta-pendaftaran'.$data->program->name.'-'.$data->tanggal.'.xlsx');
-        }else{
-            return Excel::download(new PesertaPendaftaranExport($pelatihan_id),'data-peserta-pendaftaran-'.$data->tanggal.'.xlsx');
-        }
+        return Excel::download(new PesertaPendaftaranExport($pelatihan_id),'data-peserta-pendaftaran'.$data->program->name.'-'.$data->tanggal.'.xlsx');
     }
 }

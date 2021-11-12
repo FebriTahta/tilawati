@@ -510,6 +510,13 @@
         });
         </script>
         <script>
+            $('#modal-download').on('show.bs.modal', function(event) {
+                var button = $(event.relatedTarget)
+                var id = button.data('id')
+                var modal = $(this)
+                modal.find('.modal-body #id').val(id);
+            })
+            
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             $('#diklat_store').submit(function(e) {
                 e.preventDefault();
