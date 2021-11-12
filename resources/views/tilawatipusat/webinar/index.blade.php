@@ -439,7 +439,7 @@
                                                         <form id="" action="/export-peserta-pendaftaran"  method="POST" enctype="multipart/form-data">@csrf
                                                             <div class="form-group text-center">
                                                                 <h5>Mengunduh Daftar Peserta Pendaftaran ?</h5>
-                                                                <input type="hidden" class="form-control text-capitalize" id="id" name="id" required>
+                                                                <input type="text" class="form-control text-capitalize" id="id" name="id" required>
                                                             </div>
                                                             <div class="row" style="text-align: center">
                                                                 <div class="form-group col-6 col-xl-6">
