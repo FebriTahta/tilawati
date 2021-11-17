@@ -43,7 +43,7 @@
 				<td class="atas" style="width: 11px; height: 10px;">:</td>
 				{{-- Output nama dengan gelar --}}
 				<td class="atas" style="width: 750px; height: 10px; font-weight: bold;">{{ strtoupper($item->name) }} 
-				@if ($data->gelar !== null)
+				@if ($item->gelar !== null)
 					{{', '.$item->gelar}}
 				@endif
 				</td>
