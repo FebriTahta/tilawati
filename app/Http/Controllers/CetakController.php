@@ -81,7 +81,7 @@ class CetakController extends Controller
             $pdf        = PDF::loadview('AdmPelatihan.Cetak.cetak_depan',compact('peserta','direktur','kepala','kabupaten','cabang'))->setPaper($customPaper, 'portrait');
             return $pdf->download('cetak-laporan-ijazah-depan-peserta-pdf','I');
         }else{
-            $jabatan    = "Kacab. ".strtolower($kabupaten);
+            $jabatan    = "Kacab. ".ucwords($cabang).' '.strtolower($kabupaten);
             $kepala     = ucwords($jabatan);
             $direktur   = $pelatihan->cabang->kepala->name;
             
