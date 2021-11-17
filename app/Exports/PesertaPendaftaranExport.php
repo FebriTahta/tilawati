@@ -28,7 +28,7 @@ class PesertaPendaftaranExport implements FromQuery, WithHeadings, ShouldAutoSiz
 
     public function query(){
         return Peserta::query()->where('pelatihan_id', $this->pelatihan_id)
-            ->select('name','alamat','kabupaten_id','telp','tmptlahir','tgllahir');
+            ->select('name','gelar','alamat','kabupaten_id','telp','tmptlahir','tgllahir');
     }
     /**
     * @return \Illuminate\Support\Collection
@@ -57,6 +57,7 @@ class PesertaPendaftaranExport implements FromQuery, WithHeadings, ShouldAutoSiz
     public function map($row): array{
         return [
             nama_gelar($row->name),
+            $row->gelar,
             strtoupper($row->alamat),
             $row->kabupaten->nama,
             $row->telp,
@@ -68,6 +69,7 @@ class PesertaPendaftaranExport implements FromQuery, WithHeadings, ShouldAutoSiz
     public function headings(): array{
         return [
             "NAMA PESERTA",
+            "GELAR",
             "ALAMAT LENGKAP",
             "ASAL",
             "No. WA",
