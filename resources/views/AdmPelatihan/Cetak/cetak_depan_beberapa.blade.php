@@ -23,14 +23,16 @@
 		}
 		.dalam{
 			/* text-transform: uppercase; */
-		}
+		}.merah{
+            text-decoration-color: red;
+        }
 		/* .tepi { border: 1px solid; 
 		} */
 	</style>
 		@foreach ($peserta as $item)
 		<div class="print">
 			<table 
-			@if ($pelatihan->keterangan == 'guru')
+			@if ($item->pelatihan->keterangan == 'guru')
 			style="height: 180px; width: 900px;margin-left:113px;margin-top:290px"
 			@else
 			style="height: 180px; width: 720px;margin-left:116px;margin-top:290px"
@@ -40,8 +42,8 @@
 				<td class="atas" style="width: 170px; height: 10px;">Nama&nbsp;</td>
 				<td class="atas" style="width: 11px; height: 10px;">:</td>
 				{{-- Output nama dengan gelar --}}
-				<td class="atas" style="width: 750px; height: 10px; font-weight: bold;">{{ strtoupper($item->name) }}
-				@if ($item->gelar!==null)
+				<td class="atas" style="width: 750px; height: 10px; font-weight: bold;">{{ strtoupper($item->name) }} 
+				@if ($item->gelar !== null)
 					{{', '.$item->gelar}}
 				@endif
 				</td>
@@ -51,17 +53,30 @@
 				<td class="atas" style="width: 170px; height: 10px;">Alamat&nbsp;</td>
 				<td class="atas" style="width: 11px; height: 10px;">:</td>
 				<?php
-					$num_char = 45;
+					$num_char       = 65;
+                    $panjangkata    = $item->alamat;
 					if (substr($item->kabupaten->nama,5,3)=='ADM') {
 						# code...
-						$text = $item->alamat.' '.substr($item->kabupaten->nama,10);
+                        if ($panjangkata > 55) {
+                            # code...
+                            '<span class="merah">'.$text = $item->alamat.' '.substr($item->kabupaten->nama,10).'</span>';
+                        }else {
+                            # code...
+                            $text = $item->alamat.' '.substr($item->kabupaten->nama,10);
+                        }
 					}else {
 						# code...
-						$text = $item->alamat.' '.substr($item->kabupaten->nama,5);
+                        if ($panjangkata > 55) {
+                            # code...
+                            '<span class="merah">'.$text = $item->alamat.' '.substr($item->kabupaten->nama,5).'</span>';
+                        }else {
+                            # code...
+                            $text = $item->alamat.' '.substr($item->kabupaten->nama,5);
+                        }
 					}
 					
 					?>
-				<td class="atas" style="width: 750px; height: 10px; font-weight: bold;text-transform: uppercase" >{{ $text }}</td>
+				<td class="atas" style="width: 750px; height: 10px; font-weight: bold;text-transform: uppercase" >{{ substr($text, 0, $num_char) }}</td>
 				<td class="atas" style="width: 52px; height: 10px;">&nbsp;</td>
 				</tr>
 				<tr class="atas" style="height: 10px;">
@@ -70,12 +85,18 @@
 				<td class="atas" style="width: 750px; height: 10px; font-weight: bold;text-transform: uppercase" >{{ $item->tmptlahir }}, {{ Carbon\Carbon::parse($date)->isoFormat('D MMMM Y') }}&nbsp;</td>
 				<td class="atas" style="width: 52px; height: 10px;">&nbsp;</td>
 				</tr>
-				@if ($pelatihan->keterangan == 'santri')
+				@if ($item->pelatihan->keterangan == 'santri')
 				<tr class="atas" style="height: 10px;">
 					<td class="atas" style="width: 170px; height: 10px;">Asal Lembaga</td>
 					<td class="atas" style="width: 11px; height: 10px;">:</td>
 					{{-- <td class="atas" style="width: 750px; height: 10px; font-weight: bold;text-transform: uppercase" >{{ $item->lembaga->name }}</td> --}}
-					<td class="atas" style="width: 750px; height: 10px; font-weight: bold;text-transform: uppercase" >Baitul Ghufron</td>
+					<td class="atas" style="width: 750px; height: 10px; font-weight: bold;text-transform: uppercase" >
+                    @if ($item->lembaga == null )
+                        KOSONG
+                    @else
+                        {{$item->lembaga->name}}
+                    @endif
+                    </td>
 					<td class="atas" style="width: 52px; height: 10px;">&nbsp;</td>
 				</tr>
 				@endif
@@ -94,7 +115,7 @@
 				</tbody>
 			</table>			
 			<table 
-			@if ($pelatihan->keterangan=='guru')
+			@if ($item->pelatihan->keterangan=='guru')
 			style="margin-left:113px; margin-top: 4px"
 			@else
 			style="margin-left:116px; margin-top: 10px"
@@ -104,7 +125,7 @@
 				<tr style="height: 27px;"><?php $tahun = date('Y')?>
 				<td class="bawah" style="width: 210px; height: 27px; "><small> </small></td>
 				<td class="bawah" style="width: 210px; height: 27px;">&nbsp;</td><?php $lokasicetak = strtolower(substr($item->pelatihan->cabang->kabupaten->nama, 4))?>
-				<td class="atas" style="width: 241px; height: 27px; text-transform: lowercase;text-transform: capitalize">Surabaya, {{ Carbon\Carbon::parse($item->pelatihan->tanggal)->isoFormat('D MMMM Y') }}</td>
+				<td class="atas" style="width: 241px; height: 27px; text-transform: lowercase;text-transform: capitalize">{{ $lokasicetak }}, {{ Carbon\Carbon::parse($item->pelatihan->tanggal)->isoFormat('D MMMM Y') }}</td>
 				</tr>
 				<tr style="height: 78px;">
 				<td class="bawah" style="width: 210px; height: 70px;">
@@ -122,12 +143,26 @@
 				<tr style="height: 5px;">
 				<td class="bawah" style="width: 210px; height: 5px;">No. Syahadah : &nbsp;{{ $item->pelatihan_id }}/{{ $tahun }}/{{ $item->id }}</td>
 				<td class="bawah" style="width: 210px; height: 5px;">&nbsp;</td>
-				<td class="atas" style="width: 241px; height: 5px; font-weight: bold">{{ $direktur }}</td>
+				<td class="atas" style="width: 241px; height: 5px; font-weight: bold">
+                    {{-- {{ $direktur }} --}}
+                    @if ($item->pelatihan->cabang->name == 'Cahaya Amanah' || $item->pelatihan->cabang->name == 'Tilawati Pusat')
+                    Dr. KH. Umar Jaeni M.Pd
+                    @else
+                    {{$item->pelatihan->cabang->kepala->name}}
+                    @endif
+                </td>
 				</tr>
 				<tr style="height: 4px;">
 				<td class="bawah" style="width: 210px; height: 4px;">&nbsp;</td>
 				<td class="bawah" style="width: 185px; height: 4px;">&nbsp;</td>
-				<td class="bawah" style="width: 241px; height: 2px; text-transform: capitalize">{{ $kepala }}</td>
+				<td class="bawah" style="width: 241px; height: 2px; text-transform: capitalize">
+                    {{-- {{ $kepala }} --}}
+                    @if ($item->pelatihan->cabang->name == 'Cahaya Amanah' || $item->pelatihan->cabang->name == 'Tilawati Pusat')
+                    Direktur Eksekutif
+                    @else
+                    {{ "Kacab".substr($item->pelatihan->cabang->name, 5) }}
+                    @endif
+                </td>
 				</tr>
 				</tbody>
 			</table>
