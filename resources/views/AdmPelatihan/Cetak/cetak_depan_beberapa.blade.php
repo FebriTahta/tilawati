@@ -149,7 +149,7 @@
                     @else
 					<?	$kabupaten 	= substr($item->pelatihan->cabang->kabupaten->nama, 5); $kab = strtolower($kabupaten);
 						$provinsi 	= strtolower($item->pelatihan->cabang->kabupaten->provinsi->nama); 
-					$data_kabupaten = App\Models\Kabupaten::where('id', $item->pelatihan->kabupaten->id)->first();
+					$data_kabupaten = App\Models\Kabupaten::where('id', $item->pelatihan->cabang->kabupaten->id)->first();
 					$jum_cabang		= $data_kabupaten->cabang->count();
 					?>
 						@if ($jum_cabang > 1)
