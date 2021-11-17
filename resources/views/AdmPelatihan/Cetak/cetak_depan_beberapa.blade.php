@@ -130,7 +130,7 @@
 				<tr style="height: 5px;">
 				<td class="bawah" style="width: 210px; height: 5px;">No. Syahadah : &nbsp;{{ $item->pelatihan_id }}/{{ $tahun }}/{{ $item->id }}</td>
 				<td class="bawah" style="width: 210px; height: 5px;">&nbsp;</td>
-				<td class="atas" style="width: 241px; height: 5px; font-weight: bold">
+				<td class="atas" style="width: 241px; height: 5px;">
                     {{-- {{ $direktur }} --}}
                     @if ($item->pelatihan->cabang->name == 'Cahaya Amanah' || $item->pelatihan->cabang->name == 'Tilawati Pusat')
                     Dr. KH. Umar Jaeni M.Pd
