@@ -148,7 +148,7 @@
                     Direktur Eksekutif
                     @else
 					<?$kabupaten = substr($item->pelatihan->cabang->kabupaten->nama, 5); $kab = strtolower($kabupaten)?>
-                    {{ 'Kacab. '.ucfirst($kab) }}
+                    {{ 'Kacab. '.ucfirst($item->pelatihan->cabang).' '.ucfirst($kab) }}
                     @endif
                 </td>
 				</tr>

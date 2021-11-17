@@ -28,7 +28,7 @@
         </div>
         <div class="form-group col-xl-2">
             <label for="nama">Gelar</label>
-            <input type="text" class="form-control" value="{{$peserta->gelar}}" id="gelar" name="gelar"  >    
+            <input type="text" class="form-control" value="{{$peserta->gelar}}" id="gelar" name="gelar">    
         </div>
         <div class="form-group col-12">
             <h5>BIODATA</h5>
