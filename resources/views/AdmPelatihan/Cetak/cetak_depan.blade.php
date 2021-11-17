@@ -7,14 +7,14 @@
 	<style>
 		body{
 			font-family: Arial, Helvetica, sans-serif;
-			font-size: 15px;
+			font-size: 14px;
 		}
 		.page-break {
 			page-break-after: always;
 			page-break-inside: avoid;
 		}
 		.atas {
-			font-size: 15px;
+			font-size: 14px;
 			font-family: Arial, Helvetica, sans-serif;
 		}
 		.bawah {
@@ -40,7 +40,7 @@
 				<td class="atas" style="width: 170px; height: 10px;">Nama&nbsp;</td>
 				<td class="atas" style="width: 11px; height: 10px;">:</td>
 				{{-- Output nama dengan gelar --}}
-				<td class="atas" style="width: 750px; height: 10px; font-weight: bold;">{{ strtoupper($item->name) }}
+				<td class="atas" style="width: 750px; height: 10px;">{{ strtoupper($item->name) }}
 				@if ($item->gelar!==null)
 					{{', '.$item->gelar}}
 				@endif
@@ -61,13 +61,13 @@
 					}
 					
 					?>
-				<td class="atas" style="width: 750px; height: 10px; font-weight: bold;text-transform: uppercase" >{{ $text }}</td>
+				<td class="atas" style="width: 750px; height: 10px; text-transform: uppercase" >{{ $text }}</td>
 				<td class="atas" style="width: 52px; height: 10px;">&nbsp;</td>
 				</tr>
 				<tr class="atas" style="height: 10px;">
 				<td class="atas" style="width: 170px; height: 10px; ">Tempat Tanggal Lahir&nbsp;</td>
 				<td class="atas" style="width: 11px; height: 10px;">:</td><?php date_default_timezone_set('Asia/Jakarta'); $date=$item->tgllahir;?>
-				<td class="atas" style="width: 750px; height: 10px; font-weight: bold;text-transform: uppercase" >{{ $item->tmptlahir }}, {{ Carbon\Carbon::parse($date)->isoFormat('D MMMM Y') }}&nbsp;</td>
+				<td class="atas" style="width: 750px; height: 10px; text-transform: uppercase" >{{ $item->tmptlahir }}, {{ Carbon\Carbon::parse($date)->isoFormat('D MMMM Y') }}&nbsp;</td>
 				<td class="atas" style="width: 52px; height: 10px;">&nbsp;</td>
 				</tr>
 				@if ($pelatihan->keterangan == 'santri')
@@ -75,14 +75,14 @@
 					<td class="atas" style="width: 170px; height: 10px;">Asal Lembaga</td>
 					<td class="atas" style="width: 11px; height: 10px;">:</td>
 					{{-- <td class="atas" style="width: 750px; height: 10px; font-weight: bold;text-transform: uppercase" >{{ $item->lembaga->name }}</td> --}}
-					<td class="atas" style="width: 750px; height: 10px; font-weight: bold;text-transform: uppercase" >Baitul Ghufron</td>
+					<td class="atas" style="width: 750px; height: 10px;text-transform: uppercase" >Baitul Ghufron</td>
 					<td class="atas" style="width: 52px; height: 10px;">&nbsp;</td>
 				</tr>
 				@endif
 				<tr class="atas" style="height: 10px;">
 				<td class="atas" style="width: 170px; height: 10px;">Dinyatakan</td>
 				<td class="atas" style="width: 11px; height: 10px;">:</td>
-				<td class="atas" style="width: 750px; height: 10px; font-weight: bold;text-transform: uppercase" >{{ $item->kriteria }}</td>
+				<td class="atas" style="width: 750px; height: 10px; text-transform: uppercase" >{{ $item->kriteria }}</td>
 				<td class="atas" style="width: 52px; height: 10px;">&nbsp;</td>
 				</tr>
 				<tr class="atas" style="height: 37px;">
