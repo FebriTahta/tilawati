@@ -92,7 +92,7 @@ class PesertaCont extends Controller
                                 # code...
                                 return strtoupper($data->name).', '.$data->gelar;
                             }else{
-                                return $data->name;
+                                return strtoupper($data->name);
                             }
                         })
                         ->addColumn('kabupaten', function ($data) {
