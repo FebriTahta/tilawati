@@ -88,7 +88,12 @@ class PesertaCont extends Controller
                             return $data->pelatihan->program->name;
                         })
                         ->addColumn('name', function ($data) {
-                            return strtoupper($data->name).','.$data->gelar;
+                            if ($data->gelar !== null) {
+                                # code...
+                                return strtoupper($data->name).','.$data->gelar;
+                            }else{
+                                return $data->name;
+                            }
                         })
                         ->addColumn('kabupaten', function ($data) {
                             if ($data->kabupaten !== null) {
