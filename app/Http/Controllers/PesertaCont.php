@@ -144,7 +144,7 @@ class PesertaCont extends Controller
                                 return $ttl;
                             }
                         })
-                ->rawColumns(['nilai','check','action','kabupaten','ttl','krits','alamatmodul'])
+                ->rawColumns(['nilai','check','action','kabupaten','ttl','krits','alamatmodul','name'])
                 ->make(true);
         }
     }

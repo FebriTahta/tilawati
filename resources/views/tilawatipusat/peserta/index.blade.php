@@ -915,10 +915,12 @@
                         {
                         data:'check',
                         name:'check',
+                        orderable:false,
                         },
                         {
                         data:'kabupaten',
                         name:'kabupaten.nama',
+                        orderable:false,
                         },
                         {
                         data:'ttl',
@@ -972,10 +974,12 @@
                         {
                         data:'check',
                         name:'check',
+                        orderable:false,
                         },
                         {
                         data:'kabupaten',
                         name:'kabupaten.nama',
+                        orderable:false,
                         },
                         {
                         data:'ttl',
