@@ -53,30 +53,17 @@
 				<td class="atas" style="width: 170px; height: 10px;">Alamat&nbsp;</td>
 				<td class="atas" style="width: 11px; height: 10px;">:</td>
 				<?php
-					$num_char       = 65;
-                    $panjangkata    = $item->alamat;
+					$num_char = 45;
 					if (substr($item->kabupaten->nama,5,3)=='ADM') {
 						# code...
-                        if ($panjangkata > 55) {
-                            # code...
-                            '<span class="merah">'.$text = $item->alamat.' '.substr($item->kabupaten->nama,10).'</span>';
-                        }else {
-                            # code...
-                            $text = $item->alamat.' '.substr($item->kabupaten->nama,10);
-                        }
+						$text = $item->alamat.' '.substr($item->kabupaten->nama,10);
 					}else {
 						# code...
-                        if ($panjangkata > 55) {
-                            # code...
-                            '<span class="merah">'.$text = $item->alamat.' '.substr($item->kabupaten->nama,5).'</span>';
-                        }else {
-                            # code...
-                            $text = $item->alamat.' '.substr($item->kabupaten->nama,5);
-                        }
+						$text = $item->alamat.' '.substr($item->kabupaten->nama,5);
 					}
 					
 					?>
-				<td class="atas" style="width: 750px; height: 10px; font-weight: bold;text-transform: uppercase" >{{ substr($text, 0, $num_char) }}</td>
+				<td class="atas" style="width: 750px; height: 10px; font-weight: bold;text-transform: uppercase" >{{ $text }}</td>
 				<td class="atas" style="width: 52px; height: 10px;">&nbsp;</td>
 				</tr>
 				<tr class="atas" style="height: 10px;">
