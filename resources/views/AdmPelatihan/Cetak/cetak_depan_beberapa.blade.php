@@ -147,7 +147,8 @@
                     @if ($item->pelatihan->cabang->name == 'Cahaya Amanah' || $item->pelatihan->cabang->name == 'Tilawati Pusat')
                     Direktur Eksekutif
                     @else
-                    {{ 'Kacab. '.substr($item->pelatihan->cabang->kabupaten->nama, 5) }}
+					<?strtolower($kabupaten = substr($item->pelatihan->cabang->kabupaten->nama, 5))?>
+                    {{ 'Kacab. '.ucfirst($kabupaten) }}
                     @endif
                 </td>
 				</tr>
