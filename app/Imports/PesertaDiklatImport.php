@@ -104,7 +104,8 @@ class PesertaDiklatImport implements ToCollection, WithStartRow, WithChunkReadin
 
                         if ($row[5] !== null) {
                             # code...
-                            $masuk = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row[5]);
+                            // $masuk = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row[5]);
+                            $masuk = $row[5];
                             $dt_pel->tgllahir = $masuk;
                         }
                         
