@@ -147,8 +147,17 @@
                     @if ($item->pelatihan->cabang->name == 'Cahaya Amanah' || $item->pelatihan->cabang->name == 'Tilawati Pusat')
                     Direktur Eksekutif
                     @else
-					<?$kabupaten = substr($item->pelatihan->cabang->kabupaten->nama, 5); $kab = strtolower($kabupaten)?>
-                    {{ 'Kacab. '.ucfirst($item->pelatihan->cabang->name).' '.ucfirst($kab) }}
+					<?	$kabupaten 	= substr($item->pelatihan->cabang->kabupaten->nama, 5); $kab = strtolower($kabupaten);
+						$provinsi 	= strtolower($item->pelatihan->cabang->kabupaten->provinsi->nama); 
+					$data_kabupaten = App\Models\Kabupaten::where('id', $item->pelatihan->kabupaten->id)->first();
+					$jum_cabang		= $data_kabupaten->cabang->count();
+					?>
+						@if ($jum_cabang > 1)
+							{{ 'Kacab. '.ucfirst($item->pelatihan->cabang->name).' '.ucfirst($kab) }}
+						@else
+							{{ucfirst($kab).' '.ucfirst($provinsi)}}
+						@endif
+
                     @endif
                 </td>
 				</tr>
