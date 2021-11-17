@@ -18,6 +18,7 @@ class Peserta extends Model
         'cabang_id',
         'lembaga_id',
         'name',
+        'gelar',
         'tanggal',
         'email',
         'tmptlahir',
