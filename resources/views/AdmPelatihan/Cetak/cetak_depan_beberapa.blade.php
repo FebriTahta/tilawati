@@ -155,7 +155,7 @@
 						@if ($jum_cabang > 1)
 							{{ 'Kacab. '.ucfirst($item->pelatihan->cabang->name).' '.ucfirst($kab) }}
 						@else
-							{{ucfirst($kab).' '.ucfirst($provinsi)}}
+							{{ 'Kacab. '.ucfirst($kab).' '.ucfirst($provinsi)}}
 						@endif
 
                     @endif
