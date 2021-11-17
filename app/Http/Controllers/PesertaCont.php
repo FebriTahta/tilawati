@@ -90,7 +90,7 @@ class PesertaCont extends Controller
                         ->addColumn('name', function ($data) {
                             if ($data->gelar !== null) {
                                 # code...
-                                return strtoupper($data->name).','.$data->gelar;
+                                return strtoupper($data->name).', '.$data->gelar;
                             }else{
                                 return $data->name;
                             }
