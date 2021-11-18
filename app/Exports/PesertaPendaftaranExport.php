@@ -74,6 +74,8 @@ class PesertaPendaftaranExport implements FromQuery, WithHeadings, ShouldAutoSiz
             "GELAR",
             "ALAMAT LENGKAP",
             "ASAL",
+            "KECAMATAN",
+            "KELURAHAN",
             "No. WA",
             "TEMPAT LAHIR",
             "TANGGAL LAHIR"
