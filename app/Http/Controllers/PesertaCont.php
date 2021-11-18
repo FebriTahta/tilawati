@@ -127,7 +127,7 @@ class PesertaCont extends Controller
                             if ($data->tmptlahir !== null) {
                                 # code...
                                 $ttl = $data->tmptlahir.' - '.Carbon::parse($data->tgllahir)->isoFormat('d-m-Y');
-                                return $ttl;
+                                return $ttl; 
                             }else{
                                 return '-';
                             }
