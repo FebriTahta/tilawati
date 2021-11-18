@@ -55,7 +55,7 @@ class PesertaPendaftaranExport implements FromQuery, WithHeadings, ShouldAutoSiz
     }
 
     public function map($row): array{
-        if ($row->kecamatan->nama !== null) {
+        if ($row->kecamatan !== null) {
             # code...
             $kec = strtoupper($row->kecamatan->nama);
         }else {
@@ -63,7 +63,7 @@ class PesertaPendaftaranExport implements FromQuery, WithHeadings, ShouldAutoSiz
             $kec = '-';
         }
 
-        if ($row->kelurahan->nama !== null) {
+        if ($row->kelurahan !== null) {
             # code...
             $kel = strtoupper($row->kelurahan->nama);
         }else {
