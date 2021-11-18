@@ -125,9 +125,9 @@ class PesertaCont extends Controller
                         })
                         ->addColumn('ttl', function($data){
                             if ($data->tmptlahir !== null) {
-                                $y = intval($data->tgllahir);
+                                // $y = intval($data->tgllahir);
                                 # code...
-                                $ttl = $data->tmptlahir.' - '.Carbon::parse($y)->isoFormat('d-m-Y');
+                                $ttl = $data->tmptlahir.' - '.Carbon::parse($data->tgllahir)->isoFormat('d-m-Y');
                                 return $ttl; 
                             }else{
                                 return '-';
