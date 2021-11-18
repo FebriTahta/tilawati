@@ -75,7 +75,7 @@ class PesertaPendaftaranExport implements FromQuery, WithHeadings, ShouldAutoSiz
             nama_gelar($row->name),
             $row->gelar,
             strtoupper($row->alamat),
-            substr($row->kabupaten->nama,0,5),
+            substr($row->kabupaten->nama,5),
             $kec,
             $kel,
             $row->telp,
