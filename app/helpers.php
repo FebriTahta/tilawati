@@ -8,5 +8,14 @@ function nama_gelar($str){
 		}
 	}
 	return strtoupper($string);
-	
+}
+
+
+function transformDate($value, $format = 'm-d-Y')
+{
+    try {
+        return \Carbon\Carbon::instance(\PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($value));
+    } catch (\ErrorException $e) {
+        return \Carbon\Carbon::createFromFormat($format, $value);
+    }
 }
