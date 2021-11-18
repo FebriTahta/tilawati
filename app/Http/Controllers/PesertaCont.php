@@ -124,14 +124,14 @@ class PesertaCont extends Controller
                             
                         })
                         ->addColumn('ttl', function($data){
-                            // if ($data->tmptlahir !== null) {
-                            //     # code...
-                            //     $ttl = $data->tmptlahir.' - '.Carbon::parse($data->tgllahir)->isoFormat('D MMMM Y');
-                            //     return $ttl;
-                            // }else{
-                            //     return '-';
-                            // }
-                            return $data->tgllahir;
+                            if ($data->tmptlahir !== null) {
+                                # code...
+                                $ttl = $data->tmptlahir.' - '.Carbon::parse($data->tgllahir)->isoFormat('D MMMM Y');
+                                return $ttl;
+                            }else{
+                                return '-';
+                            }
+                            // return $data->tgllahir;
                         })
                         ->addColumn('alamatmodul', function($data){
                             if ($data->alamatx == null) {
