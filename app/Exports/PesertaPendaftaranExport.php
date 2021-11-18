@@ -55,13 +55,29 @@ class PesertaPendaftaranExport implements FromQuery, WithHeadings, ShouldAutoSiz
     }
 
     public function map($row): array{
+        if ($row->kecamatan->nama !== null) {
+            # code...
+            $kec = strtoupper($row->kecamatan->nama);
+        }else {
+            # code...
+            $kec = '-';
+        }
+
+        if ($row->kelurahan->nama !== null) {
+            # code...
+            $kel = strtoupper($row->kelurahan->nama);
+        }else {
+            # code...
+            $kel = '-';
+        }
+        
         return [
             nama_gelar($row->name),
             $row->gelar,
             strtoupper($row->alamat),
             $row->kabupaten->nama,
-            strtoupper($row->kecamatan->nama),
-            strtoupper($row->kelurahan->nama),
+            $kec,
+            $kel,
             $row->telp,
             $row->tmptlahir,
             Date::dateTimeToExcel(Carbon::parse($row->tgllahir)),
