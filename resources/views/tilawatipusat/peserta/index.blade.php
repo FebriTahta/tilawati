@@ -910,7 +910,7 @@
                     columns: [
                         {
                         data:'namapeserta',
-                        name:'namapeserta'
+                        name:'name'
                         },
                         {
                         data:'check',
@@ -969,7 +969,7 @@
                     columns: [
                         {
                         data:'namapeserta',
-                        name:'namapeserta'
+                        name:'name'
                         },
                         {
                         data:'check',
