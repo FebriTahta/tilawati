@@ -92,11 +92,13 @@
                                     <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
                                         <div id="message"></div>
                                         <table id="datatable-buttons" class="table table-peserta table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
-                                            <thead class="text-bold text-primary" style="text-transform: capitalize">
+                                            <thead class="text-bold text-primary" style="text-transform: uppercase">
                                                 <tr>
                                                     <th>peserta</th>
                                                     <th style="5%"><input type="checkbox" id="master"></th>
-                                                    <th>asal</th>
+                                                    <th>kab</th>
+                                                    <th>kec</th>
+                                                    <th>kel</th>
                                                     <th>TTL</th>
                                                     <th>phone</th>
                                                     <th>alamat</th>
@@ -115,7 +117,9 @@
                                                 <tr>
                                                     <th>peserta</th>
                                                     <th style="5%">pilih</th>
-                                                    <th>asal</th>
+                                                    <th>kab</th>
+                                                    <th>kec</th>
+                                                    <th>kel</th>
                                                     <th>TTL</th>
                                                     <th>phone</th>
                                                     <th>alamat</th>
@@ -923,6 +927,16 @@
                         orderable:false,
                         },
                         {
+                        data:'kecamatan',
+                        name:'kecamatan.nama',
+                        orderable:false,
+                        },
+                        {
+                        data:'kelurahan',
+                        name:'kelurahan.nama',
+                        orderable:false,
+                        },
+                        {
                         data:'ttl',
                         name:'ttl'
                         },
@@ -979,6 +993,16 @@
                         {
                         data:'kabupaten',
                         name:'kabupaten.nama',
+                        orderable:false,
+                        },
+                        {
+                        data:'kecamatan',
+                        name:'kecamatan.nama',
+                        orderable:false,
+                        },
+                        {
+                        data:'kelurahan',
+                        name:'kelurahan.nama',
                         orderable:false,
                         },
                         {

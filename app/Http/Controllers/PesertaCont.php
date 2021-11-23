@@ -52,7 +52,8 @@ class PesertaCont extends Controller
     {
         if(request()->ajax())
         {
-            $data   = Peserta::where('pelatihan_id', $id)->with('certificate')->with('pelatihan')->with('kabupaten')->with('nilai')->where('status',1)->orderBy('id','asc');
+            $data   = Peserta::where('pelatihan_id', $id)->with('certificate')->with('pelatihan')->with('kabupaten')
+            ->with('kecamatan')->with('kelurahan')->with('nilai')->where('status',1)->orderBy('id','asc');
                 return DataTables::of($data)
                         ->addColumn('check', function ($data) {
                             return '<input type="checkbox" class="sub_chk" data-id="'.$data->id.'">';
@@ -104,6 +105,24 @@ class PesertaCont extends Controller
                                 return '<button data-target="#addkota" data-id="'.$data->id.'" data-toggle="modal" class="btn btn-sm btn-danger">kosong / salah penulisan</button>';
                             }
                         })
+                        ->addColumn('kecamatan', function ($data) {
+                            if ($data->kecamatan !== null) {
+                                # code...
+                                return $data->kecamatan->nama;
+                            } else {
+                                # code...
+                                return '-';
+                            }
+                        })
+                        ->addColumn('kelurahan', function ($data) {
+                            if ($data->kelurahan !== null) {
+                                # code...
+                                return $data->kelurahan->nama;
+                            } else {
+                                # code...
+                                return '-';
+                            }
+                        })
                         ->addColumn('action', function($data){
                             $actionBtn = ' <a href="#" data-id="'.$data->id.'" data-toggle="modal" data-target="#hapusData" class="btn btn-sm btn-outline btn-danger "><i class="fa fa-trash"></i></a>';
                             $actionBtn .= ' <a href="/diklat-profile-peserta/'.$data->id.'/'.$data->pelatihan->program->id.'/'.$data->pelatihan->id.'/admin" class="btn btn-sm btn-outline btn-info "><i class="fa fa-user"></i></a>';
@@ -143,7 +162,7 @@ class PesertaCont extends Controller
                                 return $ttl;
                             }
                         })
-                ->rawColumns(['nilai','check','action','kabupaten','ttl','krits','alamatmodul','namapeserta'])
+                ->rawColumns(['nilai','check','action','kabupaten','kecamatan','kelurahan','ttl','krits','alamatmodul','namapeserta'])
                 ->make(true);
         }
     }
