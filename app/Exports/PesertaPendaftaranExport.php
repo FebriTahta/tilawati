@@ -109,7 +109,7 @@ class PesertaPendaftaranExport implements FromQuery, WithHeadings, ShouldAutoSiz
     {
         return [
             'D' => NumberFormat::FORMAT_TEXT,
-            'F' => NumberFormat::FORMAT_DATE_DDMMYYYY
+            'F' => NumberFormat::FORMAT_DATE_dmY
         ];
     }
 }
