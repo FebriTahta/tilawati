@@ -909,8 +909,8 @@
                     },
                     columns: [
                         {
-                        data:'name',
-                        name:'name'
+                        data:'namapeserta',
+                        name:'namapeserta'
                         },
                         {
                         data:'check',
@@ -968,8 +968,8 @@
                     },
                     columns: [
                         {
-                        data:'name',
-                        name:'name'
+                        data:'namapeserta',
+                        name:'namapeserta'
                         },
                         {
                         data:'check',

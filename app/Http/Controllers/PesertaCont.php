@@ -87,7 +87,7 @@ class PesertaCont extends Controller
                         ->addColumn('pelatihan', function ($data) {
                             return $data->pelatihan->program->name;
                         })
-                        ->addColumn('name', function ($data) {
+                        ->addColumn('namapeserta', function ($data) {
                             if ($data->gelar !== null) {
                                 # code...
                                 return strtoupper($data->name).', '.$data->gelar;
@@ -109,7 +109,6 @@ class PesertaCont extends Controller
                             $actionBtn .= ' <a href="/diklat-profile-peserta/'.$data->id.'/'.$data->pelatihan->program->id.'/'.$data->pelatihan->id.'/admin" class="btn btn-sm btn-outline btn-info "><i class="fa fa-user"></i></a>';
                             $actionBtn .= ' <a href="#" class="btn btn-sm btn-outline btn-success" data-nama_peserta="'.$data->name.'" data-id="'.asset('images/'.$data->slug.'.png').'" data-toggle="modal" data-target=".modal-scan"><i class="mdi mdi-barcode-scan"></i></a>';
                             $actionBtn .= ' <a href="/halaman-update-data-peserta/'.$data->id.'" class="btn btn-sm btn-outline btn-primary "><i class="fa fa-edit"></i></a>';
-                            $actionBtn .= ' <button class="btn btn-sm btn-outline-primary" data-id="'.$data->id.'" data-toggle="modal" data-target="#modal_cetak_surat"><i class="fa fa-download"></i></button>';
                             return $actionBtn;
                         })
                         ->addColumn('krits', function ($data) {
@@ -144,7 +143,7 @@ class PesertaCont extends Controller
                                 return $ttl;
                             }
                         })
-                ->rawColumns(['nilai','check','action','kabupaten','ttl','krits','alamatmodul','name'])
+                ->rawColumns(['nilai','check','action','kabupaten','ttl','krits','alamatmodul','namapeserta'])
                 ->make(true);
         }
     }
