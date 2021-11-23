@@ -108,7 +108,7 @@ class PesertaCont extends Controller
                         ->addColumn('kecamatan', function ($data) {
                             if ($data->kecamatan !== null) {
                                 # code...
-                                return $data->kecamatan->nama;
+                                return strtoupper($data->kecamatan->nama);
                             } else {
                                 # code...
                                 return '-';
@@ -117,7 +117,7 @@ class PesertaCont extends Controller
                         ->addColumn('kelurahan', function ($data) {
                             if ($data->kelurahan !== null) {
                                 # code...
-                                return $data->kelurahan->nama;
+                                return strtoupper($data->kelurahan->nama);
                             } else {
                                 # code...
                                 return '-';
