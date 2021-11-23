@@ -70,8 +70,14 @@ class PesertaPendaftaranExport implements FromQuery, WithHeadings, ShouldAutoSiz
             # code...
             $kel = '-';
         }
-        
+        if ($row->tgllahir !== null) {
+            # code...
+            $tgl_lahir = Carbon::parse($row->tgllahir)->format('d/m/Y');
+        }else{
+            $tgl_lahir = '-';
+        }
         return [
+            
             nama_gelar($row->name),
             $row->gelar,
             strtoupper($row->alamat),
@@ -80,7 +86,8 @@ class PesertaPendaftaranExport implements FromQuery, WithHeadings, ShouldAutoSiz
             substr($row->kabupaten->nama,5),
             $row->telp,
             $row->tmptlahir,
-            Carbon::parse($row->tgllahir)->format('d/m/Y')
+            $tgl_lahir,
+            // Carbon::parse($row->tgllahir)->format('d/m/Y')
             // Date::dateTimeToExcel(Carbon::parse($row->tgllahir)),
         ];
     }
