@@ -80,7 +80,7 @@ class PesertaPendaftaranExport implements FromQuery, WithHeadings, ShouldAutoSiz
             substr($row->kabupaten->nama,5),
             $row->telp,
             $row->tmptlahir,
-            Carbon::parse($row->tgllahir)->format('dd/mm/yyyy')
+            Carbon::parse($row->tgllahir)->format('d/m/Y')
             // Date::dateTimeToExcel(Carbon::parse($row->tgllahir)),
         ];
     }
