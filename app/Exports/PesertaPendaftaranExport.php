@@ -75,9 +75,9 @@ class PesertaPendaftaranExport implements FromQuery, WithHeadings, ShouldAutoSiz
             nama_gelar($row->name),
             $row->gelar,
             strtoupper($row->alamat),
-            substr($row->kabupaten->nama,5),
-            $kec,
             $kel,
+            $kec,
+            substr($row->kabupaten->nama,5),
             $row->telp,
             $row->tmptlahir,
             Date::dateTimeToExcel(Carbon::parse($row->tgllahir)),
@@ -86,13 +86,13 @@ class PesertaPendaftaranExport implements FromQuery, WithHeadings, ShouldAutoSiz
 
     public function headings(): array{
         return [
-            "NAMA PESERTA",
+            "NAMA",
             "GELAR",
-            "ALAMAT LENGKAP",
-            "ASAL",
-            "KECAMATAN",
-            "KELURAHAN",
-            "No. WA",
+            "ALAMAT",
+            "KEL",
+            "KEC",
+            "KOTA",
+            "TELP",
             "TEMPAT LAHIR",
             "TANGGAL LAHIR"
         ];
