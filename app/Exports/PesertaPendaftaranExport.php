@@ -72,7 +72,7 @@ class PesertaPendaftaranExport implements FromQuery, WithHeadings, ShouldAutoSiz
         }
         if ($row->tgllahir !== null) {
             # code...
-            $tgl_lahir = Carbon::parse($row->tgllahir);
+            $tgl_lahir = Carbon::parse($row->tgllahir)->format('d/m/Y');
         }else{
             $tgl_lahir = '-';
         }
