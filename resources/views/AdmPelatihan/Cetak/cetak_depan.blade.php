@@ -54,10 +54,22 @@
 					$num_char = 45;
 					if (substr($item->kabupaten->nama,5,3)=='ADM') {
 						# code...
-						$text = $item->alamat.' '.substr($item->kabupaten->nama,10);
+						if ($item->kelurahan !== null && $item->kecamatan !== null) {
+							# code...
+							$text = $item->alamat.' '.substr($item->kelurahan->nama,5).' '.substr($item->kecamatan->nama,5).' '.substr($item->kabupaten->nama,10);
+						}else {
+							# code...
+							$text = $item->alamat.' '.substr($item->kabupaten->nama,10);
+						}
 					}else {
 						# code...
-						$text = $item->alamat.' '.substr($item->kabupaten->nama,5);
+						if ($item->kelurahan !== null && $item->kecamatan !== null) {
+							# code...
+							$text = $item->alamat.' '.substr($item->kelurahan->nama,5).' '.substr($item->kecamatan->nama,5).' '.substr($item->kabupaten->nama,5);
+						}else {
+							# code...
+							$text = $item->alamat.' '.substr($item->kabupaten->nama,5);
+						}
 					}
 					
 					?>
