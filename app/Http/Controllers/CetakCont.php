@@ -54,7 +54,7 @@ class CetakCont extends Controller
                 $jabatan    = "Kacab. ".ucwords($pelatihan->cabang->name).' '.strtolower($kabupaten);
             }else {
                 # code...
-                $jabatan    = "Kacab. ".strtolower($kabupaten).' '.strtolower($pelatihan->cabang->kabupaten->profinsi);
+                $jabatan    = "Kacab. ".strtolower($kabupaten).' '.strtolower($pelatihan->cabang->kabupaten->provinsi->nama);
             }
 
             $kepala     = ucwords($jabatan);
