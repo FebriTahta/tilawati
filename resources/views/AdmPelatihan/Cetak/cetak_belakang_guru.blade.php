@@ -244,7 +244,7 @@
 				<th >{{ $jumlah = $p->nilai->where("kategori","al-qur'an")->sum('nominal') }}</th>
 				<th >
 					{{
-						$jum = $p->nilai->whereHas('penilaian',function($ya){})->get()
+						$jum = $p->nilai->whereHas('penilaian',function($ya){})->first()
 
 						// $jum = $p->nilai->whereHas('penilaian', function($q){
 						// 	$q->where("kategori","al-qur'an")
