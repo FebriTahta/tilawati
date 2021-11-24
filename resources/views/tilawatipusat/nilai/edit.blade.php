@@ -61,6 +61,7 @@
                                                 </div>
                                                 <div class="row">
                                                     @foreach ($peserta->nilai as $key=>$item)
+                                                    {{$item}}
                                                         {{-- <div class="form-group col-xl-6 col-12">
                                                             <input type="hidden" class="form-control" name="id[{{$key}}]" value="{{$item->id}}" readonly>
                                                             <input type="hidden" class="form-control" name="penilaian_id[{{$key}}]" value="{{$item->penilaian->id}}" readonly>
