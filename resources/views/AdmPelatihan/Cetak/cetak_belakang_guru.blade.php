@@ -243,11 +243,11 @@
 				<th colspan="3" class="pe3"></th>
 				{{-- <th >{{ $jumlah = $p->nilai->where("kategori","al-qur'an")->sum('nominal') }}</th> --}}
 				<th >
-					{{
+					<?php
 						$jumlah = $p->nilai->whereHas('penilaian', function($q){
 							$q->where("kategori","al-qur'an")
 						})->sum('nominal');
-					}}
+					?>
 				</th>
 			</tr>
 			<?php $i = 2?>
