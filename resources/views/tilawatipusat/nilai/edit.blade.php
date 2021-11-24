@@ -64,8 +64,7 @@
                                                         <div class="form-group col-xl-6 col-12">
                                                             <input type="hidden" class="form-control" name="id[{{$key}}]" value="{{$item->id}}" readonly>
                                                             <input type="hidden" class="form-control" name="penilaian_id[{{$key}}]" value="{{$item->penilaian->id}}" readonly>
-                                                            {{-- <small>{{strtoupper($item->penilaian->name)}}</small> --}}
-                                                            <small>//</small>
+                                                            <small>{{strtoupper($item->penilaian->name)}}</small>
                                                             <input type="text" class="form-control" name="nominal[{{$key}}]" value="{{$item->nominal}}">  
                                                         </div>
                                                     @endforeach
