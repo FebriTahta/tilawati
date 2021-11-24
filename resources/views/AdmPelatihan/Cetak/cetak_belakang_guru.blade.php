@@ -247,21 +247,21 @@
 			@foreach ($p->nilai as $key=> $item)
 				
 				@if ($item->kategori !== 'skill')
-					{{-- <tr>
+					<tr>
 						<td class="pop"></td>
-						<td class="pop2" >&nbsp; &nbsp;&nbsp;<span style="text-transform: capitalize">{{ $item->penilaian->name }}</span></td>
+						{{-- <td class="pop2" >&nbsp; &nbsp;&nbsp;<span style="text-transform: capitalize">{{ $item->penilaian->name }}</span></td>
 						<td class="nilai" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->max }}</td>
-						<td class="nilai2" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->min }}</td>
+						<td class="nilai2" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->min }}</td> --}}
 						<td class="nilai3" style="text-align: center">&nbsp; &nbsp;{{ $item->nominal }}</td>
 						<td style="border-top: 0;border-bottom: 0;"></td>
-					</tr> --}}
+					</tr>
 				@else
-				{{-- <tr>
+				<tr>
 					<th>{{ $i++ }}</th>
-					<td class="nilai6" style="text-transform: uppercase">&nbsp; &nbsp;<b> {{ $item->penilaian->name }}</b></th>
-					<th colspan="3" class="nilai5"></th>
+					{{-- <td class="nilai6" style="text-transform: uppercase">&nbsp; &nbsp;<b> {{ $item->penilaian->name }}</b></th>
+					<th colspan="3" class="nilai5"></th> --}}
 					<th >{{ $item->nominal }}</th>
-				</tr> --}}
+				</tr>
 				@endif
 			@endforeach
 			<tr>
