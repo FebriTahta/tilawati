@@ -38,6 +38,7 @@ use App\Http\Controllers\ExportCont;
 use App\Http\Controllers\SertifikatCont;
 use App\Http\Controllers\BroadcastController;
 use App\Http\Controllers\WebinarCont;
+use App\Http\Controllers\ErrorCont;
 use App\Http\Controllers\TemplateDownloadCont;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\KodeAdminCont;
@@ -420,6 +421,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:bendahara']], function () {
 
 Route::post('/broadcast',[BroadcastController::class, 'broadcast_pelatihan'])->name('broadcast');
 
+Route::post('/error-penilaian-kategori',[ErrorCont::class,'post_error']);
 // Route::get('send-mail', function () {
    
 //     $details = [

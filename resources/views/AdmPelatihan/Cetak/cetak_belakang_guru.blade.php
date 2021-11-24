@@ -242,15 +242,6 @@
 				<td>&nbsp; &nbsp;<b> Al-Qur'an</b></td>
 				<th colspan="3" class="pe3"></th>
 				<th >{{ $jumlah = $p->nilai->where("kategori","al-qur'an")->sum('nominal') }}</th>
-				<th >
-					{{
-						$jum = $p->nilai->whereHas('penilaian',function($ya){ $ya->where("kategori","skill")})->first()
-
-						// $jum = $p->nilai->whereHas('penilaian', function($q){
-						// 	$q->where("kategori","al-qur'an")
-						// })->sum('nominal');
-					}}
-				</th>
 			</tr>
 			<?php $i = 2?>
 			@foreach ($p->nilai as $key=> $item)
