@@ -246,7 +246,7 @@
 			<?php $i = 2?>
 			@foreach ($p->nilai as $key=> $item)
 				
-				@if ($item->kategori !== 'skill')
+				@if ($item->penilaian->kategori !== 'skill')
 					<tr>
 						<td class="pop"></td>
 						<td class="pop2" >&nbsp; &nbsp;&nbsp;<span style="text-transform: capitalize">{{ $item->penilaian->name }}</span></td>
