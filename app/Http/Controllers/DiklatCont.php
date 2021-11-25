@@ -11,6 +11,7 @@ use Carbon\Carbon;
 use File;
 use App\Models\Flyer;
 use Illuminate\Support\Str;
+use Image;
 use Illuminate\Http\Request;
  
 class DiklatCont extends Controller
@@ -436,6 +437,16 @@ class DiklatCont extends Controller
                 );
                 if($request -> hasFile('image'))
                 {
+                    $filename = time().'.'.$request->image->getClientOriginalExtension();
+                    // lokasi folder
+                    $destinationPath  = public_path('/image_flyer_thumb');
+                    // resize & compress thumnail
+                    $imgFile = Image::make($request->image->getRealPath());
+                    $imgFile->resize(200, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                    })->save($destinationPath.'/'.$filename);
+                    
+                    // original image folder
                     $request->file('image')->move('image_flyer/',$request->file('image')->getClientOriginalName());
                     $data2->image = $request->file('image')->getClientOriginalName();
                     $data2->save();
