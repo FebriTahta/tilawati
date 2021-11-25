@@ -58,19 +58,43 @@
 						# code...
 						if ($item->kelurahan !== null && $item->kecamatan !== null) {
 							# code...
-							$text = $item->alamat.' '.substr($item->kelurahan->nama,0).' '.substr($item->kecamatan->nama,0).' '.substr($item->kabupaten->nama,10);
+							if ($item->kabupaten !== null) {
+								# code...
+								$text = $item->alamat.' '.substr($item->kelurahan->nama,0).' '.substr($item->kecamatan->nama,0).' '.substr($item->kabupaten->nama,10);
+							}else {
+								# code...
+								$text = $item->alamat.' '.substr($item->kelurahan->nama,0).' '.substr($item->kecamatan->nama,0).' Kab/Kota -';
+							}
 						}else {
 							# code...
-							$text = $item->alamat.' '.substr($item->kabupaten->nama,10);
+							if ($item->kabupaten !== null) {
+								# code...
+								$text = $item->alamat.' '.substr($item->kabupaten->nama,10);
+							} else {
+								# code...
+								$text = $item->alamat.' Kab/Kota. - ';
+							}
 						}
 					}else {
 						# code...
 						if ($item->kelurahan !== null && $item->kecamatan !== null) {
 							# code...
-							$text = $item->alamat.' '.substr($item->kelurahan->nama,0).' '.substr($item->kecamatan->nama,0).' '.substr($item->kabupaten->nama,5);
+							if ($item->kabupaten !== null) {
+								# code...
+								$text = $item->alamat.' '.substr($item->kelurahan->nama,0).' '.substr($item->kecamatan->nama,0).' '.substr($item->kabupaten->nama,5);
+							} else {
+								# code...
+								$text = $item->alamat.' '.substr($item->kelurahan->nama,0).' '.substr($item->kecamatan->nama,0).' Kab/Kota -';
+							}
 						}else {
 							# code...
-							$text = $item->alamat.' '.substr($item->kabupaten->nama,5);
+							if ($item->kabupaten !== null) {
+								# code...
+								$text = $item->alamat.' '.substr($item->kabupaten->nama,5);
+							} else {
+								# code...
+								$text = $item->alamat.' Kab/Kota -';
+							}
 						}
 						
 					}
@@ -167,7 +191,7 @@
 					?>
 						@if ($jum_cabang > 1)
 							@if (substr($item->kabupaten->nama,5,3)=='ADM')
-							{{ 'Kacab. ' .ucfirst($provinsi)}}	
+							{{ 'Kacab. ' .strtoupper(substr($provinsi,0,3)).' '.ucfirst(substr($provinsi,4))}}
 							@else
 							{{ 'Kacab. '.ucfirst($item->pelatihan->cabang->name).' '.ucfirst($kab) }}
 							@endif

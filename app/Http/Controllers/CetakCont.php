@@ -51,7 +51,12 @@ class CetakCont extends Controller
             $jumlah_cabang = $pelatihan->cabang->kabupaten->cabang->count();
             if ($jumlah_cabang > 1) {
                 # code...
-                $jabatan    = "Kacab. ".ucwords($pelatihan->cabang->name).' '.strtolower($kabupaten);
+                if (substr($pelatihan->cabang->kabupaten->nama,5,3)=='ADM') {
+                    # code...
+                    $jabatan    = "Kacab. ".ucwords($pelatihan->cabang->name).' '.strtolower($kabupaten);
+                } else {
+                    # code...
+                }
             }else {
                 # code...
                 $jabatan    = "Kacab. ".strtolower($kabupaten).' '.strtolower($pelatihan->cabang->kabupaten->provinsi->nama);
