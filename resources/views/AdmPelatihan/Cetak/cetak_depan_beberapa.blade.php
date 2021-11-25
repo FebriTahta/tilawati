@@ -195,13 +195,13 @@
 					$jum_cabang		= $data_kabupaten->cabang->count();
 					?>
 						@if ($jum_cabang > 1)
-							@if (substr($item->kabupaten->nama,5,3)=='ADM')
+							@if (substr($item->pelatihan->cabang->kabupaten->nama,5,3)=='ADM')
 							{{ 'Kacab. ' .strtoupper(substr($provinsi,0,3)).' '.ucfirst(substr($provinsi,4))}}
 							@else
 							{{ 'Kacab. '.ucfirst($item->pelatihan->cabang->name).' '.ucfirst($kab) }}
 							@endif
 						@else
-							@if (substr($item->kabupaten->nama,5,3)=='ADM')
+							@if (substr($item->pelatihan->cabang->kabupaten->nama,5,3)=='ADM')
 							{{ 'Kacab. ' .strtoupper(substr($provinsi,0,3)).' '.ucfirst(substr($provinsi,4))}}	
 							@else
 							{{ 'Kacab. '.ucfirst($kab).' '.ucfirst($provinsi)}}
