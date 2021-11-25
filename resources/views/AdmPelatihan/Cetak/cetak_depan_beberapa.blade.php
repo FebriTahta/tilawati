@@ -102,7 +102,7 @@
 						}
 					}else {
 						# code...
-						$text = 'Kab/Kota -';
+						$text = $item->alamat;
 					}
 					?>
 				<td class="atas" style="width: 750px; height: 10px;text-transform: uppercase" >{{ $text }}</td>
