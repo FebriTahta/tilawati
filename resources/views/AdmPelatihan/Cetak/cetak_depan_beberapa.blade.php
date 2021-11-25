@@ -54,51 +54,56 @@
 				<td class="atas" style="width: 11px; height: 10px;">:</td>
 				<?php
 					$num_char = 45;
-					if (substr($item->kabupaten->nama,5,3)=='ADM') {
+					if ($item->kabupaten !== null) {
 						# code...
-						if ($item->kelurahan !== null && $item->kecamatan !== null) {
+						if (substr($item->kabupaten->nama,5,3)=='ADM') {
 							# code...
-							if ($item->kabupaten !== null) {
+							if ($item->kelurahan !== null && $item->kecamatan !== null) {
 								# code...
-								$text = $item->alamat.' '.substr($item->kelurahan->nama,0).' '.substr($item->kecamatan->nama,0).' '.substr($item->kabupaten->nama,10);
+								if ($item->kabupaten !== null) {
+									# code...
+									$text = $item->alamat.' '.substr($item->kelurahan->nama,0).' '.substr($item->kecamatan->nama,0).' '.substr($item->kabupaten->nama,10);
+								}else {
+									# code...
+									$text = $item->alamat.' '.substr($item->kelurahan->nama,0).' '.substr($item->kecamatan->nama,0).' Kab/Kota -';
+								}
 							}else {
 								# code...
-								$text = $item->alamat.' '.substr($item->kelurahan->nama,0).' '.substr($item->kecamatan->nama,0).' Kab/Kota -';
+								if ($item->kabupaten !== null) {
+									# code...
+									$text = $item->alamat.' '.substr($item->kabupaten->nama,10);
+								} else {
+									# code...
+									$text = $item->alamat.' Kab/Kota. - ';
+								}
 							}
 						}else {
 							# code...
-							if ($item->kabupaten !== null) {
+							if ($item->kelurahan !== null && $item->kecamatan !== null) {
 								# code...
-								$text = $item->alamat.' '.substr($item->kabupaten->nama,10);
-							} else {
+								if ($item->kabupaten !== null) {
+									# code...
+									$text = $item->alamat.' '.substr($item->kelurahan->nama,0).' '.substr($item->kecamatan->nama,0).' '.substr($item->kabupaten->nama,5);
+								} else {
+									# code...
+									$text = $item->alamat.' '.substr($item->kelurahan->nama,0).' '.substr($item->kecamatan->nama,0).' Kab/Kota -';
+								}
+							}else {
 								# code...
-								$text = $item->alamat.' Kab/Kota. - ';
+								if ($item->kabupaten !== null) {
+									# code...
+									$text = $item->alamat.' '.substr($item->kabupaten->nama,5);
+								} else {
+									# code...
+									$text = $item->alamat.' Kab/Kota -';
+								}
 							}
+							
 						}
 					}else {
 						# code...
-						if ($item->kelurahan !== null && $item->kecamatan !== null) {
-							# code...
-							if ($item->kabupaten !== null) {
-								# code...
-								$text = $item->alamat.' '.substr($item->kelurahan->nama,0).' '.substr($item->kecamatan->nama,0).' '.substr($item->kabupaten->nama,5);
-							} else {
-								# code...
-								$text = $item->alamat.' '.substr($item->kelurahan->nama,0).' '.substr($item->kecamatan->nama,0).' Kab/Kota -';
-							}
-						}else {
-							# code...
-							if ($item->kabupaten !== null) {
-								# code...
-								$text = $item->alamat.' '.substr($item->kabupaten->nama,5);
-							} else {
-								# code...
-								$text = $item->alamat.' Kab/Kota -';
-							}
-						}
-						
+						'Kab/Kota -'
 					}
-					
 					?>
 				<td class="atas" style="width: 750px; height: 10px;text-transform: uppercase" >{{ $text }}</td>
 				<td class="atas" style="width: 52px; height: 10px;">&nbsp;</td>
