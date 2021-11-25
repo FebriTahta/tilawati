@@ -102,7 +102,7 @@
 						}
 					}else {
 						# code...
-						'Kab/Kota -'
+						$text = 'Kab/Kota -';
 					}
 					?>
 				<td class="atas" style="width: 750px; height: 10px;text-transform: uppercase" >{{ $text }}</td>
