@@ -53,13 +53,20 @@ class CetakCont extends Controller
                 # code...
                 if (substr($pelatihan->cabang->kabupaten->nama,5,3)=='ADM') {
                     # code...
-                    $jabatan    = "Kacab. ".ucwords($pelatihan->cabang->name).' '.strtolower($kabupaten);
+                    $jabatan     = 'Kacab. '.strtoupper(substr($pelatihan->cabang->kabupaten->provinsi,0,3)).' '.ucfirst(substr($pelatihan->cabang->kabupaten->provinsi,4));
                 } else {
                     # code...
+                    $jabatan     = 'Kacab. '.ucwords($pelatihan->cabang->name).' '.strtolower($kabupaten);
                 }
             }else {
                 # code...
-                $jabatan    = "Kacab. ".strtolower($kabupaten).' '.strtolower($pelatihan->cabang->kabupaten->provinsi->nama);
+                if (substr($pelatihan->cabang->kabupaten->nama,5,3)=='ADM') {
+                    # code...
+                    $jabatan     = 'Kacab. '.strtoupper(substr($pelatihan->cabang->kabupaten->provinsi,0,3)).' '.ucfirst(substr($pelatihan->cabang->kabupaten->provinsi,4));
+                }else {
+                    # code...
+                    $jabatan     = 'Kacab. '.strtolower($kabupaten).' '.strtolower($pelatihan->cabang->kabupaten->provinsi->nama);
+                }
             }
 
             $kepala     = ucwords($jabatan);
