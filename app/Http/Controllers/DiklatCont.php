@@ -447,8 +447,10 @@ class DiklatCont extends Controller
                     })->save($destinationPath.'/'.$filename);
                     
                     // original image folder
-                    $request->file('image')->move('image_flyer/',$request->file('image')->getClientOriginalName());
-                    $data2->image = $request->file('image')->getClientOriginalName();
+                    // $request->file('image')->move('image_flyer/',$request->file('image')->getClientOriginalName());
+                    $request->file('image')->move('image_flyer/',$filename);
+                    // $data2->image = $request->file('image')->getClientOriginalName();
+                    $data2->image = $filename;
                     $data2->save();
                 }
             }
