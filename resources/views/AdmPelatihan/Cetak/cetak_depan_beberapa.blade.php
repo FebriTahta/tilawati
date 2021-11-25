@@ -65,7 +65,7 @@
 									$text = $item->alamat.' '.substr($item->kelurahan->nama,0).' '.substr($item->kecamatan->nama,0).' '.substr($item->kabupaten->nama,10);
 								}else {
 									# code...
-									$text = $item->alamat.' '.substr($item->kelurahan->nama,0).' '.substr($item->kecamatan->nama,0).' Kab/Kota -';
+									$text = $item->alamat.' '.substr($item->kelurahan->nama,0).' '.substr($item->kecamatan->nama,0);
 								}
 							}else {
 								# code...
@@ -74,7 +74,7 @@
 									$text = $item->alamat.' '.substr($item->kabupaten->nama,10);
 								} else {
 									# code...
-									$text = $item->alamat.' Kab/Kota. - ';
+									$text = $item->alamat;
 								}
 							}
 						}else {
@@ -86,7 +86,7 @@
 									$text = $item->alamat.' '.substr($item->kelurahan->nama,0).' '.substr($item->kecamatan->nama,0).' '.substr($item->kabupaten->nama,5);
 								} else {
 									# code...
-									$text = $item->alamat.' '.substr($item->kelurahan->nama,0).' '.substr($item->kecamatan->nama,0).' Kab/Kota -';
+									$text = $item->alamat.' '.substr($item->kelurahan->nama,0).' '.substr($item->kecamatan->nama,0);
 								}
 							}else {
 								# code...
@@ -95,10 +95,9 @@
 									$text = $item->alamat.' '.substr($item->kabupaten->nama,5);
 								} else {
 									# code...
-									$text = $item->alamat.' Kab/Kota -';
+									$text = $item->alamat;
 								}
 							}
-							
 						}
 					}else {
 						# code...
