@@ -173,7 +173,7 @@
 							@endif
 						@else
 							@if (substr($item->kabupaten->nama,5,3)=='ADM')
-							{{ 'Kacab. ' .strtoupper(substr($item->kabupaten->nama,10)).ucfirst($provinsi)}}	
+							{{ 'Kacab. ' .strtoupper(substr($provinsi,3)).ucfirst($provinsi)}}	
 							@else
 							{{ 'Kacab. '.ucfirst($kab).' '.ucfirst($provinsi)}}
 							@endif
