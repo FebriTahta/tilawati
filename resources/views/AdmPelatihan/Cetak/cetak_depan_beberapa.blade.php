@@ -167,13 +167,13 @@
 					?>
 						@if ($jum_cabang > 1)
 							@if (substr($item->kabupaten->nama,5,3)=='ADM')
-							{{ 'Kacab.' .ucfirst($provinsi)}}	
+							{{ 'Kacab. ' .ucfirst($provinsi)}}	
 							@else
 							{{ 'Kacab. '.ucfirst($item->pelatihan->cabang->name).' '.ucfirst($kab) }}
 							@endif
 						@else
 							@if (substr($item->kabupaten->nama,5,3)=='ADM')
-							{{ 'Kacab.' .strtoupper(substr($item->kabupaten->nama,0,3)).ucfirst($provinsi)}}	
+							{{ 'Kacab. ' .strtoupper(substr($item->kabupaten->nama,5,3)).ucfirst($provinsi)}}	
 							@else
 							{{ 'Kacab. '.ucfirst($kab).' '.ucfirst($provinsi)}}
 							@endif
