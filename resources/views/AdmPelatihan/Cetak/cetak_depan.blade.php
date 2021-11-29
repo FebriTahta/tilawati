@@ -108,15 +108,14 @@
 				<td class="atas" style="width: 750px; height: 10px; text-transform: uppercase" >{{ $item->tmptlahir }}, {{ Carbon\Carbon::parse($date)->isoFormat('D MMMM Y') }}&nbsp;</td>
 				<td class="atas" style="width: 52px; height: 10px;">&nbsp;</td>
 				</tr>
-				@if ($pelatihan->keterangan == 'santri')
+				{{-- @if ($pelatihan->keterangan == 'santri')
 				<tr class="atas" style="height: 10px;">
 					<td class="atas" style="width: 170px; height: 10px;">Asal Lembaga</td>
 					<td class="atas" style="width: 11px; height: 10px;">:</td>
-					{{-- <td class="atas" style="width: 750px; height: 10px; font-weight: bold;text-transform: uppercase" >{{ $item->lembaga->name }}</td> --}}
 					<td class="atas" style="width: 750px; height: 10px;text-transform: uppercase" >Baitul Ghufron</td>
 					<td class="atas" style="width: 52px; height: 10px;">&nbsp;</td>
 				</tr>
-				@endif
+				@endif --}}
 				<tr class="atas" style="height: 10px;">
 				<td class="atas" style="width: 170px; height: 10px;">Dinyatakan</td>
 				<td class="atas" style="width: 11px; height: 10px;">:</td>
