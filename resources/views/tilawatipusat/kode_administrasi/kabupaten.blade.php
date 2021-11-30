@@ -37,9 +37,9 @@
                                         <table id="datatable-buttonsx" class="table table-cabang table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
                                             <thead class="text-bold text-primary">
                                                 <tr>
-                                                    <th>Id</th>
+                                                    <th>Kab.Id</th>
                                                     <th>Kabupaten</th>
-                                                    <th>Kode Provinsi</th>
+                                                    <th>Prov.Id</th>
                                                     <th>Provinsi</th>
                                                 </tr>
                                             </thead>
@@ -49,9 +49,9 @@
 
                                             <tfoot class="text-bold text-primary">
                                                 <tr>
-                                                    <th>Id</th>
+                                                    <th>Kab.Id</th>
                                                     <th>Kabupaten</th>
-                                                    <th>Kode Provinsi</th>
+                                                    <th>Prov.Id</th>
                                                     <th>Provinsi</th>
                                                 </tr>
                                             </tfoot>
