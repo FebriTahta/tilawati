@@ -95,7 +95,7 @@
                                         <table id="datatable-buttons" class="table table-diklat table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
                                             <thead class="text-bold text-primary" style="text-transform: capitalize;font-size: 10px">
                                                 <tr>
-                                                    <th>Id</th>
+                                                    <th style="width: 5%">Id</th>
                                                     <th style="width: 10%">Cabang</th>
                                                     <th style="width: 5%">Tanggal</th>
                                                     <th style="width: 15%">Jenis Program</th>
@@ -113,7 +113,7 @@
 
                                             <tfoot class="text-primary" style="text-transform: capitalize;font-size: 10px">
                                                 <tr>
-                                                    <th>Id</th>
+                                                    <th style="width: 5%">Id</th>
                                                     <th style="width: 10%">Cabang</th>
                                                     <th style="width: 5%">Tanggal</th>
                                                     <th style="width: 15%">Jenis Program</th>
