@@ -46,7 +46,7 @@ class DiklatCont extends Controller
                         ->addColumn('cabang', function ($data) {
                             return $data->cabang->name;
                         })
-                        ->addColumn('tempat', function ($data) {
+                        ->addColumn('tempat_diklat', function ($data) {
                             return $data->tempat;
                         })
                         ->addColumn('program', function ($data) {
@@ -91,7 +91,7 @@ class DiklatCont extends Controller
                                 return '<a href="#" data-id="'.$data->id.'" data-flyerid="'.$data->flyer->id.'" data-img="'.asset('image_flyer/'.$data->flyer->image).'" data-toggle="modal" data-target="#modal-flyer" class="text-success">Siap</a>';
                             }
                         })
-                ->rawColumns(['pelatihan_id','tempat','cabang','program','action','peserta','linkpendaftaran','tanggal','flyer','groupwa'])
+                ->rawColumns(['pelatihan_id','tempat_diklat','cabang','program','action','peserta','linkpendaftaran','tanggal','flyer','groupwa'])
                 ->make(true);
             }else{
                 $data   = Pelatihan::with('cabang','program')->withCount('peserta')->orderBy('tanggal','desc')->where('jenis','diklat');
@@ -119,7 +119,7 @@ class DiklatCont extends Controller
                         ->addColumn('cabang', function ($data) {
                             return $data->cabang->name;
                         })
-                        ->addColumn('tempat', function ($data) {
+                        ->addColumn('tempat_diklat', function ($data) {
                             return $data->tempat;
                         })
                         ->addColumn('program', function ($data) {
@@ -165,7 +165,7 @@ class DiklatCont extends Controller
                                 return '<a href="#" data-id="'.$data->id.'" data-flyerid="'.$data->flyer->id.'" data-img="'.asset('image_flyer/'.$data->flyer->image).'" data-toggle="modal" data-target="#modal-flyer" class="text-success">Siap</a>';
                             }
                         })
-                ->rawColumns(['pelatihan_id','cabang','tempat','groupwa','flyer','program','action','peserta','linkpendaftaran','tanggal'])
+                ->rawColumns(['pelatihan_id','cabang','tempat_diklat','groupwa','flyer','program','action','peserta','linkpendaftaran','tanggal'])
                 ->make(true);
             }
         }

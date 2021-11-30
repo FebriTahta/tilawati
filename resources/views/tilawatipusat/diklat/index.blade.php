@@ -99,6 +99,7 @@
                                                     <th>Cabang</th>
                                                     <th>Tanggal</th>
                                                     <th>Jenis Program</th>
+                                                    <th>Tempat</th>
                                                     <th>Peserta</th>
                                                     <th>Link WA</th>
                                                     <th>Flyer</th>
@@ -107,7 +108,7 @@
                                                 </tr>
                                             </thead>
     
-                                            <tbody style="text-transform: uppercase; font-size: 10px">
+                                            <tbody style="text-transform: uppercase; font-size: 8px">
                                             </tbody>
 
                                             <tfoot class="text-primary" style="text-transform: capitalize">
@@ -116,6 +117,7 @@
                                                     <th>Cabang</th>
                                                     <th>Tanggal</th>
                                                     <th>Jenis Program</th>
+                                                    <th>Tempat</th>
                                                     <th>Peserta</th>
                                                     <th>Link WA</th>
                                                     <th>Flyer</th>
@@ -890,6 +892,10 @@
                                 name:'program.name'
                                 },
                                 {
+                                data:'tempat_diklat',
+                                name:'tempat'
+                                },
+                                {
                                 data:'peserta',
                                 name:'peserta'
                                 },
@@ -939,6 +945,10 @@
                                 {
                                 data:'program',
                                 name:'program.name'
+                                },
+                                {
+                                data:'tempat_diklat',
+                                name:'tempat'
                                 },
                                 {
                                 data:'peserta',
