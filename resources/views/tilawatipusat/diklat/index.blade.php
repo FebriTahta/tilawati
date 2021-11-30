@@ -93,7 +93,7 @@
                                     @endif
                                     <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
                                         <table id="datatable-buttons" class="table table-diklat table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
-                                            <thead class="text-bold text-primary" style="text-transform: capitalize">
+                                            <thead class="text-bold text-primary" style="text-transform: capitalize; font-size: 12px">
                                                 <tr>
                                                     <th>Id</th>
                                                     <th>Cabang</th>
