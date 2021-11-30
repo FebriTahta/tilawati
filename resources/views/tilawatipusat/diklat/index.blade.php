@@ -99,9 +99,9 @@
                                                     <th>Cabang</th>
                                                     <th>Tanggal</th>
                                                     <th>Jenis Program</th>
-                                                    <th>Link Pendaftaran</th>
+                                                    <th>Pendaftaran</th>
                                                     <th>Link WA</th>
-                                                    <th>Image Flyer</th>
+                                                    <th>Flyer</th>
                                                     <th>Peserta</th>
                                                     <th>Option</th>
                                                 </tr>
@@ -116,9 +116,9 @@
                                                     <th>Cabang</th>
                                                     <th>Tanggal</th>
                                                     <th>Jenis Program</th>
-                                                    <th>Link Pendaftaran</th>
+                                                    <th>Pendaftaran</th>
                                                     <th>Link WA</th>
-                                                    <th>Image Flyer</th>
+                                                    <th>Flyer</th>
                                                     <th>Peserta</th>
                                                     <th>Option</th>
                                                 </tr>
