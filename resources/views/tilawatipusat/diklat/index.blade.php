@@ -875,7 +875,7 @@
                             columns: [
                                 {
                                 data:'id',
-                                name:'id'
+                                name:'pelatihan.id'
                                 },
                                 {
                                 data:'cabang',
@@ -926,7 +926,7 @@
                             columns: [
                                 {
                                 data:'id',
-                                name:'id'
+                                name:'pelatihan.id'
                                 },
                                 {
                                 data:'cabang',
