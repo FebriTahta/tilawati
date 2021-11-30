@@ -95,12 +95,13 @@
                                         <table id="datatable-buttons" class="table table-diklat table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
                                             <thead class="text-bold text-primary" style="text-transform: capitalize">
                                                 <tr>
-                                                    <th>program diklat</th>
-                                                    <th>cabang</th>
-                                                    <th>tanggal</th>
-                                                    <th>Pendaftaran</th>
+                                                    <th>Id</th>
+                                                    <th>Cabang</th>
+                                                    <th>Tanggal</th>
+                                                    <th>Jenis Program</th>
+                                                    <th>Link Pendaftaran</th>
                                                     <th>Link WA</th>
-                                                    <th>Image</th>
+                                                    <th>Image Flyer</th>
                                                     <th>Peserta</th>
                                                     <th>Option</th>
                                                 </tr>
@@ -111,12 +112,13 @@
 
                                             <tfoot class="text-primary" style="text-transform: capitalize">
                                                 <tr>
-                                                    <th>program diklat</th>
-                                                    <th>cabang</th>
-                                                    <th>tanggal</th>
-                                                    <th>Pendaftaran</th>
+                                                    <th>Id</th>
+                                                    <th>Cabang</th>
+                                                    <th>Tanggal</th>
+                                                    <th>Jenis Program</th>
+                                                    <th>Link Pendaftaran</th>
                                                     <th>Link WA</th>
-                                                    <th>Image</th>
+                                                    <th>Image Flyer</th>
                                                     <th>Peserta</th>
                                                     <th>Option</th>
                                                 </tr>
@@ -872,8 +874,8 @@
                             },
                             columns: [
                                 {
-                                data:'program',
-                                name:'program.name'
+                                data:'id',
+                                name:'id'
                                 },
                                 {
                                 data:'cabang',
@@ -882,6 +884,10 @@
                                 {
                                 data:'tanggal',
                                 name:'tanggal'
+                                },
+                                {
+                                data:'program',
+                                name:'program.name'
                                 },
                                 {
                                 data:'linkpendaftaran',
@@ -919,8 +925,8 @@
                             },
                             columns: [
                                 {
-                                data:'program',
-                                name:'program.name'
+                                data:'id',
+                                name:'id'
                                 },
                                 {
                                 data:'cabang',
@@ -929,6 +935,10 @@
                                 {
                                 data:'tanggal',
                                 name:'tanggal'
+                                },
+                                {
+                                data:'program',
+                                name:'program.name'
                                 },
                                 {
                                 data:'linkpendaftaran',

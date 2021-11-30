@@ -31,6 +31,9 @@ class DiklatCont extends Controller
                 $data   = Pelatihan::with('cabang','program')->withCount('peserta')->orderBy('tanggal','desc')->where('jenis','diklat')
                 ->whereBetween('tanggal', array($request->dari, $request->sampai));
                 return DataTables::of($data)
+                        ->addColumn('id', function ($data) {
+                            return $data->id;
+                        })
                         ->addColumn('peserta', function($data){
                             if ($data->peserta_count == 0) {
                                 # code...
