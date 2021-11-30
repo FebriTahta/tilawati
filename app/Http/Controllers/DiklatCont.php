@@ -57,7 +57,7 @@ class DiklatCont extends Controller
                             data-slug="https://registrasi.tilawatipusat.com/'.$data->slug.'" >Link Pendaftaran!</a>';
                         })
                         ->addColumn('tanggal', function($data){
-                            return Carbon::parse($data->tanggal)->isoFormat('D/M/Y');
+                            return Carbon::parse($data->tanggal)->isoFormat('D MMMM Y');
                             // if ($data->sampai_tanggal !== null) {
                             //     # code...
                             //     return Carbon::parse($data->tanggal)->isoFormat('dddd, D MMMM Y').' - '.
@@ -139,7 +139,7 @@ class DiklatCont extends Controller
                             return $actionBtn;
                         })
                         ->addColumn('tanggal', function($data){
-                            return Carbon::parse($data->tanggal)->isoFormat('D/M/Y');
+                            return Carbon::parse($data->tanggal)->isoFormat('D MMMM Y');
                             // if ($data->sampai_tanggal !== null) {
                             //     # code...
                             //     return Carbon::parse($data->tanggal)->isoFormat('dddd, D MMMM Y').' - '.
