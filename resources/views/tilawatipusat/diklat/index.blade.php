@@ -96,7 +96,7 @@
                                             <thead class="text-bold text-primary" style="text-transform: capitalize;font-size: 10px">
                                                 <tr>
                                                     <th>Id</th>
-                                                    <th>Cabang</th>
+                                                    <th style="width: 10%">Cabang</th>
                                                     <th>Tanggal</th>
                                                     <th>Jenis Program</th>
                                                     <th>Tempat</th>
@@ -108,13 +108,13 @@
                                                 </tr>
                                             </thead>
     
-                                            <tbody style="text-transform: uppercase; font-size: 8px">
+                                            <tbody style="text-transform: uppercase; font-size: 10px">
                                             </tbody>
 
-                                            <tfoot class="text-primary" style="text-transform: capitalize;font-size: 8px">
+                                            <tfoot class="text-primary" style="text-transform: capitalize;font-size: 10px">
                                                 <tr>
                                                     <th>Id</th>
-                                                    <th>Cabang</th>
+                                                    <th style="width: 10%">Cabang</th>
                                                     <th>Tanggal</th>
                                                     <th>Jenis Program</th>
                                                     <th>Tempat</th>
