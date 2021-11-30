@@ -54,13 +54,14 @@ class DiklatCont extends Controller
                             data-slug="https://registrasi.tilawatipusat.com/'.$data->slug.'" >Link Pendaftaran!</a>';
                         })
                         ->addColumn('tanggal', function($data){
-                            if ($data->sampai_tanggal !== null) {
-                                # code...
-                                return Carbon::parse($data->tanggal)->isoFormat('dddd, D MMMM Y').' - '.
-                                Carbon::parse($data->sampai_tanggal)->isoFormat('dddd, D MMMM Y');
-                            }else{
-                                return Carbon::parse($data->tanggal)->isoFormat('dddd, D MMMM Y');
-                            }
+                            return Carbon::parse($data->tanggal)->isoFormat('D MMMM Y');
+                            // if ($data->sampai_tanggal !== null) {
+                            //     # code...
+                            //     return Carbon::parse($data->tanggal)->isoFormat('dddd, D MMMM Y').' - '.
+                            //     Carbon::parse($data->sampai_tanggal)->isoFormat('dddd, D MMMM Y');
+                            // }else{
+                            //     return Carbon::parse($data->tanggal)->isoFormat('dddd, D MMMM Y');
+                            // }
                         })
                         ->addColumn('action', function($data){
                             $actionBtn  = ' <a href="#" data-toggle="modal" data-target=".bs-example-modal-diklat-hapus" data-id="'.$data->id.'" class="btn btn-sm btn-outline btn-danger"><i class="fa fa-trash"></i></a> ';
