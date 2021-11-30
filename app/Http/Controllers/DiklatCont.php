@@ -88,11 +88,14 @@ class DiklatCont extends Controller
                                 return '<a href="#" data-id="'.$data->id.'" data-flyerid="'.$data->flyer->id.'" data-img="'.asset('image_flyer/'.$data->flyer->image).'" data-toggle="modal" data-target="#modal-flyer" class="text-success">Siap</a>';
                             }
                         })
-                ->rawColumns(['cabang','program','action','peserta','linkpendaftaran','tanggal','flyer','groupwa'])
+                ->rawColumns(['id','cabang','program','action','peserta','linkpendaftaran','tanggal','flyer','groupwa'])
                 ->make(true);
             }else{
                 $data   = Pelatihan::with('cabang','program')->withCount('peserta')->orderBy('tanggal','desc')->where('jenis','diklat');
                 return DataTables::of($data)
+                        ->addColumn('id', function ($data) {
+                            return $data->id;
+                        })
                         ->addColumn('peserta', function($data){
                             if ($data->peserta_count == 0) {
                                 # code...
@@ -130,13 +133,14 @@ class DiklatCont extends Controller
                             return $actionBtn;
                         })
                         ->addColumn('tanggal', function($data){
-                            if ($data->sampai_tanggal !== null) {
-                                # code...
-                                return Carbon::parse($data->tanggal)->isoFormat('dddd, D MMMM Y').' - '.
-                                Carbon::parse($data->sampai_tanggal)->isoFormat('dddd, D MMMM Y');
-                            }else{
-                                return Carbon::parse($data->tanggal)->isoFormat('dddd, D MMMM Y');
-                            }
+                            return Carbon::parse($data->tanggal)->isoFormat('D MMMM Y');
+                            // if ($data->sampai_tanggal !== null) {
+                            //     # code...
+                            //     return Carbon::parse($data->tanggal)->isoFormat('dddd, D MMMM Y').' - '.
+                            //     Carbon::parse($data->sampai_tanggal)->isoFormat('dddd, D MMMM Y');
+                            // }else{
+                            //     return Carbon::parse($data->tanggal)->isoFormat('dddd, D MMMM Y');
+                            // }
                         })
                         ->addColumn('groupwa', function($data){
                             if ($data->groupwa == null) {
@@ -155,7 +159,7 @@ class DiklatCont extends Controller
                                 return '<a href="#" data-id="'.$data->id.'" data-flyerid="'.$data->flyer->id.'" data-img="'.asset('image_flyer/'.$data->flyer->image).'" data-toggle="modal" data-target="#modal-flyer" class="text-success">Siap</a>';
                             }
                         })
-                ->rawColumns(['cabang','groupwa','flyer','program','action','peserta','linkpendaftaran','tanggal'])
+                ->rawColumns(['id','cabang','groupwa','flyer','program','action','peserta','linkpendaftaran','tanggal'])
                 ->make(true);
             }
         }
