@@ -31,7 +31,7 @@ class DiklatCont extends Controller
                 $data   = Pelatihan::with('cabang','program')->withCount('peserta')->orderBy('tanggal','desc')->where('jenis','diklat')
                 ->whereBetween('tanggal', array($request->dari, $request->sampai));
                 return DataTables::of($data)
-                        ->addColumn('id', function ($data) {
+                        ->addColumn('pelatihhan_id', function ($data) {
                             return $data->id;
                         })
                         ->addColumn('peserta', function($data){
@@ -88,12 +88,12 @@ class DiklatCont extends Controller
                                 return '<a href="#" data-id="'.$data->id.'" data-flyerid="'.$data->flyer->id.'" data-img="'.asset('image_flyer/'.$data->flyer->image).'" data-toggle="modal" data-target="#modal-flyer" class="text-success">Siap</a>';
                             }
                         })
-                ->rawColumns(['id','cabang','program','action','peserta','linkpendaftaran','tanggal','flyer','groupwa'])
+                ->rawColumns(['pelatihan_id','cabang','program','action','peserta','linkpendaftaran','tanggal','flyer','groupwa'])
                 ->make(true);
             }else{
                 $data   = Pelatihan::with('cabang','program')->withCount('peserta')->orderBy('tanggal','desc')->where('jenis','diklat');
                 return DataTables::of($data)
-                        ->addColumn('id', function ($data) {
+                        ->addColumn('pelatihan_id', function ($data) {
                             return $data->id;
                         })
                         ->addColumn('peserta', function($data){
@@ -159,7 +159,7 @@ class DiklatCont extends Controller
                                 return '<a href="#" data-id="'.$data->id.'" data-flyerid="'.$data->flyer->id.'" data-img="'.asset('image_flyer/'.$data->flyer->image).'" data-toggle="modal" data-target="#modal-flyer" class="text-success">Siap</a>';
                             }
                         })
-                ->rawColumns(['id','cabang','groupwa','flyer','program','action','peserta','linkpendaftaran','tanggal'])
+                ->rawColumns(['pelatihan_id','cabang','groupwa','flyer','program','action','peserta','linkpendaftaran','tanggal'])
                 ->make(true);
             }
         }

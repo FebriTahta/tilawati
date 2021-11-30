@@ -874,7 +874,7 @@
                             },
                             columns: [
                                 {
-                                data:'id',
+                                data:'pelatihan_id',
                                 name:'id'
                                 },
                                 {
@@ -925,7 +925,7 @@
                             },
                             columns: [
                                 {
-                                data:'id',
+                                data:'pelatihan_id',
                                 name:'id'
                                 },
                                 {
