@@ -1560,7 +1560,7 @@ class PesertaCont extends Controller
                                 'tanggal'       => $dp->tanggal,
                                 'name'          => $request->name,
                                 'gelar'         => $request->gelar,
-                                // 'tmptlahir'     => $tempatlahir->nama,
+                                'tmptlahir'     => $tempatlahir->nama,
                                 'tgllahir'      => $request->tgllahir,
                                 'alamat'        => $request->alamat,
                                 'alamatx'       => $request->alamatx,
