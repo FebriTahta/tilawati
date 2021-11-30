@@ -894,7 +894,7 @@
                                 name:'peserta'
                                 },
                                 {
-                                data:'tempat_diklat',
+                                data:'groupwa',
                                 name:'groupwa'
                                 },
                                 {
@@ -945,7 +945,7 @@
                                 name:'peserta'
                                 },
                                 {
-                                data:'tempat_diklat',
+                                data:'groupwa',
                                 name:'groupwa'
                                 },
                                 {
