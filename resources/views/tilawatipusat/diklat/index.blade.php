@@ -100,9 +100,9 @@
                                                     <th>Tanggal</th>
                                                     <th>Jenis Program</th>
                                                     <th>Peserta</th>
-                                                    <th>Pendaftaran</th>
                                                     <th>Link WA</th>
                                                     <th>Flyer</th>
+                                                    <th>Registeasi</th>
                                                     <th>Option</th>
                                                 </tr>
                                             </thead>
@@ -117,9 +117,9 @@
                                                     <th>Tanggal</th>
                                                     <th>Jenis Program</th>
                                                     <th>Peserta</th>
-                                                    <th>Pendaftaran</th>
                                                     <th>Link WA</th>
                                                     <th>Flyer</th>
+                                                    <th>Registeasi</th>
                                                     <th>Option</th>
                                                 </tr>
                                             </tfoot>
