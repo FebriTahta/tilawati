@@ -99,10 +99,10 @@
                                                     <th>Cabang</th>
                                                     <th>Tanggal</th>
                                                     <th>Jenis Program</th>
+                                                    <th>Peserta</th>
                                                     <th>Pendaftaran</th>
                                                     <th>Link WA</th>
                                                     <th>Flyer</th>
-                                                    <th>Peserta</th>
                                                     <th>Option</th>
                                                 </tr>
                                             </thead>
@@ -116,10 +116,10 @@
                                                     <th>Cabang</th>
                                                     <th>Tanggal</th>
                                                     <th>Jenis Program</th>
+                                                    <th>Peserta</th>
                                                     <th>Pendaftaran</th>
                                                     <th>Link WA</th>
                                                     <th>Flyer</th>
-                                                    <th>Peserta</th>
                                                     <th>Option</th>
                                                 </tr>
                                             </tfoot>
@@ -890,8 +890,8 @@
                                 name:'program.name'
                                 },
                                 {
-                                data:'linkpendaftaran',
-                                name:'linkpendaftaran'
+                                data:'peserta',
+                                name:'peserta'
                                 },
                                 {
                                 data:'groupwa',
@@ -902,8 +902,8 @@
                                 name:'flyer'
                                 },
                                 {
-                                data:'peserta',
-                                name:'peserta'
+                                data:'linkpendaftaran',
+                                name:'linkpendaftaran'
                                 },
                                 {
                                 data:'action',
@@ -941,8 +941,8 @@
                                 name:'program.name'
                                 },
                                 {
-                                data:'linkpendaftaran',
-                                name:'linkpendaftaran'
+                                data:'peserta',
+                                name:'peserta'
                                 },
                                 {
                                 data:'groupwa',
@@ -953,8 +953,8 @@
                                 name:'flyer'
                                 },
                                 {
-                                data:'peserta',
-                                name:'peserta'
+                                data:'linkpendaftaran',
+                                name:'linkpendaftaran'
                                 },
                                 {
                                 data:'action',
