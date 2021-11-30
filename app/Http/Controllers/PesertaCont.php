@@ -1612,8 +1612,8 @@ class PesertaCont extends Controller
                             );
                         }
                           
-                        // \QrCode::size(150)
-                        // ->format('png') ->generate('https://www.profile.tilawatipusat.com/'.$peserta->slug, public_path('images/'.$peserta->slug.'.png'));
+                        \QrCode::size(150)
+                        ->format('png') ->generate('https://www.profile.tilawatipusat.com/'.$peserta->slug, public_path('images/'.$peserta->slug.'.png'));
                         // $qr = \QrCode::size(100)
                         // ->format('png')
                         // ->generate('https://www.profile.tilawatipusat.com/'.$slug, public_path('images/'.$slug.'.png'));
