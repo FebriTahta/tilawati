@@ -98,7 +98,7 @@
                                                     <th style="width: 5%">Id</th>
                                                     <th style="width: 10%">Cabang</th>
                                                     <th style="width: 5%">Tanggal</th>
-                                                    <th style="width: 15%">Jenis Program</th>
+                                                    <th style="width: 10%">Jenis Program</th>
                                                     <th>Tempat</th>
                                                     <th>Peserta</th>
                                                     <th>Link WA</th>
@@ -116,7 +116,7 @@
                                                     <th style="width: 5%">Id</th>
                                                     <th style="width: 10%">Cabang</th>
                                                     <th style="width: 5%">Tanggal</th>
-                                                    <th style="width: 15%">Jenis Program</th>
+                                                    <th style="width: 10%">Jenis Program</th>
                                                     <th>Tempat</th>
                                                     <th>Peserta</th>
                                                     <th>Link WA</th>
