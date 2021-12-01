@@ -64,14 +64,14 @@ class PesertaDiklatImport implements ToCollection, WithStartRow, WithChunkReadin
                         $dt_pel->slug = $slug;
                         //inisialisasi kota / kabupaten yang diinput
 
-                        $kel     = $row[15];
-                        $kec     = $row[16];
-                        $data_kel= Kelurahan::select('*')->whereIn('nama',[$kel])->first();
-                        $data_kec= Kecamatan::select('*')->whereIn('nama',[$kec])->first();
-                        $kel_id  = $data_kel->id;
-                        $kec_id  = $data_kec->id;
-                        $dt_pel->kelurahan_id = $kel_id;
-                        $dt_pel->kecamatan_id = $kec_id;
+                        // $kel     = $row[15];
+                        // $kec     = $row[16];
+                        // $data_kel= Kelurahan::select('*')->whereIn('nama',[$kel])->first();
+                        // $data_kec= Kecamatan::select('*')->whereIn('nama',[$kec])->first();
+                        // $kel_id  = $data_kel->id;
+                        // $kec_id  = $data_kec->id;
+                        // $dt_pel->kelurahan_id = $kel_id;
+                        // $dt_pel->kecamatan_id = $kec_id;
 
                         $kab     = strtoupper($row[2]);
                         $kab_kab = 'KAB. '.$kab;
