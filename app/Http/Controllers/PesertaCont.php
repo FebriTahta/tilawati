@@ -48,6 +48,26 @@ class PesertaCont extends Controller
         return view('tilawatipusat.peserta.index2',compact('penilaian','pelatihan_id','diklat','kriteria','kab_kosong','lulus','belum_lulus'));
     }
 
+    public function hapus_beberapa(Request $request)
+    {
+        // if(request()->ajax())
+        // {
+        //     $peserta_id_array = $request->id;
+        //     $peserta        = Peserta::whereIn('id',explode(",",$peserta_id_array))->delete();
+
+        //     return response()->json(
+        //         [
+        //         'success' => 'Data Peserta Telah dihapus',
+        //         'message' => 'Data Peserta Telah dihapus'
+        //         ]
+        //     );
+        // }
+
+        $peserta_id_array = $request->id;
+        $peserta        = Peserta::whereIn('id',explode(",",$peserta_id_array))->delete();
+        return redirect()->back();
+    }
+
     public function peserta_data(Request $request,$id)
     {
         if(request()->ajax())
