@@ -277,6 +277,10 @@
 					@endif
 						</th>
 				</tr>
+			@else
+			<?php 
+				$rata2 = $jumlah
+			?>
 			@endif
 			<tr>
 				<th></th>
