@@ -4,6 +4,8 @@ namespace App\Imports;
 use App\Models\Peserta;
 use App\Models\Kriteria;
 use App\Models\Kabupaten;
+use App\Models\Kelurahan;
+use App\Models\Kecamatan;
 use App\Models\Pelatihan;
 use App\Models\Nilai;
 use Illuminate\Support\Str;
@@ -61,6 +63,14 @@ class PesertaDiklatImport implements ToCollection, WithStartRow, WithChunkReadin
                         $slug = Str::slug($row[0].'-'.$diklat->program->name.'-'.Carbon::parse($this->tanggal)->isoFormat('MMMM-D-Y').'-'.$diklat->cabang->name.'-'.$diklat->cabang->kabupaten->nama);
                         $dt_pel->slug = $slug;
                         //inisialisasi kota / kabupaten yang diinput
+
+                        $kel     = $row[15];
+                        $kec     = $row[16];
+                        $data_kel= Kelurahan::select('*')->whereIn('nama',[$kel])->first();
+                        $data_kec= Kecamatan::select('*')->whereIn('nama',[$kec])->first();
+                        $dt_pel->kelurahan_id = $data_kel->id;
+                        $dt_pel->kecamatan_id = $data_kec->id;
+
                         $kab     = strtoupper($row[2]);
                         $kab_kab = 'KAB. '.$kab;
                         $kab_kot = 'KOTA '.$kab;
@@ -127,6 +137,8 @@ class PesertaDiklatImport implements ToCollection, WithStartRow, WithChunkReadin
                         $dt_pel->bersyahadah = $row[9];
 
                         $dt_pel->created_at = new \DateTime;
+
+
                         $dt_pel->save();
 
                         foreach ( $dt_pel->pelatihan->program->penilaian as $key => $value) {
