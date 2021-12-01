@@ -386,7 +386,7 @@
                                                             </div>
                                                             <div class="row" style="text-align: center">
                                                                 <div class="form-group col-6 col-xl-6">
-                                                                    <input type="submit" id="btnhapusdata" class="btn btn-primary" value="Ya, Cetak!" />
+                                                                    <input type="submit" id="btnhapusdata" class="btn btn-danger" value="Ya, Hapus!" />
                                                                 </div>
                                                                 <div class="form-group col-6 col-xl-6">
                                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">
