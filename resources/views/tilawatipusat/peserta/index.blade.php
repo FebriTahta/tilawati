@@ -1124,7 +1124,7 @@
                 alert("PILIH PESERTA YANG AKAN DIHAPUS");  
             }else {  
                 var join_selected_values = allVals.join(",");
-                    $('#modal-download-depan').modal('show');
+                    $('#modal-hapus-data').modal('show');
                     $('#idhapusdata').val(join_selected_values);
             }  
             });
