@@ -89,9 +89,9 @@
                                     <button class="text-right btn btn-sm mr-1 btn-outline-info" id="depan_all"><i class="fa fa-print"></i> depan</button>
                                     <button class="text-right btn btn-sm mr-1 btn-outline-danger" id="hapus_all"><i class="fa fa-trash"></i> hapus data</button>
                                     {{-- <button class="text-right btn btn-sm mr-1 btn-outline-info" id="belakang_all"><i class="fa fa-print"></i> belakang</button> --}}
-                                    <form action="/error-penilaian-kategori" method="POST">@csrf
+                                    {{-- <form action="/error-penilaian-kategori" method="POST">@csrf
                                         <button type="submit" class="text-right btn btn-sm mr-1 btn-outline-info" id="belakang_all"><i class="fa fa-print"></i> belakang</button>
-                                    </form>
+                                    </form> --}}
                                     <input type="hidden" id="pelatihan_id" value="{{ $pelatihan_id }}">
                                     <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
                                         <div id="message"></div>
