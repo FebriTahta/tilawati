@@ -189,6 +189,7 @@ class PesertaDiklatImport implements ToCollection, WithStartRow, WithChunkReadin
                                 'jilid'       => $row[7],
                                 'kriteria'    => $row[8],
                                 'bersyahadah' => $row[9],
+                                'gelar'       => $row[15],
 
                             ]
                         );
