@@ -46,7 +46,7 @@ class PesertaDiklatImport implements ToCollection, WithStartRow, WithChunkReadin
             # code...
             // if ($key >= 1) {
                     $diklat = Pelatihan::where('id',$this->id)->first();
-                    $peserta= Peserta::where('name',$row[0])->where('pelatihan_id', $this->id)->where('tgllahir',$row[5])->first();
+                    $peserta= Peserta::where('name',$row[0])->where('pelatihan_id', $this->id)->first();
                     if ($peserta == null) {
                         # code...
                         $dt_pel = new Peserta;
