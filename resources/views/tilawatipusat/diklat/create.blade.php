@@ -163,7 +163,7 @@
                                 return {
                                     text: item.kode,
                                     text: item.name,
-                                    text: item.kabupaten_id,
+                                    text: item.kabupaten.nama,
                                     id: item.id   
                                 }
                             })
