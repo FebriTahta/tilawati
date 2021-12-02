@@ -394,6 +394,7 @@ class DiklatCont extends Controller
             $data = Cabang::select('id','name','kode','kabupaten_id')->with('kabupaten')
             		->where('name','LIKE','%' .$search . '%')
                     ->orWhere('kode', 'LIKE', '%' .$search . '%')
+                    ->orWhere('kabupaten_id', 'LIKE', '%' .$search . '%')
             		->get();
         }else{
             $data = Cabang::select('id','name','kode','kabupaten_id')->with('kabupaten')->get();
