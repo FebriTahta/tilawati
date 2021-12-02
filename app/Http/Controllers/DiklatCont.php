@@ -44,7 +44,14 @@ class DiklatCont extends Controller
                             }
                         })
                         ->addColumn('cabang', function ($data) {
-                            return $data->cabang->name;
+                            $total_cabang = $data->cabang->kabupaten->cabang->count();
+                            if ($total_cabang > 1) {
+                                # code...
+                                return $data->cabang->name.' '.substr($data->cabang->kabupaten->nama,5);
+                            }else {
+                                # code...
+                                return $data->cabang->name;
+                            }
                         })
                         ->addColumn('tempat_diklat', function ($data) {
                             return $data->tempat;
@@ -117,7 +124,15 @@ class DiklatCont extends Controller
                             }
                         })
                         ->addColumn('cabang', function ($data) {
-                            return $data->cabang->name;
+                            // return $data->cabang->name;
+                            $total_cabang = $data->cabang->kabupaten->cabang->count();
+                            if ($total_cabang > 1) {
+                                # code...
+                                return $data->cabang->name.' '.substr($data->cabang->kabupaten->nama,5);
+                            }else {
+                                # code...
+                                return $data->cabang->name;
+                            }
                         })
                         ->addColumn('tempat_diklat', function ($data) {
                             return $data->tempat;
