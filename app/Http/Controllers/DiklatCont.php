@@ -391,12 +391,12 @@ class DiklatCont extends Controller
 
         if($request->has('q')){
             $search = $request->q;
-            $data = Cabang::select('id','name','kode')
+            $data = Cabang::select('id','name','kode','kabupaten_id')->with('kabupaten')
             		->where('name','LIKE','%' .$search . '%')
                     ->orWhere('kode', 'LIKE', '%' .$search . '%')
             		->get();
         }else{
-            $data = Cabang::select('id','name','kode')->get();
+            $data = Cabang::select('id','name','kode','kabupaten_id')->with('kabupaten')->get();
         }
         return response()->json($data);
     }
