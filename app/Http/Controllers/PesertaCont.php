@@ -557,6 +557,12 @@ class PesertaCont extends Controller
 
     public function seluruh_peserta(Request $request)
     {
+        $diklat = Pelatihan::where('keterangan','guru')->get();
+        foreach ($diklat as $key => $value) {
+            # code...
+            $y[] = $value->get();
+        }
+        return $y;
         return view('tilawatipusat.peserta.seluruh');
     }
 
