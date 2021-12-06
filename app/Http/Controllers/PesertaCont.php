@@ -557,7 +557,7 @@ class PesertaCont extends Controller
 
     public function seluruh_peserta(Request $request)
     {
-        $p = Peserta::whereHas('pelatihans', function($q){
+        $p = Peserta::with('pelatihans', function($q){
             $q->where('keterangan', 'guru');
          })->count();
         return $p;
