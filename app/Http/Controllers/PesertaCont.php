@@ -561,7 +561,7 @@ class PesertaCont extends Controller
         foreach ($diklat as $key => $value) {
             # code...
             $y[] = $value->peserta->count();
-            $x = $y[]++;
+            $x[] = $y[]++;
         }
         return $x;
         return view('tilawatipusat.peserta.seluruh');
