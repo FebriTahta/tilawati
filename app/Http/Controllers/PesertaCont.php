@@ -560,8 +560,8 @@ class PesertaCont extends Controller
         $diklat = Pelatihan::where('keterangan','guru')->get();
         foreach ($diklat as $key => $value) {
             # code...
-            $y[] = $value->peserta->count();
-            $x[] = $y[]++;
+            $y   = $value->peserta->count();
+            $x   = $y++;
         }
         return $x;
         return view('tilawatipusat.peserta.seluruh');
