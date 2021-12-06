@@ -133,9 +133,9 @@
                         <i class="mdi mdi-clipboard-list-outline"></i>
                         <span>Detail</span>
                     </a>
-                    <ul class="sub-menu" aria-expanded="false">
+                    {{-- <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{ route('diklat.detail_peserta') }}">CETAK DETAIL PESERTA</a></li>
-                    </ul>
+                    </ul> --}}
                 </li>
                 <div>
                     <li class="menu-title">Syarat Pendaftaran Online</li>
@@ -159,6 +159,15 @@
                             <i class="mdi mdi-smart-card-outline"></i>
                             <span class="badge badge-pill badge-danger float-right"></span>
                             <span>E-Sertifikat</span>
+                        </a>
+                    </li>
+
+                    <li class="menu-title">LAPORAN DATA KERJA</li>
+                    <li>
+                        <a href="{{ route('diklat.detail_peserta') }}" class="waves-effect">
+                            <i class="mdi mdi-smart-card-outline"></i>
+                            <span class="badge badge-pill badge-danger float-right"></span>
+                            <span>Laporan</span>
                         </a>
                     </li>
                 </div>
