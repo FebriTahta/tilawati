@@ -133,9 +133,9 @@
                         <i class="mdi mdi-clipboard-list-outline"></i>
                         <span>Detail</span>
                     </a>
-                    {{-- <ul class="sub-menu" aria-expanded="false">
+                    <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{ route('diklat.detail_peserta') }}">CETAK DETAIL PESERTA</a></li>
-                    </ul> --}}
+                    </ul>
                 </li>
                 <div>
                     <li class="menu-title">Syarat Pendaftaran Online</li>

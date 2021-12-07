@@ -32,7 +32,12 @@
             <td style="text-transform: uppercase">
                 <b>
                     @if ($pes->alamatx == null)
-                    <span style="color: red">{{$pes->alamat}} - {{$pes->kelurahan->nama}} - {{$pes->kecamatan->nama}} </span>
+                        @if ($pes->kelurahan !== null && $pes->kecamatan !== null)
+                            <span style="color: red">{{$pes->alamat}} - {{$pes->kelurahan->nama}} - {{$pes->kecamatan->nama}} </span>
+                        @else
+                        <span style="color: red">{{$pes->alamat}} </span>
+                        @endif
+                        
                     @else
                     {{$pes->alamatx}} 
                     @endif
