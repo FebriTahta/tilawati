@@ -1181,7 +1181,7 @@ class PesertaCont extends Controller
                 // $data = Program::whereBetween('tanggal', array($request->dari, $request->sampai))->with('peserta')->get();
                 $data = Program::has('peserta')->with(['peserta' => function ($query) use($request) {
                     $query->whereBetween('tanggal', array($request->dari, $request->sampai));
-                }])->get();
+                }])->where('status',1)->get();
                 
                 return DataTables::of($data)
                 ->addColumn('program', function ($data) {
@@ -1216,7 +1216,7 @@ class PesertaCont extends Controller
                 // })
                 // ->rawColumns(['program','action'])
                 // ->make(true);
-                $data = Program::has('peserta')->with('peserta')->get();
+                $data = Program::has('peserta')->with('peserta')->where('status',1)->get();
                 return DataTables::of($data)
                 ->addColumn('program', function ($data) {
                     $program = $data->name;
