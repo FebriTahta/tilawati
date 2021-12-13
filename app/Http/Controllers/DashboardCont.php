@@ -22,11 +22,11 @@ class DashboardCont extends Controller
     public function generate(Request $request){
 
         $user = User::updateOrCreate([
-            'name' => 'test'
+            'username' => 'test'
         ],
         [
-            'name' => 'test',
-            'role' => 'admin',
+            'username' => 'test',
+            'role' => 'pusat',
             'email' => 'admin@admin.com',
             'password' => Hash::make('tester'),
         ]);
