@@ -12,12 +12,12 @@
             <div class="mt-3">
 
                 <a href="#" class="text-dark font-weight-medium font-size-16"> 
-                    @if (auth()->user()->username == 'Pusat')
+                    @if (auth()->user()->username == 'pusat')
                         Tilawati Pusat (Nurul Falah)
                     @else
-                        {{ strtoupper(auth()->user()->username) }}
+                        {{ ucwords(auth()->user()->username) }}
                     @endif</a>
-                <p class="text-body mt-1 mb-0 font-size-13">{{ auth()->user()->role }}</p>
+                <p class="text-body mt-1 mb-0 font-size-13">{{ ucwords(auth()->user()->role) }}</p>
 
             </div>
         </div>
