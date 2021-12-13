@@ -416,9 +416,9 @@
                                             <div class="card m-b-30">
                                                 <div class="card-body">
                                                     <div class="container-fluid">
-                                                        <form id="" action="/diklat-cetak-surat-pengiriman"  method="POST" enctype="multipart/form-data">@csrf
+                                                        <form id="" action="/pelatihan-cetak-belakang-print-beberapa"  method="POST" enctype="multipart/form-data">@csrf
                                                             <div class="form-group text-center">
-                                                                <h5>CETAK SYAHADAH DEPAN ?</h5>
+                                                                <h5>CETAK SYAHADAH BELAKANG ?</h5>
                                                                 <input type="hidden" class="form-control text-capitalize" id="id" name="id" value="{{$diklat->id}}" required>
                                                             </div>
                                                             <div class="row" style="text-align: center">
