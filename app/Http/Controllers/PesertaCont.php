@@ -1179,7 +1179,7 @@ class PesertaCont extends Controller
                 // ->make(true);
 
                 // $data = Program::whereBetween('tanggal', array($request->dari, $request->sampai))->with('peserta')->get();
-                $data = Program::has('peserta','!==',0)->with(['peserta' => function ($query) use($request) {
+                $data = Program::has('peserta')->with(['peserta' => function ($query) use($request) {
                     $query->whereBetween('tanggal', array($request->dari, $request->sampai));
                 }])->get();
                 
