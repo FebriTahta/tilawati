@@ -1248,7 +1248,7 @@ class PesertaCont extends Controller
         {
             if(!empty($request->dari))
             {
-                $data   = Pelatihan::where('kabupaten_id', $kabupaten_id)->whereBetween('tanggal', array($request->dari, $request->sampai))->with('cabang')->select('cabang_id')->distinct();
+                $data   = Pelatihan::where('jenis','diklat')->where('kabupaten_id', $kabupaten_id)->whereBetween('tanggal', array($request->dari, $request->sampai))->with('cabang')->select('cabang_id')->distinct();
                 return DataTables::of($data)
                 ->addColumn('cabang', function ($data) {
                     return $data->cabang->name;
@@ -1260,14 +1260,26 @@ class PesertaCont extends Controller
                 ->rawColumns(['cabang','action'])
                 ->make(true);
             }else{
-                $data   = Peserta::where('kabupaten_id',$kabupaten_id)->with('cabang')->select('cabang_id')->distinct();
+                // $data   = Peserta::where('kabupaten_id',$kabupaten_id)->with('cabang')->select('cabang_id')->distinct();
+                // return DataTables::of($data)
+                // ->addColumn('cabang', function ($data) {
+                //     return $data->cabang->name;
+                // })
+                // ->addColumn('action', function ($data) {
+                //     $btn = '<a href="#" class="btn btn-sm btn-info"> check </a>';
+                //     return $btn;
+                // })
+                // ->rawColumns(['cabang','action'])
+                // ->make(true);
+                $data = Cabang::has('peserta')->with(['peserta' => function ($query) use($request) {
+                    $query->pelatihan->where('jenis','diklat');
+                }]);
                 return DataTables::of($data)
-                ->addColumn('cabang', function ($data) {
-                    return $data->cabang->name;
+                ->addColumn('cabang',function($data){
+                    return $data->name;
                 })
-                ->addColumn('action', function ($data) {
-                    $btn = '<a href="#" class="btn btn-sm btn-info"> check </a>';
-                    return $btn;
+                ->addColumn('action',function($data){
+                    return $data->peserta->count();
                 })
                 ->rawColumns(['cabang','action'])
                 ->make(true);
