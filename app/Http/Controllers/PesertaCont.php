@@ -1101,14 +1101,15 @@ class PesertaCont extends Controller
                 ->rawColumns(['cabang','action'])
                 ->make(true);
             }else{
-                $data   = Pelatihan::with(['cabang','peserta'])->select('id','cabang_id')->distinct();
+                $data   = Pelatihan::with(['cabang','peserta'])->select('cabang_id')->distinct();
                 return DataTables::of($data)
                 ->addColumn('cabang', function ($data) {
                     return $data->cabang->name.' ( '.$data->cabang->kabupaten->nama.' ) ';
                 })
                 ->addColumn('action', function ($data) {
                     // $btn = '<a href="/diklat-peserta-diklat-cabang/'.$data->cabang->id.'" class="btn btn-sm btn-info"> check </a>';
-                    $btn = $data->peserta->count();
+                    $cabang = Cabang::where('id',$data->cabang_id)->first();
+                    $btn = $cabang->peserta->count();
                     return $btn;
                 })
                 ->rawColumns(['cabang','action'])
