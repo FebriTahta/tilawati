@@ -88,7 +88,7 @@
                                     <button class="text-right btn btn-sm mr-1 btn-outline-primary" id="cetak_all"><i class="fa fa-download"></i> pengiriman modul</button>
                                     <button class="text-right btn btn-sm mr-1 btn-outline-info" id="depan_all"><i class="fa fa-print"></i> depan</button>
                                     <button class="text-right btn btn-sm mr-1 btn-outline-danger" id="hapus_all"><i class="fa fa-trash"></i> hapus data</button>
-                                    {{-- <button class="text-right btn btn-sm mr-1 btn-outline-info" id="belakang_all"><i class="fa fa-print"></i> belakang</button> --}}
+                                    <button class="text-right btn btn-sm mr-1 btn-outline-info" id="belakang_all"><i class="fa fa-print"></i> belakang</button>
                                     {{-- <form action="/error-penilaian-kategori" method="POST">@csrf
                                         <button type="submit" class="text-right btn btn-sm mr-1 btn-outline-info" id="belakang_all"><i class="fa fa-print"></i> belakang</button>
                                     </form> --}}
@@ -1121,6 +1121,22 @@
                 var join_selected_values = allVals.join(",");
                     $('#modal-download-depan').modal('show');
                     $('#idcetakdepan').val(join_selected_values);
+            }  
+            });
+
+            $('#belakang_all').on('click', function(e) {
+            var allVals = [];  
+            $(".sub_chk:checked").each(function() {  
+                allVals.push($(this).attr('data-id'));
+            });
+
+            if(allVals.length <=0)  
+            {  
+                alert("PILIH PESERTA YANG AKAN DI CETAK SYAHADAH BELAKANG");  
+            }else {  
+                var join_selected_values = allVals.join(",");
+                    $('#modal-download-belakang').modal('show');
+                    $('#idcetakbelakang').val(join_selected_values);
             }  
             });
 
