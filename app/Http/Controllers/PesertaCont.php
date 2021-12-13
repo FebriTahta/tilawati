@@ -75,6 +75,9 @@ class PesertaCont extends Controller
             $data   = Peserta::where('pelatihan_id', $id)->with('certificate')->with('pelatihan')->with('kabupaten')
             ->with('kecamatan')->with('kelurahan')->with('nilai')->where('status',1)->orderBy('id','asc');
                 return DataTables::of($data)
+                        ->addColumn('idpeserta', function ($data) {
+                            return $data->id;
+                        })
                         ->addColumn('check', function ($data) {
                             return '<input type="checkbox" class="sub_chk" data-id="'.$data->id.'">';
                         })
@@ -182,7 +185,7 @@ class PesertaCont extends Controller
                                 return $ttl;
                             }
                         })
-                ->rawColumns(['nilai','check','action','kabupaten','kecamatan','kelurahan','ttl','krits','alamatmodul','namapeserta'])
+                ->rawColumns(['idpeserta','nilai','check','action','kabupaten','kecamatan','kelurahan','ttl','krits','alamatmodul','namapeserta'])
                 ->make(true);
         }
     }

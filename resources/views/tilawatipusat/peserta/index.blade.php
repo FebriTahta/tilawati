@@ -96,7 +96,7 @@
                                     <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
                                         <div id="message"></div>
                                         <table id="datatable-buttons" class="table table-peserta table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
-                                            <thead class="text-bold text-primary" style="text-transform: uppercase">
+                                            <thead class="text-bold text-primary" style="text-transform: uppercase; font-size: 12px">
                                                 <tr>
                                                     <th>peserta</th>
                                                     <th style="5%"><input type="checkbox" id="master"></th>
@@ -117,7 +117,7 @@
                                             </thead>
                                             <tbody style="font-size: 12px">
                                             </tbody>
-                                            <tfoot class="text-primary" style="text-transform: capitalize">
+                                            <tfoot class="text-primary" style="text-transform: capitalize;font-size: 12px">
                                                 <tr>
                                                     <th>peserta</th>
                                                     <th style="5%">pilih</th>
