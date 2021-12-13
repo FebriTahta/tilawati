@@ -1107,7 +1107,8 @@ class PesertaCont extends Controller
                     return $data->cabang->name.' ( '.$data->cabang->kabupaten->nama.' ) ';
                 })
                 ->addColumn('action', function ($data) {
-                    $btn = '<a href="/diklat-peserta-diklat-cabang/'.$data->cabang->id.'" class="btn btn-sm btn-info"> check </a>';
+                    // $btn = '<a href="/diklat-peserta-diklat-cabang/'.$data->cabang->id.'" class="btn btn-sm btn-info"> check </a>';
+                    $btn = $data->peserta->count();
                     return $btn;
                 })
                 ->rawColumns(['cabang','action'])
