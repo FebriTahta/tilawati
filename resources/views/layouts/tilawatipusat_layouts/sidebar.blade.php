@@ -25,7 +25,7 @@
         <!--- Sidemenu -->
         <div id="sidebar-menu">
             <!-- Left Menu Start -->
-            <ul class="metismenu list-unstyled" id="side-menu" style="font-size: 11px">
+            <ul class="metismenu list-unstyled" id="side-menu" style="font-size: 5px">
                 <li>
                     <a href="{{ route('diklat.dashboard') }}" class="waves-effect">
                         <i class="mdi mdi-airplay"></i><span class="badge badge-pill badge-info float-right"></span>
