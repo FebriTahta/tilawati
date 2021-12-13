@@ -164,7 +164,7 @@
 
                     <li class="menu-title">LAPORAN DATA KERJA</li>
                     <li>
-                        <a href="{{ route('diklat.detail_peserta') }}" class="waves-effect">
+                        <a href="{{ route('diklat.seluruh_peserta') }}" class="waves-effect">
                             <i class="mdi mdi-smart-card-outline"></i>
                             <span class="badge badge-pill badge-danger float-right"></span>
                             <span style="font-size: 12px">Laporan</span>
