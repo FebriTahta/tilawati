@@ -689,7 +689,7 @@
                         columns: [
                             {
                             data:'cabang',
-                            name:'name'
+                            name:'cabang.name'
                             },
                             {
                             data:'action',
