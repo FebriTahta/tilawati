@@ -1109,7 +1109,8 @@ class PesertaCont extends Controller
                 ->addColumn('action', function ($data) {
                     // $btn = '<a href="/diklat-peserta-diklat-cabang/'.$data->cabang->id.'" class="btn btn-sm btn-info"> check </a>';
                     $cabang = Cabang::where('id',$data->cabang_id)->first();
-                    $btn = $cabang->pelatihan;
+                    $prog = $cabang->pelatihan->program_id;
+                    $btn = Program::where('id' ,$prog)->get();
                     return $btn;
                 })
                 ->rawColumns(['cabang','action'])
