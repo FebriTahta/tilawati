@@ -1178,8 +1178,12 @@ class PesertaCont extends Controller
                 // ->rawColumns(['program','action'])
                 // ->make(true);
 
-                $data = Program::whereBetween('tanggal', array($request->dari, $request->sampai))->with('peserta')->get();
+                $data = Pelatihan::whereBetween('tanggal', array($request->dari, $request->sampai))->with('peserta','program')->get();
                 return DataTables::of($data)
+                ->addColumn('program', function ($data) {
+                    $program = $data->program->name;
+                    return $program;
+                })
                 ->addColumn('total_semua', function ($data) {
                     $total_semua = $data->peserta->count();
                     return $total_semua;
@@ -1189,10 +1193,12 @@ class PesertaCont extends Controller
                     return $total_lulus;
                 })
                 ->addColumn('total_belum', function($data){
+                    $total_semua = $data->peserta->count();
+                    $total_lulus = $data->peserta->where('bersyahadah',1)->count();
                     $total_belum = $total_semua - $total_lulus;
                     return $total_belum;
                 })
-                ->rawColumns(['total_semua','total_lulus','total_belum'])
+                ->rawColumns(['program','total_semua','total_lulus','total_belum'])
                 ->make(true);
             }else{
                 // $data   = Peserta::with('program')->select('program_id')->distinct();
@@ -1221,6 +1227,8 @@ class PesertaCont extends Controller
                     return $total_lulus;
                 })
                 ->addColumn('total_belum', function($data){
+                    $total_semua = $data->peserta->count();
+                    $total_lulus = $data->peserta->where('bersyahadah',1)->count();
                     $total_belum = $total_semua - $total_lulus;
                     return $total_belum;
                 })
