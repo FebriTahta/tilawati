@@ -294,13 +294,18 @@
 				<td class="nilai6">&nbsp; &nbsp;<b> PRESTASI</b></th>
 				<th colspan="3" class="nilai5"></th> 
 				<th >
-                    @if ($x !== 1)
+                    {{-- @if ($x !== 1)
                         @if ($rata2 >= 85)
                             Baik
                         @else
                             Cukup
                         @endif
-                    @endif
+                    @endif --}}
+					@if ($rata2 >= 85)
+						Baik
+					@else
+						Cukup
+					@endif
                 </th>
 			</tr>
 		</table>
