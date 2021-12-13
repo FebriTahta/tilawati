@@ -38,21 +38,21 @@
                     <a href="{{ route('acara') }}" class="waves-effect">
                         <i class="mdi mdi-city-variant-outline"></i>
                         <span class="badge badge-pill badge-danger float-right"></span>
-                        <span>Acara</span>
+                        <span style="font-size: 12px">Acara</span>
                     </a>
                 </li>
                 <li>
                     <a href="{{ route('diklat.diklat') }}" class="waves-effect">
                         <i class="mdi mdi-pencil-box-multiple-outline"></i>
                         <span class="badge badge-pill badge-danger float-right"></span>
-                        <span>Data Diklat</span>
+                        <span style="font-size: 12px" >Data Diklat</span>
                     </a>
                 </li>
                 <li>
                     <a href="{{ route('diklat.webinar') }}" class="waves-effect">
                         <i class="mdi mdi-city-variant-outline"></i>
                         <span class="badge badge-pill badge-danger float-right"></span>
-                        <span>Data Webinar</span>
+                        <span style="font-size: 12px">Data Webinar</span>
                     </a>
                 </li>
                 {{-- <li>
@@ -68,16 +68,16 @@
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="mdi mdi-checkbox-multiple-blank-outline"></i>
-                        <span>Data Master</span>
+                        <span style="font-size: 12px">Data Master</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="true">
-                        <li><a href="{{ route('diklat.cabang') }}">Cabang</a></li>
-                        <li><a href="{{ route('diklat.lembaga') }}">Lembaga</a></li>
+                        <li><a style="font-size: 12px" href="{{ route('diklat.cabang') }}">Cabang</a></li>
+                        <li><a style="font-size: 12px" href="{{ route('diklat.lembaga') }}">Lembaga</a></li>
                         {{-- <li><a href="#">Teritorial</a></li> --}}
-                        <li><a href="{{ route('diklat.kepala') }}">Kepala Bagian</a></li>
-                        <li><a href="{{ route('diklat.jenjang') }}">Kelembagaan</a></li>
-                        <li><a href="{{ route('diklat.program') }}">Program</a></li>
-                        <li><a href="{{ route('diklat.kriteria') }}">Kriteria Syahadah</a></li>
+                        <li><a style="font-size: 12px" href="{{ route('diklat.kepala') }}">Kepala Bagian</a></li>
+                        <li><a style="font-size: 12px" href="{{ route('diklat.jenjang') }}">Kelembagaan</a></li>
+                        <li><a style="font-size: 12px" href="{{ route('diklat.program') }}">Program</a></li>
+                        <li><a style="font-size: 12px" href="{{ route('diklat.kriteria') }}">Kriteria Syahadah</a></li>
                     </ul>
                 </li>
 
@@ -86,12 +86,12 @@
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="mdi mdi-checkbox-multiple-blank-outline"></i>
-                        <span>Dinas Administrasi</span>
+                        <span style="font-size: 12px">Dinas Administrasi</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="true">
                         {{-- <li style="display: none"><a href="{{route('negara')}}">Kode Negara</a></li> --}}
-                        <li><a href="{{route('phone')}}">Kode Telephone</a></li>
-                        <li><a href="/kode-kabupaten">Kota - Kabupaten</a></li>
+                        <li><a href="{{route('phone')}}" style="font-size: 12px">Kode Telephone</a></li>
+                        <li><a href="/kode-kabupaten" style="font-size: 12px">Kota - Kabupaten</a></li>
                     </ul>
                 </li>
 
@@ -100,10 +100,10 @@
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="mdi mdi-clipboard-list-outline"></i>
-                        <span>Depan</span>
+                        <span style="font-size: 12px">Depan</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('diklat.depan_guru') }}">CETAK IJAZAH</a></li>
+                        <li><a style="font-size: 12px" href="{{ route('diklat.depan_guru') }}">CETAK IJAZAH</a></li>
                         {{-- <li><a href="{{ route('diklat.depan_santri') }}">Santri</a></li> --}}
                     </ul>
                 </li>
@@ -111,46 +111,46 @@
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="mdi mdi-clipboard-list-outline"></i>
-                        <span>Belakang</span>
+                        <span style="font-size: 12px">Belakang</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('diklat.belakang') }}">CETAK IJAZAH</a></li>
+                        <li><a style="font-size: 12px" href="{{ route('diklat.belakang') }}">CETAK IJAZAH</a></li>
                     </ul>
                 </li>
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="mdi mdi-clipboard-list-outline"></i>
-                        <span>Laporan Peserta</span>
+                        <span style="font-size: 12px">Laporan Peserta</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('diklat.seluruh_peserta') }}">Cetak Laporan Peserta</a></li>
+                        <li><a style="font-size: 12px" href="{{ route('diklat.seluruh_peserta') }}">Cetak Laporan Peserta</a></li>
                     </ul>
                 </li>
 
                 <li style="display: none">
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="mdi mdi-clipboard-list-outline"></i>
-                        <span>Detail</span>
+                        <span style="font-size: 12px">Detail</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('diklat.detail_peserta') }}">CETAK DETAIL PESERTA</a></li>
+                        <li><a style="font-size: 12px" href="{{ route('diklat.detail_peserta') }}">CETAK DETAIL PESERTA</a></li>
                     </ul>
                 </li>
                 <div>
-                    <li class="menu-title">Syarat Pendaftaran Online</li>
+                    <li style="font-size: 12px" class="menu-title">Syarat Pendaftaran Online</li>
 
                     <li>
                         <a href="{{ route('diklat.syarat.registrasi') }}" class="waves-effect">
                             <i class="mdi mdi-clipboard-list-outline"></i>
-                            <span>Registrasi</span>
+                            <span style="font-size: 12px">Registrasi</span>
                         </a>
                     </li>
     
                     <li style="display: none">
                         <a href="{{ route('daftar_diklat_konfirmasi') }}" class="waves-effect">
                             <i class="mdi mdi-clipboard-list-outline"></i>
-                            <span>Konfirmasi</span>
+                            <span style="font-size: 12px">Konfirmasi</span>
                         </a>
                     </li>
                     <li class="menu-title">Data Sertifikat Peserta</li>
@@ -158,7 +158,7 @@
                         <a href="{{ route('sertifikat') }}" class="waves-effect">
                             <i class="mdi mdi-smart-card-outline"></i>
                             <span class="badge badge-pill badge-danger float-right"></span>
-                            <span>E-Sertifikat</span>
+                            <span style="font-size: 12px">E-Sertifikat</span>
                         </a>
                     </li>
 
@@ -167,7 +167,7 @@
                         <a href="{{ route('diklat.detail_peserta') }}" class="waves-effect">
                             <i class="mdi mdi-smart-card-outline"></i>
                             <span class="badge badge-pill badge-danger float-right"></span>
-                            <span>Laporan</span>
+                            <span style="font-size: 12px">Laporan</span>
                         </a>
                     </li>
                 </div>
