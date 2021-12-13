@@ -12,10 +12,10 @@
             <div class="mt-3">
 
                 <a href="#" class="text-dark font-weight-medium font-size-16"> 
-                    @if (auth()->user()->username == 'pusat')
+                    @if (auth()->user()->username == 'Pusat')
                         Tilawati Pusat (Nurul Falah)
                     @else
-                        {{ auth()->user()->username }}
+                        {{ strtoupper(auth()->user()->username) }}
                     @endif</a>
                 <p class="text-body mt-1 mb-0 font-size-13">{{ auth()->user()->role }}</p>
 
