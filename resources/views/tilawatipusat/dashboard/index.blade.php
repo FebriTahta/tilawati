@@ -165,6 +165,9 @@
                         </div>
                     </div>
                 </div>
+                <form action="{{route('generate_user')}}" method="POST">@csrf
+                    <button type="submit" class="btn btn-primary">GENERATE TESTER</button>
+                </form>
             </div>
         </div>
     <div class="row">
