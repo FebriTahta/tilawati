@@ -59,7 +59,7 @@
                         <div class="col-xl-4">
                             @component('common-tilawatipusat.dashboard-widget')
                             
-                                @slot('title') <a href="#" data-toggle="modal" data-target="#mod_cabang2"> <b id="cb2"> ??? </b><br><small> Cabang yang Mengadakan Diklat</small></a>@endslot
+                                @slot('title') <a href="#" data-toggle="modal" data-target="#mod_cabang2"> <b id="cb2"> ??? </b><br><small> Cabang Pelaksana</small></a>@endslot
                                 @slot('iconClass') mdi mdi-bank-outline  @endslot
                                 @slot('price')   @endslot
                                 
