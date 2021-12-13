@@ -1180,7 +1180,7 @@ class PesertaCont extends Controller
 
                 // $data = Program::whereBetween('tanggal', array($request->dari, $request->sampai))->with('peserta')->get();
                 $data = Program::with(['peserta' => function ($query) use($request) {
-                    $query->whereBetween('tanggal', array($request->from, $request->until));
+                    $query->whereBetween('tanggal', array($request->dari, $request->sampai));
                 }])->get();
                 
                 return DataTables::of($data)
