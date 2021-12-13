@@ -118,7 +118,7 @@
                     </ul>
                 </li>
 
-                <li>
+                {{-- <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="mdi mdi-clipboard-list-outline"></i>
                         <span style="font-size: 12px">Laporan Peserta</span>
@@ -126,7 +126,7 @@
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a style="font-size: 12px" href="{{ route('diklat.seluruh_peserta') }}">Cetak Laporan Peserta</a></li>
                     </ul>
-                </li>
+                </li> --}}
 
                 <li style="display: none">
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
