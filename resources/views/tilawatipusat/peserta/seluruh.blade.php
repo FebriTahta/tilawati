@@ -255,17 +255,17 @@
                                 <div class="modal-body">
                                     <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
                                         <table id="datatable-buttons4" class="table table-diklat-program table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
-                                            <thead class="text-bold text-primary">
+                                            <thead class="text-bold text-primary" style="font-size: 12px; text-transform: uppercase">
                                                 <tr>
                                                     <th>Program</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
                     
-                                            <tbody style="text-transform: uppercase; font-size: 12px">
+                                            <tbody style="text-transform: uppercase; font-size: 10px">
                                             </tbody>
                     
-                                            <tfoot class="text-bold text-primary">
+                                            <tfoot class="text-bold text-primary" style="font-size: 12px; text-transform: uppercase">
                                                 <tr>
                                                    <th>Program</th>
                                                    <th>Action</th>
