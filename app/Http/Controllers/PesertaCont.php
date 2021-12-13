@@ -1166,28 +1166,65 @@ class PesertaCont extends Controller
         {
             if(!empty($request->dari))
             {
-                $data   = Peserta::whereBetween('tanggal', array($request->dari, $request->sampai))->with('program')->select('program_id')->distinct();
+                // $data   = Peserta::whereBetween('tanggal', array($request->dari, $request->sampai))->with('program')->select('program_id')->distinct();
+                // return DataTables::of($data)
+                // ->addColumn('program', function ($data) {
+                //     return $data->program->name;
+                // })
+                // ->addColumn('action', function ($data) {
+                //     $btn = '<a href="/diklat-peserta-diklat-program/'.$data->program->id.'" class="btn btn-sm btn-info"> check </a>';
+                //     return $btn;
+                // })
+                // ->rawColumns(['program','action'])
+                // ->make(true);
+
+                $data = Program::whereBetween('tanggal', array($request->dari, $request->sampai))->with('peserta')->get();
                 return DataTables::of($data)
-                ->addColumn('program', function ($data) {
-                    return $data->program->name;
+                ->addColumn('total_semua', function ($data) {
+                    $total_semua = $data->peserta->count();
+                    return $total_semua;
                 })
-                ->addColumn('action', function ($data) {
-                    $btn = '<a href="/diklat-peserta-diklat-program/'.$data->program->id.'" class="btn btn-sm btn-info"> check </a>';
-                    return $btn;
+                ->addColumn('total_lulus', function($data){
+                    $total_lulus = $data->peserta->where('bersyahadah',1)->count();
+                    return $total_lulus;
                 })
-                ->rawColumns(['program','action'])
+                ->addColumn('total_belum', function($data){
+                    $total_belum = $total_semua - $total_lulus;
+                    return $total_belum;
+                })
+                ->rawColumns(['total_semua','total_lulus','total_belum'])
                 ->make(true);
             }else{
-                $data   = Peserta::with('program')->select('program_id')->distinct();
+                // $data   = Peserta::with('program')->select('program_id')->distinct();
+                // return DataTables::of($data)
+                // ->addColumn('program', function ($data) {
+                //     return $data->program->name;
+                // })
+                // ->addColumn('action', function ($data) {
+                //     $btn = '<a href="/diklat-peserta-diklat-program/'.$data->program->id.'" class="btn btn-sm btn-info"> check </a>';
+                //     return $btn;
+                // })
+                // ->rawColumns(['program','action'])
+                // ->make(true);
+                $data = Pelatihan::with('peserta','program')->get();
                 return DataTables::of($data)
                 ->addColumn('program', function ($data) {
-                    return $data->program->name;
+                    $program = $data->program->name;
+                    return $program;
                 })
-                ->addColumn('action', function ($data) {
-                    $btn = '<a href="/diklat-peserta-diklat-program/'.$data->program->id.'" class="btn btn-sm btn-info"> check </a>';
-                    return $btn;
+                ->addColumn('total_semua', function ($data) {
+                    $total_semua = $data->peserta->count();
+                    return $total_semua;
                 })
-                ->rawColumns(['program','action'])
+                ->addColumn('total_lulus', function($data){
+                    $total_lulus = $data->peserta->where('bersyahadah',1)->count();
+                    return $total_lulus;
+                })
+                ->addColumn('total_belum', function($data){
+                    $total_belum = $total_semua - $total_lulus;
+                    return $total_belum;
+                })
+                ->rawColumns(['program','total_semua','total_lulus','total_belum'])
                 ->make(true);
             }
         }

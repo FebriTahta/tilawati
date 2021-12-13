@@ -258,7 +258,9 @@
                                             <thead class="text-bold text-primary" style="font-size: 12px; text-transform: uppercase">
                                                 <tr>
                                                     <th>Program</th>
-                                                    <th>Action</th>
+                                                    <th>Peserta</th>
+                                                    <th>Lulus</th>
+                                                    <th>Belum</th>
                                                 </tr>
                                             </thead>
                     
@@ -267,8 +269,10 @@
                     
                                             <tfoot class="text-bold text-primary" style="font-size: 12px; text-transform: uppercase">
                                                 <tr>
-                                                   <th>Program</th>
-                                                   <th>Action</th>
+                                                    <th>Program</th>
+                                                    <th>Peserta</th>
+                                                    <th>Lulus</th>
+                                                    <th>Belum</th>
                                                 </tr>
                                             </tfoot>
                                         </table>
@@ -710,9 +714,21 @@
                             name:'program.name'
                             },
                             {
-                            data:'action',
-                            name:'action'
+                            data:'total_semua',
+                            name:'total_semua'
                             },
+                            {
+                            data:'total_lulus',
+                            name:'total_lulus'
+                            },
+                            {
+                            data:'total_belum',
+                            name:'total_belum'
+                            },
+                            // {
+                            // data:'action',
+                            // name:'action'
+                            // },
                             
                         ]
                     });
