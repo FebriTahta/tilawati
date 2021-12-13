@@ -29,7 +29,7 @@
                 <li>
                     <a href="{{ route('diklat.dashboard') }}" class="waves-effect">
                         <i class="mdi mdi-airplay"></i><span class="badge badge-pill badge-info float-right"></span>
-                        <span style="font-size: 10px">Dashboard</span>
+                        <span style="font-size: 12px">Dashboard</span>
                     </a>
                 </li>
 
