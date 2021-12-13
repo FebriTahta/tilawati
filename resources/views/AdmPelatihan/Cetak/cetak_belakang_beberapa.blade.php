@@ -271,20 +271,24 @@
                     {{--  --}}
                 @endif
 			@endforeach
-			<tr>
-				<th></th>
-				<td class="nilai6">&nbsp; &nbsp;<b> RATA - RATA NILAI</b></th>
-				<th colspan="3" class="nilai5"></th>
-				<th>
-                    @if ($x !== 1)
-                        @if ($p->pelatihan->program->name=='munaqosyah santri')
-                            {{ $rata2 = $jumlah }}
-                        @else
-                            {{ $rata2 = ($jumlah+ $item->nominal)/2 }}
-                        @endif
-                    @endif
-				</th>
-			</tr>
+			@if ($p->pelatihan->keterangan == 'guru')
+				<tr>
+					<th></th>
+					<td class="nilai6">&nbsp; &nbsp;<b> RATA - RATA NILAI</b></th>
+					<th colspan="3" class="nilai5"></th>
+					<th >
+					@if ($p->pelatihan->program->name=='munaqosyah santri')
+						{{ $rata2 = $jumlah }}
+					@else
+						{{ $rata2 = ($jumlah+ $item->nominal)/2 }}
+					@endif
+						</th>
+				</tr>
+			@else
+			<?php 
+				$rata2 = $jumlah
+			?>
+			@endif
 			<tr>
 				<th></th>
 				<td class="nilai6">&nbsp; &nbsp;<b> PRESTASI</b></th>
