@@ -1101,7 +1101,7 @@ class PesertaCont extends Controller
                 ->rawColumns(['cabang','action'])
                 ->make(true);
             }else{
-                $data   = Pelatihan::with(['cabang','peserta'])->select('cabang_id')->distinct();
+                $data   = Pelatihan::with(['cabang','peserta'])->select('id','cabang_id')->distinct();
                 return DataTables::of($data)
                 ->addColumn('cabang', function ($data) {
                     return $data->cabang->name.' ( '.$data->cabang->kabupaten->nama.' ) ';
