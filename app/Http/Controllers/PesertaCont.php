@@ -1130,7 +1130,7 @@ class PesertaCont extends Controller
                 ->addColumn('namadiklat', function($data){
                     foreach ($data->cabang->pelatihan as $key => $value) {
                         # code...
-                        $datas[] = $value->program;
+                        $datas[] = $value->program->name;
                     }
                     return $datas;
                 })
