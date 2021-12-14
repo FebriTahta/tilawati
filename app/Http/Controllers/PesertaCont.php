@@ -1132,7 +1132,7 @@ class PesertaCont extends Controller
                         # code...
                         $datax = Program::where('id',$value->program_id)->first();
                         // $dataz[] = $datax->name;
-                        $datay[] = Program::whereIn('name',$datax->name);
+                        $datay[] = Program::whereIn('name',$datax->name)->select('name')->get();
                     }
                     return $string=implode("<br>",$datay);
                 })
