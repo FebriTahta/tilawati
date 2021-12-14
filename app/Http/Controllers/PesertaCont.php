@@ -1134,8 +1134,8 @@ class PesertaCont extends Controller
                             # code...
                             $datas[] = $value;
                         }
+                        return $datas;
                     }
-                    return $datas;
                 })
                 ->rawColumns(['cabang','jumlahdiklat'])->make(true);
                 
