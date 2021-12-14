@@ -1132,7 +1132,7 @@ class PesertaCont extends Controller
                         # code...
                         foreach ($value->program as $key => $value) {
                             # code...
-                            $datas[] = $value->name;
+                            $datas[] = $value;
                         }
                     }
                     return $datas;
