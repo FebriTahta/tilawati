@@ -1178,9 +1178,10 @@ class PesertaCont extends Controller
                         # code...
                         $datax  = Program::where('id',$value->program_id)->first();
                         // $dataz[]= $datax->name->distinct($datax->name).' ('.$value->peserta->count().' p)';
-                        $dataz[] = $datax->nama->distinct();
+                        $dataz = $datax->nama;
+                        $datap[] = Program::where('name', $dataz)->select('name')->distinct();
                     }
-                    return $string=implode("<br>",$dataz);
+                    return $string=implode("<br>",$datap);
                 })
                 ->rawColumns(['cabang','jumlahdiklat','namadiklat'])->make(true);
                 
