@@ -1131,7 +1131,7 @@ class PesertaCont extends Controller
                     foreach ($data->cabang->pelatihan as $key => $value) {
                         # code...
                         $datax  = Program::where('id',$value->program_id)->first();
-                        $dataz[]= $datax->name;
+                        $dataz[]= $datax->name.'-'.$value->peserta->count().' Peserta';
                     }
                     return $string=implode("<br>",$dataz);
                 })
