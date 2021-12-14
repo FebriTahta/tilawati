@@ -1125,8 +1125,11 @@ class PesertaCont extends Controller
                     return $datas;
                 })
                 ->addColumn('namadiklat', function($data){
-                    $datas = $data->pelatihan->program_id;
-                    return $datas;
+                    $datas = $data->pelatihan;
+                    foreach ($datas as $key => $value) {
+                        # code...
+                        return $value->program_id;
+                    }
                 })
                 ->rawColumns(['jumlahdiklat','namadiklat'])->make(true);
                 
