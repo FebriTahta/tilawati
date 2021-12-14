@@ -1130,15 +1130,9 @@ class PesertaCont extends Controller
                 ->addColumn('namadiklat', function($data){
                     foreach ($data->cabang->pelatihan as $key => $value) {
                         # code...
-                        $datax = Program::where('id',$value->program_id)->first();
-                        // $dataz[] = $datax->name;
-                        $datay[] = Program::whereIn('name',$datax->name)->select('name')->get();
-                        foreach ($datay as $key => $values) {
-                            # code...
-                            return $values;
-                        }
+                        $datax[] = Program::where('id',$value->program_id)->select('name')->first();
                     }
-                    return $string=implode("<br>",$datay);
+                    return $string=implode("<br>",$datax);
                 })
                 ->rawColumns(['cabang','jumlahdiklat','namadiklat'])->make(true);
                 
