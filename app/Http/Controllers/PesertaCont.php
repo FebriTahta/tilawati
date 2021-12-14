@@ -1101,20 +1101,27 @@ class PesertaCont extends Controller
                 ->rawColumns(['cabang','action'])
                 ->make(true);
             }else{
-                $data   = Pelatihan::with(['cabang','peserta'])->select('cabang_id')->distinct();
-                return DataTables::of($data)
-                ->addColumn('cabang', function ($data) {
-                    return $data->cabang->name.' ( '.$data->cabang->kabupaten->nama.' ) ';
-                })
-                ->addColumn('action', function ($data) {
-                    // $btn = '<a href="/diklat-peserta-diklat-cabang/'.$data->cabang->id.'" class="btn btn-sm btn-info"> check </a>';
-                    $cabang = Cabang::where('id',$data->cabang_id)->with('pelatihan')->get();
-                    $btn = $cabang->pelatihan->program_id;
+                // $data   = Pelatihan::with(['cabang','peserta'])->select('cabang_id')->distinct();
+                // return DataTables::of($data)
+                // ->addColumn('cabang', function ($data) {
+                //     return $data->cabang->name.' ( '.$data->cabang->kabupaten->nama.' ) ';
+                // })
+                // ->addColumn('action', function ($data) {
+                //     // $btn = '<a href="/diklat-peserta-diklat-cabang/'.$data->cabang->id.'" class="btn btn-sm btn-info"> check </a>';
+                //     $cabang = Cabang::where('id',$data->cabang_id)->with('pelatihan')->get();
+                //     $btn = $cabang->pelatihan->program_id;
                     
-                    return $btn;
+                //     return $btn;
+                // })
+                // ->rawColumns(['cabang','action'])
+                // ->make(true);
+                $data = Cabang::has('pelatihan')->get();
+                return DataTables::of($data)
+                ->addColumn('action', function($data){
+                    $datas = $data->pelatihan->count();
+                    return $datas;
                 })
-                ->rawColumns(['cabang','action'])
-                ->make(true);
+                ->rawColumns(['actions'])->make(true);
                 
             }
         }
