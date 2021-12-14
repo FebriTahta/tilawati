@@ -1128,7 +1128,7 @@ class PesertaCont extends Controller
                     $datas = $data->pelatihan;
                     foreach ($datas as $key => $value) {
                         # code...
-                        $datax[]    = Program::where('id', $value->program_id)->name();
+                        $datax[] = Pelatihan::where('id', $value->id);
 
                     }
                     return $datax;
