@@ -1128,8 +1128,9 @@ class PesertaCont extends Controller
                     $datas = $data->pelatihan;
                     foreach ($datas as $key => $value) {
                         # code...
-                        return $value->program_id;
+                        $datax[] = $value->program_id;
                     }
+                    return $datax;
                 })
                 ->rawColumns(['jumlahdiklat','namadiklat'])->make(true);
                 
