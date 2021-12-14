@@ -1127,7 +1127,9 @@ class PesertaCont extends Controller
                     // $datas[] = $data->cabang->pelatihan->where('jenis', 'diklat')->whereBetween('tanggal', array($request->dari, $request->sampai))->select('name')->get();
                     foreach ($data->cabang->pelatihan as $key => $value) {
                         # code...
-                        $datas[] = $value->id;
+                        $datax = $value->where('jenis', 'diklat')->whereBetween('tanggal', array($request->dari, $request->sampai))->first();
+                        $datas[] = $datax->name;
+                        
                     }
                     return $datas;
                 })
