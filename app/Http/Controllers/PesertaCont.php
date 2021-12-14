@@ -1101,8 +1101,8 @@ class PesertaCont extends Controller
                 // ->rawColumns(['cabang','action'])
                 // ->make(true);
                 $data = Cabang::has('pelatihan')->with(['pelatihan' => function ($query) use($request) {
-                    $query->whereBetween('tanggal', array($request->dari, $request->sampai));
-                }])->where('jenis','diklat')->get();
+                    $query->where('jenis','diklat')->whereBetween('tanggal', array($request->dari, $request->sampai));
+                }])->get();
                 
                 return DataTables::of($data)
 
