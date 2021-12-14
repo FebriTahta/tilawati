@@ -1105,7 +1105,7 @@ class PesertaCont extends Controller
                 ->addColumn('cabang', function($data){
                     return $data->cabang->name.' ( '.$data->cabang->kabupaten->nama.' ) ';
                 })
-                ->addColumn('jumlahdiklat', function($data){
+                ->addColumn('jumlahdiklat', function($data) use ($request) {
                     // $datap = Pelatihan::where('id', $data->id)->count();
                     $datas = $data->cabang->pelatihan->where('jenis', 'diklat')->whereBetween('tanggal', array($request->dari, $request->sampai))->count();
                     return $datas;
