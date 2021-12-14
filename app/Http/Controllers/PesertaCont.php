@@ -1128,7 +1128,7 @@ class PesertaCont extends Controller
                     $datas = $data->pelatihan;
                     foreach ($datas as $key => $value) {
                         # code...
-                        $datax[] = $value->program_id;
+                        $datax[] = $value->program->name;
                     }
                     return $datax;
                 })
