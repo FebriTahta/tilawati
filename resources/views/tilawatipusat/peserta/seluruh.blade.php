@@ -219,7 +219,8 @@
                                             <thead class="text-bold text-primary">
                                                 <tr>
                                                     <th>Cabang</th>
-                                                    <th>Pelatihan</th>
+                                                    <th>Diklat</th>
+                                                    <th>Jenis</th>
                                                 </tr>
                                             </thead>
                     
@@ -229,7 +230,8 @@
                                             <tfoot class="text-bold text-primary">
                                                 <tr>
                                                    <th>Cabang</th>
-                                                   <th>Pelatihan</th>
+                                                   <th>Diklat</th>
+                                                   <th>Jenis</th>
                                                 </tr>
                                             </tfoot>
                                         </table>
@@ -694,6 +696,10 @@
                             {
                             data:'jumlahdiklat',
                             name:'jumlahdiklat'
+                            },
+                            {
+                            data:'namadiklat',
+                            name:'namadiklat'
                             },
                             
                         ]

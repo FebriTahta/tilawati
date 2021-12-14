@@ -1127,16 +1127,14 @@ class PesertaCont extends Controller
                     $datas = $data->cabang->pelatihan->count();
                     return $datas;
                 })
-                // ->addColumn('namadiklat', function($data){
-                //     $datas = $data->pelatihan;
-                //     foreach ($datas as $key => $value) {
-                //         # code...
-                //         $datax[] = Program::where('id',2)->select('name');
-
-                //     }
-                //     return $datax;
-                // })
-                ->rawColumns(['cabang'])->make(true);
+                ->addColumn('namadiklat', function($data){
+                    foreach ($data->cabang->pelatihan as $key => $value) {
+                        # code...
+                        $datas[] = $value->program;
+                    }
+                    return $datas;
+                })
+                ->rawColumns(['cabang','jumlahdiklat'])->make(true);
                 
             }
         }
