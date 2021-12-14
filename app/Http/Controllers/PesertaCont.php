@@ -1115,7 +1115,9 @@ class PesertaCont extends Controller
                 // })
                 // ->rawColumns(['cabang','action'])
                 // ->make(true);
-                $data = Cabang::has('pelatihan')->get();
+                $data = Cabang::whereHas('pelatihan', function($query) use ($request){
+                    return $query->where('jenis','diklat');
+                })->get();
                 return DataTables::of($data)
                 ->addColumn('action', function($data){
                     $datas = $data->pelatihan->count();
