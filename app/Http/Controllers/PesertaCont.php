@@ -1100,34 +1100,30 @@ class PesertaCont extends Controller
                 // })
                 // ->rawColumns(['cabang','action'])
                 // ->make(true);
-                $data = Pelatihan::whereBetween('tanggal', array($request->dari, $request->sampai))->where('jenis','diklat')->has('peserta')->with(['cabang','program'])->select('cabang_id')->distinct();
+                $data = Cabang::has('pelatihan')->with(['pelatihan' => function ($query) use($request) {
+                    $query->whereBetween('tanggal', array($request->dari, $request->sampai));
+                }])->where('jenis','diklat')->get();
+                
                 return DataTables::of($data)
+
                 ->addColumn('cabang', function($data){
-                    return $data->cabang->name.' ( '.$data->cabang->kabupaten->nama.' ) ';
+                    return $data->name.' ( '.$data->kabupaten->nama.' ) ';
                 })
-                ->addColumn('jumlahdiklat', function($data) use ($request) {
-                    // $datap = Pelatihan::where('id', $data->id)->count();
-                    $datas = $data->cabang->pelatihan->where('jenis', 'diklat')->whereBetween('tanggal', array($request->dari, $request->sampai))->count();
+                ->addColumn('jumlahdiklat', function($data){
+                    $datas = $data->pelatihan->count();
                     return $datas;
                 })
-                ->addColumn('namadiklat', function($data) use ($request) {
-                    // foreach ($data->cabang->pelatihan as $key => $value) {
-                    //     # code...
-                    //     $datay  = Pelatihan::where('jenis','diklat')->whereBetween('tanggal', array($request->dari, $request->sampai))->first();
-                    //     $datax  = Program::where('id',$datay->program_id)->first();
-                    //     $dataz[]= $datax->name.' ('.$value->peserta->count().' p)';
-                        
-                    // }
-                    // $datas = $data->cabang->pelatihan->where('jenis', 'diklat')->whereBetween('tanggal', array($request->dari, $request->sampai))->get();
-                    // foreach ($datas as $key => $value) {
-                    //     # code...
-                    //     $dataz[] = $value->program->name;
-                    // }
-                    // return $string=implode("<br>",$dataz);
-                    // $datas[] = $data->cabang->pelatihan->where('jenis', 'diklat')->whereBetween('tanggal', array($request->dari, $request->sampai))->select('name')->get();
-                    return $data->program;
+                ->addColumn('namadiklat', function($data){
+                    foreach ($data->cabang->pelatihan as $key => $value) {
+                        # code...
+                        // $datax  = Program::where('id',$value->program_id)->first();
+                        // $dataz[]= $datax->name.' ('.$value->peserta->count().' p)';
+                        $dataz[] = $value->program->name;
+                    }
+                    return $string=implode("<br>",$dataz);
                 })
                 ->rawColumns(['cabang','jumlahdiklat','namadiklat'])->make(true);
+
             }else{
                 // $data   = Pelatihan::with(['cabang','peserta'])->select('cabang_id')->distinct();
                 // return DataTables::of($data)
