@@ -688,8 +688,8 @@
                         },
                         columns: [
                             {
-                            data:'cabang',
-                            name:'cabang.name'
+                            data:'name',
+                            name:'name'
                             },
                             {
                             data:'action',
