@@ -1118,15 +1118,15 @@ class PesertaCont extends Controller
                 // $data = Cabang::whereHas('pelatihan', function($query) use ($request){
                 //     return $query->where('jenis','diklat');
                 // })->get();
-                $data = Pelatihan::has('peserta')->with(['cabang','program'])->select('cabang_id')->distinct();
+                $data = Pelatihan::where('jenis','diklat')->has('peserta')->with(['cabang','program'])->select('cabang_id')->distinct();
                 return DataTables::of($data)
                 ->addColumn('cabang', function($data){
                     return $data->cabang->name.' ( '.$data->cabang->kabupaten->nama.' ) ';
                 })
-                // ->addColumn('jumlahdiklat', function($data){
-                //     $datas = $data->pelatihan->count();
-                //     return $datas;
-                // })
+                ->addColumn('jumlahdiklat', function($data){
+                    $datas = $data->count();
+                    return $datas;
+                })
                 // ->addColumn('namadiklat', function($data){
                 //     $datas = $data->pelatihan;
                 //     foreach ($datas as $key => $value) {

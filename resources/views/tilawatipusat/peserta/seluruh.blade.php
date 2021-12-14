@@ -691,6 +691,10 @@
                             data:'cabang',
                             name:'cabang.name'
                             },
+                            {
+                            data:'jumlahdiklat',
+                            name:'jumlahdiklat'
+                            },
                             
                         ]
                     });
