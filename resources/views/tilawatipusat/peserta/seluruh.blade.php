@@ -219,7 +219,7 @@
                                             <thead class="text-bold text-primary">
                                                 <tr>
                                                     <th>Cabang</th>
-                                                    
+                                                    <th>Pelatihan</th>
                                                 </tr>
                                             </thead>
                     
@@ -229,7 +229,7 @@
                                             <tfoot class="text-bold text-primary">
                                                 <tr>
                                                    <th>Cabang</th>
-                                                   
+                                                   <th>Pelatihan</th>
                                                 </tr>
                                             </tfoot>
                                         </table>
