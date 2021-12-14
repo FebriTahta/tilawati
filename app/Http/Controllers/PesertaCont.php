@@ -1179,7 +1179,7 @@ class PesertaCont extends Controller
                         $datax  = Program::where('id',$value->program_id)->first();
                         // $dataz[]= $datax->name->distinct($datax->name).' ('.$value->peserta->count().' p)';
                         $dataz = $datax->nama;
-                        $datap[] = Program::where('name', $dataz)->select('name')->distinct();
+                        $datap[] = Program::where('name', $dataz)->groupBy('name')->distinct();
                     }
                     return $string=implode("<br>",$datap);
                 })
