@@ -1128,11 +1128,11 @@ class PesertaCont extends Controller
                     $datas = $data->pelatihan;
                     foreach ($datas as $key => $value) {
                         # code...
-                        $datax[]      = Program::where('id', $value->program_id)->first();
-                        // $datax[]    = $value->program_id;
+                        $datax[]    = $value->program_id;
+                        $dataz[]    = Program::where('id', $datax);
 
                     }
-                    return $datax->name;
+                    return $datax;
                 })
                 ->rawColumns(['jumlahdiklat','namadiklat'])->make(true);
                 
