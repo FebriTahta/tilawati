@@ -1116,7 +1116,7 @@ class PesertaCont extends Controller
                 // ->rawColumns(['cabang','action'])
                 // ->make(true);
                 $data = Cabang::whereHas('pelatihan', function($query) use ($request){
-                    return $query->where('jenis','diklat')->with('program');
+                    return $query->where('jenis','diklat');
                 })->get();
 
                 return DataTables::of($data)
@@ -1128,7 +1128,7 @@ class PesertaCont extends Controller
                     $datas = $data->pelatihan;
                     foreach ($datas as $key => $value) {
                         # code...
-                        $datax[] = Pelatihan::findorFail($value->id);
+                        $datax[] = Program::where('id',2)->select('name');
 
                     }
                     return $datax;
