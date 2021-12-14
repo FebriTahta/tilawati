@@ -1102,7 +1102,7 @@ class PesertaCont extends Controller
                 // ->make(true);
                 $data = Cabang::has('pelatihan')->with(['pelatihan' => function ($query) use($request) {
                     $query->where('jenis','diklat')->whereBetween('tanggal', array($request->dari, $request->sampai));
-                }])->get();
+                }]);
                 
                 return DataTables::of($data)
 
@@ -1110,7 +1110,7 @@ class PesertaCont extends Controller
                     return $data->name.' ( '.$data->kabupaten->nama.' ) ';
                 })
                 ->addColumn('jumlahdiklat', function($data){
-                    $datas = $data->pelatihan->count();
+                    $datas = $data->count();
                     return $datas;
                 })
                 ->addColumn('namadiklat', function($data){
