@@ -1115,25 +1115,28 @@ class PesertaCont extends Controller
                 // })
                 // ->rawColumns(['cabang','action'])
                 // ->make(true);
-                $data = Cabang::whereHas('pelatihan', function($query) use ($request){
-                    return $query->where('jenis','diklat');
-                })->get();
-
+                // $data = Cabang::whereHas('pelatihan', function($query) use ($request){
+                //     return $query->where('jenis','diklat');
+                // })->get();
+                $data = Pelatihan::has('peserta')->with(['cabang','program'])->select('cabang_id')->distinct();
                 return DataTables::of($data)
-                ->addColumn('jumlahdiklat', function($data){
-                    $datas = $data->pelatihan->count();
-                    return $datas;
+                ->addColumn('cabang', function($data){
+                    return $data->cabang->name.' ( '.$data->cabang->kabupaten->nama.' ) ';
                 })
-                ->addColumn('namadiklat', function($data){
-                    $datas = $data->pelatihan;
-                    foreach ($datas as $key => $value) {
-                        # code...
-                        $datax[] = Program::where('id',2)->select('name');
+                // ->addColumn('jumlahdiklat', function($data){
+                //     $datas = $data->pelatihan->count();
+                //     return $datas;
+                // })
+                // ->addColumn('namadiklat', function($data){
+                //     $datas = $data->pelatihan;
+                //     foreach ($datas as $key => $value) {
+                //         # code...
+                //         $datax[] = Program::where('id',2)->select('name');
 
-                    }
-                    return $datax;
-                })
-                ->rawColumns(['jumlahdiklat','namadiklat'])->make(true);
+                //     }
+                //     return $datax;
+                // })
+                ->rawColumns(['cabang'])->make(true);
                 
             }
         }

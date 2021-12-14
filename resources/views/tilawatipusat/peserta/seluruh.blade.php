@@ -219,8 +219,7 @@
                                             <thead class="text-bold text-primary">
                                                 <tr>
                                                     <th>Cabang</th>
-                                                    <th>Diklat</th>
-                                                    <th>Jenis</th>
+                                                    
                                                 </tr>
                                             </thead>
                     
@@ -230,8 +229,7 @@
                                             <tfoot class="text-bold text-primary">
                                                 <tr>
                                                    <th>Cabang</th>
-                                                   <th>Diklat</th>
-                                                   <th>Jenis</th>
+                                                   
                                                 </tr>
                                             </tfoot>
                                         </table>
@@ -690,16 +688,8 @@
                         },
                         columns: [
                             {
-                            data:'name',
-                            name:'name'
-                            },
-                            {
-                            data:'jumlahdiklat',
-                            name:'jumlahdiklat'
-                            },
-                            {
-                            data:'namadiklat',
-                            name:'namadiklat'
+                            data:'cabang',
+                            name:'cabang.name'
                             },
                             
                         ]
