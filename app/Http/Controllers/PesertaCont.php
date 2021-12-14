@@ -1110,10 +1110,11 @@ class PesertaCont extends Controller
                     $datas = $data->cabang->pelatihan->where('jenis', 'diklat')->whereBetween('tanggal', array($request->dari, $request->sampai))->count();
                     return $datas;
                 })
-                ->addColumn('namadiklat', function($data){
+                ->addColumn('namadiklat', function($data) use ($request) {
                     foreach ($data->cabang->pelatihan as $key => $value) {
                         # code...
-                        $datax  = Program::where('id',$value->program_id)->first();
+                        $datay  = Pelatihan::where('jenis','diklat')->whereBetween('tanggal', array($request->dari, $request->sampai))->first();
+                        $datax  = Program::where('id',$datay->program_id)->first();
                         $dataz[]= $datax->name.' ('.$value->peserta->count().' p)';
                     }
                     return $string=implode("<br>",$dataz);
