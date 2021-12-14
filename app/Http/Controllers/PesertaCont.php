@@ -1124,8 +1124,11 @@ class PesertaCont extends Controller
                     //     $dataz[] = $value->program->name;
                     // }
                     // return $string=implode("<br>",$dataz);
-                    $datas[] = $data->cabang->pelatihan->where('jenis', 'diklat')->whereBetween('tanggal', array($request->dari, $request->sampai))->select('name')->get();
-                    
+                    // $datas[] = $data->cabang->pelatihan->where('jenis', 'diklat')->whereBetween('tanggal', array($request->dari, $request->sampai))->select('name')->get();
+                    foreach ($data->cabang->pelatihan as $key => $value) {
+                        # code...
+                        $datas = $value->id;
+                    }
                     return $datas;
                 })
                 ->rawColumns(['cabang','jumlahdiklat','namadiklat'])->make(true);
