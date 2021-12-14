@@ -1100,30 +1100,30 @@ class PesertaCont extends Controller
                 // })
                 // ->rawColumns(['cabang','action'])
                 // ->make(true);
-                $data = Cabang::has('pelatihan')->with(['pelatihan' => function ($query) use($request) {
-                    $query->where('jenis','diklat')->whereBetween('tanggal', array($request->dari, $request->sampai));
-                }]);
+                // $data = Cabang::has('pelatihan')->with(['pelatihan' => function ($query) use($request) {
+                //     $query->where('jenis','diklat')->whereBetween('tanggal', array($request->dari, $request->sampai));
+                // }]);
                 
-                return DataTables::of($data)
+                // return DataTables::of($data)
 
-                ->addColumn('cabang', function($data){
-                    return $data->name.' ( '.$data->kabupaten->nama.' ) ';
-                })
-                ->addColumn('jumlahdiklat', function($data){
-                    $datas = $data->count();
-                    return $datas;
-                })
-                ->addColumn('namadiklat', function($data){
-                    $dataz[]='';
-                    foreach ($data->pelatihan as $key => $value) {
-                        # code...
-                        // $datax  = Program::where('id',$value->program_id)->first();
-                        // $dataz[]= $datax->name.' ('.$value->peserta->count().' p)';
-                        $dataz[] = $value->program->name;
-                    }
-                    return $string=implode("<br>",$dataz);
-                })
-                ->rawColumns(['cabang','jumlahdiklat','namadiklat'])->make(true);
+                // ->addColumn('cabang', function($data){
+                //     return $data->name.' ( '.$data->kabupaten->nama.' ) ';
+                // })
+                // ->addColumn('jumlahdiklat', function($data){
+                //     $datas = $data->count();
+                //     return $datas;
+                // })
+                // ->addColumn('namadiklat', function($data){
+                //     $dataz[]='';
+                //     foreach ($data->pelatihan as $key => $value) {
+                //         # code...
+                //         // $datax  = Program::where('id',$value->program_id)->first();
+                //         // $dataz[]= $datax->name.' ('.$value->peserta->count().' p)';
+                //         $dataz[] = $value->program->name;
+                //     }
+                //     return $string=implode("<br>",$dataz);
+                // })
+                // ->rawColumns(['cabang','jumlahdiklat','namadiklat'])->make(true);
 
             }else{
                 // $data   = Pelatihan::with(['cabang','peserta'])->select('cabang_id')->distinct();
@@ -1143,22 +1143,44 @@ class PesertaCont extends Controller
                 // $data = Cabang::whereHas('pelatihan', function($query) use ($request){
                 //     return $query->where('jenis','diklat');
                 // })->get();
-                $data = Pelatihan::where('jenis','diklat')->has('peserta')->with(['cabang','program'])->select('cabang_id')->distinct();
+
+                // $data = Pelatihan::where('jenis','diklat')->has('peserta')->with(['cabang','program'])->select('cabang_id')->distinct();
+                // return DataTables::of($data)
+                // ->addColumn('cabang', function($data){
+                //     return $data->cabang->name.' ( '.$data->cabang->kabupaten->nama.' ) ';
+                // })
+                // ->addColumn('jumlahdiklat', function($data){
+                //     $datas = $data->cabang->pelatihan->count();
+                //     return $datas;
+                // })
+                // ->addColumn('namadiklat', function($data){
+                //     foreach ($data->cabang->pelatihan as $key => $value) {
+                //         # code...
+                //         $datax  = Program::where('id',$value->program_id)->first();
+                //         $dataz[]= $datax->name.' ('.$value->peserta->count().' p)';
+                //     }
+                //     return $string=implode("<br>",$dataz);
+                // })
+                // ->rawColumns(['cabang','jumlahdiklat','namadiklat'])->make(true);
+
+                $data = Cabang::has('pelatihan')->with(['pelatihan' => function ($query) use($request) {
+                    $query->where('jenis','diklat')->whereBetween('tanggal', array($request->dari, $request->sampai));
+                }]);
+
                 return DataTables::of($data)
-                ->addColumn('cabang', function($data){
-                    return $data->cabang->name.' ( '.$data->cabang->kabupaten->nama.' ) ';
-                })
+                
                 ->addColumn('jumlahdiklat', function($data){
-                    $datas = $data->cabang->pelatihan->count();
+                    $datas = $data->pelatihan->count();
                     return $datas;
                 })
                 ->addColumn('namadiklat', function($data){
-                    foreach ($data->cabang->pelatihan as $key => $value) {
-                        # code...
-                        $datax  = Program::where('id',$value->program_id)->first();
-                        $dataz[]= $datax->name.' ('.$value->peserta->count().' p)';
-                    }
-                    return $string=implode("<br>",$dataz);
+                    // foreach ($data->cabang->pelatihan as $key => $value) {
+                    //     # code...
+                    //     $datax  = Program::where('id',$value->program_id)->first();
+                    //     $dataz[]= $datax->name.' ('.$value->peserta->count().' p)';
+                    // }
+                    // return $string=implode("<br>",$dataz);
+                    return '1';
                 })
                 ->rawColumns(['cabang','jumlahdiklat','namadiklat'])->make(true);
                 
