@@ -1128,7 +1128,8 @@ class PesertaCont extends Controller
                     return $datas;
                 })
                 ->addColumn('namadiklat', function($data){
-                    return Program::where('id',2)->select('name');
+                    $datax = Program::where('id',2)->first();
+                    return $datax;
                 })
                 ->rawColumns(['cabang','jumlahdiklat','namadiklat'])->make(true);
                 
