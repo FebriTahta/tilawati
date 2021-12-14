@@ -1089,17 +1089,35 @@ class PesertaCont extends Controller
         {
             if(!empty($request->dari))
             {
-                $data   = Pelatihan::whereBetween('tanggal', array($request->dari, $request->sampai))->with('cabang')->select('cabang_id')->distinct();
+                // $data   = Pelatihan::whereBetween('tanggal', array($request->dari, $request->sampai))->with('cabang')->select('cabang_id')->distinct();
+                // return DataTables::of($data)
+                // ->addColumn('cabang', function ($data) {
+                //     return $data->cabang->name.' ( '.$data->cabang->kabupaten->nama.' ) ';
+                // })
+                // ->addColumn('action', function ($data) {
+                //     $btn = '<a href="/diklat-peserta-diklat-cabang/'.$data->cabang->id.'" class="btn btn-sm btn-info"> check </a>';
+                //     return $btn;
+                // })
+                // ->rawColumns(['cabang','action'])
+                // ->make(true);
+                $data = Pelatihan::whereBetween('tanggal', array($request->dari, $request->sampai))->where('jenis','diklat')->has('peserta')->with(['cabang','program'])->select('cabang_id')->distinct();
                 return DataTables::of($data)
-                ->addColumn('cabang', function ($data) {
+                ->addColumn('cabang', function($data){
                     return $data->cabang->name.' ( '.$data->cabang->kabupaten->nama.' ) ';
                 })
-                ->addColumn('action', function ($data) {
-                    $btn = '<a href="/diklat-peserta-diklat-cabang/'.$data->cabang->id.'" class="btn btn-sm btn-info"> check </a>';
-                    return $btn;
+                ->addColumn('jumlahdiklat', function($data){
+                    $datas = $data->cabang->pelatihan->count();
+                    return $datas;
                 })
-                ->rawColumns(['cabang','action'])
-                ->make(true);
+                ->addColumn('namadiklat', function($data){
+                    foreach ($data->cabang->pelatihan as $key => $value) {
+                        # code...
+                        $datax  = Program::where('id',$value->program_id)->first();
+                        $dataz[]= $datax->name.' ('.$value->peserta->count().' p)';
+                    }
+                    return $string=implode("<br>",$dataz);
+                })
+                ->rawColumns(['cabang','jumlahdiklat','namadiklat'])->make(true);
             }else{
                 // $data   = Pelatihan::with(['cabang','peserta'])->select('cabang_id')->distinct();
                 // return DataTables::of($data)
