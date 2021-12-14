@@ -1133,7 +1133,7 @@ class PesertaCont extends Controller
                         $datax = Program::where('id',$value->program_id)->first();
                         $dataz[] = $datax->name;
                     }
-                    return implode($dataz);
+                    return implode($dataz).'</br>';
                 })
                 ->rawColumns(['cabang','jumlahdiklat','namadiklat'])->make(true);
                 
