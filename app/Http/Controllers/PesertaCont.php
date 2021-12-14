@@ -1171,7 +1171,7 @@ class PesertaCont extends Controller
                 
                 ->addColumn('jumlahdiklat', function($data){
                     
-                    return $data->pelatihan;
+                    return $data;
                 })
                 ->addColumn('namadiklat', function($data){
                     // foreach ($data->cabang->pelatihan as $key => $value) {
