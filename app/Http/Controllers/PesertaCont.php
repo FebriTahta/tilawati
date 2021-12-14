@@ -1107,23 +1107,29 @@ class PesertaCont extends Controller
                 })
                 ->addColumn('jumlahdiklat', function($data) use ($request) {
                     // $datap = Pelatihan::where('id', $data->id)->count();
-                    $datas = $data->cabang->pelatihan->where('jenis', 'diklat')->whereBetween('tanggal', array($request->dari, $request->sampai))->count();
-                    return $datas;
+                    // $datas = $data->cabang->pelatihan->where('jenis', 'diklat')->whereBetween('tanggal', array($request->dari, $request->sampai))->count();
+                    // return $datas;
                 })
                 ->addColumn('namadiklat', function($data) use ($request) {
-                    foreach ($data->cabang->pelatihan as $key => $value) {
-                        # code...
-                        $datay  = Pelatihan::where('jenis','diklat')->whereBetween('tanggal', array($request->dari, $request->sampai))->first();
-                        $datax  = Program::where('id',$datay->program_id)->first();
-                        $dataz[]= $datax->name.' ('.$value->peserta->count().' p)';
+                    // foreach ($data->cabang->pelatihan as $key => $value) {
+                    //     # code...
+                    //     $datay  = Pelatihan::where('jenis','diklat')->whereBetween('tanggal', array($request->dari, $request->sampai))->first();
+                    //     $datax  = Program::where('id',$datay->program_id)->first();
+                    //     $dataz[]= $datax->name.' ('.$value->peserta->count().' p)';
                         
-                    }
+                    // }
                     // $datas = $data->cabang->pelatihan->where('jenis', 'diklat')->whereBetween('tanggal', array($request->dari, $request->sampai))->get();
                     // foreach ($datas as $key => $value) {
                     //     # code...
                     //     $dataz[] = $value->program->name;
                     // }
-                    return $string=implode("<br>",$dataz);
+                    // return $string=implode("<br>",$dataz);
+                    $datas = $data->cabang->pelatihan->where('jenis', 'diklat')->whereBetween('tanggal', array($request->dari, $request->sampai))->get();
+                    foreach ($datas as $key => $value) {
+                        # code...
+                        $datax[] = $value;
+                    }
+                    return $datax;
                 })
                 ->rawColumns(['cabang','jumlahdiklat','namadiklat'])->make(true);
             }else{
