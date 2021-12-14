@@ -1106,9 +1106,9 @@ class PesertaCont extends Controller
                     return $data->cabang->name.' ( '.$data->cabang->kabupaten->nama.' ) ';
                 })
                 ->addColumn('jumlahdiklat', function($data){
-                    $datap = Pelatihan::where('id', $data->id)->count();
-                    // $datas = $data->cabang->pelatihan->count();
-                    return $datap;
+                    // $datap = Pelatihan::where('id', $data->id)->count();
+                    $datas = $data->cabang->pelatihan->id;
+                    return $datas;
                 })
                 ->addColumn('namadiklat', function($data){
                     foreach ($data->cabang->pelatihan as $key => $value) {
