@@ -1114,7 +1114,7 @@ class PesertaCont extends Controller
                     return $datas;
                 })
                 ->addColumn('namadiklat', function($data){
-                    foreach ($data->cabang->pelatihan as $key => $value) {
+                    foreach ($data->pelatihan as $key => $value) {
                         # code...
                         // $datax  = Program::where('id',$value->program_id)->first();
                         // $dataz[]= $datax->name.' ('.$value->peserta->count().' p)';
