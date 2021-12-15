@@ -125,7 +125,7 @@
                                         <thead class="text-bold text-primary" style="text-transform: capitalize">
                                             <tr>
                                                 <th>id</th>
-                                                <th><input type="checkbox" id="master"> pilih</th>
+                                                <th><input type="checkbox" id="master"> </th>
                                                 <th>peserta</th>
                                                 <th>asal</th>
                                                 <th>TTL</th>
@@ -146,7 +146,7 @@
                                         <tfoot class="text-primary" style="text-transform: capitalize">
                                             <tr>
                                                 <th>id</th>
-                                                <th>pilih</th>
+                                                <th></th>
                                                 <th>peserta</th>
                                                 <th>asal</th>
                                                 <th>TTL</th>
