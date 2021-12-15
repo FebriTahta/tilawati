@@ -28,6 +28,8 @@
                                     </div>
                                 @endif
                                 <div class="row p-3">
+                                    <?php $p= App\Models\Provinsi::all()->count();?>
+                                    {{$p}}
                                     <div class="col-6 col-xl-4 form-group">
                                         <label>Dari :</label>
                                         <input type="date" onchange="myfunction()" name="dari" id="dari" class="form-control">
