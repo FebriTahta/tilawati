@@ -1106,24 +1106,38 @@ class PesertaCont extends Controller
                 
                 // return DataTables::of($data)
 
-                // ->addColumn('cabang', function($data){
-                //     return $data->name.' ( '.$data->kabupaten->nama.' ) ';
-                // })
-                // ->addColumn('jumlahdiklat', function($data){
-                //     $datas = $data->count();
-                //     return $datas;
-                // })
-                // ->addColumn('namadiklat', function($data){
-                //     $dataz[]='';
-                //     foreach ($data->pelatihan as $key => $value) {
-                //         # code...
-                //         // $datax  = Program::where('id',$value->program_id)->first();
-                //         // $dataz[]= $datax->name.' ('.$value->peserta->count().' p)';
-                //         $dataz[] = $value->program->name;
-                //     }
-                //     return $string=implode("<br>",$dataz);
-                // })
-                // ->rawColumns(['cabang','jumlahdiklat','namadiklat'])->make(true);
+                $data = Cabang::has('pelatihan')->with(['pelatihan' => function ($query) use($request) {
+                    $query->where('jenis','diklat')->whereBetween('tanggal', array($request->dari, $request->sampai));
+                }]);
+
+                return DataTables::of($data)
+                ->addColumn('cabang', function($data){
+                    $kabs = $data->kabupaten->nama;
+                    return "<pre>$data->name - $kabs</pre>";
+                })
+                ->addColumn('jumlahdiklat', function($data){
+                    $total_diklat = $data->pelatihan->count();
+                    return "<pre>$total_diklat diklat</pre>";
+                })
+                ->addColumn('namadiklat', function($data){
+                    $dataz = [];
+                    foreach ($data->pelatihan as $key => $value) {
+                        # code...
+                        $datax  = Program::where('id',$value->program_id)->first();                        
+                        $dataz[$key] = $datax->id;
+                    }
+                    $programs = Program::whereIn('id',$dataz)->distinct()->get();
+                    
+                    foreach ($programs as $key => $value) {
+                        # code...
+                        $total      = $data->pelatihan->where('program_id',$value->id)->count();
+                        $peserta    = Peserta::where('cabang_id', $data->id)->where('program_id',$value->id)->count();
+                        $keterangan = Pelatihan::where('program_id',$value->id)->select('keterangan')->first();
+                        $hasil[]    = "<pre>$total diklat   $value->name  ($peserta $keterangan->keterangan)</pre>";
+                    }
+                    return $string=implode("<br>",$hasil);                    
+                })
+                ->rawColumns(['cabang','jumlahdiklat','namadiklat'])->make(true);
 
             }else{
                 // $data   = Pelatihan::with(['cabang','peserta'])->select('cabang_id')->distinct();
