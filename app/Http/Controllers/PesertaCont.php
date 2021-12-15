@@ -1185,7 +1185,7 @@ class PesertaCont extends Controller
                         # code...
                         $hasil[] = $value->name;
                     }
-                    return $hasil;
+                    return implode($hasil,'<br>');
                     // return Program::whereIn('name', implode($dataz))->groupby('name');
                     // return $string=implode("<br>",$dataz);
                     
