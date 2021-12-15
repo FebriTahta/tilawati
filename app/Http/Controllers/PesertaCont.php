@@ -1178,9 +1178,9 @@ class PesertaCont extends Controller
                     foreach ($data->pelatihan as $key => $value) {
                         # code...
                         $datax  = Program::where('id',$value->program_id)->first();                        
-                        $dataz[] = $datax->name;
+                        $dataz[] = $datax->id;
                     }
-                    return $dataz;
+                    return array($id);
                     // return Program::whereIn('name', implode($dataz))->groupby('name');
                     // return $string=implode("<br>",$dataz);
                     
