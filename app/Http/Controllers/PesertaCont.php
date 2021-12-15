@@ -1184,7 +1184,7 @@ class PesertaCont extends Controller
                     
                     foreach ($programs as $key => $value) {
                         # code...
-                        $total   = Pelatihan::where('program_id',$value->pogram_id)->count();
+                        $total   = Pelatihan::where('program_id',$value->id)->count();
                         $hasil[] = $value->name. $total;
                     }
                     return $string=implode("<br>",$hasil);
