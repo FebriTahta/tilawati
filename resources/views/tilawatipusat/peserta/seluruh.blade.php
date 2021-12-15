@@ -699,7 +699,7 @@
                             },
                             {
                             data:'namadiklat',
-                            name:'namadiklat'
+                            name:'program.name'
                             },
                             
                         ]
