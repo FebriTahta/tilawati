@@ -690,7 +690,7 @@
                         },
                         columns: [
                             {
-                            data:'name',
+                            data:'cabang',
                             name:'name'
                             },
                             {

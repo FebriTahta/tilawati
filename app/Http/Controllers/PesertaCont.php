@@ -1168,9 +1168,10 @@ class PesertaCont extends Controller
                 }]);
 
                 return DataTables::of($data)
-                
+                ->addColumn('cabang', function($data){
+                    return $data->name. '(.$data->kabupaten->nama.)';
+                })
                 ->addColumn('jumlahdiklat', function($data){
-                    
                     return $data->pelatihan->count();
                 })
                 ->addColumn('namadiklat', function($data){
@@ -1189,10 +1190,7 @@ class PesertaCont extends Controller
                         $keterangan = Pelatihan::where('program_id',$value->id)->select('keterangan')->first();
                         $hasil[]    = "<pre>$total diklat   $value->name  ($peserta $keterangan->keterangan)</pre>";
                     }
-                    return $string=implode("<br>",$hasil);
-                    // return Program::whereIn('name', implode($dataz))->groupby('name');
-                    // return $string=implode("<br>",$dataz);
-                    
+                    return $string=implode("<br>",$hasil);                    
                 })
                 ->rawColumns(['cabang','jumlahdiklat','namadiklat'])->make(true);
                 
