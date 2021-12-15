@@ -1170,7 +1170,7 @@ class PesertaCont extends Controller
                 return DataTables::of($data)
                 ->addColumn('cabang', function($data){
                     $kabs = $data->kabupaten->nama;
-                    return "<pre>$data->name    -$kabs</pre>";
+                    return "<pre>$data->name - $kabs</pre>";
                 })
                 ->addColumn('jumlahdiklat', function($data){
                     return $data->pelatihan->count();
