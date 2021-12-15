@@ -1181,7 +1181,8 @@ class PesertaCont extends Controller
                         $dataz = $datax->nama;
                         $datap[] = Program::where('name', $dataz)->groupBy('name');
                     }
-                    return $string=implode("<br>",$datap);
+                    // return $string=implode("<br>",$datap);
+                    return $datap;
                 })
                 ->rawColumns(['cabang','jumlahdiklat','namadiklat'])->make(true);
                 
