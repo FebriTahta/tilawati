@@ -699,7 +699,7 @@
                             },
                             {
                             data:'namadiklat',
-                            name:'pelatihan.program.name'
+                            name:'namadiklat'
                             },
                             
                         ]
