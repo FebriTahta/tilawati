@@ -1180,7 +1180,8 @@ class PesertaCont extends Controller
                         $datax  = Program::where('id',$value->program_id)->first();                        
                         $dataz[$key] = $datax->id;
                     }
-                    return Program::whereIn('id',$dataz)->first();
+                    $programs = Program::whereIn('id',$dataz)->distinct();
+                    return $programs;
                     // return Program::whereIn('name', implode($dataz))->groupby('name');
                     // return $string=implode("<br>",$dataz);
                     
