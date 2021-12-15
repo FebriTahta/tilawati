@@ -1174,13 +1174,13 @@ class PesertaCont extends Controller
                     return $data->pelatihan->count();
                 })
                 ->addColumn('namadiklat', function($data){
-                    
+                    $dataz = [];
                     foreach ($data->pelatihan as $key => $value) {
                         # code...
                         $datax  = Program::where('id',$value->program_id)->first();                        
-                        $dataz[] = $datax->id;
+                        $dataz[$key] = $datax->id;
                     }
-                    return array($dataz);
+                    return $daraz;
                     // return Program::whereIn('name', implode($dataz))->groupby('name');
                     // return $string=implode("<br>",$dataz);
                     
