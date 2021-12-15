@@ -681,7 +681,9 @@
 
                     $('.table-diklat-cabang').DataTable({
                         //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
-                        "order": [[ 2, "desc" ]],
+                        "columnDefs": [
+                            { "type": "numeric-comma", targets: "_all" }
+                        ],
                         destroy: true,
                         processing: true,
                         serverSide: true,
