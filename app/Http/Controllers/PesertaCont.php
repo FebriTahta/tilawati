@@ -1119,7 +1119,7 @@ class PesertaCont extends Controller
                     $total_diklat = $data->pelatihan->count();
                     return "<pre>$total_diklat diklat</pre>";
                 })
-                ->addColumn('namadiklat', function($data) {
+                ->addColumn('namadiklat', function($data) use($request) {
                     $dataz = [];
                     foreach ($data->pelatihan as $key => $value) {
                         # code...
