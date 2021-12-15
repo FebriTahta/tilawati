@@ -1181,9 +1181,10 @@ class PesertaCont extends Controller
                         $dataz[$key] = $datax->id;
                     }
                     $programs = Program::whereIn('id',$dataz)->distinct()->get();
-                    $total = $data->pelatihan->where('program_id', $dataz)->count();
+                    
                     foreach ($programs as $key => $value) {
                         # code...
+                        $total   = Pelatihan::where('id',$value->pogram_id)->count();
                         $hasil[] = $value->name. $total;
                     }
                     return $string=implode("<br>",$hasil);
