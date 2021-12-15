@@ -28,7 +28,9 @@
                                     </div>
                                 @endif
                                 <div class="row p-3">
-                                    <?php $p= App\Models\Kecamatan::select('nama')->distinct()->count();?>
+                                    <?php $p= App\Models\Kecamatan::select('nama')->distinct()->count();
+                                        $k = App\Models\Kelurahan::select('nama')->count();
+                                    ?>
                                     {{$p}}
                                     <div class="col-6 col-xl-4 form-group">
                                         <label>Dari :</label>
