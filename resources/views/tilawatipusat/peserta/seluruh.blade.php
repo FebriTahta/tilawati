@@ -28,7 +28,7 @@
                                     </div>
                                 @endif
                                 <div class="row p-3">
-                                    <?php $p= App\Models\Provinsi::all()->count();?>
+                                    <?php $p= App\Models\Kecamatan::all()->count();?>
                                     {{$p}}
                                     <div class="col-6 col-xl-4 form-group">
                                         <label>Dari :</label>
