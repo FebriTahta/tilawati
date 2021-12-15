@@ -1119,7 +1119,7 @@ class PesertaCont extends Controller
                     $total_diklat = $data->pelatihan->count();
                     return "<pre>$total_diklat diklat</pre>";
                 })
-                ->addColumn('namadiklat', function($data){
+                ->addColumn('namadiklat', function($data) {
                     $dataz = [];
                     foreach ($data->pelatihan as $key => $value) {
                         # code...
@@ -1132,7 +1132,10 @@ class PesertaCont extends Controller
                     foreach ($programs as $key => $value) {
                         # code...
                         $total      = $data->pelatihan->where('program_id',$value->id)->count();
-                        $peserta    = Peserta::where('cabang_id', $data->id)->where('program_id',$value->id)->count();
+                        $peserta    = Peserta::where('cabang_id', $data->id)->where('program_id',$value->id)
+                        ->with(['pelatihan' => function ($query) use($request) {
+                            $query->where('jenis','diklat')->whereBetween('tanggal', array($request->dari, $request->sampai));
+                        }])->count();
                         $keterangan = Pelatihan::where('program_id',$value->id)->select('keterangan')->first();
                         $hasil[]    = "<pre>$total diklat   $value->name  ($peserta $keterangan->keterangan)</pre>";
                     }
