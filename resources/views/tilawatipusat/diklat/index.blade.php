@@ -86,16 +86,6 @@
                                 
                             @endcomponent
                         </div>
-                        
-                        <div class="col-xl-4">
-                            @component('common-tilawatipusat.dashboard-widget')
-                            
-                                @slot('title') <a href="#" data-toggle="modal" data-target="#mod_cabang2"> <b id="cb2"> ??? </b><br><small> Cabang Pelaksana</small></a>@endslot
-                                @slot('iconClass') mdi mdi-bank-outline  @endslot
-                                @slot('price')   @endslot
-                                
-                            @endcomponent
-                        </div>
                         @endif
                     </div>
 
@@ -947,7 +937,7 @@
                             dataType: 'json',
                             data:{dari:dari, sampai:sampai},
                             success:function(data) {
-                                document.getElementById('cb2').innerHTML = data;
+                                document.getElementById('cb').innerHTML = data;
                                 console.log(data);
                             }
                         });
