@@ -77,7 +77,25 @@
                             @endcomponent
                         </div>
                         @else
+                        <div class="col-xl-4">
+                            @component('common-tilawatipusat.dashboard-widget')
+                            
+                                @slot('title') <b id="cb"> ??? </b><br><small> Total Diklat  </small>@endslot
+                                @slot('iconClass') mdi mdi-home-analytics  @endslot
+                                @slot('price')   @endslot
+                                
+                            @endcomponent
+                        </div>
                         
+                        <div class="col-xl-4">
+                            @component('common-tilawatipusat.dashboard-widget')
+                            
+                                @slot('title') <a href="#" data-toggle="modal" data-target="#mod_cabang2"> <b id="cb2"> ??? </b><br><small> Cabang Pelaksana</small></a>@endslot
+                                @slot('iconClass') mdi mdi-bank-outline  @endslot
+                                @slot('price')   @endslot
+                                
+                            @endcomponent
+                        </div>
                         @endif
                     </div>
 
