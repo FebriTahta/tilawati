@@ -77,7 +77,7 @@
                             @endcomponent
                         </div>
                         @else
-                        <div class="col-xl-4">
+                        <div class="col-xl-6">
                             @component('common-tilawatipusat.dashboard-widget')
                             
                                 @slot('title') <b id="cb"> ??? </b><br><small> Total Diklat  </small>@endslot
@@ -841,30 +841,31 @@
                     });
 
                     //total diklat dan cabang yang mengadakan diklat
-                    // $.ajax({
-                    //     url:'{{ route("diklat.diklat_tot") }}',
-                    //     type: 'get',
-                    //     dataType: 'json',
-                    //     data:{dari:dari, sampai:sampai},
-                    //     success:function(data) {
-                    //         document.getElementById('cb').innerHTML = data;
-                    //         console.log(data);
-                    //     }
-                    // });
-                    // $.ajax({
-                    //         url:'{{ route("diklat.diklat_program_tot") }}',
-                    //         type: 'get',
-                    //         dataType: 'json',
-                    //         data:{dari:dari, sampai:sampai},
-                    //         success:function(data) {
-                    //             document.getElementById('cb3').innerHTML = data;
-                    //             console.log(data);
-                    //         }
-                    //     });
+                    
                     var user    = $('#user').val();
                     var cabang  = $('#cabang').val();
                     if (user == 'pusat') {
                         //keterangan cabang mengadakan diklat
+                        $.ajax({
+                            url:'{{ route("diklat.diklat_tot") }}',
+                            type: 'get',
+                            dataType: 'json',
+                            data:{dari:dari, sampai:sampai},
+                            success:function(data) {
+                                document.getElementById('cb').innerHTML = data;
+                                console.log(data);
+                            }
+                        });
+                        $.ajax({
+                                url:'{{ route("diklat.diklat_program_tot") }}',
+                                type: 'get',
+                                dataType: 'json',
+                                data:{dari:dari, sampai:sampai},
+                                success:function(data) {
+                                    document.getElementById('cb3').innerHTML = data;
+                                    console.log(data);
+                                }
+                            });
                         $.ajax({
                             url:'{{ route("diklat.diklat_cabang_tot") }}',
                             type: 'get',
