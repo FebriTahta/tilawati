@@ -628,7 +628,7 @@ class DiklatCont extends Controller
             # code...
             if(!empty($request->dari))
             {
-                $data = DB::table('pelatihans')->where('jenis','diklat')
+                $data = DB::table('pelatihans')->where('jenis','diklat')->where('cabang_id',$cabang_id)
                 ->whereBetween('tanggal', array($request->dari, $request->sampai))
                 ->select('program_id', DB::raw('count(*) as total'))
                 ->groupBy('program_id')
@@ -637,7 +637,7 @@ class DiklatCont extends Controller
             }
             else
             {
-                $data = DB::table('pelatihans')->where('jenis', 'diklat')
+                $data = DB::table('pelatihans')->where('jenis', 'diklat')->where('cabang_id',$cabang_id)
                 ->select('program_id', DB::raw('count(*) as total'))
                 ->groupBy('program_id')
                 ->get()->count();
