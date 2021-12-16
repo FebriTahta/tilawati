@@ -833,26 +833,26 @@
                     });
 
                     //total diklat dan cabang yang mengadakan diklat
-                    $.ajax({
-                        url:'{{ route("diklat.diklat_tot") }}',
-                        type: 'get',
-                        dataType: 'json',
-                        data:{dari:dari, sampai:sampai},
-                        success:function(data) {
-                            document.getElementById('cb').innerHTML = data;
-                            console.log(data);
-                        }
-                    });
-                    $.ajax({
-                            url:'{{ route("diklat.diklat_program_tot") }}',
-                            type: 'get',
-                            dataType: 'json',
-                            data:{dari:dari, sampai:sampai},
-                            success:function(data) {
-                                document.getElementById('cb3').innerHTML = data;
-                                console.log(data);
-                            }
-                        });
+                    // $.ajax({
+                    //     url:'{{ route("diklat.diklat_tot") }}',
+                    //     type: 'get',
+                    //     dataType: 'json',
+                    //     data:{dari:dari, sampai:sampai},
+                    //     success:function(data) {
+                    //         document.getElementById('cb').innerHTML = data;
+                    //         console.log(data);
+                    //     }
+                    // });
+                    // $.ajax({
+                    //         url:'{{ route("diklat.diklat_program_tot") }}',
+                    //         type: 'get',
+                    //         dataType: 'json',
+                    //         data:{dari:dari, sampai:sampai},
+                    //         success:function(data) {
+                    //             document.getElementById('cb3').innerHTML = data;
+                    //             console.log(data);
+                    //         }
+                    //     });
                     var user    = $('#user').val();
                     var cabang  = $('#cabang').val();
                     if (user == 'pusat') {
@@ -923,6 +923,17 @@
                         });
                     }else{
                         // data diklat cabang
+                        $.ajax({
+                            url:'/diklat-diklat-total-diklat-cabang/'+cabang,
+                            type: 'get',
+                            dataType: 'json',
+                            data:{dari:dari, sampai:sampai},
+                            success:function(data) {
+                                document.getElementById('cb2').innerHTML = data;
+                                console.log(data);
+                            }
+                        });
+
                         $('.table-diklat').DataTable({
                             //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
                             destroy: true,

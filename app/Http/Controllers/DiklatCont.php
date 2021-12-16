@@ -727,5 +727,19 @@ class DiklatCont extends Controller
             }
         }
     }
+
+    public function total_diklat_dari_cabang(Request $request, $cabang_id)
+    {
+        if(request()->ajax())
+        {
+            if(!empty($request->dari)){
+                # code...
+            }
+            else {
+                # code...
+                $data = Pelatihhan::where('cabang_id',$cabang_id)->where('jenis','diklat')->count();
+            }
+        }
+    }
     
 }
