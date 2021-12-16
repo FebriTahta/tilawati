@@ -951,7 +951,7 @@
                                 name:'peserta'
                                 },
                                 {
-                                data:'tempat_diklat',
+                                data:'tempat',
                                 name:'tempat'
                                 },
                                 {
