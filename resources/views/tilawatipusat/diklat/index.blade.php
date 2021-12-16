@@ -86,6 +86,15 @@
                                 
                             @endcomponent
                         </div>
+                        <div class="col-xl-6">
+                            @component('common-tilawatipusat.dashboard-widget')
+                            
+                                @slot('title') <a href="#" data-toggle="modal" data-target="#mod_program"> <b id="cb3"> ??? </b><br><small> Program Diklat</small></a>@endslot
+                                @slot('iconClass') fa fa-book  @endslot
+                                @slot('price')   @endslot
+                                
+                            @endcomponent
+                        </div>
                         @endif
                     </div>
 
@@ -942,6 +951,16 @@
                                 console.log(data);
                             }
                         });
+                        $.ajax({
+                                url:'/diklat-diklat-total-program-cabang/'cabang,
+                                type: 'get',
+                                dataType: 'json',
+                                data:{dari:dari, sampai:sampai},
+                                success:function(data) {
+                                    document.getElementById('cb3').innerHTML = data;
+                                    console.log(data);
+                                }
+                            });
 
                         $('.table-diklat').DataTable({
                             //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization

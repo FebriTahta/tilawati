@@ -307,6 +307,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     Route::get('/diklat-diklat-program-data/{program_id}',[DiklatCont::class,'diklat_program_data_view']);
     Route::get('/diklat-diklat-data-program/{program_id}',[DiklatCont::class,'diklat_data_program']);
     Route::get('/diklat-diklat-total-diklat-program/{program_id}',[DiklatCont::class, 'total_diklat_program']);
+    Route::get('/diklat-diklat-total-program-cabang/{cabang_id}',[DiklatCont::class, 'diklat_program_cabang_total']);
 
     Route::get('/halaman-update-data-peserta/{peserta_id}',[PesertaCont::class, 'update_peserta_view']);
     Route::get('/diklat-total-seluruh-peserta-bersyahadah',[PesertaCont::class, 'total_seluruh_peserta_bersyahadah']);

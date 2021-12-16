@@ -622,6 +622,30 @@ class DiklatCont extends Controller
         }
     }
 
+    public function diklat_program_cabang_total(Request $request, $cabang_id)
+    {
+        if (request()->ajax()) {
+            # code...
+            if(!empty($request->dari))
+            {
+                $data = DB::table('pelatihans')->where('jenis','diklat')
+                ->whereBetween('tanggal', array($request->dari, $request->sampai))
+                ->select('program_id', DB::raw('count(*) as total'))
+                ->groupBy('program_id')
+                ->get()->count();
+                return response()->json($data,200);
+            }
+            else
+            {
+                $data = DB::table('pelatihans')->where('jenis', 'diklat')
+                ->select('program_id', DB::raw('count(*) as total'))
+                ->groupBy('program_id')
+                ->get()->count();
+                return response()->json($data,200);
+            }
+        }
+    }
+
     public function diklat_program_data(Request $request)
     {
         if(request()->ajax())
