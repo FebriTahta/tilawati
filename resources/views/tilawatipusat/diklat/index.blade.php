@@ -952,7 +952,7 @@
                             }
                         });
                         $.ajax({
-                                url:'/diklat-diklat-total-program-cabang/'cabang,
+                                url:'/diklat-diklat-total-program-cabang/'+cabang,
                                 type: 'get',
                                 dataType: 'json',
                                 data:{dari:dari, sampai:sampai},
