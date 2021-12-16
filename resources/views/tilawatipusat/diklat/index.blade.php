@@ -46,6 +46,7 @@
                                 </div>
                             </div>
                         </div>
+                        @if (auth()->user()->role == 'pusat')
                         <div class="col-xl-4">
                             @component('common-tilawatipusat.dashboard-widget')
                             
@@ -55,7 +56,7 @@
                                 
                             @endcomponent
                         </div>
-                        @if (auth()->user()->role == 'pusat')
+                        
                         <div class="col-xl-4">
                             @component('common-tilawatipusat.dashboard-widget')
                             
@@ -65,7 +66,6 @@
                                 
                             @endcomponent
                         </div>
-                        @endif
 
                         <div class="col-xl-4">
                             @component('common-tilawatipusat.dashboard-widget')
@@ -76,6 +76,7 @@
                                 
                             @endcomponent
                         </div>
+                        @endif
                     </div>
 
                     <div class="row">
