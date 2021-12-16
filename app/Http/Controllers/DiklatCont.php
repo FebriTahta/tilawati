@@ -261,6 +261,9 @@ class DiklatCont extends Controller
                         ->addColumn('cabang', function ($data) {
                             return $data->cabang->name;
                         })
+                        ->addColumn('pelatihan_id', function ($data) {
+                            return $data->id;
+                        })
                         ->addColumn('program', function ($data) {
                             return $data->program->name;
                         })
@@ -299,7 +302,7 @@ class DiklatCont extends Controller
                                 return Carbon::parse($data->tanggal)->isoFormat('dddd, D MMMM Y');
                             }
                         })
-                ->rawColumns(['cabang','tanggal','program','action','peserta','groupwa','flyer','linkpendaftaran'])
+                ->rawColumns(['cabang','tanggal','program','pelatihan_id','action','peserta','groupwa','flyer','linkpendaftaran'])
                 ->make(true);
             }
         }
