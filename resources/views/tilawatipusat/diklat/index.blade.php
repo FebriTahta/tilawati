@@ -876,6 +876,28 @@
                                 
                             ]
                         });
+
+                        $('.table-diklat-program').DataTable({
+                        //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
+                            destroy: true,
+                            processing: true,
+                            serverSide: true,
+                            ajax: {
+                                url:'{{ route("diklat.diklat_program_data") }}',
+                                data:{dari:dari, sampai:sampai}
+                            },
+                            columns: [
+                                {
+                                data:'program',
+                                name:'program.name'
+                                },
+                                {
+                                data:'action',
+                                name:'action'
+                                },
+                                
+                            ]
+                        });
                         
                         $.ajax({
                             url:'{{ route("diklat.diklat_tot") }}',
@@ -962,6 +984,29 @@
                             ]
                         });
                     }else{
+                        
+                        $('.table-diklat-program').DataTable({
+                        //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
+                            destroy: true,
+                            processing: true,
+                            serverSide: true,
+                            ajax: {
+                                url:'/diklat-diklat-program-cabang/' +cabang,
+                                data:{dari:dari, sampai:sampai}
+                            },
+                            columns: [
+                                {
+                                data:'program',
+                                name:'program.name'
+                                },
+                                {
+                                data:'action',
+                                name:'action'
+                                },
+                                
+                            ]
+                        });
+                        
                         // data diklat cabang
                         $.ajax({
                             url:'/diklat-diklat-total-diklat-cabang/'+cabang,
