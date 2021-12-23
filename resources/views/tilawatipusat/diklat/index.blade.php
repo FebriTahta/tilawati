@@ -855,6 +855,28 @@
                     var cabang  = $('#cabang').val();
                     if (user == 'pusat') {
                         //keterangan cabang mengadakan diklat
+                        $('.table-diklat-program').DataTable({
+                        //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
+                            destroy: true,
+                            processing: true,
+                            serverSide: true,
+                            ajax: {
+                                url:'{{ route("diklat.diklat_program_data") }}',
+                                data:{dari:dari, sampai:sampai}
+                            },
+                            columns: [
+                                {
+                                data:'program',
+                                name:'program.name'
+                                },
+                                {
+                                data:'action',
+                                name:'action'
+                                },
+                                
+                            ]
+                        });
+                        
                         $.ajax({
                             url:'{{ route("diklat.diklat_tot") }}',
                             type: 'get',
@@ -1030,28 +1052,6 @@
                             {
                             data:'cabang',
                             name:'cabang.name'
-                            },
-                            {
-                            data:'action',
-                            name:'action'
-                            },
-                            
-                        ]
-                    });
-
-                    $('.table-diklat-program').DataTable({
-                        //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
-                        destroy: true,
-                        processing: true,
-                        serverSide: true,
-                        ajax: {
-                            url:'{{ route("diklat.diklat_program_data") }}',
-                            data:{dari:dari, sampai:sampai}
-                        },
-                        columns: [
-                            {
-                            data:'program',
-                            name:'program.name'
                             },
                             {
                             data:'action',
