@@ -598,6 +598,41 @@ class DiklatCont extends Controller
         }
     }
 
+    public function diklat_cabang_pilih(Request $request, $cabang_id)
+    {
+        if(request()->ajax())
+        {
+            if(!empty($request->dari))
+            {
+                # code...
+                $data = Pelatihan::where('cabang_id',$cabang_id)->whereBetween('tanggal', array($request->dari, $request->sampai))->where('jenis','diklat')->with('program')->select('program_id')->distinct();
+                return DataTables::of($data)
+                ->addColumn('program', function ($data) {
+                    return $data->program->name;
+                })
+                ->addColumn('action', function ($data) {
+                    $btn = '<a href="/diklat-diklat-program-data/'.$data->program->id.'" class="btn btn-sm btn-info"> check </a>';
+                    return $btn;
+                })
+                ->rawColumns(['program','action'])
+                ->make(true);
+            }else {
+                # code...
+                $data = Pelatihan::where('cabang_id',$cabang_id)->with('program')->where('jenis','diklat')->select('program_id')->distinct();
+                return DataTables::of($data)
+                ->addColumn('program', function ($data) {
+                    return $data->program->name;
+                })
+                ->addColumn('action', function ($data) {
+                    $btn = '<a href="/diklat-diklat-program-data/'.$data->program->id.'" class="btn btn-sm btn-info"> check </a>';
+                    return $btn;
+                })
+                ->rawColumns(['program','action'])
+                ->make(true);
+            }
+        }
+    }
+
     public function diklat_program_total(Request $request)
     {
         if (request()->ajax()) {
