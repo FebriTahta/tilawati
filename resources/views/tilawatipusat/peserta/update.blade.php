@@ -41,7 +41,7 @@
         </div>
         <div class="form-group  col-12 col-xl-6">
             <label for=""><i class="text-danger"></i> Tempat Lahir (Alternatif)</label>
-            <input type="text" class="form-control" value="{{$peserta->tmptlahir2}}">
+            <input type="text" class="form-control text-uppercase" value="{{$peserta->tmptlahir2}}">
         </div>
         <div class="form-group col-12 col-xl-6">
             <label for="tgllahir"><i class="text-danger">*</i> Tanggal Lahir</label>
