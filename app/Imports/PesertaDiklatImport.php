@@ -168,8 +168,11 @@ class PesertaDiklatImport implements ToCollection, WithStartRow, WithChunkReadin
                                 $telephone  = substr($phone,1,15);
                             }
                         }
-
-                        $masuk = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row[5]);
+                        if ($row[5] !== null) {
+                        
+                            $masuk1 = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row[5]);
+                            
+                        }
                         
                         $dt_pel = Peserta::updateOrCreate(
                             [
@@ -179,7 +182,7 @@ class PesertaDiklatImport implements ToCollection, WithStartRow, WithChunkReadin
                                 'telp'        => $telephone,
                                 'name'        => $row[0],
                                 'alamat'      => $row[1],
-                                'tgllahir'    => $masuk,
+                                'tgllahir'    => $masuk1,
                                 'jilid'       => $row[7],
                                 'kriteria'    => $row[8],
                                 'bersyahadah' => $row[9],
