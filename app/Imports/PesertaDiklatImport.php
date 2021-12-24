@@ -186,8 +186,25 @@ class PesertaDiklatImport implements ToCollection, WithStartRow, WithChunkReadin
                                 'gelar'       => $row[15],
 
                             ]
-                        );
+                            );
                             
+                        }else {
+                            # code...
+                            $dt_pel = Peserta::updateOrCreate(
+                                [
+                                    'id' => $peserta->id
+                                ],
+                                [
+                                    'telp'        => $telephone,
+                                    'name'        => $row[0],
+                                    'alamat'      => $row[1],
+                                    'jilid'       => $row[7],
+                                    'kriteria'    => $row[8],
+                                    'bersyahadah' => $row[9],
+                                    'gelar'       => $row[15],
+    
+                                ]
+                                );
                         }
                         
                         foreach ( $peserta->pelatihan->program->penilaian as $key => $value) {
