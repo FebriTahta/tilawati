@@ -26,10 +26,12 @@
             <label for="nama">Nama Peserta</label>
             <input type="text" class="form-control text-uppercase" value="{{$peserta->name}}" id="nama" name="name"  >    
         </div>
+        @if ($peserta->gelar != null)
         <div class="form-group col-xl-2">
             <label for="nama">Gelar</label>
             <input type="text" class="form-control" value="{{$peserta->gelar}}" id="gelar" name="gelar">    
         </div>
+        @endif
         <div class="form-group col-12">
             <h5>BIODATA</h5>
         </div>
@@ -41,7 +43,7 @@
         </div>
         <div class="form-group  col-12 col-xl-6">
             <label for=""><i class="text-danger"></i> Tempat Lahir (Alternatif)</label>
-            <input type="text" class="form-control text-uppercase" value="{{$peserta->tmptlahir2}}">
+            <input type="text" class="form-control text-uppercase" name="tmptlahir2" value="{{$peserta->tmptlahir2}}">
         </div>
         <div class="form-group col-12 col-xl-6">
             <label for="tgllahir"><i class="text-danger">*</i> Tanggal Lahir</label>
