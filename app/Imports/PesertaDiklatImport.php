@@ -171,10 +171,7 @@ class PesertaDiklatImport implements ToCollection, WithStartRow, WithChunkReadin
                         if ($row[5] !== null) {
                         
                             $masuk1 = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row[5]);
-                            
-                        }
-                        
-                        $dt_pel = Peserta::updateOrCreate(
+                            $dt_pel = Peserta::updateOrCreate(
                             [
                                 'id' => $peserta->id
                             ],
@@ -190,6 +187,9 @@ class PesertaDiklatImport implements ToCollection, WithStartRow, WithChunkReadin
 
                             ]
                         );
+                            
+                        }
+                        
                         foreach ( $peserta->pelatihan->program->penilaian as $key => $value) {
                             # code...
                             Nilai::updateOrCreate(
