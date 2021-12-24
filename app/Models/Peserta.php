@@ -22,6 +22,7 @@ class Peserta extends Model
         'tanggal',
         'email',
         'tmptlahir',
+        'tmptlahir2',
         'tgllahir',
         'alamat',
         'alamatx',
