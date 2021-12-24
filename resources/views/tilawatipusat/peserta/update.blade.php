@@ -40,7 +40,7 @@
             </select>
         </div>
         <div class="form-group  col-12 col-xl-6">
-            <label for=""><i class="text-danger">*</i> Tempat Lahir (Alternatif)</label>
+            <label for=""><i class="text-danger"></i> Tempat Lahir (Alternatif)</label>
             <input type="text" class="form-control" value="{{$peserta->tmptlahir2}}">
         </div>
         <div class="form-group col-12 col-xl-6">
