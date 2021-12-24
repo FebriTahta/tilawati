@@ -96,7 +96,7 @@
                                     <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
                                         <div id="message"></div>
                                         <table id="datatable-buttons" class="table table-peserta table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
-                                            <thead class="text-bold text-primary" style="text-transform: uppercase; font-size: 12px">
+                                            <thead class="text-bold text-primary" style="text-transform: uppercase; font-size: 11px">
                                                 <tr>
                                                     <th>id</th>
                                                     <th style="5%"><input type="checkbox" id="master"></th>
@@ -116,9 +116,9 @@
                                                     <th>Option</th>
                                                 </tr>
                                             </thead>
-                                            <tbody style="font-size: 12px">
+                                            <tbody style="font-size: 10px">
                                             </tbody>
-                                            <tfoot class="text-primary" style="text-transform: uppercase;font-size: 12px">
+                                            <tfoot class="text-primary" style="text-transform: uppercase;font-size: 11px">
                                                 <tr>
                                                     <th>id</th>
                                                     <th style="5%">pilih</th>
