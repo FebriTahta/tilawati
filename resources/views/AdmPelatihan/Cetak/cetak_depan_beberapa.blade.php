@@ -110,7 +110,11 @@
 				<tr class="atas" style="height: 10px;">
 				<td class="atas" style="width: 170px; height: 10px; ">Tempat Tanggal Lahir&nbsp;</td>
 				<td class="atas" style="width: 11px; height: 10px;">:</td><?php date_default_timezone_set('Asia/Jakarta'); $date=$item->tgllahir;?>
+				@if ($item->tmptlahir2 !== null)
+				<td class="atas" style="width: 750px; height: 10px;text-transform: uppercase" >{{ $item->tmptlahir2 }}, {{ Carbon\Carbon::parse($date)->isoFormat('D MMMM Y') }}&nbsp;</td>
+				@else
 				<td class="atas" style="width: 750px; height: 10px;text-transform: uppercase" >{{ $item->tmptlahir }}, {{ Carbon\Carbon::parse($date)->isoFormat('D MMMM Y') }}&nbsp;</td>
+				@endif
 				<td class="atas" style="width: 52px; height: 10px;">&nbsp;</td>
 				</tr>
 				{{-- @if ($item->pelatihan->keterangan == 'santri')

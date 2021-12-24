@@ -49,7 +49,11 @@
 				<tr class="atas" style="height: 10px;">
 				<td class="atas" style="width: 200px; height: 10px;">Tempat Tanggal Lahir&nbsp;</td>
 				<td class="atas" style="width: 11px; height: 10px;">:</td><?php $tgl_lahir = ($item->tgllahir - 25569) * 86400?>
+				@if ($item->tmptlahir2 !== null)
+				<td class="atas" style="width: 562px; height: 10px; font-weight: bold" >{{ $item->tmptlahir2 }}, {{ gmdate('d F Y',$tgl_lahir) }}&nbsp;</td>
+				@else
 				<td class="atas" style="width: 562px; height: 10px; font-weight: bold" >{{ $item->tmptlahir }}, {{ gmdate('d F Y',$tgl_lahir) }}&nbsp;</td>
+				@endif
 				<td class="atas" style="width: 52px; height: 10px;">&nbsp;</td>
 				</tr>
 				<tr class="atas" style="height: 9px;">
