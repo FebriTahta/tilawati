@@ -46,17 +46,11 @@ class PesertaDiklatImport implements ToCollection, WithStartRow, WithChunkReadin
             # code...
             // if ($key >= 1) {
                     
-                    if ($row[5] !== null) {
-                        
-                        $masuk = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row[5]);
-                        
-                    }else{
-                        $masuk = '';
-                    }
-                    
                     $diklat = Pelatihan::where('id',$this->id)->first();
                     $peserta= Peserta::where('name',$row[0])->where('pelatihan_id', $this->id)->first();
+                    $masuk = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row[5]);
                     if ($peserta == null) {
+                        
                         # code...
                         $dt_pel = new Peserta;
                         $dt_pel->phonegara_id = 175;
