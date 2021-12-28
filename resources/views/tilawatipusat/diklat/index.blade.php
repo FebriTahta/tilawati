@@ -766,6 +766,7 @@
                 var program_id = button.data('program')
                 var cabang_id = button.data('cabang')
                 var groupwa = button.data('groupwa')
+                var sampai_tanggal = button.data('sampai_tanggal')
                 var modal   = $(this)
                 modal.find('.modal-body #id_edit').val(id);
                 modal.find('.modal-body #tempat_edit').val(tempat);
@@ -774,6 +775,7 @@
                 modal.find('.modal-body #program_edit').val(program_id);
                 modal.find('.modal-body #cabang_edit').val(cabang_id);
                 modal.find('.modal-body #groupwa1').val(groupwa);
+                modal.find('.modal-body #sampai_tanggal').val(sampai_tanggal);
                 
             })
 
