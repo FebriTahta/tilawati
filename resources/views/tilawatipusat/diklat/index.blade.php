@@ -375,7 +375,7 @@
                                                             <div class="col-md-6 col-12 form-group">
                                                                 <label for="">sampai tanggal</label>
                                                                 <small>(boleh kosong bila 1 hari)</small>
-                                                                <input type="date" id="sampai_tanggal" name="sampai_tanggal" class="form-control text-capitalize" required>
+                                                                <input type="date" id="sampai_tanggal" name="sampai" class="form-control text-capitalize" required>
                                                             </div>
                                                             <div class="col-md-6 col-12 form-group">
                                                                 <label for="">cabang</label>
