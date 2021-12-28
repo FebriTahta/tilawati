@@ -58,10 +58,10 @@
 							# code...
 							if ($item->kabupaten !== null) {
 								# code...
-								$text = $item->alamat.' '.substr($item->kelurahan->nama,0).' '.substr($item->kecamatan->nama,0).' '.substr($item->kabupaten->nama,10);
+								$text = $item->alamat.' '.substr($item->kecamatan->nama,0).' '.substr($item->kabupaten->nama,10);
 							} else {
 								# code...
-								$text = $item->alamat.' '.substr($item->kelurahan->nama,0).' '.substr($item->kecamatan->nama,0);
+								$text = $item->alamat.' '.substr($item->kecamatan->nama,0);
 							}
 						}else {
 							# code...
@@ -79,10 +79,10 @@
 							# code...
 							if ($item->kabupaten !== null) {
 								# code...
-								$text = $item->alamat.' '.substr($item->kelurahan->nama,0).' '.substr($item->kecamatan->nama,0).' '.substr($item->kabupaten->nama,5);
+								$text = $item->alamat.' '.substr($item->kecamatan->nama,0).' '.substr($item->kabupaten->nama,5);
 							} else {
 								# code...
-								$text = $item->alamat.' '.substr($item->kelurahan->nama,0).' '.substr($item->kecamatan->nama,0);
+								$text = $item->alamat.' '.substr($item->kecamatan->nama,0);
 							}
 							
 							
