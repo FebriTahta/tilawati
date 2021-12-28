@@ -26,29 +26,42 @@
             <td style="width: 2%"> : </td>
             <td><b>{{$pes->name}}</b></td>
         </tr>
+        @if ($pes->alamatx == null)
+            <tr>
+                <td style="width: 10%">Alamat</td>
+                <td style="width: 2%"> : </td>
+                <td style="text-transform: uppercase">
+                    <b>
+                        {{-- @if ($pes->alamatx == null)
+                            @if ($pes->kelurahan !== null && $pes->kecamatan !== null)
+                                <span style="color: red">{{$pes->alamat}} - {{$pes->kelurahan->nama}} - {{$pes->kecamatan->nama}} </span>
+                            @else
+                            <span style="color: red">{{$pes->alamat}} </span>
+                            @endif
+                            
+                        @else
+                        {{$pes->alamatx}} 
+                        @endif --}}
+                        @if ($pes->kelurahan !== null && $pes->kecamatan !== null)
+                                <span style="color: red">{{$pes->alamat}} - {{$pes->kelurahan->nama}} - {{$pes->kecamatan->nama}} </span>
+                        @else
+                            <span style="color: red">{{$pes->alamat}} </span>
+                        @endif
+                    </b>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 10%">Kota</td>
+                <td style="width: 2%"> : </td>
+                <td><b>{{$pes->kabupaten->nama}}</b></td>
+            </tr> 
+        @else
         <tr>
             <td style="width: 10%">Alamat</td>
             <td style="width: 2%"> : </td>
-            <td style="text-transform: uppercase">
-                <b>
-                    @if ($pes->alamatx == null)
-                        @if ($pes->kelurahan !== null && $pes->kecamatan !== null)
-                            <span style="color: red">{{$pes->alamat}} - {{$pes->kelurahan->nama}} - {{$pes->kecamatan->nama}} </span>
-                        @else
-                        <span style="color: red">{{$pes->alamat}} </span>
-                        @endif
-                        
-                    @else
-                    {{$pes->alamatx}} 
-                    @endif
-                </b>
-            </td>
-        </tr>
-        <tr>
-            <td style="width: 10%">Kota</td>
-            <td style="width: 2%"> : </td>
-            <td><b>{{$pes->kabupaten->nama}}</b></td>
+            <td><b>{{$pes->alamatx}}</b></td>
         </tr> 
+        @endif
         <tr>
             <td style="width: 10%">Phone</td>
             <td style="width: 2%"> : </td>
