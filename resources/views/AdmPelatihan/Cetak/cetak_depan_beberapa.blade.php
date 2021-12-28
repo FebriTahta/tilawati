@@ -7,14 +7,14 @@
 	<style>
 		body{
 			font-family: Arial, Helvetica, sans-serif;
-			font-size: 13px;
+			font-size: 14px;
 		}
 		.page-break {
 			page-break-after: always;
 			page-break-inside: avoid;
 		}
 		.atas {
-			font-size: 13px;
+			font-size: 14px;
 			font-family: Arial, Helvetica, sans-serif;
 		}
 		.bawah {
