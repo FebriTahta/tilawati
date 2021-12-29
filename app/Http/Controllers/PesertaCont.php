@@ -1839,79 +1839,165 @@ class PesertaCont extends Controller
         $slug           = Str::slug($request->name.'-'.$dp->program->name.'-'.
                           Carbon::parse($dp->tanggal)->isoFormat('D-MMMM-Y').'-'.$dp->cabang->name.'-'.
                           $dp->cabang->kabupaten->nama);
-                        if ($tempatlahir == null) {
+
+                        if ($kabupaten_kota->provinsi_id == null) {
                             # code...
-                            $peserta                = Peserta::updateOrCreate(
-                                [
-                                    'id'            => $request->id
-                                ],
-                                [
-                                    'nik'           => $request->nik,
-                                    // 'phonegara_id'  => $kode_negara,
-                                    // 'pelatihan_id'  => $request->pelatihan_id,
-                                    // 'program_id'    => $diklat->program_id,
-                                    // 'cabang_id'     => $diklat->cabang->id,
-                                    'lembaga_id'    => $request->lembaga_id,
-                                    'provinsi_id'   => $kabupaten_kota->provinsi_id,
-                                    'kabupaten_id'  => $kabupaten_kota->id,
-                                    'kecamatan_id'  => $request->kecamatan_id,
-                                    'kelurahan_id'  => $request->kelurahan_id,
-                                    // 'slug'          => $slug,
-                                    'tanggal'       => $dp->tanggal,
-                                    'name'          => $request->name,
-                                    'gelar'         => $request->gelar,
-                                    // 'tmptlahir'     => $tempatlahir->nama,
-                                    'tmptlahir2'    => strtoupper($request->tmptlahir2),
-                                    'tgllahir'      => $request->tgllahir,
-                                    'alamat'        => $request->alamat,
-                                    'alamatx'       => $request->alamatx,
-                                    'kota'          => $kabupaten_kota->nama,
-                                    'telp'          => $request->phone,
-                                    'pos'           => $request->pos,
-                                    'email'         => $request->email,
-                                    'bersyahadah'   => $request->bersyahadah,
-                                    'jilid'         => $request->jilid,
-                                    'kriteria'      => $request->kriteria,
-                                    'munaqisy'      => $request->munaqisy,
-                                ]
-                            );
-                        }else {
+                            if ($tempatlahir == null) {
+                                # code...
+                                $peserta                = Peserta::updateOrCreate(
+                                    [
+                                        'id'            => $request->id
+                                    ],
+                                    [
+                                        'nik'           => $request->nik,
+                                        // 'phonegara_id'  => $kode_negara,
+                                        // 'pelatihan_id'  => $request->pelatihan_id,
+                                        // 'program_id'    => $diklat->program_id,
+                                        // 'cabang_id'     => $diklat->cabang->id,
+                                        'lembaga_id'    => $request->lembaga_id,
+                                        // 'provinsi_id'   => $kabupaten_kota->provinsi_id,
+                                        'kabupaten_id'  => $kabupaten_kota->id,
+                                        'kecamatan_id'  => $request->kecamatan_id,
+                                        'kelurahan_id'  => $request->kelurahan_id,
+                                        // 'slug'          => $slug,
+                                        'tanggal'       => $dp->tanggal,
+                                        'name'          => $request->name,
+                                        'gelar'         => $request->gelar,
+                                        // 'tmptlahir'     => $tempatlahir->nama,
+                                        'tmptlahir2'    => strtoupper($request->tmptlahir2),
+                                        'tgllahir'      => $request->tgllahir,
+                                        'alamat'        => $request->alamat,
+                                        'alamatx'       => $request->alamatx,
+                                        'kota'          => $kabupaten_kota->nama,
+                                        'kota2'         => strtoupper($request->kota2),
+                                        'telp'          => $request->phone,
+                                        'pos'           => $request->pos,
+                                        'email'         => $request->email,
+                                        'bersyahadah'   => $request->bersyahadah,
+                                        'jilid'         => $request->jilid,
+                                        'kriteria'      => $request->kriteria,
+                                        'munaqisy'      => $request->munaqisy,
+                                    ]
+                                );
+                            }else {
+                                # code...
+                                $peserta                = Peserta::updateOrCreate(
+                                    [
+                                        'id'            => $request->id
+                                    ],
+                                    [
+                                        'nik'           => $request->nik,
+                                        // 'phonegara_id'  => $kode_negara,
+                                        // 'pelatihan_id'  => $request->pelatihan_id,
+                                        // 'program_id'    => $diklat->program_id,
+                                        // 'cabang_id'     => $diklat->cabang->id,
+                                        'lembaga_id'    => $request->lembaga_id,
+                                        // 'provinsi_id'   => $kabupaten_kota->provinsi_id,
+                                        'kabupaten_id'  => $kabupaten_kota->id,
+                                        'kecamatan_id'  => $request->kecamatan_id,
+                                        'kelurahan_id'  => $request->kelurahan_id,
+                                        // 'slug'          => $slug,
+                                        'tanggal'       => $dp->tanggal,
+                                        'name'          => $request->name,
+                                        'gelar'         => $request->gelar,
+                                        'tmptlahir2'    => strtoupper($request->tmptlahir2),
+                                        'tmptlahir'     => $tempatlahir->nama,
+                                        'tgllahir'      => $request->tgllahir,
+                                        'alamat'        => $request->alamat,
+                                        'alamatx'       => $request->alamatx,
+                                        'kota'          => $kabupaten_kota->nama,
+                                        'kota2'         => strtoupper($request->kota2),
+                                        'telp'          => $request->phone,
+                                        'pos'           => $request->pos,
+                                        'email'         => $request->email,
+                                        'bersyahadah'   => $request->bersyahadah,
+                                        'jilid'         => $request->jilid,
+                                        'kriteria'      => $request->kriteria,
+                                        'munaqisy'      => $request->munaqisy,
+                                    ]
+                                );
+                            }
+
+                        } else {
                             # code...
-                            $peserta                = Peserta::updateOrCreate(
-                                [
-                                    'id'            => $request->id
-                                ],
-                                [
-                                    'nik'           => $request->nik,
-                                    // 'phonegara_id'  => $kode_negara,
-                                    // 'pelatihan_id'  => $request->pelatihan_id,
-                                    // 'program_id'    => $diklat->program_id,
-                                    // 'cabang_id'     => $diklat->cabang->id,
-                                    'lembaga_id'    => $request->lembaga_id,
-                                    'provinsi_id'   => $kabupaten_kota->provinsi_id,
-                                    'kabupaten_id'  => $kabupaten_kota->id,
-                                    'kecamatan_id'  => $request->kecamatan_id,
-                                    'kelurahan_id'  => $request->kelurahan_id,
-                                    // 'slug'          => $slug,
-                                    'tanggal'       => $dp->tanggal,
-                                    'name'          => $request->name,
-                                    'gelar'         => $request->gelar,
-                                    'tmptlahir2'    => strtoupper($request->tmptlahir2),
-                                    'tmptlahir'     => $tempatlahir->nama,
-                                    'tgllahir'      => $request->tgllahir,
-                                    'alamat'        => $request->alamat,
-                                    'alamatx'       => $request->alamatx,
-                                    'kota'          => $kabupaten_kota->nama,
-                                    'telp'          => $request->phone,
-                                    'pos'           => $request->pos,
-                                    'email'         => $request->email,
-                                    'bersyahadah'   => $request->bersyahadah,
-                                    'jilid'         => $request->jilid,
-                                    'kriteria'      => $request->kriteria,
-                                    'munaqisy'      => $request->munaqisy,
-                                ]
-                            );
+                            if ($tempatlahir == null) {
+                                # code...
+                                $peserta                = Peserta::updateOrCreate(
+                                    [
+                                        'id'            => $request->id
+                                    ],
+                                    [
+                                        'nik'           => $request->nik,
+                                        // 'phonegara_id'  => $kode_negara,
+                                        // 'pelatihan_id'  => $request->pelatihan_id,
+                                        // 'program_id'    => $diklat->program_id,
+                                        // 'cabang_id'     => $diklat->cabang->id,
+                                        'lembaga_id'    => $request->lembaga_id,
+                                        'provinsi_id'   => $kabupaten_kota->provinsi_id,
+                                        'kabupaten_id'  => $kabupaten_kota->id,
+                                        'kecamatan_id'  => $request->kecamatan_id,
+                                        'kelurahan_id'  => $request->kelurahan_id,
+                                        // 'slug'          => $slug,
+                                        'tanggal'       => $dp->tanggal,
+                                        'name'          => $request->name,
+                                        'gelar'         => $request->gelar,
+                                        // 'tmptlahir'     => $tempatlahir->nama,
+                                        'tmptlahir2'    => strtoupper($request->tmptlahir2),
+                                        'tgllahir'      => $request->tgllahir,
+                                        'alamat'        => $request->alamat,
+                                        'alamatx'       => $request->alamatx,
+                                        'kota'          => $kabupaten_kota->nama,
+                                        'kota2'         => strtoupper($request->kota2),
+                                        'telp'          => $request->phone,
+                                        'pos'           => $request->pos,
+                                        'email'         => $request->email,
+                                        'bersyahadah'   => $request->bersyahadah,
+                                        'jilid'         => $request->jilid,
+                                        'kriteria'      => $request->kriteria,
+                                        'munaqisy'      => $request->munaqisy,
+                                    ]
+                                );
+                            }else {
+                                # code...
+                                $peserta                = Peserta::updateOrCreate(
+                                    [
+                                        'id'            => $request->id
+                                    ],
+                                    [
+                                        'nik'           => $request->nik,
+                                        // 'phonegara_id'  => $kode_negara,
+                                        // 'pelatihan_id'  => $request->pelatihan_id,
+                                        // 'program_id'    => $diklat->program_id,
+                                        // 'cabang_id'     => $diklat->cabang->id,
+                                        'lembaga_id'    => $request->lembaga_id,
+                                        'provinsi_id'   => $kabupaten_kota->provinsi_id,
+                                        'kabupaten_id'  => $kabupaten_kota->id,
+                                        'kecamatan_id'  => $request->kecamatan_id,
+                                        'kelurahan_id'  => $request->kelurahan_id,
+                                        // 'slug'          => $slug,
+                                        'tanggal'       => $dp->tanggal,
+                                        'name'          => $request->name,
+                                        'gelar'         => $request->gelar,
+                                        'tmptlahir2'    => strtoupper($request->tmptlahir2),
+                                        'tmptlahir'     => $tempatlahir->nama,
+                                        'tgllahir'      => $request->tgllahir,
+                                        'alamat'        => $request->alamat,
+                                        'alamatx'       => $request->alamatx,
+                                        'kota'          => $kabupaten_kota->nama,
+                                        'kota2'         => strtoupper($request->kota2),
+                                        'telp'          => $request->phone,
+                                        'pos'           => $request->pos,
+                                        'email'         => $request->email,
+                                        'bersyahadah'   => $request->bersyahadah,
+                                        'jilid'         => $request->jilid,
+                                        'kriteria'      => $request->kriteria,
+                                        'munaqisy'      => $request->munaqisy,
+                                    ]
+                                );
+                            }
                         }
+                        
+                        
                           
                         \QrCode::size(150)
                         ->format('png') ->generate('https://www.profile.tilawatipusat.com/'.$peserta->slug, public_path('images/'.$peserta->slug.'.png'));
