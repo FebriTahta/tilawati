@@ -1840,7 +1840,7 @@ class PesertaCont extends Controller
                           Carbon::parse($dp->tanggal)->isoFormat('D-MMMM-Y').'-'.$dp->cabang->name.'-'.
                           $dp->cabang->kabupaten->nama);
 
-                        if ($kabupaten_kota->provinsi_id == null) {
+                        if ($kabupaten_kota == null) {
                             # code...
                             if ($tempatlahir == null) {
                                 # code...
