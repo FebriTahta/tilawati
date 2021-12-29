@@ -29,7 +29,7 @@
                         </div>
 
                         @if ($kab_kosong != 0)
-                        <div class="col-xl-12">
+                        <div class="col-xl-12" style="display: none">
                             @component('common-tilawatipusat.dashboard-widget')
                             
                                 @slot('title') <b id="kabkos"> ??? </b> <b class="text-danger"> Peserta dengan Kab - Kota Kosong / Salah Penulisan </b> @endslot
