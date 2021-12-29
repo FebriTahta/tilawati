@@ -50,17 +50,17 @@ class DiklatCont extends Controller
                                 $cb = Cabang::where('name', $data->cabang->name)->count();
                                 if ($cb > 1) {
                                     # code...
-                                    return $data->cabang->name.' '.substr($data->cabang->kabupaten->nama,5);
+                                    return $data->cabang->name.' - '.substr($data->cabang->kabupaten->nama,5);
                                 } else {
                                     # code...
-                                    return $data->cabang->name.' '.substr($data->cabang->kabupaten->nama,5);
+                                    return $data->cabang->name.' - '.substr($data->cabang->kabupaten->nama,5);
                                 }
                             }else {
                                 # code...
                                 $cb = Cabang::where('name', $data->cabang->name)->count();
                                 if ($cb > 1) {
                                     # code...
-                                    return $data->cabang->name.' '.substr($data->cabang->kabupaten->nama,5);
+                                    return $data->cabang->name.' - '.substr($data->cabang->kabupaten->nama,5);
                                 } else {
                                     # code...
                                     return $data->cabang->name;
@@ -144,17 +144,17 @@ class DiklatCont extends Controller
                                 $cb = Cabang::where('name', $data->cabang->name)->count();
                                 if ($cb > 1) {
                                     # code...
-                                    return $data->cabang->name.' '.substr($data->cabang->kabupaten->nama,5);
+                                    return $data->cabang->name.' - '.substr($data->cabang->kabupaten->nama,5);
                                 } else {
                                     # code...
-                                    return $data->cabang->name.' '.substr($data->cabang->kabupaten->nama,5);
+                                    return $data->cabang->name.' - '.substr($data->cabang->kabupaten->nama,5);
                                 }
                             }else {
                                 # code...
                                 $cb = Cabang::where('name', $data->cabang->name)->count();
                                 if ($cb > 1) {
                                     # code...
-                                    return $data->cabang->name.' '.substr($data->cabang->kabupaten->nama,5);
+                                    return $data->cabang->name.' - '.substr($data->cabang->kabupaten->nama,5);
                                 } else {
                                     # code...
                                     return $data->cabang->name;
