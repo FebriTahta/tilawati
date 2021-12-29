@@ -91,6 +91,10 @@
                 @endif
             </select>
         </div>
+        <div class="form-group  col-12 col-xl-6">
+            <label for=""><i class="text-danger"></i> Kab/Kota Alternatif</label>
+            <input type="text" class="form-control" name="kota2">
+        </div>
         <div class="form-group  col-12 col-xl-12">
             <label for="alamat"><i class="text-danger">*</i> Alamat Sesuai KTP</label>
             <textarea name="alamat" class="form-control text-uppercase" id="" cols="30" rows="5"  >{{$peserta->alamat}}</textarea>

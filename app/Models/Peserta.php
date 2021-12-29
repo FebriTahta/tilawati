@@ -37,6 +37,7 @@ class Peserta extends Model
         'kriteria',
         'bersyahadah',
         'kota',
+        'kota2',
         'status'
 
     ];
