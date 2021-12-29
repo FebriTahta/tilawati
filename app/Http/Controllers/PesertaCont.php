@@ -125,7 +125,13 @@ class PesertaCont extends Controller
                                 return $data->kabupaten->nama;
                             } else {
                                 # code...
-                                return '<button data-target="#addkota" data-id="'.$data->id.'" data-toggle="modal" class="btn btn-sm btn-danger">kosong / salah penulisan</button>';
+                                if ($data->kota2 !== null) {
+                                    # code...
+                                    return $data->kota2;
+                                } else {
+                                    # code...
+                                    return '<button data-target="#addkota" data-id="'.$data->id.'" data-toggle="modal" class="btn btn-sm btn-danger">kosong / salah penulisan</button>';
+                                }
                             }
                         })
                         ->addColumn('kecamatan', function ($data) {
