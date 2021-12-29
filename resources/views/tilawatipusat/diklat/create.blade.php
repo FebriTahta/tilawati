@@ -162,7 +162,7 @@
                             results:  $.map(data, function (item) {
                                 return {
                                     text: item.kode,
-                                    text: item.name,
+                                    text: item.name+item.id,
                                     id: item.id   
                                 }
                             })
