@@ -93,7 +93,7 @@
         </div>
         <div class="form-group  col-12 col-xl-6">
             <label for=""><i class="text-danger"></i> Kab/Kota Alternatif</label>
-            <input type="text" style="text-transform: uppercase" class="form-control" name="kota2">
+            <input type="text" style="text-transform: uppercase" class="form-control" value="{{$peserta->kota2}}" name="kota2">
         </div>
         <div class="form-group  col-12 col-xl-12">
             <label for="alamat"><i class="text-danger">*</i> Alamat Sesuai KTP</label>
