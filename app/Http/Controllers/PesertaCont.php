@@ -485,7 +485,7 @@ class PesertaCont extends Controller
                         'provinsi_id' => $provinsi_id,
                         'kabupaten_id' => $kabupaten_id,
                         'kota' => $kota,
-                        'kota2' => $request->$kota2,
+                        'kota2' => strtoupper($request->$kota2),
                         'status'=>1
                     ]
                 );
@@ -534,7 +534,7 @@ class PesertaCont extends Controller
                     'provinsi_id' => $provinsi_id,
                     'kabupaten_id' => $kabupaten_id,
                     'kota' => $kota,
-                    'kota2' => $request->$kota2,
+                    'kota2' => strtoupper($request->$kota2),
                     'status'=>1
                 ]
             );
