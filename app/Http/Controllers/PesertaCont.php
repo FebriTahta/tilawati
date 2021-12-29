@@ -449,6 +449,8 @@ class PesertaCont extends Controller
     }
 
     public function store(Request $request){
+
+
         $diklat         = Pelatihan::where('id',$request->pelatihan_id)->first();
         $tanggal        = $diklat->tanggal;
         $kabupaten_id   = $request->kota;
@@ -456,12 +458,65 @@ class PesertaCont extends Controller
         $tmptlahir      = Kabupaten::find($request->tmptlahir);
         $kota           = substr($kabupaten->nama,4);
         $tmptlahir      = substr($tmptlahir->nama,4);
-        $provinsi_id    = $kabupaten->provinsi->id;
         $lembaga        = Lembaga::where('id',$request->lembaga_id)->first();
         $slug           = Str::slug($request->name.'-'.$diklat->program->name.'-'.Carbon::parse($tanggal)->isoFormat('MMMM-D-Y').'-'.$diklat->cabang->name.'-'.$diklat->cabang->kabupaten->nama);
-        if ($lembaga !== null) {
+        
+        if ($kabupaten->provinsi->id == null) {
             # code...
-            if ($lembaga->status == 'Aktif') {
+            if ($lembaga !== null) {
+                # code...
+                if ($lembaga->status == 'Aktif') {
+                    # code...
+                    $data = Peserta::updateOrCreate(
+                        [
+                          'id' => $request->id
+                        ],
+                        [
+                            'cabang_id' => $diklat->cabang_id,
+                            'phonegara_id' => 175,
+                            'lembaga_id' => $request->lembaga_id,
+                            'pelatihan_id' => $request->pelatihan_id,
+                            'program_id' => $diklat->program_id,
+                            'tanggal' => $tanggal,
+                            'name' => $request->name,
+                            'email' => $request->email,
+                            'pos' => $request->pos,
+                            'slug' => $slug,
+                            'tmptlahir' => $tmptlahir,
+                            'tgllahir' => $request->tgllahir,
+                            'alamat' => $request->alamat,
+                            'telp' => $request->telp,
+                            // 'provinsi_id' => $provinsi_id,
+                            'kabupaten_id' => $kabupaten_id,
+                            'kota' => $kota,
+                            'kota2' => strtoupper($request->$kota2),
+                            'status'=>1
+                        ]
+                    );
+                    $program = Pelatihan::where('id', $data->pelatihan_id)->first();
+                    $program_id = $program->program_id;
+                    $qr = \QrCode::size(200)
+                        ->format('png')
+                        // ->generate('https://www.tilawatipusat.com/diklat-profile-peserta/'.$data->id.'/'.$program_id.'/'.$data->pelatihan_id, public_path('images/'.$data->id.'qrcode.png'));
+                        ->generate('https://www.profile.tilawatipusat.com/'.$slug, public_path('images/'.$slug.'.png'));
+                        return response()->json(
+                        [
+                           $data,$qr,
+                          'success' => 'Peserta Baru Berhasil Ditambahkan!',
+                          'message' => 'Peserta Baru Berhasil Ditambahkan!'
+                        ]
+                    );
+                }else{
+                    $data = 'error Asal lembaga peserta sudah tidak aktif, mohon hubungi admin!';
+                    return response()->json(
+                        [
+                            $data,
+                            'error' => 'Asal lembaga peserta sudah tidak aktif, mohon hubungi admin!',
+                            'message' => 'Asal lembaga peserta sudah tidak aktif, mohon hubungi admin!'
+                        ]
+                    );
+                }
+            } else {
                 # code...
                 $data = Peserta::updateOrCreate(
                     [
@@ -469,17 +524,15 @@ class PesertaCont extends Controller
                     ],
                     [
                         'cabang_id' => $diklat->cabang_id,
-                        'phonegara_id' => 175,
                         'lembaga_id' => $request->lembaga_id,
                         'pelatihan_id' => $request->pelatihan_id,
                         'program_id' => $diklat->program_id,
                         'tanggal' => $tanggal,
                         'name' => $request->name,
                         'email' => $request->email,
-                        'pos' => $request->pos,
-                        'slug' => $slug,
                         'tmptlahir' => $tmptlahir,
                         'tgllahir' => $request->tgllahir,
+                        'slug'=>$slug,
                         'alamat' => $request->alamat,
                         'telp' => $request->telp,
                         'provinsi_id' => $provinsi_id,
@@ -491,7 +544,7 @@ class PesertaCont extends Controller
                 );
                 $program = Pelatihan::where('id', $data->pelatihan_id)->first();
                 $program_id = $program->program_id;
-                $qr = \QrCode::size(200)
+                $qr = \QrCode::size(100)
                     ->format('png')
                     // ->generate('https://www.tilawatipusat.com/diklat-profile-peserta/'.$data->id.'/'.$program_id.'/'.$data->pelatihan_id, public_path('images/'.$data->id.'qrcode.png'));
                     ->generate('https://www.profile.tilawatipusat.com/'.$slug, public_path('images/'.$slug.'.png'));
@@ -502,56 +555,105 @@ class PesertaCont extends Controller
                       'message' => 'Peserta Baru Berhasil Ditambahkan!'
                     ]
                 );
-            }else{
-                $data = 'error Asal lembaga peserta sudah tidak aktif, mohon hubungi admin!';
-                return response()->json(
+            }
+        }else {
+            # code...
+            $provinsi_id    = $kabupaten->provinsi->id;
+            if ($lembaga !== null) {
+                # code...
+                if ($lembaga->status == 'Aktif') {
+                    # code...
+                    $data = Peserta::updateOrCreate(
+                        [
+                          'id' => $request->id
+                        ],
+                        [
+                            'cabang_id' => $diklat->cabang_id,
+                            'phonegara_id' => 175,
+                            'lembaga_id' => $request->lembaga_id,
+                            'pelatihan_id' => $request->pelatihan_id,
+                            'program_id' => $diklat->program_id,
+                            'tanggal' => $tanggal,
+                            'name' => $request->name,
+                            'email' => $request->email,
+                            'pos' => $request->pos,
+                            'slug' => $slug,
+                            'tmptlahir' => $tmptlahir,
+                            'tgllahir' => $request->tgllahir,
+                            'alamat' => $request->alamat,
+                            'telp' => $request->telp,
+                            'provinsi_id' => $provinsi_id,
+                            'kabupaten_id' => $kabupaten_id,
+                            'kota' => $kota,
+                            'kota2' => strtoupper($request->$kota2),
+                            'status'=>1
+                        ]
+                    );
+                    $program = Pelatihan::where('id', $data->pelatihan_id)->first();
+                    $program_id = $program->program_id;
+                    $qr = \QrCode::size(200)
+                        ->format('png')
+                        // ->generate('https://www.tilawatipusat.com/diklat-profile-peserta/'.$data->id.'/'.$program_id.'/'.$data->pelatihan_id, public_path('images/'.$data->id.'qrcode.png'));
+                        ->generate('https://www.profile.tilawatipusat.com/'.$slug, public_path('images/'.$slug.'.png'));
+                        return response()->json(
+                        [
+                           $data,$qr,
+                          'success' => 'Peserta Baru Berhasil Ditambahkan!',
+                          'message' => 'Peserta Baru Berhasil Ditambahkan!'
+                        ]
+                    );
+                }else{
+                    $data = 'error Asal lembaga peserta sudah tidak aktif, mohon hubungi admin!';
+                    return response()->json(
+                        [
+                            $data,
+                            'error' => 'Asal lembaga peserta sudah tidak aktif, mohon hubungi admin!',
+                            'message' => 'Asal lembaga peserta sudah tidak aktif, mohon hubungi admin!'
+                        ]
+                    );
+                }
+            } else {
+                # code...
+                $data = Peserta::updateOrCreate(
                     [
-                        $data,
-                        'error' => 'Asal lembaga peserta sudah tidak aktif, mohon hubungi admin!',
-                        'message' => 'Asal lembaga peserta sudah tidak aktif, mohon hubungi admin!'
+                      'id' => $request->id
+                    ],
+                    [
+                        'cabang_id' => $diklat->cabang_id,
+                        'lembaga_id' => $request->lembaga_id,
+                        'pelatihan_id' => $request->pelatihan_id,
+                        'program_id' => $diklat->program_id,
+                        'tanggal' => $tanggal,
+                        'name' => $request->name,
+                        'email' => $request->email,
+                        'tmptlahir' => $tmptlahir,
+                        'tgllahir' => $request->tgllahir,
+                        'slug'=>$slug,
+                        'alamat' => $request->alamat,
+                        'telp' => $request->telp,
+                        'provinsi_id' => $provinsi_id,
+                        'kabupaten_id' => $kabupaten_id,
+                        'kota' => $kota,
+                        'kota2' => strtoupper($request->$kota2),
+                        'status'=>1
+                    ]
+                );
+                $program = Pelatihan::where('id', $data->pelatihan_id)->first();
+                $program_id = $program->program_id;
+                $qr = \QrCode::size(100)
+                    ->format('png')
+                    // ->generate('https://www.tilawatipusat.com/diklat-profile-peserta/'.$data->id.'/'.$program_id.'/'.$data->pelatihan_id, public_path('images/'.$data->id.'qrcode.png'));
+                    ->generate('https://www.profile.tilawatipusat.com/'.$slug, public_path('images/'.$slug.'.png'));
+                    return response()->json(
+                    [
+                       $data,$qr,
+                      'success' => 'Peserta Baru Berhasil Ditambahkan!',
+                      'message' => 'Peserta Baru Berhasil Ditambahkan!'
                     ]
                 );
             }
-        } else {
-            # code...
-            $data = Peserta::updateOrCreate(
-                [
-                  'id' => $request->id
-                ],
-                [
-                    'cabang_id' => $diklat->cabang_id,
-                    'lembaga_id' => $request->lembaga_id,
-                    'pelatihan_id' => $request->pelatihan_id,
-                    'program_id' => $diklat->program_id,
-                    'tanggal' => $tanggal,
-                    'name' => $request->name,
-                    'email' => $request->email,
-                    'tmptlahir' => $tmptlahir,
-                    'tgllahir' => $request->tgllahir,
-                    'slug'=>$slug,
-                    'alamat' => $request->alamat,
-                    'telp' => $request->telp,
-                    'provinsi_id' => $provinsi_id,
-                    'kabupaten_id' => $kabupaten_id,
-                    'kota' => $kota,
-                    'kota2' => strtoupper($request->$kota2),
-                    'status'=>1
-                ]
-            );
-            $program = Pelatihan::where('id', $data->pelatihan_id)->first();
-            $program_id = $program->program_id;
-            $qr = \QrCode::size(100)
-                ->format('png')
-                // ->generate('https://www.tilawatipusat.com/diklat-profile-peserta/'.$data->id.'/'.$program_id.'/'.$data->pelatihan_id, public_path('images/'.$data->id.'qrcode.png'));
-                ->generate('https://www.profile.tilawatipusat.com/'.$slug, public_path('images/'.$slug.'.png'));
-                return response()->json(
-                [
-                   $data,$qr,
-                  'success' => 'Peserta Baru Berhasil Ditambahkan!',
-                  'message' => 'Peserta Baru Berhasil Ditambahkan!'
-                ]
-            );
         }
+        
     }
     public function delete(Request $request)
     {
