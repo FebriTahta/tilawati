@@ -66,6 +66,11 @@
 			border-top: 0;
 		}
 
+		td.nilaibawahtot{
+			border-right: 0;
+			border-left: 0;
+		}
+
 		td.nilai3{
 			border-right: 0;
 			border-left: 0;
@@ -270,9 +275,9 @@
 									<th>{{ $i++ }}</th>
 									<td class="nilai6" style="text-transform: uppercase">&nbsp; &nbsp;<b> {{ $item->penilaian->name }}</b></th>
 									{{-- <th colspan="3" class="nilai5"></th> --}}
-									<td class="nilai" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->max }}</td>
-									<td class="nilai2" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->min }}</td>
-									<td class="nilai2"></td>
+									<td class="nilaibawahtot" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->max }}</td>
+									<td class="nilaibawahtot" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->min }}</td>
+									<td class="nilaibawahtot"></td>
 									<th >{{ $item->nominal }}</th>
 								</tr>
 								<?$x++?>
