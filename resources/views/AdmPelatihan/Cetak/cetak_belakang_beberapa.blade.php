@@ -286,6 +286,16 @@
 				<?php 
 					$rata2 = $jumlah
 				?>
+				<tr>
+					<th></th>
+					<td class="nilai6">&nbsp; &nbsp;<b> RATA - RATA NILAI</b></th>
+					<th colspan="3" class="nilai5"></th>
+					<th >
+					
+						{{ $rata2 = $jumlah }}
+					
+						</th>
+				</tr>
 				@endif
 				<tr>
 					<th></th>
