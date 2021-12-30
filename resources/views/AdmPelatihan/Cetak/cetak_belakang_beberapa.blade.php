@@ -9,11 +9,11 @@
 	<style>
 		body{
 			font-family: Arial, Helvetica, sans-serif;
-			font-size: 12px;
+			font-size: 11px;
 			text-transform: capitalize;
 		}
 		.syahadah{
-			font-size: 14px;
+			font-size: 13px;
 		}
 		.page-break {
 			page-break-after: always;
