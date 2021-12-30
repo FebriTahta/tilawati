@@ -273,6 +273,7 @@
 									<td class="nilaibawahtot" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->min }}</td>
 									<td class="nilaibawahtot"></td>
 									<th >{{ $item->nominal }}</th>
+									<?php $total += $item->nominal?>
 								</tr>
 								<?$x++?>
 							@endif
@@ -295,7 +296,7 @@
 						</tr>
 					@else
 					<?php 
-						$rata2 = $jumlah
+						$rata2 = ($jumlah+$total)/4
 					?>
 					<tr>
 						<th></th>
