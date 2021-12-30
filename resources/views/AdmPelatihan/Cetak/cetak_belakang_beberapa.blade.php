@@ -272,6 +272,7 @@
 									{{-- <th colspan="3" class="nilai5"></th> --}}
 									<td class="nilai" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->max }}</td>
 									<td class="nilai2" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->min }}</td>
+									<td class="nilai2"></td>
 									<th >{{ $item->nominal }}</th>
 								</tr>
 								<?$x++?>
