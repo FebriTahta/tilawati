@@ -217,8 +217,7 @@
 	@foreach($peserta as $key=> $p)
 		
 		@if ($p->pelatihan->keterangan == 'instruktur')
-		{{-- TOT Lulus semuanya --}}
-weeeee
+			{{$p->kriteria}}
 		@else
 		{{-- Selain TOT --}}
 		<div style="page-break-inside: avoid">
