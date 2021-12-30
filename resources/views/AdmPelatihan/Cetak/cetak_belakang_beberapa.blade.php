@@ -231,7 +231,7 @@
 				</div>
 				<table 
 				@if ($p->pelatihan->keterangan == 'instruktur')
-				style="width: 850px; margin-left:94px"
+				style="width: 850px; margin-left:85px"
 				@else
 				style="width: 782px; margin-left:154px"
 				@endif  class="table1">
