@@ -218,7 +218,7 @@
 		
 		@if ($p->pelatihan->keterangan == 'instruktur')
 		{{-- TOT Lulus semuanya --}}
-
+weeeee
 		@else
 		{{-- Selain TOT --}}
 		<div style="page-break-inside: avoid">
