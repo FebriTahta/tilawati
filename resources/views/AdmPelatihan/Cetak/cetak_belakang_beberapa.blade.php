@@ -225,7 +225,7 @@
 			</div>
 			<table 
 			@if ($p->pelatihan->keterangan == 'instruktur')
-			style="width: 700px"
+			style="width: 700px; margin-left:154px"
 			@else
 			style="width: 782px; margin-left:154px"
 			@endif  class="table1">
@@ -315,7 +315,7 @@
 				<div class="alignright" style="margin-right: 210px">Cukup : 75 - 84</div>
 			</div>
 		</div>
-		
+
 		@elseif ($p->kriteria == 'sebagai instruktur strategi mengajar metode tilawati')
 		{{-- TOT Lulus Mengajar Saja --}}
 		<div style="page-break-inside: avoid">
@@ -324,7 +324,7 @@
 			</div>
 			<table 
 			@if ($p->pelatihan->keterangan == 'instruktur')
-			style="width: 700px"
+			style="width: 700px; margin-left:154px"
 			@else
 			style="width: 782px; margin-left:154px"
 			@endif  class="table1">
