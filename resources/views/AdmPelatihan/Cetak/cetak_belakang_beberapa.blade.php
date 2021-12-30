@@ -264,6 +264,7 @@
 									<td class="nilai3" style="text-align: center">&nbsp; &nbsp;{{ $item->nominal }}</td>
 									<td style="border-top: 0;border-bottom: 0;"></td>
 								</tr>
+								<?php $z--; ?>
 							@else
 								<tr>
 									<th>{{ $i++ }}</th>
@@ -271,7 +272,7 @@
 									<th colspan="3" class="nilai5"></th>
 									<th >{{ $item->nominal }}</th>
 								</tr>
-								<?$x++; $z--?>
+								<?$x++?>
 							@endif
 						@else
 							{{--  --}}
