@@ -223,10 +223,7 @@
 			<div>
 				<p @if ($p->pelatihan->keterangan == 'instruktur') style="margin-top: 160px;margin-left: 358px" @else style="margin-top: 160px;margin-left: 358px" @endif class="syahadah">No. Syahadah : {{ $p->pelatihan->id }}/2021/{{ $p->id }}</p>
 			</div>
-			<table 
-			
-				style="width: 782px; margin-left:10px"
-			  	class="table1">
+			<table style="margin-top: 50px" class="table1">
 				<tr>
 						<th rowspan="2">No.</th>
 						<th rowspan="2">Bidang Penilaian</th>
