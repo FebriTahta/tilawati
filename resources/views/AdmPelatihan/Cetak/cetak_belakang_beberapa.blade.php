@@ -269,7 +269,9 @@
 								<tr>
 									<th>{{ $i++ }}</th>
 									<td class="nilai6" style="text-transform: uppercase">&nbsp; &nbsp;<b> {{ $item->penilaian->name }}</b></th>
-									<th colspan="3" class="nilai5"></th>
+									{{-- <th colspan="3" class="nilai5"></th> --}}
+									<td class="nilai" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->max }}</td>
+									<td class="nilai2" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->min }}</td>
 									<th >{{ $item->nominal }}</th>
 								</tr>
 								<?$x++?>
@@ -299,11 +301,7 @@
 						<th></th>
 						<td class="nilai6">&nbsp; &nbsp;<b> RATA - RATA NILAI</b></th>
 						<th colspan="3" class="nilai5"></th>
-						<th >
-						
-							{{ $rata2 = $jumlah }}
-						
-							</th>
+						<th >{{ $rata2 = $jumlah }}</th>
 					</tr>
 					@endif
 					<tr>
