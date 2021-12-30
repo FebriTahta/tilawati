@@ -220,7 +220,7 @@
     @endforeach
 	
 	@foreach($peserta as $key=> $p)
-		
+		<?php $total = 0;?>
 		@if ($p->pelatihan->keterangan == 'instruktur')
 			@if ($p->kriteria == 'SEBAGAI INSTRUKTUR LAGU DAN STRATEGI MENGAJAR METODE TILAWATI')
 			<div style="page-break-inside: avoid">
@@ -296,7 +296,8 @@
 						</tr>
 					@else
 					<?php 
-						$rata2 = ($jumlah+$total)/4
+						$rata2 = $jumlah;
+
 					?>
 					<tr>
 						<th></th>
