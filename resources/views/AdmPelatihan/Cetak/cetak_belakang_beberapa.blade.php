@@ -248,7 +248,7 @@
 						<th colspan="3" class="pe3"></th>
 						<th >{{ $jumlah = $p->nilai->where("kategori","al-qur'an")->sum('nominal') }}</th>
 					</tr>
-					<?php $i = 2; $x = 1; $z = 3?>
+					<?php $i = 2; $x = 1; $z = 5?>
 					@foreach ($p->nilai as $key=> $item)
 						@if ($item !== null)
 							@if ($item->kategori !== 'skill')
