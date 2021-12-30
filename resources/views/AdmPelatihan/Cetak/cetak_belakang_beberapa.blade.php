@@ -217,7 +217,11 @@
 	@foreach($peserta as $key=> $p)
 		
 		@if ($p->pelatihan->keterangan == 'instruktur')
-			{{$p->kriteria}}
+			@if ($p->kriteria == 'SEBAGAI INSTRUKTUR LAGU DAN STRATEGI MENGAJAR METODE TILAWATI')
+				ok
+			@else
+				no
+			@endif
 		@else
 		{{-- Selain TOT --}}
 		<div style="page-break-inside: avoid">
