@@ -257,7 +257,7 @@
 									<td class="pop2" >&nbsp; &nbsp;&nbsp;<span style="text-transform: capitalize">{{ $item->penilaian->name }}</span></td>
 									<td class="nilai" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->max }}</td>
 									@if ($key < 1)
-									<td class="nilai2" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->min - $i}}</td>
+									<td class="nilai2" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->min - 1}}</td>
 									@else
 									<td class="nilai2" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->min - $z}}</td>
 									@endif
