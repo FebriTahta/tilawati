@@ -84,8 +84,6 @@
 								# code...
 								$text = $item->alamat.' '.substr($item->kecamatan->nama,0);
 							}
-							
-							
 						}else {
 							# code...
 							if ($item->kabupaten !== null) {
