@@ -225,7 +225,7 @@
 			</div>
 			<table 
 			
-				style="width: 782px; margin-left:154px"
+				style="width: 782px; margin-left:10px"
 			  	class="table1">
 				<tr>
 						<th rowspan="2">No.</th>
