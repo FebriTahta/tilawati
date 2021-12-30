@@ -219,7 +219,7 @@
 		@if ($p->pelatihan->keterangan == 'instruktur')
 			@if ($p->kriteria == 'SEBAGAI INSTRUKTUR LAGU DAN STRATEGI MENGAJAR METODE TILAWATI')
 				ok
-			@else
+			@elseif ($p->kriteria == 'SEBAGAI INSTRUKTUR STRATEGI MENGAJAR METODE TILAWATI')
 				no
 			@endif
 		@else
