@@ -218,13 +218,6 @@
 		
 		@if ($p->kriteria == 'sebagai instruktur lagu dan strategi mengajar metode tilawati' || $p->kriteria == 'sebagai instruktur lagu metode tilawati')
 		{{-- TOT Lulus semuanya --}}
-
-		@elseif ($p->kriteria == 'sebagai instruktur strategi mengajar metode tilawati')
-		{{-- TOT Lulus Mengajar Saja --}}
-		
-
-		@else
-		{{-- Selain TOT --}}
 		<div style="page-break-inside: avoid">
 			<div>
 				<p @if ($p->pelatihan->keterangan == 'instruktur') style="margin-top: 160px;margin-left: 358px" @else style="margin-top: 160px;margin-left: 358px" @endif class="syahadah">No. Syahadah : {{ $p->pelatihan->id }}/2021/{{ $p->id }}</p>
@@ -321,6 +314,13 @@
 				<div class="alignright" style="margin-right: 210px">Cukup : 75 - 84</div>
 			</div>
 		</div>
+		@elseif ($p->kriteria == 'sebagai instruktur strategi mengajar metode tilawati')
+		{{-- TOT Lulus Mengajar Saja --}}
+		
+
+		@else
+		{{-- Selain TOT --}}
+		
 		@endif
 	
 		
