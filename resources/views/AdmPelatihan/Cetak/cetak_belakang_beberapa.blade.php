@@ -9,11 +9,11 @@
 	<style>
 		body{
 			font-family: Arial, Helvetica, sans-serif;
-			font-size: 11px;
+			font-size: 12px;
 			text-transform: capitalize;
 		}
 		.syahadah{
-			font-size: 13px;
+			font-size: 14px;
 		}
 		.page-break {
 			page-break-after: always;
@@ -258,7 +258,9 @@
 							<tr>
 								<th>{{ $i++ }}</th>
 								<td class="nilai6" style="text-transform: uppercase">&nbsp; &nbsp;<b> {{ $item->penilaian->name }}</b></th>
-								<th colspan="3" class="nilai5"></th>
+								{{-- <th colspan="3" class="nilai5"></th> --}}
+								<td class="nilai" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->max }}</td>
+								<td class="nilai2" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->min }}</td>
 								<th >{{ $item->nominal }}</th>
 							</tr>
 							<?$x++?>
