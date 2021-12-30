@@ -292,7 +292,7 @@
 					<th colspan="3" class="nilai5"></th>
 					<th >
 					
-						{{ $rata2 = $jumlah }}
+						wooooooo
 					
 						</th>
 				</tr>
