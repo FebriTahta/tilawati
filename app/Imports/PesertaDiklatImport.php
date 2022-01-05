@@ -51,7 +51,10 @@ class PesertaDiklatImport implements ToCollection, WithStartRow, WithChunkReadin
                     if ($peserta == null) {
                         
                         # code...
-                        $masuk = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row[5]);
+                        if ($row[5] !== null) {
+                            # code...
+                            $masuk = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row[5]);
+                        }
 
                         $dt_pel = new Peserta;
                         $dt_pel->phonegara_id = 175;
@@ -109,7 +112,10 @@ class PesertaDiklatImport implements ToCollection, WithStartRow, WithChunkReadin
                         }
                         $dt_pel->tmptlahir = $row[4];
 
-                        $dt_pel->tgllahir = $masuk;
+                        if ($row[5] !== null) {
+                            # code...
+                            $dt_pel->tgllahir = $masuk;
+                        }
                         
                         $lembaga = Lembaga::where('name',$row[6])->first();
                         if ($lembaga !== null) {
@@ -147,8 +153,9 @@ class PesertaDiklatImport implements ToCollection, WithStartRow, WithChunkReadin
                         ->format('png') ->generate('https://www.profile.tilawatipusat.com/'.$dt_pel->slug, public_path('images/'.$dt_pel->slug.'.png'));
                         // ->generate('https://www.tilawatipusat.com/diklat-profile-peserta/'.$dt_pel->id.'/'.$dt_pel->pelatihan->program->id.'/'.$dt_pel->pelatihan->id, public_path('images/'.$id.'qrcode.png'));
                     }else{
-                        
-                        $masuk1 = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row[5]);
+                        if ($row[5] !== null) {
+                            # code...
+                            $masuk1 = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row[5]);
                             $dt_pel = Peserta::updateOrCreate(
                             [
                                 'id' => $peserta->id
@@ -164,6 +171,24 @@ class PesertaDiklatImport implements ToCollection, WithStartRow, WithChunkReadin
 
                             ]
                             );
+                        }else {
+                            # code...
+                            $dt_pel = Peserta::updateOrCreate(
+                                [
+                                    'id' => $peserta->id
+                                ],
+                                [
+                                    'name'        => $row[0],
+                                    'alamat'      => $row[1],
+                                    'telp'        => $row[3],
+                                    'jilid'       => $row[7],
+                                    'kriteria'    => $row[8],
+                                    'bersyahadah' => $row[9],
+    
+                                ]
+                                );
+                        }
+                        
                         
                         foreach ( $peserta->pelatihan->program->penilaian as $key => $value) {
                             # code...
