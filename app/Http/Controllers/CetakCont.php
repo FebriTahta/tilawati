@@ -41,7 +41,7 @@ class CetakCont extends Controller
         $customPaper = array(0,0,792,612);
         if ($pelatihan->cabang->name == 'Cahaya Amanah' || $pelatihan->cabang->name == 'Tilawati Pusat') {
             # code...
-            $direktur   = "Dr. KH. Umar Jaeni M.Pd";
+            $direktur   = "Dr. KH. Umar Jaeni, M.Pd";
             $jabatan    = "Direktur Eksekutif";
             $kepala     = $jabatan;
             
