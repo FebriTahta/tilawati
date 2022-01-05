@@ -1,9 +1,11 @@
 <table>
-    <thead>
+    <thead style="text-transform: uppercase">
         <tr>
             <th>Nama Peserta</th>
             <th>Alamat</th>
             <th>Kota</th>
+            {{-- <th>Kecamatan</th>
+            <th>Kelurahan</th> --}}
             <th>Phone</th>
             <th>Tempat Lahir</th>
             <th>Tanggal Lahir</th>
@@ -22,23 +24,25 @@
     </thead>
     <tbody>
         <tr>
-            <td>Nama Peserta</td>
-            <td>Detail Alamat</td>
-            <td>Surabaya (Pastikan Nama Kota / Kabupaten Benar Tidak Disingkat)</td>
+            <td>NAMA + Gelar</td>
+            <td>ALAMAT (TANPA KOTA)</td>
+            <td>SURABAYA (TIDAK DISINGKAT)</td>
+            {{-- <td>KECAMATAN (TIDAK DISINGKAT)</td>
+            <td>KELURAHAN</td> --}}
             <td>083xxxxxxxxx</td>
-            <td>Surabaya (Pastikan Nama Kota / Kabupaten Benar Tidak Disingkat)</td>
-            <td>6/23/1995 (contoh)</td>
-            <td>Santri Wajib Isi namun Guru Tidak wajib (Pastikan Nama Lembaga Benar Sesuai Data yang Suda Tersimpan Apabila Diisi)</td>
-            <td>1 (1-5) (Santri tidak wajib diisi)</td>
-            <td>LULUS SEBAGAI ..... </td>
-            <td>1 Untuk Lulus dan 0 Untuk Belom lulus</td>
-            <td>26 (contoh)</td>
-            <td>38 (contoh)</td>
-            <td>10 (contoh)</td>
-            <td>5 (contoh)</td>
-            <td>80 (contoh)</td>
-            <td>85 (contoh)</td>
-            <td>90 (contoh)</td>
+            <td>SURABAYA (TIDAK DISINGKAT)</td>
+            <td>6/23/1995 (FORMAT DATE (OTOMATIS))</td>
+            <td>NAMA LEMBAGA</td>
+            <td>1 (1-5)</td>
+            <td>LULUS SEBAGAI ... </td>
+            <td>1 (UNTUK BERSYAHADAH)</td>
+            <td>26 (contoh "hanya angka")</td>
+            <td>38 (contoh "hanya angka")</td>
+            <td>10 (contoh "hanya angka")</td>
+            <td>5  (contoh "hanya angka")</td>
+            <td>80 (contoh "hanya angka")</td>
+            <td>85 (contoh "hanya angka")</td>
+            <td>90 (contoh "hanya angka")</td>
         </tr>
     </tbody>
 </table>

@@ -147,58 +147,7 @@ class PesertaDiklatImport implements ToCollection, WithStartRow, WithChunkReadin
                         ->format('png') ->generate('https://www.profile.tilawatipusat.com/'.$dt_pel->slug, public_path('images/'.$dt_pel->slug.'.png'));
                         // ->generate('https://www.tilawatipusat.com/diklat-profile-peserta/'.$dt_pel->id.'/'.$dt_pel->pelatihan->program->id.'/'.$dt_pel->pelatihan->id, public_path('images/'.$id.'qrcode.png'));
                     }else{
-                        // $phone = $row[3];
-                        // $telephone = 0;
-                        // if (substr($phone,0,1) == '0') {
-                        //     # jika awalan angkanya 0 dari export maka langsung simpan
-                        //     # code...
-                        //     $telephone = $phone;
-                            
-                        // }else{
-                        //     # baca jika awalan tidak 0 melainkan 62 atau petik '
-                        //     if (substr($phone,0,2) == '62'){
-                        //         # code...
-                        //         $telephone  = $phone;
-                        //     }else{
-                        //         $telephone  = substr($phone,1,15);
-                        //     }
-                        // }
-                        // if ($row[5] !== null) {
                         
-                        //     $masuk1 = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row[5]);
-                        //     $dt_pel = Peserta::updateOrCreate(
-                        //     [
-                        //         'id' => $peserta->id
-                        //     ],
-                        //     [
-                        //         'telp'        => $telephone,
-                        //         'name'        => $row[0],
-                        //         'alamat'      => $row[1],
-                        //         'tgllahir'    => $masuk1,
-                        //         'jilid'       => $row[7],
-                        //         'kriteria'    => $row[8],
-                        //         'bersyahadah' => $row[9],
-
-                        //     ]
-                        //     );
-                            
-                        // }else {
-                        //     # code...
-                        //     $dt_pel = Peserta::updateOrCreate(
-                        //         [
-                        //             'id' => $peserta->id
-                        //         ],
-                        //         [
-                        //             'telp'        => $telephone,
-                        //             'name'        => $row[0],
-                        //             'alamat'      => $row[1],
-                        //             'jilid'       => $row[7],
-                        //             'kriteria'    => $row[8],
-                        //             'bersyahadah' => $row[9],
-    
-                        //         ]
-                        //         );
-                        // }
                         $masuk1 = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row[5]);
                             $dt_pel = Peserta::updateOrCreate(
                             [

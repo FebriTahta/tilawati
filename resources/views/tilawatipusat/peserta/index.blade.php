@@ -101,9 +101,9 @@
                                                     <th>id</th>
                                                     <th style="5%"><input type="checkbox" id="master"></th>
                                                     <th>peserta</th>
-                                                    <th>kab</th>
-                                                    <th>kec</th>
-                                                    <th>kel</th>
+                                                    <th>kab / kota</th>
+                                                    {{-- <th>kec</th>
+                                                    <th>kel</th> --}}
                                                     <th>TTL</th>
                                                     <th>phone</th>
                                                     <th>alamat</th>
@@ -123,9 +123,9 @@
                                                     <th>id</th>
                                                     <th style="5%">pilih</th>
                                                     <th>peserta</th>
-                                                    <th>kab</th>
-                                                    <th>kec</th>
-                                                    <th>kel</th>
+                                                    <th>kab / kota</th>
+                                                    {{-- <th>kec</th>
+                                                    <th>kel</th> --}}
                                                     <th>TTL</th>
                                                     <th>phone</th>
                                                     <th>alamat</th>
@@ -972,16 +972,16 @@
                         name:'kabupaten.nama',
                         orderable:false,
                         },
-                        {
-                        data:'kecamatan',
-                        name:'kecamatan.nama',
-                        orderable:false,
-                        },
-                        {
-                        data:'kelurahan',
-                        name:'kelurahan.nama',
-                        orderable:false,
-                        },
+                        // {
+                        // data:'kecamatan',
+                        // name:'kecamatan.nama',
+                        // orderable:false,
+                        // },
+                        // {
+                        // data:'kelurahan',
+                        // name:'kelurahan.nama',
+                        // orderable:false,
+                        // },
                         {
                         data:'ttl',
                         name:'ttl'
@@ -1046,16 +1046,16 @@
                         name:'kabupaten.nama',
                         orderable:false,
                         },
-                        {
-                        data:'kecamatan',
-                        name:'kecamatan.nama',
-                        orderable:false,
-                        },
-                        {
-                        data:'kelurahan',
-                        name:'kelurahan.nama',
-                        orderable:false,
-                        },
+                        // {
+                        // data:'kecamatan',
+                        // name:'kecamatan.nama',
+                        // orderable:false,
+                        // },
+                        // {
+                        // data:'kelurahan',
+                        // name:'kelurahan.nama',
+                        // orderable:false,
+                        // },
                         {
                         data:'ttl',
                         name:'ttl'
