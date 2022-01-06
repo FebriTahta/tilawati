@@ -382,7 +382,7 @@
                                             <div class="card m-b-30">
                                                 <div class="card-body">
                                                     <div class="container-fluid">
-                                                        <form id="" action="/pelatihan-cetak-peserta-depan-versi-lama-beberapa"  method="POST" enctype="multipart/form-data">@csrf
+                                                        <form target="_blank" id="" action="/pelatihan-cetak-peserta-depan-versi-lama-beberapa"  method="POST" enctype="multipart/form-data">@csrf
                                                             <div class="form-group text-center">
                                                                 <h5>CETAK SYAHADAH DEPAN VERSI LAMA ?</h5>
                                                                 <input type="text" class="form-control text-capitalize" id="idcetakdepanlama" name="id" required>

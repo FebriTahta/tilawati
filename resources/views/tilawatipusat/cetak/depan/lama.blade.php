@@ -37,7 +37,7 @@
 				<td class="atas" style="width: 170px; height: 10px;">&nbsp;</td>
 				<td class="atas" style="width: 11px; height: 10px;"></td>
 				{{-- Output nama dengan gelar --}}
-				<td class="atas" style="width: 750px; height: 10px;">{{ $item->nama }}</td>
+				<td class="atas" style="width: 750px; height: 10px;">{{ $item->name }}</td>
 				<td class="atas" style="width: 52px; height: 10px; ">&nbsp;</td>
 				</tr>
 				<tr class="atas" style="height: 10px;">
@@ -49,7 +49,7 @@
 				<tr class="atas" style="height: 10px;">
 				<td class="atas" style="width: 170px; height: 10px; "></td>
 				<td class="atas" style="width: 11px; height: 10px;"></td><?php date_default_timezone_set('Asia/Jakarta'); $date=$item->tgllahir;?>
-				<td class="atas" style="width: 750px; height: 10px; text-transform: uppercase" >{{ $item->tmplahir }}, {{ Carbon\Carbon::parse($date)->isoFormat('D MMMM Y') }}&nbsp;</td>
+				<td class="atas" style="width: 750px; height: 10px; text-transform: uppercase" >{{ $item->tmptlahir }}, {{ Carbon\Carbon::parse($date)->isoFormat('D MMMM Y') }}&nbsp;</td>
 				<td class="atas" style="width: 52px; height: 10px;">&nbsp;</td>
 				</tr>
 				
@@ -76,7 +76,7 @@
 				<tr style="height: 27px;"><?php $tahun = date('Y')?>
 				<td class="bawah" style="width: 210px; height: 27px; "><small> </small></td>
 				<td class="bawah" style="width: 210px; height: 27px;">&nbsp;</td><?php $lokasicetak = strtolower($item->pelatihan->cabang->kabupaten->nama)?>
-				<td class="atas" style="width: 241px; height: 27px; text-transform: lowercase;text-transform: capitalize">{{$lokasicetak}}, {{ Carbon\Carbon::parse($item->pelatihan->tanggal)->isoFormat('D MMMM Y') }}</td>
+				<td class="atas" style="width: 241px; height: 27px; text-transform: lowercase;text-transform: capitalize">{{substr($lokasicetak)}}, {{ Carbon\Carbon::parse($item->pelatihan->tanggal)->isoFormat('D MMMM Y') }}</td>
 				</tr>
 				<tr style="height: 78px;">
 				<td class="bawah" style="width: 210px; height: 70px;">
@@ -98,10 +98,10 @@
 				<td class="bawah" style="width: 210px; height: 4px;">&nbsp;</td>
 				<td class="bawah" style="width: 185px; height: 4px;">&nbsp;</td>
 				<td class="bawah" style="width: 241px; height: 2px; text-transform: capitalize"> 
-                    @if ($lokasicetak == 'surabaya')
+                    @if (substr($lokasicetak) == 'surabaya')
                         Direktur Eksekutif
                     @else
-                        Kacab. {{$lokasicetak}}
+                        Kacab. {{substr($lokasicetak)}}
                     @endif  
                 </td>
 				</tr>
