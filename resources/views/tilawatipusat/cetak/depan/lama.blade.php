@@ -27,6 +27,7 @@
 		/* .tepi { border: 1px solid; 
 		} */
 	</style>
+    aaaaaaaa
 		@foreach ($peserta as $item)
 		{{$item->name}}
 		@endforeach
