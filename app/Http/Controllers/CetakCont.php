@@ -145,9 +145,13 @@ class CetakCont extends Controller
         
     }
 
-    public function cetak_syahadah_depan_perseorangan(Request $request, $peserta_id)
+    public function cetak_depan_lama_beberapa(Request $request)
     {
-        
+        $peserta_id_array = $request->idcetaksurats;
+        $peserta        = Peserta::whereIn('id',explode(",",$peserta_id_array))->where('kriteria','<>','')->get();
+        $customPaper    = array(0,0,792,612);
+    	$pdf = PDF::loadview('tilawatipusat.cetak.depan.lama',compact('peserta'))->setPaper($customPaper, 'portrait');
+    	return $pdf->download('ijazah-depan-peserta-versi-lama.pdf','I');
     }
 
 

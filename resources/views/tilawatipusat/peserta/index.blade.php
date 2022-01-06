@@ -83,12 +83,13 @@
                                     @endif
                                     <br><br>
                                     {{-- <p class="card-title-desc">Ter-update berdasarkan Tahun 2021 </br></p> --}}
-                                    <a class="btn btn-sm btn-outline-success  mr-1" style="width:130px" @if($diklat->program->penilaian->count() == 0) disabled @else href="{{ route('diklat.peserta_create', $pelatihan_id) }}" @endif><i class="mdi mdi-plus"></i> tambah peserta</a>
-                                    <button class="btn btn-sm btn-outline-success  mr-1" style="width:130px " data-toggle="modal" @if($diklat->program->penilaian->count() == 0) disabled @else data-target=".bs-example-modal-peserta" @endif><i class="mdi mdi-cloud-upload"></i> import peserta</button>
-                                    <button class="text-right btn btn-sm mr-1 btn-outline-primary" id="cetak_all"><i class="fa fa-download"></i> pengiriman modul</button>
-                                    <button class="text-right btn btn-sm mr-1 btn-outline-info" id="depan_all"><i class="fa fa-print"></i> depan</button>
-                                    <button class="text-right btn btn-sm mr-1 btn-outline-info" id="belakang_all"><i class="fa fa-print"></i> belakang</button>
-                                    <button class="text-right btn btn-sm mr-1 btn-outline-danger" id="hapus_all"><i class="fa fa-trash"></i> hapus data</button>
+                                    <a class="btn btn-sm btn-outline-success  mb-1 mr-1" style="width:130px" @if($diklat->program->penilaian->count() == 0) disabled @else href="{{ route('diklat.peserta_create', $pelatihan_id) }}" @endif><i class="mdi mdi-plus"></i> tambah peserta</a>
+                                    <button class="btn btn-sm btn-outline-success  mb-1 mr-1" style="width:130px " data-toggle="modal" @if($diklat->program->penilaian->count() == 0) disabled @else data-target=".bs-example-modal-peserta" @endif><i class="mdi mdi-cloud-upload"></i> import peserta</button>
+                                    <button class="text-right btn btn-sm mr-1 mb-1 btn-outline-primary" id="cetak_all"><i class="fa fa-download"></i> pengiriman modul</button>
+                                    <button class="text-right btn btn-sm mr-1 mb-1 btn-outline-info" id="depan_all"><i class="fa fa-print"></i> depan</button>
+                                    <button class="text-right btn btn-sm mr-1 mb-1 btn-outline-info" id="belakang_all"><i class="fa fa-print"></i> belakang</button>
+                                    <button class="text-right btn btn-sm mr-1 mb-1 btn-outline-danger" id="hapus_all"><i class="fa fa-trash"></i> hapus data</button>
+                                    <button class="text-right btn btn-sm mr-1 mb-1 btn-outline-secondary" id="depan_lama_all"><i class="fa fa-peint"></i> depan versi lama</button>
                                     {{-- <form action="/error-penilaian-kategori" method="POST">@csrf
                                         <button type="submit" class="text-right btn btn-sm mr-1 btn-outline-info" id="belakang_all"><i class="fa fa-print"></i> belakang</button>
                                     </form> --}}
@@ -349,6 +350,41 @@
                                                         <form id="" action="/pelatihan-cetak-depan-print-beberapa"  method="POST" enctype="multipart/form-data">@csrf
                                                             <div class="form-group text-center">
                                                                 <h5>CETAK SYAHADAH DEPAN ?</h5>
+                                                                <input type="text" class="form-control text-capitalize" id="idcetakdepan" name="id" required>
+                                                            </div>
+                                                            <div class="row" style="text-align: center">
+                                                                <div class="form-group col-6 col-xl-6">
+                                                                    <input type="submit" id="btndownload" class="btn btn-primary" value="Ya, Cetak!" />
+                                                                </div>
+                                                                <div class="form-group col-6 col-xl-6">
+                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                                                        No, Cancel!
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div><!-- container fluid -->
+                                                </div>
+                                            </div>
+                                        </div> <!-- end col -->
+                                    </div>
+                                </div><!-- /.modal-content -->
+                            </div><!-- /.modal-dialog -->
+                        </div><!-- /.modal -->
+                    </div>
+
+                    <div class="col-sm-6 col-md-3 m-t-30">
+                        <div class="modal fade" id="modal-download-depan-lama" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-md">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <div class="col-xl-12">
+                                            <div class="card m-b-30">
+                                                <div class="card-body">
+                                                    <div class="container-fluid">
+                                                        <form id="" action="/pelatihan-cetak-peserta-depan-versi-lama-beberapa"  method="POST" enctype="multipart/form-data">@csrf
+                                                            <div class="form-group text-center">
+                                                                <h5>CETAK SYAHADAH DEPAN VERSI LAMA ?</h5>
                                                                 <input type="text" class="form-control text-capitalize" id="idcetakdepan" name="id" required>
                                                             </div>
                                                             <div class="row" style="text-align: center">
@@ -1120,6 +1156,22 @@
             }else {  
                 var join_selected_values = allVals.join(",");
                     $('#modal-download-depan').modal('show');
+                    $('#idcetakdepan').val(join_selected_values);
+            }  
+            });
+
+            $('#depan_lama_all').on('click', function(e) {
+            var allVals = [];  
+            $(".sub_chk:checked").each(function() {  
+                allVals.push($(this).attr('data-id'));
+            });
+
+            if(allVals.length <=0)  
+            {  
+                alert("PILIH PESERTA YANG AKAN DI CETAK SYAHADAH DEPAN VERSI LAMA");  
+            }else {  
+                var join_selected_values = allVals.join(",");
+                    $('#modal-download-depan-lama').modal('show');
                     $('#idcetakdepan').val(join_selected_values);
             }  
             });
