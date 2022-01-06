@@ -92,17 +92,41 @@
 				<tr style="height: 5px;">
 				<td class="bawah" style="width: 210px; height: 5px;">No. Syahadah : &nbsp;{{ $item->pelatihan_id }}/{{ $tahun }}/{{ $item->id }}</td>
 				<td class="bawah" style="width: 210px; height: 5px;">&nbsp;</td>
-				<td class="atas" style="width: 241px; height: 5px;"> {{$item->pelatihan->cabang->kepala->name}} </td>
+				<td class="atas" style="width: 241px; height: 5px;"> 
+                    @if ($item->pelatihan->cabang->name == 'Cahaya Amanah' || $item->pelatihan->cabang->name == 'Tilawati Pusat')
+                    Dr. KH. Umar Jaeni ,M.Pd
+                    @else
+                    {{$item->pelatihan->cabang->kepala->name}}
+                    @endif
+                </td>
 				</tr>
 				<tr style="height: 4px;">
 				<td class="bawah" style="width: 210px; height: 4px;">&nbsp;</td>
 				<td class="bawah" style="width: 185px; height: 4px;">&nbsp;</td>
 				<td class="bawah" style="width: 241px; height: 2px; text-transform: capitalize"> 
-                    @if (substr($lokasicetak,5) == 'surabaya')
-                        Direktur Eksekutif
+                    @if ($item->pelatihan->cabang->name == 'Cahaya Amanah' || $item->pelatihan->cabang->name == 'Tilawati Pusat')
+                    Direktur Eksekutif
                     @else
-                        Kacab. {{substr($lokasicetak,5)}}
-                    @endif  
+					<?	$kabupaten 	= substr($item->pelatihan->cabang->kabupaten->nama, 5); $kab = strtolower($kabupaten);
+						$provinsi 	= strtolower($item->pelatihan->cabang->kabupaten->provinsi->nama); 
+					$data_kabupaten = App\Models\Kabupaten::where('id', $item->pelatihan->cabang->kabupaten->id)->first();
+					$jum_cabang		= $data_kabupaten->cabang->count();
+					?>
+						@if ($jum_cabang > 1)
+							@if (substr($item->pelatihan->cabang->kabupaten->nama,5,3)=='ADM')
+							{{ 'Kacab. ' .strtoupper(substr($provinsi,0,3)).' '.ucfirst(substr($provinsi,4))}}
+							@else
+							{{ 'Kacab. '.ucfirst($item->pelatihan->cabang->name).' '.ucfirst($kab) }}
+							@endif
+						@else
+							@if (substr($item->pelatihan->cabang->kabupaten->nama,5,3)=='ADM')
+							{{ 'Kacab. ' .strtoupper(substr($provinsi,0,3)).' '.ucfirst(substr($provinsi,4))}}	
+							@else
+							{{ 'Kacab. '.ucfirst($kab).' '.ucfirst($provinsi)}}
+							@endif
+						@endif
+
+                    @endif
                 </td>
 				</tr>
 				</tbody>
