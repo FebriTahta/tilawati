@@ -76,7 +76,7 @@
 				<tr style="height: 27px;"><?php $tahun = date('Y')?>
 				<td class="bawah" style="width: 210px; height: 27px; "><small> </small></td>
 				<td class="bawah" style="width: 210px; height: 27px;">&nbsp;</td><?php $lokasicetak = strtolower($item->pelatihan->cabang->kabupaten->nama)?>
-				<td class="atas" style="width: 241px; height: 27px; text-transform: lowercase;text-transform: capitalize">{{substr($lokasicetak)}}, {{ Carbon\Carbon::parse($item->pelatihan->tanggal)->isoFormat('D MMMM Y') }}</td>
+				<td class="atas" style="width: 241px; height: 27px; text-transform: lowercase;text-transform: capitalize">{{substr($lokasicetak,5)}}, {{ Carbon\Carbon::parse($item->pelatihan->tanggal)->isoFormat('D MMMM Y') }}</td>
 				</tr>
 				<tr style="height: 78px;">
 				<td class="bawah" style="width: 210px; height: 70px;">
@@ -98,10 +98,10 @@
 				<td class="bawah" style="width: 210px; height: 4px;">&nbsp;</td>
 				<td class="bawah" style="width: 185px; height: 4px;">&nbsp;</td>
 				<td class="bawah" style="width: 241px; height: 2px; text-transform: capitalize"> 
-                    @if (substr($lokasicetak) == 'surabaya')
+                    @if (substr($lokasicetak,5) == 'surabaya')
                         Direktur Eksekutif
                     @else
-                        Kacab. {{substr($lokasicetak)}}
+                        Kacab. {{substr($lokasicetak,5)}}
                     @endif  
                 </td>
 				</tr>
