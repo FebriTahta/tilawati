@@ -68,7 +68,7 @@
 			</table>			
 			<table 
 		
-			style="margin-left:113px; margin-top: 23px"
+			style="margin-left:113px; margin-top: 20px"
 			
 			>
 				<tbody>
