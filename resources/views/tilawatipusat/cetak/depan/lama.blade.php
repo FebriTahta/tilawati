@@ -80,7 +80,7 @@
 				<tr style="height: 78px;">
 				<td class="bawah" style="width: 210px; height: 70px;">
 					<div class="tepi" style="width: 70px; padding: 2px">
-						{{-- <img src="images/{{ $item->slug }}.png" alt="" width="70px" height="70px"> --}}
+						<img src="images/{{ $item->slug }}.png" alt="" width="70px" height="70px">
 					</div>
 				</td>
 				<td class="bawah" style="width: 210px; height: 70px;">&nbsp;</td>
