@@ -34,29 +34,29 @@
 			class="dalam">
 				<tbody>
 				<tr class="atas">
-                    <td class="atas" style="width: 170px; height: 20px;">&nbsp;</td>
-                    <td class="atas" style="width: 11px; height: 20px;"></td>
-                    <td class="atas" style="width: 750px; height: 20px;">{{ $item->name }}</td>
-                    <td class="atas" style="width: 52px; height: 20px; ">&nbsp;</td>
+                    <td class="atas" style="width: 170px; height: 40px;">&nbsp;</td>
+                    <td class="atas" style="width: 11px; height: 40px;"></td>
+                    <td class="atas" style="width: 750px; height: 40px;">{{ $item->name }}</td>
+                    <td class="atas" style="width: 52px; height: 40px; ">&nbsp;</td>
 				</tr>
 				<tr class="atas">
-                    <td class="atas" style="width: 170px; height: 20px;"></td>
-                    <td class="atas" style="width: 11px; height: 20px;"></td>
-                    <td class="atas" style="width: 750px; height: 20px; text-transform: uppercase" >{{ $item->alamat }} {{$item->kota}}</td>
-                    <td class="atas" style="width: 52px; height: 20px;">&nbsp;</td>
+                    <td class="atas" style="width: 170px; height: 40px;"></td>
+                    <td class="atas" style="width: 11px; height: 40px;"></td>
+                    <td class="atas" style="width: 750px; height: 40px; text-transform: uppercase" >{{ $item->alamat }} {{$item->kota}}</td>
+                    <td class="atas" style="width: 52px; height: 40px;">&nbsp;</td>
 				</tr>
 				<tr class="atas">
-                    <td class="atas" style="width: 170px; height: 20px; "></td>
-                    <td class="atas" style="width: 11px; height: 20px;"></td><?php date_default_timezone_set('Asia/Jakarta'); $date=$item->tgllahir;?>
-                    <td class="atas" style="width: 750px; height: 20px; text-transform: uppercase" >{{ $item->tmptlahir }}, {{ Carbon\Carbon::parse($date)->isoFormat('D MMMM Y') }}&nbsp;</td>
-                    <td class="atas" style="width: 52px; height: 20px;">&nbsp;</td>
+                    <td class="atas" style="width: 170px; height: 40px; "></td>
+                    <td class="atas" style="width: 11px; height: 40px;"></td><?php date_default_timezone_set('Asia/Jakarta'); $date=$item->tgllahir;?>
+                    <td class="atas" style="width: 750px; height: 40px; text-transform: uppercase" >{{ $item->tmptlahir }}, {{ Carbon\Carbon::parse($date)->isoFormat('D MMMM Y') }}&nbsp;</td>
+                    <td class="atas" style="width: 52px; height: 40px;">&nbsp;</td>
 				</tr>
 				
 				<tr class="atas">
-                    <td class="atas" style="width: 170px; height: 20px;"></td>
-                    <td class="atas" style="width: 11px; height: 20px;"></td>
-                    <td class="atas" style="width: 750px; height: 20px; text-transform: uppercase" >{{ $item->kriteria }}</td>
-                    <td class="atas" style="width: 52px; height: 20px;">&nbsp;</td>
+                    <td class="atas" style="width: 170px; height: 40px;"></td>
+                    <td class="atas" style="width: 11px; height: 40px;"></td>
+                    <td class="atas" style="width: 750px; height: 40px; text-transform: uppercase" >{{ $item->kriteria }}</td>
+                    <td class="atas" style="width: 52px; height: 40px;">&nbsp;</td>
 				</tr>
 				<tr class="atas">
                     <td class="atas" style="width: 170px; height: 37px;">&nbsp;</td>
