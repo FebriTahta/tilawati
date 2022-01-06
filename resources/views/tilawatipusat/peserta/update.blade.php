@@ -24,7 +24,7 @@
         <div class="form-group col-xl-4">
             <input type="hidden" name="id" value="{{$peserta->id}}">
             <label for="nama">Nama Peserta</label>
-            <input type="text" class="form-control text-uppercase" value="{{$peserta->name}}" id="nama" name="name"  >    
+            <input type="text" class="form-control" value="{{$peserta->name}}" id="nama" name="name"  >    
         </div>
         @if ($peserta->gelar != null)
         <div class="form-group col-xl-2">
