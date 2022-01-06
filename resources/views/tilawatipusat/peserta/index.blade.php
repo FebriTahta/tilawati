@@ -385,7 +385,7 @@
                                                         <form id="" action="/pelatihan-cetak-peserta-depan-versi-lama-beberapa"  method="POST" enctype="multipart/form-data">@csrf
                                                             <div class="form-group text-center">
                                                                 <h5>CETAK SYAHADAH DEPAN VERSI LAMA ?</h5>
-                                                                <input type="text" class="form-control text-capitalize" id="idcetakdepan" name="id" required>
+                                                                <input type="text" class="form-control text-capitalize" id="idcetakdepanlama" name="id" required>
                                                             </div>
                                                             <div class="row" style="text-align: center">
                                                                 <div class="form-group col-6 col-xl-6">
@@ -1172,7 +1172,7 @@
             }else {  
                 var join_selected_values = allVals.join(",");
                     $('#modal-download-depan-lama').modal('show');
-                    $('#idcetakdepan').val(join_selected_values);
+                    $('#idcetakdepanlama').val(join_selected_values);
             }  
             });
 
