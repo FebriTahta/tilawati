@@ -78,18 +78,8 @@
 						# code...
 						
 						// 
-						
 							# code...
-							if ($item->kelurahan !== null && $item->kecamatan !== null) {
-								# code...
-								$text = $item->alamat.' '.substr($item->kecamatan->nama,0);
-							}else {
-								# code...
-								$item = $item->alamat;
-							}
-						
-							# code...
-							if ($item->kelurahan !== null && $item->kecamatan !== null) {
+							if ($item->kecamatan !== null) {
 								# code...
 								$text = $item->alamat.' '.substr($item->kecamatan->nama,0);
 
