@@ -52,48 +52,52 @@
 				<td class="atas" style="width: 11px; height: 10px;">:</td>
 				<?php
 					$num_char = 45;
-					if (substr($item->kabupaten->nama,5,3)=='ADM') {
+					if ($item->kabupaten !== null) {
 						# code...
-						if ($item->kelurahan !== null && $item->kecamatan !== null) {
+						if (substr($item->kabupaten->nama,5,3)=='ADM') {
 							# code...
-							if ($item->kabupaten !== null) {
+							if ($item->kelurahan !== null && $item->kecamatan !== null) {
 								# code...
 								$text = $item->alamat.' '.substr($item->kecamatan->nama,0).' '.substr($item->kabupaten->nama,10);
-							} else {
-								# code...
-								$text = $item->alamat.' '.substr($item->kecamatan->nama,0);
-							}
-						}else {
-							# code...
-							if ($item->kabupaten !== null) {
+							}else {
 								# code...
 								$text = $item->alamat.' '.substr($item->kabupaten->nama,10);
-							} else {
-								# code...
-								$item = $item->alamat;
-							}	
-						}
-					}else {
-						# code...
-						if ($item->kelurahan !== null && $item->kecamatan !== null) {
-							# code...
-							if ($item->kabupaten !== null) {
-								# code...
-								$text = $item->alamat.' '.substr($item->kecamatan->nama,0).' '.substr($item->kabupaten->nama,5);
-							} else {
-								# code...
-								$text = $item->alamat.' '.substr($item->kecamatan->nama,0);
 							}
 						}else {
 							# code...
-							if ($item->kabupaten !== null) {
+							if ($item->kelurahan !== null && $item->kecamatan !== null) {
+								# code...
+								$text = $item->alamat.' '.substr($item->kecamatan->nama,0).' '.substr($item->kabupaten->nama,5);
+
+							}else {
 								# code...
 								$text = $item->alamat.' '.substr($item->kabupaten->nama,5);
-							} else {
+							}
+						}
+					} else {
+						# code...
+						
+						// 
+						
+							# code...
+							if ($item->kelurahan !== null && $item->kecamatan !== null) {
+								# code...
+								$text = $item->alamat.' '.substr($item->kecamatan->nama,0);
+							}else {
+								# code...
+								$item = $item->alamat;
+							}
+						
+							# code...
+							if ($item->kelurahan !== null && $item->kecamatan !== null) {
+								# code...
+								$text = $item->alamat.' '.substr($item->kecamatan->nama,0);
+
+							}else {
 								# code...
 								$text = $item->alamat;
 							}
-						}
+						
 					}
 					
 					?>
