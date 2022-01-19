@@ -155,7 +155,7 @@ class SertifikatCont extends Controller
                             return Carbon::parse($data->tgl_awal)->isoFormat('dddd, D MMMM Y');
                         }else{
                             $tanggal = Carbon::parse($data->tgl_awal)->isoFormat('dddd, D MMMM Y').
-                            ' - '.Carbon::parse($data->tgl_awal)->isoFormat('dddd, D MMMM Y');
+                            ' - '.Carbon::parse($data->tgl_akhir)->isoFormat('dddd, D MMMM Y');
                             return $tanggal;
                         }
                     })
