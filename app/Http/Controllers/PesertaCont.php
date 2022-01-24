@@ -464,7 +464,7 @@ class PesertaCont extends Controller
         // $tmptlahir      = Kabupaten::find($request->tmptlahir);
         $tmptlahir      = $request->tmptlahir;
         $kota           = substr($kabupaten->nama,4);
-        $tmptlahir      = substr($tmptlahir->nama,4);
+        // $tmptlahir      = substr($tmptlahir->nama,4);
         $lembaga        = Lembaga::where('id',$request->lembaga_id)->first();
         $slug           = Str::slug($request->name.'-'.$diklat->program->name.'-'.Carbon::parse($tanggal)->isoFormat('MMMM-D-Y').'-'.$diklat->cabang->name.'-'.$diklat->cabang->kabupaten->nama);
         
