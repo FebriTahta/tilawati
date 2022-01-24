@@ -461,7 +461,8 @@ class PesertaCont extends Controller
         $tanggal        = $diklat->tanggal;
         $kabupaten_id   = $request->kota;
         $kabupaten      = Kabupaten::find($kabupaten_id);
-        $tmptlahir      = Kabupaten::find($request->tmptlahir);
+        // $tmptlahir      = Kabupaten::find($request->tmptlahir);
+        $tmptlahir      = $request->tmptlahir;
         $kota           = substr($kabupaten->nama,4);
         $tmptlahir      = substr($tmptlahir->nama,4);
         $lembaga        = Lembaga::where('id',$request->lembaga_id)->first();
