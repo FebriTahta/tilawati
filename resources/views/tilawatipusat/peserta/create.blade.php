@@ -59,12 +59,21 @@
                                                             <option value="0"><i class="text-danger"></i></option>
                                                         </select>
                                                     </div>
-                                                    <div class="form-group col-12 col-xl-6">
-                                                        <label for=""><i class="text-danger">*</i> Tempat Lahir</label>
-                                                        <select id="kota2" name="tmptlahir" class="form-control select2" required>
+                                                    {{-- <div class="form-group col-12 col-xl-6">
+                                                        <label for=""><i class="text-danger"></i> Tempat Lahir</label>
+                                                        <select id="kota2" name="tmptlahir" class="form-control select2">
                                                             <option value="0"><i class="text-danger"></i></option>
                                                         </select>
+                                                    </div> --}}
+
+                                                    <div class="form-group col-12 col-xl-6">
+                                                        <label for=""><i class="text-danger"></i> Tempat Lahir</label>
+                                                        {{-- <select id="kota2" name="tmptlahir" class="form-control select2">
+                                                            <option value="0"><i class="text-danger"></i></option>
+                                                        </select> --}}
+                                                        <input type="text" name="tmptlahir" class="form-control" required>
                                                     </div>
+
                                                     <div class="form-group col-12 col-xl-6">
                                                         <label for=""><i class="text-danger">*</i> Tanggal Lahir</label>
                                                         <input type="date" id="tgllahir" name="tgllahir" class="form-control" placeholder="" required>
