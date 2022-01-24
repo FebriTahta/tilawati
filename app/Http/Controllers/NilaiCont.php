@@ -47,7 +47,7 @@ class NilaiCont extends Controller
             ],
             [
                 'kriteria_id'=>$request->kriteria_id,
-                'kriteria'=>$request->kriteria,
+                'kriteria'=>$request->mykriteria,
                 'bersyahadah' => $syahadah,
             ]
         );     
