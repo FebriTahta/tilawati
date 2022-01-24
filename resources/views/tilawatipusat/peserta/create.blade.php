@@ -51,7 +51,8 @@
                                                     </div>
                                                     <div class="form-group col-12 col-xl-6">
                                                         <label for=""><i class="text-danger">*</i> Telp</label>
-                                                        <input type="telp" placeholder="081351265451" pattern="[0-9]{3}[0-9]{3}[0-9]{3}[0-9]{3}" maxlength="12" class="form-control " name="telp" required>
+                                                        {{-- <input type="telp" placeholder="081351265451" pattern="[0-9]{3}[0-9]{3}[0-9]{3}[0-9]{3}" maxlength="12" class="form-control " name="telp" required> --}}
+                                                        <input type="number" placeholder="081351265451" class="form-control " name="telp" required>
                                                     </div>
                                                     <div class="form-group col-12 col-xl-6">
                                                         <label for=""><i class="text-danger">*</i> Asal Kota</label>
