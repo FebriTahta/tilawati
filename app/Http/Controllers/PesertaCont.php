@@ -102,10 +102,21 @@ class PesertaCont extends Controller
                                             # code...
                                             return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-warning">'.$rata2.' BELUM BERSYAADAH</a>';
                                         }
-                                    }else {
+                                    }elseif ($data->kriteria == 'SEBAGAI INSTRUKTUR STRATEGI MENGAJAR METODE TILAWATI') {
                                         # code...
-                                        return 'tunggu sebentar';
-                                    }
+                                        $total  = $data->nilai->where("kategori","al-qur'an")->sum('nominal');
+                                        $penilaian1 = $data->nilai->where('penilaian_id', 30)->sum('nominal');
+                                        $penilaian3 = $data->nilai->where('penilaian_id', 32)->sum('nominal');
+
+                                        $rata2 = ($total + $penilaian1 + $penilaian3)/3;
+                                        if ($rata2 > 70) {
+                                            # code...
+                                            return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-info">'.$rata2.' BERSYAHADAH</a>';
+                                        } else {
+                                            # code...
+                                            return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-warning">'.$rata2.' BELUM BERSYAADAH</a>';
+                                        }
+                                    } 
                                 } else {
                                     # code...
                                     $total  = $data->nilai->where("kategori","al-qur'an")->sum('nominal');
