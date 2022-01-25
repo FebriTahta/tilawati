@@ -159,13 +159,7 @@
 				</tr>
 				</tbody>
 			</table>			
-			<table 
-			@if ($item->pelatihan->keterangan=='guru')
-			style="margin-left:113px; margin-top: 4px"
-			@else
-			style="margin-left:116px; margin-top: 10px"
-			@endif
-			>
+			<table style="margin-left:113px; margin-top: 4px">
 				<tbody>
 				<tr style="height: 27px;"><?php $tahun = date('Y')?>
 				<td class="bawah" style="width: 210px; height: 27px; "><small> </small></td>
