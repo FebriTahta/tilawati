@@ -513,7 +513,7 @@
 						<th></th>
 						<td class="nilai6">&nbsp; &nbsp;<b> RATA - RATA NILAI</b></th>
 						<th colspan="3" class="nilai5"></th>
-						<th >{{ $rata2 = ($jumlah+$total)/3 }} {{$item->nilai->where('penilaian_id', 31)->sum('nominal')}}</th>
+						<th >{{ $rata2 = ($jumlah+$total)/3 }} {{$p->nilai->where('penilaian_id', 31)->sum('nominal')}}</th>
 					</tr>
 					
 					<tr>
