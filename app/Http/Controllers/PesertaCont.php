@@ -102,15 +102,8 @@ class PesertaCont extends Controller
                                             # code...
                                             return  '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-warning">'.$rata2.' BELUM BERSYAADAH</a>';
                                         }
-                                    }elseif ($data->kriteria == 'SEBAGAI INSTRUKTUR STRATEGI MENGAJAR METODE TILAWATI') {
-                                        # code...
-                                        $total  = $data->nilai->where("kategori","al-qur'an")->sum('nominal');
-                                        $penilaian1 = $data->nilai->where('penilaian_id', 30)->sum('nominal');
-                                        $penilaian3 = $data->nilai->where('penilaian_id', 32)->sum('nominal');
-
-                                        $rata2 = ($total + $penilaian1 + $penilaian3)/3;
-                                        return $rata2;
-                                    } 
+                                    }
+                                    
                                 } else {
                                     # code...
                                     $total  = $data->nilai->where("kategori","al-qur'an")->sum('nominal');
