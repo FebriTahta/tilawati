@@ -281,20 +281,6 @@
 							{{--  --}}
 						@endif
 					@endforeach
-					@if ($p->pelatihan->keterangan == 'guru')
-						<tr>
-							<th></th>
-							<td class="nilai6">&nbsp; &nbsp;<b> RATA - RATA NILAI</b></th>
-							<th colspan="3" class="nilai5"></th>
-							<th >
-							@if ($p->pelatihan->program->name=='munaqosyah santri')
-								{{ $rata2 = $jumlah }}
-							@else
-								{{ $rata2 = ($jumlah+ $item->nominal)/2 }}
-							@endif
-								</th>
-						</tr>
-					@else
 					<?php 
 						$rata2 = $jumlah;
 
@@ -305,19 +291,11 @@
 						<th colspan="3" class="nilai5"></th>
 						<th >{{ $rata2 = ($jumlah+$total)/4 }}</th>
 					</tr>
-					@endif
 					<tr>
 						<th></th>
 						<td class="nilai6">&nbsp; &nbsp;<b> PRESTASI</b></th>
 						<th colspan="3" class="nilai5"></th> 
 						<th >
-							{{-- @if ($x !== 1)
-								@if ($rata2 >= 85)
-									Baik
-								@else
-									Cukup
-								@endif
-							@endif --}}
 							@if ($rata2 >= 85)
 								Baik
 							@else
@@ -394,42 +372,23 @@
 							{{--  --}}
 						@endif
 					@endforeach
-					@if ($p->pelatihan->keterangan == 'guru')
-						<tr>
-							<th></th>
-							<td class="nilai6">&nbsp; &nbsp;<b> RATA - RATA NILAI</b></th>
-							<th colspan="3" class="nilai5"></th>
-							<th >
-							@if ($p->pelatihan->program->name=='munaqosyah santri')
-								{{ $rata2 = $jumlah }}
-							@else
-								{{ $rata2 = ($jumlah+ $item->nominal)/2 }}
-							@endif
-								</th>
-						</tr>
-					@else
+					
 					<?php 
-						$rata2 = $jumlah
+						$nilaia = $p->nilai->where('penilaian_id', 30)->sum('nominal');
+						$nilaib = $p->nilai->where('penilaian_id', 32)->sum('nominal');
+						$total 	= $nilaia + $nilaib;
 					?>
 					<tr>
 						<th></th>
 						<td class="nilai6">&nbsp; &nbsp;<b> RATA - RATA NILAI</b></th>
 						<th colspan="3" class="nilai5"></th>
-						<th >{{ $rata2 = ($jumlah+$total)/4 }}</th>
+						<th >{{ $rata2 = ($jumlah+$total)/3 }}</th>
 					</tr>
-					@endif
 					<tr>
 						<th></th>
 						<td class="nilai6">&nbsp; &nbsp;<b> PRESTASI</b></th>
 						<th colspan="3" class="nilai5"></th> 
 						<th >
-							{{-- @if ($x !== 1)
-								@if ($rata2 >= 85)
-									Baik
-								@else
-									Cukup
-								@endif
-							@endif --}}
 							@if ($rata2 >= 85)
 								Baik
 							@else
