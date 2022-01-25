@@ -488,7 +488,7 @@
 								<?php $z--; ?>
 							@else
 								<tr>
-									<?php $tot[$i++] = $item->nominal?>
+									<?php $tot[$key] = $item->nominal?>
 									<th>{{ $i++ }}</th>
 									<td class="nilai6" style="text-transform: uppercase">&nbsp; &nbsp;<b> {{ $item->penilaian->name }}</b></th>
 									{{-- <th colspan="3" class="nilai5"></th> --}}
