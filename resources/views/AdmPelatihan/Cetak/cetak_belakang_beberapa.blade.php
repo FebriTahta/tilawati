@@ -487,8 +487,8 @@
 								<?php $z--; ?>
 							@else
 								<tr>
-									{{$i}}
-									<th>{{ $i++ }}</th>
+									
+									<th>{{ $i++ }} {{$i}}</th>
 									<td class="nilai6" style="text-transform: uppercase">&nbsp; &nbsp;<b> {{ $item->penilaian->name }}</b></th>
 									{{-- <th colspan="3" class="nilai5"></th> --}}
 									<td class="nilaibawahtot" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->max }}</td>
