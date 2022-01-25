@@ -444,6 +444,7 @@
 				</div>
 			</div>
 			@elseif($p->kriteria == 'SEBAGAI INSTRUKTUR LAGU METODE TILAWATI')
+			{{--  --}}
 			<div style="page-break-inside: avoid">
 				<div>
 					<p @if ($p->pelatihan->keterangan == 'instruktur') style="margin-top: 160px;margin-left: 358px" @else style="margin-top: 160px;margin-left: 358px" @endif class="syahadah">No. Syahadah : {{ $p->pelatihan->id }}/2021/{{ $p->id }}</p>
@@ -487,11 +488,10 @@
 								<?php $z--; ?>
 							@else
 								<tr>
-									<?php $yah[$i] = $item->nominal;
-										  
+									<?php $tot[$i] = $item->nominal;
+										  $total   = $tot[3] + $tot[4];
 									?>
-									
-									<th>{{$yah[2]}} {{ $i++ }}</th>
+									<th>{{ $i++ }}</th>
 									<td class="nilai6" style="text-transform: uppercase">&nbsp; &nbsp;<b> {{ $item->penilaian->name }}</b></th>
 									{{-- <th colspan="3" class="nilai5"></th> --}}
 									<td class="nilaibawahtot" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->max }}</td>
@@ -499,7 +499,6 @@
 									<td class="nilaibawahtot"></td>
 									<th >{{ $item->nominal }}</th>
 									
-									<?php $total += $item->nominal?>
 								</tr>
 								<?$x++?>
 							@endif
@@ -507,20 +506,7 @@
 							{{--  --}}
 						@endif
 					@endforeach
-					@if ($p->pelatihan->keterangan == 'guru')
-						<tr>
-							<th></th>
-							<td class="nilai6">&nbsp; &nbsp;<b> RATA - RATA NILAI</b></th>
-							<th colspan="3" class="nilai5"></th>
-							<th >
-							@if ($p->pelatihan->program->name=='munaqosyah santri')
-								{{ $rata2 = $jumlah }}
-							@else
-								{{ $rata2 = ($jumlah+ $item->nominal)/2 }}
-							@endif
-								</th>
-						</tr>
-					@else
+					
 					<?php 
 						$rata2 = $jumlah;
 
@@ -529,9 +515,9 @@
 						<th></th>
 						<td class="nilai6">&nbsp; &nbsp;<b> RATA - RATA NILAI</b></th>
 						<th colspan="3" class="nilai5"></th>
-						<th >{{ $rata2 = ($jumlah+$total)/4 }}</th>
+						<th >{{ $rata2 = ($jumlah+$total)/3 }}</th>
 					</tr>
-					@endif
+					
 					<tr>
 						<th></th>
 						<td class="nilai6">&nbsp; &nbsp;<b> PRESTASI</b></th>
@@ -550,6 +536,7 @@
 					<div class="alignright" style="margin-right: 210px">Cukup : 75 - 84</div>
 				</div>
 			</div>
+			{{--  --}}
 			@endif
 		@else
 		{{-- Selain TOT --}}
