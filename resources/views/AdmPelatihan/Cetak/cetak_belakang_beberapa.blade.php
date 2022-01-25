@@ -490,13 +490,13 @@
 								<tr>
 									<?php $tot[$key] = $item->nominal?>
 									
-									<th>{{ $i++ }} {{$tot[1]}}</th>
+									<th>{{ $i++ }}</th>
 									<td class="nilai6" style="text-transform: uppercase">&nbsp; &nbsp;<b> {{ $item->penilaian->name }}</b></th>
 									{{-- <th colspan="3" class="nilai5"></th> --}}
 									<td class="nilaibawahtot" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->max }}</td>
 									<td class="nilaibawahtot" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->min }}</td>
 									<td class="nilaibawahtot"></td>
-									<th >{{ $item->nominal }} {{$key}}</th>
+									<th >{{ $item->nominal. $key }}</th>
 									<?php $total += $item->nominal?>
 								</tr>
 								<?$x++?>
