@@ -500,14 +500,11 @@
 		{{-- Selain TOT --}}
 		<div style="page-break-inside: avoid">
 			<div>
-				<p @if ($p->pelatihan->keterangan == 'instruktur') style="margin-top: 160px;margin-left: 358px" @else style="margin-top: 160px;margin-left: 358px" @endif class="syahadah">No. Syahadah : {{ $p->pelatihan->id }}/2021/{{ $p->id }}</p>
+				<p  style="margin-top: 160px;margin-left: 358px" class="syahadah">No. Syahadah : {{ $p->pelatihan->id }}/2021/{{ $p->id }}</p>
 			</div>
 			<table 
-			@if ($p->pelatihan->keterangan == 'instruktur')
-			style="width: 700px"
-			@else
 			style="width: 782px; margin-left:154px"
-			@endif  class="table1">
+			class="table1">
 				<tr>
 						<th rowspan="2">No.</th>
 						<th rowspan="2">Bidang Penilaian</th>
@@ -574,13 +571,6 @@
 					<td class="nilai6">&nbsp; &nbsp;<b> PRESTASI</b></th>
 					<th colspan="3" class="nilai5"></th> 
 					<th >
-						{{-- @if ($x !== 1)
-							@if ($rata2 >= 85)
-								Baik
-							@else
-								Cukup
-							@endif
-						@endif --}}
 						@if ($rata2 >= 85)
 							Baik
 						@else
@@ -595,8 +585,6 @@
 			</div>
 		</div>
 		@endif
-	
-		
 	@endforeach
 </body>
 </html>	
