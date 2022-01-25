@@ -117,7 +117,18 @@ class PesertaCont extends Controller
                                         }
                                     }else {
                                         # code...
-                                        return 'tunggu sebentar';
+                                        $total  = $data->nilai->where("kategori","al-qur'an")->sum('nominal');
+                                        $total2 = $data->nilai->where("kategori","skill")->sum('nominal');
+                                        $total3 = $data->nilai->where("kategori","skill")->count();
+                                        
+                                        $rata2 = ($total + $total2)/($total3+1);
+                                        if ($rata2 > 70) {
+                                            # code...
+                                            return '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-info">'.round($rata2,1).' BERSYAHADAH</a>';
+                                        } else {
+                                            # code...
+                                            return '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-warning">'.round($rata2,1).' BELUM BERSYAADAH</a>';
+                                        }
                                     }
                                 } else {
                                     # code...
