@@ -488,9 +488,6 @@
 								<?php $z--; ?>
 							@else
 								<tr>
-									<?php $tot[$i] = $item->nominal;
-										  $total   = $tot[3] + $tot[4];
-									?>
 									<th>{{ $i++ }}</th>
 									<td class="nilai6" style="text-transform: uppercase">&nbsp; &nbsp;<b> {{ $item->penilaian->name }}</b></th>
 									{{-- <th colspan="3" class="nilai5"></th> --}}
@@ -498,7 +495,7 @@
 									<td class="nilaibawahtot" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->min }}</td>
 									<td class="nilaibawahtot"></td>
 									<th >{{ $item->nominal }}</th>
-									
+									<?php $total += $item->nominal?>
 								</tr>
 								<?$x++?>
 							@endif
@@ -515,7 +512,7 @@
 						<th></th>
 						<td class="nilai6">&nbsp; &nbsp;<b> RATA - RATA NILAI</b></th>
 						<th colspan="3" class="nilai5"></th>
-						<th >{{ $rata2 = ($jumlah+$total)/3 }}</th>
+						<th >{{ $rata2 = ($jumlah+$total)/4 }}</th>
 					</tr>
 					
 					<tr>
