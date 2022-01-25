@@ -495,7 +495,7 @@
 									<td class="nilaibawahtot" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->max }}</td>
 									<td class="nilaibawahtot" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->min }}</td>
 									<td class="nilaibawahtot"></td>
-									<th >{{ $item->nominal }} {{$tot[3]}}</th>
+									<th >{{ $item->nominal }} {{implode($tot)}}</th>
 									<?php $total += $item->nominal?>
 								</tr>
 								<?$x++?>
