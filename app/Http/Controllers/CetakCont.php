@@ -94,7 +94,7 @@ class CetakCont extends Controller
     public function cetak_belakang_beberapa(Request $request)
     {
         $peserta_id_array = $request->id;
-        $peserta        = Peserta::whereIn('id',explode(",",$peserta_id_array))->where('kriteria','<>','')->get();
+        $peserta        = Peserta::whereIn('id',explode(",",$peserta_id_array))->where('bersyahadah',1)->get();
         $customPaper = array(0,0,792,612);
     	$pdf = PDF::loadview('AdmPelatihan.Cetak.cetak_belakang_beberapa',compact('peserta'))->setPaper($customPaper, 'portrait');
     	return $pdf->download('ijazah-belakang-peserta.pdf','I');
