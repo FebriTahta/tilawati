@@ -102,6 +102,8 @@ class PesertaCont extends Controller
                                             # code...
                                             return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-warning">'.$rata2.' BELUM BERSYAADAH</a>';
                                         }
+                                    }elseif($data->kriteria == 'SEBAGAI INSTRUKTUR STRATEGI MENGAJAR METODE TILAWATI'){
+                                        return 'ok';
                                     }else {
                                         # code...
                                         return 'tunggu sebentar';
