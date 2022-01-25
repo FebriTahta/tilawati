@@ -95,7 +95,17 @@ class PesertaCont extends Controller
                                         $penilaian3 = $data->nilai->where('penilaian_id', 32)->sum('nominal');
 
                                         $rata2 = ($total + $penilaian2 + $penilaian3)/3;
-                                        return $rata2; 
+                                        if ($rata2 > 84) {
+                                            # code...
+                                            return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-primary">'.$rata2.' (baik)</a>';
+                                        }
+                                        elseif($rata2 < 84 && $rata2 < 75){
+                                            return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-warning">'.$rata2.' (belum bersyahadah)</a>';
+                                        }
+                                        else {
+                                            # code...
+                                            return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-info">'.$rata2.' (cukup)</a>';
+                                        }
                                     }else {
                                         # code...
                                         return 'tunggu sebentar';
