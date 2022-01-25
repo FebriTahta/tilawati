@@ -21,7 +21,7 @@
             @component('common-tilawatipusat.dashboard-widget')
                 
                 @slot('title') <p><b> TOTAL NILAI RATA-RATA</b></p> <b> {{ $rata2 }}</b> &nbsp;&nbsp;
-                @if ($rata2 > 70)
+                @if ($rata2 > 71)
                 <b class="badge badge-info">BERSYAHADAH</b>
                 @else
                 <b class="badge badge-danger">BELUM BERSYAHADAH</b>
