@@ -487,8 +487,11 @@
 								<?php $z--; ?>
 							@else
 								<tr>
-									<?php $yah[$i] = $i;?>
-									<th>{{implode('',$yah)}} {{ $i++ }}</th>
+									<?php $yah[$i] = $i;
+										  
+									?>
+									
+									<th>{{$yah[2]}} {{ $i++ }}</th>
 									<td class="nilai6" style="text-transform: uppercase">&nbsp; &nbsp;<b> {{ $item->penilaian->name }}</b></th>
 									{{-- <th colspan="3" class="nilai5"></th> --}}
 									<td class="nilaibawahtot" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->max }}</td>
