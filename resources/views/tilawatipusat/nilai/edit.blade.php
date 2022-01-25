@@ -21,10 +21,10 @@
             @component('common-tilawatipusat.dashboard-widget')
                 
                 @slot('title') <p><b> TOTAL NILAI RATA-RATA</b></p> <b> {{ $rata2 }}</b> &nbsp;&nbsp;
-                @if ($rata2 > 74)
-                <b class="badge badge-info">{{$peserta->pelatihan->kategori}}</b>
+                @if ($rata2 > 70)
+                <b class="badge badge-info">BERSYAHADAH</b>
                 @else
-                <b class="badge badge-danger">{{$peserta->pelatihan->kategori}}</b>
+                <b class="badge badge-danger">BELUM BERSYAHADAH</b>
                 @endif  @endslot
                 @slot('iconClass') mdi mdi-tag-plus-outline  @endslot
                 @slot('price')   @endslot

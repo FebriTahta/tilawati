@@ -110,7 +110,7 @@ class NilaiCont extends Controller
     public function edit($id)
     {
         $peserta    = Peserta::find($id);
-        if ($peserta->pelatihan->kategori == 'instruktur') {
+        if ($peserta->pelatihan->keterangan == 'instruktur') {
             # code...
             if ($peserta->kriteria == 'SEBAGAI INSTRUKTUR LAGU METODE TILAWATI') {
                 #code...
