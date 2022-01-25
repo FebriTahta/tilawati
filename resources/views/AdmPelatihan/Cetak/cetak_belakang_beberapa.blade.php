@@ -512,7 +512,7 @@
 						<th></th>
 						<td class="nilai6">&nbsp; &nbsp;<b> RATA - RATA NILAI</b></th>
 						<th colspan="3" class="nilai5"></th>
-						<th >{{ $rata2 = ($jumlah+$total)/4 }}</th>
+						<th >{{ $rata2 = ($jumlah+$total)/3 }}</th>
 					</tr>
 					
 					<tr>
