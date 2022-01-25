@@ -489,7 +489,7 @@
 							@else
 								<tr>
 									<?php $tot[$i] = $item->nominal?>
-									<th>{{ $i++ }} {{$tot[2]}}</th>
+									<th>{{ $i++ }} {{$tot[4]}}</th>
 									<td class="nilai6" style="text-transform: uppercase">&nbsp; &nbsp;<b> {{ $item->penilaian->name }}</b></th>
 									{{-- <th colspan="3" class="nilai5"></th> --}}
 									<td class="nilaibawahtot" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->max }}</td>
