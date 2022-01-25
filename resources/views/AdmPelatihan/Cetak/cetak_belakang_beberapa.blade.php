@@ -506,9 +506,9 @@
 						@endif
 					@endforeach
 					<?php 
-						$nilai2 = $p->nilai->where('penilaian_id', 31)->sum('nominal');
-						$nilai3 = $p->nilai->where('penilaian_id', 32)->sum('nominal');
-						$total 	= $nilai2+nilai3;
+						$nilaia = $p->nilai->where('penilaian_id', 31)->sum('nominal');
+						$nilaib = $p->nilai->where('penilaian_id', 32)->sum('nominal');
+						$total 	= $nilaia+nilaib;
 					?>
 					<tr>
 						<th></th>
