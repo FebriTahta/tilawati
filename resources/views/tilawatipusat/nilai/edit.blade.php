@@ -20,7 +20,10 @@
         <div class="col-xl-6">
             @component('common-tilawatipusat.dashboard-widget')
                 
-                
+                @slot('title') <p><b> TOTAL NILAI RATA-RATA</b></p> <b> {{ $rata2 }}</b> &nbsp;&nbsp;
+                {{$peserta->pelatihan->kategori}}
+                @slot('iconClass') mdi mdi-tag-plus-outline  @endslot
+                @slot('price')   @endslot
                 
             @endcomponent
         </div>
