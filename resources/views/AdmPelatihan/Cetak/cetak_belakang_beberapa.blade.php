@@ -488,14 +488,14 @@
 								<?php $z--; ?>
 							@else
 								<tr>
-									<?php $tot[$i] = $item->nominal?>
+									<?php $tot[$i++] = $item->nominal?>
 									<th>{{ $i++ }}</th>
 									<td class="nilai6" style="text-transform: uppercase">&nbsp; &nbsp;<b> {{ $item->penilaian->name }}</b></th>
 									{{-- <th colspan="3" class="nilai5"></th> --}}
 									<td class="nilaibawahtot" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->max }}</td>
 									<td class="nilaibawahtot" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->min }}</td>
 									<td class="nilaibawahtot"></td>
-									<th >{{ $item->nominal }} {{$tot[$i]}}</th>
+									<th >{{ $item->nominal }} {{$tot[3]}}</th>
 									<?php $total += $item->nominal?>
 								</tr>
 								<?$x++?>
