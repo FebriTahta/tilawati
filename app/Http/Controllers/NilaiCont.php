@@ -142,7 +142,7 @@ class NilaiCont extends Controller
             $total      = $peserta->nilai->where("kategori","al-qur'an")->sum('nominal');
             $total2     = $peserta->nilai->where("kategori","skill")->sum('nominal');
             $total3     = $peserta->nilai->where("kategori","skill")->count();
-            $rata2      = ($total + $total2)/($total3+100);
+            $rata2      = ($total + $total2)/($total3+1);
             $kriteria   = Kriteria::where('program_id', $peserta->program_id)->get();
             return view('tilawatipusat.nilai.edit',compact('peserta','total','rata2','kriteria'));
         }

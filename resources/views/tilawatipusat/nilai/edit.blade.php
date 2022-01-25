@@ -20,7 +20,7 @@
         <div class="col-xl-6">
             @component('common-tilawatipusat.dashboard-widget')
                 
-                @slot('title') <p><b> TOTAL NILAI RATA-RATA</b></p> <b> {{ $rata2 }}</b> &nbsp;&nbsp;
+                @slot('title') <p><b> TOTAL NILAI RATA-RATA</b></p> <b> {{ $rata2 }} {{$peserta->pelatihan->kategori}}</b> &nbsp;&nbsp;
                 @if ($rata2 > 74)
                 <b class="badge badge-info">BERSYAHADAH</b>
                 @else
