@@ -495,7 +495,7 @@
 									<td class="nilaibawahtot" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->max }}</td>
 									<td class="nilaibawahtot" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->min }}</td>
 									<td class="nilaibawahtot"></td>
-									<th >{{ $item->nominal }} {{implode('+',$tot)}}</th>
+									<th >{{ $item->nominal }}</th>
 									<?php $total += $item->nominal?>
 								</tr>
 								<?$x++?>
@@ -504,7 +504,7 @@
 							{{--  --}}
 						@endif
 					@endforeach
-					
+					{{$tot[2]+$tot[3]}}
 					<?php 
 						$rata2 = $jumlah;
 
