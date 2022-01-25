@@ -117,7 +117,7 @@ class NilaiCont extends Controller
                 $total  = $peserta->nilai->where("kategori","al-qur'an")->sum('nominal');
                 $penilaian2 = $peserta->nilai->where('penilaian_id', 31)->sum('nominal');
                 $penilaian3 = $peserta->nilai->where('penilaian_id', 32)->sum('nominal');
-                $rata2 = ($total + $penilaian2 + $penilaian3)/3;
+                $rata2 = 100;
                 $kriteria   = Kriteria::where('program_id', $peserta->program_id)->get();
                 return view('tilawatipusat.nilai.edit',compact('peserta','total','rata2','kriteria'));
 
@@ -126,6 +126,7 @@ class NilaiCont extends Controller
                 $penilaian1 = $peserta->nilai->where('penilaian_id', 30)->sum('nominal');
                 $penilaian3 = $peserta->nilai->where('penilaian_id', 32)->sum('nominal');
                 $kriteria   = Kriteria::where('program_id', $peserta->program_id)->get();
+                $rata2 = ($total + $penilaian1 + $penilaian3)/3;
                 return view('tilawatipusat.nilai.edit',compact('peserta','total','rata2','kriteria'));
             }else{
                 $total      = $peserta->nilai->where("kategori","al-qur'an")->sum('nominal');

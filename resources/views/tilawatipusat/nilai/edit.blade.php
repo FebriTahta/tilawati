@@ -19,10 +19,7 @@
     <div class="row">
         <div class="col-xl-6">
             @component('common-tilawatipusat.dashboard-widget')
-
-                @if ($peserta->pelatihan->kategori == 'instruktur')
-                    
-                @else
+                
                 @slot('title') <p><b> TOTAL NILAI RATA-RATA</b></p> <b> {{ $rata2 }}</b> &nbsp;&nbsp;
                 @if ($rata2 > 74)
                 <b class="badge badge-info">BERSYAHADAH</b>
@@ -31,7 +28,6 @@
                 @endif  @endslot
                 @slot('iconClass') mdi mdi-tag-plus-outline  @endslot
                 @slot('price')   @endslot
-                @endif
                 
             @endcomponent
         </div>
