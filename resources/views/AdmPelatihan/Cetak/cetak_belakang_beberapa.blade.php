@@ -508,7 +508,7 @@
 					<?php 
 						$nilaia = $p->nilai->where('penilaian_id', 31)->sum('nominal');
 						$nilaib = $p->nilai->where('penilaian_id', 32)->sum('nominal');
-						$total 	= $nilaia+nilaib;
+						// $total 	= $nilaia+nilaib;
 					?>
 					<tr>
 						<th></th>
