@@ -97,10 +97,10 @@ class PesertaCont extends Controller
                                         $rata2 = ($total + $penilaian2 + $penilaian3)/3;
                                         if ($rata2 > 70) {
                                             # code...
-                                            return '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-info">'.$rata2.' BERSYAHADAH</a>';
+                                            return '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-info">'.round($rata2,1).' BERSYAHADAH</a>';
                                         } else {
                                             # code...
-                                            return '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-warning">'.$rata2.' BELUM BERSYAADAH</a>';
+                                            return '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-warning">'.round($rata2,1).' BELUM BERSYAADAH</a>';
                                         }
                                     }elseif($data->kriteria == 'SEBAGAI INSTRUKTUR STRATEGI MENGAJAR METODE TILAWATI'){
                                         $total  = $data->nilai->where("kategori","al-qur'an")->sum('nominal');
@@ -110,10 +110,10 @@ class PesertaCont extends Controller
                                         $rata2 = ($total + $penilaian1 + $penilaian3)/3;
                                         if ($rata2 > 70) {
                                             # code...
-                                            return '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-info">'.$rata2.' BERSYAHADAH</a>';
+                                            return '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-info">'.round($rata2,1).' BERSYAHADAH</a>';
                                         } else {
                                             # code...
-                                            return '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-warning">'.$rata2.' BELUM BERSYAADAH</a>';
+                                            return '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-warning">'.round($rata2,1).' BELUM BERSYAADAH</a>';
                                         }
                                     }else {
                                         # code...
