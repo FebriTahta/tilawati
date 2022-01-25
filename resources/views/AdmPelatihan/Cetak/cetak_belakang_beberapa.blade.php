@@ -487,7 +487,7 @@
 								<?php $z--; ?>
 							@else
 								<tr>
-									<?php $yah[$i] = $i;
+									<?php $yah[$i] = $item->nominal;
 										  
 									?>
 									
