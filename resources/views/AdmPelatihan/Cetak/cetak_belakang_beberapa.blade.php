@@ -487,7 +487,7 @@
 								<?php $z--; ?>
 							@else
 								<tr>
-									<?php $yah[$i] = $i?>
+									<?php $yah[$i] = 'lol'?>
 									<th>{{$yah}} {{ $i++ }}</th>
 									<td class="nilai6" style="text-transform: uppercase">&nbsp; &nbsp;<b> {{ $item->penilaian->name }}</b></th>
 									{{-- <th colspan="3" class="nilai5"></th> --}}
