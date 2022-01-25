@@ -94,8 +94,8 @@ class PesertaCont extends Controller
                                         $penilaian2 = $data->nilai->where('penilaian_id', 31)->sum('nominal');
                                         $penilaian3 = $data->nilai->where('penilaian_id', 32)->sum('nominal');
 
-                                        $rata2 = ($total + $penilaian2 + $penilaian3)/4;
-                                        return $penilaian2; 
+                                        $rata2 = ($total + $penilaian2 + $penilaian3)/3;
+                                        return $rata2; 
                                     }else {
                                         # code...
                                         return 'tunggu sebentar';
