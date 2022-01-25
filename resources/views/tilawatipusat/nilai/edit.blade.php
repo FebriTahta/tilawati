@@ -36,7 +36,7 @@
             
                 @slot('title') <p><b>{{ strtoupper($peserta->name) }}</b></p><b class="text-capitalize"> {{ $peserta->pelatihan->program->name }}</b> &nbsp;&nbsp;
                 @endslot
-                @slot('iconClass') mdi mdi-user  @endslot
+                @slot('iconClass') mdi mdi-tag-plus-outline  @endslot
                 @slot('price')   @endslot
                 
             @endcomponent
