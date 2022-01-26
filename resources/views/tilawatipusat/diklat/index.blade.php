@@ -308,7 +308,10 @@
                                                         </div>
                                                     </div><!-- container fluid -->
                                                     <div class="form-group" style="text-align: center">
-                                                        <input type="submit" class="btn btn-sm btn-outline-primary" value="Generate QR">
+                                                        <form id="generate" method="POST">@csrf
+                                                            <input type="text" name="slug" id="qr_slug" class="form-control" id="qr_slug" required>
+                                                            <input type="submit" class="btn btn-sm btn-outline-primary" value="Generate QR">
+                                                        </form>
                                                         <button class="btn btn-sm btn-outline-info">Download</button>
                                                     </div>
                                                 </div>
@@ -595,8 +598,10 @@
                 var button = $(event.relatedTarget)
                 var id = button.data('id')
                 var nama_peserta = button.data('nama_diklat')
+                var slug  = button.data('slug')
                 var modal = $(this)
                 $('#nama_peserta').html(nama_peserta);
+                $('#qr_slug').html(slug);
                 document.getElementById("qr-code").src = id;
             })
 
