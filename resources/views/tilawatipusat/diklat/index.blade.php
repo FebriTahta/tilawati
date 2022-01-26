@@ -312,6 +312,9 @@
                                                             <div class="col-6 col-xl-6">
                                                                 <input type="submit" class="btn btn-outline-primary" value="Generate QR">
                                                             </div>
+                                                            <div class="col-6 col-xl-6">
+                                                                <button class="btn btn-outline-info">Download</button>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
