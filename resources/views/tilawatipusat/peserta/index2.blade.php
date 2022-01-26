@@ -67,11 +67,13 @@
                                         <table id="datatable-buttons" class="table table-peserta table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;font-size: 11px ">
                                             <thead class="text-bold text-primary" style="text-transform: capitalize">
                                                 <tr>
+                                                    <th>id</th>
                                                     <th>peserta</th>
                                                     <th>kota/kabupaten</th>
                                                     <th>phone</th>
                                                     <th>TTL</th>
                                                     <th>alamat</th>
+                                                    <th>alamat M</th>
                                                     <th>Option</th>
                                                 </tr>
                                             </thead>
@@ -79,11 +81,13 @@
                                             </tbody>
                                             <tfoot class="text-primary">
                                                 <tr>
+                                                    <th>id</th>
                                                     <th>peserta</th>
                                                     <th>kota/kabupaten</th>
                                                     <th>phone</th>
                                                     <th>TTL</th>
                                                     <th>alamat</th>
+                                                    <th>Alamat M</th>
                                                     <th>Option</th>
                                                 </tr>
                                             </tfoot>
@@ -613,7 +617,10 @@
                         url:'/diklat-peserta-data'+ '/'+pel_id,
                     },
                     columns: [
-                        
+                        {
+                        data:'id',
+                        name:'id'
+                        },
                         {
                         data:'name',
                         name:'name'
@@ -636,6 +643,10 @@
                         name:'alamat'
                         },
                         {
+                        data:'alamatx',
+                        name:'alamatx'
+                        },
+                        {
                         data:'action',
                         name:'action'
                         },
@@ -654,8 +665,8 @@
                     columns: [
                         
                         {
-                        data:'name',
-                        name:'name'
+                        data:'id',
+                        name:'id'
                         },
                         {
                         data:'kabupaten',
@@ -672,6 +683,10 @@
                         {
                         data:'alamat',
                         name:'alamat'
+                        },
+                        {
+                        data:'alamatx',
+                        name:'alamatx'
                         },
                         {
                         data:'action',
