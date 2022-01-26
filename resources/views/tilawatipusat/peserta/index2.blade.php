@@ -357,7 +357,7 @@
                                                                     <select name="peserta_id" id="" class="form-control" required>
                                                                         <option value="">Data Peserta</option>
                                                                         @foreach ($diklat->peserta as $item)
-                                                                            <option value="{{$item->id}}">{{$item->nama}}</option>
+                                                                            <option value="{{$item->id}}">{{$item->name}}</option>
                                                                         @endforeach
                                                                     </select>
                                                                 </div>
