@@ -373,6 +373,9 @@
                                                                         @endforeach
                                                                     </select>
                                                                 </div>
+                                                                <div class="form-group">
+                                                                    <input type="submit" id="btnpindah" class="btn btn-outline-danger" value="PINDAH">
+                                                                </div>
                                                             </div>
                                                         </form>
                                                     </div><!-- container fluid -->
