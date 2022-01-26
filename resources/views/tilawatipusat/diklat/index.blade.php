@@ -602,6 +602,7 @@
                 var modal = $(this)
                 $('#nama_peserta').html(nama_peserta);
                 $('#qr_slug').html(slug);
+                console.log(slug);
                 document.getElementById("qr-code").src = id;
             })
 
