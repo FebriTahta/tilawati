@@ -311,7 +311,7 @@
                     </div>
 
                     <div class="col-sm-6 col-md-3 m-t-30">
-                        <div class="modal fade modal-scan" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                        <div class="modal fade modal-scan" id="modal_scan" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered modal-md">
                                 <div class="modal-content">
                                     <div class="modal-header">
