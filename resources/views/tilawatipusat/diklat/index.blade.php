@@ -307,7 +307,7 @@
                                                             <p class="text-info" id="nama_peserta"></p>
                                                         </div>
                                                     </div><!-- container fluid -->
-                                                    <div class="form-group">
+                                                    <div class="form-group" style="text-align: center">
                                                         <input type="submit" class="btn btn-sm btn-outline-primary" value="Generate QR">
                                                         <button class="btn btn-sm btn-outline-info">Download</button>
                                                     </div>
