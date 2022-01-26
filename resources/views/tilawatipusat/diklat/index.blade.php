@@ -307,7 +307,7 @@
                                                             <p class="text-info" id="nama_peserta"></p>
                                                         </div>
                                                     </div><!-- container fluid -->
-                                                    <div class="form-control">
+                                                    <div class="form-group">
                                                         <div class="row">
                                                             <div class="col-6 col-xl-6">
                                                                 <input type="submit" class="btn btn-outline-primary" value="Generate QR">
