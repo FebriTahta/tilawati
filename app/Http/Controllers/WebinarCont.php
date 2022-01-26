@@ -11,6 +11,8 @@ use Carbon\Carbon;
 use File;
 use App\Models\Flyer;
 use Illuminate\Support\Str;
+use Image;
+use Response;
 use Illuminate\Http\Request;
 
 class WebinarCont extends Controller
