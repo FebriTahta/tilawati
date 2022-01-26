@@ -310,11 +310,11 @@
                                                     <div class="form-group" style="text-align: center">
                                                         <form id="generate" method="POST">@csrf
                                                             <input type="hidden" name="slug" id="qr_slug" class="form-control" required>
-                                                            <input type="submit" id="btngenerate" class="btn btn-sm btn-outline-primary" value="Generate QR">
+                                                            <input style="width: 150px" type="submit" id="btngenerate" class="btn btn-sm btn-outline-primary" value="Generate QR">
                                                         </form>
                                                         <form target="_blank" action="/download_qr" method="POST"> @csrf
                                                             <input type="hidden" name="slug2" id="qr_slug2" class="form-control" required>
-                                                            <button type="submit" class="btn btn-sm btn-outline-info" style="margin-top: 10px">Download</button>
+                                                            <button style="width: 150px" type="submit" class="btn btn-sm btn-outline-info" style="margin-top: 10px">Download</button>
                                                         </form>
                                                     </div>
                                                 </div>
