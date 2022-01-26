@@ -369,7 +369,7 @@
                                                                         <option value="">-</option>
                                                                         <?php $webinar = App\Models\Pelatihan::where('jenis','webinar')->get();?>
                                                                         @foreach ($webinar as $item)
-                                                                            <option value="{{$item->id}}">{{$item->id.' - '.$item->program->name.' - '. Carbon\Carbon::parse($item->tanggal)->isoFormat('D MMMM Y')}}</option>
+                                                                            <option value="{{$item->id}}">{{$item->id.' - '.$item->program->name.' | '. Carbon\Carbon::parse($item->tanggal)->isoFormat('D MMMM Y')}}</option>
                                                                         @endforeach
                                                                     </select>
                                                                 </div>
