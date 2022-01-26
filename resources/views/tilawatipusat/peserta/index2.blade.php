@@ -363,13 +363,13 @@
                                                                     </select>
                                                                 </div>
                                                                 
-                                                                <div class="form-group col-6 col-xl-6">
+                                                                <div class="form-group col-12 col-xl-12">
                                                                     <label for="">Data Webinar</label>
                                                                     <select name="pelatihan_id" class="form-control" id="" required>
                                                                         <option value="">-</option>
                                                                         <?php $webinar = App\Models\Pelatihan::where('jenis','webinar')->get();?>
                                                                         @foreach ($webinar as $item)
-                                                                            <option value="{{$item->id}}">{{$item->program->name}}</option>
+                                                                            <option value="{{$item->id}}">{{$item->id.' - '.$item->program->name.' - '.return Carbon::parse($item->tanggal)->isoFormat('D MMMM Y');}}</option>
                                                                         @endforeach
                                                                     </select>
                                                                 </div>
