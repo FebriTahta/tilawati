@@ -292,7 +292,7 @@
                             <div class="modal-dialog modal-dialog-centered modal-md">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title mt-0">SCAN QR CODE PESERTA </h5>
+                                        <h5 class="modal-title mt-0">SCAN QR CODE DIKLAT </h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
@@ -589,13 +589,13 @@
         <script>
             $('.modal-scan').on('show.bs.modal', function(event) {
                 var button = $(event.relatedTarget)
-                id = button.data('id')
-                nama_peserta = button.data('nama_peserta')
+                var id = button.data('id')
+                var nama_peserta = button.data('nama_peserta')
                 var modal = $(this)
                 $('#nama_peserta').html(nama_peserta);
                 document.getElementById("qr-code").src = id;
             })
-            
+
             $('#inputGroupFile02').on('change',function(){
                 //get the file name
                 var fileName = $(this).val();
