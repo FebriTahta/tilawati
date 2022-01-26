@@ -646,7 +646,7 @@
                     {
                         //sweetalert and redirect
                         toastr.success(data.success);
-                        $('#modal-scan').modal('hide');
+                        $('.modal-scan').modal('hide');
                         $('#btngenerate').val('Generate');
                         $('#btngenerate').attr('disabled',false);
                         var oTable = $('#datatable-buttons').dataTable();
