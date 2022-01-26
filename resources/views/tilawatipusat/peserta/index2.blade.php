@@ -302,6 +302,42 @@
                         </div><!-- /.modal -->
                     </div>
 
+                    <div class="col-sm-6 col-md-3 m-t-30">
+                        <div class="modal fade" id="modal_cetak_surat2" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-md">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <div class="col-xl-12">
+                                            <div class="card m-b-30">
+                                                <div class="card-body">
+                                                    <div class="container-fluid">
+                                                        <form id="formcetaksurat" action="{{route('diklat.cetak_surat_pengiriman_beberapa')}}"  method="POST" enctype="multipart/form-data">@csrf
+                                                            <div class="form-group text-center">
+                                                                <h5>CETAK SURAT PENGIRIMAN MODUL ?</h5>
+                                                                <input type="hidden" class="form-control text-capitalize" id="idcetaksurat" name="idcetaksurats" required>
+                                                            </div>
+                                                            <div class="row" style="text-align: center">
+                                                                <div class="form-group col-6 col-xl-6">
+                                                                    <input type="submit" name="cetaksurat" id="btncetaksurat" class="btn btn-outline-primary" value="Ya, Cetak!" />
+                                                                </div>
+                                                                <div class="form-group col-6 col-xl-6">
+                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                                                        No, Cancel!
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div><!-- container fluid -->
+                                                </div>
+                                            </div>
+                                        </div> <!-- end col -->
+                                    </div>
+                                </div><!-- /.modal-content -->
+                            </div><!-- /.modal-dialog -->
+                        </div><!-- /.modal -->
+                    </div>
+
+
 @endsection
 
 @section('script')
@@ -713,6 +749,21 @@
                     });
                 }
             })
-            
+            // cetak surat jalan
+            $('#cetak_all').on('click', function(e) {
+            var allVals = [];  
+            $(".sub_chk:checked").each(function() {  
+                allVals.push($(this).attr('data-id'));
+            });
+
+            if(allVals.length <=0)  
+            {  
+                alert("PILIH PESERTA YANG AKAN DICETAK SURAT JALAN");  
+            }else {  
+                var join_selected_values = allVals.join(",");
+                    $('#modal_cetak_surat2').modal('show');
+                    $('#idcetaksurat').val(join_selected_values);
+            }  
+            });
         </script>
 @endsection
