@@ -860,5 +860,11 @@ class DiklatCont extends Controller
                 ]
             );
     }
+
+    public function download_qr(Request $request)
+    {
+        $filepath = public_path('images/').$request->slug2;
+        return Response::download($filepath);
+    }
     
 }

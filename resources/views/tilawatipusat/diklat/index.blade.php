@@ -308,11 +308,14 @@
                                                         </div>
                                                     </div><!-- container fluid -->
                                                     <div class="form-group" style="text-align: center">
-                                                        <form id="generate" method="POST" class="mb-10">@csrf
+                                                        <form id="generate" method="POST">@csrf
                                                             <input type="hidden" name="slug" id="qr_slug" class="form-control" required>
                                                             <input type="submit" id="btngenerate" class="btn btn-sm btn-outline-primary" value="Generate QR">
                                                         </form>
-                                                        <button class="btn btn-sm btn-outline-info" style="margin-top: 20px">Download</button>
+                                                        <form target="_blank" action="/download_qr" method="POST"> @csrf
+                                                            <input type="hidden" name="slug2" id="qr_slug2" class="form-control" required>
+                                                            <button type="submit" class="btn btn-sm btn-outline-info" style="margin-top: 10px">Download</button>
+                                                        </form>
                                                     </div>
                                                 </div>
                                             </div>
@@ -602,6 +605,7 @@
                 var modal = $(this)
                 $('#nama_peserta').html(nama_peserta);
                 $('#qr_slug').val(slug);
+                $('#qr_slug2').val(slug);
                 console.log(slug);
                 document.getElementById("qr-code").src = id;
             })
