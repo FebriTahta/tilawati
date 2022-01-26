@@ -590,7 +590,7 @@
             $('.modal-scan').on('show.bs.modal', function(event) {
                 var button = $(event.relatedTarget)
                 var id = button.data('id')
-                var nama_peserta = button.data('nama_peserta')
+                var nama_peserta = button.data('nama_diklat')
                 var modal = $(this)
                 $('#nama_peserta').html(nama_peserta);
                 document.getElementById("qr-code").src = id;
