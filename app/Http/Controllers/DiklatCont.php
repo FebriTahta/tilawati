@@ -847,5 +847,18 @@ class DiklatCont extends Controller
             ]
         );
     }
+
+    public function generate_qr(Request $request)
+    {
+        \QrCode::size(150)
+        ->format('png') ->generate('https://www.registrasi.tilawatipusat.com/'.$request->slug, public_path('images_qr_diklat/'.$request->slug.'.png'));
+            
+            return response()->json(
+                [
+                  'success' => 'QR Dibuat',
+                  'message' => 'QR Dibuat'
+                ]
+            );
+    }
     
 }

@@ -309,8 +309,8 @@
                                                     </div><!-- container fluid -->
                                                     <div class="form-group" style="text-align: center">
                                                         <form id="generate" method="POST">@csrf
-                                                            <input type="text" name="slug" id="qr_slug" class="form-control" required>
-                                                            <input type="submit" class="btn btn-sm btn-outline-primary" value="Generate QR">
+                                                            <input type="hidden" name="slug" id="qr_slug" class="form-control" required>
+                                                            <input type="submit" id="btngenerate" class="btn btn-sm btn-outline-primary" value="Generate QR">
                                                         </form>
                                                         <button class="btn btn-sm btn-outline-info">Download</button>
                                                     </div>
@@ -627,6 +627,48 @@
         </script>
         <script>
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+            $('#generate').submit(function(e) {
+                e.preventDefault();
+                var formData = new FormData(this);
+                $.ajax({
+                type:'POST',
+                url: "{{ route('generate_qr')}}",
+                data: formData,
+                cache:false,
+                contentType: false,
+                processData: false,
+                beforeSend:function(){
+                    $('#btngenerate').attr('disabled','disabled');
+                    $('#btngenerate').val('Proses Generate QR');
+                },
+                success: function(data){
+                    if(data.success)
+                    {
+                        //sweetalert and redirect
+                        toastr.success(data.success);
+                        $('#modal-scan').modal('hide');
+                        $('#btngenerate').val('Generate');
+                        $('#btngenerate').attr('disabled',false);
+                        var oTable = $('#datatable-buttons').dataTable();
+                        oTable.fnDraw(false);
+                        swal({ title: "Success!",
+                            text: "QR Berhasil Dibuat!",
+                            type: "success"})
+                    }
+                    if(data.error)
+                    {
+                        $('#message').html('<div class="alert alert-danger">'+data.error+'</div>');
+                        $('#z').attr('disabled',false);
+                        $('#z').val('Import');
+                    }
+                },
+                error: function(data)
+                {
+                    console.log(data);
+                    }
+                });
+            });
+
             $('#diklat_store').submit(function(e) {
                 e.preventDefault();
                 var formData = new FormData(this);

@@ -420,7 +420,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     Route::post('/konfirmasi-data-peserta-acc',[KonfirmasiCont::class,'acc'])->name('acc');
 
     Route::post('/peserta-pindah-pelatihan',[DiklatCont::class,'peserta_pindah_pelatihan'])->name('peserta_pindah_pelatihan');
-
+    Route::post('/generate_qr',[DiklatCont::class,'generate_qr'])->name('generate_qr');
     Route::post('/generate-user',[DashboardCont::class, 'generate'])->name('generate_user');
 });
 
