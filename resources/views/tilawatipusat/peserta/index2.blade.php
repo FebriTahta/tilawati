@@ -618,6 +618,15 @@
                 // console.log(nominal);
             })
             $(document).ready(function(){
+                $('#master').on('click', function(e) {
+                if($(this).is(':checked',true))  
+                {
+                    $(".sub_chk").prop('checked', true);  
+                } else {  
+                    $(".sub_chk").prop('checked',false);  
+                }  
+                });
+                
                 var jenis_program = $('#jenis_program').val();
                 // console.log(jenis_program);
                 var k = $('#kriteria_id').text();
