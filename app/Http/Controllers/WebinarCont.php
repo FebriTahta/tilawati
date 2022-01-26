@@ -82,6 +82,17 @@ class WebinarCont extends Controller
                                 return '<a href="#" data-id="'.$data->id.'" data-flyerid="'.$data->flyer->id.'" data-img="'.asset('image_flyer/'.$data->flyer->image).'" data-toggle="modal" data-target="#modal-flyer" class="text-success">Siap</a>';
                             }
                         })
+                        ->addColumn('alamatmodul', function($data){
+                            if ($data->alamatx == null) {
+                                # code...
+                                $ttl = '<a href="#" data-id="'.$data->id.'" style="text-danger" data-alamatx="'.$data->alamatx.'" data-toggle="modal" data-target="#modal-modul"> Kosong </a>';
+                                return $ttl;
+                            }else {
+                                # code...
+                                $ttl = '<a href="#" data-id="'.$data->id.'" data-alamatx="'.$data->alamatx.'" data-toggle="modal" data-target="#modal-modul">'.$data->alamatx.'</a>';
+                                return $ttl;
+                            }
+                        })
                 ->rawColumns(['cabang','program','action','peserta','linkpendaftaran','tanggal','flyer','groupwa'])
                 ->make(true);
             }else{
@@ -145,6 +156,17 @@ class WebinarCont extends Controller
                             }else {
                                 # code...
                                 return '<a href="#" data-id="'.$data->id.'" data-flyerid="'.$data->flyer->id.'" data-img="'.asset('image_flyer/'.$data->flyer->image).'" data-toggle="modal" data-target="#modal-flyer" class="text-success">Siap</a>';
+                            }
+                        })
+                        ->addColumn('alamatmodul', function($data){
+                            if ($data->alamatx == null) {
+                                # code...
+                                $ttl = '<a href="#" data-id="'.$data->id.'" style="text-danger" data-alamatx="'.$data->alamatx.'" data-toggle="modal" data-target="#modal-modul"> Kosong </a>';
+                                return $ttl;
+                            }else {
+                                # code...
+                                $ttl = '<a href="#" data-id="'.$data->id.'" data-alamatx="'.$data->alamatx.'" data-toggle="modal" data-target="#modal-modul">'.$data->alamatx.'</a>';
+                                return $ttl;
                             }
                         })
                 ->rawColumns(['cabang','groupwa','flyer','program','action','peserta','linkpendaftaran','tanggal'])

@@ -373,6 +373,43 @@
                         </div><!-- /.modal -->
                     </div>
 
+                    <div class="col-sm-6 col-md-3 m-t-30">
+                        <div class="modal fade" id="modal-modul" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <div class="col-xl-12">
+                                            <div class="card m-b-30">
+                                                <div class="card-body">
+                                                    <div class="container-fluid">
+                                                        <form id="ubahalamatmodul"  method="POST" enctype="multipart/form-data">@csrf
+                                                            <div class="form-group text-center">
+                                                                <h5>Ubah Alamat Pengiriman Modul</h5>
+                                                                <input type="hidden" class="form-control text-capitalize" id="id" name="id" required>
+                                                                <textarea name="alamatx" class="form-control" id="alamatx" cols="30" rows="3"></textarea>
+                                                            </div>
+                                                            <div class="row" style="text-align: center">
+                                                                <div class="form-group col-6 col-xl-6">
+                                                                    <input type="submit" name="ubah" id="btnubah" class="btn btn-danger" value="Ya, Ubah!" />
+                                                                </div>
+                                                                <div class="form-group col-6 col-xl-6">
+                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                                                        No, Cancel!
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div><!-- container fluid -->
+                                                </div>
+                                            </div>
+                                        </div> <!-- end col -->
+                                    </div>
+                                </div><!-- /.modal-content -->
+                            </div><!-- /.modal-dialog -->
+                        </div><!-- /.modal -->
+                    </div>
+
+
 
 @endsection
 
@@ -403,6 +440,46 @@
         <script src="{{ URL::asset('tilawatipusat/js/pages/datatables.init.js')}}"></script>
 
         <script>
+             $('#ubahalamatmodul').submit(function(e) {
+                e.preventDefault();
+                var formData = new FormData(this);
+                $.ajax({
+                type:'POST',
+                url: "{{ route('diklat.peserta_alamatx')}}",
+                data: formData,
+                cache:false,
+                contentType: false,
+                processData: false,
+                beforeSend:function(){
+                    $('#btnubah').attr('disabled','disabled');
+                    $('#btnubah').val('Alamat Diubah');
+                },
+                success: function(data){
+                    if(data.success)
+                    {
+                        //sweetalert and refresh datatable
+                        $("#ubahalamatmodul")[0].reset();
+                        toastr.success(data.success);
+                        var oTable = $('#datatable-buttons').dataTable();
+                        oTable.fnDraw(false);
+                        $('#btnubah').val('Import');
+                        $('#btnubah').attr('disabled',false);
+                        $('#modal-modul').modal('hide');
+                    }
+                    if(data.error)
+                    {
+                        $('#message').html('<div class="alert alert-danger">'+data.error+'</div>');
+                        $('#btnimport').attr('disabled',false);
+                        $('#btnimport').val('Import');
+                    }
+                },
+                error: function(data)
+                {
+                    console.log(data);
+                    }
+                });
+            });
+            
             $('#sel_kab').select2({
                 placeholder: 'Pilih Kota / Kabupaten yang Tepat sesuai data sensus 2021',
                 class: 'form-control',
@@ -732,7 +809,7 @@
                         name:'alamat'
                         },
                         {
-                        data:'alamatx',
+                        data:'alamatmodul',
                         name:'alamatx'
                         },
                         {
@@ -782,7 +859,7 @@
                         name:'alamat'
                         },
                         {
-                        data:'alamatx',
+                        data:'alamatmodul',
                         name:'alamatx'
                         },
                         {
