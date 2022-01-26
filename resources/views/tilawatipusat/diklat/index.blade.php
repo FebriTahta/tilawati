@@ -308,11 +308,11 @@
                                                         </div>
                                                     </div><!-- container fluid -->
                                                     <div class="form-group" style="text-align: center">
-                                                        <form id="generate" method="POST">@csrf
+                                                        <form id="generate" method="POST" class="mb-10">@csrf
                                                             <input type="hidden" name="slug" id="qr_slug" class="form-control" required>
                                                             <input type="submit" id="btngenerate" class="btn btn-sm btn-outline-primary" value="Generate QR">
                                                         </form>
-                                                        <button class="btn btn-sm btn-outline-info">Download</button>
+                                                        <button class="btn btn-sm btn-outline-info mb-10">Download</button>
                                                     </div>
                                                 </div>
                                             </div>
