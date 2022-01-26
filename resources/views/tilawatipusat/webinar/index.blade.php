@@ -98,10 +98,10 @@
                                                     <th>program webinar</th>
                                                     <th>cabang</th>
                                                     <th>tanggal</th>
+                                                    <th>Peserta</th>
                                                     <th>Pendaftaran</th>
                                                     <th>Link WA</th>
                                                     <th>Image</th>
-                                                    <th>Peserta</th>
                                                     <th>Option</th>
                                                 </tr>
                                             </thead>
@@ -114,10 +114,10 @@
                                                     <th>program webinar</th>
                                                     <th>cabang</th>
                                                     <th>tanggal</th>
+                                                    <th>Peserta</th>
                                                     <th>Pendaftaran</th>
                                                     <th>Link WA</th>
                                                     <th>Image</th>
-                                                    <th>Peserta</th>
                                                     <th>Option</th>
                                                 </tr>
                                             </tfoot>
@@ -850,6 +850,10 @@
                                 name:'tanggal'
                                 },
                                 {
+                                data:'peserta',
+                                name:'peserta'
+                                },
+                                {
                                 data:'linkpendaftaran',
                                 name:'linkpendaftaran'
                                 },
@@ -861,10 +865,7 @@
                                 data:'flyer',
                                 name:'flyer'
                                 },
-                                {
-                                data:'peserta',
-                                name:'peserta'
-                                },
+                                
                                 {
                                 data:'action',
                                 name:'action'
@@ -897,6 +898,10 @@
                                 name:'tanggal'
                                 },
                                 {
+                                data:'peserta',
+                                name:'peserta'
+                                },
+                                {
                                 data:'linkpendaftaran',
                                 name:'linkpendaftaran'
                                 },
@@ -908,10 +913,7 @@
                                 data:'flyer',
                                 name:'flyer'
                                 },
-                                {
-                                data:'peserta',
-                                name:'peserta'
-                                },
+                                
                                 {
                                 data:'action',
                                 name:'action'
