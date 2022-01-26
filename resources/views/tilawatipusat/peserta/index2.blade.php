@@ -353,11 +353,11 @@
                                                                 <input type="hidden" class="form-control text-capitalize" id="idcetaksurat" name="idcetaksurats" required>
                                                             </div>
                                                             <div class="row" style="text-align: center">
-                                                                <div class="form-group col-6 col-xl-6">
+                                                                <div class="form-group col-12 col-xl-12">
                                                                     <select name="peserta_id" id="" class="form-control" required>
                                                                         <option value="">Data Peserta</option>
                                                                         @foreach ($diklat->peserta as $item)
-                                                                            <option value="{{$item->id}}">{{$item->name}}</option>
+                                                                            <option value="{{$item->id}}">{{$item->id.' - '.$item->name}}</option>
                                                                         @endforeach
                                                                     </select>
                                                                 </div>
