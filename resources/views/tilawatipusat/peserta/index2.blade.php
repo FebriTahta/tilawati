@@ -616,14 +616,7 @@
                     cache: true
                 }
 		    });
-            $('.modal-scan').on('show.bs.modal', function(event) {
-                var button = $(event.relatedTarget)
-                id = button.data('id')
-                nama_peserta = button.data('nama_peserta')
-                var modal = $(this)
-                $('#nama_peserta').html(nama_peserta);
-                document.getElementById("qr-code").src = id;
-            })
+            
             $('#importpeserta').submit(function(e) {
                 e.preventDefault();
                 var formData = new FormData(this);
