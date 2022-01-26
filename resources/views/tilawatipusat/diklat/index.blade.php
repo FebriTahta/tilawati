@@ -314,7 +314,7 @@
                                                         </form>
                                                         <form target="_blank" action="/download_qr" method="POST"> @csrf
                                                             <input type="hidden" name="slug2" id="qr_slug2" class="form-control" required>
-                                                            <button style="width: 150px" type="submit" class="btn btn-sm btn-outline-info" style="margin-top: 10px">Download</button>
+                                                            <button style="width: 150px; margin-top: 10px" type="submit" class="btn btn-sm btn-outline-info">Download</button>
                                                         </form>
                                                     </div>
                                                 </div>
