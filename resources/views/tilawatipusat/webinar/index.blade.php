@@ -99,6 +99,8 @@
                                                     <th>cabang</th>
                                                     <th>tanggal</th>
                                                     <th>Peserta</th>
+                                                    <th>Alamat</th>
+                                                    <th>Alamat M</th>
                                                     <th>Pendaftaran</th>
                                                     <th>Link WA</th>
                                                     <th>Image</th>
@@ -115,6 +117,8 @@
                                                     <th>cabang</th>
                                                     <th>tanggal</th>
                                                     <th>Peserta</th>
+                                                    <th>Alamat</th>
+                                                    <th>Alamat M</th>
                                                     <th>Pendaftaran</th>
                                                     <th>Link WA</th>
                                                     <th>Image</th>
@@ -854,6 +858,14 @@
                                 name:'peserta'
                                 },
                                 {
+                                data:'alamat',
+                                name:'alamat'
+                                },
+                                {
+                                data:'alamatx',
+                                name:'alamatx'
+                                },
+                                {
                                 data:'linkpendaftaran',
                                 name:'linkpendaftaran'
                                 },
@@ -900,6 +912,14 @@
                                 {
                                 data:'peserta',
                                 name:'peserta'
+                                },
+                                {
+                                data:'alamat',
+                                name:'alamat'
+                                },
+                                {
+                                data:'alamatx',
+                                name:'alamatx'
                                 },
                                 {
                                 data:'linkpendaftaran',
