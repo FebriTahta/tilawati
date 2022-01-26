@@ -107,7 +107,6 @@
                                     <p class="card-title-desc">Ter-update berdasarkan Tahun 2021 </br></p>
                                     {{-- <button class="btn btn-sm btn-success  mr-1" style="width:130px " data-toggle="modal" data-target=".bs-example-modal-diklat"><i class="mdi mdi-plus"></i> tambah diklat</button> --}}
                                     <a class="btn btn-sm btn-success  mr-1" style="width:130px " href="{{ route('diklat.create') }}"><i class="mdi mdi-plus"></i> tambah diklat</a>
-                                    <button class="text-right btn btn-sm mr-1 mb-1 btn-outline-primary" id="cetak_all"><i class="fa fa-download"></i> pengiriman modul</button>
                                     <input type="hidden" id="user" value="{{auth()->user()->role}}">
                                     @if (auth()->user()->role == 'cabang')
                                         <input type="hidden" id="cabang" value="{{auth()->user()->cabang->id}}">
