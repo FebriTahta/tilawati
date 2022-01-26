@@ -828,5 +828,23 @@ class DiklatCont extends Controller
             }
         }
     }
+
+    public function peserta_pindah_pelatihan(Request $request)
+    {
+        $data   = Peserta::updateOrCreate(
+            [
+                'id' => $request->peserta_id
+            ],
+            [
+                'pelatihan_id' => $request->pelatihan_id
+            ]
+        );
+        return response()->json(
+            [
+              'success' => 'Peserta Dipindahkan',
+              'message' => 'Peserta Dipindahkan'
+            ]
+        );
+    }
     
 }

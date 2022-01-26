@@ -419,6 +419,8 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     Route::get('/konfirmasi-data-peserta/{diklat_id}',[KonfirmasiCont::class, 'data_peserta_diklat_menunggu_konfirmasi'])->name('data_peserta_diklat_konfirmasi');
     Route::post('/konfirmasi-data-peserta-acc',[KonfirmasiCont::class,'acc'])->name('acc');
 
+    Route::post('/peserta-pindah-pelatihan',[DiklatCont::class,'peserta_pindah_pelatihan'])->name('peserta_pindah_pelatihan');
+
     Route::post('/generate-user',[DashboardCont::class, 'generate'])->name('generate_user');
 });
 

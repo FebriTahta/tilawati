@@ -347,7 +347,7 @@
                                             <div class="card m-b-30">
                                                 <div class="card-body">
                                                     <div class="container-fluid">
-                                                        <form id="#"  method="POST" enctype="multipart/form-data">@csrf
+                                                        <form id="pindah"  method="POST" enctype="multipart/form-data">@csrf
                                                             <div class="form-group text-center">
                                                                 <h5>Memindahkan Peserta ?</h5>
                                                                 <input type="hidden" class="form-control text-capitalize" id="idcetaksurat" name="idcetaksurats" required>
@@ -452,6 +452,43 @@
         <script src="{{ URL::asset('tilawatipusat/js/pages/datatables.init.js')}}"></script>
 
         <script>
+            $('#pindah').submit(function(e) {
+                e.preventDefault();
+                var formData = new FormData(this);
+                $.ajax({
+                type:'POST',
+                url: "{{ route('peserta_pindah_pelatihan')}}",
+                data: formData,
+                cache:false,
+                contentType: false,
+                processData: false,
+                beforeSend:function(){
+                    $('#btnpindah').attr('disabled','disabled');
+                    $('#btnpindah').val('Proses Pindah Data');
+                },
+                success: function(data){
+                    if(data.success)
+                    {
+                        //sweetalert and redirect
+                        var oTable = $('#datatable-buttons').dataTable();
+                        oTable.fnDraw(false);
+                        $("#pindah")[0].reset();
+                        toastr.success(data.success);
+                        $('#btnpindah').val('Submit Nilai');
+                        $('#modal_pindah').modal('hide');
+                        $('#btnpindah').attr('disabled',false);
+                        swal({ title: "Success!",
+                            text: "Peserta Telah Dinilai!",
+                            type: "success"})
+                    }
+                },
+                error: function(data)
+                {
+                    console.log(data);
+                    }
+                });
+            });
+
              $('#modal-modul').on('show.bs.modal', function(event) {
                 var button = $(event.relatedTarget)
                 var id = button.data('id')
