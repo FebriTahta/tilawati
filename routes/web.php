@@ -422,8 +422,8 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     Route::post('/peserta-pindah-pelatihan',[DiklatCont::class,'peserta_pindah_pelatihan'])->name('peserta_pindah_pelatihan');
     Route::post('/generate_qr',[DiklatCont::class,'generate_qr'])->name('generate_qr');
 
-    Route::get('/download_qr',[DiklatCont::class,'download_qr'])->name('download_qr');
-    
+    Route::post('/download_qr',[DiklatCont::class,'download_qr'])->name('download_qr');
+
     Route::post('/generate-user',[DashboardCont::class, 'generate'])->name('generate_user');
 });
 
