@@ -64,7 +64,7 @@
                                     <input type="hidden" id="pelatihan_id" value="{{ $pelatihan_id }}">
                                     <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
                                         <div id="message"></div>
-                                        <table id="datatable-buttons" class="table table-peserta table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;font-size: 11px ">
+                                        <table id="datatable-buttons" class="table table-peserta table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;font-size: 11 ">
                                             <thead class="text-bold text-primary" style="text-transform: capitalize">
                                                 <tr>
                                                     <th>id</th>
@@ -640,7 +640,6 @@
                         data:'alamat',
                         name:'alamat'
                         },
-                        
                         {
                         data:'action',
                         name:'action'
@@ -658,10 +657,13 @@
                         url:'/diklat-peserta-data/'+pel_id,
                     },
                     columns: [
-                        
                         {
                         data:'id',
                         name:'id'
+                        },
+                        {
+                        data:'name',
+                        name:'name'
                         },
                         {
                         data:'kabupaten',
@@ -679,7 +681,6 @@
                         data:'alamat',
                         name:'alamat'
                         },
-                        
                         {
                         data:'action',
                         name:'action'
