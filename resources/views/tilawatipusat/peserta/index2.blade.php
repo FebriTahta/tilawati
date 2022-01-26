@@ -301,7 +301,7 @@
                                 </div><!-- /.modal-content -->
                             </div><!-- /.modal-dialog -->
                         </div><!-- /.modal -->
-                    </div>
+                    </div> 
 
                     <div class="col-sm-6 col-md-3 m-t-30">
                         <div class="modal fade" id="modal_cetak_surat2" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
