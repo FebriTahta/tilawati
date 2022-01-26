@@ -373,7 +373,7 @@
                                                                         @endforeach
                                                                     </select>
                                                                 </div>
-                                                                <div class="form-group">
+                                                                <div class="form-group col-12 col-xl-12">
                                                                     <input type="submit" id="btnpindah" class="btn btn-outline-danger" value="PINDAH">
                                                                 </div>
                                                             </div>
