@@ -404,6 +404,10 @@
                                                                 <textarea name="tempat" class="form-control text-capitalize" id="tempat_edit" cols="30" rows="3" required></textarea>
                                                             </div>
                                                             <div class="col-md-6 col-12 form-group">
+                                                                <label for="">Kuota Peserta (Online) </label>
+                                                                <input type="text" class="form-control" name="max">
+                                                            </div>
+                                                            <div class="col-md-6 col-12 form-group">
                                                                 <label for="">keterangan</label>
                                                                 <select name="keterangan" id="keterangan_edit" class="form-control text-capitalize">
                                                                     <option value="guru">Guru</option>

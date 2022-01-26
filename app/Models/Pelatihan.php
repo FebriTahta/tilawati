@@ -17,6 +17,7 @@ class Pelatihan extends Model
         'groupwa',
         'keterangan',
         'tempat',
+        'max',
         'status',
         'jenis'
     ];

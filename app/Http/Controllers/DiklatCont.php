@@ -545,6 +545,7 @@ class DiklatCont extends Controller
                 'keterangan' => $request->keterangan,
                 'jenis'=> $request->jenis,
                 'status' => '1',
+                'max' => $request->max,
             ]
         );
         //menambahkan gambar flyer jika ada isinya
