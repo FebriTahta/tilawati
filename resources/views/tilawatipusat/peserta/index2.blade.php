@@ -440,6 +440,15 @@
         <script src="{{ URL::asset('tilawatipusat/js/pages/datatables.init.js')}}"></script>
 
         <script>
+             $('#modal-modul').on('show.bs.modal', function(event) {
+                var button = $(event.relatedTarget)
+                var id = button.data('id')
+                var alamatx = button.data('alamatx')
+                var modal = $(this)
+                modal.find('.modal-body #id').val(id);
+                modal.find('.modal-body #alamatx').val(alamatx);
+                // console.log(nominal);
+            })
              $('#ubahalamatmodul').submit(function(e) {
                 e.preventDefault();
                 var formData = new FormData(this);
@@ -479,7 +488,7 @@
                     }
                 });
             });
-            
+
             $('#sel_kab').select2({
                 placeholder: 'Pilih Kota / Kabupaten yang Tepat sesuai data sensus 2021',
                 class: 'form-control',
