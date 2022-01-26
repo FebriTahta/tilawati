@@ -405,7 +405,7 @@
                                                             </div>
                                                             <div class="col-md-6 col-12 form-group">
                                                                 <label for="">Kuota Peserta (Online) </label>
-                                                                <input type="text" class="form-control" name="max">
+                                                                <input type="number" class="form-control" name="max">
                                                             </div>
                                                             <div class="col-md-6 col-12 form-group">
                                                                 <label for="">keterangan</label>
