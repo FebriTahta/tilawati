@@ -73,7 +73,6 @@
                                                     <th>phone</th>
                                                     <th>TTL</th>
                                                     <th>alamat</th>
-                                                    <th>alamat M</th>
                                                     <th>Option</th>
                                                 </tr>
                                             </thead>
@@ -87,7 +86,6 @@
                                                     <th>phone</th>
                                                     <th>TTL</th>
                                                     <th>alamat</th>
-                                                    <th>Alamat M</th>
                                                     <th>Option</th>
                                                 </tr>
                                             </tfoot>
@@ -642,10 +640,7 @@
                         data:'alamat',
                         name:'alamat'
                         },
-                        {
-                        data:'alamatx',
-                        name:'alamatx'
-                        },
+                        
                         {
                         data:'action',
                         name:'action'
@@ -684,10 +679,7 @@
                         data:'alamat',
                         name:'alamat'
                         },
-                        {
-                        data:'alamatx',
-                        name:'alamatx'
-                        },
+                        
                         {
                         data:'action',
                         name:'action'
