@@ -312,7 +312,7 @@
                                                             <input type="hidden" name="slug" id="qr_slug" class="form-control" required>
                                                             <input type="submit" id="btngenerate" class="btn btn-sm btn-outline-primary" value="Generate QR">
                                                         </form>
-                                                        <button class="btn btn-sm btn-outline-info mb-10">Download</button>
+                                                        <button class="btn btn-sm btn-outline-info" style="margin-top: 20px">Download</button>
                                                     </div>
                                                 </div>
                                             </div>
