@@ -64,8 +64,8 @@
                                     <input type="hidden" id="pelatihan_id" value="{{ $pelatihan_id }}">
                                     <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
                                         <div id="message"></div>
-                                        <table id="datatable-buttons" class="table table-peserta table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;font-size: 11 ">
-                                            <thead class="text-bold text-primary" style="text-transform: capitalize">
+                                        <table id="datatable-buttons" class="table table-peserta table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                            <thead class="text-bold text-primary" style="text-transform: capitalize;font-size: 11px ">
                                                 <tr>
                                                     <th>id</th>
                                                     <th>peserta</th>
@@ -78,7 +78,7 @@
                                             </thead>
                                             <tbody style="text-transform: uppercase; font-size: 10px">
                                             </tbody>
-                                            <tfoot class="text-primary">
+                                            <tfoot class="text-primary" style="font-size: 11px ">
                                                 <tr>
                                                     <th>id</th>
                                                     <th>peserta</th>
