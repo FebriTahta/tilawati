@@ -61,7 +61,7 @@
                                     <p class="card-title-desc">Ter-update berdasarkan Tahun 2021 </br></p>
                                     <a class="btn btn-sm btn-success  mr-1 text-white" style="width:130px"  href="{{ route('diklat.peserta_create', $pelatihan_id) }}" ><i class="mdi mdi-plus"></i> tambah peserta</a>
                                     <button class="btn btn-sm btn-success  mr-1" style="width:130px " data-toggle="modal"  data-target=".bs-example-modal-peserta" ><i class="mdi mdi-cloud-upload"></i> import peserta</button>
-                                    <button class="btn btn-sm btn-outline-danger  mr-1" style="width:130px " data-toggle="modal"  data-target="#modal_pindah" ><i class="mdi mdi-book"></i> pindahkan peserta</button>
+                                    <button class="btn btn-sm btn-outline-danger  mr-1" style="width:130px " data-toggle="modal"  data-target="#modal_pindah" ><i class="mdi mdi-book"></i>peserta pindah</button>
                                     <button class="text-right btn btn-sm mr-1 mb-1 btn-outline-primary" id="cetak_all"><i class="fa fa-download"></i> pengiriman modul</button>
                                     <input type="hidden" id="pelatihan_id" value="{{ $pelatihan_id }}">
                                     <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
