@@ -405,7 +405,7 @@
                                                             </div>
                                                             <div class="col-md-6 col-12 form-group">
                                                                 <label for="">Kuota Peserta (Online) </label>
-                                                                <input type="number" class="form-control" name="max">
+                                                                <input type="number" class="form-control" name="max" id="max_peserta">
                                                             </div>
                                                             <div class="col-md-6 col-12 form-group">
                                                                 <label for="">keterangan</label>
@@ -771,6 +771,7 @@
                 var cabang_id = button.data('cabang')
                 var groupwa = button.data('groupwa')
                 var sampai_tanggal = button.data('sampai_tanggal')
+                var max = button.data('max')
                 var modal   = $(this)
                 modal.find('.modal-body #id_edit').val(id);
                 modal.find('.modal-body #tempat_edit').val(tempat);
@@ -780,7 +781,7 @@
                 modal.find('.modal-body #cabang_edit').val(cabang_id);
                 modal.find('.modal-body #groupwa1').val(groupwa);
                 modal.find('.modal-body #sampai_tanggal').val(sampai_tanggal);
-                
+                modal.find('.modal-body #max_peserta').val(max);
             })
 
             $('#modal-download').on('show.bs.modal', function(event) {
