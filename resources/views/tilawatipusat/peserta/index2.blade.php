@@ -354,7 +354,12 @@
                                                             </div>
                                                             <div class="row" style="text-align: center">
                                                                 <div class="form-group col-6 col-xl-6">
-                                                                    <input type="submit" name="cetaksurat" id="btncetaksurat" class="btn btn-outline-primary" value="Ya, Cetak!" />
+                                                                    <select name="peserta_id" id="" class="form-control" required>
+                                                                        <option value="">Data Peserta</option>
+                                                                        @foreach ($diklat->peserta as $item)
+                                                                            <option value="{{$item->id}}">{{$item->nama}}</option>
+                                                                        @endforeach
+                                                                    </select>
                                                                 </div>
                                                                 <div class="form-group col-6 col-xl-6">
                                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">
