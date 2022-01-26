@@ -864,7 +864,7 @@ class DiklatCont extends Controller
 
     public function download_qr(Request $request)
     {
-        $filepath = public_path('images/').$request->slug2;
+        $filepath = public_path('images/').$request->slug2.'.png';
         return Response::download($filepath);
     }
     
