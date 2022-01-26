@@ -354,17 +354,24 @@
                                                             </div>
                                                             <div class="row" style="text-align: center">
                                                                 <div class="form-group col-12 col-xl-12">
+                                                                    <label for="">Data Peserta</label>
                                                                     <select name="peserta_id" id="" class="form-control" required>
-                                                                        <option value="">Data Peserta</option>
+                                                                        <option value="">-</option>
                                                                         @foreach ($diklat->peserta as $item)
                                                                             <option value="{{$item->id}}">{{$item->id.' - '.$item->name}}</option>
                                                                         @endforeach
                                                                     </select>
                                                                 </div>
+                                                                
                                                                 <div class="form-group col-6 col-xl-6">
-                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                                                                        No, Cancel!
-                                                                    </button>
+                                                                    <label for="">Data Webinar</label>
+                                                                    <select name="pelatihan_id" class="form-control" id="" required>
+                                                                        <option value="">-</option>
+                                                                        <?php $webinar = App\Models\Pelatihan::where('jenis','webinar')->get();?>
+                                                                        @foreach ($webinar as $item)
+                                                                            <option value="{{$item->id}}">{{$item->program->name}}</option>
+                                                                        @endforeach
+                                                                    </select>
                                                                 </div>
                                                             </div>
                                                         </form>
