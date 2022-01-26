@@ -601,7 +601,7 @@
                 var slug  = button.data('slug')
                 var modal = $(this)
                 $('#nama_peserta').html(nama_peserta);
-                $('#qr_slug').html(slug);
+                $('#qr_slug').val(slug);
                 console.log(slug);
                 document.getElementById("qr-code").src = id;
             })
