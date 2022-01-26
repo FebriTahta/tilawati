@@ -69,6 +69,7 @@
                                             <thead class="text-bold text-primary" style="text-transform: capitalize;font-size: 11px ">
                                                 <tr>
                                                     <th>id</th>
+                                                    <th style="5%"><input type="checkbox" id="master"></th>
                                                     <th>peserta</th>
                                                     <th>kota/kabupaten</th>
                                                     <th>phone</th>
@@ -83,6 +84,7 @@
                                             <tfoot class="text-primary" style="font-size: 11px ">
                                                 <tr>
                                                     <th>id</th>
+                                                    <th></th>
                                                     <th>peserta</th>
                                                     <th>kota/kabupaten</th>
                                                     <th>phone</th>
@@ -623,6 +625,11 @@
                         name:'id'
                         },
                         {
+                        data:'check',
+                        name:'check',
+                        orderable:false,
+                        },
+                        {
                         data:'name',
                         name:'name'
                         },
@@ -667,6 +674,11 @@
                         {
                         data:'id',
                         name:'id'
+                        },
+                        {
+                        data:'check',
+                        name:'check',
+                        orderable:false,
                         },
                         {
                         data:'name',
