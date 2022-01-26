@@ -308,16 +308,8 @@
                                                         </div>
                                                     </div><!-- container fluid -->
                                                     <div class="form-group">
-                                                        <div class="row">
-                                                            <center>
-                                                            <div class="col-6 col-xl-6">
-                                                                <input type="submit" class="btn btn-sm btn-outline-primary" value="Generate QR">
-                                                            </div>
-                                                            <div class="col-6 col-xl-6">
-                                                                <button class="btn btn-sm btn-outline-info">Download</button>
-                                                            </div>
-                                                            </center>
-                                                        </div>
+                                                        <input type="submit" class="btn btn-sm btn-outline-primary" value="Generate QR">
+                                                        <button class="btn btn-sm btn-outline-info">Download</button>
                                                     </div>
                                                 </div>
                                             </div>
