@@ -218,9 +218,9 @@
 	@endif
 
 
-	{{-- @foreach($peserta as $key=> $p) --}}
+	@foreach($peserta as $key=> $p)
 		<?php $total = 0;?>
-		@if ($p->pelatihan->keterangan == 'instruktur')
+		{{-- @if ($p->pelatihan->keterangan == 'instruktur') --}}
 			@if ($p->kriteria == 'SEBAGAI INSTRUKTUR LAGU DAN STRATEGI MENGAJAR METODE TILAWATI')
 			<div style="page-break-inside: avoid">
 				<div>
