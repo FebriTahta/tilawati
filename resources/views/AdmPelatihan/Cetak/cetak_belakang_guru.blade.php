@@ -218,7 +218,7 @@
 	@endif
 
 
-	@foreach($peserta as $key=> $p)
+	{{-- @foreach($peserta as $key=> $p) --}}
 		<?php $total = 0;?>
 		@if ($p->pelatihan->keterangan == 'instruktur')
 			@if ($p->kriteria == 'SEBAGAI INSTRUKTUR LAGU DAN STRATEGI MENGAJAR METODE TILAWATI')
@@ -493,96 +493,97 @@
 					<div class="alignright" style="margin-right: 210px">Cukup : 75 - 84</div>
 				</div>
 			</div>
-			@endif
-		@else
-		{{-- Selain TOT --}}
-		<div style="page-break-inside: avoid">
-			<div>
-				<p style="margin-top: 160px;margin-left: 358px" class="syahadah">No. Syahadah : {{ $p->pelatihan->id }}/2021/{{ $p->id }}</p>
-			</div>
-			<table 
-			style="width: 782px; margin-left:154px"
-			class="table1">
-				<tr>
-						<th rowspan="2">No.</th>
-						<th rowspan="2">Bidang Penilaian</th>
-						<th colspan="3" class="penilaian">Penilaian</th>
-						<th rowspan="2" style="text-align: center">Jumlah</th>
-				</tr>
-				<tr>     
-					<th class="pe">Max</th>
-					<th class="pe">Min</th>
-					<th class="pe">Nilai</th>
-					
-				</tr>
-				<tr>
-					<th>1</th>
-					<td>&nbsp; &nbsp;<b> Al-Qur'an</b></td>
-					<th colspan="3" class="pe3"></th>
-					<th >{{ $jumlah = $p->nilai->where("kategori","al-qur'an")->sum('nominal') }}</th>
-				</tr>
-				<?php $i = 2; $x = 1?>
-				@foreach ($p->nilai as $key=> $item)
-					@if ($item !== null)
-						@if ($item->kategori !== 'skill')
-							<tr>
-								<td class="pop"></td>
-								<td class="pop2" >&nbsp; &nbsp;&nbsp;<span style="text-transform: capitalize">{{ $item->penilaian->name }}</span></td>
-								<td class="nilai" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->max }}</td>
-								<td class="nilai2" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->min }}</td>
-								<td class="nilai3" style="text-align: center">&nbsp; &nbsp;{{ $item->nominal }}</td>
-								<td style="border-top: 0;border-bottom: 0;"></td>
-							</tr>
+			@else
+			<div style="page-break-inside: avoid">
+				<div>
+					<p style="margin-top: 160px;margin-left: 358px" class="syahadah">No. Syahadah : {{ $p->pelatihan->id }}/2021/{{ $p->id }}</p>
+				</div>
+				<table 
+				style="width: 782px; margin-left:154px"
+				class="table1">
+					<tr>
+							<th rowspan="2">No.</th>
+							<th rowspan="2">Bidang Penilaian</th>
+							<th colspan="3" class="penilaian">Penilaian</th>
+							<th rowspan="2" style="text-align: center">Jumlah</th>
+					</tr>
+					<tr>     
+						<th class="pe">Max</th>
+						<th class="pe">Min</th>
+						<th class="pe">Nilai</th>
+						
+					</tr>
+					<tr>
+						<th>1</th>
+						<td>&nbsp; &nbsp;<b> Al-Qur'an</b></td>
+						<th colspan="3" class="pe3"></th>
+						<th >{{ $jumlah = $p->nilai->where("kategori","al-qur'an")->sum('nominal') }}</th>
+					</tr>
+					<?php $i = 2; $x = 1?>
+					@foreach ($p->nilai as $key=> $item)
+						@if ($item !== null)
+							@if ($item->kategori !== 'skill')
+								<tr>
+									<td class="pop"></td>
+									<td class="pop2" >&nbsp; &nbsp;&nbsp;<span style="text-transform: capitalize">{{ $item->penilaian->name }}</span></td>
+									<td class="nilai" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->max }}</td>
+									<td class="nilai2" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->min }}</td>
+									<td class="nilai3" style="text-align: center">&nbsp; &nbsp;{{ $item->nominal }}</td>
+									<td style="border-top: 0;border-bottom: 0;"></td>
+								</tr>
+							@else
+								<tr>
+									<th>{{ $i++ }}</th>
+									<td class="nilai6" style="text-transform: uppercase">&nbsp; &nbsp;<b> {{ $item->penilaian->name }}</b></th>
+									<th colspan="3" class="nilai5"></th>
+									<th >{{ $item->nominal }}</th>
+								</tr>
+								<?$x++?>
+							@endif
 						@else
-							<tr>
-								<th>{{ $i++ }}</th>
-								<td class="nilai6" style="text-transform: uppercase">&nbsp; &nbsp;<b> {{ $item->penilaian->name }}</b></th>
-								<th colspan="3" class="nilai5"></th>
-								<th >{{ $item->nominal }}</th>
-							</tr>
-							<?$x++?>
+							{{--  --}}
 						@endif
+					@endforeach
+					@if ($p->pelatihan->keterangan == 'guru')
+						<tr>
+							<th></th>
+							<td class="nilai6">&nbsp; &nbsp;<b> RATA - RATA NILAI</b></th>
+							<th colspan="3" class="nilai5"></th>
+							<th >
+							@if ($p->pelatihan->program->name=='munaqosyah santri')
+								{{ $rata2 = $jumlah }}
+							@else
+								{{ $rata2 = ($jumlah+ $item->nominal)/2 }}
+							@endif
+								</th>
+						</tr>
 					@else
-						{{--  --}}
+					<?php 
+						$rata2 = $jumlah
+					?>
 					@endif
-				@endforeach
-				@if ($p->pelatihan->keterangan == 'guru')
 					<tr>
 						<th></th>
-						<td class="nilai6">&nbsp; &nbsp;<b> RATA - RATA NILAI</b></th>
-						<th colspan="3" class="nilai5"></th>
+						<td class="nilai6">&nbsp; &nbsp;<b> PRESTASI</b></th>
+						<th colspan="3" class="nilai5"></th> 
 						<th >
-						@if ($p->pelatihan->program->name=='munaqosyah santri')
-							{{ $rata2 = $jumlah }}
-						@else
-							{{ $rata2 = ($jumlah+ $item->nominal)/2 }}
-						@endif
-							</th>
+							@if ($rata2 >= 85)
+								Baik
+							@else
+								Cukup
+							@endif
+						</th>
 					</tr>
-				@else
-				<?php 
-					$rata2 = $jumlah
-				?>
-				@endif
-				<tr>
-					<th></th>
-					<td class="nilai6">&nbsp; &nbsp;<b> PRESTASI</b></th>
-					<th colspan="3" class="nilai5"></th> 
-					<th >
-						@if ($rata2 >= 85)
-							Baik
-						@else
-							Cukup
-						@endif
-					</th>
-				</tr>
-			</table>
-			<div id="textbox" style="margin-top: 20px">
-				<div class="alignleft" style="margin-left: 180px">Baik : 85 - 95</div>
-				<div class="alignright" style="margin-right: 210px">Cukup : 75 - 84</div>
+				</table>
+				<div id="textbox" style="margin-top: 20px">
+					<div class="alignleft" style="margin-left: 180px">Baik : 85 - 95</div>
+					<div class="alignright" style="margin-right: 210px">Cukup : 75 - 84</div>
+				</div>
 			</div>
-		</div>
-		@endif
+			@endif
+		{{-- @else --}}
+		{{-- Selain TOT --}}
+		{{-- @endif --}}
 	@endforeach
 </body>
 </html>	
