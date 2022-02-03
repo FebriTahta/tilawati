@@ -45,16 +45,16 @@ class UserController extends Controller
         $charactersLength = strlen($characters);
         $randomString = '';
         $acak='';
-        for ($i = 0; $i < $length; $i++) {
-            $randomString .= $characters[rand(0, $charactersLength - 1)];
-        }
+        // for ($i = 0; $i < $length; $i++) {
+            
+        // }
         
         foreach ($user as $key => $value) {
             # code...
-            $acak = $randomString;    
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
             $value->update([
-                'pass'=> 'cab'.$acak,
-                'password'=>Hash::make('cab'.$acak)
+                'pass'=> 'cab'.$randomString,
+                'password'=>Hash::make('cab'.$randomString)
             ]);
         }
 
