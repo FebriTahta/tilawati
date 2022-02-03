@@ -33,7 +33,7 @@
                                             <thead class="text-bold text-primary" style="text-transform: capitalize; font-size: 12px">
                                                 <tr>
                                                     <th>id</th>
-                                                    
+                                                    <th>cabang</th>
                                                 </tr>
                                             </thead>
     
@@ -43,7 +43,7 @@
                                             <tfoot class="text-primary" style="text-transform: capitalize; font-size: 12px">
                                                 <tr>
                                                     <th>id</th>
-                                                    
+                                                    <th>cabang</th>
                                                 </tr>
                                             </tfoot>
                                         </table>
@@ -95,6 +95,10 @@
                         {
                         data:'id',
                         name:'id'
+                        },
+                        {
+                        data:'cabang',
+                        name:'cabang'
                         },
                     ]
                 });
