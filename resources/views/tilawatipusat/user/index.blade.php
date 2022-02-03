@@ -28,6 +28,9 @@
                                     <h4 class="card-title">Data Diklat</h4>
                                     <p class="card-title-desc">Ter-update berdasarkan Tahun 2022 </br></p>
                                     <a class="btn btn-sm btn-success  mr-1 mb-1" style="width:130px " href="#"><i class="fa fa-print"></i> Export</a>
+                                    <form action="/reset-password" method="POST">@csrf
+                                        <button type="submit" class="btn btn-sm btn-danger  mr-1 mb-1" style="width:130px "><i class="fa fa-info"></i> Reset Password</button>
+                                    </form>
                                     <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
                                         <table id="datatable-buttons" class="table table-diklat table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
                                             <thead class="text-bold text-primary" style="text-transform: capitalize; font-size: 12px">

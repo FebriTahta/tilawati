@@ -430,6 +430,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     // NEW DATA USER DLL
     Route::get('/daftar-pengguna',[UserController::class,'daftar_pengguna'])->name('daftar_pengguna');
     Route::get('/data-pengguna',[UserController::class, 'getuser_data'])->name('user.data');
+    Route::post('/reset-password',[UserController::class,'reset_password'])->name('reset_pass');
 });
 
 Route::group(['middleware' => ['auth', 'CheckRole:bendahara']], function () {

@@ -35,4 +35,19 @@ class UserController extends Controller
     {
         return view('tilawatipusat.user.index');
     }
+
+    public function reset_password(Request $request)
+    {
+        $user = User::where('role','cabang')->get();
+        $count= $user->count();
+        foreach ($user as $key => $value) {
+            # code...
+            $value->update([
+                'pass'=> 'cab'.$count,
+                'password'=>Hash::make('cab'.$count)
+            ]);
+        }
+
+        return redirect()->back();
+    }
 }
