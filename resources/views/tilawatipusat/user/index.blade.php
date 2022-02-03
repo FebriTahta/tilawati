@@ -42,7 +42,7 @@
                                                 </tr>
                                             </thead>
     
-                                            <tbody style="text-transform: uppercase; font-size: 10px">
+                                            <tbody style="font-size: 10px">
                                             </tbody>
 
                                             <tfoot class="text-primary" style="text-transform: capitalize; font-size: 12px">

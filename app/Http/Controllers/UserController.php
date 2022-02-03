@@ -40,14 +40,21 @@ class UserController extends Controller
     public function reset_password(Request $request)
     {
         $user = User::where('role','cabang')->get();
-        $count= $user->count();
+        $length = 3;
+        $characters = '0123456789';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
+        
         foreach ($user as $key => $value) {
             # code...
             $value->update([
-                'pass'=> 'cab'.$count,
-                'password'=>Hash::make('cab'.$count)
+                'pass'=> 'cab'.$randomString,
+                'password'=>Hash::make('cab'.$randomString)
             ]);
-            $count--;
         }
 
         return redirect()->back();
