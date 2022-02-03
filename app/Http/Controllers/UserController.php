@@ -21,7 +21,7 @@ class UserController extends Controller
             $data   = User::with('cabang');
                 return DataTables::of($data)
                 ->addColumn('kota', function ($data) {
-                    return $data->cabang->kabupaten->nama;
+                    return $data->cabang->kabupaten;
                 })
                 ->addColumn('cabang', function ($data) {
                     return $data->cabang->name;
