@@ -93,8 +93,8 @@
                     },
                     columns: [
                         {
-                        data:'id',
-                        name:'id'
+                        data:'kota',
+                        name:'kota'
                         },
                         {
                         data:'cabang',
