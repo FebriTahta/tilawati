@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\User;
+use App\Models\Cabang;
 use DataTables;
 use Illuminate\Http\Request;
 
@@ -17,21 +18,24 @@ class UserController extends Controller
     {
         if(request()->ajax())
         {
-            $data = User::orderBy('id','asc');
-                // return Datatables::of($data)
-                //         ->addIndexColumn()
-                //         ->addColumn('relasi', function(User $usr){
-                //             if ($usr->cabang !== null) {
-                //                 # code...
-                //                 $rel = 'cabang';
-                //             } elseif($usr->lembaga !== null){
-                //                 $rel = 'lembaga';
-                //             }
-                //             return $rel;
-                //         })
-                //         ->rawColumns(['relasi'])
-                //         ->make(true);
-                return datatables()->of($data)->make(true);
+            $data = User::orderBy('username','asc')->with('cabang');
+                return Datatables::of($data)
+                        ->addIndexColumn()
+                        ->addColumn('kota', function(User $usr){
+                            return $data->cabang->kabupaten->nama;
+                        })
+                        ->addIndexColumn()
+                        ->addColumn('cabang', function(User $usr){
+                            return $data->cabang->name;
+                        })
+                        ->rawColumns(['kota'])
+                        ->make(true);
+            return datatables()->of($data)->make(true);
         }
+    }
+
+    public function daftar_pengguna(Request $request)
+    {
+        return view('tilawatipusat.user.index');
     }
 }

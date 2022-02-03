@@ -126,7 +126,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     
     //user
     Route::get('/data-user',[UserController::class, 'index'])->name('user.index');
-    Route::get('/pelatihan-user-data',[UserController::class, 'getuser_data'])->name('user.data');
+    // Route::get('/pelatihan-user-data',[UserController::class, 'getuser_data'])->name('user.data');
     //cabang
     Route::get('/pelatihan-cabang',[CabangController::class, 'index'])->name('cabang.index');
     //kepala cabang & Lembaga
@@ -425,6 +425,11 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     Route::post('/download_qr',[DiklatCont::class,'download_qr'])->name('download_qr');
 
     Route::post('/generate-user',[DashboardCont::class, 'generate'])->name('generate_user');
+
+
+    // NEW DATA USER DLL
+    Route::get('/daftar-pengguna',[UserController::class,'daftar_pengguna'])->name('daftar_pengguna');
+    Route::get('/data-pengguna',[UserController::class, 'getuser_data'])->name('user.data');
 });
 
 Route::group(['middleware' => ['auth', 'CheckRole:bendahara']], function () {
