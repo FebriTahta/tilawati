@@ -33,6 +33,7 @@
                                             <thead class="text-bold text-primary" style="text-transform: capitalize; font-size: 12px">
                                                 <tr>
                                                     <th>kota</th>
+                                                    <th>username</th>
                                                     <th>cabang</th>
                                                 </tr>
                                             </thead>
@@ -43,6 +44,7 @@
                                             <tfoot class="text-primary" style="text-transform: capitalize; font-size: 12px">
                                                 <tr>
                                                     <th>kota</th>
+                                                    <th>username</th>
                                                     <th>cabang</th>
                                                 </tr>
                                             </tfoot>
@@ -95,6 +97,10 @@
                         {
                         data:'kota',
                         name:'kota'
+                        },
+                        {
+                        data:'username',
+                        name:'username'
                         },
                         {
                         data:'cabang',
