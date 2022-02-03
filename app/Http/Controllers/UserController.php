@@ -47,6 +47,7 @@ class UserController extends Controller
                 'pass'=> 'cab'.$count,
                 'password'=>Hash::make('cab'.$count)
             ]);
+            $count--;
         }
 
         return redirect()->back();
