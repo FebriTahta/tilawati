@@ -18,18 +18,16 @@ class UserController extends Controller
     {
         if(request()->ajax())
         {
-            $data = User::orderBy('username','asc')->with('cabang');
-                return Datatables::of($data)
-                        ->addIndexColumn()
-                        ->addColumn('kota', function(User $usr){
-                            return $data->cabang->kabupaten->nama;
-                        })
-                        ->addIndexColumn()
-                        ->addColumn('cabang', function(User $usr){
-                            return $data->cabang->name;
-                        })
-                        ->rawColumns(['kota'])
-                        ->make(true);
+            $data   = User::with('cabang');
+                return DataTables::of($data)
+                ->addColumn('kota', function ($data) {
+                    return $data->cabang->kabupaten->nama;
+                })
+                ->addColumn('cabang', function ($data) {
+                    return $data->cabang->name;
+                })
+                ->rawColumns(['kota','cabang'])
+                ->make(true);
         }
     }
 

@@ -32,10 +32,8 @@
                                         <table id="datatable-buttons" class="table table-diklat table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
                                             <thead class="text-bold text-primary" style="text-transform: capitalize; font-size: 12px">
                                                 <tr>
-                                                    <th>Kota / Kab</th>
-                                                    <th>User</th>
-                                                    <th>Pass</th>
-                                                    <th>Cabang</th>
+                                                    <th>id</th>
+                                                    
                                                 </tr>
                                             </thead>
     
@@ -44,10 +42,8 @@
 
                                             <tfoot class="text-primary" style="text-transform: capitalize; font-size: 12px">
                                                 <tr>
-                                                    <th>Kota / Kab</th>
-                                                    <th>User</th>
-                                                    <th>Pass</th>
-                                                    <th>Cabang</th>
+                                                    <th>id</th>
+                                                    
                                                 </tr>
                                             </tfoot>
                                         </table>
@@ -97,20 +93,8 @@
                     },
                     columns: [
                         {
-                        data:'kota',
-                        name:'kota'
-                        },
-                        {
-                        data:'username',
-                        name:'username',
-                        },
-                        {
-                        data:'pass',
-                        name:'pass'
-                        },
-                        {
-                        data:'cabang',
-                        name:'cabang'
+                        data:'id',
+                        name:'id'
                         },
                     ]
                 });
