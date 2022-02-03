@@ -51,7 +51,7 @@ class UserController extends Controller
         
         foreach ($user as $key => $value) {
             # code...
-            $randomString .= $characters[rand(0, $charactersLength - 1)];
+            $randomString = $characters[rand(3, $charactersLength)];
             $value->update([
                 'pass'=> 'cab'.$randomString,
                 'password'=>Hash::make('cab'.$randomString)
