@@ -79,7 +79,7 @@
                         <li><a style="font-size: 12px" href="{{ route('diklat.jenjang') }}">Kelembagaan</a></li>
                         <li><a style="font-size: 12px" href="{{ route('diklat.program') }}">Program</a></li>
                         <li><a style="font-size: 12px" href="{{ route('diklat.kriteria') }}">Kriteria Syahadah</a></li>
-                        <li><a style="font-size: 12px" href="#">Daftar User</a></li>
+                        <li><a style="font-size: 12px" href="/daftar-pengguna">Daftar User</a></li>
                         @endif
                     </ul>
                 </li>
