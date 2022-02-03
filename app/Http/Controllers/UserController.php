@@ -18,13 +18,13 @@ class UserController extends Controller
     {
         if(request()->ajax())
         {
-            $data   = User::with('cabang');
+            $data   = User::where('role','cabang');
                 return DataTables::of($data)
                 ->addColumn('kota', function ($data) {
-                    return $data->cabang;
+                    return $data->cabang->kabupaten->nama;
                 })
                 ->addColumn('cabang', function ($data) {
-                    return $data->cabang;
+                    return $data->cabang->name;
                 })
                 ->rawColumns(['kota','cabang'])
                 ->make(true);
