@@ -24,7 +24,7 @@ class UserController extends Controller
                     return $data->cabang;
                 })
                 ->addColumn('cabang', function ($data) {
-                    return $data->cabang->name;
+                    return $data->cabang;
                 })
                 ->rawColumns(['kota','cabang'])
                 ->make(true);
