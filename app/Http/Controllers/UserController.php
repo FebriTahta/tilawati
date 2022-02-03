@@ -30,7 +30,6 @@ class UserController extends Controller
                         })
                         ->rawColumns(['kota'])
                         ->make(true);
-            return datatables()->of($data)->make(true);
         }
     }
 
