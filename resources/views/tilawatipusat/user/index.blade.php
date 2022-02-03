@@ -37,6 +37,7 @@
                                                 <tr>
                                                     <th>kota</th>
                                                     <th>username</th>
+                                                    <th>pass</th>
                                                     <th>cabang</th>
                                                 </tr>
                                             </thead>
@@ -48,6 +49,7 @@
                                                 <tr>
                                                     <th>kota</th>
                                                     <th>username</th>
+                                                    <th>pass</th>
                                                     <th>cabang</th>
                                                 </tr>
                                             </tfoot>
@@ -104,6 +106,10 @@
                         {
                         data:'username',
                         name:'username'
+                        },
+                        {
+                        data:'pass',
+                        name:'pass'
                         },
                         {
                         data:'cabang',
