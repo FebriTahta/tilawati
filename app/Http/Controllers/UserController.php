@@ -49,7 +49,7 @@ class UserController extends Controller
         foreach ($user as $key => $value) {
             # code...
             for ($i = 0; $i < $length; $i++) {
-                $randomString .= $characters[rand(0, $charactersLength - 1)];
+                $randomString = $characters[rand(0, $charactersLength - 1)];
             }
             $acak = $randomString;
             $value->update([
