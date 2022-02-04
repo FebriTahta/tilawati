@@ -19,16 +19,6 @@ class UserController extends Controller
     {
         if(request()->ajax())
         {
-            // $data   = User::where('role','cabang');
-            //     return DataTables::of($data)
-            //     ->addColumn('kota', function ($data) {
-            //         return $data->cabang->kabupaten->nama;
-            //     })
-            //     ->addColumn('cabang', function ($data) {
-            //         return $data->cabang->name;
-            //     })
-            //     ->rawColumns(['kota','cabang'])
-            //     ->make(true);
 
             $data = Cabang::with(['user','kabupaten']);
                 return DataTables::of($data)
@@ -79,42 +69,6 @@ class UserController extends Controller
         }
 
         return redirect()->back();
-
-        // $characters = '0123456789abcdefghiklmnopqrstuvwxyz';
-        // $charactersNumber = strlen($characters);
-        // $codeLength = 3;
-
-        // $code = '';
-
-        // while (strlen($code) < 3) {
-        //     $position = rand(0, $charactersNumber - 1);
-        //     $character = $characters[$position];
-        //     $code = 'cab'.$code.$character;
-        // }
-
-        // $data = User::where('role','cabang')->get();
-        // foreach ($data as $key => $value) {
-        //     # code...
-        //     if ($value::where('pass', $code)->exists()) {
-        //         // $this->generateUniqueCode();
-        //         while (strlen($code) < 3) {
-        //             $position = rand(0, $charactersNumber - 1);
-        //             $character = $characters[$position];
-        //             $code = 'cab'.$code.$character;
-        //         }
-        //         $value->update([
-        //                     'pass'=> $code,
-        //                     'password'=>Hash::make($code)
-        //                 ]);
-        //     }else {
-        //         # code...
-        //         $value->update([
-        //             'pass'=> $code,
-        //             'password'=>Hash::make($code)
-        //         ]);
-        //     }
-        // }
-
         
     }
 }
