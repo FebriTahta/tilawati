@@ -49,12 +49,14 @@ class UserController extends Controller
                 $pool2 = '0123456789';
                 $acak2 = substr(str_shuffle(str_repeat($pool2, 5)), 0, 3);
                 $value->update([
+                    'username' => 'cabang'.$acak,
                     'pass'=> 'cab'.$acak2,
                     'password'=>Hash::make('cab'.$acak2)
                 ]);
             }else {
                 # code...
                 $value->update([
+                    'username' => 'cabang'.$acak,
                     'pass'=> 'cab'.$acak,
                     'password'=>Hash::make('cab'.$acak)
                 ]);
