@@ -48,6 +48,7 @@
                         <span style="font-size: 12px" >Data Diklat</span>
                     </a>
                 </li>
+                @if (auth()->user()->role == 'pusat')
                 <li>
                     <a href="{{ route('diklat.webinar') }}" class="waves-effect">
                         <i class="mdi mdi-city-variant-outline"></i>
@@ -55,6 +56,7 @@
                         <span style="font-size: 12px">Data Webinar</span>
                     </a>
                 </li>
+                @endif
                 {{-- <li>
                     <a href="{{ route('diklat.seluruh_peserta') }}" class="waves-effect">
                         <i class="fa fa-book"></i>
@@ -83,7 +85,7 @@
                         @endif
                     </ul>
                 </li>
-
+                @if (auth()->user()->role == 'pusat')
                 <li class="menu-title">Pusat Data Administrasi & Daerah</li>
 
                 <li>
@@ -174,7 +176,7 @@
                         </a>
                     </li>
                 </div>
-
+                @endif
             </ul>
         </div>
         <!-- Sidebar -->
