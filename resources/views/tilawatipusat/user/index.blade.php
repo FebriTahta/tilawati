@@ -102,7 +102,7 @@
                     columns: [
                         {
                         data:'kota',
-                        name:'kota'
+                        name:'kabupaten.nama'
                         },
                         {
                         data:'username',
