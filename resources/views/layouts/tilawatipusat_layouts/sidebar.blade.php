@@ -176,6 +176,9 @@
                         </a>
                     </li>
                 </div>
+
+                @else
+                <li class="menu-title text-danger">- BATAS AKSES -</li>
                 @endif
             </ul>
         </div>
