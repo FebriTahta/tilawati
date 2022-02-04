@@ -532,7 +532,7 @@
                     </div>
 
                     <div class="modal fade bs-example-modal-xl-2" id="mod_program" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-md">
+                        <div class="modal-dialog modal-lg">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">DAFTAR PROGRAM PELAKSANAAN</h5>
@@ -543,20 +543,24 @@
                                 <div class="modal-body">
                                     <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
                                         <table id="datatable-buttons3" class="table table-diklat-program table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
-                                            <thead class="text-bold text-primary">
+                                            <thead class="text-bold text-primary" style="text-transform: uppercase; font-size: 10px">
                                                 <tr>
                                                     <th>Program</th>
+                                                    @if (auth()->user()->role=='pusat')
                                                     <th>Action</th>
+                                                    @endif
                                                 </tr>
                                             </thead>
                     
-                                            <tbody style="text-transform: uppercase; font-size: 12px">
+                                            <tbody style="text-transform: uppercase; font-size: 10px">
                                             </tbody>
                     
-                                            <tfoot class="text-bold text-primary">
+                                            <tfoot class="text-bold text-primary" style="text-transform: uppercase; font-size: 10px">
                                                 <tr>
                                                    <th>Program</th>
-                                                   <th>Action</th>
+                                                   @if (auth()->user()->role=='pusat')
+                                                    <th>Action</th>
+                                                    @endif
                                                 </tr>
                                             </tfoot>
                                         </table>
@@ -568,7 +572,7 @@
                         </div>
                         <!-- /.modal-dialog -->
                     </div>
-
+<input type="text" value="{{auth()->user()->role}}" style="display: none">
 @endsection
 
 @section('script')
@@ -1104,10 +1108,6 @@
                                 {
                                 data:'program',
                                 name:'program.name'
-                                },
-                                {
-                                data:'action',
-                                name:'action'
                                 },
                                 
                             ]
