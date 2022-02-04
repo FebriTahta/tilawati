@@ -18,7 +18,7 @@ use PhpOffice\PhpSpreadsheet\Shared\Date;
 // use Maatwebsite\Excel\Concerns\FromCollection;
 
 // class UserExport implements FromCollection
-class UserExport implements FromQuery, WithHeadings, ShouldAutoSize,  WithColumnFormatting, WithMapping
+class UserExport implements FromQuery, WithHeadings, ShouldAutoSize, WithMapping
 {
     /**
     * @return \Illuminate\Support\Collection
