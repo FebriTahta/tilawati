@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Exports\SeluruhPesertaExport;
+use App\Exports\UserExport;
 use App\Exports\PesertaPendaftaranExport;
 use App\Models\Pelatihan;
 use Excel;
@@ -28,5 +29,10 @@ class ExportCont extends Controller
         $pelatihan_id = $request->id;
         $data = Pelatihan::find($pelatihan_id);
         return Excel::download(new PesertaPendaftaranExport($pelatihan_id),'data-peserta-pendaftaran'.$data->program->name.'-'.$data->tanggal.'.xlsx');
+    }
+
+    public function export_user()
+    {
+        return Excel::download(new UserExport,'data-user.xls');
     }
 }

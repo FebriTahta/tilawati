@@ -31,7 +31,7 @@
                                             <button type="submit" class="btn btn-sm btn-outline-danger  mr-1 mb-1"><i class="fa fa-info"></i> Reset Username & Password</button>
                                         </form>
                                     </div>
-                                    <a class="btn btn-sm btn-outline-success  mr-1 mb-1" style="width:130px " href="#"><i class="fa fa-print"></i> Export</a>
+                                    <a class="btn btn-sm btn-outline-success  mr-1 mb-1" style="width:130px " href="/export-user"><i class="fa fa-print"></i> Export</a>
                                     <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
                                         <table id="datatable-buttons" class="table table-diklat table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
                                             <thead class="text-bold text-primary" style="text-transform: capitalize; font-size: 12px">
