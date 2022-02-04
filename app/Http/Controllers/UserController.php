@@ -39,18 +39,57 @@ class UserController extends Controller
 
     public function reset_password(Request $request)
     {
-        $user = User::where('role','cabang')->get();
-        foreach ($user as $key => $value) {
-            # code...
-            $pool = '0123456789';
+        // $user = User::where('role','cabang')->get();
+        // foreach ($user as $key => $value) {
+        //     # code...
+        //     $pool = '0123456789';
+        //     $acak = substr(str_shuffle(str_repeat($pool, 5)), 0, 3);
+        //     if (condition) {
+        //         # code...
+        //     }
+        //     $value->update([
+        //         'pass'=> 'cab'.$acak,
+        //         'password'=>Hash::make('cab'.$acak)
+        //     ]);
+        // }
 
-            $acak = substr(str_shuffle(str_repeat($pool, 5)), 0, 3);
-            $value->update([
-                'pass'=> 'cab'.$acak,
-                'password'=>Hash::make('cab'.$acak)
-            ]);
+        // return redirect()->back();
+
+        $characters = '0123456789abcdefghiklmnopqrstuvwxyz';
+        $charactersNumber = strlen($characters);
+        $codeLength = 3;
+
+        $code = '';
+
+        while (strlen($code) < 3) {
+            $position = rand(0, $charactersNumber - 1);
+            $character = $characters[$position];
+            $code = 'cab'.$code.$character;
         }
 
-        return redirect()->back();
+        $data = User::where('role','cabang')->get();
+        foreach ($data as $key => $value) {
+            # code...
+            if ($value::where('pass', $code)->exists()) {
+                // $this->generateUniqueCode();
+                while (strlen($code) < 3) {
+                    $position = rand(0, $charactersNumber - 1);
+                    $character = $characters[$position];
+                    $code = 'cab'.$code.$character;
+                }
+                $value->update([
+                            'pass'=> $code,
+                            'password'=>Hash::make($code)
+                        ]);
+            }else {
+                # code...
+                $value->update([
+                    'pass'=> $code,
+                    'password'=>Hash::make($code)
+                ]);
+            }
+        }
+
+        
     }
 }
