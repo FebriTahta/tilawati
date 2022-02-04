@@ -57,7 +57,7 @@
                     
                                     <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
                                         <table id="datatable-buttons" class="table table-cabang table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
-                                            <thead class="text-bold text-primary">
+                                            <thead class="text-bold text-primary" style="text-transform: uppercase; font-size: 10px">
                                                 <tr>
                                                     <th>Nama</th>
                                                     <th>Kepala</th>
@@ -69,10 +69,10 @@
                                                 </tr>
                                             </thead>
     
-                                            <tbody style="text-transform: uppercase; font-size: 12px">
+                                            <tbody style="font-size: 10px">
                                             </tbody>
 
-                                            <tfoot class="text-bold text-primary">
+                                            <tfoot class="text-bold text-primary" style="text-transform: uppercase; font-size: 10px">
                                                 <tr>
                                                    <th>Nama</th>
                                                    <th>Kepala</th>
