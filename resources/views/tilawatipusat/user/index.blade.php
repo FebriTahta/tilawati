@@ -113,8 +113,8 @@
                         name:'pass'
                         },
                         {
-                        data:'cabang',
-                        name:'cabang'
+                        data:'name',
+                        name:'name'
                         },
                     ]
                 });
