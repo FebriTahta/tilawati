@@ -106,11 +106,11 @@
                         },
                         {
                         data:'username',
-                        name:'username'
+                        name:'user.username'
                         },
                         {
                         data:'pass',
-                        name:'pass'
+                        name:'user.pass'
                         },
                         {
                         data:'name',
