@@ -5,6 +5,7 @@ use App\Models\User;
 use App\Models\Cabang;
 use DataTables;
 use Illuminate\Http\Request;
+use Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller

@@ -86,7 +86,7 @@
                     </ul>
                 </li>
                 @if (auth()->user()->role == 'pusat')
-                <li class="menu-title">Pusat Data Administrasi & Daerah</li>
+                {{-- <li class="menu-title">Pusat Data Administrasi & Daerah</li>
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
@@ -94,11 +94,11 @@
                         <span style="font-size: 12px">Dinas Administrasi</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="true">
-                        {{-- <li style="display: none"><a href="{{route('negara')}}">Kode Negara</a></li> --}}
+                        <li style="display: none"><a href="{{route('negara')}}">Kode Negara</a></li>
                         <li><a href="{{route('phone')}}" style="font-size: 12px">Kode Telephone</a></li>
                         <li><a href="/kode-kabupaten" style="font-size: 12px">Kota - Kabupaten</a></li>
                     </ul>
-                </li>
+                </li> --}}
 
                 <li class="menu-title">Cetak</li>
 
