@@ -240,9 +240,17 @@ class DiklatCont extends Controller
                             return $data->program->name;
                         })
                         ->addColumn('action', function($data){
-                            $actionBtn = ' <a href="/diklat-peserta/'.$data->id.'" class="btn btn-sm btn-outline btn-success fa fa-pencil-square"><i class="fa fa-user"></i></a>';
-                            $actionBtn .= ' <a href="#" data-toggle="modal" data-target=".bs-example-modal-diklat-hapus" data-id="'.$data->id.'" class="btn btn-sm btn-outline btn-danger fa fa-pencil-square"><i class="fa fa-trash"></i></a>';
+                            // $actionBtn = ' <a href="/diklat-peserta/'.$data->id.'" class="btn btn-sm btn-outline btn-success fa fa-pencil-square"><i class="fa fa-user"></i></a>';
+                            // $actionBtn .= ' <a href="#" data-toggle="modal" data-target=".bs-example-modal-diklat-hapus" data-id="'.$data->id.'" class="btn btn-sm btn-outline btn-danger fa fa-pencil-square"><i class="fa fa-trash"></i></a>';
+                            // return $actionBtn;
+                            $actionBtn = ' <a href="#" data-toggle="modal" data-target=".bs-example-modal-diklat-hapus" data-id="'.$data->id.'" class="btn btn-sm btn-outline btn-danger"><i class="fa fa-trash"></i></a> ';
+                            $actionBtn.= ' <a href="#" data-toggle="modal" data-target=".bs-example-modal-diklat-edit" data-id="'.$data->id.'" data-tanggal="'.$data->tanggal.'" data-cabang="'.$data->cabang_id.'"
+                            data-sampai_tanggal="'.$data->sampai_tanggal.'" data-max="'.$data->max.'" data-program="'.$data->program_id.'" data-tempat="'.$data->tempat.'" data-keterangan="'.$data->keterangan.'" data-groupwa="'.$data->groupwa.'" class="btn btn-sm btn-outline btn-primary"><i class="fa fa-edit"></i></a>';
+                            $actionBtn .= ' <button data-id="'.$data->id.'" alt="cetak data peserta" class="btn btn-sm btn-info" data-toggle="modal" data-target="#modal-download"><i class="fa fa-download"></i></button>';
+                            $actionBtn .= ' <button data-id="'.$data->id.'" alt="cetak surat jalan" class="btn btn-sm btn-success" data-toggle="modal" data-target="#modal-download2"><i class="fa fa-download"></i></button>';
+                            $actionBtn .= ' <a href="#" class="btn btn-sm btn-outline btn-info" data-slug="'.$data->slug.'" data-nama_diklat="'.$data->program->name.'" data-id="'.asset('images/'.$data->slug.'.png').'" data-toggle="modal" data-target=".modal-scan"><i class="mdi mdi-barcode-scan"></i></a>';
                             return $actionBtn;
+
                         })->addColumn('groupwa', function($data){
                             if ($data->groupwa == null) {
                                 # code...
@@ -297,8 +305,15 @@ class DiklatCont extends Controller
                             return $data->program->name;
                         })
                         ->addColumn('action', function($data){
-                            $actionBtn = ' <a href="/diklat-peserta/'.$data->id.'" class="btn btn-sm btn-outline btn-success fa fa-pencil-square"><i class="fa fa-user"></i></a>';
-                            $actionBtn .= ' <a href="#" data-toggle="modal" data-target=".bs-example-modal-diklat-hapus" data-id="'.$data->id.'" class="btn btn-sm btn-outline btn-danger fa fa-pencil-square"><i class="fa fa-trash"></i></a>';
+                            // $actionBtn = ' <a href="/diklat-peserta/'.$data->id.'" class="btn btn-sm btn-outline btn-success fa fa-pencil-square"><i class="fa fa-user"></i></a>';
+                            // $actionBtn .= ' <a href="#" data-toggle="modal" data-target=".bs-example-modal-diklat-hapus" data-id="'.$data->id.'" class="btn btn-sm btn-outline btn-danger fa fa-pencil-square"><i class="fa fa-trash"></i></a>';
+                            // return $actionBtn;
+                            $actionBtn = ' <a href="#" data-toggle="modal" data-target=".bs-example-modal-diklat-hapus" data-id="'.$data->id.'" class="btn btn-sm btn-outline btn-danger"><i class="fa fa-trash"></i></a> ';
+                            $actionBtn.= ' <a href="#" data-toggle="modal" data-target=".bs-example-modal-diklat-edit" data-id="'.$data->id.'" data-tanggal="'.$data->tanggal.'" data-cabang="'.$data->cabang_id.'"
+                            data-sampai_tanggal="'.$data->sampai_tanggal.'" data-max="'.$data->max.'" data-program="'.$data->program_id.'" data-tempat="'.$data->tempat.'" data-keterangan="'.$data->keterangan.'" data-groupwa="'.$data->groupwa.'" class="btn btn-sm btn-outline btn-primary"><i class="fa fa-edit"></i></a>';
+                            $actionBtn .= ' <button data-id="'.$data->id.'" alt="cetak data peserta" class="btn btn-sm btn-info" data-toggle="modal" data-target="#modal-download"><i class="fa fa-download"></i></button>';
+                            $actionBtn .= ' <button data-id="'.$data->id.'" alt="cetak surat jalan" class="btn btn-sm btn-success" data-toggle="modal" data-target="#modal-download2"><i class="fa fa-download"></i></button>';
+                            $actionBtn .= ' <a href="#" class="btn btn-sm btn-outline btn-info" data-slug="'.$data->slug.'" data-nama_diklat="'.$data->program->name.'" data-id="'.asset('images/'.$data->slug.'.png').'" data-toggle="modal" data-target=".modal-scan"><i class="mdi mdi-barcode-scan"></i></a>';
                             return $actionBtn;
                         })
                         ->addColumn('groupwa', function($data){

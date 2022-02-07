@@ -414,7 +414,7 @@
                                                             <div class="col-md-6 col-12 form-group">
                                                                 <label for="">sampai tanggal</label>
                                                                 <small>(boleh kosong bila 1 hari)</small>
-                                                                <input type="date" id="sampai_tanggal" name="sampai" class="form-control text-capitalize" required>
+                                                                <input type="date" id="sampai_tanggal" name="sampai" class="form-control text-capitalize" >
                                                             </div>
                                                             <div class="col-md-6 col-12 form-group">
                                                                 <label for="">cabang</label>
@@ -440,7 +440,7 @@
                                                             </div>
                                                             <div class="col-md-6 col-12 form-group">
                                                                 <label for="">tempat pelaksanaan</label>
-                                                                <textarea name="tempat" class="form-control text-capitalize" id="tempat_edit" cols="30" rows="3" required></textarea>
+                                                                <textarea name="tempat" class="form-control text-capitalize" id="tempat_edit" cols="30" rows="3" ></textarea>
                                                             </div>
                                                             <div class="col-md-6 col-12 form-group">
                                                                 <label for="">Kuota Peserta (Online) </label>
