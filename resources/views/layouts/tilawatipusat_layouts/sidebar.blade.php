@@ -12,7 +12,7 @@
             <div class="mt-3">
 
                 <a href="#" class="text-dark font-weight-medium font-size-16"> 
-                    @if (auth()->user()->username == 'pusat')
+                    @if (auth()->user()->username == 'admin')
                         Tilawati Pusat (Nurul Falah)
                     @else
                         {{ ucwords(auth()->user()->cabang->name) }}
