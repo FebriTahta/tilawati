@@ -125,7 +125,7 @@
                 processing: true,
                 serverSide: true,
                 ajax: {
-                    url: '{{ route('data.trainer.cabang') }}',
+                    url: '{{ route('list.trainer.cabang') }}',
                 },
                 columns: [{
                         data: 'name',
