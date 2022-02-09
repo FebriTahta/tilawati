@@ -16,7 +16,7 @@
                     @if (auth()->user()->username == 'admin')
                         Tilawati Pusat (Nurul Falah)
                     @else
-                        {{ ucwords(auth()->user()->cabang->name) }}
+                        {{ ucwords(substr(auth()->user()->cabang->kabupaten->nama),5) }}
                     @endif
                 </a>
                 <p class="text-body mt-1 mb-0 font-size-13">{{ ucwords(auth()->user()->role) }}</p>
