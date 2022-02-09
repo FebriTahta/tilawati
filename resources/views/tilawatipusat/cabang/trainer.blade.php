@@ -22,11 +22,11 @@
                     <h4 class="card-title">Data Cabang</h4>
                     <p class="card-title-desc">Ter-update berdasarkan Tahun 2021 </br></p>
                     <button class="btn btn-sm btn-success mb-2 mr-1 text-uppercase" style="width:130px; font-size: 12px " data-toggle="modal"
-                        data-target=".bs-example-modal-tambah-tainer"><i class="mdi mdi-plus"></i> Add
+                    data-target="#modal-add"><i class="mdi mdi-plus"></i> Add
                         Trainer</button>
 
                     <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
-                        <table id="tabel-trainer" data-toggle="modal" data-target="#modal-add" class="table table-cabang table-bordered dt-responsive nowrap"
+                        <table id="tabel-trainer"  class="table table-cabang table-bordered dt-responsive nowrap"
                             style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
                             <thead class="text-bold text-primary" style="text-transform: uppercase; font-size: 10px">
                                 <tr>
