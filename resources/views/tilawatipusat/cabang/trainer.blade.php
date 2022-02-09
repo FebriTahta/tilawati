@@ -33,6 +33,7 @@
                                     <th>Nama</th>
                                     <th>Trainer</th>
                                     <th>Wa / Telp</th>
+                                    <th>Alamat</th>
                                     <th>...</th>
                                 </tr>
                             </thead>
