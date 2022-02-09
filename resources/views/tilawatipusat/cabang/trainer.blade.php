@@ -56,15 +56,15 @@
                         Trainer</button>
 
                     <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
-                        <table id="datatable-buttons" class="table table-cabang table-bordered dt-responsive nowrap"
+                        <table id="tabel-trainer" class="table table-cabang table-bordered dt-responsive nowrap"
                             style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
                             <thead class="text-bold text-primary" style="text-transform: uppercase; font-size: 10px">
                                 <tr>
                                     <th>Nama</th>
-                                    <th>Trainer</th>
+                                    {{-- <th>Trainer</th>
                                     <th>Status</th>
                                     <th>Wa / Telp</th>
-                                    <th>Alamat</th>
+                                    <th>Alamat</th> --}}
                                 </tr>
                             </thead>
 
@@ -74,10 +74,10 @@
                             <tfoot class="text-bold text-primary" style="text-transform: uppercase; font-size: 10px">
                                 <tr>
                                     <th>Nama</th>
-                                    <th>Trainer</th>
+                                    {{-- <th>Trainer</th>
                                     <th>Status</th>
                                     <th>Wa / Telp</th>
-                                    <th>Alamat</th>
+                                    <th>Alamat</th> --}}
                                 </tr>
                             </tfoot>
                         </table>
@@ -148,7 +148,7 @@
             });
         });
 
-        $('#datatable-buttons').DataTable({
+        $('#table-trainer').DataTable({
         //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
         destroy: true,
         processing: true,
@@ -159,22 +159,6 @@
         columns: [{
                 data: 'name',
                 name: 'name'
-            },
-            {
-                data: 'telp',
-                name: 'telp'
-            },
-            {
-                data: 'trainer',
-                name: 'trainer'
-            },
-            {
-                data: 'status',
-                name: 'status'
-            },
-            {
-                data: 'alamat',
-                name: 'alamat'
             },
             
         ]
