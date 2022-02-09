@@ -133,7 +133,10 @@ class CabangCont extends Controller
                 })
                 ->addColumn('trainers', function ($data) {
                     
-                    return $data->trainer->count();
+                    foreach ($data->trainer as $key => $value) {
+                        # code...
+                        return $value;
+                    }
                 })
                 ->addColumn('kabupaten', function ($data) {
                     if ($data->kabupaten == null) {
