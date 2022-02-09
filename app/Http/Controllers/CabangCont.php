@@ -316,7 +316,8 @@ class CabangCont extends Controller
                     ->rawColumns(['stats'])
                     ->make(true);
         }
-        return view('tilawatipusat.cabang.trainer');
+        $cabang = Cabang::where('id',$cabang_id)->select('nama','kabupaten_id')->with('kabupaten');
+        return view('tilawatipusat.cabang.trainer',compact('cabang'));
     }
 
 }

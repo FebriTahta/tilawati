@@ -10,39 +10,9 @@
 @section('content')
 
     @component('common-tilawatipusat.breadcrumb')
-        @slot('title') Cabang @endslot
-        @slot('title_li') Tilawati @endslot
+        @slot('title') Trainer @endslot
+        @slot('title_li') {{substr($cabang->kabupaten->nama,5)}} @endslot
     @endcomponent
-    <div class="row">
-        <div class="col-xl-4">
-            @component('common-tilawatipusat.dashboard-widget')
-
-                @slot('title') <b id="cb"> 2,456 </b> Cabang @endslot
-                @slot('iconClass') mdi mdi-bank-outline @endslot
-                @slot('price') @endslot
-
-            @endcomponent
-        </div>
-        <div class="col-xl-4">
-            @component('common-tilawatipusat.dashboard-widget')
-
-                @slot('title') <b id="kb"> 2,456 </b> Kabupaten @endslot
-                @slot('iconClass') mdi mdi-city @endslot
-                @slot('price') @endslot
-
-            @endcomponent
-        </div>
-        <div class="col-xl-4">
-            @component('common-tilawatipusat.dashboard-widget')
-
-                @slot('title') <b id="pv"> 2,456 </b> Provinsi @endslot
-                @slot('iconClass') mdi mdi-city-variant-outline
-                @endslot
-                @slot('price') @endslot
-
-            @endcomponent
-        </div>
-    </div>
 
     <div class="row">
         <div class="col-lg-12">
