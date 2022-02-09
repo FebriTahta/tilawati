@@ -131,20 +131,9 @@ class CabangCont extends Controller
                 ->addColumn('total_kpa', function ($data) {
                     return $data->kpa->count().' - KPA';
                 })
-                ->addColumn('trainer', function ($data) {
+                ->addColumn('trainers', function ($data) {
                     
-                    if ($data->trainer !== null) {
-                        # code...
-                        $x = '';
-                        foreach ($data->trainer as $key => $value) {
-                            # code...
-                            $x[] = $value->trainer;
-                        }
-                        return $x;
-                    } else {
-                        # code...
-                        return '-';
-                    }
+                    return $data->trainer->count();
                 })
                 ->addColumn('kabupaten', function ($data) {
                     if ($data->kabupaten == null) {
@@ -165,7 +154,7 @@ class CabangCont extends Controller
                     }
                     return $kepala;
                 })
-                ->rawColumns(['provinsi','kabupaten','kepala','total_kpa','trainer'])
+                ->rawColumns(['provinsi','kabupaten','kepala','total_kpa','trainers'])
                 ->make(true);
             }
         }
