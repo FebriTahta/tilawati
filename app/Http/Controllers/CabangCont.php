@@ -7,6 +7,7 @@ use App\Models\Provinsi;
 use DataTables;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use Auth;
 use Illuminate\Http\Request;
 
 class CabangCont extends Controller
@@ -290,6 +291,31 @@ class CabangCont extends Controller
                 ->make(true);
             }
         }
+    }
+
+    public function data_trainer(Request $request)
+    {
+        $cabang_id  = Auth::id();
+        
+        if(request()->ajax())
+        {
+            $data   = Trainer::with('cabang')->orderBy('id','desc');
+                    return DataTables::of($data)
+                    ->addColumn('stats', function ($data) {
+                        if ($data->status == 'aktif') {
+                            # code...
+                            $stats = '<button class="btn btn-sm btn-success">AKTIF</button>';
+                            return $stats;
+                        } else {
+                            # code...
+                            $stats = '<button class="btn btn-sm btn-danger">TIDAK AKTIF</button>';
+                            return $stats;
+                        }
+                    })
+                    ->rawColumns(['stats'])
+                    ->make(true);
+        }
+        return view('tilawatipusat.cabang.trainer');
     }
 
 }

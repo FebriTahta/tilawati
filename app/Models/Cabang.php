@@ -76,4 +76,9 @@ class Cabang extends Model
     {
         return $this->hasMany(Induksertifikat::class);
     }
+
+    public function trainer()
+    {
+        return $this->hasMany(Trainer::class);
+    }
 }

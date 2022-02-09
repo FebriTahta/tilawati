@@ -55,6 +55,23 @@ class PesertaPendaftaranExport implements FromQuery, WithHeadings, ShouldAutoSiz
     }
 
     public function map($row): array{
+        if ($row->kabupaten !== null) {
+            # code...
+            $kab = substr($row->kabupaten->nama,5);
+        } else {
+            # code...
+            $kab = '-';
+        }
+
+        if ($row->gelar !== null) {
+            # code...
+            $nama = $row->name.', '.$row->gelar;
+        } else {
+            # code...
+            $nama = $row->name;
+        }
+        
+        
         if ($row->kecamatan !== null) {
             # code...
             $kec = strtoupper($row->kecamatan->nama);
@@ -78,12 +95,11 @@ class PesertaPendaftaranExport implements FromQuery, WithHeadings, ShouldAutoSiz
         }
         return [
             
-            nama_gelar($row->name),
-            $row->gelar,
+            $nama,
             strtoupper($row->alamat),
             $kel,
             $kec,
-            substr($row->kabupaten->nama,5),
+            $kab,
             $row->telp,
             $row->tmptlahir,
             // $row->tgllahir,
@@ -96,7 +112,6 @@ class PesertaPendaftaranExport implements FromQuery, WithHeadings, ShouldAutoSiz
     public function headings(): array{
         return [
             "NAMA",
-            "GELAR",
             "ALAMAT",
             "KEL",
             "KEC",

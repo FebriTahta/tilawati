@@ -432,6 +432,10 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     Route::get('/data-pengguna',[UserController::class, 'getuser_data'])->name('user.data');
     Route::post('/reset-password',[UserController::class,'reset_password'])->name('reset_pass');
     Route::post('/export-user',[ExportCont::class,'export_user'])->name('export.user');
+
+
+    // NEW DATA CABANG RAKERNAS
+    Route::get('/data-trainer/cabang',[CabangCont::class,'data_trainer'])->name('data.trainer.cabang');
 });
 
 Route::group(['middleware' => ['auth', 'CheckRole:bendahara']], function () {
