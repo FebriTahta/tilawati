@@ -137,7 +137,7 @@ class CabangCont extends Controller
                         # code...
                         $trains[] =  $value->trainer;
                     }
-                    return $trains;
+                    return implode('-',$trains);
                 })
                 ->addColumn('kabupaten', function ($data) {
                     if ($data->kabupaten == null) {
