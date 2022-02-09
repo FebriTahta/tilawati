@@ -19,7 +19,7 @@
             <div class="card">
                 <div class="card-body">
 
-                    <h4 class="card-title">Data KPA Cabang {{$kpa}}</h4>
+                    <h4 class="card-title">Data KPA Cabang {{ substr($cabang->kabupaten->nama, 5) }}</h4>
                     <p class="card-title-desc">Ter-update berdasarkan Tahun 2021 </br></p>
                     <button class="btn btn-sm btn-success mb-2 mr-1 text-uppercase" style="width:130px; font-size: 12px "
                         data-toggle="modal" data-target="#modal-add"><i class="mdi mdi-plus"></i> Add
