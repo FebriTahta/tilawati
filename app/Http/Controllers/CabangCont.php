@@ -102,7 +102,7 @@ class CabangCont extends Controller
                     return $data->kabupaten->nama;
                 })
                 ->addColumn('total_kpa', function ($data) {
-                    return $data->kpa->count();
+                    return $data->kpa->count().' - KPA';
                 })
                 ->addColumn('kepala', function($data){
                     if ($data->kepala !== null) {
@@ -129,7 +129,7 @@ class CabangCont extends Controller
                     }
                 })
                 ->addColumn('total_kpa', function ($data) {
-                    return $data->kpa->count();
+                    return $data->kpa->count().' - KPA';
                 })
                 ->addColumn('kabupaten', function ($data) {
                     if ($data->kabupaten == null) {
