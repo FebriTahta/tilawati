@@ -21,12 +21,12 @@
 
                     <h4 class="card-title">Data Cabang</h4>
                     <p class="card-title-desc">Ter-update berdasarkan Tahun 2021 </br></p>
-                    <button class="btn btn-sm btn-success mb-2 mr-1 text-uppercase" style="width:130px; font-size: 12px " data-toggle="modal"
-                    data-target="#modal-add"><i class="mdi mdi-plus"></i> Add
+                    <button class="btn btn-sm btn-success mb-2 mr-1 text-uppercase" style="width:130px; font-size: 12px "
+                        data-toggle="modal" data-target="#modal-add"><i class="mdi mdi-plus"></i> Add
                         Trainer</button>
 
                     <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
-                        <table id="tabel-trainer"  class="table table-cabang table-bordered dt-responsive nowrap"
+                        <table id="tabel-trainer" class="table table-cabang table-bordered dt-responsive nowrap"
                             style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
                             <thead class="text-bold text-primary" style="text-transform: uppercase; font-size: 10px">
                                 <tr>
@@ -61,7 +61,8 @@
     <!-- end row -->
 
     {{-- MODAL --}}
-    <div class="modal fade bs-example-modal-trainer-edit" id="modal-add" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal fade bs-example-modal-trainer-edit" id="modal-add" tabindex="-1" role="dialog"
+        aria-labelledby="mySmallModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
@@ -74,29 +75,33 @@
                     <div class="col-xl-12">
                         <div class="card m-b-30">
                             <div class="card-body">
-                                <form id="trainer_store" class="text-capitalize"  method="POST" enctype="multipart/form-data">@csrf
+                                <form id="trainer_store" class="text-capitalize" method="POST"
+                                    enctype="multipart/form-data">@csrf
                                     <div class="row">
                                         <div class="col-md-6 col-12 form-group">
                                             <label for="">Nama</label>
-                                            <input type="text" id="nama" name="name" class="form-control text-capitalize" required>
+                                            <input type="text" id="nama" name="name" class="form-control text-capitalize"
+                                                required>
                                         </div>
                                         <div class="col-md-6 col-12 form-group">
                                             <label for="">Trainer</label>
                                             <select name="trainer" class="form-control" required>
                                                 <option value="Instruktur Strategi">Instruktur Strategi</option>
                                                 <option value="Instruktur Lagu">Instruktur Lagu</option>
-                                                <option value="Instruktur Strategi & Lagu">Instruktur Strategi & Lagu</option>
+                                                <option value="Instruktur Strategi & Lagu">Instruktur Strategi & Lagu
+                                                </option>
                                                 <option value="Munaqisy">Munaqisy</option>
                                                 <option value="Supervisor">Supervisor</option>
                                             </select>
                                         </div>
                                         <div class="col-md-6 col-12 form-group">
                                             <label for="">WA / Telp</label>
-                                            <input type="number" class="form-control" required>
+                                            <input type="number" name="telp" class="form-control" required>
                                         </div>
                                         <div class="col-md-6 col-12 form-group">
                                             <label for="">Alamat</label>
-                                            <textarea name="alamat" class="form-control" id="" cols="3" rows="3"></textarea>
+                                            <textarea name="alamat" class="form-control" id="" cols="3"
+                                                rows="3"></textarea>
                                         </div>
                                     </div>
                                     <hr>
@@ -132,34 +137,40 @@
 
     <script>
         var kode;
-        $('#form_tambah_trainer').submit(function(e) {
+        $('#trainer_store').submit(function(e) {
             e.preventDefault();
             var formData = new FormData(this);
             $.ajax({
                 type: 'POST',
-                url: "{{ route('diklat.cabang_store') }}",
+                url: "{{ route('diklat.store') }}",
                 data: formData,
                 cache: false,
                 contentType: false,
                 processData: false,
                 beforeSend: function() {
-                    $('#tambahlembaga_btn').attr('disabled', 'disabled');
-                    $('#tambahlembaga_btn').val('Proses Menyimpan Data');
-
+                    $('#z').attr('disabled', 'disabled');
+                    $('#z').val('Proses Menyimpan Data');
                 },
                 success: function(data) {
                     if (data.success) {
-                        $("#form_tambah_cabang")[0].reset();
+                        //sweetalert and redirect
+                        $("#trainer_store")[0].reset();
+                        toastr.success(data.success);
+                        $('.bs-example-modal-diklat-edit').modal('hide');
+                        $('#z').val('Update');
+                        $('#z').attr('disabled', false);
                         var oTable = $('#datatable-buttons').dataTable();
                         oTable.fnDraw(false);
-                        $('#tambahlembaga_btn').val('Submit!');
-                        $('.bs-example-modal-tambah-cabang').modal('hide');
-                        $('#tambahlembaga_btn').attr('disabled', false);
-                        swal({
-                            title: "Success!",
-                            text: "Cabang Baru Berhasil Di Tabahkan!",
-                            type: "success"
-                        })
+                        // swal({
+                        //     title: "Success!",
+                        //     text: "Trainer Baru Berhasil Ditambahkan!",
+                        //     type: "success"
+                        // })
+                    }
+                    if (data.error) {
+                        $('#message').html('<div class="alert alert-danger">' + data.error + '</div>');
+                        $('#z').attr('disabled', false);
+                        $('#z').val('Add!');
                     }
                 },
                 error: function(data) {

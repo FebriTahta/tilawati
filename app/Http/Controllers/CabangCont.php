@@ -323,4 +323,29 @@ class CabangCont extends Controller
                     ->make(true);
         }
     }
+
+    public function store_trainer_cabang(Request $request)
+    {
+        $cabang_id = Auth::id();
+        Cabang::updateOrCreate(
+            [
+              'id' => $request->id
+            ],
+            [
+                'cabang_id' => $cabang_id,
+                'name'      => $request->name,
+                'trainer'   => $request->trainer,
+                'status'    => 'aktif',
+                'telp'      => $request->telp,
+                'alamat'    => $request->alamat,
+            ]
+        );
+
+        return response()->json(
+            [
+              'success' => 'Trainer Baru Berhasil Ditambahkan!',
+              'message' => 'Trainer Baru Berhasil Ditambahkan!'
+            ]
+        );
+    }
 }
