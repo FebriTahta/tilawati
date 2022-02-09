@@ -309,9 +309,10 @@ class CabangCont extends Controller
             $data   = Trainer::where('cabang_id',$cabang_id)->with('cabang')->orderBy('id','desc');
                     return DataTables::of($data)
                     ->addColumn('action', function ($data) {
-                        $stats = '<a href="#" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>';
-                        $stats .= ' <a href="#" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></a>';
-                            return $stats;
+                        $stats = '<a href="#" class="btn btn-sm btn-danger" data-id="'.$data->id.'"><i class="fa fa-trash"></i></a>';
+                        $stats .= ' <a href="#" class="btn btn-sm btn-primary" data-id="'.$data->id.'" data-name="'.$data->name.'"
+                        data-telp="'.$data->telp.'" data-alamat="'.$data->alamat.'" data-trainer="'.$data->trainer.'"><i class="fa fa-edit"></i></a>';
+                        return $stats;
                     })
                     ->rawColumns(['action'])
                     ->make(true);
@@ -339,6 +340,19 @@ class CabangCont extends Controller
             [
               'success' => 'Trainer Baru Berhasil Ditambahkan!',
               'message' => 'Trainer Baru Berhasil Ditambahkan!'
+            ]
+        );
+    }
+
+    public function delete_trainer_cabang(Request $request)
+    {
+        $id = $request->id;
+        Trainer::find($id)->delete();
+
+        return response()->json(
+            [
+              'success' => 'Trainer Dihapus!',
+              'message' => 'Trainer Dihapus!'
             ]
         );
     }
