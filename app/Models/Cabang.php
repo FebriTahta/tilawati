@@ -81,4 +81,9 @@ class Cabang extends Model
     {
         return $this->hasMany(Trainer::class);
     }
+
+    public function kpa()
+    {
+        return $this->hasMany(Kpa::class);
+    }
 }
