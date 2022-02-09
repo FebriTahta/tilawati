@@ -139,7 +139,7 @@ class CabangCont extends Controller
                             # code...
                             $trainer[] = $value->select('trainer')->distinct()->get();
                         }
-                        $results =  implode(" <br> ", $trainer);
+                        $results =  trainer;
                                 return $results;
                     } else {
                         # code...
