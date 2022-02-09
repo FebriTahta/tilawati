@@ -380,4 +380,28 @@ class CabangCont extends Controller
         $cabang = Cabang::where('id',$cabang_id)->select('name','kabupaten_id')->with('kabupaten')->first();
         return view('tilawatipusat.cabang.kpa',compact('kpa','cabang'));
     }
+
+    public function store_kpa_cabang(Request $request)
+    {
+        $cabang_id  = auth()->user()->cabang->id;
+        Kpa::updateOrCreate(
+            [
+              'id' => $request->id
+            ],
+            [
+                'cabang_id' => $cabang_id,
+                'name'      => $request->name,
+                'ketua'   => $request->ketua,
+                'wilayah'    => $request->wilayah,
+                'telp'      => $request->telp,
+            ]
+        );
+
+        return response()->json(
+            [
+              'success' => 'KPA Baru Berhasil Ditambahkan!',
+              'message' => 'KPA Baru Berhasil Ditambahkan!'
+            ]
+        );
+    }
 }

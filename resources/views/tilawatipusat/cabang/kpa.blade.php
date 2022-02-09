@@ -22,8 +22,8 @@
                     <h4 class="card-title text-uppercase">Data KPA Cabang {{ substr($cabang->kabupaten->nama, 5) }}</h4>
                     <p class="card-title-desc">Ter-update berdasarkan Tahun 2021 </br></p>
                     <button class="btn btn-sm btn-success mb-2 mr-1 text-uppercase" style="width:130px; font-size: 12px "
-                        data-toggle="modal" data-target="#modal-add"><i class="mdi mdi-plus"></i> Add
-                        Trainer</button>
+                        data-toggle="modal" data-target="#modal-add"><i class="mdi mdi-plus"></i> TAMBAH
+                        KPA</button>
 
                     <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
                         <table id="tabel-trainer" class="table table-cabang table-bordered dt-responsive nowrap"
@@ -80,29 +80,25 @@
                                     <div class="row">
                                         <input type="hidden" name="id" id="id">
                                         <div class="col-md-6 col-12 form-group">
-                                            <label for="">Nama</label>
+                                            <label for="">Nama KPA</label>
                                             <input type="text" id="name" name="name" class="form-control text-capitalize"
                                                 required>
                                         </div>
                                         <div class="col-md-6 col-12 form-group">
-                                            <label for="">Trainer</label>
-                                            <select name="trainer" id="trainer" class="form-control" required>
-                                                <option value="Instruktur Strategi">Instruktur Strategi</option>
-                                                <option value="Instruktur Lagu">Instruktur Lagu</option>
-                                                <option value="Instruktur Strategi & Lagu">Instruktur Strategi & Lagu
-                                                </option>
-                                                <option value="Munaqisy">Munaqisy</option>
-                                                <option value="Supervisor">Supervisor</option>
-                                            </select>
+                                            <div class="col-md-6 col-12 form-group">
+                                                <label for="">Ketua KPA</label>
+                                                <input type="text" id="ketua" name="ketua" class="form-control text-capitalize"
+                                                    required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-12 form-group">
+                                            <label for="">Wilayah</label>
+                                            <textarea name="wilayah" id="wilayah" class="form-control" id="" cols="3"
+                                                rows="3"></textarea>
                                         </div>
                                         <div class="col-md-6 col-12 form-group">
                                             <label for="">WA / Telp</label>
                                             <input type="number" id="telp" name="telp" class="form-control" required>
-                                        </div>
-                                        <div class="col-md-6 col-12 form-group">
-                                            <label for="">Alamat</label>
-                                            <textarea name="alamat" id="alamat" class="form-control" id="" cols="3"
-                                                rows="3"></textarea>
                                         </div>
                                     </div>
                                     <hr>
@@ -180,7 +176,7 @@
             var formData = new FormData(this);
             $.ajax({
                 type: 'POST',
-                url: "{{ route('store.trainer.cabang') }}",
+                url: "{{ route('store.kpa.cabang') }}",
                 data: formData,
                 cache: false,
                 contentType: false,
