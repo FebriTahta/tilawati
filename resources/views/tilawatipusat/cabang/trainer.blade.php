@@ -156,7 +156,7 @@
                         //sweetalert and redirect
                         $("#trainer_store")[0].reset();
                         toastr.success(data.success);
-                        $('.bs-example-modal-diklat-edit').modal('hide');
+                        $('#tabel-trainer').modal('hide');
                         $('#z').val('Update');
                         $('#z').attr('disabled', false);
                         var oTable = $('#datatable-buttons').dataTable();
