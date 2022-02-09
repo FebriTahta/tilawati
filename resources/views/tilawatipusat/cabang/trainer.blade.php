@@ -117,9 +117,11 @@
                 }
             });
         });
-        $(document).ready(function() {
+    </script>
 
-            $('#table-trainer').DataTable({
+    <script>
+        $(document).ready(function() {
+            $('#tabel-trainer').DataTable({
                 //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
                 destroy: true,
                 processing: true,
@@ -138,6 +140,6 @@
 
                 ]
             });
-        })
+        });
     </script>
 @endsection
