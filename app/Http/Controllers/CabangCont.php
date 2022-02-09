@@ -134,6 +134,7 @@ class CabangCont extends Controller
                 ->addColumn('trainer', function ($data) {
                     if ($data->trainer !== null) {
                         # code...
+                        $trainer = ' ';
                         foreach ($data->trainer as $key => $value) {
                             # code...
                             $trainer[] = $value->select('trainer')->distinct()->get();
