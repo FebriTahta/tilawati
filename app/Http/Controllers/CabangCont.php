@@ -327,7 +327,7 @@ class CabangCont extends Controller
     public function store_trainer_cabang(Request $request)
     {
         $cabang_id = Auth::id();
-        Cabang::updateOrCreate(
+        Trainer::updateOrCreate(
             [
               'id' => $request->id
             ],
