@@ -26,7 +26,7 @@
                         Trainer</button>
 
                     <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
-                        <table id="tabel-trainer" class="table table-cabang table-bordered dt-responsive nowrap"
+                        <table id="tabel-trainer" data-target="#modal-add" class="table table-cabang table-bordered dt-responsive nowrap"
                             style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
                             <thead class="text-bold text-primary" style="text-transform: uppercase; font-size: 10px">
                                 <tr>
