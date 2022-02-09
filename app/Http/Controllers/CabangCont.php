@@ -132,12 +132,16 @@ class CabangCont extends Controller
                     return $data->kpa->count().' - KPA';
                 })
                 ->addColumn('trainers', function ($data) {
+
+                    $trainers = Trainer::where('cabang_id', $data->id)
+                                ->select('trainer')->distinct()->get();
+
                     $trains=[ ];
-                    foreach ($data->trainer as $key => $value) {
+                    foreach ($trainers as $key => $value) {
                         # code...
                         $trains[] =  $value->trainer;
                     }
-                    return implode('-',$trains);
+                    return implode('<br>',$trains);
                 })
                 ->addColumn('kabupaten', function ($data) {
                     if ($data->kabupaten == null) {
