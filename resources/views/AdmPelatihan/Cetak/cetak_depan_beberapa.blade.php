@@ -137,7 +137,7 @@
                         } else {
                             # code...
 							// $text = $item->alamat . ' ' . $item->kelurahan->nama . ' ' . $item->kecamatan->nama . ' ' . $item->kota2;
-                            
+                            $text = '';
                         }
                         
                         ?>
