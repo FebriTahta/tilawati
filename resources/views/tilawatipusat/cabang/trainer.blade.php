@@ -11,7 +11,7 @@
 
     @component('common-tilawatipusat.breadcrumb')
         @slot('title') Trainer @endslot
-        @slot('title_li') {{$cabang->kabupaten}} @endslot
+        @slot('title_li') {{$cabang->kabupaten_id}} @endslot
     @endcomponent
 
     <div class="row">
