@@ -78,6 +78,7 @@
                                     <th>ALAMAT</th>
                                     <th>STATUS</th>
                                     <th>TOTAL KPA</th>
+                                    <th>TRAINER</th>
                                 </tr>
                             </thead>
 
@@ -94,6 +95,7 @@
                                     <th>ALAMAT</th>
                                     <th>STATUS</th>
                                     <th>TOTAL KPA</th>
+                                    <th>TRAINER</th>
                                 </tr>
                             </tfoot>
                         </table>
@@ -723,6 +725,10 @@
                     {
                         data: 'total_kpa',
                         name: 'total_kpa'
+                    },
+                    {
+                        data: 'trainer',
+                        name: 'trainer'
                     },
                 ]
             });
