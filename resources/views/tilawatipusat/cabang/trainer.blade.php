@@ -117,7 +117,7 @@
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 
-    <div class="modal fade bs-example-modal-diklat-hapus" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+    <div class="modal fade" id="modal_hapus" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-md">
             <div class="modal-content">
@@ -219,7 +219,7 @@
             var formData = new FormData(this);
             $.ajax({
                 type: 'POST',
-                url: "{{ route('diklat.delete') }}",
+                url: "{{ route('delete.trainer.cabang') }}",
                 data: formData,
                 cache: false,
                 contentType: false,
@@ -231,16 +231,17 @@
                 success: function(data) {
                     if (data.success) {
                         //sweetalert and redirect
-                        var oTable = $('#datatable-buttons').dataTable();
+                        var oTable = $('#tabel-trainer').dataTable();
                         oTable.fnDraw(false);
                         $('#btnhapus').val('Ya, Hapus!');
-                        $('.bs-example-modal-diklat-hapus').modal('hide');
+                        $('#modal_hapus').modal('hide');
                         $('#btnhapus').attr('disabled', false);
-                        swal({
-                            title: "Success!",
-                            text: "Diklat Berhasil Di Dihapus!",
-                            type: "success"
-                        })
+                        toastr.success(data.success);
+                        // swal({
+                        //     title: "Success!",
+                        //     text: "Diklat Berhasil Di Dihapus!",
+                        //     type: "success"
+                        // })
                     }
                 },
                 error: function(data) {
@@ -248,6 +249,13 @@
                 }
             });
         });
+
+        $('#modal_hapus').on('show.bs.modal', function(event) {
+                var button = $(event.relatedTarget)
+                var id     = button.data('id')
+                var modal  = $(this)
+                modal.find('.modal-body #id').val(id);
+            })
     </script>
 
     <script>
