@@ -60,7 +60,51 @@
     </div>
     <!-- end row -->
 
-
+    {{-- MODAL --}}
+    <div class="modal fade bs-example-modal-trainer-edit" id="modal-add" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="col-xl-12">
+                        <div class="card m-b-30">
+                            <div class="card-body">
+                                <form id="trainer_store" class="text-capitalize"  method="POST" enctype="multipart/form-data">@csrf
+                                    <div class="row">
+                                        <div class="col-md-6 col-12 form-group">
+                                            <label for="">Nama</label>
+                                            <input type="text" id="nama" name="name" class="form-control text-capitalize" required>
+                                        </div>
+                                        <div class="col-md-6 col-12 form-group">
+                                            <label for="">Trainer</label>
+                                            <select name="trainer" class="form-control" required>
+                                                <option value="Instruktur Strategi">Instruktur Strategi</option>
+                                                <option value="Instruktur Lagu">Instruktur Lagu</option>
+                                                <option value="Instruktur Strategi & Lagu">Instruktur Strategi & Lagu</option>
+                                                <option value="Munaqisy">Munaqisy</option>
+                                                <option value="Supervisor">Supervisor</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6 col-12 form-group">
+                                            <label for="">WA / Telp</label>
+                                            <input type="number" class="form-control" required>
+                                        </div>
+                                        <div class="col-md-6 col-12 form-group">
+                                            <label for="">Alamat</label>
+                                            <textarea name="alamat" class="form-control" id="" cols="3" rows="10"></textarea>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="form-group text-right">
+                                        <input type="submit" id="z" class="btn btn-outline-primary" value="Add!">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div> <!-- end col -->
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
 
 @endsection
 
