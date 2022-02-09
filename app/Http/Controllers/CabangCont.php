@@ -297,7 +297,7 @@ class CabangCont extends Controller
 
     public function data_trainer(Request $request)
     {
-        $cabang_id  = Auth::id();
+        $cabang_id  = auth()->user()->id;
         $cabang = Cabang::where('id',$cabang_id)->select('name','kabupaten_id')->with('kabupaten')->first();
         return view('tilawatipusat.cabang.trainer',compact('cabang'));
     }
