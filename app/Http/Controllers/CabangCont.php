@@ -139,7 +139,7 @@ class CabangCont extends Controller
                     $trains=[ ];
                     foreach ($trainers as $key => $value) {
                         # code...
-                        $trains[] =  $value->trainer. $trainers->count();
+                        $trains[] =  $value->trainer->count();
                     }
                     return implode('| ', $trains);
                 })
