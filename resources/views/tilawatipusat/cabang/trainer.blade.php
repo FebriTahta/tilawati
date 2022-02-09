@@ -21,8 +21,8 @@
 
                     <h4 class="card-title">Data Cabang</h4>
                     <p class="card-title-desc">Ter-update berdasarkan Tahun 2021 </br></p>
-                    <button class="btn btn-sm btn-success mb-2 mr-1" style="width:130px " data-toggle="modal"
-                        data-target=".bs-example-modal-tambah-tainer"><i class="mdi mdi-plus"></i> Daftarkan
+                    <button class="btn btn-sm btn-success mb-2 mr-1 text-uppercase" style="width:130px " data-toggle="modal"
+                        data-target=".bs-example-modal-tambah-tainer"><i class="mdi mdi-plus"></i> Add
                         Trainer</button>
 
                     <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
