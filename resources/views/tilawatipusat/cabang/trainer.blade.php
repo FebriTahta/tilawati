@@ -78,6 +78,7 @@
                                 <form id="trainer_store" class="text-capitalize" method="POST"
                                     enctype="multipart/form-data">@csrf
                                     <div class="row">
+                                        <input type="hidden" name="id" id="id">
                                         <div class="col-md-6 col-12 form-group">
                                             <label for="">Nama</label>
                                             <input type="text" id="name" name="name" class="form-control text-capitalize"
@@ -106,7 +107,7 @@
                                     </div>
                                     <hr>
                                     <div class="form-group text-right">
-                                        <input type="submit" id="z" class="btn btn-outline-primary" value="Add!">
+                                        <input type="submit" id="z" class="btn btn-outline-primary" value="Submit!">
                                     </div>
                                 </form>
                             </div>
@@ -194,7 +195,7 @@
                         $("#trainer_store")[0].reset();
                         toastr.success(data.success);
                         $('#modal-add').modal('hide');
-                        $('#z').val('Update');
+                        $('#z').val('Submit');
                         $('#z').attr('disabled', false);
                         var oTable = $('#tabel-trainer').dataTable();
                         oTable.fnDraw(false);
@@ -207,7 +208,7 @@
                     if (data.error) {
                         $('#message').html('<div class="alert alert-danger">' + data.error + '</div>');
                         $('#z').attr('disabled', false);
-                        $('#z').val('Add!');
+                        $('#z').val('Submit!');
                     }
                 },
                 error: function(data) {
