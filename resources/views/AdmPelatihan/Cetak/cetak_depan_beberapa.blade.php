@@ -106,7 +106,8 @@
                                                 $text = $item->alamat . ' ' . substr($item->kabupaten->nama, 5);
                                             } else {
                                                 # code...
-                                                if (strlen($item->alamat . ' ' . $item->kelurahan->nama . ' ' . $item->kecamatan->nama . ' ' . substr($item->kabupaten->nama, 5)) > 50) {
+												$panjang = strlen($item->alamat . ' ' . $item->kelurahan->nama . ' ' . $item->kecamatan->nama . ' ' . substr($item->kabupaten->nama, 5));
+                                                if ( $panjang > 55) {
                                                     # code...
                                                     $text = $item->alamat . ' ' . $item->kelurahan->nama . ' ' . substr($item->kabupaten->nama, 5);
                                                 } else {
@@ -135,7 +136,7 @@
                             }
                         } else {
                             # code...
-							$text = $item->alamat . ' ' . $item->kelurahan->nama . ' ' . $item->kecamatan->nama . ' ' . $item->kota2;
+							// $text = $item->alamat . ' ' . $item->kelurahan->nama . ' ' . $item->kecamatan->nama . ' ' . $item->kota2;
                             
                         }
                         
