@@ -297,7 +297,7 @@ class CabangCont extends Controller
 
     public function data_trainer(Request $request)
     {
-        $cabang_id  = auth()->user()->id;
+        $cabang_id  = auth()->user()->cabang->id;
         $cabang = Cabang::where('id',$cabang_id)->select('name','kabupaten_id')->with('kabupaten')->first();
         return view('tilawatipusat.cabang.trainer',compact('cabang'));
     }
@@ -306,7 +306,7 @@ class CabangCont extends Controller
     {
         if(request()->ajax())
         {
-            $cabang_id  = Auth::user()->id;
+            $cabang_id  = auth()->user()->cabang->id;
             $data   = Trainer::where('cabang_id',$cabang_id)->with('cabang')->orderBy('id','desc');
                     return DataTables::of($data)
                     ->addColumn('action', function ($data) {
@@ -322,7 +322,7 @@ class CabangCont extends Controller
 
     public function store_trainer_cabang(Request $request)
     {
-        $cabang_id = Auth::id();
+        $cabang_id  = auth()->user()->cabang->id;
         Trainer::updateOrCreate(
             [
               'id' => $request->id
@@ -360,7 +360,7 @@ class CabangCont extends Controller
 
     public function data_kpa(Request $request)
     {
-        $cabang_id  = Auth::id();
+        $cabang_id  = auth()->user()->cabang->id;
         if(request()->ajax())
         {
             # code...
