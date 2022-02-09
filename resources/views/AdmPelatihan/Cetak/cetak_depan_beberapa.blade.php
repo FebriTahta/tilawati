@@ -66,7 +66,7 @@
                         
                         if ($item->kota2 == null) {
                             # code...
-							if ($item->kabupaten !== null) {
+                            if ($item->kabupaten !== null) {
                                 # code...
                                 if (substr($item->kabupaten->nama, 5, 3) == 'ADM') {
                                     # code...
@@ -106,8 +106,8 @@
                                                 $text = $item->alamat . ' ' . substr($item->kabupaten->nama, 5);
                                             } else {
                                                 # code...
-												$panjang = strlen($item->alamat . ' ' . $item->kelurahan->nama . ' ' . $item->kecamatan->nama . ' ' . substr($item->kabupaten->nama, 5));
-                                                if ( $panjang > 55) {
+                                                $panjang = strlen($item->alamat . ' ' . $item->kelurahan->nama . ' ' . $item->kecamatan->nama . ' ' . substr($item->kabupaten->nama, 5));
+                                                if ($panjang > 55) {
                                                     # code...
                                                     $text = $item->alamat . ' ' . $item->kelurahan->nama . ' ' . substr($item->kabupaten->nama, 5);
                                                 } else {
@@ -136,8 +136,15 @@
                             }
                         } else {
                             # code...
-							// $text = $item->alamat . ' ' . $item->kelurahan->nama . ' ' . $item->kecamatan->nama . ' ' . $item->kota2;
-                            $text = '';
+                            // $text = $item->alamat . ' ' . $item->kelurahan->nama . ' ' . $item->kecamatan->nama . ' ' . $item->kota2;
+                            $panjang = strlen($item->alamat . ' ' . $item->kelurahan->nama . ' ' . $item->kecamatan->nama . ' ' . $item->kota2);
+                            if ($panjang > 55) {
+                                # code...
+                                $text = $item->alamat . ' ' . $item->kelurahan->nama . ' ' . $item->kota2;
+                            } else {
+                                # code...
+                                $text = $item->alamat . ' ' . $item->kelurahan->nama . ' ' . $item->kecamatan->nama . ' ' . $item->kota2;
+                            }
                         }
                         
                         ?>
