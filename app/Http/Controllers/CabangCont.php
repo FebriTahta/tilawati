@@ -310,7 +310,7 @@ class CabangCont extends Controller
                     return DataTables::of($data)
                     ->addColumn('action', function ($data) {
                         $stats = '<a href="#" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>';
-                        $stats .= '<a href="#" class="btn btn-sm btn-primary"><i class="fa fa-pencil-square"></i></a>';
+                        $stats .= ' <a href="#" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></a>';
                             return $stats;
                     })
                     ->rawColumns(['action'])
