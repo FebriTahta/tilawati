@@ -21,7 +21,7 @@
 
                     <h4 class="card-title">Data Cabang</h4>
                     <p class="card-title-desc">Ter-update berdasarkan Tahun 2021 </br></p>
-                    <button class="btn btn-sm btn-success mb-2 mr-1 text-uppercase" style="width:130px " data-toggle="modal"
+                    <button class="btn btn-sm btn-success mb-2 mr-1 text-uppercase" style="width:130px; font-size: 12px " data-toggle="modal"
                         data-target=".bs-example-modal-tambah-tainer"><i class="mdi mdi-plus"></i> Add
                         Trainer</button>
 
@@ -32,9 +32,9 @@
                                 <tr>
                                     <th>Nama</th>
                                     <th>Trainer</th>
-                                    {{-- <th>Status</th>
+                                    <th>Status</th>
                                     <th>Wa / Telp</th>
-                                    <th>Alamat</th> --}}
+                                    <th>Alamat</th>
                                 </tr>
                             </thead>
 
@@ -45,9 +45,9 @@
                                 <tr>
                                     <th>Nama</th>
                                     <th>Trainer</th>
-                                    {{-- <th>Status</th>
+                                    <th>Status</th>
                                     <th>Wa / Telp</th>
-                                    <th>Alamat</th> --}}
+                                    <th>Alamat</th>
                                 </tr>
                             </tfoot>
                         </table>
