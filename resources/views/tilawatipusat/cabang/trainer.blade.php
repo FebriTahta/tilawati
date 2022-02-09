@@ -90,7 +90,7 @@
                                         </div>
                                         <div class="col-md-6 col-12 form-group">
                                             <label for="">Alamat</label>
-                                            <textarea name="alamat" class="form-control" id="" cols="3" rows="10"></textarea>
+                                            <textarea name="alamat" class="form-control" id="" cols="3" rows="3"></textarea>
                                         </div>
                                     </div>
                                     <hr>
