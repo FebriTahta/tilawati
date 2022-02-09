@@ -118,6 +118,7 @@
             });
         });
         $(document).ready(function() {
+            console.log('oke');
             $('#table-trainer').DataTable({
                 //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
                 destroy: true,
