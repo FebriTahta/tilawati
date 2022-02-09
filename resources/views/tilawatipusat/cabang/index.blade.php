@@ -728,6 +728,7 @@
                     },
                     {
                         searchable:false,
+                        orderable:false,
                         data: 'trainer',
                         name: 'trainer'
                     },
