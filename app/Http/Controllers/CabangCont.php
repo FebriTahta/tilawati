@@ -118,7 +118,7 @@ class CabangCont extends Controller
                 ->rawColumns(['provinsi','kabupaten','kepala','total_kpa'])
                 ->make(true);
             }else{
-                $data   = Cabang::with('provinsi','kabupaten','kepala')->orderBy('id','desc');
+                $data   = Cabang::with('provinsi','kabupaten','kepala','kpa','trainer')->orderBy('id','desc');
                 return DataTables::of($data)
                 ->addColumn('provinsi', function ($data) {
                     if ($data->provinsi == null) {
@@ -130,6 +130,19 @@ class CabangCont extends Controller
                 })
                 ->addColumn('total_kpa', function ($data) {
                     return $data->kpa->count().' - KPA';
+                })
+                ->addColumn('trainer', function ($data) {
+                    if ($data->trainer > 0) {
+                        # code...
+                        foreach ($data->trainer as $key => $value) {
+                            # code...
+                            $trainer[] = $value->select('trainer')->distinct();
+                        }
+                        return implode("<br>",$trainer);
+                    } else {
+                        # code...
+                        return '-';
+                    }
                 })
                 ->addColumn('kabupaten', function ($data) {
                     if ($data->kabupaten == null) {
