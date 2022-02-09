@@ -95,7 +95,7 @@
 									}else {
 										# code...
 
-										if (strlen($item->alamat.' '.$item->kelurahan->nama.' '.$item->kecamatan->nama.' '.substr($item->kabupaten->nama,5)) > 60) {
+										if (strlen($item->alamat.' '.$item->kelurahan->nama.' '.$item->kecamatan->nama.' '.substr($item->kabupaten->nama,5)) > 50) {
 											# code...
 											$text = $item->alamat.' '.$item->kelurahan->nama.' '.substr($item->kabupaten->nama,5);
 										}else {
