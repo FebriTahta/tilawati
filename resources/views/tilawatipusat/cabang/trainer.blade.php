@@ -136,6 +136,18 @@
                     {
                         data: 'trainer',
                         name: 'trainer'
+                    },
+                    {
+                        data: 'stats',
+                        name: 'stats'
+                    },
+                    {
+                        data: 'telp',
+                        name: 'telp'
+                    },
+                    {
+                        data: 'alamat',
+                        name: 'alamat'
                     }
 
                 ]
