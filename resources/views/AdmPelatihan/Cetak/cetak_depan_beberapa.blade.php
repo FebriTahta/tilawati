@@ -94,7 +94,14 @@
 										$text = $item->alamat.' '.substr($item->kabupaten->nama,5);
 									}else {
 										# code...
-										$text = $item->alamat.' '.substr($item->kecamatan->nama,0).' '.substr($item->kabupaten->nama,5);
+
+										if (strlen($item->alamat.' '.$item->kelurahan->nama.' '.$item->kecamatan->nama.' '.substr($item->kabupaten->nama,5);) > 60) {
+											# code...
+											$text = $item->alamat.' '.$item->kelurahan->nama.' '.substr($item->kabupaten->nama,5);
+										}else {
+											# code...
+											$text = $item->alamat.' '.$item->kelurahan->nama.' '.$item->kecamatan->nama.' '.substr($item->kabupaten->nama,5);
+										}
 									}
 									
 								} else {
@@ -130,21 +137,6 @@
 				@endif
 				<td class="atas" style="width: 52px; height: 10px;">&nbsp;</td>
 				</tr>
-				{{-- @if ($item->pelatihan->keterangan == 'santri')
-				<tr class="atas" style="height: 10px;">
-					<td class="atas" style="width: 170px; height: 10px;">Asal Lembaga</td>
-					<td class="atas" style="width: 11px; height: 10px;">:</td>
-					
-					<td class="atas" style="width: 750px; height: 10px;text-transform: uppercase" >
-                    @if ($item->lembaga == null )
-                        KOSONG
-                    @else
-                        {{$item->lembaga->name}}
-                    @endif
-                    </td>
-					<td class="atas" style="width: 52px; height: 10px;">&nbsp;</td>
-				</tr>
-				@endif --}}
 				<tr class="atas" style="height: 10px;">
 				<td class="atas" style="width: 170px; height: 10px;">Dinyatakan</td>
 				<td class="atas" style="width: 11px; height: 10px;">:</td>
@@ -174,9 +166,6 @@
 				</td>
 				<td class="bawah" style="width: 210px; height: 70px;">&nbsp;</td>
 				<td class="bawah" style="width: 241px; height: 70px;">
-					{{-- @if ($cabang=='KOTA SURABAYA')
-					<img src="assets/images/pu2.png" alt="" width="140px" height="70px">
-					@endif --}}
 				</td>
 				</tr>
 				<tr style="height: 5px;">
