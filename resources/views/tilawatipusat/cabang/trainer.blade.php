@@ -142,7 +142,7 @@
             var formData = new FormData(this);
             $.ajax({
                 type: 'POST',
-                url: "{{ route('diklat.store') }}",
+                url: "{{ route('store.trainer.cabang') }}",
                 data: formData,
                 cache: false,
                 contentType: false,
