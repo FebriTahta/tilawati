@@ -132,7 +132,7 @@ class CabangCont extends Controller
                     return $data->kpa->count().' - KPA';
                 })
                 ->addColumn('trainers', function ($data) {
-                    
+                    $trains='';
                     foreach ($data->trainer as $key => $value) {
                         # code...
                         $trains[] =  $value->trainer;
