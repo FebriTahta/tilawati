@@ -74,9 +74,10 @@
                                     <th>Kepala</th>
                                     <th>Provinsi</th>
                                     <th>Kabupaten</th>
-                                    <th>Telephone</th>
-                                    <th>Alamat</th>
-                                    <th>Status</th>
+                                    <th>TELP</th>
+                                    <th>ALAMAT</th>
+                                    <th>STATUS</th>
+                                    <th>TOTAL KPA</th>
                                 </tr>
                             </thead>
 
@@ -89,9 +90,10 @@
                                     <th>Kepala</th>
                                     <th>Provinsi</th>
                                     <th>Kabupaten</th>
-                                    <th>Telephone</th>
-                                    <th>Alamat</th>
-                                    <th>Status</th>
+                                    <th>TELP</th>
+                                    <th>ALAMAT</th>
+                                    <th>STATUS</th>
+                                    <th>TOTAL KPA</th>
                                 </tr>
                             </tfoot>
                         </table>
@@ -717,6 +719,10 @@
                     {
                         data: 'status',
                         name: 'status'
+                    },
+                    {
+                        data: 'total_kpa',
+                        name: 'total_kpa'
                     },
                 ]
             });

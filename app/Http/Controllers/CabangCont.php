@@ -92,7 +92,7 @@ class CabangCont extends Controller
         {
             if(!empty($request->dari))
             {
-                $data   = Cabang::with('provinsi','kabupaten','kepala')->orderBy('id','desc')
+                $data   = Cabang::with('provinsi','kabupaten','kepala','kpa')->orderBy('id','desc')
                 ->whereBetween('created_at', array($request->dari, $request->sampai));
                 return DataTables::of($data)
                 ->addColumn('provinsi', function ($data) {
@@ -100,6 +100,9 @@ class CabangCont extends Controller
                 })
                 ->addColumn('kabupaten', function ($data) {
                     return $data->kabupaten->nama;
+                })
+                ->addColumn('total_kpa', function ($data) {
+                    return $data->kpa->count();
                 })
                 ->addColumn('kepala', function($data){
                     if ($data->kepala !== null) {
@@ -112,7 +115,7 @@ class CabangCont extends Controller
                     }
                     return $kepala;
                 })
-                ->rawColumns(['provinsi','kabupaten','kepala'])
+                ->rawColumns(['provinsi','kabupaten','kepala','total_kpa'])
                 ->make(true);
             }else{
                 $data   = Cabang::with('provinsi','kabupaten','kepala')->orderBy('id','desc');
@@ -124,8 +127,9 @@ class CabangCont extends Controller
                         # code...
                         return $data->provinsi->nama;
                     }
-                    
-                    
+                })
+                ->addColumn('total_kpa', function ($data) {
+                    return $data->kpa->count();
                 })
                 ->addColumn('kabupaten', function ($data) {
                     if ($data->kabupaten == null) {
@@ -146,7 +150,7 @@ class CabangCont extends Controller
                     }
                     return $kepala;
                 })
-                ->rawColumns(['provinsi','kabupaten','kepala'])
+                ->rawColumns(['provinsi','kabupaten','kepala','total_kpa'])
                 ->make(true);
             }
         }
