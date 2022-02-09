@@ -135,6 +135,7 @@ class CabangCont extends Controller
                     
                     if ($data->trainer !== null) {
                         # code...
+                        $x = '';
                         foreach ($data->trainer as $key => $value) {
                             # code...
                             $x[] = $value->trainer;
