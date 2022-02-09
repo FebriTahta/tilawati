@@ -7,6 +7,7 @@ use App\Models\Provinsi;
 use DataTables;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use App\Models\Trainer;
 use Auth;
 use Illuminate\Http\Request;
 
