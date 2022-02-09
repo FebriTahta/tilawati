@@ -136,7 +136,6 @@
     <script src="{{ URL::asset('tilawatipusat/js/pages/datatables.init.js') }}"></script>
 
     <script>
-        var kode;
         $('#trainer_store').submit(function(e) {
             e.preventDefault();
             var formData = new FormData(this);
