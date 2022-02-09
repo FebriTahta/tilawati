@@ -258,14 +258,12 @@
             var id = button.data('id')
             var name = button.data('name')
             var telp = button.data('telp')
-            var alamat = button.data('alamat')
-            var trainer = button.data('trainer')
+            var wilayah = button.data('wilayah')
             var modal = $(this)
             modal.find('.modal-body #id').val(id);
             modal.find('.modal-body #name').val(name);
-            modal.find('.modal-body #alamat').val(alamat);
+            modal.find('.modal-body #wilayah').val(wilayah);
             modal.find('.modal-body #telp').val(telp);
-            modal.find('.modal-body #trainer').val(trainer);
         })
     </script>
 
