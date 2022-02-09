@@ -132,17 +132,11 @@ class CabangCont extends Controller
                     return $data->kpa->count().' - KPA';
                 })
                 ->addColumn('trainer', function ($data) {
-                    if ($data->trainer > 0) {
+                    foreach ($data->trainer as $key => $value) {
                         # code...
-                        foreach ($data->trainer as $key => $value) {
-                            # code...
-                            $trainer[] = $value->select('trainer')->distinct();
-                        }
-                        return $trainer;
-                    } else {
-                        # code...
-                        return '-';
+                        $trainer[] = $value->select('trainer')->distinct();
                     }
+                    return $trainer;
                 })
                 ->addColumn('kabupaten', function ($data) {
                     if ($data->kabupaten == null) {
