@@ -85,7 +85,9 @@
                                     Syahadah</a></li>
                             <li><a style="font-size: 12px" href="/daftar-pengguna">Daftar User</a></li>
                         @else
-                            <li><a style="font-size: 12px" href="{{ route('data.trainer.cabang') }}">Data Trainer</a>
+                            <li><a style="font-size: 12px" href="{{ route('data.trainer.cabang') }}">Data Trainer Cabang</a>
+                            </li>
+                            <li><a style="font-size: 12px" href="{{ route('data.kpa.cabang') }}">Data KPA Cabang</a>
                             </li>
                         @endif
                     </ul>
