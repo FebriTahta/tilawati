@@ -437,7 +437,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     // NEW DATA CABANG RAKERNAS
     Route::get('/data-trainer/cabang',[CabangCont::class,'data_trainer'])->name('data.trainer.cabang');
     Route::get('/list-data-trainer/cabang',[CabangCont::class,'list_trainer_cabang'])->name('list.trainer.cabang');
-    Route::post('/store-data-trainer/cabang',[CabangContr::class,'store_trainer_cabang'])->name('store.trainer.cabang');
+    Route::post('/store-data-trainer/cabang',[CabangCont::class,'store_trainer_cabang'])->name('store.trainer.cabang');
 });
 
 Route::group(['middleware' => ['auth', 'CheckRole:bendahara']], function () {
