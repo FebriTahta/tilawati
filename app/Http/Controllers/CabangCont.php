@@ -135,7 +135,7 @@ class CabangCont extends Controller
                     
                     foreach ($data->trainer as $key => $value) {
                         # code...
-                        return $value;
+                        return $value->trainer;
                     }
                 })
                 ->addColumn('kabupaten', function ($data) {
