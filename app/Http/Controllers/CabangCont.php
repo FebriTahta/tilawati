@@ -306,7 +306,7 @@ class CabangCont extends Controller
     {
         if(request()->ajax())
         {
-            $cabang_id  = Auth::id();
+            $cabang_id  = Auth::user()->id;
             $data   = Trainer::where('cabang_id',$cabang_id)->with('cabang')->orderBy('id','desc');
                     return DataTables::of($data)
                     ->addColumn('action', function ($data) {
