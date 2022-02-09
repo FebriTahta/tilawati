@@ -297,10 +297,16 @@ class CabangCont extends Controller
     public function data_trainer(Request $request)
     {
         $cabang_id  = Auth::id();
-        
+        $cabang = Cabang::where('id',$cabang_id)->select('name','kabupaten_id')->with('kabupaten')->first();
+        return view('tilawatipusat.cabang.trainer',compact('cabang'));
+    }
+
+    public function list_trainer_cabang(Request $request)
+    {
         if(request()->ajax())
         {
-            $data   = Trainer::with('cabang')->orderBy('id','desc');
+            $cabang_id  = Auth::id();
+            $data   = Trainer::where('cabang_id',$cabang_id)->with('cabang')->orderBy('id','desc');
                     return DataTables::of($data)
                     ->addColumn('stats', function ($data) {
                         if ($data->status == 'aktif') {
@@ -316,8 +322,5 @@ class CabangCont extends Controller
                     ->rawColumns(['stats'])
                     ->make(true);
         }
-        $cabang = Cabang::where('id',$cabang_id)->select('name','kabupaten_id')->with('kabupaten')->first();
-        return view('tilawatipusat.cabang.trainer',compact('cabang'));
     }
-
 }
