@@ -163,7 +163,7 @@ class CabangCont extends Controller
                     }
                     return $kepala;
                 })
-                ->rawColumns(['provinsi','kabupaten','kepala','total_kpa'])
+                ->rawColumns(['provinsi','kabupaten','kepala','total_kpa','trainer'])
                 ->make(true);
             }
         }
