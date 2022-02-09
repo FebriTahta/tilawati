@@ -137,7 +137,7 @@ class CabangCont extends Controller
                         # code...
                         foreach ($data->trainer as $key => $value) {
                             # code...
-                            $x[] = $value->select('trainer')->get();
+                            $x[] = $value->trainer;
                         }
                         $results =  x;
                                 return $results;
