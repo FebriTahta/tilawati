@@ -31,8 +31,8 @@
                             <thead class="text-bold text-primary" style="text-transform: uppercase; font-size: 10px">
                                 <tr>
                                     <th>Nama</th>
-                                    {{-- <th>Trainer</th>
-                                    <th>Status</th>
+                                    <th>Trainer</th>
+                                    {{-- <th>Status</th>
                                     <th>Wa / Telp</th>
                                     <th>Alamat</th> --}}
                                 </tr>
@@ -44,8 +44,8 @@
                             <tfoot class="text-bold text-primary" style="text-transform: uppercase; font-size: 10px">
                                 <tr>
                                     <th>Nama</th>
-                                    {{-- <th>Trainer</th>
-                                    <th>Status</th>
+                                    <th>Trainer</th>
+                                    {{-- <th>Status</th>
                                     <th>Wa / Telp</th>
                                     <th>Alamat</th> --}}
                                 </tr>
@@ -130,6 +130,10 @@
                 data: 'name',
                 name: 'name'
             },
+            {
+                data: 'trainer',
+                name: 'trainer'
+            }
             
         ]
         });
