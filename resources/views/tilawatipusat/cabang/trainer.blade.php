@@ -66,7 +66,7 @@
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">Daftarkan Trainer Baru</h5>
+                    <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">Data Trainer</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -80,12 +80,12 @@
                                     <div class="row">
                                         <div class="col-md-6 col-12 form-group">
                                             <label for="">Nama</label>
-                                            <input type="text" id="nama" name="name" class="form-control text-capitalize"
+                                            <input type="text" id="name" name="name" class="form-control text-capitalize"
                                                 required>
                                         </div>
                                         <div class="col-md-6 col-12 form-group">
                                             <label for="">Trainer</label>
-                                            <select name="trainer" class="form-control" required>
+                                            <select name="trainer" id="trainer" class="form-control" required>
                                                 <option value="Instruktur Strategi">Instruktur Strategi</option>
                                                 <option value="Instruktur Lagu">Instruktur Lagu</option>
                                                 <option value="Instruktur Strategi & Lagu">Instruktur Strategi & Lagu
@@ -96,11 +96,11 @@
                                         </div>
                                         <div class="col-md-6 col-12 form-group">
                                             <label for="">WA / Telp</label>
-                                            <input type="number" name="telp" class="form-control" required>
+                                            <input type="number" id="telp" name="telp" class="form-control" required>
                                         </div>
                                         <div class="col-md-6 col-12 form-group">
                                             <label for="">Alamat</label>
-                                            <textarea name="alamat" class="form-control" id="" cols="3"
+                                            <textarea name="alamat" id="alamat" class="form-control" id="" cols="3"
                                                 rows="3"></textarea>
                                         </div>
                                     </div>
@@ -152,6 +152,8 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
+
+
 
 @endsection
 
@@ -251,11 +253,25 @@
         });
 
         $('#modal_hapus').on('show.bs.modal', function(event) {
-                var button = $(event.relatedTarget)
-                var id     = button.data('id')
-                var modal  = $(this)
-                modal.find('.modal-body #id').val(id);
-            })
+            var button = $(event.relatedTarget)
+            var id = button.data('id')
+            var modal = $(this)
+            modal.find('.modal-body #id').val(id);
+        })
+        $('#modal-add').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget)
+            var id = button.data('id')
+            var name = button.data('name')
+            var telp = button.data('telp')
+            var alamat = button.data('alamat')
+            var trainer = button.data('trainer')
+            var modal = $(this)
+            modal.find('.modal-body #id').val(id);
+            modal.find('.modal-body #name').val(name);
+            modal.find('.modal-body #alamat').val(alamat);
+            modal.find('.modal-body #telp').val(telp);
+            modal.find('.modal-body #trainer').val(trainer);
+        })
     </script>
 
     <script>
