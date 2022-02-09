@@ -155,10 +155,10 @@
                         //sweetalert and redirect
                         $("#trainer_store")[0].reset();
                         toastr.success(data.success);
-                        $('#tabel-trainer').modal('hide');
+                        $('#modal-add').modal('hide');
                         $('#z').val('Update');
                         $('#z').attr('disabled', false);
-                        var oTable = $('#datatable-buttons').dataTable();
+                        var oTable = $('#tabel-trainer').dataTable();
                         oTable.fnDraw(false);
                         // swal({
                         //     title: "Success!",
