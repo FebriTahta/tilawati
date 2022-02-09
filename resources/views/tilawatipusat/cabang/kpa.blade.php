@@ -85,11 +85,9 @@
                                                 required>
                                         </div>
                                         <div class="col-md-6 col-12 form-group">
-                                            <div class="col-md-6 col-12 form-group">
-                                                <label for="">Ketua KPA</label>
-                                                <input type="text" id="ketua" name="ketua" class="form-control text-capitalize"
-                                                    required>
-                                            </div>
+                                            <label for="">Ketua KPA</label>
+                                            <input type="text" id="ketua" name="ketua" class="form-control text-capitalize"
+                                                required>
                                         </div>
                                         <div class="col-md-6 col-12 form-group">
                                             <label for="">Wilayah</label>
@@ -218,7 +216,7 @@
             var formData = new FormData(this);
             $.ajax({
                 type: 'POST',
-                url: "{{ route('delete.trainer.cabang') }}",
+                url: "{{ route('delete.kpa.cabang') }}",
                 data: formData,
                 cache: false,
                 contentType: false,

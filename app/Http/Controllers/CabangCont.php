@@ -404,4 +404,17 @@ class CabangCont extends Controller
             ]
         );
     }
+
+    public function delete_kpa_cabang(Request $request)
+    {
+        $id = $request->id;
+        Kpa::find($id)->delete();
+
+        return response()->json(
+            [
+              'success' => 'KPA Dihapus!',
+              'message' => 'KPA Dihapus!'
+            ]
+        );
+    }
 }
