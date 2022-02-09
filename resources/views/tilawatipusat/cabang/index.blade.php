@@ -727,6 +727,7 @@
                         name: 'total_kpa'
                     },
                     {
+                        searchable:false,
                         data: 'trainer',
                         name: 'trainer'
                     },
