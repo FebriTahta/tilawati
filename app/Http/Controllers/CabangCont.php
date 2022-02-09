@@ -139,9 +139,9 @@ class CabangCont extends Controller
                     $trains=[ ];
                     foreach ($trainers as $key => $value) {
                         # code...
-                        $trains[] =  $value->trainer;
+                        $trains[] =  $value->trainer. $value->trainer->count();
                     }
-                    return implode('<br>',$trains);
+                    return implode('| ', $trains);
                 })
                 ->addColumn('kabupaten', function ($data) {
                     if ($data->kabupaten == null) {
