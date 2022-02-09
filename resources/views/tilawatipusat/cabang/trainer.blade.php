@@ -11,7 +11,7 @@
 
     @component('common-tilawatipusat.breadcrumb')
         @slot('title') Trainer @endslot
-        @slot('title_li') {{substr($cabang->kabupaten->nama,5)}} @endslot
+        @slot('title_li') {{ substr($cabang->kabupaten->nama, 5) }} @endslot
     @endcomponent
 
     <div class="row">
@@ -117,25 +117,26 @@
                 }
             });
         });
+        $(document).ready(function() {
+            $('#table-trainer').DataTable({
+                //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
+                destroy: true,
+                processing: true,
+                serverSide: true,
+                ajax: {
+                    url: '{{ route('data.trainer.cabang') }}',
+                },
+                columns: [{
+                        data: 'name',
+                        name: 'name'
+                    },
+                    {
+                        data: 'trainer',
+                        name: 'trainer'
+                    }
 
-        $('#table-trainer').DataTable({
-        //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
-        destroy: true,
-        processing: true,
-        serverSide: true,
-        ajax: {
-            url: '{{ route('data.trainer.cabang') }}',
-        },
-        columns: [{
-                data: 'name',
-                name: 'name'
-            },
-            {
-                data: 'trainer',
-                name: 'trainer'
-            }
-            
-        ]
-        });
+                ]
+            });
+        })
     </script>
 @endsection
