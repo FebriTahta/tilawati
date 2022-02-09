@@ -134,12 +134,12 @@ class CabangCont extends Controller
                 ->addColumn('trainer', function ($data) {
                     if ($data->trainer !== null) {
                         # code...
-                        $trainer ='';
                         foreach ($data->trainer as $key => $value) {
                             # code...
-                            $trainer[] = $value->select('trainer')->distinct();
+                            $trainer[] = $value->select('trainer')->distinct()->get();
                         }
-                        return implode('<br>', $trainer);
+                        $results =  implode(" <br> ", $trainer);
+                                return $results;
                     } else {
                         # code...
                         return '-';
