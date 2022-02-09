@@ -377,7 +377,7 @@ class CabangCont extends Controller
 
         }
         $kpa = Kpa::where('cabang_id',$cabang_id)->with('cabang')->first();
-        $cabang = Cabang::where('cabang_id',$cabang_id)->with('kabupaten')->first();
+        $cabang = Cabang::where('id',$cabang_id)->with('kabupaten')->first();
         return view('tilawatipusat.cabang.kpa',compact('kpa','cabang'));
     }
 }
