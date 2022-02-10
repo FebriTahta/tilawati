@@ -133,16 +133,22 @@ class CabangCont extends Controller
                 })
                 ->addColumn('trainers', function ($data) {
 
-                    $trainers = Trainer::where('cabang_id', $data->id)
+                    if ($data->trainer !== null) {
+                        # code...
+                        $trainers = Trainer::where('cabang_id', $data->id)
                                 ->select('trainer')->distinct()->get();
 
-                    $trains=[ ];
-                    foreach ($trainers as $key => $value) {
+                        $trains=[ ];
+                        foreach ($trainers as $key => $value) {
+                            # code...
+                            $tot_train = Trainer::where('cabang_id', $data->id)->where('trainer',$value->trainer)->count();
+                            $trains[] =  $value->trainer.' - '.$tot_train;
+                        }
+                        return implode(' | ', $trains);
+                    } else {
                         # code...
-                        $tot_train = Trainer::where('cabang_id', $data->id)->where('trainer',$value->trainer)->count();
-                        $trains[] =  $value->trainer.' - '.$tot_train;
+                        return ' - ';
                     }
-                    return implode(' | ', $trains);
                 })
                 ->addColumn('kabupaten', function ($data) {
                     if ($data->kabupaten == null) {
