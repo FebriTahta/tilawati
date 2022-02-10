@@ -330,64 +330,64 @@
 
         $(document).ready(function() {
             load_data();
-            data_cabang();
+            // data_cabang();
 
             function load_data(dari = '', sampai = '') {
-                $.ajax({
-                    url: '{{ route('diklat.peserta_tot') }}',
-                    data: {
-                        dari: dari,
-                        sampai: sampai
-                    },
-                    type: 'get',
-                    dataType: 'json',
-                    success: function(data) {
-                        document.getElementById('ps').innerHTML = data;
-                        console.log(data);
-                    }
-                });
+                // $.ajax({
+                //     url: '{{ route('diklat.peserta_tot') }}',
+                //     data: {
+                //         dari: dari,
+                //         sampai: sampai
+                //     },
+                //     type: 'get',
+                //     dataType: 'json',
+                //     success: function(data) {
+                //         document.getElementById('ps').innerHTML = data;
+                //         console.log(data);
+                //     }
+                // });
                 //diklat
-                $.ajax({
-                    url: '{{ route('diklat.diklat_tot') }}',
-                    data: {
-                        dari: dari,
-                        sampai: sampai
-                    },
-                    type: 'get',
-                    dataType: 'json',
-                    success: function(data) {
-                        document.getElementById('dk').innerHTML = data;
-                        console.log(data);
-                    }
-                });
+                // $.ajax({
+                //     url: '{{ route('diklat.diklat_tot') }}',
+                //     data: {
+                //         dari: dari,
+                //         sampai: sampai
+                //     },
+                //     type: 'get',
+                //     dataType: 'json',
+                //     success: function(data) {
+                //         document.getElementById('dk').innerHTML = data;
+                //         console.log(data);
+                //     }
+                // });
                 //cabang
-                $.ajax({
-                    url: '{{ route('diklat.cabang_kab') }}',
-                    data: {
-                        dari: dari,
-                        sampai: sampai
-                    },
-                    type: 'get',
-                    dataType: 'json',
-                    success: function(data) {
-                        document.getElementById('kb').innerHTML = data;
-                        console.log(data);
-                    }
-                });
+                // $.ajax({
+                //     url: '{{ route('diklat.cabang_kab') }}',
+                //     data: {
+                //         dari: dari,
+                //         sampai: sampai
+                //     },
+                //     type: 'get',
+                //     dataType: 'json',
+                //     success: function(data) {
+                //         document.getElementById('kb').innerHTML = data;
+                //         console.log(data);
+                //     }
+                // });
 
-                $.ajax({
-                    url: '{{ route('diklat.cabang_pro') }}',
-                    data: {
-                        dari: dari,
-                        sampai: sampai
-                    },
-                    type: 'get',
-                    dataType: 'json',
-                    success: function(data) {
-                        document.getElementById('pv').innerHTML = data;
-                        console.log(data);
-                    }
-                });
+                // $.ajax({
+                //     url: '{{ route('diklat.cabang_pro') }}',
+                //     data: {
+                //         dari: dari,
+                //         sampai: sampai
+                //     },
+                //     type: 'get',
+                //     dataType: 'json',
+                //     success: function(data) {
+                //         document.getElementById('pv').innerHTML = data;
+                //         console.log(data);
+                //     }
+                // });
 
                 $.ajax({
                     url: '{{ route('diklat.cabang_tot') }}',
@@ -403,19 +403,19 @@
                     }
                 });
 
-                $.ajax({
-                    url: '{{ route('diklat.webinar_tot') }}',
-                    type: 'get',
-                    dataType: 'json',
-                    data: {
-                        dari: dari,
-                        sampai: sampai
-                    },
-                    success: function(data) {
-                        document.getElementById('cbx').innerHTML = data;
-                        console.log(data);
-                    }
-                });
+                // $.ajax({
+                //     url: '{{ route('diklat.webinar_tot') }}',
+                //     type: 'get',
+                //     dataType: 'json',
+                //     data: {
+                //         dari: dari,
+                //         sampai: sampai
+                //     },
+                //     success: function(data) {
+                //         document.getElementById('cbx').innerHTML = data;
+                //         console.log(data);
+                //     }
+                // });
                 //lembaga
                 $.ajax({
                     url: '{{ route('diklat.lembaga_kab') }}',
