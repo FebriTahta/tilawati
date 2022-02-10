@@ -6,6 +6,13 @@
 <table>
     <thead style="font-weight: bold">
         <tr>
+            <th colspan="5">WOOOOOO</th>
+        </tr>
+    </thead>
+</table>
+<table>
+    <thead style="font-weight: bold">
+        <tr>
             <th>Nama Lengkap Peserta</th>
             <th>Tanggal Pelatihan</th>
             <th>Diklat</th>
