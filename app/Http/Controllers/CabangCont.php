@@ -106,7 +106,7 @@ class CabangCont extends Controller
                 })
                 ->addColumn('trainers', function ($data) {
 
-                    if ($data->trainer !== null) {
+                    if ($data->trainer->count() > 0) {
                         # code...
                         $trainers = Trainer::where('cabang_id', $data->id)
                                 ->select('trainer')->distinct()->get();
@@ -152,7 +152,7 @@ class CabangCont extends Controller
                 })
                 ->addColumn('trainers', function ($data) {
 
-                    if ($data->trainer !== null) {
+                    if ($data->trainer->count() > 0) {
                         # code...
                         $trainers = Trainer::where('cabang_id', $data->id)
                                 ->select('trainer')->distinct()->get();
