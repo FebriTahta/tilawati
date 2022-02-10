@@ -54,8 +54,8 @@
                         @if (auth()->user()->role == 'pusat')
                             <code>Data Import dan Eksport Berbeda Format (Berhati-hati ketika meng-importkan data
                                 baru)</code>
-                        </p>
-                        @endif
+                    </p>
+                    @endif
                     <button class="btn btn-sm btn-success mb-2 mr-1" style="width:130px ; margin-bottom: 5px"
                         data-toggle="modal" data-target=".bs-example-modal-cabang"><i class="mdi mdi-cloud-upload"></i>
                         import cabang</button>
@@ -64,8 +64,9 @@
                         rpq</button>
                     <button class="btn btn-sm btn-success mb-2 mr-1" style="width:130px " data-toggle="modal"
                         data-target=".bs-example-modal-tambah-cabang"><i class="mdi mdi-plus"></i> tambah cabang</button>
-
-                    <button class="btn btn-sm btn-outline-primary mb-2 mr-1" style="width: 130px"><i class="fa fa-download"> Export Cabang</i></button>
+                    <br>
+                    <button class="btn btn-sm btn-outline-primary mb-2 mr-1" style="width: 130px"><i class="fa fa-download">
+                            Export Cabang</i></button>
 
                     <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
                         <table id="datatable-buttons" class="table table-cabang table-bordered dt-responsive nowrap"
