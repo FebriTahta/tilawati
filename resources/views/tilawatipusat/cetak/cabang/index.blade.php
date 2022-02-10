@@ -18,6 +18,7 @@
                 <th rowspan="3" colspan="10">DATA CABANG <br> <small>Seluruh Indonesia Per - 2022</small></th>
             </tr>
         </thead>
+        <tbody></tbody>
     </table>
     <table>
         <thead style="font-weight: bold;">
