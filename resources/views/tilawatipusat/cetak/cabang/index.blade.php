@@ -51,8 +51,8 @@
                 ->select('trainer')->distinct()->get();?>
                 <td>
                     @foreach ($trainers as $value)
-                    {{-- $tot_train = Trainer::where('cabang_id', $data->id)->where('trainer',$value->trainer)->count(); --}}
-                    <br>{{'- '.$value->trainer}}
+                    <?php $tot_train = Trainer::where('cabang_id', $data->id)->where('trainer',$value->trainer)->count();?>
+                    <br>{{ $tot_train.' - '.$value->trainer }}
                     @endforeach
                 </td>
             </tr>
