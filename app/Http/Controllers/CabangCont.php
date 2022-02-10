@@ -142,7 +142,7 @@ class CabangCont extends Controller
                         $tot_train = Trainer::where('cabang_id', $data->id)->where('trainer',$value->trainer)->count();
                         $trains[] =  $value->trainer.' - '.$tot_train;
                     }
-                    return implode('| ', $trains);
+                    return implode(' | ', $trains);
                 })
                 ->addColumn('kabupaten', function ($data) {
                     if ($data->kabupaten == null) {
