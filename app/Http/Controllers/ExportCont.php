@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Exports\SeluruhPesertaExport;
 use App\Exports\UserExport;
+use App\Exports\CabangExport;
 use App\Exports\PesertaPendaftaranExport;
 use App\Models\Pelatihan;
 use Excel;
@@ -34,5 +35,10 @@ class ExportCont extends Controller
     public function export_user()
     {
         return Excel::download(new UserExport,'data-user.xls');
+    }
+
+    public function export_data_cabang(Request $request)
+    {
+
     }
 }

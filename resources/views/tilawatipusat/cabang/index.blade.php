@@ -65,8 +65,8 @@
                     <button class="btn btn-sm btn-success mb-2 mr-1" style="width:130px " data-toggle="modal"
                         data-target=".bs-example-modal-tambah-cabang"><i class="mdi mdi-plus"></i> tambah cabang</button>
                     <br>
-                    <button class="btn btn-sm btn-outline-primary mb-2 mr-1" style="width: 130px"><i class="fa fa-download">
-                            Export Cabang</i></button>
+                    <a href="#" target="_blank" class="btn btn-sm btn-outline-primary mb-2 mr-1" style="width: 130px"><i class="fa fa-download">
+                            Export Cabang</i></a>
 
                     <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
                         <table id="datatable-buttons" class="table table-cabang table-bordered dt-responsive nowrap"
