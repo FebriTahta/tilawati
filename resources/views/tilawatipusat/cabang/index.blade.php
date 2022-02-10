@@ -341,10 +341,10 @@
                                                 <label for=""><i class="text-danger">* </i>Telp Cabang</label>
                                                 <input type="text" class="form-control" id="telp" name="telp" required>
                                             </div>
-                                            <div class="form-group col-xl-6">
+                                            {{-- <div class="form-group col-xl-6">
                                                 <label for=""><i class="text-danger"> </i>Email Cabang</label>
                                                 <input type="email" class="form-control" id="email" name="email">
-                                            </div>
+                                            </div> --}}
                                             <div class="form-group col-xl-6">
                                                 <label for=""><i class="text-danger ">* </i>Alamat Cabang</label>
                                                 <textarea name="alamat" class="text-capitalize form-control" id="alamat"
@@ -1003,7 +1003,7 @@
             modal.find('.modal-body #kabupaten_id').val(kabupaten);
             modal.find('.modal-body .provinsi_id').val(provinsi);
             modal.find('.modal-body #teritorial').val(teritorial);
-            modal.find('.modal-body #email').val(email);
+            // modal.find('.modal-body #email').val(email);
         })
     </script>
 @endsection
