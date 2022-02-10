@@ -20,10 +20,13 @@ class Cabang extends Model
         'kecamatan_id',
         'kelurahan_id',
         'alamat',
+        'kadivre',
+        'kepalacabang',
         'pos',
         'telp',
         'ekspedisi',
-        'teritorial'
+        'teritorial',
+        'email'
     ];
     protected $dates = ['deleted_at'];
 

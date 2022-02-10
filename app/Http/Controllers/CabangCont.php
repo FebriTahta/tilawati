@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use DB;
 use App\Models\Cabang;
+use App\Models\Kepala;
 use App\Models\Provinsi;
 use DataTables;
 use Illuminate\Support\Facades\Hash;
@@ -49,9 +50,13 @@ class CabangCont extends Controller
                     'kecamatan_id'  => $request->kecamatan_id,
                     'kelurahan_id'  => $request->kelurahan_id,
                     'alamat'        => $request->alamat,
+                    'kadivre'       => $request->kadivre,
+                    'teritorial'    => $request->teritorial,
+                    'kepalacabang'  => $request->kepalacabang,
                     'pos'           => $request->pos,
                     'telp'          => $request->telp,
                     'ekspedisi'     => $request->ekspedisi,
+                    'email'         => $request->email,
                 ]
             );
         } else {
@@ -70,18 +75,54 @@ class CabangCont extends Controller
                     'kabupaten_id'  => $request->kabupaten_id,
                     'kecamatan_id'  => $request->kecamatan_id,
                     'kelurahan_id'  => $request->kelurahan_id,
+                    'kadivre'       => $request->kadivre,
+                    'teritorial'    => $request->teritorial,
+                    'kepalacabang'  => $request->kepalacabang,
                     'alamat'        => $request->alamat,
                     'pos'           => $request->pos,
                     'telp'          => $request->telp,
                     'ekspedisi'     => $request->ekspedisi,
+                    'email'         => $request->email,
                 ]
             );
         }
 
         return response()->json(
             [
-              'success' => 'Cabang Baru Berhasil Ditambahkan!',
-              'message' => 'Cabang Baru Berhasil Ditambahkan!'
+            //   'success' => 'Cabang Baru Berhasil Ditambahkan!',
+            'success' => 'Sukses!',
+              'message' => 'Sukses!'
+            //   'message' => 'Cabang Baru Berhasil Ditambahkan!'
+            ]
+        );
+    }
+
+    public function update_cabang(Request $request)
+    {
+        Cabang::updateOrCreate(
+            [
+              'id' => $request->id
+            ],
+            [
+                'name'          => $request->name,
+                'status'        => $request->status,
+                'alamat'        => $request->alamat,
+                'kadivre'       => $request->kadivre,
+                'teritorial'    => $request->teritorial,
+                'kepalacabang'  => $request->kepalacabang,
+                'pos'           => $request->pos,
+                'telp'          => $request->telp,
+                'ekspedisi'     => $request->ekspedisi,
+                'email'         => $request->email,
+            ]
+        );
+
+        return response()->json(
+            [
+            //   'success' => 'Cabang Baru Berhasil Ditambahkan!',
+            'success' => 'Sukses!',
+              'message' => 'Sukses!'
+            //   'message' => 'Cabang Baru Berhasil Ditambahkan!'
             ]
         );
     }
@@ -92,7 +133,7 @@ class CabangCont extends Controller
         {
             if(!empty($request->dari))
             {
-                $data   = Cabang::with('provinsi','kabupaten','kepala','kpa')->orderBy('id','desc')
+                $data   = Cabang::with('provinsi','kabupaten','kpa','trainer')->orderBy('id','desc')
                 ->whereBetween('created_at', array($request->dari, $request->sampai));
                 return DataTables::of($data)
                 ->addColumn('provinsi', function ($data) {
@@ -123,25 +164,25 @@ class CabangCont extends Controller
                         return ' - ';
                     }
                 })
-                ->addColumn('kepala', function($data){
-                    if ($data->kepala !== null) {
-                        # code...
-                        $kepala ='<a href="#" data-toggle="modal"
-                        data-target=".bs-example-modal-kepala-lembaga" data-kode="'.$data->kode.'">'. $data->kepala->name.'</a>';
-                    }else{
-                        $kepala = '<button class="btn btn-sm badge badge-danger" data-toggle="modal"
-                        data-target=".bs-example-modal-kepala-lembaga" data-kode="'.$data->kode.'">Kosong</button>';
-                    }
-                    return $kepala;
-                })
+                // ->addColumn('kepala', function($data){
+                //     if ($data->kepala !== null) {
+                //         # code...
+                //         $kepala ='<a href="#" data-toggle="modal"
+                //         data-target=".bs-example-modal-kepala-lembaga" data-kode="'.$data->kode.'">'. $data->kepala->name.'</a>';
+                //     }else{
+                //         $kepala = '<button class="btn btn-sm badge badge-danger" data-toggle="modal"
+                //         data-target=".bs-example-modal-kepala-lembaga" data-kode="'.$data->kode.'">Kosong</button>';
+                //     }
+                //     return $kepala;
+                // })
                 ->addColumn('opsi', function ($data){
-                    $btn = '<a href="" class="btn btn-sm btn-outline-primary"><i class="fa fa-edit"></i> Update!</a>';
+                    $btn = '<a href="#" data-toggle="modal" data-target="#modal-cabang" data-name="'.$data->name.'" data-alamat="'.$data->alamat.'" class="btn btn-sm btn-outline-primary"><i class="fa fa-edit"></i> Update!</a>';
                     return $btn;
                 })
-                ->rawColumns(['provinsi','kabupaten','kepala','total_kpa','trainer','opsi'])
+                ->rawColumns(['provinsi','kabupaten','total_kpa','trainer','opsi'])
                 ->make(true);
             }else{
-                $data   = Cabang::with('provinsi','kabupaten','kepala','kpa','trainer')->orderBy('id','desc');
+                $data   = Cabang::with('provinsi','kabupaten','kpa','trainer')->orderBy('id','desc');
                 return DataTables::of($data)
                 ->addColumn('provinsi', function ($data) {
                     if ($data->provinsi == null) {
@@ -181,22 +222,25 @@ class CabangCont extends Controller
                         return $data->kabupaten->nama;
                     }
                 })
-                ->addColumn('kepala', function($data){
-                    if ($data->kepala !== null) {
-                        # code...
-                        $kepala ='<a href="#" data-toggle="modal"
-                        data-target=".bs-example-modal-kepala-lembaga" data-kode="'.$data->kode.'">'. $data->kepala->name.'</a>';
-                    }else{
-                        $kepala = '<button class="btn btn-sm badge badge-danger" data-toggle="modal"
-                        data-target=".bs-example-modal-kepala-lembaga" data-kode="'.$data->kode.'">Kosong</button>';
-                    }
-                    return $kepala;
-                })
+                // ->addColumn('kepala', function($data){
+                //     if ($data->kepala !== null) {
+                //         # code...
+                //         $kepala ='<a href="#" data-toggle="modal"
+                //         data-target=".bs-example-modal-kepala-lembaga" data-kode="'.$data->kode.'">'. $data->kepala->name.'</a>';
+                //     }else{
+                //         $kepala = '<button class="btn btn-sm badge badge-danger" data-toggle="modal"
+                //         data-target=".bs-example-modal-kepala-lembaga" data-kode="'.$data->kode.'">Kosong</button>';
+                //     }
+                //     return $kepala;
+                // })
                 ->addColumn('opsi', function ($data){
-                    $btn = '<a href="" class="btn btn-sm btn-outline-primary"><i class="fa fa-edit"></i> Update!</a>';
+                    $btn = '<a href="#" data-toggle="modal" data-target="#modal-cabang2" data-id="'.$data->id.'" data-name="'.$data->name.'" data-alamat="'.$data->alamat.'" 
+                    data-kadivre="'.$data->kadivre.'" data-teritorial="'.$data->teritorial.'" data-telp="'.$data->telp.'" 
+                    data-email="'.$data->email.'" data-status="'.$data->status.'" data-kepalacabang="'.$data->kepalacabang.'"
+                    data-kabupaten="'.$data->kabupaten_id.'" data-provinsi="'.$data->provinsi_id.'" class="btn btn-sm btn-outline-primary"><i class="fa fa-edit"></i> Update!</a>';
                     return $btn;
                 })
-                ->rawColumns(['provinsi','kabupaten','kepala','total_kpa','trainers','opsi'])
+                ->rawColumns(['provinsi','kabupaten','total_kpa','trainers','opsi'])
                 ->make(true);
             }
         }
@@ -467,4 +511,6 @@ class CabangCont extends Controller
             ]
         );
     }
+
+    
 }

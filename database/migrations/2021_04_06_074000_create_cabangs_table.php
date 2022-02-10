@@ -25,6 +25,8 @@ class CreateCabangsTable extends Migration
             $table->unsignedBigInteger('kecamatan_id')->nullable();
             $table->unsignedBigInteger('kelurahan_id')->nullable();
             $table->unsignedBigInteger('kepala_id')->nullable();
+            $table->string('kepalacabang')->nullable();
+            $table->string('kadivre')->nullable();
             $table->string('teritorial')->nullable();
             $table->string('alamat')->nullable();
             $table->string('pos')->nullable();

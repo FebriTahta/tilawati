@@ -67,7 +67,6 @@
                     <br>
                     <a href="/export-data-cabang" target="_blank" class="btn btn-sm btn-outline-primary mb-2 mr-1" style="width: 130px"><i class="fa fa-download">
                             Export Cabang</i></a>
-
                     <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
                         <table id="datatable-buttons" class="table table-cabang table-bordered dt-responsive nowrap"
                             style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
@@ -80,6 +79,8 @@
                                     <th>TELP</th>
                                     <th>ALAMAT</th>
                                     <th>STATUS</th>
+                                    <th>KADIVRE</th>
+                                    <th>WILAYAH</th>
                                     <th>TOTAL KPA</th>
                                     <th>TRAINER</th>
                                     <th>OPSI</th>
@@ -98,6 +99,8 @@
                                     <th>TELP</th>
                                     <th>ALAMAT</th>
                                     <th>STATUS</th>
+                                    <th>KADIVRE</th>
+                                    <th>WILAYAH</th>
                                     <th>TOTAL KPA</th>
                                     <th>TRAINER</th>
                                     <th>OPSI</th>
@@ -269,12 +272,12 @@
 
     {{-- tambah cabang baru --}}
     <div class="col-sm-6 col-md-3 m-t-30">
-        <div class="modal fade bs-example-modal-tambah-cabang" tabindex="-1" role="dialog"
+        <div class="modal fade bs-example-modal-tambah-cabang" id="modal-cabang" tabindex="-1" role="dialog"
             aria-labelledby="mySmallModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title mt-0">Tambah Cabang Baru </h5>
+                        <h5 class="modal-title mt-0">DATA CABANG </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -287,7 +290,7 @@
                                     <form method="POST" id="form_tambah_cabang">@csrf
                                         <div class="row">
 
-                                            <div class="form-group col-xl-3">
+                                            <div class="form-group col-xl-6">
                                                 <select name="provinsi_id" id="mySelect" class="form-control" required>
                                                     <option value="">1* Provinsi</option>
                                                     @foreach ($dt_props2 as $item)
@@ -295,50 +298,52 @@
                                                     @endforeach
                                                 </select>
                                             </div>
-                                            <div class="form-group col-xl-3">
+                                            <div class="form-group col-xl-6">
                                                 <select id="kabupaten_id" name="kabupaten_id" class="form-control"
                                                     required>
                                                     <option value="">2* Kabupaten / Kota</option>
                                                 </select>
                                             </div>
-                                            <div class="form-group col-xl-3">
-                                                <select id="kecamatan_id" name="kecamatan_id" class="form-control"
-                                                    required>
-                                                    <option value="">3* Kecamatan</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group col-xl-3">
-                                                <select id="kelurahan_id" name="kelurahan_id" class="form-control "
-                                                    required>
-                                                    <option value="">4* Kelurahan</option>
-                                                </select>
-                                            </div>
                                             <div class="form-group col-xl-6">
                                                 <label for=""><i class="text-danger">* </i>Nama Cabang</label>
-                                                <input type="text" class="form-control text-capitalize" name="name"
+                                                <input type="text" class="form-control text-capitalize" id="name" name="name"
                                                     required>
                                             </div>
                                             <div class="form-group col-xl-6">
-                                                <label for=""><i class="text-danger">* </i>Telp Cabang</label>
-                                                <input type="number" class="form-control" name="telp" required>
+                                                <label for=""><i class="text-danger">* </i>Kepala Cabang</label>
+                                                <input type="text" class="form-control text-capitalize" name="kepalacabang" id="kepalacabang"
+                                                    required>
                                             </div>
                                             <div class="form-group col-xl-6">
-                                                <label for=""><i class="text-danger"> </i>Email Cabang</label>
-                                                <input type="email" class="form-control" name="email">
+                                                <label for=""><i class="text-danger">* </i>Kadivre</label>
+                                                <input type="text" class="form-control" name="kadivre" id="kadivre" required>
+                                            </div>
+                                            <div class="form-group col-xl-6">
+                                                <label for=""><i class="text-danger ">* </i>Wilayah</label>
+                                                <textarea name="teritorial" id="teritorial" class="text-capitalize form-control" id="" cols="5"
+                                                    rows="3" required></textarea>
                                             </div>
                                             <div class="form-group col-xl-6">
                                                 <label for=""><i class="text-danger">* </i>Status</label>
-                                                <select name="status" id="" class="form-control text-capitalize">
+                                                <select name="status" id="x" class="form-control text-capitalize">
                                                     <option value="CABANG">CABANG</option>
                                                     <option value="RPQ">RPQ</option>
                                                 </select>
                                             </div>
-                                            <div class="form-group col-xl-12">
+                                            <div class="form-group col-xl-6">
+                                                <label for=""><i class="text-danger">* </i>Telp Cabang</label>
+                                                <input type="text" class="form-control" id="telp" name="telp" required>
+                                            </div>
+                                            <div class="form-group col-xl-6">
+                                                <label for=""><i class="text-danger"> </i>Email Cabang</label>
+                                                <input type="email" class="form-control" id="email" name="email">
+                                            </div>
+                                            <div class="form-group col-xl-6">
                                                 <label for=""><i class="text-danger ">* </i>Alamat Cabang</label>
-                                                <textarea name="alamat" class="text-capitalize form-control" id="" cols="5"
+                                                <textarea name="alamat" class="text-capitalize form-control" id="alamat" cols="5"
                                                     rows="3" required></textarea>
                                             </div>
-                                            <div class="form-group col-xl-3">
+                                            {{-- <div class="form-group col-xl-3">
                                                 <label for=""><i class="text-danger">* </i>Kode Pos</label>
                                                 <input type="number" class="form-control" name="pos" required>
                                             </div>
@@ -347,9 +352,92 @@
                                                     pengiriman)</label>
                                                 <textarea name="ekspedisi" class="form-control text-capitalize" id=""
                                                     cols="5" rows="3" required></textarea>
-                                            </div>
+                                            </div> --}}
                                             <div class="form-group col-xl-12 col-12">
                                                 <input type="submit" id="tambahlembaga_btn" style="width: 100%"
+                                                    class="btn btn-info" value="Submit!">
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div> <!-- end col -->
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+    </div>
+
+    <div class="col-sm-6 col-md-3 m-t-30">
+        <div class="modal fade bs-example-modal-tambah-cabang" id="modal-cabang2" tabindex="-1" role="dialog"
+            aria-labelledby="mySmallModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title mt-0">DATA CABANG </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="col-xl-12">
+                            <div class="card m-b-30">
+                                <div class="card-body">
+                                    <form method="POST" id="form_tambah_cabang2">@csrf
+                                        <div class="row">
+                                            <input type="hidden" id="id" name="id">
+                                            <div class="form-group col-xl-6">
+                                                <label for=""><i class="text-danger">* </i>Nama Cabang</label>
+                                                <input type="text" class="form-control text-capitalize" id="name" name="name"
+                                                    required>
+                                            </div>
+                                            <div class="form-group col-xl-6">
+                                                <label for=""><i class="text-danger">* </i>Kepala Cabang</label>
+                                                <input type="text" class="form-control text-capitalize" name="kepalacabang" id="kepalacabang"
+                                                    required>
+                                            </div>
+                                            <div class="form-group col-xl-6">
+                                                <label for=""><i class="text-danger">* </i>Kadivre</label>
+                                                <input type="text" class="form-control" name="kadivre" id="kadivre" required>
+                                            </div>
+                                            <div class="form-group col-xl-6">
+                                                <label for=""><i class="text-danger ">* </i>Wilayah</label>
+                                                <textarea name="teritorial" id="teritorial" class="text-capitalize form-control" id="" cols="5"
+                                                    rows="3" required></textarea>
+                                            </div>
+                                            <div class="form-group col-xl-6">
+                                                <label for=""><i class="text-danger">* </i>Status</label>
+                                                <select name="status" id="x" class="form-control text-capitalize">
+                                                    <option value="CABANG">CABANG</option>
+                                                    <option value="RPQ">RPQ</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-xl-6">
+                                                <label for=""><i class="text-danger">* </i>Telp Cabang</label>
+                                                <input type="text" class="form-control" id="telp" name="telp" required>
+                                            </div>
+                                            <div class="form-group col-xl-6">
+                                                <label for=""><i class="text-danger"> </i>Email Cabang</label>
+                                                <input type="email" class="form-control" id="email" name="email">
+                                            </div>
+                                            <div class="form-group col-xl-6">
+                                                <label for=""><i class="text-danger ">* </i>Alamat Cabang</label>
+                                                <textarea name="alamat" class="text-capitalize form-control" id="alamat" cols="5"
+                                                    rows="3" required></textarea>
+                                            </div>
+                                            {{-- <div class="form-group col-xl-3">
+                                                <label for=""><i class="text-danger">* </i>Kode Pos</label>
+                                                <input type="number" class="form-control" name="pos" required>
+                                            </div>
+                                            <div class="form-group col-xl-12">
+                                                <label for=""><i class="text-danger">* </i>Alamat Ekspedisi (untuk
+                                                    pengiriman)</label>
+                                                <textarea name="ekspedisi" class="form-control text-capitalize" id=""
+                                                    cols="5" rows="3" required></textarea>
+                                            </div> --}}
+                                            <div class="form-group col-xl-12 col-12">
+                                                <input type="submit" id="tambahlembaga_btn2" style="width: 100%"
                                                     class="btn btn-info" value="Submit!">
                                             </div>
                                         </div>
@@ -411,6 +499,43 @@
                             text: "Cabang Baru Berhasil Di Tabahkan!",
                             type: "success"
                         })
+                    }
+                },
+                error: function(data) {
+                    console.log(data);
+                }
+            });
+        });
+
+        $('#form_tambah_cabang2').submit(function(e) {
+            e.preventDefault();
+            var formData = new FormData(this);
+            $.ajax({
+                type: 'POST',
+                url: "{{ route('update.cabang') }}",
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                beforeSend: function() {
+                    $('#tambahlembaga_btn2').attr('disabled', 'disabled');
+                    $('#tambahlembaga_btn2').val('Proses Menyimpan Data');
+
+                },
+                success: function(data) {
+                    if (data.success) {
+                        $("#form_tambah_cabang2")[0].reset();
+                        var oTable = $('#datatable-buttons').dataTable();
+                        oTable.fnDraw(false);
+                        $('#tambahlembaga_btn2').val('Submit!');
+                        $('#modal-cabang2').modal('hide');
+                        $('#tambahlembaga_btn2').attr('disabled', false);
+                        toastr.success(data.success);
+                        // swal({
+                        //     title: "Success!",
+                        //     text: "Cabang Baru Berhasil Di Tabahkan!",
+                        //     type: "success"
+                        // })
                     }
                 },
                 error: function(data) {
@@ -702,10 +827,14 @@
                         data: 'name',
                         name: 'name'
                     },
+                    // {
+                    //     data: 'kepala',
+                    //     name: 'kepala.name',
+                    //     orderable: false,
+                    // },
                     {
-                        data: 'kepala',
-                        name: 'kepala.name',
-                        orderable: false,
+                        data: 'kepalacabang',
+                        name: 'kepalacabang',
                     },
                     {
                         data: 'provinsi',
@@ -726,6 +855,14 @@
                     {
                         data: 'status',
                         name: 'status'
+                    },
+                    {
+                        data: 'kadivre',
+                        name: 'kadivre'
+                    },
+                    {
+                        data: 'teritorial',
+                        name: 'teritorial'
                     },
                     {
                         data: 'total_kpa',
@@ -831,5 +968,33 @@
                 }
             });
         });
+
+        // cabang
+        $('#modal-cabang2').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget)
+            var id = button.data('id')
+            var name = button.data('name')
+            var kepalacabang = button.data('kepalacabang')
+            var status = button.data('status')
+            var kadivre = button.data('kadivre')
+            var teritorial = button.data('teritorial')
+            var alamat = button.data('alamat')
+            var telp = button.data('telp')
+            var email = button.data('email')
+            var kabupaten = button.data('kabupaten_id')
+            var provinsi = button.data('provinsi_id')
+            var modal = $(this)
+            modal.find('.modal-body #id').val(id);
+            modal.find('.modal-body #name').val(name);
+            modal.find('.modal-body #kepalacabang').val(kepalacabang);
+            modal.find('.modal-body #x').val(status);
+            modal.find('.modal-body #alamat').val(alamat);
+            modal.find('.modal-body #telp').val(telp);
+            modal.find('.modal-body #kadivre').val(kadivre);
+            modal.find('.modal-body #kabupaten_id').val(kabupaten);
+            modal.find('.modal-body .provinsi_id').val(provinsi);
+            modal.find('.modal-body #teritorial').val(teritorial);
+            modal.find('.modal-body #email').val(email);
+        })
     </script>
 @endsection
