@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Exports\SeluruhPesertaExport;
 use App\Exports\UserExport;
 use App\Exports\CabangExport;
+use App\Exports\CabangKpaExport;
 use App\Exports\PesertaPendaftaranExport;
 use App\Models\Pelatihan;
 use Excel;
@@ -39,6 +40,11 @@ class ExportCont extends Controller
 
     public function export_data_cabang(Request $request)
     {
-        return Excel::download(new CabangExport,'data-cabang.xlsx');
+        return Excel::download(new CabangExport,'data-instruktur-cabang.xlsx');
+    }
+
+    public function export_kpa_cabang()
+    {
+        return Excel::download(new CabangKpaExport,'data-kpa-cabang.xlsx');
     }
 }

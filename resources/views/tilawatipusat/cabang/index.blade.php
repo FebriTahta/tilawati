@@ -65,9 +65,13 @@
                     <button class="btn btn-sm btn-success mb-2 mr-1" style="width:130px " data-toggle="modal"
                         data-target=".bs-example-modal-tambah-cabang"><i class="mdi mdi-plus"></i> tambah cabang</button>
                     <br>
-                    <a href="/export-data-cabang" target="_blank" class="btn btn-sm btn-outline-primary mb-2 mr-1" style="width: 130px"><i class="fa fa-download">
-                            Export Trainer Cabang</i></a>
-                            
+                    <a href="/export-data-cabang" target="_blank" class="btn btn-sm btn-outline-primary mb-2 mr-1"
+                        style="width: 130px"><i class="fa fa-download">
+                            Trainer Cabang</i></a>
+                    <a href="/export-kpa-cabang" target="_blank" class="btn btn-sm btn-outline-primary mb-2 mr-1"
+                        style="width: 130px"><i class="fa fa-download">
+                            KPA Cabang</i></a>
+
                     <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
                         <table id="datatable-buttons" class="table table-cabang table-bordered dt-responsive nowrap"
                             style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
@@ -307,22 +311,24 @@
                                             </div>
                                             <div class="form-group col-xl-6">
                                                 <label for=""><i class="text-danger">* </i>Nama Cabang</label>
-                                                <input type="text" class="form-control text-capitalize" id="name" name="name"
-                                                    required>
+                                                <input type="text" class="form-control text-capitalize" id="name"
+                                                    name="name" required>
                                             </div>
                                             <div class="form-group col-xl-6">
                                                 <label for=""><i class="text-danger">* </i>Kepala Cabang</label>
-                                                <input type="text" class="form-control text-capitalize" name="kepalacabang" id="kepalacabang"
-                                                    required>
+                                                <input type="text" class="form-control text-capitalize" name="kepalacabang"
+                                                    id="kepalacabang" required>
                                             </div>
                                             <div class="form-group col-xl-6">
                                                 <label for=""><i class="text-danger">* </i>Kadivre</label>
-                                                <input type="text" class="form-control" name="kadivre" id="kadivre" required>
+                                                <input type="text" class="form-control" name="kadivre" id="kadivre"
+                                                    required>
                                             </div>
                                             <div class="form-group col-xl-6">
                                                 <label for=""><i class="text-danger ">* </i>Wilayah</label>
-                                                <textarea name="teritorial" id="teritorial" class="text-capitalize form-control" id="" cols="5"
-                                                    rows="3" required></textarea>
+                                                <textarea name="teritorial" id="teritorial"
+                                                    class="text-capitalize form-control" id="" cols="5" rows="3"
+                                                    required></textarea>
                                             </div>
                                             <div class="form-group col-xl-6">
                                                 <label for=""><i class="text-danger">* </i>Status</label>
@@ -341,8 +347,8 @@
                                             </div>
                                             <div class="form-group col-xl-6">
                                                 <label for=""><i class="text-danger ">* </i>Alamat Cabang</label>
-                                                <textarea name="alamat" class="text-capitalize form-control" id="alamat" cols="5"
-                                                    rows="3" required></textarea>
+                                                <textarea name="alamat" class="text-capitalize form-control" id="alamat"
+                                                    cols="5" rows="3" required></textarea>
                                             </div>
                                             {{-- <div class="form-group col-xl-3">
                                                 <label for=""><i class="text-danger">* </i>Kode Pos</label>
@@ -390,22 +396,24 @@
                                             <input type="hidden" id="id" name="id">
                                             <div class="form-group col-xl-6">
                                                 <label for=""><i class="text-danger">* </i>Nama Cabang</label>
-                                                <input type="text" class="form-control text-capitalize" id="name" name="name"
-                                                    required>
+                                                <input type="text" class="form-control text-capitalize" id="name"
+                                                    name="name" required>
                                             </div>
                                             <div class="form-group col-xl-6">
                                                 <label for=""><i class="text-danger">* </i>Kepala Cabang</label>
-                                                <input type="text" class="form-control text-capitalize" name="kepalacabang" id="kepalacabang"
-                                                    required>
+                                                <input type="text" class="form-control text-capitalize" name="kepalacabang"
+                                                    id="kepalacabang" required>
                                             </div>
                                             <div class="form-group col-xl-6">
                                                 <label for=""><i class="text-danger">* </i>Kadivre</label>
-                                                <input type="text" class="form-control" name="kadivre" id="kadivre" required>
+                                                <input type="text" class="form-control" name="kadivre" id="kadivre"
+                                                    required>
                                             </div>
                                             <div class="form-group col-xl-6">
                                                 <label for=""><i class="text-danger ">* </i>Wilayah</label>
-                                                <textarea name="teritorial" id="teritorial" class="text-capitalize form-control" id="" cols="5"
-                                                    rows="3" required></textarea>
+                                                <textarea name="teritorial" id="teritorial"
+                                                    class="text-capitalize form-control" id="" cols="5" rows="3"
+                                                    required></textarea>
                                             </div>
                                             <div class="form-group col-xl-6">
                                                 <label for=""><i class="text-danger">* </i>Status</label>
@@ -424,8 +432,8 @@
                                             </div>
                                             <div class="form-group col-xl-6">
                                                 <label for=""><i class="text-danger ">* </i>Alamat Cabang</label>
-                                                <textarea name="alamat" class="text-capitalize form-control" id="alamat" cols="5"
-                                                    rows="3" required></textarea>
+                                                <textarea name="alamat" class="text-capitalize form-control" id="alamat"
+                                                    cols="5" rows="3" required></textarea>
                                             </div>
                                             {{-- <div class="form-group col-xl-3">
                                                 <label for=""><i class="text-danger">* </i>Kode Pos</label>

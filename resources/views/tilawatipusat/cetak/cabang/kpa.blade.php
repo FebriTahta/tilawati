@@ -32,7 +32,7 @@
                 <th rowspan="2">NO</th>
                 <th rowspan="2">NAMA CABANG</th>
                 <th rowspan="2">KOTA / KAB</th>
-                <th rowspan="2">JUMLAH INSTRUKTUR</th>
+                <th rowspan="2">KPA</th>
             </tr>
         </thead >
         <tbody>
@@ -41,13 +41,16 @@
             <tr>
                 <td>{{$key+1}}</td>
                 <td>{{$item->name}}</td>
-                <td>{{$item->kabupaten->nama}}</td>
-                <?php $trainers = App\Models\Trainer::where('cabang_id', $item->id)
-                ->select('trainer')->distinct()->get();?>
                 <td>
-                    @foreach ($trainers as $value)
-                    <?php $tot_train = App\Models\Trainer::where('cabang_id', $item->id)->where('trainer',$value->trainer)->count();?>
-                    <br>{{ $tot_train.' - '.$value->trainer }}
+                    @if ($item->kabupaten !== null)
+                    {{$item->kabupaten->nama}}
+                    @else
+                        -
+                    @endif
+                </td>
+                <td>
+                    @foreach ($item->kpa as $items)
+                        <br>- {{$items->name.' ('.$items->telp.')'}}
                     @endforeach
                 </td>
                 
