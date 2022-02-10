@@ -27,10 +27,10 @@
     </table>
     {{-- spasi --}}
     <table>
-        <thead style="font-weight: bold;">
-            <tr style="border: solid; text-transform: uppercase">
-                <th style="border: solid" rowspan="2">NO</th>
-                <th style="border: solid" rowspan="2">NAMA CABANG</th>
+        <thead style="font-weight: bold; border: black">
+            <tr style="border: black; text-transform: uppercase">
+                <th rowspan="2">NO</th>
+                <th rowspan="2">NAMA CABANG</th>
                 <th rowspan="2">NAMA KEPALA CABANG</th>
                 <th rowspan="2">Kadivre</th>
                 <th rowspan="2">Alamat Sekretariat</th>
