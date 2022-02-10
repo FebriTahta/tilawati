@@ -11,8 +11,9 @@
     </thead>
 </table>
 <table>
-    <thead style="font-weight: bold">
-        <tr>
+    <thead style="font-weight: bold;">
+        <tr style="border: solid; text-decoration: uppercase">
+            <th>NO</th>
             <th>Nama Lengkap Peserta</th>
             <th>Tanggal Pelatihan</th>
             <th>Diklat</th>
