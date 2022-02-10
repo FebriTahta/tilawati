@@ -188,7 +188,11 @@ class CabangCont extends Controller
                     }
                     return $kepala;
                 })
-                ->rawColumns(['provinsi','kabupaten','kepala','total_kpa','trainers'])
+                ->addColumn('opsi', function ($data){
+                    $btn = '<a href="" class="btn btn-sm btn-outline-primary"><i class="fa fa-edit"></i></a>';
+                    return $btn;
+                })
+                ->rawColumns(['provinsi','kabupaten','kepala','total_kpa','trainers','btn'])
                 ->make(true);
             }
         }

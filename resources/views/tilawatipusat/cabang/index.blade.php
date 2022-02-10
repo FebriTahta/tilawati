@@ -74,14 +74,15 @@
                             <thead class="text-bold text-primary" style="text-transform: uppercase; font-size: 10px">
                                 <tr>
                                     <th>Nama</th>
-                                    <th>Kepala</th>
-                                    <th>Provinsi</th>
-                                    <th>Kabupaten</th>
+                                    <th>KEPALA</th>
+                                    <th>PROVINSI</th>
+                                    <th>KABUPATEN</th>
                                     <th>TELP</th>
                                     <th>ALAMAT</th>
                                     <th>STATUS</th>
                                     <th>TOTAL KPA</th>
                                     <th>TRAINER</th>
+                                    <th>OPSI</th>
                                 </tr>
                             </thead>
 
@@ -91,14 +92,15 @@
                             <tfoot class="text-bold text-primary" style="text-transform: uppercase; font-size: 10px">
                                 <tr>
                                     <th>Nama</th>
-                                    <th>Kepala</th>
-                                    <th>Provinsi</th>
-                                    <th>Kabupaten</th>
+                                    <th>KEPALA</th>
+                                    <th>PROVINSI</th>
+                                    <th>KABUPATEN</th>
                                     <th>TELP</th>
                                     <th>ALAMAT</th>
                                     <th>STATUS</th>
                                     <th>TOTAL KPA</th>
                                     <th>TRAINER</th>
+                                    <th>OPSI</th>
                                 </tr>
                             </tfoot>
                         </table>
@@ -735,6 +737,10 @@
                         data: 'trainers',
                         name: 'trainers'
                     },
+                    {
+                        data: 'opsi',
+                        name: 'opsi'
+                    }
                 ]
             });
         })
