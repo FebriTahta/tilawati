@@ -31,14 +31,8 @@
             <tr style="border: black; text-transform: uppercase">
                 <th rowspan="2">NO</th>
                 <th rowspan="2">NAMA CABANG</th>
-                <th rowspan="2">NAMA KEPALA CABANG</th>
-                <th rowspan="2">Kadivre</th>
-                <th rowspan="2">Alamat Sekretariat</th>
-                <th rowspan="2">Kota</th>
-                <th rowspan="2">Provinsi</th>
-                <th rowspan="2">Wilayah</th>
-                <th rowspan="2">Telpon</th>
-                <th rowspan="2">Email</th>
+                <th rowspan="2">KOTA / KAB</th>
+                <th rowspan="2">JUMLAH INSTRUKTUR</th>
             </tr>
         </thead >
         <tbody>
@@ -47,6 +41,7 @@
             <tr>
                 <td>{{$key+1}}</td>
                 <td>{{$item->name}}</td>
+                <td>{{$item->kabupaten->nama}}</td>
                 <?php $trainers = App\Models\Trainer::where('cabang_id', $item->id)
                 ->select('trainer')->distinct()->get();?>
                 <td>
