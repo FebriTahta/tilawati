@@ -104,6 +104,25 @@ class CabangCont extends Controller
                 ->addColumn('total_kpa', function ($data) {
                     return $data->kpa->count().' - KPA';
                 })
+                ->addColumn('trainers', function ($data) {
+
+                    if ($data->trainer !== null) {
+                        # code...
+                        $trainers = Trainer::where('cabang_id', $data->id)
+                                ->select('trainer')->distinct()->get();
+
+                        $trains=[ ];
+                        foreach ($trainers as $key => $value) {
+                            # code...
+                            $tot_train = Trainer::where('cabang_id', $data->id)->where('trainer',$value->trainer)->count();
+                            $trains[] =  $value->trainer.' - '.$tot_train;
+                        }
+                        return implode(' | ', $trains);
+                    } else {
+                        # code...
+                        return ' - ';
+                    }
+                })
                 ->addColumn('kepala', function($data){
                     if ($data->kepala !== null) {
                         # code...
@@ -115,7 +134,7 @@ class CabangCont extends Controller
                     }
                     return $kepala;
                 })
-                ->rawColumns(['provinsi','kabupaten','kepala','total_kpa'])
+                ->rawColumns(['provinsi','kabupaten','kepala','total_kpa','trainer'])
                 ->make(true);
             }else{
                 $data   = Cabang::with('provinsi','kabupaten','kepala','kpa','trainer')->orderBy('id','desc');
