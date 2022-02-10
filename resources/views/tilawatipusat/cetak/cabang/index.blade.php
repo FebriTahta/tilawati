@@ -45,8 +45,16 @@
             <tr></tr>
             @foreach ($data as $key=> $item)
             <tr>
-                <td>{{$key}}</td>
+                <td>{{$key+1}}</td>
                 <td>{{$item->name}}</td>
+                <?php $trainers = App\Models\Trainer::where('cabang_id', $item->id)
+                ->select('trainer')->distinct()->get();?>
+                <td>
+                    @foreach ($trainers as $value)
+                    {{-- $tot_train = Trainer::where('cabang_id', $data->id)->where('trainer',$value->trainer)->count(); --}}
+                    {{$value->trainer;}}
+                    @endforeach
+                </td>
             </tr>
             @endforeach
         </tbody>
