@@ -21,6 +21,6 @@ class CabangExport implements FromView,ShouldAutoSize
     public function view(): View
     {
         $data = Cabang::with(['kabupaten','trainer','kpa','lembaga'])->get();
-        return view('tilawatipusat.cetak.cabang.index');
+        return view('tilawatipusat.cetak.cabang.index',compact('data'));
     }
 }
