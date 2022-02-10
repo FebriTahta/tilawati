@@ -20,7 +20,8 @@ class CabangExport implements FromView,ShouldAutoSize
 
     public function view(): View
     {
-        $data = Cabang::with(['kabupaten','trainer','kpa','lembaga'])->get();
-        return view('tilawatipusat.cetak.cabang.index',compact('data'));
+        $data = Cabang::where('status','cabang')->with(['kabupaten','trainer','kpa','lembaga'])->get();
+        $data2 = Cabang::where('status','rpq')->with(['kabupaten','trainer','kpa','lembaga'])->get();
+        return view('tilawatipusat.cetak.cabang.index',compact('data','data2'));
     }
 }
