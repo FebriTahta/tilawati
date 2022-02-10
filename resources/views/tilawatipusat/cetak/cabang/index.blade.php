@@ -21,16 +21,17 @@
     </table>
     <table>
         <thead style="font-weight: bold;">
-            <tr style="border: solid; text-decoration: uppercase">
-                <th>NO</th>
-                <th>Nama Lengkap Peserta</th>
-                <th>Tanggal Pelatihan</th>
-                <th>Diklat</th>
-                <th>Alamat Lengkap</th>
-                <th>Kota / Kabupaten Asal</th>
-                <th>No WA</th>
-                <th>Tempat Lahir</th>
-                <th>Tanggal Lahir</th>
+            <tr style="border: solid; text-transform: uppercase">
+                <th colspan="2">NO</th>
+                <th colspan="2">NAMA CABANG</th>
+                <th colspan="2">NAMA KEPALA CABANG</th>
+                <th colspan="2">Kadivre</th>
+                <th colspan="2">Alamat Sekretariat</th>
+                <th colspan="2">Kota</th>
+                <th colspan="2">Provinsi</th>
+                <th colspan="2">Wilayah</th>
+                <th colspan="2">Telpon</th>
+                <th colspan="2">Email</th>
             </tr>
         </thead >
         <tbody style="text-transform: uppercase; font-size: 12px">
