@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateKpasTable extends Migration
+class CreateMacamtrainersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,9 @@ class CreateKpasTable extends Migration
      */
     public function up()
     {
-        Schema::create('kpas', function (Blueprint $table) {
+        Schema::create('macamtrainers', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('cabang_id')->nullable();
-            $table->string('name')->nullable();
-            $table->string('ketua')->nullable();
-            $table->string('wilayah')->nullable();
-            $table->string('telp')->nullable();
+            $table->string('jenis')->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +27,6 @@ class CreateKpasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('kpas');
+        Schema::dropIfExists('macamtrainers');
     }
 }

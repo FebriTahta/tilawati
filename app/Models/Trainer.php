@@ -21,4 +21,9 @@ class Trainer extends Model
     {
         return $this->belongsTo(Cabang::class);
     }
+
+    public function macamtrainer()
+    {
+        return $this->belongsToMany(Macamtrainer::class);
+    }
 }

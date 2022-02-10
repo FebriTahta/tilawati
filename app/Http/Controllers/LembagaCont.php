@@ -25,41 +25,93 @@ class lembagaCont extends Controller
     {
         if(request()->ajax())
         {
-            $data   = Lembaga::orderBy('tahunmasuk','desc')->with(['kepala','provinsi','kabupaten'])
-            ->select(['kode','name','kepala_id','kabupaten_id','provinsi_id','telp','jml_guru','jml_santri','alamat','tahunmasuk','status']);
-            return DataTables::of($data)
-                ->addColumn('kepala', function($data){
-                    if ($data->kepala == null) {
-                        # code...
-                        $kepala = '<button class="btn btn-sm badge badge-danger" data-toggle="modal"
-                        data-target=".bs-example-modal-kepala-lembaga" data-kode="'.$data->kode.'">Kosong</button>';
-                    } else {
-                        # code...
-                        $kepala ='<a href="#" data-toggle="modal"
-                        data-target=".bs-example-modal-kepala-lembaga" data-kode="'.$data->kode.'">'. $data->kepala->name.'</a>';
-                    }
-                    return $kepala;
-                })
-                ->addColumn('kabupaten', function ($data) {
-                    return $kabupaten = $data->kabupaten->nama;
-                })
-                ->addColumn('provinsi', function ($data) {
-                    return $provinsi = $data->provinsi->nama;
-                })
-                ->addColumn('statuss', function ($data) {
-                    if ($data->status == 'Aktif') {
-                        # code...
-                        $btn = '<span class="badge badge-success btn text-white">Aktif</span>';
+            if(auth()->user()->role == 'cabang'){
+                $data   = Lembaga::orderBy('id','asc')->where('cabang_id', auth()->user()->cabang->id)->with(['kepala','provinsi','kabupaten'])
+                ->select(['kode','name','pengelola','kepala_id','kepalalembaga','kabupaten_id','provinsi_id','telp','jml_guru','jml_santri','alamat','tahunmasuk','status']);
+                return DataTables::of($data)
+                    ->addColumn('kepala', function($data){
+                        // if ($data->kepala == null) {
+                        //     # code...
+                        //     $kepala = '<button class="btn btn-sm badge badge-danger" data-toggle="modal"
+                        //     data-target=".bs-example-modal-kepala-lembaga" data-kode="'.$data->kode.'">Kosong</button>';
+                        // } else {
+                        //     # code...
+                        //     $kepala ='<a href="#" data-toggle="modal"
+                        //     data-target=".bs-example-modal-kepala-lembaga" data-kode="'.$data->kode.'">'. $data->kepala->name.'</a>';
+                        // }
+                        $kepala = $data->kepalalembaga;
+                        return $kepala;
+                    })
+                    ->addColumn('kabupaten', function ($data) {
+                        return $kabupaten = $data->kabupaten->nama;
+                    })
+                    ->addColumn('provinsi', function ($data) {
+                        return $provinsi = $data->provinsi->nama;
+                    })
+                    ->addColumn('statuss', function ($data) {
+                        if ($data->status == 'Aktif' || $data->status == 'aktif') {
+                            # code...
+                            $btn = '<span class="badge badge-success btn text-white">Aktif</span>';
+                            return $btn;
+                        } else {
+                            # code...
+                            $btn = '<span class="badge badge-danger btn text-white">Non Aktif</span>';
+                            return $btn;
+                        }
+                        
+                    })
+                    ->addColumn('opsi', function ($data) {
+                        $btn = '<a href="#" data-toggle="modal" data-id="'.$data->id.'" data-target="#modal-hapus" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i></a>';
                         return $btn;
-                    } else {
-                        # code...
-                        $btn = '<span class="badge badge-danger btn text-white">Non Aktif</span>';
+                        
+                    })
+                ->rawColumns(['kepala','kabupaten','provinsi','statuss','opsi'])
+                ->make(true);
+            }else {
+                # code...
+                $data   = Lembaga::orderBy('tahunmasuk','desc')->with(['kepala','provinsi','kabupaten'])
+                ->select(['kode','name','pengelola','kepala_id','kepalalembaga','kabupaten_id','provinsi_id','telp','jml_guru','jml_santri','alamat','tahunmasuk','status']);
+                return DataTables::of($data)
+                    ->addColumn('kepala', function($data){
+                        // if ($data->kepala == null) {
+                        //     # code...
+                        //     $kepala = '<button class="btn btn-sm badge badge-danger" data-toggle="modal"
+                        //     data-target=".bs-example-modal-kepala-lembaga" data-kode="'.$data->kode.'">Kosong</button>';
+                        // } else {
+                        //     # code...
+                        //     $kepala ='<a href="#" data-toggle="modal"
+                        //     data-target=".bs-example-modal-kepala-lembaga" data-kode="'.$data->kode.'">'. $data->kepala->name.'</a>';
+                        // }
+                        $kepala = $data->kepalalembaga;
+                        return $kepala;
+                    })
+                    ->addColumn('kabupaten', function ($data) {
+                        return $kabupaten = $data->kabupaten->nama;
+                    })
+                    ->addColumn('provinsi', function ($data) {
+                        return $provinsi = $data->provinsi->nama;
+                    })
+                    ->addColumn('statuss', function ($data) {
+                        if ($data->status == 'Aktif' || $data->status == 'aktif') {
+                            # code...
+                            $btn = '<span class="badge badge-success btn text-white">Aktif</span>';
+                            return $btn;
+                        } else {
+                            # code...
+                            $btn = '<span class="badge badge-danger btn text-white">Non Aktif</span>';
+                            return $btn;
+                        }
+                        
+                    })
+                    ->addColumn('opsi', function ($data) {
+                        $btn = '<a href="#" data-toggle="modal" data-id="'.$data->id.'" data-target="#modal-hapus" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i></a>';
                         return $btn;
-                    }
-                    
-                })
-            ->rawColumns(['kepala','kabupaten','provinsi','statuss'])
-            ->make(true);
+                        
+                    })
+                ->rawColumns(['kepala','kabupaten','provinsi','statuss','opsi'])
+                ->make(true);
+            }
+            
         }
     }
 
@@ -89,16 +141,17 @@ class lembagaCont extends Controller
             # code...
             if(!empty($request->dari))
             {
-                $data = DB::table('lembagas')->where('status', 'Non Aktif')
+                $data = DB::table('lembagas')->where('status', '!=', 'aktif')->orwhere('status', '!=', 'Aktif')
                 ->whereBetween('created_at', array($request->dari, $request->sampai))
                 ->get()->count();
                 return response()->json($data,200);
             }
             else
             {
-                $data = DB::table('lembagas')->where('status', 'Non Aktif')
-                ->get()->count();
-                return response()->json($data,200);
+                $tot = DB::table('lembagas')->count();
+                $akt = DB::table('lembagas')->where('status', 'Aktif')->count();
+                $data = $tot - $akt;
+                return response()->json($data,200);                
             }
         }
     }
@@ -117,6 +170,67 @@ class lembagaCont extends Controller
             else
             {
                 $data = DB::table('lembagas')
+                ->get()->count();
+                return response()->json($data,200);
+            }
+        }
+    }
+
+    public function lembaga_aktif2(Request $request)
+    {
+        if (request()->ajax()) {
+            # code...
+            if(!empty($request->dari))
+            {
+                $data = DB::table('lembagas')->where('status', 'Aktif')->where('cabang_id',auth()->user()->cabang->id)
+                ->whereBetween('created_at', array($request->dari, $request->sampai))
+                ->get()->count();
+                return response()->json($data,200);
+            }
+            else
+            {
+                $data = DB::table('lembagas')->where('status', 'Aktif')->where('cabang_id',auth()->user()->cabang->id)
+                ->get()->count();
+                return response()->json($data,200);
+            }
+        }
+    }
+
+    public function lembaga_nonaktif2(Request $request)
+    {
+        if (request()->ajax()) {
+            # code...
+            if(!empty($request->dari))
+            {
+                $data = DB::table('lembagas')->where('status', '!=', 'aktif')->orwhere('status', '!=', 'Aktif')->where('cabang_id',auth()->user()->cabang->id)
+                ->whereBetween('created_at', array($request->dari, $request->sampai))
+                ->get()->count();
+                return response()->json($data,200);
+            }
+            else
+            {
+                $tot = DB::table('lembagas')->where('cabang_id',auth()->user()->cabang->id)->count();
+                $akt = DB::table('lembagas')->where('status', 'Aktif')->where('cabang_id',auth()->user()->cabang->id)->count();
+                $data = $tot - $akt;
+                return response()->json($data,200);
+            }
+        }
+    }
+
+    public function lembaga_total2(Request $request)
+    {
+        if (request()->ajax()) {
+            # code...
+            if(!empty($request->dari))
+            {
+                $data = DB::table('lembagas')->where('cabang_id',auth()->user()->cabang->id)
+                ->whereBetween('created_at', array($request->dari, $request->sampai))
+                ->get()->count();
+                return response()->json($data,200);
+            }
+            else
+            {
+                $data = DB::table('lembagas')->where('cabang_id',auth()->user()->cabang->id)
                 ->get()->count();
                 return response()->json($data,200);
             }

@@ -5,6 +5,8 @@ use App\Models\Peserta;
 use App\Models\Pelatihan;
 use Maatwebsite\Excel\HeadingRowImport;
 use App\Imports\PesertaImport;
+use App\Imports\TrainerImport;
+use App\Imports\KpaImport;
 use App\Imports\PesertaGuruImport;
 use App\Imports\PesertaToTImport;
 use App\Imports\PesertaTahfidzImport;
@@ -98,6 +100,26 @@ class ImportController extends Controller
         ]);
     }
 
+    public function importTrainer(Request $request)
+    {
+        $cabang_id = auth()->user()->cabang->id;
+        $data = Excel::import(new TrainerImport($cabang_id), $request->file('file'));
+        return Response()->json([
+            $data,
+            'success'=>'Import Ok'
+        ]);
+    }
+
+    public function importKpa(Request $request)
+    {
+        $cabang_id = auth()->user()->cabang->id;
+        $data = Excel::import(new KpaImport($cabang_id), $request->file('file'));
+        return Response()->json([
+            $data,
+            'success'=>'Import Ok'
+        ]);
+    }
+
     public function importRpq(Request $request)
     {
         $data = Excel::queueImport(new RpqImport(), $request->file('file'));
@@ -109,7 +131,8 @@ class ImportController extends Controller
 
     public function importLembaga(Request $request)
     {
-        $data = Excel::queueImport(new LembagaImport(), $request->file('file'));
+        $cabang_id = auth()->user()->cabang->id;
+        $data = Excel::import(new LembagaImport($cabang_id), $request->file('file'));
         return Response()->json([
             $data,
             'success'=>'Data Lembaga Berhasil Ditambahkan Melalui file Excel'

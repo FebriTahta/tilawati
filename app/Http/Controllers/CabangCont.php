@@ -9,6 +9,8 @@ use DataTables;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\Trainer;
+use App\Models\Macamtrainer;
+use App\Models\macamtrainer_trainer;
 use App\Models\Kpa;
 use Auth;
 use Illuminate\Http\Request;
@@ -401,17 +403,32 @@ class CabangCont extends Controller
         if(request()->ajax())
         {
             $cabang_id  = auth()->user()->cabang->id;
-            $data   = Trainer::where('cabang_id',$cabang_id)->with('cabang')->orderBy('id','desc');
+            $data   = Trainer::where('cabang_id',$cabang_id)->with('cabang')->orderBy('id','asc');
                     return DataTables::of($data)
                     ->addColumn('action', function ($data) {
                         $stats = '<a href="#" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modal_hapus" data-id="'.$data->id.'"><i class="fa fa-trash"></i></a>';
-                        $stats .= ' <a href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-add" data-id="'.$data->id.'" data-name="'.$data->name.'"
-                        data-telp="'.$data->telp.'" data-alamat="'.$data->alamat.'" data-trainer="'.$data->trainer.'"><i class="fa fa-edit"></i></a>';
+                        // $stats .= ' <a href="/edit-trainer/cabang/'.$data->id.'" class="btn btn-sm btn-primary" target="_blank" data-id="'.$data->id.'" data-name="'.$data->name.'"
+                        // data-telp="'.$data->telp.'" data-alamat="'.$data->alamat.'" data-trainer="'.$data->trainer.'"><i class="fa fa-edit"></i></a>';
                         return $stats;
                     })
-                    ->rawColumns(['action'])
+                    ->addColumn('trains', function ($data) {
+                        $x=[];
+                        foreach ($data->macamtrainer as $key => $value) {
+                            # code...
+                            $x[] =$value->jenis;
+                        }
+                        return implode("<br>", $x);
+                        
+                    })
+                    ->rawColumns(['action','trains'])
                     ->make(true);
         }
+    }
+
+    public function edit_trainer($trainer_id)
+    {
+        $trainer = Trainer::where('id',$trainer_id)->first();
+        return view('tilawatipusat.cabang.trainer_update',compact('trainer'));
     }
 
     public function store_trainer_cabang(Request $request)
@@ -443,7 +460,7 @@ class CabangCont extends Controller
     {
         $id = $request->id;
         Trainer::find($id)->delete();
-
+        macamtrainer_trainer::where('trainer_id', $id)->delete();
         return response()->json(
             [
               'success' => 'Trainer Dihapus!',
@@ -458,7 +475,7 @@ class CabangCont extends Controller
         if(request()->ajax())
         {
             # code...
-            $data   = Kpa::where('cabang_id',$cabang_id)->with('cabang')->orderBy('id','desc');
+            $data   = Kpa::where('cabang_id',$cabang_id)->with('cabang')->orderBy('id','asc');
                     return DataTables::of($data)
                     ->addColumn('action', function ($data) {
                         $stats = '<a href="#" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modal_hapus" data-id="'.$data->id.'"><i class="fa fa-trash"></i></a>';

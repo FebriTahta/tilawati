@@ -15,12 +15,12 @@ class CreateTrainersTable extends Migration
     {
         Schema::create('trainers', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('cabang_id');
-            $table->string('name');
-            $table->string('alamat');
-            $table->string('telp');
-            $table->string('trainer');
-            $table->string('status');
+            $table->unsignedBigInteger('cabang_id')->nullable();
+            $table->string('name')->nullable();
+            $table->string('alamat')->nullable();
+            $table->string('telp')->nullable();
+            $table->string('trainer')->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }

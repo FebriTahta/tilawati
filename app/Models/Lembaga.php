@@ -28,7 +28,9 @@ class Lembaga extends Model
         'jenjang_id',
         'tahunberdiri',
         'tahunmasuk',
-        'status'
+        'status',
+        'kepalalembaga',
+        'jenjang',
     ];
     protected $dates = ['deleted_at'];
 

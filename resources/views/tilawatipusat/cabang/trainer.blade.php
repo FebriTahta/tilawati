@@ -19,12 +19,18 @@
             <div class="card">
                 <div class="card-body">
 
-                    <h4 class="card-title text-uppercase">Data Trainer Cabang {{ substr($cabang->kabupaten->nama, 5) }}</h4>
+                    <h4 class="card-title text-uppercase">Data Trainer Cabang {{ substr($cabang->kabupaten->nama, 5) }}
+                    </h4>
                     <p class="card-title-desc">Ter-update berdasarkan Tahun 2021 </br></p>
-                    <button class="btn btn-sm btn-success mb-2 mr-1 text-uppercase" style="width:130px; font-size: 12px "
+                    {{-- <button class="btn btn-sm btn-success mb-2 mr-1 text-uppercase" style="width:130px; font-size: 12px "
                         data-toggle="modal" data-target="#modal-add"><i class="mdi mdi-plus"></i> Add
+                        Trainer</button> --}}
+                    <button class="btn btn-sm btn-outline-success mb-2 mr-1 text-uppercase" style="font-size: 12px "
+                        data-toggle="modal" data-target="#modal_import"><i class="mdi mdi-import"></i> Import
                         Trainer</button>
-
+                    <a href="/export-template-trainer" class="btn btn-sm btn-outline-primary mb-2 mr-1 text-uppercase"
+                        style="font-size: 12px "><i class="mdi mdi-download"></i> Template
+                        Import</a>
                     <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
                         <table id="tabel-trainer" class="table table-cabang table-bordered dt-responsive nowrap"
                             style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
@@ -61,6 +67,45 @@
     <!-- end row -->
 
     {{-- MODAL --}}
+    <div class="modal fade bs-example-modal-trainer-cabang" id="modal_import" tabindex="-1" role="dialog"
+        aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title mt-0">IMPORT DATA TRAINER </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-xl-12">
+                        <div class="card m-b-30">
+                            <div class="card-body">
+                                <div class="container-fluid">
+                                    <form id="importtrainer" method="POST" enctype="multipart/form-data">@csrf
+                                        <input type="hidden" id="import_tipe" value="munaqisy">
+                                        <div class="form-group">
+                                            <label for="">Import Data "Trainer" (hanya Format Excel sesuai Template
+                                                .xlsx)</label><br>
+                                            <code>nama Trainer yang sama akan tertimpa oleh data paling baru</code>
+                                            <input type="file" class="form-control" name="file"
+                                                accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                                                required>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="submit" name="import" id="btnimport" class="btn btn-info"
+                                                value="Import" />
+                                        </div>
+                                    </form>
+                                </div><!-- container fluid -->
+                            </div>
+                        </div>
+                    </div> <!-- end col -->
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
     <div class="modal fade bs-example-modal-trainer-edit" id="modal-add" tabindex="-1" role="dialog"
         aria-labelledby="mySmallModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -85,17 +130,6 @@
                                                 required>
                                         </div>
                                         <div class="col-md-6 col-12 form-group">
-                                            <label for="">Trainer</label>
-                                            <select name="trainer" id="trainer" class="form-control" required>
-                                                <option value="Instruktur Strategi">Instruktur Strategi</option>
-                                                <option value="Instruktur Lagu">Instruktur Lagu</option>
-                                                <option value="Instruktur Strategi & Lagu">Instruktur Strategi & Lagu
-                                                </option>
-                                                <option value="Munaqisy">Munaqisy</option>
-                                                <option value="Supervisor">Supervisor</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-6 col-12 form-group">
                                             <label for="">WA / Telp</label>
                                             <input type="number" id="telp" name="telp" class="form-control" required>
                                         </div>
@@ -103,6 +137,17 @@
                                             <label for="">Alamat</label>
                                             <textarea name="alamat" id="alamat" class="form-control" id="" cols="3"
                                                 rows="3"></textarea>
+                                        </div>
+                                        <div class="col-md-12 col-12 form-group " style="margin-bottom: 10px" id="dynamic_field">
+                                            <label for=""><button type="button" class="btn btn-outline-primary btn-sm" name="add"
+                                                    id="add"><i class="fa fa-plus"></i></button> Trainer</label>
+                                            <select name="trainer" id="trainer" class="form-control" required>
+                                                <option value="Instruktur Strategi">Instruktur Strategi</option>
+                                                <option value="Instruktur Lagu">Instruktur Lagu</option>
+                                                <option value="Instruktur Strategi & Lagu">Instruktur Strategi & Lagu</option>
+                                                <option value="Munaqisy">Munaqisy</option>
+                                                <option value="Supervisor">Supervisor</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <hr>
@@ -175,6 +220,27 @@
     <script src="{{ URL::asset('tilawatipusat/js/pages/datatables.init.js') }}"></script>
 
     <script>
+        var i;
+        $('#add').click(function() {
+            i++;
+            $('#dynamic_field').append('<tr class="col-xl-12" id="row' + i +
+                '" class="dynamic-added"><td>'
+                    +'<label for="" style="margin-top:10px"><button type="button" name="remove" id="' + i + '" class="btn btn-sm btn-danger btn_remove"> <i class="fa fa-minus"></i></button> Trainer</label>'
+                                            +'<select name="trainer" class="form-control mb-10" required>'
+                                                +'<option value="Instruktur Strategi">Instruktur Strategi</option>'
+                                                +'<option value="Instruktur Lagu">Instruktur Lagu</option>'
+                                                +'<option value="Instruktur Strategi & Lagu">Instruktur Strategi & Lagu</option>'
+                                                +'<option value="Munaqisy">Munaqisy</option>'
+                                                +'<option value="Supervisor">Supervisor</option>'
+                                            +'</select>'
+                +'</td><td></td></tr>');
+        });
+
+        $(document).on('click', '.btn_remove', function(){  
+           var button_id = $(this).attr("id");   
+           $('#row'+button_id+'').remove();  
+           console.log(button_id);
+        });  
         $('#trainer_store').submit(function(e) {
             e.preventDefault();
             var formData = new FormData(this);
@@ -253,6 +319,44 @@
             });
         });
 
+        $('#importtrainer').submit(function(e) {
+            e.preventDefault();
+            var formData = new FormData(this);
+            $.ajax({
+                type: 'POST',
+                url: "{{ route('import.trainer') }}",
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                beforeSend: function() {
+                    $('#btnimport').attr('disabled', 'disabled');
+                    $('#btnimport').val('Importing Process');
+                },
+                success: function(data) {
+                    if (data.success) {
+                        //sweetalert and refresh datatable
+                        $("#importtrainer")[0].reset();
+                        toastr.success(data.success);
+                        var oTable = $('#tabel-trainer').dataTable();
+                        oTable.fnDraw(false);
+                        $('#btnimport').val('Import');
+                        $('#btnimport').attr('disabled', false);
+                        $('.bs-example-modal-trainer-cabang').modal('hide');
+                        // swal("Done!", data.message, "success");
+                    }
+                    if (data.error) {
+                        $('#message').html('<div class="alert alert-danger">' + data.error + '</div>');
+                        $('#btnimport').attr('disabled', false);
+                        $('#btnimport').val('Import');
+                    }
+                },
+                error: function(data) {
+                    console.log(data);
+                }
+            });
+        });
+
         $('#modal_hapus').on('show.bs.modal', function(event) {
             var button = $(event.relatedTarget)
             var id = button.data('id')
@@ -290,8 +394,8 @@
                         name: 'name'
                     },
                     {
-                        data: 'trainer',
-                        name: 'trainer'
+                        data: 'trains',
+                        name: 'trains'
                     },
                     {
                         data: 'telp',

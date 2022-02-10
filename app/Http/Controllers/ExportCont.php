@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 use App\Exports\SeluruhPesertaExport;
 use App\Exports\UserExport;
+use App\Exports\TemplateTrainerCabangExport;
+use App\Exports\TemplateKpaCabangExport;
+use App\Exports\TemplateLembagaExport;
 use App\Exports\CabangExport;
 use App\Exports\CabangKpaExport;
 use App\Exports\PesertaPendaftaranExport;
@@ -46,5 +49,20 @@ class ExportCont extends Controller
     public function export_kpa_cabang()
     {
         return Excel::download(new CabangKpaExport,'data-kpa-cabang.xlsx');
+    }
+
+    public function export_template_trainer_cabang()
+    {
+        return Excel::download(new TemplateTrainerCabangExport,'template-import-tainer-cabang.xlsx');
+    }
+
+    public function export_template_kpa_cabang()
+    {
+        return Excel::download(new TemplateKpaCabangExport,'template-import-kpa-cabang.xlsx');
+    }
+
+    public function export_template_lembaga_cabang()
+    {
+        return Excel::download(new TemplateLembagaExport, 'template-import-lembaga-cabang.xlsx');
     }
 }

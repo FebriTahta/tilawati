@@ -418,10 +418,10 @@
                                                             </div>
                                                             <div class="col-md-6 col-12 form-group">
                                                                 <label for="">cabang</label>
-                                                                <?php $cb = App\Models\Cabang::all()?>
+                                                                <?php $cb = App\Models\Cabang::with('kabupaten')->get();?>
                                                                 <select name="cabang_id" id="cabang_edit" class="form-control text-capitalize" required>
                                                                     @foreach ($cb as $item)
-                                                                    <option value="{{$item->id}}">{{$item->name}} - {{strtolower($item->kabupaten->nama)}}</option>
+                                                                    <option value="{{$item->id}}">{{$item->name}}</option>
                                                                     @endforeach
                                                                 </select>
                                                             </div>

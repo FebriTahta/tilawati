@@ -75,9 +75,9 @@
                         <span style="font-size: 12px">Data Master</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="true">
-                        <li><a style="font-size: 12px" href="{{ route('diklat.lembaga') }}">Lembaga</a></li>
-                        <li><a style="font-size: 12px" href="{{ route('diklat.cabang') }}">Cabang</a></li>
+                        <li><a style="font-size: 12px" href="{{ route('diklat.cabang') }}">Data Cabang Se-Indonesia</a></li>
                         @if (auth()->user()->role == 'pusat')
+                        <li><a style="font-size: 12px" href="{{ route('diklat.lembaga') }}">Lembaga</a></li>
                             <li><a style="font-size: 12px" href="{{ route('diklat.kepala') }}">Kepala Bagian</a></li>
                             <li><a style="font-size: 12px" href="{{ route('diklat.jenjang') }}">Kelembagaan</a></li>
                             <li><a style="font-size: 12px" href="{{ route('diklat.program') }}">Program</a></li>
@@ -85,6 +85,7 @@
                                     Syahadah</a></li>
                             <li><a style="font-size: 12px" href="/daftar-pengguna">Daftar User</a></li>
                         @else
+                            <li><a style="font-size: 12px" href="{{ route('diklat.lembaga') }}">Data Lembaga Cabang</a></li>
                             <li><a style="font-size: 12px" href="{{ route('data.trainer.cabang') }}">Data Trainer Cabang</a>
                             </li>
                             <li><a style="font-size: 12px" href="{{ route('data.kpa.cabang') }}">Data KPA Cabang</a>

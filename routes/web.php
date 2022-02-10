@@ -220,6 +220,8 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     Route::post('/importCabang',[ImportController::class, 'importCabang'])->name('import.cabang');
     Route::post('/importRpq',[ImportController::class, 'importRpq'])->name('import.rpq');
     Route::post('/importLembaga',[ImportController::class, 'importLembaga'])->name('import.lembaga');
+    Route::post('/importTrainer',[ImportController::class, 'importTrainer'])->name('import.trainer');
+    Route::post('/importKpa',[ImportController::class,'importKpa'])->name('import.kpa');
 });
 
 //new route tilawati
@@ -255,10 +257,13 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     Route::post('/diklat-lembaga-store',[LembagaCont::class,'store'])->name('diklat.lembaga_store');
     Route::get('/diklat-lembaga-data',[LembagaCont::class, 'lembaga_data'])->name('diklat.lembaga_data');
     Route::get('/diklat-lembaga-total',[LembagaCont::class, 'lembaga_total'])->name('diklat.lembaga_tot');
+    Route::get('/diklat-lembaga-total2',[LembagaCont::class, 'lembaga_total2'])->name('diklat.lembaga_tot2');
     Route::get('/diklat-lembaga-kabupaten-total',[LembagaCont::class, 'lembaga_kabupaten'])->name('diklat.lembaga_kab');
     Route::get('/diklat-lembaga-provinsi-total',[LembagaCont::class, 'lembaga_provinsi'])->name('diklat.lembaga_pro');
     Route::get('/diklat-lembaga-aktif',[LembagaCont::class,'lembaga_aktif'])->name('diklat.lembaga_aktif');
     Route::get('/diklat-lembaga-non-aktif',[LembagaCont::class,'lembaga_nonaktif'])->name('diklat.lembaga_nonaktif');
+    Route::get('/diklat-lembaga-aktif2',[LembagaCont::class,'lembaga_aktif2'])->name('diklat.lembaga_aktif2');
+    Route::get('/diklat-lembaga-non-aktif2',[LembagaCont::class,'lembaga_nonaktif2'])->name('diklat.lembaga_nonaktif2');
 
     Route::get('/diklat-jenjang',[JenjangCont::class, 'index'])->name('diklat.jenjang');
     Route::get('/diklat-jenjang-data',[JenjangCont::class, 'jenjang_data'])->name('diklat.jenjang_data');
@@ -402,6 +407,9 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     Route::post('/export-peserta-pendaftaran',[ExportCont::class,'export_peserta_pendaftaran'])->name('export.peserta.pendaftaran');
     Route::get('/export-data-cabang',[ExportCont::class,'export_data_cabang'])->name('export.data.cabang');
     Route::get('/export-kpa-cabang',[ExportCont::class,'export_kpa_cabang'])->name('export.kpa.cabang');
+    Route::get('/export-template-trainer',[ExportCont::class,'export_template_trainer_cabang'])->name('export.template.trainer.cabang');
+    Route::get('/export-template-kpa',[ExportCont::class,'export_template_kpa_cabang'])->name('exmport.template.kpa.cabang');
+    Route::get('/export-template-lembaga',[ExportCont::class,'export_template_lembaga_cabang'])->name('export.template.lembaga.cabang');
 
     Route::get('/kode-negara',[KodeAdminCont::class,'page_negara'])->name('negara');
     Route::get('/data-kode-negara',[KodeAdminCont::class,'data_negara'])->name('data_negara');
@@ -438,6 +446,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
 
     // NEW DATA CABANG RAKERNAS
     Route::get('/data-trainer/cabang',[CabangCont::class,'data_trainer'])->name('data.trainer.cabang');
+    Route::get('/edit-trainer/cabang/{trainer_id}',[CabangCont::class,'edit_trainer'])->name('edit.trainer');
     Route::get('/list-data-trainer/cabang',[CabangCont::class,'list_trainer_cabang'])->name('list.trainer.cabang');
     Route::post('/store-data-trainer/cabang',[CabangCont::class,'store_trainer_cabang'])->name('store.trainer.cabang');
     Route::post('/delete-data-trainer/cabang',[CabangCont::class,'delete_trainer_cabang'])->name('delete.trainer.cabang');
