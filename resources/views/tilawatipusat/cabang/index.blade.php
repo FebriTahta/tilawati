@@ -67,6 +67,7 @@
                     <br>
                     <a href="/export-data-cabang" target="_blank" class="btn btn-sm btn-outline-primary mb-2 mr-1" style="width: 130px"><i class="fa fa-download">
                             Export Cabang</i></a>
+                            <a href="/generate_kepala">generate kepala</a>
                     <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
                         <table id="datatable-buttons" class="table table-cabang table-bordered dt-responsive nowrap"
                             style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
@@ -277,7 +278,7 @@
             <div class="modal-dialog modal-dialog-centered modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title mt-0">DATA CABANG </h5>
+                        <h5 class="modal-title mt-0">DATA CABANGS </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>

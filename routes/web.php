@@ -446,6 +446,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     Route::post('/delete-data-kpa/cabang',[CabangCont::class,'delete_kpa_cabang'])->name('delete.kpa.cabang');
     // KEPALA CABANG
     Route::post('/update-cabang',[CabangCont::class,'update_cabang'])->name('update.cabang');
+    Route::get('/generate_kepala',[CabangCont::class,'generate_kepala']);
     
 });
 

@@ -512,5 +512,17 @@ class CabangCont extends Controller
         );
     }
 
+    public function generate_kepala()
+    {
+        $cabang = Cabang::all();
+        foreach ($cabang as $key => $value) {
+            # code...
+            $value->update([
+                'kepalacabang'=>$value->kepala->name
+            ]);
+        }
+
+        return redirect()->back();
+    }
     
 }
