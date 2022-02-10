@@ -134,13 +134,13 @@ class CabangCont extends Controller
                 ->addColumn('trainers', function ($data) {
 
                     $trainers = Trainer::where('cabang_id', $data->id)
-                                ->select('trainer','id')->distinct()->get();
+                                ->select('trainer')->distinct()->get();
 
                     $trains=[ ];
                     foreach ($trainers as $key => $value) {
                         # code...
-                        // $tot_train = Trainer::where('cabang_id', $data->id)->where('trainer',$value->trainer)->count();
-                        $trains[] =  $value->trainer;
+                        $tot_train = Trainer::where('cabang_id', $data->id)->where('trainer',$value->trainer)->count();
+                        $trains[] =  $value->trainer.' - '.$tot_train;
                     }
                     return implode('| ', $trains);
                 })
