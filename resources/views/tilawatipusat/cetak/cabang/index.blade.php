@@ -18,8 +18,14 @@
                 <th rowspan="3" colspan="10">DATA CABANG <br> <small>Seluruh Indonesia Per - 2022</small></th>
             </tr>
         </thead>
-        <tbody></tbody>
     </table>
+    {{-- spasi --}}
+    <table>
+        <thead>
+            <tr></tr>
+        </thead>
+    </table>
+    {{-- spasi --}}
     <table>
         <thead style="font-weight: bold;">
             <tr style="border: solid; text-transform: uppercase">
