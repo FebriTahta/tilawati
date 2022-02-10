@@ -39,6 +39,6 @@ class ExportCont extends Controller
 
     public function export_data_cabang(Request $request)
     {
-
+        return Excel::download(new CabangExport,'data-cabang.xlsx');
     }
 }
