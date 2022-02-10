@@ -134,7 +134,11 @@ class CabangCont extends Controller
                     }
                     return $kepala;
                 })
-                ->rawColumns(['provinsi','kabupaten','kepala','total_kpa','trainer'])
+                ->addColumn('opsi', function ($data){
+                    $btn = '<a href="" class="btn btn-sm btn-outline-primary"><i class="fa fa-edit"></i> Update!</a>';
+                    return $btn;
+                })
+                ->rawColumns(['provinsi','kabupaten','kepala','total_kpa','trainer','opsi'])
                 ->make(true);
             }else{
                 $data   = Cabang::with('provinsi','kabupaten','kepala','kpa','trainer')->orderBy('id','desc');
@@ -189,7 +193,7 @@ class CabangCont extends Controller
                     return $kepala;
                 })
                 ->addColumn('opsi', function ($data){
-                    $btn = '<a href="" class="btn btn-sm btn-outline-primary"><i class="fa fa-edit"></i></a>';
+                    $btn = '<a href="" class="btn btn-sm btn-outline-primary"><i class="fa fa-edit"></i> Update!</a>';
                     return $btn;
                 })
                 ->rawColumns(['provinsi','kabupaten','kepala','total_kpa','trainers','opsi'])
