@@ -42,7 +42,11 @@
             </tr>
         </thead >
         <tbody style="text-transform: uppercase; font-size: 12px">
-            
+            @foreach ($data as $key=> $item)
+            <tr>
+                <td>{{$key}}</td>
+            </tr>
+            @endforeach
         </tbody>
     </table>
 </body>
