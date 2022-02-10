@@ -54,16 +54,18 @@
                         @if (auth()->user()->role == 'pusat')
                             <code>Data Import dan Eksport Berbeda Format (Berhati-hati ketika meng-importkan data
                                 baru)</code>
-                    </p>
-                    <button class="btn btn-sm btn-success  mr-1" style="width:130px ; margin-bottom: 5px"
+                        </p>
+                        @endif
+                    <button class="btn btn-sm btn-success mb-2 mr-1" style="width:130px ; margin-bottom: 5px"
                         data-toggle="modal" data-target=".bs-example-modal-cabang"><i class="mdi mdi-cloud-upload"></i>
                         import cabang</button>
-                    <button class="btn btn-sm btn-success  mr-1" style="width:130px ; margin-bottom: 5px"
+                    <button class="btn btn-sm btn-success mb-2 mr-1" style="width:130px ; margin-bottom: 5px"
                         data-toggle="modal" data-target=".bs-example-modal-rpq"><i class="mdi mdi-cloud-upload"></i> import
                         rpq</button>
                     <button class="btn btn-sm btn-success mb-2 mr-1" style="width:130px " data-toggle="modal"
                         data-target=".bs-example-modal-tambah-cabang"><i class="mdi mdi-plus"></i> tambah cabang</button>
-                    @endif
+
+                    <button class="btn btn-sm btn-outline-primary mb-2 mr-1" style="width: 130px"><i class="fa fa-download"> Export Cabang</i></button>
 
                     <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
                         <table id="datatable-buttons" class="table table-cabang table-bordered dt-responsive nowrap"
@@ -531,12 +533,12 @@
                                                                     '">' +
                                                                     value +
                                                                     '</option>'
-                                                                    );
+                                                                );
                                                         });
                                                     console.log(data);
                                                     var x = $(
                                                         "#kelurahan_id option:selected"
-                                                        ).val();
+                                                    ).val();
                                                     console.log(
                                                         "kelurahan" +
                                                         x);
@@ -727,8 +729,8 @@
                         name: 'total_kpa'
                     },
                     {
-                        searchable:false,
-                        orderable:false,
+                        searchable: false,
+                        orderable: false,
                         data: 'trainers',
                         name: 'trainers'
                     },
