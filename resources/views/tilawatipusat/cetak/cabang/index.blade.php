@@ -45,6 +45,7 @@
             @foreach ($data as $key=> $item)
             <tr>
                 <td>{{$key}}</td>
+                <td>{{$item->name}}</td>
             </tr>
             @endforeach
         </tbody>
