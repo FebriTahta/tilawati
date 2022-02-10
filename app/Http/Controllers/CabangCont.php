@@ -192,7 +192,7 @@ class CabangCont extends Controller
                     $btn = '<a href="" class="btn btn-sm btn-outline-primary"><i class="fa fa-edit"></i></a>';
                     return $btn;
                 })
-                ->rawColumns(['provinsi','kabupaten','kepala','total_kpa','trainers','btn'])
+                ->rawColumns(['provinsi','kabupaten','kepala','total_kpa','trainers','opsi'])
                 ->make(true);
             }
         }
