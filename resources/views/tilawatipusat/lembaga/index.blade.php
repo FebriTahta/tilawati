@@ -415,7 +415,7 @@
     <script>
          $('#modal-hapus').on('show.bs.modal', function(event) {
                 var button = $(event.relatedTarget)
-                id = button.data('id')
+                var id = button.data('id')
                 var modal = $(this)
                 modal.find('.modal-body #id').val(id);
             })
