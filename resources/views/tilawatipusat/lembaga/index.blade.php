@@ -26,20 +26,24 @@
 
             @endcomponent
         </div>
-        <div class="col-xl-6">
-            @component('common-tilawatipusat.dashboard-widget')
-                <?php $t = App\Models\lembaga::where('cabang_id', auth()->user()->cabang->id)
-                    ->get()
-                    ->count(); ?>
-                @slot('title') Total Lembaga Cabang Anda <br> <b id="cb2"> ??? </b> lembaga <br> <small><b id="lem_aktif2"></b>
-                        Aktif & <b id="lem_nonaktif2"></b>
-                    Non Aktif</small> @endslot
-                @slot('iconClass') mdi mdi-mdi mdi-contact-mail-outline
-                tag-plus-outline @endslot
-                @slot('price') @endslot
+        @if (auth()->user()->role == 'cabang')
+            <div class="col-xl-6">
+                @component('common-tilawatipusat.dashboard-widget')
+                    <?php $t = App\Models\lembaga::where('cabang_id', auth()->user()->cabang->id)
+                        ->get()
+                        ->count(); ?>
+                    @slot('title') Total Lembaga Cabang Anda <br> <b id="cb2"> ??? </b> lembaga <br> <small><b
+                                id="lem_aktif2"></b>
+                            Aktif & <b id="lem_nonaktif2"></b>
+                        Non Aktif</small> @endslot
+                    @slot('iconClass') mdi mdi-mdi mdi-contact-mail-outline
+                    tag-plus-outline @endslot
+                    @slot('price') @endslot
 
-            @endcomponent
-        </div>
+                @endcomponent
+            </div>
+        @endif
+
         {{-- <div class="col-xl-4">
                             @component('common-tilawatipusat.dashboard-widget')
                             
@@ -68,14 +72,19 @@
                     <h4 class="card-title">Data lembaga</h4>
                     <p class="card-title-desc">Ter-update berdasarkan Tahun 2021 </br><code>Data Import dan Eksport Berbeda
                             Format (Berhati-hati ketika meng-importkan data baru)</code></p>
-                    <button class="btn btn-sm btn-success mb-2  mr-1" style="width:130px " data-toggle="modal"
-                        data-target=".bs-example-modal-lembaga"><i class="mdi mdi-cloud-upload"></i> import lembaga</button>
-                    <button class="btn btn-sm btn-success mb-2 mr-1" style="width:130px " data-toggle="modal"
-                        data-target=".bs-example-modal-tambah-lembaga"><i class="mdi mdi-plus"></i> tambah
-                        lembaga</button>
-                    <a href="/export-template-lembaga" class="btn btn-sm btn-outline-primary mb-2 mr-1 text-uppercase"
-                        style="font-size: 12px "><i class="mdi mdi-download"></i> Template
-                        Import</a>
+                    @if (auth()->user()->role == 'cabang')
+                        <button class="btn btn-sm btn-success mb-2 mr-1" style="width:130px " data-toggle="modal"
+                            data-target=".bs-example-modal-tambah-lembaga"><i class="mdi mdi-plus"></i> tambah
+                            lembaga</button>
+                        <button class="btn btn-sm btn-outline-success mb-2  mr-1" style="width:130px " data-toggle="modal"
+                            data-target=".bs-example-modal-lembaga"><i class="mdi mdi-cloud-upload"></i> import
+                            lembaga</button>
+
+                        <a href="/export-template-lembaga" class="btn btn-sm btn-outline-primary mb-2 mr-1 text-uppercase"
+                            style="font-size: 12px "><i class="mdi mdi-download"></i> Template
+                            Import</a>
+                    @endif
+
                     {{-- <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive"> --}}
                     <div class="table-responsive">
                         <table id="datatable-buttons" class="table table-lembaga table-bordered dt-responsive nowrap"
@@ -548,7 +557,7 @@
                                                     var y =
                                                         $(
                                                             "#kelurahan_id option:selected"
-                                                            )
+                                                        )
                                                         .val();
                                                 }
                                             });
