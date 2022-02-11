@@ -29,9 +29,6 @@
         @if (auth()->user()->role == 'cabang')
             <div class="col-xl-6">
                 @component('common-tilawatipusat.dashboard-widget')
-                    <?php $t = App\Models\lembaga::where('cabang_id', auth()->user()->cabang->id)
-                        ->get()
-                        ->count(); ?>
                     @slot('title') Total Lembaga Cabang Anda <br> <b id="cb2"> ??? </b> lembaga <br> <small><b
                                 id="lem_aktif2"></b>
                             Aktif & <b id="lem_nonaktif2"></b>
