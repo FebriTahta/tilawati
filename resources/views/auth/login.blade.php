@@ -111,12 +111,12 @@
         </div>
         <div class="panel right-panel">
           <div class="content">
-            <h3>Download Template Data Import Peserta Diklat ?</h3>
+            <h3>Ada hal yang tidak dimengerti ?</h3>
             <p>
-              Cek daftar template peserta diklat berikut ini
+              Call me by Whatsapp
             </p>
             <button class="btn transparent" id="sign-in-btn">
-              Template
+              CLICK
             </button>
           </div>
           {{-- <img src="{{ asset('tilawatipusat/newlogin/img/register.svg') }}" class="image" alt="" /> --}}
