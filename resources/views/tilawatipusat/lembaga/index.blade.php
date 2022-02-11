@@ -778,7 +778,7 @@
                         $('#btnimport').val('Import');
                         $('#btnimport').attr('disabled', false);
                         $('.bs-example-modal-lembaga').modal('hide');
-                        swal("Done!", data.message, "success");
+                        // swal("Done!", data.message, "success");
                         $.ajax({
                             url: '{{ route('diklat.lembaga_tot') }}',
                             type: 'get',
