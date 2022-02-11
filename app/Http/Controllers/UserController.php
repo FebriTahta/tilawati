@@ -44,30 +44,92 @@ class UserController extends Controller
 
     public function reset_password(Request $request)
     {
-        $user = User::where('role','cabang')->get();
-        foreach ($user as $key => $value) {
+        $hapus = User::where('role', 'lembaga')->delete();
+        
+        $cabang = Cabang::orderBy('id','asc')->get();
+        foreach ($cabang as $key => $value) {
             # code...
-            $pool = '0123456789';
-            $acak = substr(str_shuffle(str_repeat($pool, 5)), 0, 3);
-            if ($value->where('pass', 'cab'.$acak)->exists()) {
+            if ($value->teritorial !== null) {
                 # code...
-                $pool2 = '0123456789';
-                $acak2 = substr(str_shuffle(str_repeat($pool2, 5)), 0, 3);
-                $value->update([
-                    'username' => 'cabang'.$acak,
-                    'pass'=> 'cab'.$acak2,
-                    'password'=>Hash::make('cab'.$acak2)
-                ]);
-            }else {
-                # code...
-                $value->update([
-                    'username' => 'cabang'.$acak,
-                    'pass'=> 'cab'.$acak,
-                    'password'=>Hash::make('cab'.$acak)
-                ]);
-            }
-            
+                $pool = '0123456789';
+                $acak = substr(str_shuffle(str_repeat($pool, 5)), 0, 3);
+                if ($value->teritorial == 'surabaya' || $value->teritorial == 'gresik' || $value->teritorial == 'Surabaya' || $value->teritorial == 'Gresik') {
+                    # code...
+                    $value->user->update([
+                        'username' => 'tilawati '.strtolower($value->name),
+                        'pass'=> 'cab'.$acak,
+                        'password'=>Hash::make('cab'.$acak)
+                    ]);
+                }else {
+                    # code...
+                    $value->user->update([
+                        'username' => 'tilawati '.strtolower($value->teritorial),
+                        'pass'=> 'cab'.$acak,
+                        'password'=>Hash::make('cab'.$acak)
+                    ]);
+                }
+            }    
         }
+
+        
+        // foreach ($user as $key => $value) {
+        //     # code...
+        //     $pool = '0123456789';
+        //     $acak = substr(str_shuffle(str_repeat($pool, 5)), 0, 3);
+        //     $value->update([
+        //         'username' => 'tilawati '.$value->cabang->teritorial,
+        //         'pass'=> 'cab'.$acak,
+        //         'password'=>Hash::make('cab'.$acak)
+        //     ]);
+        // }
+
+
+        // foreach ($user as $key => $value) {
+        //     # code...
+        //         $pool = '0123456789';
+        //         $acak = substr(str_shuffle(str_repeat($pool, 5)), 0, 3);
+        //         // if ($value->where('pass', 'cab'.$acak)->exists()) {
+        //             # code...
+        //             $pool2 = '0123456789';
+        //             $acak2 = substr(str_shuffle(str_repeat($pool2, 5)), 0, 3);
+        //             foreach ($value->cabang as $key => $values) {
+        //                 # code...
+        //                 if ($values->teritorial == 'surabaya' || $values->teritorial == 'gresik' || $values->teritorial == null) {
+        //                     # code...
+        //                     $values->update([
+        //                         'username' => 'tilawati '.$values->name,
+        //                         'pass'=> 'cab'.$acak2,
+        //                         'password'=>Hash::make('cab'.$acak2)
+        //                     ]);
+        //                 } else {
+        //                     # code...
+        //                     $value->update([
+        //                         'username' => 'tilawati '.$values->teritorial,
+        //                         'pass'=> $values->teritorial.'cab'.$acak2,
+        //                         'password'=>Hash::make($values->teritorial.'cab'.$acak2)
+        //                     ]);
+        //                 }
+        //             }
+                    
+        //         // }else {
+        //         //     # code...
+        //         //     if ($value->cabang->teritorial == 'surabaya' || $value->cabang->teritorial == 'gresik' || $value->cabang->teritorial == null) {
+        //         //         $value->update([
+        //         //             'username' => 'tilawati '.$value->cabang->name,
+        //         //             'pass'=> 'cab'.$acak,
+        //         //             'password'=>Hash::make('cab'.$acak)
+        //         //         ]);
+        //         //     }else {
+        //         //         # code...
+        //         //         $value->update([
+        //         //             'username' => 'tilawati '.$value->cabang->teritorial,
+        //         //             'pass'=> $value->cabang->teritorial.'cab'.$acak,
+        //         //             'password'=>Hash::make($value->cabang->teritorial.'cab'.$acak)
+        //         //         ]);
+        //         //     }
+        //         // }
+            
+        // }
 
         return redirect()->back();
         
