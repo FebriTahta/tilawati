@@ -446,6 +446,85 @@
                         // swal({ title: "Success!",
                         //     text: "Diklat Berhasil Di Dihapus!",
                         //     type: "success"})
+                        $.ajax({
+                url: '{{ route('diklat.lembaga_nonaktif') }}',
+                type: 'get',
+                dataType: 'json',
+                success: function(data) {
+                    document.getElementById('lem_nonaktif').innerHTML = data;
+                    console.log(data);
+                }
+            });
+
+            $.ajax({
+                url: '{{ route('diklat.lembaga_aktif') }}',
+                type: 'get',
+                dataType: 'json',
+                success: function(data) {
+                    document.getElementById('lem_aktif').innerHTML = data;
+                    console.log(data);
+                }
+            });
+
+            $.ajax({
+                url: '{{ route('diklat.lembaga_nonaktif2') }}',
+                type: 'get',
+                dataType: 'json',
+                success: function(data) {
+                    document.getElementById('lem_nonaktif2').innerHTML = data;
+                    console.log(data);
+                }
+            });
+
+            $.ajax({
+                url: '{{ route('diklat.lembaga_aktif2') }}',
+                type: 'get',
+                dataType: 'json',
+                success: function(data) {
+                    document.getElementById('lem_aktif2').innerHTML = data;
+                    console.log(data);
+                }
+            });
+
+            // $.ajax({
+            //     url:'{{ route('diklat.lembaga_kab') }}',
+            //     type: 'get',
+            //     dataType: 'json',
+            //     success:function(data) {
+            //         document.getElementById('kb').innerHTML = data;
+            //         console.log(data);
+            //     }
+            // });
+
+            // $.ajax({
+            //     url:'{{ route('diklat.lembaga_pro') }}',
+            //     type: 'get',
+            //     dataType: 'json',
+            //     success:function(data) {
+            //         document.getElementById('pv').innerHTML = data;
+            //         console.log(data);
+            //     }
+            // });
+
+            $.ajax({
+                url: '{{ route('diklat.lembaga_tot') }}',
+                type: 'get',
+                dataType: 'json',
+                success: function(data) {
+                    document.getElementById('cb').innerHTML = data;
+                    console.log(data);
+                }
+            });
+
+            $.ajax({
+                url: '{{ route('diklat.lembaga_tot2') }}',
+                type: 'get',
+                dataType: 'json',
+                success: function(data) {
+                    document.getElementById('cb2').innerHTML = data;
+                    console.log(data);
+                }
+            });
                     }
                 },
                 error: function(data)
