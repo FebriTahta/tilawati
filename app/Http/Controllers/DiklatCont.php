@@ -472,7 +472,17 @@ class DiklatCont extends Controller
 
     public function create(Request $request)
     {
-        $dt_program = Program::all();
+        // $dt_program = Program::with(['pelatihan' => function ($query) {
+        //     $query->where('jenis','diklat');
+        // }])->get();
+        if (auth()->user()->role=='cabang') {
+            # code...
+            $dt_program = Program::where('status',1)->where('name','!=','TOT Instruktur')->where('name','!=','training of trainer')->get();
+        } else {
+            # code...
+            $dt_program = Program::all();
+        }
+
         return view('tilawatipusat.diklat.create',compact('dt_program'));
     }
 

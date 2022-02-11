@@ -27,21 +27,25 @@ class TemplateDownloadExport implements FromView, ShouldAutoSize, WithColumnForm
 
     public function view(): View
     {
-        if ($this->jenis == 'guru') {
+        if ($this->jenis == "standarisasi guru al qur'an level 1" || $this->jenis == "diklat munaqisy lembaga" || $this->jenis == "pembinaan & munaqosyah ulang") {
             # code...
-            return view('tilawatipusat.template.guru');
-        } elseif ($this->jenis == 'santri') {
+            return view('tilawatipusat.template.lvl1');
+        } elseif ($this->jenis == "standarisasi guru al qur'an level 2") {
             # code...
-            return view('tilawatipusat.template.santri');
-        } else{
+            return view('tilawatipusat.template.lvl2');
+        } elseif ($this->jenis == "munaqosyah santri") {
             # code...
-            return view('tilawatipusat.template.tot');
+            return view('tilawatipusat.template.muna_santri');
+        } elseif ($this->jenis == "diklat guru tahfidz") {
+            # code...
+            return view('tilawatipusat.template.guru_tahfidz');
         }
     }
 
     public function columnFormats(): array
     {
         return [
+            'D' => NumberFormat::FORMAT_TEXT,
             'F' => NumberFormat::FORMAT_DATE_DDMMYYYY,
         ];
     }
