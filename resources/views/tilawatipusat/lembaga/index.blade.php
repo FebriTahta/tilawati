@@ -443,9 +443,9 @@
                         $('#btnhapus').val('Ya, Hapus!');
                         $('.bs-example-modal-diklat-hapus').modal('hide');
                         $('#btnhapus').attr('disabled',false);
-                        swal({ title: "Success!",
-                            text: "Diklat Berhasil Di Dihapus!",
-                            type: "success"})
+                        // swal({ title: "Success!",
+                        //     text: "Diklat Berhasil Di Dihapus!",
+                        //     type: "success"})
                     }
                 },
                 error: function(data)
