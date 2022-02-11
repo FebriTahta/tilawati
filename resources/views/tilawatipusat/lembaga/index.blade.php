@@ -357,6 +357,38 @@
         <!-- /.modal-dialog -->
     </div>
 
+    <div class="modal fade bs-example-modal-diklat-hapus" id="modal-hapus" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-md">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="col-xl-12">
+                        <div class="card m-b-30">
+                            <div class="card-body">
+                                <div class="container-fluid">
+                                    <form id="hapuslembaga"  method="POST" enctype="multipart/form-data">@csrf
+                                        <div class="form-group text-center">
+                                            <h5>Anda yakin akan menghapus Diklat tersebut ?</h5>
+                                            <input type="hidden" class="form-control text-capitalize" id="id" name="id" required>
+                                        </div>
+                                        <div class="row" style="text-align: center">
+                                            <div class="form-group col-6 col-xl-6">
+                                                <input type="submit" name="hapus" id="btnhapus" class="btn btn-danger" value="Ya, Hapus!" />
+                                            </div>
+                                            <div class="form-group col-6 col-xl-6">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                                    No, Cancel!
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div><!-- container fluid -->
+                            </div>
+                        </div>
+                    </div> <!-- end col -->
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
     {{-- <form id="ubah_status">
     <input type="hidden" data>
 </form> --}}
@@ -381,6 +413,46 @@
     <script src="{{ URL::asset('tilawatipusat/js/pages/datatables.init.js') }}"></script>
 
     <script>
+         $('#modal-hapus').on('show.bs.modal', function(event) {
+                var button = $(event.relatedTarget)
+                id = button.data('id')
+                var modal = $(this)
+                modal.find('.modal-body #id').val(id);
+            })
+            $('#hapuslembaga').submit(function(e) {
+                e.preventDefault();
+                var formData = new FormData(this);
+                $.ajax({
+                type:'POST',
+                url: "{{ route('lembaga.hapus')}}",
+                data: formData,
+                cache:false,
+                contentType: false,
+                processData: false,
+                beforeSend:function(){
+                    $('#btnhapus').attr('disabled','disabled');
+                    $('#btnhapus').val('Proses Hapus Data');
+                },
+                success: function(data){
+                    if(data.success)
+                    {
+                        //sweetalert and redirect
+                        var oTable = $('#datatable-buttons').dataTable();
+                        oTable.fnDraw(false);
+                        $('#btnhapus').val('Ya, Hapus!');
+                        $('.bs-example-modal-diklat-hapus').modal('hide');
+                        $('#btnhapus').attr('disabled',false);
+                        swal({ title: "Success!",
+                            text: "Diklat Berhasil Di Dihapus!",
+                            type: "success"})
+                    }
+                },
+                error: function(data)
+                {
+                    console.log(data);
+                    }
+                });
+            });
         var kode;
         $('#tambahlembaga').submit(function(e) {
             e.preventDefault();

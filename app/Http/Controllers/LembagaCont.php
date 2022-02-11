@@ -367,4 +367,15 @@ class lembagaCont extends Controller
             ]
         );
     }
+
+    public function lembaga_hapus(Request $request)
+    {
+        $data = Lembaga::where('id', $request->id)->delete();
+        return response()->json(
+            [
+              'success' => 'Lembaga Berhasil Dihapus!',
+              'message' => 'Lembaga Berhasil Dihapus!'
+            ]
+        );
+    }
 }
