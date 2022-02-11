@@ -85,7 +85,7 @@
                     {{-- <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive"> --}}
                     <div class="table-responsive">
                         <table id="datatable-buttons" class="table table-lembaga table-bordered dt-responsive nowrap"
-                            style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
+                            style="border-collapse: collapse; border-spacing: 0; width: 100%; font-size: 12px">
                             <thead class="text-bold text-primary">
                                 <tr>
                                     <th>Name</th>
@@ -102,10 +102,10 @@
                                 </tr>
                             </thead>
 
-                            <tbody style="text-transform: uppercase; font-size: 12px">
+                            <tbody style="text-transform: uppercase; font-size: 10px">
                             </tbody>
 
-                            <tfoot class="text-primary">
+                            <tfoot class="text-primary" style="font-size: 12px">
                                 <tr>
                                     <th>Name</th>
                                     <th>Kepala</th>
