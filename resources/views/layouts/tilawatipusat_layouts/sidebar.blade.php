@@ -18,7 +18,7 @@
                     @else
                         {{-- {{ ucwords(substr(auth()->user()->cabang->kabupaten->nama,5)) }} --}}
                         
-                        @if ($value->teritorial == 'surabaya' || $value->teritorial == 'gresik' || $value->teritorial == 'Surabaya' || $value->teritorial == 'Gresik')
+                        @if ((auth()->user()->cabang->teritorial == 'surabaya' || auth()->user()->cabang->teritorial == 'gresik' || auth()->user()->cabang->teritorial == 'Surabaya' || auth()->user()->cabang->teritorial == 'Gresik')
                         {{ ucwords(auth()->user()->cabang->name) }}
                         @else
                         {{ ucwords(auth()->user()->cabang->teritorial) }}
