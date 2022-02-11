@@ -89,7 +89,7 @@
               </select>
             </div> --}}
             {{-- <input type="submit" style="width: 200px" class="btn" value="Download Template" /> --}}
-            <a href=" https://wa.me/6281329146514?text=Assalamualaikum%20saya%ada%beberapa%pertanyaan%yang%ingin%saya%tanyakan" class="btn" ><i class="fa fa-whatsapp" style="margin-top: 15px; margin-left: 15px"></i> Whatsapp</a>
+            <a href=" https://wa.me/6281329146514?text=Assalamualaikum%20" class="btn" ><i class="fa fa-whatsapp" style="margin-top: 15px; margin-left: 15px"></i> Whatsapp</a>
             <p class="social-text"></p>
           </form>
         </div>
