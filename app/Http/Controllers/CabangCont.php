@@ -58,7 +58,7 @@ class CabangCont extends Controller
                     'pos'           => $request->pos,
                     'telp'          => $request->telp,
                     'ekspedisi'     => $request->ekspedisi,
-                    'email'         => $request->email,
+                    // 'email'         => $request->email,
                 ]
             );
         } else {
@@ -84,7 +84,7 @@ class CabangCont extends Controller
                     'pos'           => $request->pos,
                     'telp'          => $request->telp,
                     'ekspedisi'     => $request->ekspedisi,
-                    'email'         => $request->email,
+                    // 'email'         => $request->email,
                 ]
             );
         }
