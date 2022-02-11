@@ -16,7 +16,14 @@
                     @if (auth()->user()->username == 'admin')
                         Tilawati Pusat (Nurul Falah)
                     @else
-                        {{ ucwords(substr(auth()->user()->cabang->kabupaten->nama,5)) }}
+                        {{-- {{ ucwords(substr(auth()->user()->cabang->kabupaten->nama,5)) }} --}}
+                        
+                        @if ($value->teritorial == 'surabaya' || $value->teritorial == 'gresik' || $value->teritorial == 'Surabaya' || $value->teritorial == 'Gresik')
+                        {{ ucwords(auth()->user()->cabang->name) }}
+                        @else
+                        {{ ucwords(auth()->user()->cabang->teritorial) }}
+                        @endif
+                        {{-- {{ ucwords(substr(auth()->user()->cabang->kabupaten->nama,5)) }} --}}
                     @endif
                 </a>
                 <p class="text-body mt-1 mb-0 font-size-13">{{ ucwords(auth()->user()->role) }}</p>
