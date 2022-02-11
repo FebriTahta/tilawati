@@ -43,7 +43,7 @@
                         <div class="col-xl-4">
                             @component('common-tilawatipusat.dashboard-widget')
                             
-                                @slot('title') <b id="cb" class="text-success"> ??? </b> <span>Peserta</span>  @endslot
+                                @slot('title') <b id="cb" class="text-success"> ??? </b> <br> <span>Peserta</span>  @endslot
                                 @slot('iconClass')mdi mdi-account-group  @endslot
                                 @slot('price')   @endslot
                                 
@@ -53,7 +53,7 @@
                         <div class="col-xl-4">
                             @component('common-tilawatipusat.dashboard-widget')
                             
-                                @slot('title') <b id="lulus" class="text-info"> {{$lulus}} </b> Bersyahadah  @endslot
+                                @slot('title') <b id="lulus" class="text-info"> {{$lulus}} </b> <br> Bersyahadah  @endslot
                                 @slot('iconClass')mdi mdi-mdi mdi-contact-mail-outline  @endslot
                                 @slot('price')   @endslot
                                 
@@ -63,7 +63,7 @@
                         <div class="col-xl-4">
                             @component('common-tilawatipusat.dashboard-widget')
                             
-                                @slot('title') <b id="belum" class="text-danger"> {{$belum_lulus}} </b> Belum Bersyahadah  @endslot
+                                @slot('title') <b id="belum" class="text-danger"> {{$belum_lulus}} </b> <br> Belum Bersyahadah  @endslot
                                 @slot('iconClass')mdi mdi-smart-card-outline  @endslot
                                 @slot('price')   @endslot
                                 
