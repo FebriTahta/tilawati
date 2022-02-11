@@ -919,9 +919,39 @@
                         $('#btnhapus').val('Ya, Hapus!');
                         $('.bs-example-modal-diklat-hapus').modal('hide');
                         $('#btnhapus').attr('disabled',false);
-                        swal({ title: "Success!",
-                            text: "Diklat Berhasil Di Dihapus!",
-                            type: "success"})
+                        // swal({ title: "Success!",
+                        //     text: "Diklat Berhasil Di Dihapus!",
+                        //     type: "success"})
+                        $.ajax({
+                            url:'{{ route("diklat.diklat_tot") }}',
+                            type: 'get',
+                            dataType: 'json',
+                            data:{dari:dari, sampai:sampai},
+                            success:function(data) {
+                                document.getElementById('cb').innerHTML = data;
+                                console.log(data);
+                            }
+                        });
+                        $.ajax({
+                                url:'{{ route("diklat.diklat_program_tot") }}',
+                                type: 'get',
+                                dataType: 'json',
+                                data:{dari:dari, sampai:sampai},
+                                success:function(data) {
+                                    document.getElementById('cb3').innerHTML = data;
+                                    console.log(data);
+                                }
+                            });
+                        $.ajax({
+                            url:'{{ route("diklat.diklat_cabang_tot") }}',
+                            type: 'get',
+                            dataType: 'json',
+                            data:{dari:dari, sampai:sampai},
+                            success:function(data) {
+                                document.getElementById('cb2').innerHTML = data;
+                                console.log(data);
+                            }
+                        });
                     }
                 },
                 error: function(data)
