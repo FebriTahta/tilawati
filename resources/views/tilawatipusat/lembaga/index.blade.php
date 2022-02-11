@@ -17,7 +17,7 @@
         <div class="col-xl-6">
             @component('common-tilawatipusat.dashboard-widget')
 
-                @slot('title') Total Lembaga dari seluruh wilayah Indonesia <br> <b id="cb"> ??? </b> lembaga <br> <small><b
+                @slot('title') Total Lembaga seluruh Indonesia <br> <b id="cb"> ??? </b> lembaga <br> <small><b
                             id="lem_aktif"></b> Aktif & <b id="lem_nonaktif"></b>
                     Non Aktif</small> @endslot
                 @slot('iconClass') mdi mdi-mdi mdi-contact-mail-outline
