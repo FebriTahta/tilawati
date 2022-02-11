@@ -27,7 +27,7 @@ class lembagaCont extends Controller
         {
             if(auth()->user()->role == 'cabang'){
                 $data   = Lembaga::orderBy('id','asc')->where('cabang_id', auth()->user()->cabang->id)->with(['kepala','provinsi','kabupaten'])
-                ->select(['kode','name','pengelola','kepala_id','kepalalembaga','kabupaten_id','provinsi_id','telp','jml_guru','jml_santri','alamat','tahunmasuk','status']);
+                ->select(['id','kode','name','pengelola','kepala_id','kepalalembaga','kabupaten_id','provinsi_id','telp','jml_guru','jml_santri','alamat','tahunmasuk','status']);
                 return DataTables::of($data)
                     ->addColumn('kepala', function($data){
                         // if ($data->kepala == null) {
@@ -63,14 +63,13 @@ class lembagaCont extends Controller
                     ->addColumn('opsi', function ($data) {
                         $btn = '<a href="#" data-toggle="modal" data-id="'.$data->id.'" data-target="#modal-hapus" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i></a>';
                         return $btn;
-                        
                     })
                 ->rawColumns(['kepala','kabupaten','provinsi','statuss','opsi'])
                 ->make(true);
             }else {
                 # code...
                 $data   = Lembaga::orderBy('tahunmasuk','desc')->with(['kepala','provinsi','kabupaten'])
-                ->select(['kode','name','pengelola','kepala_id','kepalalembaga','kabupaten_id','provinsi_id','telp','jml_guru','jml_santri','alamat','tahunmasuk','status']);
+                ->select(['id','kode','name','pengelola','kepala_id','kepalalembaga','kabupaten_id','provinsi_id','telp','jml_guru','jml_santri','alamat','tahunmasuk','status']);
                 return DataTables::of($data)
                     ->addColumn('kepala', function($data){
                         // if ($data->kepala == null) {
