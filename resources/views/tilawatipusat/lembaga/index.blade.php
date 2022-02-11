@@ -405,11 +405,11 @@
                         $('#tambahlembaga_btn').val('Submit!');
                         $('.bs-example-modal-tambah-lembaga').modal('hide');
                         $('#tambahlembaga_btn').attr('disabled', false);
-                        swal({
-                            title: "Success!",
-                            text: "Lembaga Baru Berhasil Di Tabahkan!",
-                            type: "success"
-                        })
+                        // swal({
+                        //     title: "Success!",
+                        //     text: "Lembaga Baru Berhasil Di Tabahkan!",
+                        //     type: "success"
+                        // })
                     }
                 },
                 error: function(data) {
