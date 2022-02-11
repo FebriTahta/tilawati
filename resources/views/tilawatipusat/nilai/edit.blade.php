@@ -24,7 +24,7 @@
                 @if ($rata2 > 74)
                 <b class="badge badge-info">BERSYAHADAH</b>
                 @else
-                <b class="badge badge-danger">BELUM BERSYAHADAH</b>
+                <b class="badge badge-warning">BELUM BERSYAHADAH</b>
                 @endif  @endslot
                 @slot('iconClass') mdi mdi-tag-plus-outline  @endslot
                 @slot('price')   @endslot
