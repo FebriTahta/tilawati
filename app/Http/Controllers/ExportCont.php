@@ -6,6 +6,7 @@ use App\Exports\UserExport;
 use App\Exports\TemplateTrainerCabangExport;
 use App\Exports\TemplateKpaCabangExport;
 use App\Exports\TemplateLembagaExport;
+use App\Exports\TemplateDiklatExport;
 use App\Exports\CabangExport;
 use App\Exports\CabangKpaExport;
 use App\Exports\PesertaPendaftaranExport;
@@ -64,5 +65,10 @@ class ExportCont extends Controller
     public function export_template_lembaga_cabang()
     {
         return Excel::download(new TemplateLembagaExport, 'template-import-lembaga-cabang.xlsx');
+    }
+
+    public function export_template_diklat($jenis)
+    {
+        return Excel::download(new TemplateDiklatExport, 'template-level-1.xlsx');
     }
 }

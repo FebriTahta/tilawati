@@ -27,7 +27,7 @@ class TemplateDownloadExport implements FromView, ShouldAutoSize, WithColumnForm
 
     public function view(): View
     {
-        if ($this->jenis == "standarisasi guru al qur'an level 1" || $this->jenis == "diklat munaqisy lembaga" || $this->jenis == "pembinaan & munaqosyah ulang") {
+        if ($this->jenis == "standarisasi guru al qur'an level 1" ) {
             # code...
             return view('tilawatipusat.template.lvl1');
         } elseif ($this->jenis == "standarisasi guru al qur'an level 2") {
@@ -39,6 +39,12 @@ class TemplateDownloadExport implements FromView, ShouldAutoSize, WithColumnForm
         } elseif ($this->jenis == "diklat guru tahfidz") {
             # code...
             return view('tilawatipusat.template.guru_tahfidz');
+        } elseif($this->jenis == "diklat munaqisy lembaga") {
+            #code...
+            return view('tilawatipusat.template.lvl1');
+        }else {
+            # code...
+            return view('tilawatipusat.template.lvl1');
         }
     }
 
