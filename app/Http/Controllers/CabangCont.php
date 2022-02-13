@@ -149,22 +149,23 @@ class CabangCont extends Controller
                 })
                 ->addColumn('trainers', function ($data) {
 
-                    if ($data->trainer->count() > 0) {
-                        # code...
-                        $trainers = Trainer::where('cabang_id', $data->id)
-                                ->select('trainer')->distinct()->get();
+                    // if ($data->trainer->count() > 0) {
+                    //     # code...
+                    //     $trainers = Trainer::where('cabang_id', $data->id)
+                    //             ->select('trainer')->distinct()->get();
 
-                        $trains=[ ];
-                        foreach ($trainers as $key => $value) {
-                            # code...
-                            $tot_train = Trainer::where('cabang_id', $data->id)->where('trainer',$value->trainer)->count();
-                            $trains[] =  $value->trainer.' - '.$tot_train;
-                        }
-                        return implode(' | ', $trains);
-                    } else {
-                        # code...
-                        return ' - ';
-                    }
+                    //     $trains=[ ];
+                    //     foreach ($trainers as $key => $value) {
+                    //         # code...
+                    //         $tot_train = Trainer::where('cabang_id', $data->id)->where('trainer',$value->trainer)->count();
+                    //         $trains[] =  $value->trainer.' - '.$tot_train;
+                    //     }
+                    //     return implode(' | ', $trains);
+                    // } else {
+                    //     # code...
+                    //     return ' - ';
+                    // }
+                    return Trainer::where('cabang_id', $data->id)->where('trainer',$value->trainer)->count().' TRAINER';
                 })
                 // ->addColumn('kepala', function($data){
                 //     if ($data->kepala !== null) {
@@ -182,7 +183,7 @@ class CabangCont extends Controller
                     return $btn;
                 })
                 ->addColumn('tot_lembaga', function ($data){
-                    return $data->lembaga->count();
+                    return $data->lembaga->count().' - LEMBAGA';
                 })
                 ->rawColumns(['provinsi','kabupaten','total_kpa','trainer','opsi','tot_lembaga'])
                 ->make(true);
@@ -201,22 +202,39 @@ class CabangCont extends Controller
                     return $data->kpa->count().' - KPA';
                 })
                 ->addColumn('tot_lembaga', function ($data){
-                    return $data->lembaga->count();
+                    return $data->lembaga->count().' - LEMBAGA';
                 })
                 ->addColumn('trainers', function ($data) {
 
+                    // if ($data->trainer->count() > 0) {
+                    //     # code...
+                    //     $trainers = Trainer::where('cabang_id', $data->id)
+                    //             ->select('trainer')->distinct()->get();
+
+                    //     $trains=[ ];
+                    //     foreach ($trainers as $key => $value) {
+                    //         # code...
+                    //         $tot_train = Trainer::where('cabang_id', $data->id)->where('trainer',$value->trainer)->count();
+                    //         $trains[] =  $value->trainer.' - '.$tot_train;
+                    //     }
+                    //     return implode(' | ', $trains);
+                    // } else {
+                    //     # code...
+                    //     return ' - ';
+                    // }
                     if ($data->trainer->count() > 0) {
                         # code...
-                        $trainers = Trainer::where('cabang_id', $data->id)
-                                ->select('trainer')->distinct()->get();
+                        // $trainers = Trainer::where('cabang_id', $data->id)
+                        //         ->select('trainer')->distinct()->get();
 
-                        $trains=[ ];
-                        foreach ($trainers as $key => $value) {
-                            # code...
-                            $tot_train = Trainer::where('cabang_id', $data->id)->where('trainer',$value->trainer)->count();
-                            $trains[] =  $value->trainer.' - '.$tot_train;
-                        }
-                        return implode(' | ', $trains);
+                        // $trains=[ ];
+                        // foreach ($trainers as $key => $value) {
+                        //     # code...
+                        //     $tot_train = Trainer::where('cabang_id', $data->id)->where('trainer',$value->trainer)->count();
+                        //     $trains[] =  $value->trainer.' - '.$tot_train;
+                        // }
+                        // return implode(' | ', $trains);
+                        return Trainer::where('cabang_id', $data->id)->where('trainer',$value->trainer)->count().' TRAINER';
                     } else {
                         # code...
                         return ' - ';
