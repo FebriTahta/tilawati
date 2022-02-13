@@ -48,11 +48,11 @@ class TemplateDownloadExport implements FromView, ShouldAutoSize, WithColumnForm
         }
     }
 
-    // public function columnFormats(): array
-    // {
-    //     return [
-    //         'D' => NumberFormat::FORMAT_TEXT,
-    //         'F' => NumberFormat::FORMAT_DATE_DDMMYYYY,
-    //     ];
-    // }
+    public function columnFormats(): array
+    {
+        return [
+            'D' => NumberFormat::FORMAT_TEXT,
+            'F' => NumberFormat::FORMAT_DATE_DDMMYYYY,
+        ];
+    }
 }
