@@ -69,7 +69,7 @@
                                                         </div>
                                                     @endforeach
                                                 </div>
-                                                <div class="form-group">
+                                                {{-- <div class="form-group">
                                                     <label for="program">KRITERIA</label>
                                                     <input list="listkriteria" name="mykriteria" value="{{$peserta->kriteria}}" class="form-control">
                                                     <datalist id="listkriteria">
@@ -77,7 +77,7 @@
                                                             <option value="{{$krit->name}}">
                                                         @endforeach
                                                     </datalist>
-                                                </div>
+                                                </div> --}}
                                                 <button type="submit" class="btn btn-sm btn-primary">UPDATE PENILAIAN</button>
                                             </form>
                                             <a style="margin-top: 10px"  href="/diklat-peserta/{{$peserta->pelatihan_id}}" type="btton" class="btn btn-sm btn-secondary">KEMBALI KE DAFTAR PESERTA</a>

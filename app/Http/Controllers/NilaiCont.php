@@ -90,10 +90,31 @@ class NilaiCont extends Controller
             $syahadah = '0';
             $hasil_syahadah = 'BELUM BERSYAHADAH';
         }
-        $krit = $request->mykriteria;
+        // $krit = $request->mykriteria;
+        $pes = Peserta::where('id', $peserta_id)->first();
+        $pro = $pes->program->name;
+
+        if ($pro == "standarisasi guru al qur'an level 1") {
+            # code...
+            $krits = "LULUS DIKLAT LEVEL 1 GURU AL QURAN METODE TILAWATI";
+        } elseif ($pro == "standarisasi guru al qur'an level 2") {
+            # code...
+            $krits = "LULUS DIKLAT LEVEL 2 GURU AL QURAN METODE TILAWATI";
+        } elseif ( $pro =="munaqosyah santri"){
+            # code...
+            $krits = "SEBAGAI SANTRI KHATAM AL QURAN 30 JUZ";
+        } elseif ( $pro =="diklat guru tahfidz"){
+            # code...
+            $krits = "SEBAGAI GURU TAHFIDZ AL QURAN METODE TILAWATI";
+        } elseif ( $pro =="diklat guru tahfidz"){
+            # code...
+            $krits = "LULUS DIKLAT LEVEL 1 GURU AL QURAN METODE TILAWATI";
+        }
+        
         $data_peserta = DB::table('pesertas')
         ->where('id', $peserta_id)  // find your user by their id
-        ->update(array('bersyahadah' => $syahadah,'kriteria' => $request->mykriteria));  // update the record in the DB. 
+        ->update(array('bersyahadah' => $syahadah,'kriteria' => $krits));  // update the record in the DB. 
+        // ->update(array('bersyahadah' => $syahadah,'kriteria' => $request->mykriteria));  // update the record in the DB. 
         $data_peserta2= DB::table('pesertas')->where('id',$peserta_id)->first();
 
         // cetak qr code
