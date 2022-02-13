@@ -61,6 +61,7 @@ class PesertaDiklatImport2 implements ToCollection, WithStartRow
                 # code...
                 $dt_pel = new Peserta;
                 $dt_pel->name = $row[0];
+                $dt_pel->pelatihan_id = $this->id;
                 $dt_pel->jilid =$row[7];
                 $dt_pel->created_at = new \DateTime;
                 $dt_pel->save();
