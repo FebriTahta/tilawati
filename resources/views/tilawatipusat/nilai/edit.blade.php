@@ -20,7 +20,7 @@
         <div class="col-xl-6">
             @component('common-tilawatipusat.dashboard-widget')
                 
-                @slot('title') <p><b> TOTAL NILAI </b></p> <b>UTAMA : {{$rata1}}</b> & <b>RATA-RATA : {{ $rata2 }}</b> &nbsp;&nbsp;
+                @slot('title') <p><b> TOTAL NILAI </b></p> <b>UTAMA : {{$rata1}} & RATA-RATA : {{ $rata2 }}</b> &nbsp;&nbsp;
                 @if ($rata1 > 74)
                 <b class="badge badge-info">BERSYAHADAH</b>
                 @else
@@ -34,7 +34,7 @@
         <div class="col-xl-6">
             @component('common-tilawatipusat.dashboard-widget')
             
-                @slot('title') <p><b>{{ strtoupper($peserta->name) }}</b></p><b class="text-capitalize"> {{ $peserta->pelatihan->program->name }}</b> &nbsp;&nbsp;
+                @slot('title') <p><b>{{ strtoupper($peserta->name) }}</b></p><b class="text-uppercase"> {{ $peserta->pelatihan->program->name }}</b> &nbsp;&nbsp;
                 @endslot
                 @slot('iconClass') mdi mdi-tag-plus-outline  @endslot
                 @slot('price')   @endslot
