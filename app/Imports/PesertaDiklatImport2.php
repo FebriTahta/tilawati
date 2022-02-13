@@ -71,7 +71,7 @@ class PesertaDiklatImport2 implements ToCollection, WithStartRow
 
         Validator::make($collection->toArray(), [
             'name' => 'string',
-            'tgllahir' => 'required|date_format:m/d/Y|date',
+            'tgllahir' => 'date_format:m/d/Y|date',
             'bersyahadah' => 'numeric',
         ])->validate();
 
