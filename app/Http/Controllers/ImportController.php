@@ -15,6 +15,7 @@ use App\Imports\CabangImport;
 use App\Imports\LembagaImport;
 use App\Imports\RpqImport;
 use App\Imports\PesertaDiklatImport;
+use App\Imports\PesertaDiklatImport2;
 use Illuminate\Http\Request;
 use Excel;
 
@@ -137,6 +138,26 @@ class ImportController extends Controller
             $data,
             'success'=>'Data Lembaga Berhasil Ditambahkan Melalui file Excel'
         ]);
+    }
+
+    public function import_peserta_diklat2(Request $request)
+    {
+        $id = $request->id ;
+        $pelatihan = Pelatihan::find($id);
+        $cabang_id = $pelatihan->cabang_id;
+        $tanggal = $request->tanggal;
+        $data = Excel::import(new PesertaDiklatImport2($id, $tanggal, $cabang_id), $request->file('file'));
+        
+        if(request()->ajax())
+        {
+        return Response()->json([
+            $data,
+            'success'=>'Peserta Berhasil Ditambahkan Melalui file Excel'
+        ]);
+        }else {
+            # code...
+            return back()->with('success', 'User Imported Successfully.');
+        }
     }
 
 }

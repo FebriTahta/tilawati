@@ -463,6 +463,9 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     
     // EXPORT TEMPLATE DIKLAT NEW 
     Route::get('/export-template-diklat/{jenis}',[ExportCont::class,'export_template_diklat']);
+
+    //IMPORT WITHOUT QUEUE & QR
+    Route::post('/import-peserta-diklat2',[ImportController::class,'import_peserta_diklat2'])->name('import-peserta-diklat2');
 });
 
 Route::group(['middleware' => ['auth', 'CheckRole:bendahara']], function () {

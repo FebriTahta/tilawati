@@ -86,12 +86,29 @@
                         <code>Tambahkan kategori penilaian pada program diklat terlebih dahulu pada menu program</code>
                     @endif
                     <br><br>
+                    @if (count($errors) > 0)
+                                <div class="row">
+                                    <div class="col-md-8 col-md-offset-1">
+                                        <div class="alert alert-danger alert-dismissible">
+                                            <button type="button" class="close" data-dismiss="alert"
+                                                aria-hidden="true">×</button>
+                                            <h4><i class="icon fa fa-ban"></i> Error!</h4>
+                                            @foreach ($errors->all() as $error)
+                                                {{ $error }} <br>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
                     {{-- <p class="card-title-desc">Ter-update berdasarkan Tahun 2021 </br></p> --}}
-                    <form method="POST" class="mb-1 mr-1" action="{{ route('download.template') }}" class="sign-in-form">
+                    <form method="POST" class="mb-1 mr-1" action="{{ route('download.template') }}"
+                        class="sign-in-form">
                         @csrf
-                        <input type="hidden" name="jenis" value="{{$diklat->program->name}}">
-                        
-                        <button type="submit" class="btn btn-sm btn-outline-primary" style="width: 200px" class="btn" value="Download Template" > <i class="fas fa-download"></i> Unduh Template</button>
+                        <input type="hidden" name="jenis" value="{{ $diklat->program->name }}">
+
+                        <button type="submit" class="btn btn-sm btn-outline-primary" style="width: 200px"
+                            class="btn" value="Download Template"> <i class="fas fa-download"></i> Unduh
+                            Template</button>
                     </form>
                     {{-- <a href="/export-template-diklat/{{$diklat->program->name}}" class="btn btn-sm btn-outline-primary" style="width: 200px" class="btn" value="Download Template" > <i class="fas fa-download"></i> Unduh Template</a> --}}
                     <a class="btn btn-sm btn-outline-success  mb-1 mr-1" style="width:130px" @if ($diklat->program->penilaian->count() == 0) disabled @else href="{{ route('diklat.peserta_create', $pelatihan_id) }}" @endif><i
@@ -109,7 +126,7 @@
                         <button class="text-right btn btn-sm mr-1 mb-1 btn-outline-secondary" id="depan_lama_all"><i
                                 class="fa fa-print"></i> depan versi lama</button>
                     @endif
-                    
+
                     <button class="text-right btn btn-sm mr-1 mb-1 btn-outline-danger" id="hapus_all"><i
                             class="fa fa-trash"></i> hapus data</button>
                     {{-- <form action="/error-penilaian-kategori" method="POST">@csrf
@@ -619,7 +636,8 @@
                             <div class="card m-b-30">
                                 <div class="card-body">
                                     <div class="container-fluid">
-                                        <form id="importpeserta" method="POST" enctype="multipart/form-data">@csrf
+                                        {{-- <form id="importpeserta" method="POST" enctype="multipart/form-data">@csrf --}}
+                                        <form action="{{route('import-peserta-diklat2')}}" method="POST" enctype="multipart/form-data">@csrf
                                             <div class="form-group">
                                                 <label for="" class="text-capitalize">Import Data "peserta diklat
                                                     {{ $diklat->program->name }}" (hanya Excel File format .xlsx)</label>
@@ -738,7 +756,7 @@
             var formData = new FormData(this);
             $.ajax({
                 type: 'POST',
-                url: "{{ route('diklat.import_peserta') }}",
+                url: "{{ route('import-peserta-diklat2') }}",
                 data: formData,
                 cache: false,
                 contentType: false,
