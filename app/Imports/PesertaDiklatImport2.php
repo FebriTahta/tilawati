@@ -134,20 +134,20 @@ class PesertaDiklatImport2 implements ToCollection, WithStartRow
                     
                 }
                 
-                $lembaga = Lembaga::where('name',$row[6])->first();
-                if ($lembaga !== null) {
-                    # code...
-                    $dt_pel->lembaga_id=$lembaga->id;
-                }
+                // $lembaga = Lembaga::where('name',$row[6])->first();
+                // if ($lembaga !== null) {
+                //     # code...
+                //     $dt_pel->lembaga_id=$lembaga->id;
+                // }
 
                 $dt_pel->jilid =$row[7];
                 $dt_pel->kriteria=$row[8];
 
-                $kriteria = Kriteria::where('name',$row[8])->first();
-                if ($kriteria !== null) {
-                    # code...
-                    $dt_pel->kriteria_id = $kriteria->id;
-                }
+                // $kriteria = Kriteria::where('name',$row[8])->first();
+                // if ($kriteria !== null) {
+                //     # code...
+                //     $dt_pel->kriteria_id = $kriteria->id;
+                // }
                 $dt_pel->bersyahadah = $row[9];
 
                 $dt_pel->created_at = new \DateTime;
