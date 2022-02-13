@@ -211,7 +211,7 @@ class PesertaCont extends Controller
                         ->addColumn('krits', function ($data) {
                             if ($data->kriteria == null) {
                                 # code...
-                                return '<a href="#" class="badge badge-warning">menunggu penilaian</a>';
+                                return '<span class="badge badge-warning">Belum Lulus</span>';
 
                             } else {
                                 # code...
