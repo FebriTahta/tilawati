@@ -60,7 +60,7 @@ class PesertaDiklatImport2 implements ToCollection, WithStartRow
             if ($peserta == null) {
                 # code...
                 $dt_pel = new Peserta;
-                $dt_pel->name = $row[0];
+                $dt_pel->name = 'x';
                 $dt_pel->created_at = new \DateTime;
                 $dt_pel->save();
                 
