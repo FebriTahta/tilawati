@@ -52,7 +52,7 @@ class PesertaDiklatImport2 implements ToCollection, WithStartRow
     {
         foreach ($collection as $key => $row) {
             Validator::make($collection->toArray(), [
-                'name' => 'required',
+                'jilid' => 'required',
                 'tgllahir' => 'date_format:m/d/Y|date',
             ])->validate();
 
@@ -60,7 +60,7 @@ class PesertaDiklatImport2 implements ToCollection, WithStartRow
             if ($peserta == null) {
                 # code...
                 $dt_pel = new Peserta;
-                $dt_pel->name = 'x';
+                $dt_pel->jilid =$row[7];
                 $dt_pel->created_at = new \DateTime;
                 $dt_pel->save();
                 
