@@ -111,10 +111,20 @@ class NilaiCont extends Controller
             $krits = "LULUS DIKLAT LEVEL 1 GURU AL QURAN METODE TILAWATI";
         }
         
-        $data_peserta = DB::table('pesertas')
-        ->where('id', $peserta_id)  // find your user by their id
-        ->update(array('bersyahadah' => $syahadah,'kriteria' => $krits));  // update the record in the DB. 
-        // ->update(array('bersyahadah' => $syahadah,'kriteria' => $request->mykriteria));  // update the record in the DB. 
+        if ($syahadah == 1) {
+            # code...
+            $data_peserta = DB::table('pesertas')
+            ->where('id', $peserta_id)  // find your user by their id
+            ->update(array('bersyahadah' => $syahadah,'kriteria' => $krits,'jilid' =>''));  // update the record in the DB. 
+            // ->update(array('bersyahadah' => $syahadah,'kriteria' => $request->mykriteria));  // update the record in the DB. 
+        }else {
+            # code...
+                $data_peserta = DB::table('pesertas')
+            ->where('id', $peserta_id)  // find your user by their id
+            ->update(array('bersyahadah' => $syahadah,'kriteria' => ''));  // update the record in the DB. 
+            // ->update(array('bersyahadah' => $syahadah,'kriteria' => $request->mykriteria));  // update the record in the DB. 
+        }
+
         $data_peserta2= DB::table('pesertas')->where('id',$peserta_id)->first();
 
         // cetak qr code
