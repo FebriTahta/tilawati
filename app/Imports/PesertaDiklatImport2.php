@@ -68,11 +68,12 @@ class PesertaDiklatImport2 implements ToCollection, WithStartRow
                 
         //     }
         // }
-        // // Validator::make($collection->toArray(), [
-        // //     'name' => 'required',
-        // //     '*.tgllahir' => 'date_format:m/d/Y|date',
-        // // ])->validate();
 
+        Validator::make($collection->toArray(), [
+            '*.name' => 'string',
+            '*.tgllahir' => 'date_format:m/d/Y|date',
+        ])->validate();
+        
         foreach ($collection as $key => $row) {
             # code...
             $diklat = Pelatihan::where('id',$this->id)->first();

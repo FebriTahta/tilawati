@@ -97,8 +97,8 @@ class PesertaPendaftaranExport implements FromQuery, WithHeadings, ShouldAutoSiz
             
             $nama,
             strtoupper($row->alamat),
-            $kel,
-            $kec,
+            // $kel,
+            // $kec,
             $kab,
             $row->telp,
             $row->tmptlahir,
@@ -113,8 +113,8 @@ class PesertaPendaftaranExport implements FromQuery, WithHeadings, ShouldAutoSiz
         return [
             "NAMA",
             "ALAMAT",
-            "KEL",
-            "KEC",
+            // "KEL",
+            // "KEC",
             "KOTA",
             "TELP",
             "TEMPAT LAHIR",
