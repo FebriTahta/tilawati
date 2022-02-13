@@ -51,6 +51,7 @@ class PesertaDiklatImport2 implements ToCollection, WithStartRow
     public function collection(Collection $collection)
     {
         Validator::make($collection->toArray(), [
+            '*.name' => 'date_format:m/d/Y|date',
             '*.tgllahir' => 'date_format:m/d/Y|date',
         ])->validate();
 
