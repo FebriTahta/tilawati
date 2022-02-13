@@ -20,8 +20,8 @@
         <div class="col-xl-6">
             @component('common-tilawatipusat.dashboard-widget')
                 
-                @slot('title') <p><b> TOTAL NILAI RATA-RATA</b></p> <b> {{ $rata2 }}</b> &nbsp;&nbsp;
-                @if ($rata2 > 74)
+                @slot('title') <p><b> TOTAL NILAI </b></p> <b>UTAMA : {{$rata1}}</b> & <b>RATA-RATA : {{ $rata2 }}</b> &nbsp;&nbsp;
+                @if ($rata1 > 74)
                 <b class="badge badge-info">BERSYAHADAH</b>
                 @else
                 <b class="badge badge-warning">BELUM BERSYAHADAH</b>
