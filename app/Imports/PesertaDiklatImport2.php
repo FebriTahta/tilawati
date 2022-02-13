@@ -42,7 +42,7 @@ class PesertaDiklatImport2 implements ToCollection, WithStartRow
 
     public function startRow(): int
     {
-        return 3;
+        return 2;
     }
 
     /**
