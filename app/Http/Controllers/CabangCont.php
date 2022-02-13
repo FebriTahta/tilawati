@@ -181,7 +181,10 @@ class CabangCont extends Controller
                     $btn = '<a href="#" data-toggle="modal" data-target="#modal-cabang" data-name="'.$data->name.'" data-alamat="'.$data->alamat.'" class="btn btn-sm btn-outline-primary"><i class="fa fa-edit"></i> Update!</a>';
                     return $btn;
                 })
-                ->rawColumns(['provinsi','kabupaten','total_kpa','trainer','opsi'])
+                ->addColumn('tot_lembaga', function ($data){
+                    return $data->lembaga->count();
+                })
+                ->rawColumns(['provinsi','kabupaten','total_kpa','trainer','opsi','tot_lembaga'])
                 ->make(true);
             }else{
                 $data   = Cabang::with('provinsi','kabupaten','kpa','trainer')->orderBy('id','desc');
@@ -196,6 +199,9 @@ class CabangCont extends Controller
                 })
                 ->addColumn('total_kpa', function ($data) {
                     return $data->kpa->count().' - KPA';
+                })
+                ->addColumn('tot_lembaga', function ($data){
+                    return $data->lembaga->count();
                 })
                 ->addColumn('trainers', function ($data) {
 
@@ -242,7 +248,7 @@ class CabangCont extends Controller
                     data-kabupaten="'.$data->kabupaten_id.'" data-provinsi="'.$data->provinsi_id.'" class="btn btn-sm btn-outline-primary"><i class="fa fa-edit"></i> Update!</a>';
                     return $btn;
                 })
-                ->rawColumns(['provinsi','kabupaten','total_kpa','trainers','opsi'])
+                ->rawColumns(['provinsi','kabupaten','total_kpa','trainers','opsi','tot_lembaga'])
                 ->make(true);
             }
         }

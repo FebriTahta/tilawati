@@ -88,6 +88,7 @@
                                     <th>WILAYAH</th>
                                     <th>TOTAL KPA</th>
                                     <th>TRAINER</th>
+                                    <th>LEMBAGA</th>
                                     <th>OPSI</th>
                                 </tr>
                             </thead>
@@ -108,6 +109,7 @@
                                     <th>WILAYAH</th>
                                     <th>TOTAL KPA</th>
                                     <th>TRAINER</th>
+                                    <th>LEMBAGA</th>
                                     <th>OPSI</th>
                                 </tr>
                             </tfoot>
@@ -882,6 +884,10 @@
                         orderable: false,
                         data: 'trainers',
                         name: 'trainers'
+                    },
+                    {
+                        data: 'tot_lembaga',
+                        name: 'tot_lembaga'
                     },
                     {
                         data: 'opsi',

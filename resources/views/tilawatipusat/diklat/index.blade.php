@@ -916,6 +916,7 @@
                         //sweetalert and redirect
                         var oTable = $('#datatable-buttons').dataTable();
                         oTable.fnDraw(false);
+                        toastr.success(data.success);
                         $('#btnhapus').val('Ya, Hapus!');
                         $('.bs-example-modal-diklat-hapus').modal('hide');
                         $('#btnhapus').attr('disabled',false);
