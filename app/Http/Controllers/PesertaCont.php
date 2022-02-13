@@ -137,7 +137,8 @@ class PesertaCont extends Controller
                                     $total3 = $data->nilai->where("kategori","skill")->count();
                                     
                                     // $rata2 = $data->nilai->sum('nominal');
-                                    $rata2 = ($total + $total2)/($total3+1);
+                                    // $rata2 = ($total + $total2)/($total3+1);
+                                    $rata2 = $total;
                                     if ($rata2 > 84) {
                                         # code...
                                         return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-primary">'.$rata2.' (baik)</a>';
@@ -1727,7 +1728,8 @@ class PesertaCont extends Controller
                                     $total3 = $data->nilai->where("kategori","skill")->count();
                                     
                                     // $rata2 = $data->nilai->sum('nominal');
-                                    $rata2 = ($total + $total2)/($total3+1);
+                                    // $rata2 = ($total + $total2)/($total3+1);
+                                    $rata2 = $total;
                                     if ($rata2 > 84) {
                                         # code...
                                         return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-primary">'.$rata2.' (baik)</a>';
@@ -1791,7 +1793,8 @@ class PesertaCont extends Controller
                                     $total3 = $data->nilai->where("kategori","skill")->count();
                                     
                                     // $rata2 = $data->nilai->sum('nominal');
-                                    $rata2 = ($total + $total2)/($total3+1);
+                                    // $rata2 = ($total + $total2)/($total3+1);
+                                    $rata2 = $total;
                                     if ($rata2 > 84) {
                                         # code...
                                         return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-primary">'.$rata2.' (baik)</a>';
