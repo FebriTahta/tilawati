@@ -149,23 +149,24 @@ class CabangCont extends Controller
                 })
                 ->addColumn('trainers', function ($data) {
 
-                    // if ($data->trainer->count() > 0) {
-                    //     # code...
-                    //     $trainers = Trainer::where('cabang_id', $data->id)
-                    //             ->select('trainer')->distinct()->get();
+                    if ($data->trainer->count() > 0) {
+                        # code...
+                        // $trainers = Trainer::where('cabang_id', $data->id)
+                        //         ->select('trainer')->distinct()->get();
 
-                    //     $trains=[ ];
-                    //     foreach ($trainers as $key => $value) {
-                    //         # code...
-                    //         $tot_train = Trainer::where('cabang_id', $data->id)->where('trainer',$value->trainer)->count();
-                    //         $trains[] =  $value->trainer.' - '.$tot_train;
-                    //     }
-                    //     return implode(' | ', $trains);
-                    // } else {
-                    //     # code...
-                    //     return ' - ';
-                    // }
-                    return Trainer::where('cabang_id', $data->id)->where('trainer',$value->trainer)->count().' TRAINER';
+                        // $trains=[ ];
+                        // foreach ($trainers as $key => $value) {
+                        //     # code...
+                        //     $tot_train = Trainer::where('cabang_id', $data->id)->where('trainer',$value->trainer)->count();
+                        //     $trains[] =  $value->trainer.' - '.$tot_train;
+                        // }
+                        // return implode(' | ', $trains);
+                        return Trainer::where('cabang_id', $data->id)->where('trainer',$value->trainer)->count().' TRAINER';
+                    } else {
+                        # code...
+                        return ' - ';
+                    }
+                    // return Trainer::where('cabang_id', $data->id)->where('trainer',$value->trainer)->count().' TRAINER';
                 })
                 // ->addColumn('kepala', function($data){
                 //     if ($data->kepala !== null) {
