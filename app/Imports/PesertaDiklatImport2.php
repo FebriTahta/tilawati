@@ -42,7 +42,7 @@ class PesertaDiklatImport2 implements ToCollection, WithStartRow
 
     public function startRow(): int
     {
-        return 1;
+        return 2;
     }
 
     /**
@@ -51,8 +51,7 @@ class PesertaDiklatImport2 implements ToCollection, WithStartRow
     public function collection(Collection $collection)
     {
         Validator::make($collection->toArray(), [
-            'name' => 'required',
-            'tgllahir' => 'date_format:m/d/Y|date',
+            '*.tgllahir' => 'date_format:m/d/Y|date',
         ])->validate();
 
         foreach ($collection as $key => $row) {
@@ -74,7 +73,7 @@ class PesertaDiklatImport2 implements ToCollection, WithStartRow
                 $dt_pel->program_id = $diklat->program_id;
                 $dt_pel->cabang_id = $this->cabang_id;
                 $dt_pel->tanggal = $this->tanggal;
-                $dt_pel->name = $row[0];
+                $dt_pel->name = 'a';
                 $dt_pel->alamat = $row[1];
                 $dt_pel->kota = $row[2];
                 $dt_pel->status =1;
