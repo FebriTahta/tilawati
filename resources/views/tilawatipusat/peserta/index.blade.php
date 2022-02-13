@@ -101,7 +101,7 @@
                                 </div>
                             @endif
                     {{-- <p class="card-title-desc">Ter-update berdasarkan Tahun 2021 </br></p> --}}
-                    <form method="POST" class="mb-1 mr-1" action="{{ route('download.template') }}"
+                    {{-- <form method="POST" class="mb-1 mr-1" action="{{ route('download.template') }}"
                         class="sign-in-form">
                         @csrf
                         <input type="hidden" name="jenis" value="{{ $diklat->program->name }}">
@@ -109,8 +109,8 @@
                         <button type="submit" class="btn btn-sm btn-outline-primary" style="width: 200px"
                             class="btn" value="Download Template"> <i class="fas fa-download"></i> Unduh
                             Template</button>
-                    </form>
-                    {{-- <a href="/export-template-diklat/{{$diklat->program->name}}" class="btn btn-sm btn-outline-primary" style="width: 200px" class="btn" value="Download Template" > <i class="fas fa-download"></i> Unduh Template</a> --}}
+                    </form> --}}
+                    <a href="/export-template-diklat/{{$diklat->program->name}}" class="btn btn-sm btn-outline-primary" style="width: 200px" class="btn" value="Download Template" > <i class="fas fa-download"></i> Unduh Template</a>
                     <a class="btn btn-sm btn-outline-success  mb-1 mr-1" style="width:130px" @if ($diklat->program->penilaian->count() == 0) disabled @else href="{{ route('diklat.peserta_create', $pelatihan_id) }}" @endif><i
                             class="mdi mdi-plus"></i> tambah peserta</a>
                     <button class="btn btn-sm btn-outline-success  mb-1 mr-1" style="width:130px " data-toggle="modal"
