@@ -54,7 +54,12 @@
                                                 </select>
                                             </div>
                                             <div class="form-group">
+                                                <input type="text" class="form-control" name="diklat" id="diklat">
+                                            </div>
+                                            <div class="form-group">
                                                 <button type="submit" class="btn btn-primary btn-sm"> <i class="fa fa-print"></i> Cetak</button>
+                                                {{-- <button type="submit" class="btn btn-primary btn-sm"> <i class="fa fa-print"></i> Proses</button> --}}
+                                                {{-- <a href="/post-qr-code/" class="btn btn-outline-primary btn-sm"> Proses</a> --}}
                                             </div>
                                         </form>
                                         <footer class="blockquote-footer">Updated at  <cite title="Source Title">2021</cite></footer>
@@ -98,7 +103,9 @@
                                     $('select[name="pelatihan_id"]').empty();
                                     $.each(data, function(key, value) {
                                     $('select[name="pelatihan_id"]').append('<option value="'+ value.id +'">'+ value.id +" | "+ value.cabang.name + " | " + value.program.name + " | " + value.tanggal + " | " + value.tempat + '</option>');
+                                    // console.log(value.id);
                                     });
+                                    
                                     console.log(data);
                                 }
                             });

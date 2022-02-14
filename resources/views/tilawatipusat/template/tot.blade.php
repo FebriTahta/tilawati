@@ -4,8 +4,6 @@
             <th>Nama Peserta</th>
             <th>Alamat</th>
             <th>Kota</th>
-            {{-- <th>Kecamatan</th>
-            <th>Kelurahan</th> --}}
             <th>Phone</th>
             <th>Tempat Lahir</th>
             <th>Tanggal Lahir</th>
@@ -27,8 +25,6 @@
             <td>NAMA + Gelar</td>
             <td>ALAMAT (TANPA KOTA)</td>
             <td>SURABAYA (TIDAK DISINGKAT)</td>
-            {{-- <td>KECAMATAN (TIDAK DISINGKAT)</td>
-            <td>KELURAHAN</td> --}}
             <td>083xxxxxxxxx</td>
             <td>SURABAYA (TIDAK DISINGKAT)</td>
             <td>6/23/1995 (FORMAT DATE (OTOMATIS))</td>

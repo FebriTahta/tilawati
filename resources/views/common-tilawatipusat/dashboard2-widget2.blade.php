@@ -15,7 +15,7 @@
                             </div>
                         </div>
                         <div>
-                             @yield('from')
+                             @yield('from2')
                         </div>
                     </div>
                 </div>

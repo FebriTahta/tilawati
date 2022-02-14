@@ -39,6 +39,7 @@ use App\Http\Controllers\SertifikatCont;
 use App\Http\Controllers\BroadcastController;
 use App\Http\Controllers\WebinarCont;
 use App\Http\Controllers\ErrorCont;
+use App\Http\Controllers\CekController;
 use App\Http\Controllers\TemplateDownloadCont;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\KodeAdminCont;
@@ -466,6 +467,9 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
 
     //IMPORT WITHOUT QUEUE & QR
     Route::post('/import-peserta-diklat2',[ImportController::class,'import_peserta_diklat2'])->name('import-peserta-diklat2');
+    //QR 
+    Route::get('/cek-qr-code/{pelatihan_id}',[CekController::class,'cek_qr']);
+    Route::get('/generate_qr_peserta/{pelatihan_id}',[CekController::class,'generate_qr_peserta']);
 });
 
 Route::group(['middleware' => ['auth', 'CheckRole:bendahara']], function () {
