@@ -1101,7 +1101,7 @@
                             name: 'ttl'
                         },
                         {
-                            data: 'telp',
+                            data: 'phone',
                             name: 'telp'
                         },
                         {

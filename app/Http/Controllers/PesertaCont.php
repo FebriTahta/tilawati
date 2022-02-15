@@ -259,7 +259,22 @@ class PesertaCont extends Controller
                                 return $ttl;
                             }
                         })
-                ->rawColumns(['idpeserta','nilai','check','action','kabupaten','kecamatan','kelurahan','ttl','krits','alamatmodul','namapeserta'])
+
+                        ->addColumn('phone', function($data){
+                            if (substr($data->telp,0,2) == '62') {
+                                # code...
+                                $phone = '0'.substr($data->telp,2);
+                                return $phone;
+                            }elseif(substr($data->telp,0,1) == '8') {
+                                # code...
+                                $phone = '0'.$data->telp;
+                                return $phone;
+                            }else {
+                                # code...
+                                return $data->telp;
+                            }
+                        })
+                ->rawColumns(['idpeserta','nilai','check','action','kabupaten','phone','kecamatan','kelurahan','ttl','krits','alamatmodul','namapeserta'])
                 ->make(true);
         }
     }
@@ -2072,8 +2087,8 @@ class PesertaCont extends Controller
                         
                         
                           
-                        \QrCode::size(150)
-                        ->format('png') ->generate('https://www.profile.tilawatipusat.com/'.$peserta->slug, public_path('images/'.$peserta->slug.'.png'));
+                        // \QrCode::size(150)
+                        // ->format('png') ->generate('https://www.profile.tilawatipusat.com/'.$peserta->slug, public_path('images/'.$peserta->slug.'.png'));
                         // $qr = \QrCode::size(100)
                         // ->format('png')
                         // ->generate('https://www.profile.tilawatipusat.com/'.$slug, public_path('images/'.$slug.'.png'));
