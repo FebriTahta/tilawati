@@ -31,14 +31,6 @@ class QRJob implements ShouldQueue
      */
     public function handle()
     {
-        // $insert_data=[];
-        // $data = Peserta::where('pelatihan_id', $this->$pel)->where('bersyahadah',1)->get();
-            // foreach ($data as $key => $value) {
-            //     # code...
-            //     $value->update(['qr'=>'1']);
-            //     \QrCode::size(150)
-            //     ->format('png') ->generate('https://www.profile.tilawatipusat.com/'.$value->slug, public_path('images/'.$value->slug.'.png'));
-            // }
             $data = Peserta::where('pelatihan_id', $this->pelatihan_id)
             ->where('bersyahadah',1)
             ->chunk(1, function($pesertass) {
@@ -49,14 +41,6 @@ class QRJob implements ShouldQueue
                     ->format('png') ->generate('https://www.profile.tilawatipusat.com/'.$value->slug, public_path('images/'.$value->slug.'.png'));
                 }
             });
-        
-
-        // new Peserta::where('pelatihan_id', 5190)->delete();
-        // for ($i=0; $i < 50 ; $i++) { 
-        //     # code...
-            
-        // }       
-        // Peserta::where('pelatihan_id', 5190)->delete();
     }
 
     

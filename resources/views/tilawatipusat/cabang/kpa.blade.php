@@ -1,17 +1,20 @@
 @extends('layouts.tilawatipusat_layouts.master')
 
-@section('title') Cabang @endsection
+@section('title')
+    Cabang
+@endsection
 @section('css')
-
     <!-- DataTables -->
     <link href="{{ URL::asset('tilawatipusat/libs/datatables/datatables.min.css') }}" rel="stylesheet" type="text/css" />
-
 @endsection
 @section('content')
-
     @component('common-tilawatipusat.breadcrumb')
-        @slot('title') KPA @endslot
-        @slot('title_li') - @endslot
+        @slot('title')
+            KPA
+        @endslot
+        @slot('title_li')
+            -
+        @endslot
     @endcomponent
 
     <div class="row">
@@ -28,8 +31,10 @@
                         data-toggle="modal" data-target="#modal_import"><i class="mdi mdi-import"></i> Import
                         KPA</button>
                     <a href="/export-template-kpa" class="btn btn-sm btn-outline-primary mb-2 mr-1 text-uppercase"
-                        style="font-size: 12px "><i class="mdi mdi-download"></i> Template
-                        Import</a>
+                        style="font-size: 12px "><i class="mdi mdi-download"></i> Unduh Template</a>
+
+                    <a href="/export-template-kpa-data/{{$cabang->id}}" class="btn btn-sm btn-outline-warning mb-2 mr-1 text-uppercase"
+                        style="font-size: 12px "><i class="mdi mdi-download"></i> Unduh Data KPA</a>
 
                     <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
                         <table id="tabel-trainer" class="table table-cabang table-bordered dt-responsive nowrap"
@@ -190,13 +195,9 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
-
-
-
 @endsection
 
 @section('script')
-
     <!-- Toast -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.all.min.js"></script>

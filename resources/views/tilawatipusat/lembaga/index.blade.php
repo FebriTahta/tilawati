@@ -78,8 +78,10 @@
                             lembaga</button>
 
                         <a href="/export-template-lembaga" class="btn btn-sm btn-outline-primary mb-2 mr-1 text-uppercase"
-                            style="font-size: 12px "><i class="mdi mdi-download"></i> Template
-                            Import</a>
+                            style="font-size: 12px "><i class="mdi mdi-download"></i> Unduh Template</a>
+
+                        <a href="/export-template-lembaga/{{auth()->user()->cabang->id}}" class="btn btn-sm btn-outline-warning mb-2 mr-1 text-uppercase"
+                            style="font-size: 12px "><i class="mdi mdi-download"></i> Unduh Data Lembaga</a>
                     @endif
 
                     {{-- <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive"> --}}

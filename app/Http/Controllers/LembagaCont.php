@@ -49,7 +49,7 @@ class lembagaCont extends Controller
                         return $provinsi = $data->provinsi->nama;
                     })
                     ->addColumn('statuss', function ($data) {
-                        if ($data->status == 'Aktif' || $data->status == 'aktif') {
+                        if ($data->status == 'Aktif' || $data->status == 'aktif' || $data->status == 'aktif '|| $data->status == 'Aktif ' || $data->status == ' aktif' || $data->status == ' Aktif') {
                             # code...
                             $btn = '<span class="badge badge-success btn text-white">Aktif</span>';
                             return $btn;

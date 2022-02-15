@@ -419,7 +419,7 @@ class CabangCont extends Controller
     public function data_trainer(Request $request)
     {
         $cabang_id  = auth()->user()->cabang->id;
-        $cabang = Cabang::where('id',$cabang_id)->select('name','kabupaten_id')->with('kabupaten')->first();
+        $cabang = Cabang::where('id',$cabang_id)->select('id','name','kabupaten_id')->with('kabupaten')->first();
         return view('tilawatipusat.cabang.trainer',compact('cabang'));
     }
 
@@ -513,7 +513,7 @@ class CabangCont extends Controller
 
         }
         $kpa = Kpa::where('cabang_id',$cabang_id)->with('cabang')->first();
-        $cabang = Cabang::where('id',$cabang_id)->select('name','kabupaten_id')->with('kabupaten')->first();
+        $cabang = Cabang::where('id',$cabang_id)->select('id','name','kabupaten_id')->with('kabupaten')->first();
         return view('tilawatipusat.cabang.kpa',compact('kpa','cabang'));
     }
 

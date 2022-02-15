@@ -29,8 +29,10 @@
                         data-toggle="modal" data-target="#modal_import"><i class="mdi mdi-import"></i> Import
                         Trainer</button>
                     <a href="/export-template-trainer" class="btn btn-sm btn-outline-primary mb-2 mr-1 text-uppercase"
-                        style="font-size: 12px "><i class="mdi mdi-download"></i> Template
-                        Import</a>
+                        style="font-size: 12px "><i class="mdi mdi-download"></i> Unduh Template</a>
+
+                    <a href="/export-template-trainer-data/{{$cabang->id}}" class="btn btn-sm btn-outline-warning mb-2 mr-1 text-uppercase"
+                        style="font-size: 12px "><i class="mdi mdi-download"></i> Unduh Data Trainer</a>
                     <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
                         <table id="tabel-trainer" class="table table-cabang table-bordered dt-responsive nowrap"
                             style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
