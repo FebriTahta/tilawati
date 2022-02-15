@@ -1,7 +1,7 @@
 <div class="card" >
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-8">
+                            <div class="col-12">
                                 <div>
                                     <p class="text-muted font-weight-medium mt-1 mb-2">{{ $title }}</p>
                                     <h4>{{ $total }}</h4>

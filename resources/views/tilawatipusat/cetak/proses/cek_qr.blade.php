@@ -12,7 +12,7 @@
 
     <div class="row">
         <div class="col-md-12">
-            @component('common-tilawatipusat.dashboard2-widget')
+            @component('common-tilawatipusat.dashboard2-widget3')
                 @slot('title')
                     <?php $diklat = App\Models\Pelatihan::where('id', $pelatihan_id)->first(); ?>
                     <span class="text-capitalize">Cabang : Tilawati {{ strtolower(substr($diklat->cabang->kabupaten->nama, 5)) }}
@@ -23,9 +23,9 @@
                 @endslot
                 @slot('chartId')
                 @endslot
-                @section('from')
+                @section('from3')
                     <p class="mb-0"><span class="badge badge-soft-success mr-2"> <i class="mdi mdi-arrow-up"></i>
-                        </span> Dari Total {{ $peserta->count() }} Peserta</p>
+                        </span> {{$diklat->tanggal}}</p>
                 @endsection
             @endcomponent
         </div>
