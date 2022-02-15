@@ -19,7 +19,7 @@
                         ({{ $diklat->cabang->name }})</span>
                 @endslot
                 @slot('total')
-                    <span id="tot_pes">{{ $diklat->program->name }}</span>
+                    <span>{{ $diklat->program->name }}</span>
                 @endslot
                 @slot('chartId')
                 @endslot
@@ -67,15 +67,15 @@
                 <input type="hidden" name="pelatihan_id2" id="pel_id" value="{{ $pelatihan_id }}">
                 {{-- <button id="generate" type="submit" onclick="Generates()" class="btn btn-sm btn-outline-primary">generate</button> --}}
                 {{-- <input type="submit" class="btn btn-success" value="generate" id="generatebtn"> --}}
-                <button type="submit" class="btn btn-primary">GENERATE QR CODE</button>
+                <input type="submit" id="btnbuat" class="btn btn-primary" value="GENERATE QR CODE">
             </form>
         </div>
 
         <div class="col-xl-12" style="margin-top: 20px">
-            <form action="{{ route('diklat.depan_cetak') }}" method="POST">@csrf
+            <form action="{{ route('diklat.depan_cetak_syahadah') }}" method="POST">@csrf
                 <input type="hidden" name="pelatihan_id" value="{{ $pelatihan_id }}">
                 <div class="form-group">
-                    <button type="submit" class="btn btn-outline-primary"> <i class="fa fa-print"></i> CETAK SYAHADAH DEPAN</button>
+                    <input type="submit" id="btncetak" class="btn btn-outline-primary" value="CETAK SYAHADAH DEPAN">
                 </div>
             </form>
         </div>
@@ -102,8 +102,8 @@
                     contentType: false,
                     processData: false,
                     beforeSend: function() {
-                        $('#generatebtn').attr('disabled', 'disabled');
-                        $('#generatebtn').val('Proses Menyimpan Data');
+                        $('#btnbuat').attr('disabled', 'disabled');
+                        $('#btnbuat').val('Generate QR Processing..');
 
                     },
                     success: function(data) {
@@ -111,17 +111,8 @@
                             // $("#tambahkriteria")[0].reset();
                             // var oTable = $('#datatable-buttons').dataTable();
                             // oTable.fnDraw(false);
-                            $('#generatebtn').val('Generate');
-                            // $('.bs-example-modal-kriteria-tambah').modal('hide');
-                            $('#generatebtn').attr('disabled', false);
-
-
-
-                            swal({
-                                title: "Success!",
-                                text: "OK!",
-                                type: "success"
-                            })
+                            $('#btnbuat').attr('disabled', 'disabled');
+                            $('#btnbuat').val('SELESAI');
                         }
                     },
                     error: function(data) {
@@ -136,19 +127,13 @@
             var total_peserta = $('#tot_pes').html();
             var total_qr = $('#tot_qr').html();
             var qr;
-            $(document).ready(function() {
-
-                // $.ajax({
-                //     url: '/cek-qr-code/' + pelatihan_id,
-                //     type: 'get',
-                //     dataType: 'json',
-                //     success: function(data) {
-                //         $('#tot_qr').html(data);
-                //         qr = data;
-                //     }
-                // });
+            $(document).ready(function() {            
                 setInterval(function() {
-
+                        // console.log(total_peserta);
+                    if ($('#tot_qr').html() == total_peserta) {
+                        $('#btnbuat').attr('disabled', 'disabled');
+                        $('#btnbuat').val('SELESAI');
+                    }
                     $.ajax({
                         url: '/cek-qr-code/' + pelatihan_id,
                         type: 'get',
@@ -162,55 +147,5 @@
                 }, 1000);
 
             })
-
-            function Generates() {
-
-                if (total_peserta != total_qr) {
-                    $.ajax({
-                        url: '/generate_qr_peserta/' + pelatihan_id,
-                        type: 'get',
-                        dataType: 'json',
-                        success: function(data) {
-                            // batch update -> dijalankan sekali -> dibaca berulang kali
-                            console.log(data);
-                        }
-                    });
-                    setInterval(function() {
-
-                        $.ajax({
-                            url: '/cek-qr-code/' + pelatihan_id,
-                            type: 'get',
-                            dataType: 'json',
-                            success: function(data) {
-                                $('#tot_qr').html(data);
-                                console.log('QR : ' + data);
-                            }
-                        });
-
-                    }, 1000);
-
-                }
-
-
-
-
-                // if (total_peserta != qr) {
-
-                //     $.ajax({
-                //         url: '/cek-qr-code/' + pelatihan_id,
-                //         type: 'get',
-                //         dataType: 'json',
-                //         success: function(data) {
-                //             $('#tot_qr').html(qr);
-                //             console.log('qr : ' + qr);
-                //             console.log('total peserta : ' + total_peserta);
-
-                //         }
-                //     });
-
-                // } else {
-                //     console.log('stop');
-                // }
-            }
         </script>
     @endsection

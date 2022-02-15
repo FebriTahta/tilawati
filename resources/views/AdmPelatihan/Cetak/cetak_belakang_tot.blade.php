@@ -117,7 +117,7 @@
 	@foreach($peserta as $key=> $p)
 <div class="container page-break" style="margin-top: 147px">
 	<center>
-		<span class="syahadah">No. Syahadah : {{ $p->pelatihan->id }} / 2021 / {{ $p->id }}</span>
+		<span class="syahadah">No. Syahadah : {{ $p->pelatihan->id }} / 2022 / {{ $p->id }}</span>
 	</center>
 		<table style="width: 600px;" class="table1 center">
 			<tr>

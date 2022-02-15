@@ -33,56 +33,60 @@ class CetakCont extends Controller
 
     public function cetak_depan(Request $request)
     {
-        // $id         = $request->pelatihan_id;
-        // $pelatihan  = Pelatihan::find($id);
-        // $cabang     = $pelatihan->cabang->kabupaten->nama;
-        // $kabupaten  = substr($cabang, 5);
-        // $peserta    = Peserta::where('pelatihan_id', $id)->where('bersyahadah','1')->get();
-        // $customPaper = array(0,0,792,612);
-        // if ($pelatihan->cabang->name == 'Cahaya Amanah' || $pelatihan->cabang->name == 'Tilawati Pusat') {
-        //     # code...
-        //     $direktur   = "Dr. KH. Umar Jaeni, M.Pd";
-        //     $jabatan    = "Direktur Eksekutif";
-        //     $kepala     = $jabatan;
-            
-        //     $pdf        = PDF::loadview('AdmPelatihan.Cetak.cetak_depan',compact('peserta','direktur','kepala','kabupaten','cabang','pelatihan'))->setPaper($customPaper, 'portrait');
-        //     return $pdf->download('ijazah-depan-peserta-pdf_'.$pelatihan->name.'.pdf','I');
-        // }else{
-        //     $jumlah_cabang = $pelatihan->cabang->kabupaten->cabang->count();
-        //     if ($jumlah_cabang > 1) {
-        //         # code...
-        //         if (substr($pelatihan->cabang->kabupaten->nama,5,3)=='ADM') {
-        //             # code...
-        //             $jabatan     = 'Kacab. '.strtoupper(substr($pelatihan->cabang->kabupaten->provinsi->nama,0,3)).' '.ucfirst(substr($pelatihan->cabang->kabupaten->provinsi->nama,4));
-        //         } else {
-        //             # code...
-        //             $jabatan     = 'Kacab. '.ucwords($pelatihan->cabang->name).' '.strtolower($kabupaten);
-        //         }
-        //     }else {
-        //         # code...
-        //         if (substr($pelatihan->cabang->kabupaten->nama,5,3)=='ADM') {
-        //             # code...
-        //             $jabatan     = 'Kacab. '.strtoupper(substr($pelatihan->cabang->kabupaten->provinsi->nama,0,3)).' '.ucfirst(substr($pelatihan->cabang->kabupaten->provinsi->nama,4));
-        //         }else {
-        //             # code...
-        //             $jabatan     = 'Kacab. '.strtolower($kabupaten).' '.strtolower($pelatihan->cabang->kabupaten->provinsi->nama);
-        //         }
-        //     }
-
-        //     $kepala     = ucwords($jabatan);
-        //     if ($pelatihan->cabang->kepala == null) {
-        //         # code...
-        //         return Redirect::back()->withFail('Tidak ada Kepala Cabang yang terdaftar pada Cabang - '.$pelatihan->cabang->name.'');
-        //     } else {
-        //         # code...
-        //         $direktur   = $pelatihan->cabang->kepala->name;
-        //         $pdf        = PDF::loadview('AdmPelatihan.Cetak.cetak_depan',compact('peserta','direktur','kepala','kabupaten','cabang','pelatihan'))->setPaper($customPaper, 'portrait');
-        //         return $pdf->download('ijazah-depan-peserta-_'.$pelatihan->name.'.pdf','I');
-        //     }
-        // }
         $pelatihan_id = $request->pelatihan_id;
         $peserta = Peserta::where('pelatihan_id', $request->pelatihan_id)->get();
         return view('tilawatipusat.cetak.proses.cek_qr',compact('peserta','pelatihan_id'));
+    }
+
+    public function cetak_depan_syahadah(Request $request)
+    {
+        $id         = $request->pelatihan_id;
+        $pelatihan  = Pelatihan::find($id);
+        $cabang     = $pelatihan->cabang->kabupaten->nama;
+        $kabupaten  = substr($cabang, 5);
+        $peserta    = Peserta::where('pelatihan_id', $id)->where('bersyahadah','1')->get();
+        $customPaper = array(0,0,792,612);
+        if ($pelatihan->cabang->name == 'Cahaya Amanah' || $pelatihan->cabang->name == 'Tilawati Pusat') {
+            # code...
+            $direktur   = "Dr. KH. Umar Jaeni, M.Pd";
+            $jabatan    = "Direktur Eksekutif";
+            $kepala     = $jabatan;
+            
+            $pdf        = PDF::loadview('AdmPelatihan.Cetak.cetak_depan',compact('peserta','direktur','kepala','kabupaten','cabang','pelatihan'))->setPaper($customPaper, 'portrait');
+            return $pdf->download('ijazah-depan-peserta-pdf_'.$pelatihan->name.'.pdf','I');
+        }else{
+            $jumlah_cabang = $pelatihan->cabang->kabupaten->cabang->count();
+            if ($jumlah_cabang > 1) {
+                # code...
+                if (substr($pelatihan->cabang->kabupaten->nama,5,3)=='ADM') {
+                    # code...
+                    $jabatan     = 'Kacab. '.strtoupper(substr($pelatihan->cabang->kabupaten->provinsi->nama,0,3)).' '.ucfirst(substr($pelatihan->cabang->kabupaten->provinsi->nama,4));
+                } else {
+                    # code...
+                    $jabatan     = 'Kacab. '.ucwords($pelatihan->cabang->name).' '.strtolower($kabupaten);
+                }
+            }else {
+                # code...
+                if (substr($pelatihan->cabang->kabupaten->nama,5,3)=='ADM') {
+                    # code...
+                    $jabatan     = 'Kacab. '.strtoupper(substr($pelatihan->cabang->kabupaten->provinsi->nama,0,3)).' '.ucfirst(substr($pelatihan->cabang->kabupaten->provinsi->nama,4));
+                }else {
+                    # code...
+                    $jabatan     = 'Kacab. '.strtolower($kabupaten).' '.strtolower($pelatihan->cabang->kabupaten->provinsi->nama);
+                }
+            }
+
+            $kepala     = ucwords($jabatan);
+            if ($pelatihan->cabang->kepala == null) {
+                # code...
+                return Redirect::back()->withFail('Tidak ada Kepala Cabang yang terdaftar pada Cabang - '.$pelatihan->cabang->name.'');
+            } else {
+                # code...
+                $direktur   = $pelatihan->cabang->kepala->name;
+                $pdf        = PDF::loadview('AdmPelatihan.Cetak.cetak_depan',compact('peserta','direktur','kepala','kabupaten','cabang','pelatihan'))->setPaper($customPaper, 'portrait');
+                return $pdf->download('ijazah-depan-peserta-_'.$pelatihan->name.'.pdf','I');
+            }
+        }
     }
 
 

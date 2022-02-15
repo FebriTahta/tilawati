@@ -312,7 +312,7 @@
 			@elseif ($p->kriteria == 'SEBAGAI INSTRUKTUR STRATEGI MENGAJAR METODE TILAWATI')
 			<div style="page-break-inside: avoid">
 				<div>
-					<p @if ($p->pelatihan->keterangan == 'instruktur') style="margin-top: 160px;margin-left: 358px" @else style="margin-top: 160px;margin-left: 358px" @endif class="syahadah">No. Syahadah : {{ $p->pelatihan->id }}/2021/{{ $p->id }}</p>
+					<p @if ($p->pelatihan->keterangan == 'instruktur') style="margin-top: 160px;margin-left: 358px" @else style="margin-top: 160px;margin-left: 358px" @endif class="syahadah">No. Syahadah : {{ $p->pelatihan->id }}/2022/{{ $p->id }}</p>
 				</div>
 				<table 
 				@if ($p->pelatihan->keterangan == 'instruktur')
@@ -405,7 +405,7 @@
 			@elseif($p->kriteria == 'SEBAGAI INSTRUKTUR LAGU METODE TILAWATI')
 			<div style="page-break-inside: avoid">
 				<div>
-					<p @if ($p->pelatihan->keterangan == 'instruktur') style="margin-top: 160px;margin-left: 358px" @else style="margin-top: 160px;margin-left: 358px" @endif class="syahadah">No. Syahadah : {{ $p->pelatihan->id }}/2021/{{ $p->id }}</p>
+					<p @if ($p->pelatihan->keterangan == 'instruktur') style="margin-top: 160px;margin-left: 358px" @else style="margin-top: 160px;margin-left: 358px" @endif class="syahadah">No. Syahadah : {{ $p->pelatihan->id }}/2022/{{ $p->id }}</p>
 				</div>
 				<table 
 				@if ($p->pelatihan->keterangan == 'instruktur')
@@ -496,7 +496,7 @@
 			@else
 			<div style="page-break-inside: avoid">
 				<div>
-					<p style="margin-top: 160px;margin-left: 358px" class="syahadah">No. Syahadah : {{ $p->pelatihan->id }}/2021/{{ $p->id }}</p>
+					<p style="margin-top: 160px;margin-left: 358px" class="syahadah">No. Syahadah : {{ $p->pelatihan->id }}/2022/{{ $p->id }}</p>
 				</div>
 				<table 
 				style="width: 782px; margin-left:154px"

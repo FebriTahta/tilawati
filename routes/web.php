@@ -374,6 +374,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     Route::get('/diklat-detail-ijazah-peserta',[CetakCont::class, 'detail_peserta'])->name('diklat.detail_peserta');
     Route::get('/diklat-ijazah-depan-santri',[CetakCont::class, 'depan_santri'])->name('diklat.depan_santri');
     Route::post('/diklat-cetak-depan-print', [CetakCont::class, 'cetak_depan'])->name('diklat.depan_cetak');
+    Route::post('/diklat-cetak-depan-print2', [CetakCont::class, 'cetak_depan_syahadah'])->name('diklat.depan_cetak_syahadah');
     Route::post('/diklat-cetak-belakang-print', [CetakCont::class, 'cetak_belakang'])->name('diklat.belakang_cetak');
     Route::post('/diklat-cetak-detail-peserta-print',[CetakCont::class, 'cetak_detail_peserta'])->name('diklat.detail_cetak');
     Route::post('/diklat-cetak-surat-pengiriman',[CetakCont::class,'cetak_surat_pengiriman'])->name('diklat.cetak_surat_pengiriman');
