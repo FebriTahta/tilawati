@@ -45,7 +45,11 @@ class TemplateDownloadExport implements FromView, ShouldAutoSize, WithColumnForm
         }elseif($this->jenis == "TOT Instruktur") {
             # code...
             return view('tilawatipusat.template.tot');
-        }else {
+        }elseif($this->jenis == "Training Of Trainer") {
+            # code...
+            return view('tilawatipusat.template.tot');
+        }
+        else {
             # code...
             return view('tilawatipusat.template.lvl1');
         }

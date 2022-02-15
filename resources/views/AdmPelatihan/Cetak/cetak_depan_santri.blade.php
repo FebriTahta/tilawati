@@ -81,7 +81,7 @@
 				<tr style="height: 27px;"><?php $tahun = date('Y')?>
 				<td class="bawah" style="width: 210px; height: 27px; "><small> </small></td>
 				<td class="bawah" style="width: 210px; height: 27px;">&nbsp;</td><?php $sekarang = date('d F Y')?>
-				<td class="atas" style="width: 241px; height: 27px; ">Surabaya, 18 Juni 2021</td>
+				<td class="atas" style="width: 241px; height: 27px; ">Surabaya, 18 Juni 2022</td>
 				</tr>
 				<tr style="height: 78px;">
 					<td class="bawah" style="width: 210px; height: 70px;"><img src="{{ asset('images/ $item->id ') }}qrcode.png}}" alt="" width="70px" height="70px"></td>

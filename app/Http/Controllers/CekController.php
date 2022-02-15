@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 use App\Models\Peserta;
+use App\Models\Pelatihan;
+use Jobs;
+use App\Jobs\GenerateQrPeserta;
+use App\Jobs\QRJob;
 use SimpleSoftwareIO\QrCode\Generator;
+use Excel;
 use Illuminate\Http\Request;
 
 class CekController extends Controller
@@ -16,19 +21,36 @@ class CekController extends Controller
         }
     }
 
-    public function generate_qr_peserta(Request $request, $pelatihan_id)
+    public function generate_qr_peserta(Request $request)
     {
         if(request()->ajax())
         {
-            $data = Peserta::where('pelatihan_id', $pelatihan_id)->where('bersyahadah',1)->get();
-            foreach ($data as $key => $value) {
-                # code...
-                $value->update(['qr'=>'1']);
-                \QrCode::size(150)
-                ->format('png') ->generate('https://www.profile.tilawatipusat.com/'.$value->slug, public_path('images/'.$value->slug.'.png'));
-            }
-            $datas = $data->count();
-            return response()->json($datas,200);
+            // $data = Peserta::where('pelatihan_id', $pelatihan_id)->where('bersyahadah',1)->get();
+            // foreach ($data as $key => $value) {
+            //     # code...
+            //     $value->update(['qr'=>'1']);
+            //     \QrCode::size(150)
+            //     ->format('png') ->generate('https://www.profile.tilawatipusat.com/'.$value->slug, public_path('images/'.$value->slug.'.png'));
+            // }
+            // $datas = $data->count();
+            // return response()->json($datas,200);
+            // $data = new GenerateQrPeserta($pelatihan_id);
+            // new GenerateQrPeserta($pelatihan_id);
+
+            // $jobs = new GenerateQrPeserta($pelatihan_id);
+            // GenerateQrPeserta::dispatch($pelatihan_id)->beforeCommit();
+            // $this->dispatch($jobs);
+            // dispatch(new QRJob($pelatihan_id));
+            // $pelatihan_id = $request->pel_id;
+            // $tes = new QRJob($pelatihan_id);
+            // $this->dispatch($tes);
+            // return response()->json('queue-start',200);
+            
         }
+        // $pel = Pelatihan::where('id',$request->pel_id)->first();
+            $pelatihan_id = $request->pelatihan_id;
+            // $this->dispatch(new QRJob($pelatihan_id));
+            QRJob::dispatch($pelatihan_id);
+            return response()->json($pelatihan_id,200);
     }
 }
