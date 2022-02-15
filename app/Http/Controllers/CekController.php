@@ -48,7 +48,7 @@ class CekController extends Controller
             
         }
         // $pel = Pelatihan::where('id',$request->pel_id)->first();
-            $pelatihan_id = $request->pelatihan_id;
+            $pelatihan_id = $request->pelatihan_id2;
             // $this->dispatch(new QRJob($pelatihan_id));
             QRJob::dispatch($pelatihan_id);
             return response()->json($pelatihan_id,200);
