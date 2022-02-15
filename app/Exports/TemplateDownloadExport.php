@@ -51,7 +51,7 @@ class TemplateDownloadExport implements FromView, ShouldAutoSize, WithColumnForm
         }
         else {
             # code...
-            return view('tilawatipusat.template.lvl1');
+            return view('tilawatipusat.template.tot');
         }
     }
 
