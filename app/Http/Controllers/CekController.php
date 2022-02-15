@@ -50,7 +50,19 @@ class CekController extends Controller
         // $pel = Pelatihan::where('id',$request->pel_id)->first();
             $pelatihan_id = $request->pelatihan_id2;
             // $this->dispatch(new QRJob($pelatihan_id));
-            QRJob::dispatch($pelatihan_id);
+            $data = Peserta::where('pelatihan_id', $pelatihan_id)
+            ->where('bersyahadah',1)
+            ->chunk(1, function($pesertass) {
+                foreach ($pesertass as $value) {
+                    // apply some action to the chunked results here
+                    // $value->update(['qr'=>'1']);
+                    // \QrCode::size(150)
+                    // ->format('png') ->generate('https://www.profile.tilawatipusat.com/'.$value->slug, public_path('images/'.$value->slug.'.png'));
+                    QRJob::dispatch($value);
+                }
+            });
+
+            
             return response()->json($pelatihan_id,200);
     }
 }
