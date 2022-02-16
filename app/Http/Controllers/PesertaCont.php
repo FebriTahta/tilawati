@@ -561,6 +561,7 @@ class PesertaCont extends Controller
                             'tanggal' => $tanggal,
                             'name' => $request->name,
                             'email' => $request->email,
+                            'lembaga'=> $request->lembaga,
                             'pos' => $request->pos,
                             'slug' => $slug,
                             'tmptlahir' => $tmptlahir,
@@ -612,6 +613,7 @@ class PesertaCont extends Controller
                         'name' => $request->name,
                         'email' => $request->email,
                         'tmptlahir' => $tmptlahir,
+                        'lembaga'=> $request->lembaga,
                         'tgllahir' => $request->tgllahir,
                         'slug'=>$slug,
                         'alamat' => $request->alamat,
@@ -655,6 +657,7 @@ class PesertaCont extends Controller
                             'pelatihan_id' => $request->pelatihan_id,
                             'program_id' => $diklat->program_id,
                             'tanggal' => $tanggal,
+                            'lembaga'=> $request->lembaga,
                             'name' => $request->name,
                             'email' => $request->email,
                             'pos' => $request->pos,
@@ -708,6 +711,7 @@ class PesertaCont extends Controller
                         'name' => $request->name,
                         'email' => $request->email,
                         'tmptlahir' => $tmptlahir,
+                        'lembaga'=> $request->lembaga,
                         'tgllahir' => $request->tgllahir,
                         'slug'=>$slug,
                         'alamat' => $request->alamat,
@@ -1963,7 +1967,7 @@ class PesertaCont extends Controller
                                         'email'         => $request->email,
                                         'bersyahadah'   => $request->bersyahadah,
                                         'jilid'         => $request->jilid,
-                                        'kriteria'      => $request->kriteria,
+                                        // 'kriteria'      => $request->kriteria,
                                         'munaqisy'      => $request->munaqisy,
                                     ]
                                 );
@@ -2000,7 +2004,7 @@ class PesertaCont extends Controller
                                         'email'         => $request->email,
                                         'bersyahadah'   => $request->bersyahadah,
                                         'jilid'         => $request->jilid,
-                                        'kriteria'      => $request->kriteria,
+                                        // 'kriteria'      => $request->kriteria,
                                         'munaqisy'      => $request->munaqisy,
                                     ]
                                 );
@@ -2041,7 +2045,7 @@ class PesertaCont extends Controller
                                         'email'         => $request->email,
                                         'bersyahadah'   => $request->bersyahadah,
                                         'jilid'         => $request->jilid,
-                                        'kriteria'      => $request->kriteria,
+                                        // 'kriteria'      => $request->kriteria,
                                         'munaqisy'      => $request->munaqisy,
                                     ]
                                 );
@@ -2078,7 +2082,7 @@ class PesertaCont extends Controller
                                         'email'         => $request->email,
                                         'bersyahadah'   => $request->bersyahadah,
                                         'jilid'         => $request->jilid,
-                                        'kriteria'      => $request->kriteria,
+                                        // 'kriteria'      => $request->kriteria,
                                         'munaqisy'      => $request->munaqisy,
                                     ]
                                 );
