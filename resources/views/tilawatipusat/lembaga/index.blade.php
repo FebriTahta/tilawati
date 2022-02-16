@@ -723,6 +723,7 @@
                 },
                 success: function(data) {
                     if (data.success) {
+                        toastr.success(data.success);
                         $("#tambahlembaga")[0].reset();
                         var oTable = $('#datatable-buttons').dataTable();
                         oTable.fnDraw(false);
@@ -759,6 +760,7 @@
                 },
                 success: function(data) {
                     if (data.success) {
+                        toastr.success(data.success);
                         $("#tambahlembaga2")[0].reset();
                         var oTable = $('#datatable-buttons').dataTable();
                         oTable.fnDraw(false);
