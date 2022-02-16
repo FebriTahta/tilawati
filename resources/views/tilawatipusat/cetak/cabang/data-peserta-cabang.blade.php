@@ -44,7 +44,24 @@
         </thead >
         <tbody>
             <tr></tr>
-           
+            @foreach ($peserta as $item)
+                <td>{{$item->name}}</td>
+                <td>{{$item->alamat}}</td>
+                <td>
+                    @if ($item->kabupaten !== null)
+                    {{$item->kabupaten->kota}}
+                    @else
+                    -
+                    @endif
+                </td>
+                <td>{{$item->telp}}</td>
+                <td>{{$item->tmptlahir}}</td>
+                <td>{{$item->tgllahir}}</td>
+                <td>-</td>
+                <td>{{$item->jilid}}</td>
+                <td>{{$item->kriteria}}</td>
+                <td>{{$item->bersyahadah}}</td>
+            @endforeach
         </tbody>
     </table>
 </body>
