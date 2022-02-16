@@ -7,7 +7,7 @@ use App\Models\Peserta;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\FromCollection;
 
-class ExportDataPeserta implements FromView
+class ExportDataPeserta implements FromView,ShouldAutoSize
 {
     public function __construct($pelatihan_id)
     {
