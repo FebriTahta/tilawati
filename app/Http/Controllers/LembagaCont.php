@@ -330,6 +330,7 @@ class lembagaCont extends Controller
                     'jml_guru'      => $request->jml_guru,
                     'jml_santri'    => $request->jml_santri,
                     'tahunmasuk'    => $request->tahunmasuk,
+                    'email'         => $request->email,
                     'status'        => 'Aktif',
                 ]
             );
@@ -359,6 +360,7 @@ class lembagaCont extends Controller
                     'jml_guru'      => $request->jml_guru,
                     'jml_santri'    => $request->jml_santri,
                     'tahunmasuk'    => $request->tahunmasuk,
+                    'email'         => $request->email,
                     'status'        => 'Aktif',
                 ]
             );
@@ -417,6 +419,7 @@ class lembagaCont extends Controller
                 'jml_santri'    => $request->jml_santri,
                 'tahunmasuk'    => $request->tahunmasuk,
                 'status'        => $request->status,
+                'email'         => $request->email,
             ]
         );
         

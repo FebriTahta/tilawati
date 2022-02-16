@@ -1,42 +1,52 @@
 @extends('layouts.tilawatipusat_layouts.master')
 
-@section('title') lembaga @endsection
+@section('title')
+    lembaga
+@endsection
 @section('css')
-
     <!-- DataTables -->
     <link href="{{ URL::asset('tilawatipusat/libs/datatables/datatables.min.css') }}" rel="stylesheet" type="text/css" />
-
 @endsection
 @section('content')
 
     @component('common-tilawatipusat.breadcrumb')
-        @slot('title') lembaga @endslot
-        @slot('title_li') Tilawati @endslot
+        @slot('title')
+            lembaga
+        @endslot
+        @slot('title_li')
+            Tilawati
+        @endslot
     @endcomponent
     <div class="row">
         <div class="col-xl-6">
             @component('common-tilawatipusat.dashboard-widget')
-
-                @slot('title') Total Lembaga seluruh Indonesia <br> <b id="cb"> ??? </b> lembaga <br> <small><b
-                            id="lem_aktif"></b> Aktif & <b id="lem_nonaktif"></b>
-                    Non Aktif</small> @endslot
-                @slot('iconClass') mdi mdi-mdi mdi-contact-mail-outline
-                tag-plus-outline @endslot
-                @slot('price') @endslot
-
+                @slot('title')
+                    Total Lembaga seluruh Indonesia <br> <b id="cb"> ??? </b> lembaga <br> <small><b id="lem_aktif"></b> Aktif & <b
+                            id="lem_nonaktif"></b>
+                        Non Aktif</small>
+                @endslot
+                @slot('iconClass')
+                    mdi mdi-mdi mdi-contact-mail-outline
+                    tag-plus-outline
+                @endslot
+                @slot('price')
+                @endslot
             @endcomponent
         </div>
         @if (auth()->user()->role == 'cabang')
             <div class="col-xl-6">
                 @component('common-tilawatipusat.dashboard-widget')
-                    @slot('title') Total Lembaga Cabang Anda <br> <b id="cb2"> ??? </b> lembaga <br> <small><b
-                                id="lem_aktif2"></b>
+                    @slot('title')
+                        Total Lembaga Cabang Anda <br> <b id="cb2"> ??? </b> lembaga <br> <small><b id="lem_aktif2"></b>
                             Aktif & <b id="lem_nonaktif2"></b>
-                        Non Aktif</small> @endslot
-                    @slot('iconClass') mdi mdi-mdi mdi-contact-mail-outline
-                    tag-plus-outline @endslot
-                    @slot('price') @endslot
-
+                            Non Aktif</small>
+                    @endslot
+                    @slot('iconClass')
+                        mdi mdi-mdi mdi-contact-mail-outline
+                        tag-plus-outline
+                    @endslot
+                    @slot('price')
+                    @endslot
                 @endcomponent
             </div>
         @endif
@@ -80,8 +90,9 @@
                         <a href="/export-template-lembaga" class="btn btn-sm btn-outline-primary mb-2 mr-1 text-uppercase"
                             style="font-size: 12px "><i class="mdi mdi-download"></i> Unduh Template</a>
 
-                        <a href="/export-template-lembaga/{{auth()->user()->cabang->id}}" class="btn btn-sm btn-outline-warning mb-2 mr-1 text-uppercase"
-                            style="font-size: 12px "><i class="mdi mdi-download"></i> Unduh Data Lembaga</a>
+                        <a href="/export-template-lembaga/{{ auth()->user()->cabang->id }}"
+                            class="btn btn-sm btn-outline-warning mb-2 mr-1 text-uppercase" style="font-size: 12px "><i
+                                class="mdi mdi-download"></i> Unduh Data Lembaga</a>
                     @endif
 
                     {{-- <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive"> --}}
@@ -284,6 +295,8 @@
         </div><!-- /.modal -->
     </div>
 
+
+
     <div class="col-sm-6 col-md-3 m-t-30">
         <div class="modal fade bs-example-modal-kepala-lembaga" tabindex="-1" role="dialog"
             aria-labelledby="mySmallModalLabel" aria-hidden="true">
@@ -359,7 +372,8 @@
         <!-- /.modal-dialog -->
     </div>
 
-    <div class="modal fade bs-example-modal-diklat-hapus" id="modal-hapus" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal fade bs-example-modal-diklat-hapus" id="modal-hapus" tabindex="-1" role="dialog"
+        aria-labelledby="mySmallModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-md">
             <div class="modal-content">
                 <div class="modal-body">
@@ -367,14 +381,16 @@
                         <div class="card m-b-30">
                             <div class="card-body">
                                 <div class="container-fluid">
-                                    <form id="hapuslembaga"  method="POST" enctype="multipart/form-data">@csrf
+                                    <form id="hapuslembaga" method="POST" enctype="multipart/form-data">@csrf
                                         <div class="form-group text-center">
                                             <h5>Anda yakin akan menghapus Lembaga tersebut ?</h5>
-                                            <input type="hidden" class="form-control text-capitalize" id="id" name="id" required>
+                                            <input type="hidden" class="form-control text-capitalize" id="id" name="id"
+                                                required>
                                         </div>
                                         <div class="row" style="text-align: center">
                                             <div class="form-group col-6 col-xl-6">
-                                                <input type="submit" name="hapus" id="btnhapus" class="btn btn-danger" value="Ya, Hapus!" />
+                                                <input type="submit" name="hapus" id="btnhapus" class="btn btn-danger"
+                                                    value="Ya, Hapus!" />
                                             </div>
                                             <div class="form-group col-6 col-xl-6">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">
@@ -392,12 +408,13 @@
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 
-    <div class="modal fade bs-example-modal-tambah-cabang" id="modal-edit" tabindex="-1" role="dialog"
+    <div class="col-sm-6 col-md-3 m-t-30">
+        <div class="modal fade bs-example-modal-tambah-lembaga" tabindex="-1" id="modal-edit" role="dialog"
             aria-labelledby="mySmallModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title mt-0">DATA LEBAGA </h5>
+                        <h5 class="modal-title mt-0">UPDATE DATA LEMBAGA </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -409,80 +426,88 @@
                                 <div class="card-body">
                                     <form method="POST" id="tambahlembaga2">@csrf
                                         <div class="row">
-                                            <input type="hidden" id="id" name="id">
+                                            <input type="hidden" name="kabupaten_id" id="kab">
+                                            {{-- <div class="form-group col-xl-6">
+                                                <select name="kabupaten_id" id="kab" class="form-control" id="" required>
+                                                    
+                                                    @foreach ($kb as $item)
+                                                        <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div> --}}
+                                            {{-- <div class="form-group col-sm-6">
+                                                <select name="kecamatan_id2" id="kecamatan_id2" class="form-control"
+                                                    required>
+                                                    <option value=""><i class="text-danger">3. </i> Kecamatan</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-sm-6">
+                                                <select name="kelurahan_id2" id="kelurahan_id2" class="form-control"
+                                                    required>
+                                                    <option value=""><i class="text-danger">4. </i> Kelurahan</option>
+                                                </select>
+                                            </div> --}}
+                                        </div>
+                                        <div class="row">
+                                            <input type="hidden" name="id" id="id">
+                                            <hr>
                                             <div class="form-group col-xl-6">
                                                 <label for=""><i class="text-danger">* </i>Nama Lembaga</label>
-                                                <input type="text" class="form-control text-capitalize" id="name"
-                                                    name="name" required>
+                                                <input type="text" class="form-control" id="name" name="name" required>
                                             </div>
                                             <div class="form-group col-xl-6">
-                                                <label for=""><i class="text-danger">* </i>Kepala Lembaga</label>
-                                                <input type="text" class="form-control text-capitalize" name="kepalalembaga"
-                                                    id="kepala" required>
+                                                <label for=""><i class="text-danger">* </i>Telp Lembaga</label>
+                                                <input type="number" class="form-control" id="telp" name="telp" required>
                                             </div>
                                             <div class="form-group col-xl-6">
-                                                <label for=""><i class="text-danger">* </i>Wa / Telp Aktif</label>
-                                                <input type="text" class="form-control" id="telp" name="telp" required>
+                                                <label for=""><i class="text-danger"> </i>Email Lembaga</label>
+                                                <input type="email" class="form-control" id="email" name="email">
                                             </div>
-                                            
                                             <div class="form-group col-xl-6">
-                                                <label for=""><i class="text-danger">* </i>Kota / Kab</label>
-                                                <select name="kabupaten_id" id="kab" class="form-control">
-                                                    <?php $kab = App\Models\Kabupaten::all()?>
-                                                    @foreach ($kab as $kb)
-                                                        <option value="{{$kb->id}}">{{$kb->nama}}</option>
+                                                <label for=""><i class="text-danger"> </i>Website Lembaga</label>
+                                                <input type="text" class="form-control" id="website" name="website">
+                                            </div>
+                                            <div class="form-group col-xl-12">
+                                                <label for=""><i class="text-danger">* </i>Alamat Lembaga (lokasi
+                                                    lembaga)</label>
+                                                <textarea name="alamat" class="form-control" id="alamat" cols="5"
+                                                    rows="3" required></textarea>
+                                            </div>
+                                            <div class="form-group col-xl-6">
+                                                <select name="jenjang_id" class="form-control" id="" required>
+                                                    <option value=""><i class="text-danger">*</i> Kelembagaan</option>
+                                                    @foreach ($jenjang as $item)
+                                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
                                             <div class="form-group col-xl-6">
-                                                <label for=""><i class="text-danger">* </i>Jumlah Guru</label>
-                                                <input type="number" class="form-control" id="guru" name="jml_guru" 
-                                                    required>
-                                            </div>
-                                            <div class="form-group col-xl-6">
-                                                <label for=""><i class="text-danger">* </i>Jumlah Santri</label>
-                                                <input type="number" class="form-control" id="santri" name="jml_santri" 
-                                                    required>
-                                            </div>
-                                            <div class="form-group col-xl-6">
-                                                <label for=""><i class="text-danger ">* </i>Alamat</label>
-                                                <textarea name="alamat" id="alamat"
-                                                    class="text-capitalize form-control" id="" cols="5" rows="3"
-                                                    required></textarea>
-                                            </div>
-                                            <div class="form-group col-xl-6">
-                                                <label for=""><i class="text-danger">* </i>Pengelola</label>
-                                                <input type="text" class="form-control" id="pengelola" name="pengelola" 
-                                                    required>
-                                            </div>
-                                            
-                                            <div class="form-group col-xl-6">
-                                                <label for=""><i class="text-danger">* </i>Status Keanggotaan</label>
-                                                <br>
-                                                <select name="status" class="form-control" id="" required>
-                                                    <option value=""></option>
-                                                    <option value="aktif">Aktif</option>
-                                                    <option value="aktif">Non Aktif</option>
+                                                <select name="kelembagaan" class="form-control" id="" required>
+                                                    <option value=""><i class="text-danger">*</i> Pengelolaan</option>
+                                                    <option value="Yayasan">1. Yayasan</option>
+                                                    <option value="Masjid">2. Masjid</option>
+                                                    <option value="Pribadi">3. Pribadi</option>
                                                 </select>
                                             </div>
-                                            {{-- <div class="form-group col-xl-6">
-                                                <label for=""><i class="text-danger"> </i>Email Cabang</label>
-                                                <input type="email" class="form-control" id="email" name="email">
-                                            </div> --}}
-                                            
-                                            {{-- <div class="form-group col-xl-3">
-                                                <label for=""><i class="text-danger">* </i>Kode Pos</label>
-                                                <input type="number" class="form-control" name="pos" required>
+                                            <div class="form-group col-xl-3">
+                                                <label for=""><i class="text-danger"> </i>Kode Pos</label>
+                                                <input type="number" class="form-control" id="pos" name="pos">
                                             </div>
-                                            <div class="form-group col-xl-12">
-                                                <label for=""><i class="text-danger">* </i>Alamat Ekspedisi (untuk
-                                                    pengiriman)</label>
-                                                <textarea name="ekspedisi" class="form-control text-capitalize" id=""
-                                                    cols="5" rows="3" required></textarea>
-                                            </div> --}}
+                                            <div class="form-group col-xl-3">
+                                                <label for=""><i class="text-danger"> </i>Tahun Masuk</label>
+                                                <input type="date" class="form-control" name="tahunmasuk">
+                                            </div>
+                                            <div class="form-group col-xl-3">
+                                                <label for=""><i class="text-danger">* </i>Jumlah Guru</label>
+                                                <input type="number" class="form-control" id="guru" name="jml_guru" required>
+                                            </div>
+                                            <div class="form-group col-xl-3">
+                                                <label for=""><i class="text-danger">* </i>Jumlah Santri</label>
+                                                <input type="number" class="form-control" id="santri" name="jml_santri" required>
+                                            </div>
                                             <div class="form-group col-xl-12 col-12">
-                                                <input type="submit" id="btnsub" style="width: 100%"
-                                                    class="btn btn-info" value="Submit!">
+                                                <input type="submit" id="btnsub" style="width: 100%" class="btn btn-info"
+                                                    value="Submit!">
                                             </div>
                                         </div>
                                     </form>
@@ -493,6 +518,7 @@
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
+    </div>
     {{-- <form id="ubah_status">
     <input type="hidden" data>
 </form> --}}
@@ -517,151 +543,149 @@
     <script src="{{ URL::asset('tilawatipusat/js/pages/datatables.init.js') }}"></script>
 
     <script>
-         $('#modal-hapus').on('show.bs.modal', function(event) {
-                var button = $(event.relatedTarget)
-                var id = button.data('id')
-                var modal = $(this)
-                console.log(id);
-                modal.find('.modal-body #id').val(id);
-            })
+        $('#modal-hapus').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget)
+            var id = button.data('id')
+            var modal = $(this)
+            console.log(id);
+            modal.find('.modal-body #id').val(id);
+        })
 
-            $('#modal-edit').on('show.bs.modal', function(event) {
-                var button = $(event.relatedTarget)
-                var id = button.data('id')
-                var name = button.data('name')
-                var kepala = button.data('kepala')
-                var telp = button.data('telp')
-                var kab = button.data('kab')
-                var guru = button.data('guru')
-                var santri = button.data('santri')
-                var alamat = button.data('alamat')
-                var pengelola = button.data('pengelola')
-                var status = button.data('status')
-                var modal = $(this)
-                modal.find('.modal-body #id').val(id);
-                modal.find('.modal-body #name').val(name);
-                modal.find('.modal-body #kepala').val(kepala);
-                modal.find('.modal-body #telp').val(telp);
-                modal.find('.modal-body #kab').val(kab);
-                modal.find('.modal-body #guru').val(guru);
-                modal.find('.modal-body #santri').val(santri);
-                modal.find('.modal-body #alamat').val(alamat);
-                modal.find('.modal-body #pengelola').val(pengelola);
-                modal.find('.modal-body #status').val(status);
-            })
-            $('#hapuslembaga').submit(function(e) {
-                e.preventDefault();
-                var formData = new FormData(this);
-                $.ajax({
-                type:'POST',
-                url: "{{ route('lembaga.hapus')}}",
+        $('#modal-edit').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget)
+            var id = button.data('id')
+            var name = button.data('name')
+            var kepala = button.data('kepala')
+            var telp = button.data('telp')
+            var kab = button.data('kab')
+            var guru = button.data('guru')
+            var santri = button.data('santri')
+            var alamat = button.data('alamat')
+            var pengelola = button.data('pengelola')
+            var status = button.data('status')
+            var modal = $(this)
+            modal.find('.modal-body #id').val(id);
+            modal.find('.modal-body #name').val(name);
+            modal.find('.modal-body #kepala').val(kepala);
+            modal.find('.modal-body #telp').val(telp);
+            modal.find('.modal-body #kab').val(kab);
+            modal.find('.modal-body #guru').val(guru);
+            modal.find('.modal-body #santri').val(santri);
+            modal.find('.modal-body #alamat').val(alamat);
+            modal.find('.modal-body #pengelola').val(pengelola);
+            modal.find('.modal-body #status').val(status);
+        })
+        $('#hapuslembaga').submit(function(e) {
+            e.preventDefault();
+            var formData = new FormData(this);
+            $.ajax({
+                type: 'POST',
+                url: "{{ route('lembaga.hapus') }}",
                 data: formData,
-                cache:false,
+                cache: false,
                 contentType: false,
                 processData: false,
-                beforeSend:function(){
-                    $('#btnhapus').attr('disabled','disabled');
+                beforeSend: function() {
+                    $('#btnhapus').attr('disabled', 'disabled');
                     $('#btnhapus').val('Proses Hapus Data');
                 },
-                success: function(data){
-                    if(data.success)
-                    {
+                success: function(data) {
+                    if (data.success) {
                         //sweetalert and redirect
                         var oTable = $('#datatable-buttons').dataTable();
                         oTable.fnDraw(false);
                         $('#btnhapus').val('Ya, Hapus!');
                         $('.bs-example-modal-diklat-hapus').modal('hide');
-                        $('#btnhapus').attr('disabled',false);
+                        $('#btnhapus').attr('disabled', false);
                         // swal({ title: "Success!",
                         //     text: "Diklat Berhasil Di Dihapus!",
                         //     type: "success"})
                         $.ajax({
-                url: '{{ route('diklat.lembaga_nonaktif') }}',
-                type: 'get',
-                dataType: 'json',
-                success: function(data) {
-                    document.getElementById('lem_nonaktif').innerHTML = data;
-                    console.log(data);
-                }
-            });
+                            url: '{{ route('diklat.lembaga_nonaktif') }}',
+                            type: 'get',
+                            dataType: 'json',
+                            success: function(data) {
+                                document.getElementById('lem_nonaktif').innerHTML = data;
+                                console.log(data);
+                            }
+                        });
 
-            $.ajax({
-                url: '{{ route('diklat.lembaga_aktif') }}',
-                type: 'get',
-                dataType: 'json',
-                success: function(data) {
-                    document.getElementById('lem_aktif').innerHTML = data;
-                    console.log(data);
-                }
-            });
+                        $.ajax({
+                            url: '{{ route('diklat.lembaga_aktif') }}',
+                            type: 'get',
+                            dataType: 'json',
+                            success: function(data) {
+                                document.getElementById('lem_aktif').innerHTML = data;
+                                console.log(data);
+                            }
+                        });
 
-            $.ajax({
-                url: '{{ route('diklat.lembaga_nonaktif2') }}',
-                type: 'get',
-                dataType: 'json',
-                success: function(data) {
-                    document.getElementById('lem_nonaktif2').innerHTML = data;
-                    console.log(data);
-                }
-            });
+                        $.ajax({
+                            url: '{{ route('diklat.lembaga_nonaktif2') }}',
+                            type: 'get',
+                            dataType: 'json',
+                            success: function(data) {
+                                document.getElementById('lem_nonaktif2').innerHTML = data;
+                                console.log(data);
+                            }
+                        });
 
-            $.ajax({
-                url: '{{ route('diklat.lembaga_aktif2') }}',
-                type: 'get',
-                dataType: 'json',
-                success: function(data) {
-                    document.getElementById('lem_aktif2').innerHTML = data;
-                    console.log(data);
-                }
-            });
+                        $.ajax({
+                            url: '{{ route('diklat.lembaga_aktif2') }}',
+                            type: 'get',
+                            dataType: 'json',
+                            success: function(data) {
+                                document.getElementById('lem_aktif2').innerHTML = data;
+                                console.log(data);
+                            }
+                        });
 
-            // $.ajax({
-            //     url:'{{ route('diklat.lembaga_kab') }}',
-            //     type: 'get',
-            //     dataType: 'json',
-            //     success:function(data) {
-            //         document.getElementById('kb').innerHTML = data;
-            //         console.log(data);
-            //     }
-            // });
+                        // $.ajax({
+                        //     url:'{{ route('diklat.lembaga_kab') }}',
+                        //     type: 'get',
+                        //     dataType: 'json',
+                        //     success:function(data) {
+                        //         document.getElementById('kb').innerHTML = data;
+                        //         console.log(data);
+                        //     }
+                        // });
 
-            // $.ajax({
-            //     url:'{{ route('diklat.lembaga_pro') }}',
-            //     type: 'get',
-            //     dataType: 'json',
-            //     success:function(data) {
-            //         document.getElementById('pv').innerHTML = data;
-            //         console.log(data);
-            //     }
-            // });
+                        // $.ajax({
+                        //     url:'{{ route('diklat.lembaga_pro') }}',
+                        //     type: 'get',
+                        //     dataType: 'json',
+                        //     success:function(data) {
+                        //         document.getElementById('pv').innerHTML = data;
+                        //         console.log(data);
+                        //     }
+                        // });
 
-            $.ajax({
-                url: '{{ route('diklat.lembaga_tot') }}',
-                type: 'get',
-                dataType: 'json',
-                success: function(data) {
-                    document.getElementById('cb').innerHTML = data;
-                    console.log(data);
-                }
-            });
+                        $.ajax({
+                            url: '{{ route('diklat.lembaga_tot') }}',
+                            type: 'get',
+                            dataType: 'json',
+                            success: function(data) {
+                                document.getElementById('cb').innerHTML = data;
+                                console.log(data);
+                            }
+                        });
 
-            $.ajax({
-                url: '{{ route('diklat.lembaga_tot2') }}',
-                type: 'get',
-                dataType: 'json',
-                success: function(data) {
-                    document.getElementById('cb2').innerHTML = data;
-                    console.log(data);
-                }
-            });
+                        $.ajax({
+                            url: '{{ route('diklat.lembaga_tot2') }}',
+                            type: 'get',
+                            dataType: 'json',
+                            success: function(data) {
+                                document.getElementById('cb2').innerHTML = data;
+                                console.log(data);
+                            }
+                        });
                     }
                 },
-                error: function(data)
-                {
+                error: function(data) {
                     console.log(data);
-                    }
-                });
+                }
             });
+        });
         var kode;
         $('#tambahlembaga').submit(function(e) {
             e.preventDefault();
@@ -884,9 +908,94 @@
                 }
             });
 
+            $('select[name="kabupaten_id"]').on('change', function() {
+                //mencari kota/kab dari provinsi 3 tingkat
+                var kabupaten_id = $('#kab').val();
+                console.log(kabupaten_id);
+                if (kabupaten_id) {
+                    $.ajax({
+                        url: '/fetch2/' + kabupaten_id,
+                        type: "GET",
+                        dataType: "json",
+                        success: function(dk) {
+                            $('select[name="kecamatan_id2"]')
+                                .empty();
+                            $.each(dk, function(key,
+                                value) {
+                                $('select[name="kecamatan_id2"]')
+                                    .append(
+                                        '<option value="' +
+                                        key +
+                                        '">' +
+                                        value +
+                                        '</option>'
+                                    );
+                            });
+                            var x = $(
+                                "#kecamatan_id option:selected"
+                            ).val();
+                            console.log('kecamatan_id2' +
+                                x);
+                            $.ajax({
+                                url: '/fetch3/' +
+                                    x,
+                                type: "GET",
+                                dataType: "json",
+                                success: function(
+                                    city) {
+                                    $('select[name="kelurahan_id2"]')
+                                        .empty();
+                                    $.each(city,
+                                        function(
+                                            key,
+                                            value
+                                        ) {
+                                            $('select[name="kelurahan_id2"]')
+                                                .append(
+                                                    '<option value="' +
+                                                    key +
+                                                    '">' +
+                                                    value +
+                                                    '</option>'
+                                                );
+                                        }
+                                    );
+                                    var y =
+                                        $(
+                                            "#kelurahan_id2 option:selected"
+                                        )
+                                        .val();
+                                }
+                            });
+                        }
+                    });
+                }
+            });
+
             //kecamatan_kelurahan
             $('select[name="kecamatan_id"]').on('change', function() {
                 var kecamatan_id = $('#kecamatan_id').val();
+                console.log(kecamatan_id);
+                if (kecamatan_id) {
+                    $.ajax({
+                        url: '/fetch3/' + kecamatan_id,
+                        type: "GET",
+                        dataType: "json",
+                        success: function(city) {
+                            $('select[name="kelurahan_id"]').empty();
+                            $.each(city, function(key, value) {
+                                $('select[name="kelurahan_id"]').append(
+                                    '<option value="' + key + '">' + value +
+                                    '</option>');
+                            });
+                            var y = $("#kelurahan_id option:selected").val();
+                        }
+                    });
+                }
+            });
+
+            $('select[name="kecamatan_id2"]').on('change', function() {
+                var kecamatan_id = $('#kecamatan_id2').val();
                 console.log(kecamatan_id);
                 if (kecamatan_id) {
                     $.ajax({
