@@ -22,7 +22,7 @@
                     <h4 class="card-title text-uppercase">{{ $trainer->name }} - Trainer Cabang
                         {{ substr($trainer->cabang->kabupaten->nama, 5) }}
                     </h4>
-                    <p class="card-title-desc">Ter-update berdasarkan Tahun 2021 </br></p>
+                    <code class="card-title-desc">Sedang Dalam Pengembangan </br></code>
 
                     <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
                         <form id="trainer_store" class="text-capitalize" method="POST" enctype="multipart/form-data">@csrf
@@ -43,26 +43,25 @@
                                     <textarea name="alamat" id="alamat" class="form-control" id="" cols="3"
                                         rows="3">{{ $trainer->alamat }}</textarea>
                                 </div>
-                                <div class="col-md-12 col-12 form-group " style="margin-bottom: 10px" id="dynamic_field">
-                                    <button type="button" class="btn btn-outline-primary btn-sm"
-                                                name="add" id="add"><i class="fa fa-plus"></i></button>
-                                    @foreach ($trainer->macamtrainer as $key=> $item)
-                                        @if ($key > 0)
-                                        <button type="button" class="btn btn-outline-danger btn-sm btn_remove"><i class="fa fa-minus"></i></button>
-                                        @endif
-                                        <label for="" style="margin-top: 20px"> Trainer</label>
-                                        <?php $macam = App\Models\Macamtrainer::all();?>
-                                        <select name="trainer[]" class="form-control" required>
-                                            @foreach ($macam as $item)
-                                                <option value="{{item}}">{{$item->jenis}}</option>
-                                            @endforeach
-                                        </select>
-                                    @endforeach
-                                </div>
                             </div>
                             <hr>
+                            {{-- <div class="row">
+
+                                @foreach ($instruktur as $item)
+                                    
+                                @endforeach
+
+                                @foreach ($macam as $items)
+                                <div class="col-md-6 col-12 form-group">
+                                    <label for="">{{$items->jenis}}</label>
+                                    <input type="text" id="" name="" value=""
+                                        class="form-control" required>
+                                </div>
+                                @endforeach
+                            </div> --}}
                             <div class="form-group text-right">
-                                <input type="submit" id="z" class="btn btn-outline-primary" value="Submit!">
+                                {{-- <input type="submit" id="z" class="btn btn-outline-primary" value="BACK!"> --}}
+                                <a href="{{url()->previous()}}" class="btn btn-outline-primary">BACK</a>
                             </div>
                         </form>
                         <footer class="blockquote-footer">Updated at <cite title="Source Title">2021</cite></footer>

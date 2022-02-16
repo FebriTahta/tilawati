@@ -432,8 +432,7 @@ class CabangCont extends Controller
                     return DataTables::of($data)
                     ->addColumn('action', function ($data) {
                         $stats = '<a href="#" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modal_hapus" data-id="'.$data->id.'"><i class="fa fa-trash"></i></a>';
-                        // $stats .= ' <a href="/edit-trainer/cabang/'.$data->id.'" class="btn btn-sm btn-primary" target="_blank" data-id="'.$data->id.'" data-name="'.$data->name.'"
-                        // data-telp="'.$data->telp.'" data-alamat="'.$data->alamat.'" data-trainer="'.$data->trainer.'"><i class="fa fa-edit"></i></a>';
+                        $stats .= ' <a href="/edit-trainer/cabang/'.$data->id.'" class="btn btn-sm btn-primary" target="_blank"><i class="fa fa-edit"></i></a>';
                         return $stats;
                     })
                     ->addColumn('trains', function ($data) {
@@ -452,8 +451,9 @@ class CabangCont extends Controller
 
     public function edit_trainer($trainer_id)
     {
+        $macam = Macamtrainer::all();
         $trainer = Trainer::where('id',$trainer_id)->first();
-        return view('tilawatipusat.cabang.trainer_update',compact('trainer'));
+        return view('tilawatipusat.cabang.trainer_update',compact('trainer','macam'));
     }
 
     public function store_trainer_cabang(Request $request)

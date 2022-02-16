@@ -62,6 +62,7 @@ class lembagaCont extends Controller
                     })
                     ->addColumn('opsi', function ($data) {
                         $btn = '<a href="#" data-toggle="modal" data-id="'.$data->id.'" data-target="#modal-hapus" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i></a>';
+                        $btn .= ' <a href="#" data-toggle="modal" data-id="'.$data->id.'" data-target="#modal-edit" class="btn btn-sm btn-outline-primary"><i class="fa fa-edit"></i></a>';
                         return $btn;
                     })
                 ->rawColumns(['kepala','kabupaten','provinsi','statuss','opsi'])
@@ -104,6 +105,7 @@ class lembagaCont extends Controller
                     })
                     ->addColumn('opsi', function ($data) {
                         $btn = '<a href="#" data-toggle="modal" data-id="'.$data->id.'" data-target="#modal-hapus" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i></a>';
+                        $btn .= ' <a href="#" data-toggle="modal" data-id="'.$data->id.'" data-target="#modal-edit" class="btn btn-sm btn-outline-primary"><i class="fa fa-edit"></i></a>';
                         return $btn;
                         
                     })
