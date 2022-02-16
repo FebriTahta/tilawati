@@ -45,8 +45,7 @@ class lembagaCont extends Controller
                         return $kabupaten = $data->kabupaten->nama;
                     })
                     ->addColumn('provinsi', function ($data) {
-                        // return $provinsi = $data->provinsi->nama;
-                        return $provinsi = $data->pos.$data->email.$data->website;
+                        return $provinsi = $data->provinsi->nama;
                     })
                     ->addColumn('statuss', function ($data) {
                         if ($data->status == 'Aktif' || $data->status == 'aktif' || $data->status == 'aktif '|| $data->status == 'Aktif ' || $data->status == ' aktif' || $data->status == ' Aktif') {
