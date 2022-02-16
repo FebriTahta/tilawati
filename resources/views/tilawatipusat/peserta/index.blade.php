@@ -1,76 +1,92 @@
 @extends('layouts.tilawatipusat_layouts.master')
 
-@section('title') Peserta Diklat @endsection
+@section('title')
+    Peserta Diklat
+@endsection
 @section('css')
-
     <!-- DataTables -->
     <link href="{{ URL::asset('tilawatipusat/libs/datatables/datatables.min.css') }}" rel="stylesheet" type="text/css" />
     <!-- Select2 -->
     <link href="{{ URL::asset('tilawatipusat/libs/select2/select2.min.css') }}" rel="stylesheet" type="text/css" />
-
-
 @endsection
 @section('content')
 
     @component('common-tilawatipusat.breadcrumb')
-        @slot('title')peserta {{ $diklat->program->name }} @endslot
-        @slot('title_li') @endslot
+        @slot('title')
+            peserta {{ $diklat->program->name }}
+        @endslot
+        @slot('title_li')
+        @endslot
     @endcomponent
     <input type="hidden" id="pelatihan_id2" value="{{ $diklat->id }}">
     <div class="row">
         <div class="col-xl-12">
             @component('common-tilawatipusat.dashboard-widget')
-
-                @slot('title') <b id="" class="text-capitalize"> {{ $diklat->cabang->name }} -
+                @slot('title')
+                    <b id="" class="text-capitalize"> {{ $diklat->cabang->name }} -
                         {{ strtolower($diklat->cabang->kabupaten->nama) }} - <span
                             class="text-info">{{ Carbon\Carbon::parse($diklat->tanggal)->isoFormat('D MMMM Y') }}</span></b>
                 @endslot
-                @slot('iconClass')mdi mdi-account-group @endslot
-                @slot('price') @endslot
-
+                @slot('iconClass')
+                    mdi mdi-account-group
+                @endslot
+                @slot('price')
+                @endslot
             @endcomponent
         </div>
 
         @if ($kab_kosong != 0)
             <div class="col-xl-12" style="display: none">
                 @component('common-tilawatipusat.dashboard-widget')
-
-                    @slot('title') <b id="kabkos"> ??? </b> <b class="text-danger"> Peserta dengan Kab - Kota Kosong / Salah
-                        Penulisan </b> @endslot
-                    @slot('iconClass')mdi mdi-city-variant-outline @endslot
-                    @slot('price') @endslot
-
+                    @slot('title')
+                        <b id="kabkos"> ??? </b> <b class="text-danger"> Peserta dengan Kab - Kota Kosong / Salah
+                            Penulisan </b>
+                    @endslot
+                    @slot('iconClass')
+                        mdi mdi-city-variant-outline
+                    @endslot
+                    @slot('price')
+                    @endslot
                 @endcomponent
             </div>
         @endif
 
         <div class="col-xl-4">
             @component('common-tilawatipusat.dashboard-widget')
-
-                @slot('title') <b id="cb" class="text-success"> ??? </b> <br> <span>Peserta</span> @endslot
-                @slot('iconClass')mdi mdi-account-group @endslot
-                @slot('price') @endslot
-
+                @slot('title')
+                    <b id="cb" class="text-success"> ??? </b> <br> <span>Peserta</span>
+                @endslot
+                @slot('iconClass')
+                    mdi mdi-account-group
+                @endslot
+                @slot('price')
+                @endslot
             @endcomponent
         </div>
 
         <div class="col-xl-4">
             @component('common-tilawatipusat.dashboard-widget')
-
-                @slot('title') <b id="lulus" class="text-info"> {{ $lulus }} </b> <br> Bersyahadah @endslot
-                @slot('iconClass')mdi mdi-mdi mdi-contact-mail-outline @endslot
-                @slot('price') @endslot
-
+                @slot('title')
+                    <b id="lulus" class="text-info"> {{ $lulus }} </b> <br> Bersyahadah
+                @endslot
+                @slot('iconClass')
+                    mdi mdi-mdi mdi-contact-mail-outline
+                @endslot
+                @slot('price')
+                @endslot
             @endcomponent
         </div>
 
         <div class="col-xl-4">
             @component('common-tilawatipusat.dashboard-widget')
-
-                @slot('title') <b id="belum" class="text-danger"> {{ $belum_lulus }} </b> <br> Belum Bersyahadah @endslot
-                @slot('iconClass')mdi mdi-smart-card-outline @endslot
-                @slot('price') @endslot
-
+                @slot('title')
+                    <b id="belum" class="text-danger"> {{ $belum_lulus }} </b> <br> Belum Bersyahadah
+                @endslot
+                @slot('iconClass')
+                    mdi mdi-smart-card-outline
+                @endslot
+                @slot('price')
+                @endslot
             @endcomponent
         </div>
 
@@ -87,19 +103,19 @@
                     @endif
                     <br><br>
                     @if (count($errors) > 0)
-                                <div class="row">
-                                    <div class="col-md-8 col-md-offset-1">
-                                        <div class="alert alert-danger alert-dismissible">
-                                            <button type="button" class="close" data-dismiss="alert"
-                                                aria-hidden="true">×</button>
-                                            <h4><i class="icon fa fa-ban"></i> Error!</h4>
-                                            @foreach ($errors->all() as $error)
-                                                {{ $error }} <br>
-                                            @endforeach
-                                        </div>
-                                    </div>
+                        <div class="row">
+                            <div class="col-md-8 col-md-offset-1">
+                                <div class="alert alert-danger alert-dismissible">
+                                    <button type="button" class="close" data-dismiss="alert"
+                                        aria-hidden="true">×</button>
+                                    <h4><i class="icon fa fa-ban"></i> Error!</h4>
+                                    @foreach ($errors->all() as $error)
+                                        {{ $error }} <br>
+                                    @endforeach
                                 </div>
-                            @endif
+                            </div>
+                        </div>
+                    @endif
                     {{-- <p class="card-title-desc">Ter-update berdasarkan Tahun 2021 </br></p> --}}
                     <form method="POST" class="mb-1 mr-1" action="{{ route('download.template') }}"
                         class="sign-in-form">
@@ -111,10 +127,12 @@
                             Template</button>
                     </form>
                     {{-- <a href="/export-template-diklat/{{$diklat->program->name}}" class="btn btn-sm btn-outline-primary" style="width: 200px" class="btn" value="Download Template" > <i class="fas fa-download"></i> Unduh Template</a> --}}
-                    <a class="btn btn-sm btn-outline-success  mb-1 mr-1" style="width:130px" @if ($diklat->program->penilaian->count() == 0) disabled @else href="{{ route('diklat.peserta_create', $pelatihan_id) }}" @endif><i
+                    <a class="btn btn-sm btn-outline-success  mb-1 mr-1" style="width:130px"
+                        @if ($diklat->program->penilaian->count() == 0) disabled @else href="{{ route('diklat.peserta_create', $pelatihan_id) }}" @endif><i
                             class="mdi mdi-plus"></i> tambah peserta</a>
                     <button class="btn btn-sm btn-outline-success  mb-1 mr-1" style="width:130px " data-toggle="modal"
-                        @if ($diklat->program->penilaian->count() == 0) disabled @else data-target=".bs-example-modal-peserta" @endif><i class="mdi mdi-cloud-upload"></i> import peserta</button>
+                        @if ($diklat->program->penilaian->count() == 0) disabled @else data-target=".bs-example-modal-peserta" @endif><i
+                            class="mdi mdi-cloud-upload"></i> import peserta</button>
                     @if (auth()->user()->role == 'pusat')
                         <button class="text-right btn btn-sm mr-1 mb-1 btn-outline-primary" id="cetak_all"><i
                                 class="fa fa-download"></i> pengiriman modul</button>
@@ -129,6 +147,9 @@
 
                     <button class="text-right btn btn-sm mr-1 mb-1 btn-outline-danger" id="hapus_all"><i
                             class="fa fa-trash"></i> hapus data</button>
+
+                    <a href="/export-peserta-diklat/{{$diklat->id}}" class="text-right btn btn-sm mr-1 mb-1 btn-outline-warning"><i
+                            class="fa fa-download"></i> Download Data Peserta</a>
                     {{-- <form action="/error-penilaian-kategori" method="POST">@csrf
                                         <button type="submit" class="text-right btn btn-sm mr-1 btn-outline-info" id="belakang_all"><i class="fa fa-print"></i> belakang</button>
                                     </form> --}}
@@ -637,7 +658,8 @@
                                 <div class="card-body">
                                     <div class="container-fluid">
                                         {{-- <form id="importpeserta" method="POST" enctype="multipart/form-data">@csrf --}}
-                                        <form action="{{route('import-peserta-diklat2')}}" method="POST" enctype="multipart/form-data">@csrf
+                                        <form action="{{ route('import-peserta-diklat2') }}" method="POST"
+                                            enctype="multipart/form-data">@csrf
                                             <div class="form-group">
                                                 <label for="" class="text-capitalize">Import Data "peserta diklat
                                                     {{ $diklat->program->name }}" (hanya Excel File format .xlsx)</label>
@@ -695,7 +717,6 @@
 @endsection
 
 @section('script')
-
     <!-- Script Select2-->
     <script src="{{ URL::asset('/tilawatipusat/libs/select2/select2.min.js') }}"></script>
     <script src="{{ URL::asset('/tilawatipusat/libs/bootstrap-datepicker/bootstrap-datepicker.min.js') }}"></script>

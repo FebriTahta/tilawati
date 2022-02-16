@@ -152,6 +152,7 @@ class PesertaDiklatImport2 implements ToCollection, WithStartRow
                         if ($lembaga !== null) {
                             # code...
                             $dt_pel->lembaga_id=$lembaga->id;
+                            $dt_pel->lembaga=$row[6];
                         }
 
                         $dt_pel->jilid =$row[7];

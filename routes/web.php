@@ -256,6 +256,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
 
     Route::get('/diklat-lembaga',[LembagaCont::class, 'index'])->name('diklat.lembaga');
     Route::post('/diklat-lembaga-store',[LembagaCont::class,'store'])->name('diklat.lembaga_store');
+    Route::post('/diklat-lembaga-update',[LembagaCont::class,'store2'])->name('diklat.lembaga_store2');
     Route::get('/diklat-lembaga-data',[LembagaCont::class, 'lembaga_data'])->name('diklat.lembaga_data');
     Route::get('/diklat-lembaga-total',[LembagaCont::class, 'lembaga_total'])->name('diklat.lembaga_tot');
     Route::get('/diklat-lembaga-total2',[LembagaCont::class, 'lembaga_total2'])->name('diklat.lembaga_tot2');
@@ -448,6 +449,8 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     Route::post('/reset-password',[UserController::class,'reset_password'])->name('reset_pass');
     Route::post('/export-user',[ExportCont::class,'export_user'])->name('export.user');
 
+    Route::get('/export-data-peserta/{cabang_id}/{pelatihan_id}',[ExportCont::class,'export_data_peserta']);
+
 
     // NEW DATA CABANG RAKERNAS
     Route::get('/data-trainer/cabang',[CabangCont::class,'data_trainer'])->name('data.trainer.cabang');
@@ -455,6 +458,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     Route::get('/list-data-trainer/cabang',[CabangCont::class,'list_trainer_cabang'])->name('list.trainer.cabang');
     Route::post('/store-data-trainer/cabang',[CabangCont::class,'store_trainer_cabang'])->name('store.trainer.cabang');
     Route::post('/delete-data-trainer/cabang',[CabangCont::class,'delete_trainer_cabang'])->name('delete.trainer.cabang');
+    Route::post('/update-data-trainer',[CabangCont::class,'update_data_trainer'])->name('update.data.trainer');
     // NEW DATA KPA CABANG RAKERNAS
     Route::get('/data-kpa/cabang',[CabangCont::class,'data_kpa'])->name('data.kpa.cabang');
     Route::post('/store-data-kpa/cabang',[CabangCont::class,'store_kpa_cabang'])->name('store.kpa.cabang');
@@ -468,6 +472,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     
     // EXPORT TEMPLATE DIKLAT NEW 
     Route::get('/export-template-diklat/{jenis}',[ExportCont::class,'export_template_diklat']);
+    Route::get('/export-peserta-diklat/{pelatihan_id}',[ExportCont::class,'export_data_peserta']);
 
     //IMPORT WITHOUT QUEUE & QR
     Route::post('/import-peserta-diklat2',[ImportController::class,'import_peserta_diklat2'])->name('import-peserta-diklat2');

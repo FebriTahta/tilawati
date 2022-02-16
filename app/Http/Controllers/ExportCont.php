@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Exports\SeluruhPesertaExport;
 use App\Exports\UserExport;
+use App\Exports\ExportDataPeserta;
 use App\Exports\TemplateTrainerCabangExport;
 use App\Exports\TemplateKpaCabangExport;
 use App\Exports\ExportDataKPA;
@@ -64,7 +65,12 @@ class ExportCont extends Controller
     public function export_template_trainer_cabang_data($cabang_id)
     {
         $macam = Macamtrainer::all();
-        return Excel::download(new ExportDataTrainer($cabang_id,$macam),'template-import-tainer-cabang-data.xlsx');
+        return Excel::download(new ExportDataTrainer($cabang_id,$macam),'tainer-cabang-data.xlsx');
+    }
+
+    public function export_data_peserta($pelatihan_id)
+    {
+        return Excel::download(new ExportDataPeserta($pelatihan_id), 'data-peserta.xlsx');
     }
 
     public function export_template_kpa_cabang()
@@ -74,7 +80,7 @@ class ExportCont extends Controller
 
     public function export_template_kpa_cabang_data($cabang_id)
     {
-        return Excel::download(new ExportDataKPA($cabang_id),'template-import-kpa-cabang-data.xlsx');
+        return Excel::download(new ExportDataKPA($cabang_id),'kpa-cabang-data.xlsx');
     }
 
     public function export_template_lembaga_cabang()
@@ -84,7 +90,7 @@ class ExportCont extends Controller
 
     public function export_template_lembaga_cabang_data($cabang_id)
     {
-        return Excel::download(new LembagaDataExport($cabang_id), 'template-import-lembaga-cabang-data.xlsx');
+        return Excel::download(new LembagaDataExport($cabang_id), 'lembaga-cabang-data.xlsx');
     }
 
     public function export_template_diklat($jenis)

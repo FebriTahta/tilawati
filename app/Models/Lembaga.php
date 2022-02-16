@@ -31,6 +31,7 @@ class Lembaga extends Model
         'status',
         'kepalalembaga',
         'jenjang',
+        'email',
     ];
     protected $dates = ['deleted_at'];
 
