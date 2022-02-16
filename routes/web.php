@@ -448,6 +448,8 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     Route::post('/reset-password',[UserController::class,'reset_password'])->name('reset_pass');
     Route::post('/export-user',[ExportCont::class,'export_user'])->name('export.user');
 
+    Route::get('/export-data-peserta/{cabang_id}/{pelatihan_id}',[ExportCont::class,'export_data_peserta']);
+
 
     // NEW DATA CABANG RAKERNAS
     Route::get('/data-trainer/cabang',[CabangCont::class,'data_trainer'])->name('data.trainer.cabang');
@@ -468,6 +470,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     
     // EXPORT TEMPLATE DIKLAT NEW 
     Route::get('/export-template-diklat/{jenis}',[ExportCont::class,'export_template_diklat']);
+    Route::get('/export-peserta-diklat/{pelatihan_id}',[ExportCont::class,'export_data_peserta']);
 
     //IMPORT WITHOUT QUEUE & QR
     Route::post('/import-peserta-diklat2',[ImportController::class,'import_peserta_diklat2'])->name('import-peserta-diklat2');
