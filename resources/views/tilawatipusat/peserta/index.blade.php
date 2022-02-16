@@ -95,6 +95,17 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="card">
+                <?php $peserta_salah = App\Models\Peserta::where('pelatihan_id', $diklat->id)->get(); ?>
+                @if ($peserta_salah->where('tmptlahir', null)->count() > 0)
+                    <div class="col-lg-12 alert alert-danger">
+                        <p>{{$peserta_salah->where('tmptlahir', null)->count()}} Peserta dengan kesalahan penulisan tempat lahir</p>
+                    </div>
+                @endif
+                @if ($peserta_salah->where('tgllahir', '-')->count() > 0)
+                    <div class="col-lg-12 alert alert-danger">
+                        <p>{{$peserta_salah->where('tmptlahir', null)->count()}} Peserta dengan kesalahan penulisan tempat lahir</p>
+                    </div>
+                @endif
                 <div class="card-body">
                     <input type="hidden" id="jenis_program" value="{{ $diklat->program->name }}">
                     <h4 class="card-title text-capitalize">Data Peserta Pelatihan </h4>
@@ -148,8 +159,9 @@
                     <button class="text-right btn btn-sm mr-1 mb-1 btn-outline-danger" id="hapus_all"><i
                             class="fa fa-trash"></i> hapus data</button>
 
-                    <a href="/export-peserta-diklat/{{$diklat->id}}" class="text-right btn btn-sm mr-1 mb-1 btn-outline-warning"><i
-                            class="fa fa-download"></i> Download Data Peserta</a>
+                    <a href="/export-peserta-diklat/{{ $diklat->id }}"
+                        class="text-right btn btn-sm mr-1 mb-1 btn-outline-warning"><i class="fa fa-download"></i> Download
+                        Data Peserta</a>
                     {{-- <form action="/error-penilaian-kategori" method="POST">@csrf
                                         <button type="submit" class="text-right btn btn-sm mr-1 btn-outline-info" id="belakang_all"><i class="fa fa-print"></i> belakang</button>
                                     </form> --}}
