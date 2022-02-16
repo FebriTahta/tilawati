@@ -489,6 +489,7 @@
                                                     <option value="Pribadi">3. Pribadi</option>
                                                 </select>
                                             </div>
+                                            
                                             <div class="form-group col-xl-3">
                                                 <label for=""><i class="text-danger"> </i>Kode Pos</label>
                                                 <input type="number" class="form-control" id="pos" name="pos">
@@ -505,13 +506,15 @@
                                                 <label for=""><i class="text-danger">* </i>Jumlah Santri</label>
                                                 <input type="number" class="form-control" id="santri" name="jml_santri" required>
                                             </div>
-                                            <div class="form-group col-xl-3">
-                                                <label for=""><i class="text-danger">* </i>Status</label>
-                                                <select name="status" id="status" class="form-control">
-                                                    <option value="aktif">Aktif</option>
-                                                    <option value="non aktif">Non Aktif</option>
+                                            
+                                            <div class="form-group col-xl-6">
+                                                <select name="status" class="form-control" required>
+                                                    <option value=""><i class="text-danger">*</i> Status</option>
+                                                    <option value="Aktif">1. Aktif</option>
+                                                    <option value="Non Aktif">2. Non Aktif</option>
                                                 </select>
                                             </div>
+                                            
                                             <div class="form-group col-xl-12 col-12">
                                                 <input type="submit" id="btnsub" style="width: 100%" class="btn btn-info"
                                                     value="Submit!">
