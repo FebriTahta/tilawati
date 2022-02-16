@@ -62,7 +62,10 @@ class lembagaCont extends Controller
                     })
                     ->addColumn('opsi', function ($data) {
                         $btn = '<a href="#" data-toggle="modal" data-id="'.$data->id.'" data-target="#modal-hapus" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i></a>';
-                        $btn .= ' <a href="#" data-toggle="modal" data-id="'.$data->id.'" data-target="#modal-edit" class="btn btn-sm btn-outline-primary"><i class="fa fa-edit"></i></a>';
+                        $btn .= ' <a href="#" data-toggle="modal" data-id="'.$data->id.'" data-name="'.$data->name.'" 
+                        data-kepala="'.$data->kepalalembaga.'" data-telp="'.$data->telp.'" data-kab="'.$data->kabupaten_id.'" 
+                        data-guru="'.$data->jml_guru.'" data-santri="'.$data->jml_santri.'" data-alamat="'.$data->alamat.'" data-pengelola="'.$data->pengelola.'" 
+                        data-status="'.$data->status.'" data-target="#modal-edit" class="btn btn-sm btn-outline-primary"><i class="fa fa-edit"></i></a>';
                         return $btn;
                     })
                 ->rawColumns(['kepala','kabupaten','provinsi','statuss','opsi'])
@@ -376,6 +379,54 @@ class lembagaCont extends Controller
             [
               'success' => 'Lembaga Berhasil Dihapus!',
               'message' => 'Lembaga Berhasil Dihapus!'
+            ]
+        );
+    }
+
+    public function store2(Request $request)
+    {
+        //create_user
+        // $username_baru      = $request->name;
+        // $dt_usr             = new User;
+        // $dt_usr->username   = $username_baru;
+        // $dt_usr->email      = $request->email;
+        // $dt_usr->password   = Hash::make('lembaga_nf');
+        // $dt_usr->role       = 'lembaga';
+        // $dt_usr->created_at = new \DateTime;
+        // $dt_usr->save();
+        $kab = Kabupaten::where('id', $request->kabupaten_id)->first();
+        $pro = $kab->provinsi_id;
+        Lembaga::updateOrCreate(
+            [
+              'id' => $request->id
+            ],
+            [
+                // 'jenjang_id'    => $request->jenjang_id,
+                'provinsi_id'   => $pro,
+                'kabupaten_id'  => $request->kabupaten_id,
+                // 'kecamatan_id'  => $request->kecamatan_id,
+                // 'kelurahan_id'  => $request->kelurahan_id,
+                'name'          => $request->name,
+                'telp'          => $request->telp,
+                'website'       => $request->website,
+                'daerah'        => substr($kab, 5),
+                'alamat'        => $request->alamat,
+                'pos'           => $request->pos,
+                'pengelola'     => $request->pengelola,
+                'jml_guru'      => $request->jml_guru,
+                'jml_santri'    => $request->jml_santri,
+                'tahunmasuk'    => $request->tahunmasuk,
+                'status'        => $request->status,
+            ]
+        );
+        
+        
+        
+      
+        return response()->json(
+            [
+              'success' => 'Lembaga Berhasil Diperbarui!',
+              'message' => 'Lembaga Berhasil Diperbarui!'
             ]
         );
     }

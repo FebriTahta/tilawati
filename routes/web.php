@@ -256,6 +256,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
 
     Route::get('/diklat-lembaga',[LembagaCont::class, 'index'])->name('diklat.lembaga');
     Route::post('/diklat-lembaga-store',[LembagaCont::class,'store'])->name('diklat.lembaga_store');
+    Route::post('/diklat-lembaga-update',[LembagaCont::class,'store2'])->name('diklat.lembaga_store2');
     Route::get('/diklat-lembaga-data',[LembagaCont::class, 'lembaga_data'])->name('diklat.lembaga_data');
     Route::get('/diklat-lembaga-total',[LembagaCont::class, 'lembaga_total'])->name('diklat.lembaga_tot');
     Route::get('/diklat-lembaga-total2',[LembagaCont::class, 'lembaga_total2'])->name('diklat.lembaga_tot2');

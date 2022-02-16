@@ -391,6 +391,108 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
+
+    <div class="modal fade bs-example-modal-tambah-cabang" id="modal-edit" tabindex="-1" role="dialog"
+            aria-labelledby="mySmallModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title mt-0">DATA LEBAGA </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="col-xl-12">
+                            <div class="card m-b-30">
+                                <div class="card-body">
+                                    <form method="POST" id="tambahlembaga2">@csrf
+                                        <div class="row">
+                                            <input type="hidden" id="id" name="id">
+                                            <div class="form-group col-xl-6">
+                                                <label for=""><i class="text-danger">* </i>Nama Lembaga</label>
+                                                <input type="text" class="form-control text-capitalize" id="name"
+                                                    name="name" required>
+                                            </div>
+                                            <div class="form-group col-xl-6">
+                                                <label for=""><i class="text-danger">* </i>Kepala Lembaga</label>
+                                                <input type="text" class="form-control text-capitalize" name="kepalalembaga"
+                                                    id="kepala" required>
+                                            </div>
+                                            <div class="form-group col-xl-6">
+                                                <label for=""><i class="text-danger">* </i>Wa / Telp Aktif</label>
+                                                <input type="text" class="form-control" id="telp" name="telp" required>
+                                            </div>
+                                            
+                                            <div class="form-group col-xl-6">
+                                                <label for=""><i class="text-danger">* </i>Kota / Kab</label>
+                                                <select name="kabupaten_id" id="kab" class="form-control">
+                                                    <?php $kab = App\Models\Kabupaten::all()?>
+                                                    @foreach ($kab as $kb)
+                                                        <option value="{{$kb->id}}">{{$kb->nama}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-xl-6">
+                                                <label for=""><i class="text-danger">* </i>Jumlah Guru</label>
+                                                <input type="number" class="form-control" id="guru" name="jml_guru" 
+                                                    required>
+                                            </div>
+                                            <div class="form-group col-xl-6">
+                                                <label for=""><i class="text-danger">* </i>Jumlah Santri</label>
+                                                <input type="number" class="form-control" id="santri" name="jml_santri" 
+                                                    required>
+                                            </div>
+                                            <div class="form-group col-xl-6">
+                                                <label for=""><i class="text-danger ">* </i>Alamat</label>
+                                                <textarea name="alamat" id="alamat"
+                                                    class="text-capitalize form-control" id="" cols="5" rows="3"
+                                                    required></textarea>
+                                            </div>
+                                            <div class="form-group col-xl-6">
+                                                <label for=""><i class="text-danger">* </i>Pengelola</label>
+                                                <input type="text" class="form-control" id="pengelola" name="pengelola" 
+                                                    required>
+                                            </div>
+                                            
+                                            <div class="form-group col-xl-6">
+                                                <label for=""><i class="text-danger">* </i>Status Keanggotaan</label>
+                                                <br>
+                                                <select name="status" class="form-control" id="" required>
+                                                    <option value=""></option>
+                                                    <option value="aktif">Aktif</option>
+                                                    <option value="aktif">Non Aktif</option>
+                                                </select>
+                                            </div>
+                                            {{-- <div class="form-group col-xl-6">
+                                                <label for=""><i class="text-danger"> </i>Email Cabang</label>
+                                                <input type="email" class="form-control" id="email" name="email">
+                                            </div> --}}
+                                            
+                                            {{-- <div class="form-group col-xl-3">
+                                                <label for=""><i class="text-danger">* </i>Kode Pos</label>
+                                                <input type="number" class="form-control" name="pos" required>
+                                            </div>
+                                            <div class="form-group col-xl-12">
+                                                <label for=""><i class="text-danger">* </i>Alamat Ekspedisi (untuk
+                                                    pengiriman)</label>
+                                                <textarea name="ekspedisi" class="form-control text-capitalize" id=""
+                                                    cols="5" rows="3" required></textarea>
+                                            </div> --}}
+                                            <div class="form-group col-xl-12 col-12">
+                                                <input type="submit" id="btnsub" style="width: 100%"
+                                                    class="btn btn-info" value="Submit!">
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div> <!-- end col -->
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
     {{-- <form id="ubah_status">
     <input type="hidden" data>
 </form> --}}
@@ -421,6 +523,31 @@
                 var modal = $(this)
                 console.log(id);
                 modal.find('.modal-body #id').val(id);
+            })
+
+            $('#modal-edit').on('show.bs.modal', function(event) {
+                var button = $(event.relatedTarget)
+                var id = button.data('id')
+                var name = button.data('name')
+                var kepala = button.data('kepala')
+                var telp = button.data('telp')
+                var kab = button.data('kab')
+                var guru = button.data('guru')
+                var santri = button.data('santri')
+                var alamat = button.data('alamat')
+                var pengelola = button.data('pengelola')
+                var status = button.data('status')
+                var modal = $(this)
+                modal.find('.modal-body #id').val(id);
+                modal.find('.modal-body #name').val(name);
+                modal.find('.modal-body #kepala').val(kepala);
+                modal.find('.modal-body #telp').val(telp);
+                modal.find('.modal-body #kab').val(kab);
+                modal.find('.modal-body #guru').val(guru);
+                modal.find('.modal-body #santri').val(santri);
+                modal.find('.modal-body #alamat').val(alamat);
+                modal.find('.modal-body #pengelola').val(pengelola);
+                modal.find('.modal-body #status').val(status);
             })
             $('#hapuslembaga').submit(function(e) {
                 e.preventDefault();
@@ -559,6 +686,42 @@
                         $('#tambahlembaga_btn').val('Submit!');
                         $('.bs-example-modal-tambah-lembaga').modal('hide');
                         $('#tambahlembaga_btn').attr('disabled', false);
+                        // swal({
+                        //     title: "Success!",
+                        //     text: "Lembaga Baru Berhasil Di Tabahkan!",
+                        //     type: "success"
+                        // })
+                    }
+                },
+                error: function(data) {
+                    console.log(data);
+                }
+            });
+        });
+
+        $('#tambahlembaga2').submit(function(e) {
+            e.preventDefault();
+            var formData = new FormData(this);
+            $.ajax({
+                type: 'POST',
+                url: "{{ route('diklat.lembaga_store2') }}",
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                beforeSend: function() {
+                    $('#btnsub').attr('disabled', 'disabled');
+                    $('#btnsub').val('Proses Menyimpan Perubahan Data');
+
+                },
+                success: function(data) {
+                    if (data.success) {
+                        $("#tambahlembaga")[0].reset();
+                        var oTable = $('#datatable-buttons').dataTable();
+                        oTable.fnDraw(false);
+                        $('#btnsub').val('Submit!');
+                        $('#modal-edit').modal('hide');
+                        $('#btnsub').attr('disabled', false);
                         // swal({
                         //     title: "Success!",
                         //     text: "Lembaga Baru Berhasil Di Tabahkan!",
