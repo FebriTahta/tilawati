@@ -514,7 +514,7 @@
                                                     <option value="Non Aktif">2. Non Aktif</option>
                                                 </select>
                                             </div>
-                                            
+
                                             <div class="form-group col-xl-12 col-12">
                                                 <input type="submit" id="btnsub" style="width: 100%" class="btn btn-info"
                                                     value="Submit!">
@@ -577,6 +577,7 @@
             var email = button.data('email')
             var website = button.data('website')
             var pos = button.data('pos')
+            console.log(pos);
             var modal = $(this)
             modal.find('.modal-body #id').val(id);
             modal.find('.modal-body #name').val(name);

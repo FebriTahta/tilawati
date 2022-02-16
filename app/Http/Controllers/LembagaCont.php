@@ -26,8 +26,7 @@ class lembagaCont extends Controller
         if(request()->ajax())
         {
             if(auth()->user()->role == 'cabang'){
-                $data   = Lembaga::orderBy('id','asc')->where('cabang_id', auth()->user()->cabang->id)->with(['kepala','provinsi','kabupaten'])
-                ->select(['id','kode','name','pengelola','kepala_id','kepalalembaga','kabupaten_id','provinsi_id','telp','jml_guru','jml_santri','alamat','tahunmasuk','status']);
+                $data   = Lembaga::orderBy('id','asc')->where('cabang_id', auth()->user()->cabang->id)->with(['kepala','provinsi','kabupaten']);
                 return DataTables::of($data)
                     ->addColumn('kepala', function($data){
                         // if ($data->kepala == null) {
@@ -46,7 +45,8 @@ class lembagaCont extends Controller
                         return $kabupaten = $data->kabupaten->nama;
                     })
                     ->addColumn('provinsi', function ($data) {
-                        return $provinsi = $data->provinsi->nama;
+                        // return $provinsi = $data->provinsi->nama;
+                        return $provinsi = $data->pos.$data->email.$data->website;
                     })
                     ->addColumn('statuss', function ($data) {
                         if ($data->status == 'Aktif' || $data->status == 'aktif' || $data->status == 'aktif '|| $data->status == 'Aktif ' || $data->status == ' aktif' || $data->status == ' Aktif') {
@@ -69,8 +69,7 @@ class lembagaCont extends Controller
                 ->make(true);
             }else {
                 # code...
-                $data   = Lembaga::orderBy('tahunmasuk','desc')->with(['kepala','provinsi','kabupaten'])
-                ->select(['id','kode','name','pengelola','kepala_id','kepalalembaga','kabupaten_id','provinsi_id','telp','jml_guru','jml_santri','alamat','tahunmasuk','status']);
+                $data   = Lembaga::orderBy('tahunmasuk','desc')->with(['kepala','provinsi','kabupaten']);
                 return DataTables::of($data)
                     ->addColumn('kepala', function($data){
                         // if ($data->kepala == null) {
@@ -105,7 +104,7 @@ class lembagaCont extends Controller
                     })
                     ->addColumn('opsi', function ($data) {
                         $btn = '<a href="#" data-toggle="modal" data-id="'.$data->id.'" data-target="#modal-hapus" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i></a>';
-                        $btn .= ' <a href="#" data-toggle="modal" data-id="'.$data->id.'" data-target="#modal-edit" class="btn btn-sm btn-outline-primary"><i class="fa fa-edit"></i></a>';
+                        $btn .= ' <a href="#" data-toggle="modal" data-id="'.$data->id.'" data-name="'.$data->name.'" data-kepala="'.$data->kepalalembaga.'" data-telp="'.$data->telp.'" data-kab="'.$data->kabupaten_id.'" data-guru="'.$data->jml_guru.'" data-santri="'.$data->jml_santri.'" data-alamat="'.$data->alamat.'" data-pengelola="'.$data->pengelola.'" data-status="'.$data->status.'" data-pos="'.$data->pos.'" data-email="'.$data->email.'" data-website="'.$data->website.'" data-jenjang="'.$data->jenjang_id.'" data-target="#modal-edit" class="btn btn-sm btn-outline-primary"><i class="fa fa-edit"></i></a>';
                         return $btn;
                         
                     })
