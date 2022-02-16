@@ -505,6 +505,13 @@
                                                 <label for=""><i class="text-danger">* </i>Jumlah Santri</label>
                                                 <input type="number" class="form-control" id="santri" name="jml_santri" required>
                                             </div>
+                                            <div class="form-group col-xl-3">
+                                                <label for=""><i class="text-danger">* </i>Status</label>
+                                                <select name="status" id="status" class="form-control">
+                                                    <option value="aktif">Aktif</option>
+                                                    <option value="non aktif">Non Aktif</option>
+                                                </select>
+                                            </div>
                                             <div class="form-group col-xl-12 col-12">
                                                 <input type="submit" id="btnsub" style="width: 100%" class="btn btn-info"
                                                     value="Submit!">
@@ -566,6 +573,7 @@
             var jenjang_id = button.data('jenjang')
             var email = button.data('email')
             var website = button.data('website')
+            var pos = button.data('pos')
             var modal = $(this)
             modal.find('.modal-body #id').val(id);
             modal.find('.modal-body #name').val(name);
@@ -580,6 +588,7 @@
             modal.find('.modal-body #jenang_id').val(jenjang_id);
             modal.find('.modal-body #email').val(email);
             modal.find('.modal-body #website').val(website);
+            modal.find('.modal-body #pos').val(pos);
         })
         $('#hapuslembaga').submit(function(e) {
             e.preventDefault();
@@ -746,7 +755,7 @@
                 },
                 success: function(data) {
                     if (data.success) {
-                        $("#tambahlembaga")[0].reset();
+                        $("#tambahlembaga2")[0].reset();
                         var oTable = $('#datatable-buttons').dataTable();
                         oTable.fnDraw(false);
                         $('#btnsub').val('Submit!');
