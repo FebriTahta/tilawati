@@ -17,11 +17,11 @@
                         Tilawati Pusat (Nurul Falah)
                     @else
                         {{-- {{ ucwords(substr(auth()->user()->cabang->kabupaten->nama,5)) }} --}}
-                        
+
                         @if (auth()->user()->cabang->teritorial == 'surabaya' || auth()->user()->cabang->teritorial == 'gresik' || auth()->user()->cabang->teritorial == 'Surabaya' || auth()->user()->cabang->teritorial == 'Gresik')
-                        {{ ucwords('Tilawati '.auth()->user()->cabang->name) }}
+                            {{ ucwords('Tilawati ' . auth()->user()->cabang->name) }}
                         @else
-                        {{ ucwords(auth()->user()->cabang->teritorial) }}
+                            {{ ucwords(auth()->user()->cabang->teritorial) }}
                         @endif
                         {{-- {{ ucwords(substr(auth()->user()->cabang->kabupaten->nama,5)) }} --}}
                     @endif
@@ -82,9 +82,10 @@
                         <span style="font-size: 12px">Data Master</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="true">
-                        <li><a style="font-size: 12px" href="{{ route('diklat.cabang') }}">Data Cabang Se-Indonesia</a></li>
+                        <li><a style="font-size: 12px" href="{{ route('diklat.cabang') }}">Data Cabang
+                                Se-Indonesia</a></li>
                         @if (auth()->user()->role == 'pusat')
-                        <li><a style="font-size: 12px" href="{{ route('diklat.lembaga') }}">Lembaga</a></li>
+                            <li><a style="font-size: 12px" href="{{ route('diklat.lembaga') }}">Lembaga</a></li>
                             <li><a style="font-size: 12px" href="{{ route('diklat.kepala') }}">Kepala Bagian</a></li>
                             <li><a style="font-size: 12px" href="{{ route('diklat.jenjang') }}">Kelembagaan</a></li>
                             <li><a style="font-size: 12px" href="{{ route('diklat.program') }}">Program</a></li>
@@ -92,14 +93,44 @@
                                     Syahadah</a></li>
                             <li><a style="font-size: 12px" href="/daftar-pengguna">Daftar User</a></li>
                         @else
-                            <li><a style="font-size: 12px" href="{{ route('diklat.lembaga') }}">Data Lembaga Cabang</a></li>
-                            <li><a style="font-size: 12px" href="{{ route('data.trainer.cabang') }}">Data Trainer Cabang</a>
+                            <li><a style="font-size: 12px" href="{{ route('diklat.lembaga') }}">Data Lembaga
+                                    Cabang</a></li>
+                            <li><a style="font-size: 12px" href="{{ route('data.trainer.cabang') }}">Data Trainer
+                                    Cabang</a>
                             </li>
                             <li><a style="font-size: 12px" href="{{ route('data.kpa.cabang') }}">Data KPA Cabang</a>
                             </li>
                         @endif
                     </ul>
                 </li>
+
+                @if (auth()->user()->username == 'tilawati cahaya amanah')
+                    <li class="menu-title">Cetak</li>
+
+                    <li>
+                        <a href="javascript: void(0);" class="has-arrow waves-effect">
+                            <i class="mdi mdi-clipboard-list-outline"></i>
+                            <span style="font-size: 12px">Depan</span>
+                        </a>
+                        <ul class="sub-menu" aria-expanded="false">
+                            <li><a style="font-size: 12px" href="{{ route('diklat.depan_guru') }}">CETAK IJAZAH</a>
+                            </li>
+                            {{-- <li><a href="{{ route('diklat.depan_santri') }}">Santri</a></li> --}}
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="javascript: void(0);" class="has-arrow waves-effect">
+                            <i class="mdi mdi-clipboard-list-outline"></i>
+                            <span style="font-size: 12px">Belakang</span>
+                        </a>
+                        <ul class="sub-menu" aria-expanded="false">
+                            <li><a style="font-size: 12px" href="{{ route('diklat.belakang') }}">CETAK IJAZAH</a>
+                            </li>
+                        </ul>
+                    </li>
+                @endif
+
                 @if (auth()->user()->role == 'pusat')
                     {{-- <li class="menu-title">Pusat Data Administrasi & Daerah</li>
 

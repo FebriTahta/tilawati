@@ -54,7 +54,7 @@
                                                 </select>
                                             </div>
                                             <div class="form-group">
-                                                <button type="submit" class="btn btn-primary btn-sm"> <i class="fa fa-print"></i> Cetak</button>
+                                                <button type="submit" class="btn btn-primary btn-sm"> <i class="fa fa-arrow-right"></i> PROSES</button>
                                                 {{-- <button type="submit" class="btn btn-primary btn-sm"> <i class="fa fa-print"></i> Proses</button> --}}
                                                 {{-- <a href="/post-qr-code/" class="btn btn-outline-primary btn-sm"> Proses</a> --}}
                                             </div>
