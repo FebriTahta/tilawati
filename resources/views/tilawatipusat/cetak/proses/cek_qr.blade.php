@@ -15,8 +15,8 @@
             @component('common-tilawatipusat.dashboard2-widget3')
                 @slot('title')
                     <?php $diklat = App\Models\Pelatihan::where('id', $pelatihan_id)->first(); ?>
-                    <span class="text-capitalize">Cabang : Tilawati {{ strtolower(substr($diklat->cabang->kabupaten->nama, 5)) }}
-                        ({{ $diklat->cabang->name }})</span>
+                    <span class="text-capitalize">Cabang : Tilawati {{ strtolower(substr(auth()->user()->cabang->kabupaten->nama, 5)) }}
+                        ({{ auth()->user()->cabang->name }})</span>
                 @endslot
                 @slot('total')
                     <span>{{ $diklat->program->name }}</span>
