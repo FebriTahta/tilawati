@@ -95,6 +95,10 @@
             <label for=""><i class="text-danger"></i> Kab/Kota Alternatif</label>
             <input type="text" style="text-transform: uppercase" class="form-control" value="{{$peserta->kota2}}" name="kota2">
         </div>
+        <div class="form-group  col-12 col-xl-6">
+            <label for=""><i class="text-danger"></i> Lembaga</label>
+            <input type="text" style="text-transform: uppercase" class="form-control" value="{{$peserta->lembaga}}" name="lembaga">
+        </div>
         <div class="form-group  col-12 col-xl-12">
             <label for="alamat"><i class="text-danger">*</i> Alamat Sesuai KTP</label>
             <textarea name="alamat" class="form-control text-uppercase" id="" cols="30" rows="5"  >{{$peserta->alamat}}</textarea>
@@ -113,10 +117,10 @@
                 <option value="0">Belum Bersyahadah</option>
             </select>
         </div>
-        <div class="form-group col-12 col-xl-12">
+        {{-- <div class="form-group col-12 col-xl-12">
             <label for="">Kriteria</label>
             <textarea name="kriteria" class="form-control" name="" id="" cols="30" rows="2">{{$peserta->kriteria}}</textarea>
-        </div>
+        </div> --}}
         <div class="form-group col-12">
             {{-- <button class="btn btn-info" type="submit">UPDATE DATA</button> --}}
             <input type="submit" class="btn btn-info" value="UPDATE DATA" id="daftar">
