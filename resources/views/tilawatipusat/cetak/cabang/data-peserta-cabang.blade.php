@@ -45,6 +45,7 @@
         <tbody>
             <tr></tr>
             @foreach ($peserta as $item)
+            <tr>
                 <td>{{$item->name}}</td>
                 <td>{{$item->alamat}}</td>
                 <td>
@@ -61,6 +62,7 @@
                 <td>{{$item->jilid}}</td>
                 <td>{{$item->kriteria}}</td>
                 <td>{{$item->bersyahadah}}</td>
+            </tr>
             @endforeach
         </tbody>
     </table>
