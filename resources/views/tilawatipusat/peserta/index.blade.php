@@ -103,7 +103,7 @@
                 @endif
                 @if ($peserta_salah->where('tgllahir', '-')->count() > 0 || $peserta_salah->where('tgllahir', null)->count() > 0)
                     <div class="col-lg-12 alert alert-danger">
-                        <p>{{$peserta_salah->where('tgllahir', null)->count() + $peserta_salah->where('tgllahir', '-')->count()}} Peserta dengan kesalahan penulisan tempat lahir</p>
+                        <p>{{$peserta_salah->where('tgllahir', null)->count() + $peserta_salah->where('tgllahir', '-')->count()}} Peserta dengan kesalahan penulisan tanggal lahir</p>
                     </div>
                 @endif
                 <div class="card-body">
