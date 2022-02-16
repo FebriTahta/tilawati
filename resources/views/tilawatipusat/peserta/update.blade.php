@@ -10,127 +10,131 @@
 @slot('title') UPDATE   @endslot
 @slot('title_li') PESERTA   @endslot
 @endcomponent
-<form action="{{route('update.data.peserta')}}" method="POST" enctype="multipart/form-data">@csrf
-    <div class="row">
-        @if ($alertFm = Session::get('success'))
-            <div class="card card-body col-xl-12" style="max-width: 100%; margin-bottom: 20px;">
-                <div class="alert alert-success alert-block">
-                    <button type="button" class="close" data-dismiss="alert">×</button>
-                    <strong>{{ $alertFm }}</strong>
+<div class="card">
+    <div class="card-body">
+        <form action="{{route('update.data.peserta')}}" method="POST" enctype="multipart/form-data">@csrf
+            <div class="row">
+                @if ($alertFm = Session::get('success'))
+                    <div class="card card-body col-xl-12" style="max-width: 100%; margin-bottom: 20px;">
+                        <div class="alert alert-success alert-block">
+                            <button type="button" class="close" data-dismiss="alert">×</button>
+                            <strong>{{ $alertFm }}</strong>
+                        </div>
+                    </div>
+                    <hr>
+                @endif
+                <div class="form-group col-xl-4">
+                    <input type="hidden" name="id" value="{{$peserta->id}}">
+                    <label for="nama">Nama Peserta</label>
+                    <input type="text" class="form-control" value="{{$peserta->name}}" id="nama" name="name"  >    
+                </div>
+                @if ($peserta->gelar != null)
+                <div class="form-group col-xl-2">
+                    <label for="nama">Gelar</label>
+                    <input type="text" class="form-control" value="{{$peserta->gelar}}" id="gelar" name="gelar">    
+                </div>
+                @endif
+                <div class="form-group col-12">
+                    <h5>BIODATA</h5>
+                </div>
+                <div class="form-group col-12 col-xl-6">
+                    <label for="tmptlahir"><i class="text-danger">*</i> Tempat Lahir (Kab / Kota)</label>
+                    <select name="tmptlahir" id="tmptlahir" class="form-control" style="max-height: 40px; color: rgb(0, 0, 0); font-size: 13px;" >
+                        <option value="{{$peserta->tmptlahir}}">{{$peserta->tmptlahir}}</option>
+                    </select>
+                </div>
+                <div class="form-group  col-12 col-xl-6">
+                    <label for=""><i class="text-danger"></i> Tempat Lahir (Alternatif)</label>
+                    <input type="text" class="form-control text-uppercase" name="tmptlahir2" value="{{$peserta->tmptlahir2}}">
+                </div>
+                <div class="form-group col-12 col-xl-6">
+                    <label for="tgllahir"><i class="text-danger">*</i> Tanggal Lahir</label>
+                    ({{Carbon\Carbon::parse($peserta->tgllahir)->isoFormat('D MMMM Y')}})
+                    <input placeholder="dd-mm-yyyy" type="date" value="{{Carbon\Carbon::parse($peserta->tgllahir)->format('Y-m-d')}}" name="tgllahir" id="tgllahir" class="form-control" style="max-height: 40px; color: rgb(0, 0, 0); font-size: 13px;"  >
+                </div>
+                <div class="form-group col-12">
+                    <h5>ALAMAT LENGKAP</h5>
+                </div>
+                <div class="form-group col-3 col-xl-3">
+                    <label for="kode"><i class="text-danger">*</i> Kode</label>
+                    <input type="text" id="kode" name="kode" value="62" class="form-control" style="max-height: 40px;" readonly  >
+                </div>
+                <div class="form-group col-9 col-xl-6">
+                    <label for="phone"><i class="text-danger">*</i> Nomor WA (AKTIF)</label>
+                    <input type="number" value="{{$peserta->telp}}" pattern="[0-9]*" inputmode="numeric" id="phone" onkeypress="return hanyaAngka(event)" name="phone" class="form-control" style="max-height: 40px;"  >
+                    <code style="" id="kodephone"></code>
+                </div>
+                <div class="form-group col-12 col-xl-3">
+                    <label for="pos"><i class="text-danger">*</i> Kode Pos</label>
+                    <input type="number" value="{{$peserta->pos}}" id="pos" name="pos" class="form-control" style="max-height: 40px;"  >
+                    <code style="" id="kodepos"></code>
+                </div>
+                <div class="form-group col-12 col-xl-6">
+                    <label for="kabupaten_id"><i class="text-danger">*</i> Kabupaten / Kota</label>
+                    <select name="kabupaten_id" id="kabupaten_id" class="form-control" style="max-height: 40px; color: rgb(0, 0, 0); font-size: 13px;"  >
+                        @if ($peserta->kabupaten_id !== null)
+                            <option value="{{$peserta->kabupaten_id}}">{{$peserta->kabupaten->nama}}</option>
+                        @endif
+                    </select>
+                </div>
+                <div class="form-group  col-12 col-xl-6">
+                    <label for="kecamatan_id"><i class="text-danger">*</i> Kecamatan</label>
+                    <select name="kecamatan_id" id="kecamatan_id" class="form-control text-uppercase" style="max-height: 40px; color: rgb(0, 0, 0); font-size: 13px;"  >
+                        @if ($peserta->kecamatan_id !== null)
+                        <option value="{{$peserta->kecamatan_id}}">{{$peserta->kecamatan->nama}}</option>
+                        @endif
+                    </select>
+                </div>
+                <div class="form-group  col-12 col-xl-6">
+                    <label for="kelurahan_id"><i class="text-danger">*</i> Kelurahan</label>
+                    <select name="kelurahan_id" id="kelurahan_id" class="form-control text-uppercase" style="max-height: 40px; color: rgb(0, 0, 0); font-size: 13px;"  >
+                        @if ($peserta->kelurahan_id !== null)
+                        <option value="{{$peserta->kelurahan_id}}">{{$peserta->kelurahan->nama}}</option>
+                        @endif
+                    </select>
+                </div>
+                <div class="form-group  col-12 col-xl-6">
+                    <label for=""><i class="text-danger"></i> Kab/Kota Alternatif</label>
+                    <input type="text" style="text-transform: uppercase" class="form-control" value="{{$peserta->kota2}}" name="kota2">
+                </div>
+                <div class="form-group  col-12 col-xl-6">
+                    <label for=""><i class="text-danger"></i> Lembaga</label>
+                    <input type="text" style="text-transform: uppercase" class="form-control" value="{{$peserta->lembaga}}" name="lembaga">
+                </div>
+                <div class="form-group  col-12 col-xl-12">
+                    <label for="alamat"><i class="text-danger">*</i> Alamat Sesuai KTP</label>
+                    <textarea name="alamat" class="form-control text-uppercase" id="" cols="30" rows="5"  >{{$peserta->alamat}}</textarea>
+                </div>
+                @if (auth()->user()->role=='pusat')
+                <div class="form-group col-12 col-xl-12">
+                    <label for="">Brsyahadah</label>
+                    <select name="bersyahadah" id="" class="form-control text-uppercase">
+                        <option value="{{$peserta->bersyahadah}}">
+                        @if ($peserta->bersyahadah == 1)
+                            Bersyahadah
+                        @else
+                            Belum Bersyahadah
+                        @endif
+                        </option>
+                        <option value="1">Bersyahadah</option>
+                        <option value="0">Belum Bersyahadah</option>
+                    </select>
+                </div>
+                <div class="form-group col-12 col-xl-12">
+                    <label for="">Kriteria</label>
+                    <textarea name="kriteria" class="form-control" name="" id="" cols="30" rows="2">{{$peserta->kriteria}}</textarea>
+                </div>
+                @endif
+                
+                <div class="form-group col-12">
+                    {{-- <button class="btn btn-info" type="submit">UPDATE DATA</button> --}}
+                    <input type="submit" class="btn btn-info" value="UPDATE DATA" id="daftar">
+                    <a href="/diklat-peserta/{{$peserta->pelatihan_id}}" class="btn btn-secondary">Kembali</a>
                 </div>
             </div>
-            <hr>
-        @endif
-        <div class="form-group col-xl-4">
-            <input type="hidden" name="id" value="{{$peserta->id}}">
-            <label for="nama">Nama Peserta</label>
-            <input type="text" class="form-control" value="{{$peserta->name}}" id="nama" name="name"  >    
-        </div>
-        @if ($peserta->gelar != null)
-        <div class="form-group col-xl-2">
-            <label for="nama">Gelar</label>
-            <input type="text" class="form-control" value="{{$peserta->gelar}}" id="gelar" name="gelar">    
-        </div>
-        @endif
-        <div class="form-group col-12">
-            <h5>BIODATA</h5>
-        </div>
-        <div class="form-group col-12 col-xl-6">
-            <label for="tmptlahir"><i class="text-danger">*</i> Tempat Lahir (Kab / Kota)</label>
-            <select name="tmptlahir" id="tmptlahir" class="form-control" style="max-height: 40px; color: rgb(0, 0, 0); font-size: 13px;" >
-                <option value="{{$peserta->tmptlahir}}">{{$peserta->tmptlahir}}</option>
-            </select>
-        </div>
-        <div class="form-group  col-12 col-xl-6">
-            <label for=""><i class="text-danger"></i> Tempat Lahir (Alternatif)</label>
-            <input type="text" class="form-control text-uppercase" name="tmptlahir2" value="{{$peserta->tmptlahir2}}">
-        </div>
-        <div class="form-group col-12 col-xl-6">
-            <label for="tgllahir"><i class="text-danger">*</i> Tanggal Lahir</label>
-            ({{Carbon\Carbon::parse($peserta->tgllahir)->isoFormat('D MMMM Y')}})
-            <input placeholder="dd-mm-yyyy" type="date" value="{{Carbon\Carbon::parse($peserta->tgllahir)->format('Y-m-d')}}" name="tgllahir" id="tgllahir" class="form-control" style="max-height: 40px; color: rgb(0, 0, 0); font-size: 13px;"  >
-        </div>
-        <div class="form-group col-12">
-            <h5>ALAMAT LENGKAP</h5>
-        </div>
-        <div class="form-group col-3 col-xl-3">
-            <label for="kode"><i class="text-danger">*</i> Kode</label>
-            <input type="text" id="kode" name="kode" value="62" class="form-control" style="max-height: 40px;" readonly  >
-        </div>
-        <div class="form-group col-9 col-xl-6">
-            <label for="phone"><i class="text-danger">*</i> Nomor WA (AKTIF)</label>
-            <input type="number" value="{{$peserta->telp}}" pattern="[0-9]*" inputmode="numeric" id="phone" onkeypress="return hanyaAngka(event)" name="phone" class="form-control" style="max-height: 40px;"  >
-            <code style="" id="kodephone"></code>
-        </div>
-        <div class="form-group col-12 col-xl-3">
-            <label for="pos"><i class="text-danger">*</i> Kode Pos</label>
-            <input type="number" value="{{$peserta->pos}}" id="pos" name="pos" class="form-control" style="max-height: 40px;"  >
-            <code style="" id="kodepos"></code>
-        </div>
-        <div class="form-group col-12 col-xl-6">
-            <label for="kabupaten_id"><i class="text-danger">*</i> Kabupaten / Kota</label>
-            <select name="kabupaten_id" id="kabupaten_id" class="form-control" style="max-height: 40px; color: rgb(0, 0, 0); font-size: 13px;"  >
-                @if ($peserta->kabupaten_id !== null)
-                    <option value="{{$peserta->kabupaten_id}}">{{$peserta->kabupaten->nama}}</option>
-                @endif
-            </select>
-        </div>
-        <div class="form-group  col-12 col-xl-6">
-            <label for="kecamatan_id"><i class="text-danger">*</i> Kecamatan</label>
-            <select name="kecamatan_id" id="kecamatan_id" class="form-control text-uppercase" style="max-height: 40px; color: rgb(0, 0, 0); font-size: 13px;"  >
-                @if ($peserta->kecamatan_id !== null)
-                <option value="{{$peserta->kecamatan_id}}">{{$peserta->kecamatan->nama}}</option>
-                @endif
-            </select>
-        </div>
-        <div class="form-group  col-12 col-xl-6">
-            <label for="kelurahan_id"><i class="text-danger">*</i> Kelurahan</label>
-            <select name="kelurahan_id" id="kelurahan_id" class="form-control text-uppercase" style="max-height: 40px; color: rgb(0, 0, 0); font-size: 13px;"  >
-                @if ($peserta->kelurahan_id !== null)
-                <option value="{{$peserta->kelurahan_id}}">{{$peserta->kelurahan->nama}}</option>
-                @endif
-            </select>
-        </div>
-        <div class="form-group  col-12 col-xl-6">
-            <label for=""><i class="text-danger"></i> Kab/Kota Alternatif</label>
-            <input type="text" style="text-transform: uppercase" class="form-control" value="{{$peserta->kota2}}" name="kota2">
-        </div>
-        <div class="form-group  col-12 col-xl-6">
-            <label for=""><i class="text-danger"></i> Lembaga</label>
-            <input type="text" style="text-transform: uppercase" class="form-control" value="{{$peserta->lembaga}}" name="lembaga">
-        </div>
-        <div class="form-group  col-12 col-xl-12">
-            <label for="alamat"><i class="text-danger">*</i> Alamat Sesuai KTP</label>
-            <textarea name="alamat" class="form-control text-uppercase" id="" cols="30" rows="5"  >{{$peserta->alamat}}</textarea>
-        </div>
-        @if (auth()->user()->role=='pusat')
-        <div class="form-group col-12 col-xl-12">
-            <label for="">Brsyahadah</label>
-            <select name="bersyahadah" id="" class="form-control text-uppercase">
-                <option value="{{$peserta->bersyahadah}}">
-                @if ($peserta->bersyahadah == 1)
-                    Bersyahadah
-                @else
-                    Belum Bersyahadah
-                @endif
-                </option>
-                <option value="1">Bersyahadah</option>
-                <option value="0">Belum Bersyahadah</option>
-            </select>
-        </div>
-        <div class="form-group col-12 col-xl-12">
-            <label for="">Kriteria</label>
-            <textarea name="kriteria" class="form-control" name="" id="" cols="30" rows="2">{{$peserta->kriteria}}</textarea>
-        </div>
-        @endif
-        
-        <div class="form-group col-12">
-            {{-- <button class="btn btn-info" type="submit">UPDATE DATA</button> --}}
-            <input type="submit" class="btn btn-info" value="UPDATE DATA" id="daftar">
-            <a href="/diklat-peserta/{{$peserta->pelatihan_id}}" class="btn btn-secondary">Kembali</a>
-        </div>
+        </form>
     </div>
-</form>
+</div>
 @endsection
 
 @section('script')
