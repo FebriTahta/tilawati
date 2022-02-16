@@ -432,7 +432,7 @@ class CabangCont extends Controller
                     return DataTables::of($data)
                     ->addColumn('action', function ($data) {
                         $stats = '<a href="#" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modal_hapus" data-id="'.$data->id.'"><i class="fa fa-trash"></i></a>';
-                        $stats .= ' <a href="/edit-trainer/cabang/'.$data->id.'" class="btn btn-sm btn-primary" target="_blank"><i class="fa fa-edit"></i></a>';
+                        $stats .= ' <a href="/edit-trainer/cabang/'.$data->id.'" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></a>';
                         return $stats;
                     })
                     ->addColumn('trains', function ($data) {
@@ -490,6 +490,63 @@ class CabangCont extends Controller
             [
               'success' => 'Trainer Dihapus!',
               'message' => 'Trainer Dihapus!'
+            ]
+        );
+    }
+
+    public function update_data_trainer(Request $request)
+    {
+        $trainer = Trainer::updateOrCreate(
+            [
+                'id' => $request->id
+            ],
+            [
+                'cabang_id' => $request->cabang_id,
+                'name'        => $request->name,
+                'telp'        => $request->telp,
+                'alamat'        => $request->alamat
+            ]
+        );
+        macamtrainer_trainer::where('trainer_id', $request->id)->delete();
+
+        
+        if ($request->macamtrainer_id[1] !== null) {
+            # code...
+            $ok_trainer = new macamtrainer_trainer;
+                $ok_trainer->created_at = new \DateTime;
+                $ok_trainer->macamtrainer_id = 1;
+                $ok_trainer->trainer_id = $trainer->id;
+                $ok_trainer->save();
+        }
+        if ($request->macamtrainer_id[2] !== null) {
+            # code...
+            $ok_trainer = new macamtrainer_trainer;
+                $ok_trainer->created_at = new \DateTime;
+                $ok_trainer->macamtrainer_id = 2;
+                $ok_trainer->trainer_id = $trainer->id;
+                $ok_trainer->save();
+        }
+        if ($request->macamtrainer_id[3] !== null) {
+            # code...
+            $ok_trainer = new macamtrainer_trainer;
+                $ok_trainer->created_at = new \DateTime;
+                $ok_trainer->macamtrainer_id = 3;
+                $ok_trainer->trainer_id = $trainer->id;
+                $ok_trainer->save();
+        }
+        if ($request->macamtrainer_id[4] !== null) {
+            # code...
+            $ok_trainer = new macamtrainer_trainer;
+                $ok_trainer->created_at = new \DateTime;
+                $ok_trainer->macamtrainer_id = 4;
+                $ok_trainer->trainer_id = $trainer->id;
+                $ok_trainer->save();
+        }
+
+        return response()->json(
+            [
+              'success' => 'OK!',
+              'message' => 'OK!'
             ]
         );
     }

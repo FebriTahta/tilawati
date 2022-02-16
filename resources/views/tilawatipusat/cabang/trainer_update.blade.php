@@ -1,17 +1,20 @@
 @extends('layouts.tilawatipusat_layouts.master')
 
-@section('title') Cabang @endsection
+@section('title')
+    Cabang
+@endsection
 @section('css')
-
     <!-- DataTables -->
     <link href="{{ URL::asset('tilawatipusat/libs/datatables/datatables.min.css') }}" rel="stylesheet" type="text/css" />
-
 @endsection
 @section('content')
-
     @component('common-tilawatipusat.breadcrumb')
-        @slot('title') Trainer @endslot
-        @slot('title_li') {{ substr($trainer->cabang->kabupaten->nama, 5) }} @endslot
+        @slot('title')
+            Trainer
+        @endslot
+        @slot('title_li')
+            {{ substr($trainer->cabang->kabupaten->nama, 5) }}
+        @endslot
     @endcomponent
 
     <div class="row">
@@ -27,7 +30,8 @@
                     <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
                         <form id="trainer_store" class="text-capitalize" method="POST" enctype="multipart/form-data">@csrf
                             <div class="row">
-                                <input type="hidden" name="id" id="id">
+                                <input type="hidden" name="id" id="id" value="{{$trainer->id}}">
+                                <input type="hidden" name="cabang_id" value="{{$trainer->cabang_id}}">
                                 <div class="col-md-6 col-12 form-group">
                                     <label for="">Nama</label>
                                     <input type="text" id="name" name="name" value="{{ $trainer->name }}"
@@ -42,6 +46,12 @@
                                     <label for="">Alamat</label>
                                     <textarea name="alamat" id="alamat" class="form-control" id="" cols="3"
                                         rows="3">{{ $trainer->alamat }}</textarea>
+                                </div>
+                                <div class="col-md-6 col-12 form-group">
+                                    <h5 class="border-bottom">STATUS INSTRUKTUR SAAT INI</h5>
+                                    @foreach ($trainer->macamtrainer as $key => $item)
+                                        <p>{{ $key + 1 }} - {{ $item->jenis }}</p>
+                                    @endforeach
                                 </div>
                             </div>
                             <hr>
@@ -59,9 +69,27 @@
                                 </div>
                                 @endforeach
                             </div> --}}
+                            <h5 class="border-bottom">ISI "Ok" SESUAI STATUS TRAINER</h5>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="row">
+                                    @foreach ($macam as $key=> $items)
+                                        
+                                            <div class="col-md-6 col-12 form-group">
+                                                <label for="">{{ $items->jenis }}</label>
+                                                <input type="text" id="" name="macamtrainer_id[{{$key+1}}]" class="form-control">
+                                            </div>
+                                        
+                                    @endforeach
+                                    </div>
+                                </div>
+                            </div>
+
+
                             <div class="form-group text-right">
-                                {{-- <input type="submit" id="z" class="btn btn-outline-primary" value="BACK!"> --}}
-                                <a href="{{url()->previous()}}" class="btn btn-outline-primary">BACK</a>
+                                <input type="submit" id="z" class="btn btn-outline-primary" value="UPDATE!">
+                                
+                                <a href="{{ url()->previous() }}" class="btn btn-outline-secondary">BACK</a>
                             </div>
                         </form>
                         <footer class="blockquote-footer">Updated at <cite title="Source Title">2021</cite></footer>
@@ -74,14 +102,9 @@
     <!-- end row -->
 
     {{-- MODAL --}}
-
-
-
-
 @endsection
 
 @section('script')
-
     <!-- Toast -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.all.min.js"></script>
@@ -97,6 +120,45 @@
     <script src="{{ URL::asset('tilawatipusat/js/pages/datatables.init.js') }}"></script>
 
     <script>
-
+        $('#trainer_store').submit(function(e) {
+            e.preventDefault();
+            var formData = new FormData(this);
+            $.ajax({
+                type: 'POST',
+                url: "{{ route('update.data.trainer') }}",
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                beforeSend: function() {
+                    $('#z').attr('disabled', 'disabled');
+                    $('#z').val('Proses Update Data');
+                },
+                success: function(data) {
+                    if (data.success) {
+                        toastr.success(data.success);
+                        $('#z').val('UPDATE!');
+                        $('#z').attr('disabled', false);
+                        swal({
+                            title: "Success!",
+                            text: "Data Trainer Di Update!",
+                            type: "success"
+                        }).then(okay => {
+                            if (okay) {
+                                window.location.href = "/data-trainer/cabang";
+                            }
+                        });
+                    } else {
+                        $('#z').val('UPDATE!');
+                        $('#z').attr('disabled', false);
+                        swal({
+                            title: "Error!",
+                            text: "Asal lembaga peserta sudah tidak aktif, mohon hubungi Admin Tilawati Pusat!",
+                            type: "error"
+                        })
+                    }
+                },
+            });
+        });
     </script>
 @endsection
