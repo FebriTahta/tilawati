@@ -1967,7 +1967,7 @@ class PesertaCont extends Controller
                                         'email'         => $request->email,
                                         'bersyahadah'   => $request->bersyahadah,
                                         'jilid'         => $request->jilid,
-                                        // 'kriteria'      => $request->kriteria,
+                                        'kriteria'      => $request->kriteria,
                                         'munaqisy'      => $request->munaqisy,
                                     ]
                                 );
@@ -2004,7 +2004,7 @@ class PesertaCont extends Controller
                                         'email'         => $request->email,
                                         'bersyahadah'   => $request->bersyahadah,
                                         'jilid'         => $request->jilid,
-                                        // 'kriteria'      => $request->kriteria,
+                                        'kriteria'      => $request->kriteria,
                                         'munaqisy'      => $request->munaqisy,
                                     ]
                                 );
@@ -2045,7 +2045,7 @@ class PesertaCont extends Controller
                                         'email'         => $request->email,
                                         'bersyahadah'   => $request->bersyahadah,
                                         'jilid'         => $request->jilid,
-                                        // 'kriteria'      => $request->kriteria,
+                                        'kriteria'      => $request->kriteria,
                                         'munaqisy'      => $request->munaqisy,
                                     ]
                                 );
@@ -2082,7 +2082,7 @@ class PesertaCont extends Controller
                                         'email'         => $request->email,
                                         'bersyahadah'   => $request->bersyahadah,
                                         'jilid'         => $request->jilid,
-                                        // 'kriteria'      => $request->kriteria,
+                                        'kriteria'      => $request->kriteria,
                                         'munaqisy'      => $request->munaqisy,
                                     ]
                                 );

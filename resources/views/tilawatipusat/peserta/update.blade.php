@@ -103,6 +103,7 @@
             <label for="alamat"><i class="text-danger">*</i> Alamat Sesuai KTP</label>
             <textarea name="alamat" class="form-control text-uppercase" id="" cols="30" rows="5"  >{{$peserta->alamat}}</textarea>
         </div>
+        @if (auth()->user()->role=='pusat')
         <div class="form-group col-12 col-xl-12">
             <label for="">Brsyahadah</label>
             <select name="bersyahadah" id="" class="form-control text-uppercase">
@@ -117,10 +118,12 @@
                 <option value="0">Belum Bersyahadah</option>
             </select>
         </div>
-        {{-- <div class="form-group col-12 col-xl-12">
+        <div class="form-group col-12 col-xl-12">
             <label for="">Kriteria</label>
             <textarea name="kriteria" class="form-control" name="" id="" cols="30" rows="2">{{$peserta->kriteria}}</textarea>
-        </div> --}}
+        </div>
+        @endif
+        
         <div class="form-group col-12">
             {{-- <button class="btn btn-info" type="submit">UPDATE DATA</button> --}}
             <input type="submit" class="btn btn-info" value="UPDATE DATA" id="daftar">
