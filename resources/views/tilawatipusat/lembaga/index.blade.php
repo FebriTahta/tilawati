@@ -257,7 +257,7 @@
                                                 </select>
                                             </div>
                                             <div class="form-group col-xl-6">
-                                                <select name="kelembagaan" class="form-control" id="" required>
+                                                <select name="pengelola" class="form-control" id="pengelola" required>
                                                     <option value=""><i class="text-danger">*</i> Pengelolaan</option>
                                                     <option value="Yayasan">1. Yayasan</option>
                                                     <option value="Masjid">2. Masjid</option>
@@ -474,7 +474,7 @@
                                                     rows="3" required></textarea>
                                             </div>
                                             <div class="form-group col-xl-6">
-                                                <select name="jenjang_id" class="form-control" id="" required>
+                                                <select name="jenjang_id" class="form-control" id="jenjang_id" required>
                                                     <option value=""><i class="text-danger">*</i> Kelembagaan</option>
                                                     @foreach ($jenjang as $item)
                                                         <option value="{{ $item->id }}">{{ $item->name }}</option>
@@ -482,7 +482,7 @@
                                                 </select>
                                             </div>
                                             <div class="form-group col-xl-6">
-                                                <select name="kelembagaan" class="form-control" id="" required>
+                                                <select name="pengelola" class="form-control" id="pengelola" required>
                                                     <option value=""><i class="text-danger">*</i> Pengelolaan</option>
                                                     <option value="Yayasan">1. Yayasan</option>
                                                     <option value="Masjid">2. Masjid</option>
@@ -563,6 +563,9 @@
             var alamat = button.data('alamat')
             var pengelola = button.data('pengelola')
             var status = button.data('status')
+            var jenjang_id = button.data('jenjang')
+            var email = button.data('email')
+            var website = button.data('website')
             var modal = $(this)
             modal.find('.modal-body #id').val(id);
             modal.find('.modal-body #name').val(name);
@@ -574,6 +577,9 @@
             modal.find('.modal-body #alamat').val(alamat);
             modal.find('.modal-body #pengelola').val(pengelola);
             modal.find('.modal-body #status').val(status);
+            modal.find('.modal-body #jenang_id').val(jenjang_id);
+            modal.find('.modal-body #email').val(email);
+            modal.find('.modal-body #website').val(website);
         })
         $('#hapuslembaga').submit(function(e) {
             e.preventDefault();

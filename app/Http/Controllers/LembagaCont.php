@@ -65,7 +65,7 @@ class lembagaCont extends Controller
                         $btn .= ' <a href="#" data-toggle="modal" data-id="'.$data->id.'" data-name="'.$data->name.'" 
                         data-kepala="'.$data->kepalalembaga.'" data-telp="'.$data->telp.'" data-kab="'.$data->kabupaten_id.'" 
                         data-guru="'.$data->jml_guru.'" data-santri="'.$data->jml_santri.'" data-alamat="'.$data->alamat.'" data-pengelola="'.$data->pengelola.'" 
-                        data-status="'.$data->status.'" data-target="#modal-edit" class="btn btn-sm btn-outline-primary"><i class="fa fa-edit"></i></a>';
+                        data-status="'.$data->status.'" data-email="'.$data->email.'" data-website="'.$data->website.'" data-jenjang="'.$data->jenjang_id.'" data-target="#modal-edit" class="btn btn-sm btn-outline-primary"><i class="fa fa-edit"></i></a>';
                         return $btn;
                     })
                 ->rawColumns(['kepala','kabupaten','provinsi','statuss','opsi'])
@@ -411,7 +411,7 @@ class lembagaCont extends Controller
                 'name'          => $request->name,
                 'telp'          => $request->telp,
                 'website'       => $request->website,
-                'daerah'        => substr($kab, 5),
+                'daerah'        => substr($kab->nama, 5),
                 'alamat'        => $request->alamat,
                 'pos'           => $request->pos,
                 'pengelola'     => $request->pengelola,
