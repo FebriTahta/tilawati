@@ -1,4 +1,4 @@
- <div class="card">
+ <div class="card"  style="min-height: 260px">
     <div class="card-body">
         <div class="media">
             <div class="avatar-sm font-size-20 mr-3">

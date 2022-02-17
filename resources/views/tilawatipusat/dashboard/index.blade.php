@@ -26,7 +26,7 @@
         @slot('title_li') @endslot
     @endcomponent
     <div class="row">
-        <div class="col-xl-12">
+        <div class="col-xl-6">
             @component('common-tilawatipusat.dashboard-widget')
                 <?php $guru = App\Models\Lembaga::sum('jml_guru');
                 $santri = App\Models\Lembaga::sum('jml_santri');
@@ -51,8 +51,8 @@
 
             @endcomponent
         </div>
-        <div class="col-xl-12">
-            <div class="card" style="min-height: 265px">
+        <div class="col-xl-6">
+            <div class="card" style="min-height: 260px">
                 {{-- @if (auth()->user()->role == 'cabang') --}}
                 <div class="card-body">
                     <div class="mb-4 card-title">
@@ -98,30 +98,9 @@
                         </a>
                     </div>
                 </div>
-                {{-- @elseif (auth()->user()->role == 'cabang')
-                    @endif --}}
             </div>
         </div>
-        {{-- <div class="col-xl-5">
-                @component('common-tilawatipusat.dashboard-widget')
-            
-                @slot('title') <a href="/diklat-cabang"><b id="cb">???</b> <b>Cabang</b></a> <a href="#" data-toggle="modal" data-target="#mod_cabang2"><br> <span id="pv">??? </span> Provinsi & </a> <a href="#"><span id="kb">??? </span> Kabupaten / Kota </a> @endslot
-                @slot('iconClass') mdi mdi-bank-outline  @endslot
-                @slot('price')   @endslot
-                
-            
-            @endcomponent
-
-            @component('common-tilawatipusat.dashboard-widget')
-            
-                @slot('title') <a href="/diklat-lembaga"><b id="lm">???</b> <b>Lembaga</b></a> <a href=""><br> <span id="lmpv">??? </span> Provinsi & </a> <a href="#"><span id="lmkb">??? </span> Kabupaten / Kota </a> @endslot
-                @slot('iconClass') mdi mdi-mdi mdi-contact-mail-outline
-                tag-plus-outline  @endslot
-                @slot('price')  @endslot
-                
-            
-            @endcomponent
-            </div> --}}
+        
     </div>
 
 
@@ -152,31 +131,7 @@
                 </div>
             </div>
 
-            {{-- @component('common-tilawatipusat.dashboard-widget')
-
-                @slot('title') <a href="/diklat-diklat"><b id="dk">???</b> <b>Total Diklat</b> </a><br> @endslot
-                @slot('iconClass') mdi mdi-home-analytics @endslot
-                @slot('price') @endslot
-
-
-            @endcomponent
-
-            @component('common-tilawatipusat.dashboard-widget')
-
-                @slot('title') <a href="/diklat-webinar"><b id="cbx"> ??? </b> <b>Total Diklat</b> </a><br>@endslot
-                @slot('iconClass') mdi mdi-home-analytics @endslot
-                @slot('price') @endslot
-
-            @endcomponent
-
-            @component('common-tilawatipusat.dashboard-widget')
-
-                @slot('title')<a href="/diklat-peserta-data"> <b id="ps">???</b> <b>Total Peserta</b> </a><br> @endslot
-                @slot('iconClass') mdi mdi-account-group @endslot
-                @slot('price') @endslot
-
-
-            @endcomponent --}}
+           
 
         </div>
         {{-- <div class="row"> --}}
@@ -201,10 +156,7 @@
                 </div>
             </div>
         </div>
-        {{-- <form action="{{route('generate_user')}}" method="POST">@csrf
-                    <button type="submit" class="btn btn-primary">GENERATE TESTER</button>
-                </form> --}}
-        {{-- </div> --}}
+       
     </div>
     <div class="row">
     </div>
@@ -273,30 +225,10 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    {{-- <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive"> --}}
-                    {{-- <table id="datatable-buttons3" class="table prov table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
-                        <thead class="text-bold text-primary">
-                            <tr>
-                                <th>Cabang</th>
-                                <th>Kabupaten</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-
-                        <tbody style="text-transform: uppercase; font-size: 12px">
-                        </tbody>
-
-                        <tfoot class="text-bold text-primary">
-                            <tr>
-                                <th>Cabang</th>
-                                <th>Kabupaten</th>
-                                <th>Action</th>
-                            </tr>
-                        </tfoot>
-                    </table> --}}
+                    
                     <input type="text" id="id" class="form-control">
                     <footer class="blockquote-footer">Updated at <cite title="Source Title">2021</cite></footer>
-                    {{-- </blockquote> --}}
+            
                 </div>
             </div>
             <!-- /.modal-content -->
@@ -333,62 +265,7 @@
             // data_cabang();
 
             function load_data(dari = '', sampai = '') {
-                // $.ajax({
-                //     url: '{{ route('diklat.peserta_tot') }}',
-                //     data: {
-                //         dari: dari,
-                //         sampai: sampai
-                //     },
-                //     type: 'get',
-                //     dataType: 'json',
-                //     success: function(data) {
-                //         document.getElementById('ps').innerHTML = data;
-                //         console.log(data);
-                //     }
-                // });
-                //diklat
-                // $.ajax({
-                //     url: '{{ route('diklat.diklat_tot') }}',
-                //     data: {
-                //         dari: dari,
-                //         sampai: sampai
-                //     },
-                //     type: 'get',
-                //     dataType: 'json',
-                //     success: function(data) {
-                //         document.getElementById('dk').innerHTML = data;
-                //         console.log(data);
-                //     }
-                // });
-                //cabang
-                // $.ajax({
-                //     url: '{{ route('diklat.cabang_kab') }}',
-                //     data: {
-                //         dari: dari,
-                //         sampai: sampai
-                //     },
-                //     type: 'get',
-                //     dataType: 'json',
-                //     success: function(data) {
-                //         document.getElementById('kb').innerHTML = data;
-                //         console.log(data);
-                //     }
-                // });
-
-                // $.ajax({
-                //     url: '{{ route('diklat.cabang_pro') }}',
-                //     data: {
-                //         dari: dari,
-                //         sampai: sampai
-                //     },
-                //     type: 'get',
-                //     dataType: 'json',
-                //     success: function(data) {
-                //         document.getElementById('pv').innerHTML = data;
-                //         console.log(data);
-                //     }
-                // });
-
+                
                 $.ajax({
                     url: '{{ route('diklat.cabang_tot') }}',
                     data: {
@@ -403,19 +280,7 @@
                     }
                 });
 
-                // $.ajax({
-                //     url: '{{ route('diklat.webinar_tot') }}',
-                //     type: 'get',
-                //     dataType: 'json',
-                //     data: {
-                //         dari: dari,
-                //         sampai: sampai
-                //     },
-                //     success: function(data) {
-                //         document.getElementById('cbx').innerHTML = data;
-                //         console.log(data);
-                //     }
-                // });
+               
                 //lembaga
                 $.ajax({
                     url: '{{ route('diklat.lembaga_kab') }}',
