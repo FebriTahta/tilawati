@@ -95,17 +95,25 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="card">
-                <?php $peserta_salah = App\Models\Peserta::where('pelatihan_id', $diklat->id)->get(); ?>
-                @if ($peserta_salah->where('tmptlahir', null)->count() > 0)
+                <div class="card-body">
+                    <?php $peserta_salah = App\Models\Peserta::where('pelatihan_id', $diklat->id)->get(); ?>
+                    @if ($peserta_salah->where('tmptlahir', null)->count() > 0)
+                        <div class="col-lg-12 alert alert-danger">
+                            <p>{{$peserta_salah->where('tmptlahir', null)->count()}} Peserta dengan kesalahan penulisan tempat lahir</p>
+                        </div>
+                    @endif
+                    @if ($peserta_salah->where('tgllahir', '-')->count() > 0 || $peserta_salah->where('tgllahir', null)->count() > 0)
+                        <div class="col-lg-12 alert alert-danger">
+                            <p>{{$peserta_salah->where('tgllahir', null)->count() + $peserta_salah->where('tgllahir', '-')->count()}} Peserta dengan kesalahan penulisan tanggal lahir</p>
+                        </div>
+                    @endif
+                    @if ($peserta_salah->where('kabupaten_id', null)->count() > 0)
                     <div class="col-lg-12 alert alert-danger">
-                        <p>{{$peserta_salah->where('tmptlahir', null)->count()}} Peserta dengan kesalahan penulisan tempat lahir</p>
+                        <p>{{$peserta_salah->where('kabupaten_id', null)->count()}} Peserta dengan kesalahan penulisan asal kabupaten / kota</p>
                     </div>
-                @endif
-                @if ($peserta_salah->where('tgllahir', '-')->count() > 0 || $peserta_salah->where('tgllahir', null)->count() > 0)
-                    <div class="col-lg-12 alert alert-danger">
-                        <p>{{$peserta_salah->where('tgllahir', null)->count() + $peserta_salah->where('tgllahir', '-')->count()}} Peserta dengan kesalahan penulisan tanggal lahir</p>
-                    </div>
-                @endif
+                    @endif
+                </div>
+                
                 <div class="card-body">
                     <input type="hidden" id="jenis_program" value="{{ $diklat->program->name }}">
                     <h4 class="card-title text-capitalize">Data Peserta Pelatihan </h4>

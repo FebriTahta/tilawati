@@ -180,7 +180,7 @@ class PesertaCont extends Controller
                                     return $data->kota2;
                                 } else {
                                     # code...
-                                    return '<button data-target="#addkota" data-id="'.$data->id.'" data-toggle="modal" class="btn btn-sm btn-danger">kosong / salah penulisan</button>';
+                                    return '<a data-target="#addkota" data-id="'.$data->id.'" data-toggle="modal" href="#" style="color:red">kosong / salah penulisan</a>';
                                 }
                             }
                         })
@@ -224,29 +224,53 @@ class PesertaCont extends Controller
                             
                         })
                         ->addColumn('ttl', function($data){
-                            // if ($data->tmptlahir2 !== null) {
-                            //     # code...
-                            //     $ttl = $data->tmptlahir2.' - '.Carbon::parse($data->tgllahir)->isoFormat('D MMMM Y');
-                            //     return $ttl;   
-                            // }
-                            // else {
                                 # code...
-                                if ($data->tgllahir == '-' || $data->tgllahir == '') {
+                                if ($data->tmptlahir !== null && $data->tgllahir !== null) {
                                     # code...
-                                    return 'Tanggal Salah';
-                                } else {
-                                    # code...
-                                    if ($data->tmptlahir !== null && $data->tmptlahir2 == null) {
+                                    if ($data->tmptlahir2 !== null) {
                                         # code...
-                                        $ttl = $data->tmptlahir.' - '.Carbon::parse($data->tgllahir)->isoFormat('D MMMM Y');
-                                        return $ttl;
-                                    }else{
-                                        $ttl = $data->tmptlahir2.' - '.Carbon::parse($data->tgllahir)->isoFormat('D MMMM Y');
-                                        return $ttl;
+                                        return  $data->tmptlahir2.' - '.Carbon::parse($data->tgllahir)->isoFormat('D MMMM Y');
+                                    }else {
+                                        # code...
+                                        return  $data->tmptlahir.' - '.Carbon::parse($data->tgllahir)->isoFormat('D MMMM Y');
+                                    }
+                                    
+                                }
+
+                                if ($data->tmptlahir == null && $data->tgllahir !== null) {
+                                    # code...
+                                    if ($data->tmptlahir2 !== null) {
+                                        # code...
+                                        return  $data->tmptlahir2.' - '.Carbon::parse($data->tgllahir)->isoFormat('D MMMM Y');
+                                    }else {
+                                        # code...
+                                        return  '<a href="" style="color:red"> Tempat Lahir Salah Penulisan</a>' .' - '.Carbon::parse($data->tgllahir)->isoFormat('D MMMM Y');
                                     }
                                 }
-                            // }
-                            // return $data->tgllahir;
+
+                                if ($data->tmptlahir !== null && $data->tgllahir == null) {
+                                    # code...
+                                    if ($data->tmptlahir2 !== null) {
+                                        # code...
+                                        return  $data->tmptlahir2.' - '.'<a style="color:red" href="#">Tgl Salah Format</a>';
+                                    }else {
+                                        # code...
+                                        return  $data->tmptlahir.' - '.'<a style="color:red" href="#">Tgl Salah Format</a>';
+                                    }
+                                    
+                                }
+
+                                if ($data->tmptlahir == null && $data->tgllahir == null) {
+                                    # code...
+                                    if ($data->tmptlahir2 !== null) {
+                                        # code...
+                                        return  $data->tmptlahir2.' - '.'<a style="color:red" href="#">Tgl Salah Format</a>';
+                                    }else {
+                                        # code...
+                                        return  '<a href="" style="color:red"> Tempat Lahir Salah Penulisan</a>' .' - '.'<a style="color:red" href="#">Tgl Salah Format</a>';
+                                    }
+                                    
+                                }
                         })
                         ->addColumn('alamatmodul', function($data){
                             if ($data->alamatx == null) {
