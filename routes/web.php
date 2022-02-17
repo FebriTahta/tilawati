@@ -472,6 +472,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
 
     //LEMBAGA DELETE
     Route::post('/lembaga-hapus',[LembagaCont::class,'lembaga_hapus'])->name('lembaga.hapus');
+    Route::get('/halaman-update-lembaga/{lembaga_kode}',[LembagaCont::class,'halaman_edit']);
     
     // EXPORT TEMPLATE DIKLAT NEW 
     Route::get('/export-template-diklat/{jenis}',[ExportCont::class,'export_template_diklat']);

@@ -161,7 +161,8 @@ class CabangCont extends Controller
                         //     $trains[] =  $value->trainer.' - '.$tot_train;
                         // }
                         // return implode(' | ', $trains);
-                        return Trainer::where('cabang_id', $data->id)->where('trainer',$value->trainer)->count().' TRAINER';
+                        // return Trainer::where('cabang_id', $data->id)->where('trainer',$value->trainer)->count().' TRAINER';
+                        return Trainer::where('cabang_id', $data->id)->count().' TRAINER';
                     } else {
                         # code...
                         return ' - ';
@@ -235,7 +236,8 @@ class CabangCont extends Controller
                         //     $trains[] =  $value->trainer.' - '.$tot_train;
                         // }
                         // return implode(' | ', $trains);
-                        return Trainer::where('cabang_id', $data->id)->where('trainer',$value->trainer)->count().' TRAINER';
+                        // return Trainer::where('cabang_id', $data->id)->where('trainer',$value->trainer)->count().' TRAINER';
+                        return Trainer::where('cabang_id', $data->id)->count().' TRAINER';
                     } else {
                         # code...
                         return ' - ';
