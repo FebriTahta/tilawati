@@ -66,8 +66,15 @@ class SubController extends Controller
     }
 
     public function fetchpp($id){
-        $pelatihan = Pelatihan::where("program_id", $id)->with('program','cabang')->orderBy('id','desc')->get();
-        return json_encode($pelatihan);
+        if (auth()->user()->role=='cabang') {
+            # code...
+            $pelatihan = Pelatihan::where("program_id", $id)->with('program','cabang')->where('cabang_id', auth()->user()->cabang->id)->orderBy('id','desc')->get();
+            return json_encode($pelatihan);
+        }else {
+            # code...
+            $pelatihan = Pelatihan::where("program_id", $id)->with('program','cabang')->orderBy('id','desc')->get();
+            return json_encode($pelatihan);
+        }
     }
 
     public function hapuscabang(Request $request)
