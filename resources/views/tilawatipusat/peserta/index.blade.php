@@ -129,7 +129,8 @@
                     @endif
                     @if ($salah1 + $salah2 + $salah3 > 0)
                         <code>Data anda mengalami beberapa kesalahan format penulisan. Silahkan klik pada data yang salah
-                            dan ganti dengan data yang benar</code>
+                            dan ganti dengan data yang benar</code><br>
+                        <code>Beberapa fitur akan dimatikan seperti tidak dapat dicetak / diterbitkan syahadah apabila data anda tidak dibenarkan terlebih dahulu.</code>
                     @endif
                     <br><br>
                     @if (count($errors) > 0)

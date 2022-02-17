@@ -15,7 +15,8 @@
             @component('common-tilawatipusat.dashboard2-widget3')
                 @slot('title')
                     <?php $diklat = App\Models\Pelatihan::where('id', $pelatihan_id)->first(); ?>
-                    <span class="text-capitalize">Cabang : Tilawati {{ strtolower(substr(auth()->user()->cabang->kabupaten->nama, 5)) }}
+                    <span class="text-capitalize">Cabang : Tilawati
+                        {{ strtolower(substr(auth()->user()->cabang->kabupaten->nama, 5)) }}
                         ({{ auth()->user()->cabang->name }})</span>
                 @endslot
                 @slot('total')
@@ -25,7 +26,7 @@
                 @endslot
                 @section('from3')
                     <p class="mb-0"><span class="badge badge-soft-success mr-2"> <i class="mdi mdi-arrow-up"></i>
-                        </span> {{$diklat->tanggal}}</p>
+                        </span> {{ $diklat->tanggal }}</p>
                 @endsection
             @endcomponent
         </div>
@@ -62,24 +63,59 @@
                 @endsection
             @endcomponent
         </div>
-        <div class="col-xl-12">
-            <form id="create_qr" method="POST"> @csrf
-                <input type="hidden" name="pelatihan_id2" id="pel_id" value="{{ $pelatihan_id }}">
-                {{-- <button id="generate" type="submit" onclick="Generates()" class="btn btn-sm btn-outline-primary">generate</button> --}}
-                {{-- <input type="submit" class="btn btn-success" value="generate" id="generatebtn"> --}}
-                <input type="submit" id="btnbuat" class="btn btn-primary" value="GENERATE QR CODE">
-            </form>
+
+        <div class="col-xl-6" style="margin-top: 20px">
+            <?php $peserta_salah = App\Models\Peserta::where('pelatihan_id', $pelatihan_id)
+                ->where('bersyahadah', 1)
+                ->get();
+            $salah1 = 0;
+            $salah2 = 0;
+            $salah3 = 0; ?>
+            @if ($peserta_salah->where('tmptlahir', null)->where('bersyahadah', 1)->count() > 0)
+                <div class="col-lg-12 alert alert-danger">
+                    <p>{{ $salah1 = $peserta_salah->where('tmptlahir', null)->where('bersyahadah', 1)->count() }} Peserta
+                        dengan kesalahan
+                        penulisan
+                        tempat lahir</p>
+                </div>
+            @endif
+            @if ($peserta_salah->where('tgllahir', '-')->where('bersyahadah', 1)->count() > 0 || $peserta_salah->where('tgllahir', null)->count() > 0)
+                <div class="col-lg-12 alert alert-danger">
+                    <p>{{ $salah2 =$peserta_salah->where('tgllahir', null)->where('bersyahadah', 1)->count() +$peserta_salah->where('tgllahir', '-')->where('bersyahadah', 1)->count() }}
+                        Peserta dengan kesalahan penulisan tanggal lahir</p>
+                </div>
+            @endif
+            @if ($peserta_salah->where('kabupaten_id', null)->where('bersyahadah', 1)->count() > 0)
+                <div class="col-lg-12 alert alert-danger">
+                    <p>{{ $salah3 = $peserta_salah->where('kabupaten_id', null)->where('bersyahadah', 1)->count() }}
+                        Peserta dengan
+                        kesalahan
+                        penulisan asal kabupaten / kota</p>
+                </div>
+            @endif
+            @if ($salah1 + $salah2 + $salah3 > 0)
+                <a href="/diklat-peserta/{{$pelatihan_id}}" class="btn btn-info"> KLIK DISINI MENUJU DATA PESERTA DIKLAT</a>
+            @endif
         </div>
 
-        <div class="col-xl-12" style="margin-top: 20px">
-            <form action="{{ route('diklat.depan_cetak_syahadah') }}" method="POST">@csrf
+        <div class="col-xl-6" style="margin-top: 20px">
+            <div class="card card-body">
+                @if ($salah1 + $salah2 + $salah3 > 0)
+                    <code>Beberapa data peserta ini kosong / mengalami kesalahan penulisan. Mohon periksa kembali apabila
+                        dilakukan pencetakan syahadah</code>
+                @endif
+            </div>
+            <form id="create_qr" method="POST" style="float: left"> @csrf
+                <input type="hidden" name="pelatihan_id2" id="pel_id" value="{{ $pelatihan_id }}">
+                <input type="submit" id="btnbuat" class="btn btn-primary" value="Generate Qr Code">
+            </form>
+            <form action="{{ route('diklat.depan_cetak_syahadah') }}" method="POST" style="float: right">@csrf
                 <input type="hidden" name="pelatihan_id" value="{{ $pelatihan_id }}">
                 <div class="form-group">
-                    <input type="submit" id="btncetak" class="btn btn-outline-primary" value="CETAK SYAHADAH DEPAN">
+                    <input type="submit" id="btncetak" class="btn btn-outline-primary" value="Cetak Syahadah Depan">
                 </div>
             </form>
         </div>
-        <!-- end row -->
     @endsection
 
     @section('script')
@@ -127,9 +163,9 @@
             var total_peserta = $('#tot_pes').html();
             var total_qr = $('#tot_qr').html();
             var qr;
-            $(document).ready(function() {            
+            $(document).ready(function() {
                 setInterval(function() {
-                        // console.log(total_peserta);
+                    // console.log(total_peserta);
                     if ($('#tot_qr').html() == total_peserta) {
                         $('#btnbuat').attr('disabled', 'disabled');
                         $('#btnbuat').val('SELESAI');
