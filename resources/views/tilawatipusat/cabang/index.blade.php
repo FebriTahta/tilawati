@@ -202,6 +202,43 @@
         </div><!-- /.modal -->
     </div>
 
+    <div class="modal fade" id="modal-hapus-data" tabindex="-1" role="dialog" id="modal-hapus" aria-labelledby="mySmallModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-md">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="col-xl-12">
+                            <div class="card m-b-30">
+                                <div class="card-body">
+                                    <div class="container-fluid">
+                                        <form id="" action="/peserta-hapus-beberapa" method="POST"
+                                            enctype="multipart/form-data">@csrf
+                                            <div class="form-group text-center">
+                                                <h5>HAPUS DATA ?</h5>
+                                                <input type="text" class="form-control text-capitalize" id="idhapusdata"
+                                                    name="id" required>
+                                            </div>
+                                            <div class="row" style="text-align: center">
+                                                <div class="form-group col-6 col-xl-6">
+                                                    <input type="submit" id="btnhapusdata" class="btn btn-danger"
+                                                        value="Ya, Hapus!" />
+                                                </div>
+                                                <div class="form-group col-6 col-xl-6">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                                        No, Cancel!
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div><!-- container fluid -->
+                                </div>
+                            </div>
+                        </div> <!-- end col -->
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
     <div class="modal fade bs-example-modal-kepala-bagian-lama" id="mod_cabang2" tabindex="-1" role="dialog"
         aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable modal-md">
