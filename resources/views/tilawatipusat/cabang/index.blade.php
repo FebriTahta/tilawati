@@ -1,45 +1,56 @@
 @extends('layouts.tilawatipusat_layouts.master')
 
-@section('title') Cabang @endsection
+@section('title')
+    Cabang
+@endsection
 @section('css')
-
     <!-- DataTables -->
     <link href="{{ URL::asset('tilawatipusat/libs/datatables/datatables.min.css') }}" rel="stylesheet" type="text/css" />
-
 @endsection
 @section('content')
-
     @component('common-tilawatipusat.breadcrumb')
-        @slot('title') Cabang @endslot
-        @slot('title_li') Tilawati @endslot
+        @slot('title')
+            Cabang
+        @endslot
+        @slot('title_li')
+            Tilawati
+        @endslot
     @endcomponent
     <div class="row">
         <div class="col-xl-4">
             @component('common-tilawatipusat.dashboard-widget')
-
-                @slot('title') <b id="cb"> 2,456 </b> Cabang @endslot
-                @slot('iconClass') mdi mdi-bank-outline @endslot
-                @slot('price') @endslot
-
-            @endcomponent
-        </div>
-        <div class="col-xl-4">
-            @component('common-tilawatipusat.dashboard-widget')
-
-                @slot('title') <b id="kb"> 2,456 </b> Kabupaten @endslot
-                @slot('iconClass') mdi mdi-city @endslot
-                @slot('price') @endslot
-
-            @endcomponent
-        </div>
-        <div class="col-xl-4">
-            @component('common-tilawatipusat.dashboard-widget')
-
-                @slot('title') <b id="pv"> 2,456 </b> Provinsi @endslot
-                @slot('iconClass') mdi mdi-city-variant-outline
+                @slot('title')
+                    <b id="cb"> 2,456 </b> Cabang
                 @endslot
-                @slot('price') @endslot
-
+                @slot('iconClass')
+                    mdi mdi-bank-outline
+                @endslot
+                @slot('price')
+                @endslot
+            @endcomponent
+        </div>
+        <div class="col-xl-4">
+            @component('common-tilawatipusat.dashboard-widget')
+                @slot('title')
+                    <b id="kb"> 2,456 </b> Kabupaten
+                @endslot
+                @slot('iconClass')
+                    mdi mdi-city
+                @endslot
+                @slot('price')
+                @endslot
+            @endcomponent
+        </div>
+        <div class="col-xl-4">
+            @component('common-tilawatipusat.dashboard-widget')
+                @slot('title')
+                    <b id="pv"> 2,456 </b> Provinsi
+                @endslot
+                @slot('iconClass')
+                    mdi mdi-city-variant-outline
+                @endslot
+                @slot('price')
+                @endslot
             @endcomponent
         </div>
     </div>
@@ -213,9 +224,10 @@
                                 <div class="container-fluid">
                                     <form id="hapuscabang" method="POST" enctype="multipart/form-data">@csrf
                                         <div class="form-group text-center">
-                                            <h5>"User Akses Cabang Tersebut" juga akan terhapus apabila menghapus Cabang</h5>
-                                            <p>YAKIN INGIN MENGHAPUS CABANG TERSEBUT ?</p>
-                                            <input type="text" class="form-control text-capitalize" id="id" name="id"
+                                            <h5>"User Akses Cabang Tersebut" juga akan terhapus apabila menghapus Cabang
+                                            </h5>
+                                            <p class="text-danger">YAKIN INGIN MENGHAPUS CABANG TERSEBUT ?</p>
+                                            <input type="hidden" class="form-control text-capitalize" id="id" name="id"
                                                 required>
                                         </div>
                                         <div class="row" style="text-align: center">
@@ -498,11 +510,9 @@
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
     </div>
-
 @endsection
 
 @section('script')
-
     <!-- Toast -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.all.min.js"></script>
@@ -527,7 +537,68 @@
             console.log(id);
             modal.find('.modal-body #id').val(id);
         })
-        
+
+        $('#hapuscabang').submit(function(e) {
+            e.preventDefault();
+            var formData = new FormData(this);
+            $.ajax({
+                type: 'POST',
+                url: "{{ route('cabang.hapus') }}",
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                beforeSend: function() {
+                    $('#btnhapus').attr('disabled', 'disabled');
+                    $('#btnhapus').val('Proses Hapus Data');
+                },
+                success: function(data) {
+                    if (data.success) {
+                        //sweetalert and redirect
+                        var oTable = $('#datatable-buttons').dataTable();
+                        oTable.fnDraw(false);
+                        $('#btnhapus').val('Ya, Hapus!');
+                        $('.bs-example-modal-diklat-hapus').modal('hide');
+                        $('#btnhapus').attr('disabled', false);
+
+                        // UPDATE JUMLAH DATA
+                        $.ajax({
+                            url: '{{ route('diklat.cabang_kab') }}',
+                            type: 'get',
+                            dataType: 'json',
+                            success: function(data) {
+                                document.getElementById('kb').innerHTML = data;
+                                console.log(data);
+                            }
+                        });
+
+                        $.ajax({
+                            url: '{{ route('diklat.cabang_pro') }}',
+                            type: 'get',
+                            dataType: 'json',
+                            success: function(data) {
+                                document.getElementById('pv').innerHTML = data;
+                                console.log(data);
+                            }
+                        });
+
+                        $.ajax({
+                            url: '{{ route('diklat.cabang_tot') }}',
+                            type: 'get',
+                            dataType: 'json',
+                            success: function(data) {
+                                document.getElementById('cb').innerHTML = data;
+                                console.log(data);
+                            }
+                        });
+                    }
+                },
+                error: function(data) {
+                    console.log(data);
+                }
+            });
+        });
+
         $('#form_tambah_cabang').submit(function(e) {
             e.preventDefault();
             var formData = new FormData(this);
@@ -556,6 +627,36 @@
                             text: "Cabang Baru Berhasil Di Tabahkan!",
                             type: "success"
                         })
+
+                        $.ajax({
+                            url: '{{ route('diklat.cabang_kab') }}',
+                            type: 'get',
+                            dataType: 'json',
+                            success: function(data) {
+                                document.getElementById('kb').innerHTML = data;
+                                console.log(data);
+                            }
+                        });
+
+                        $.ajax({
+                            url: '{{ route('diklat.cabang_pro') }}',
+                            type: 'get',
+                            dataType: 'json',
+                            success: function(data) {
+                                document.getElementById('pv').innerHTML = data;
+                                console.log(data);
+                            }
+                        });
+
+                        $.ajax({
+                            url: '{{ route('diklat.cabang_tot') }}',
+                            type: 'get',
+                            dataType: 'json',
+                            success: function(data) {
+                                document.getElementById('cb').innerHTML = data;
+                                console.log(data);
+                            }
+                        });
                     }
                 },
                 error: function(data) {
@@ -593,6 +694,36 @@
                         //     text: "Cabang Baru Berhasil Di Tabahkan!",
                         //     type: "success"
                         // })
+
+                        $.ajax({
+                            url: '{{ route('diklat.cabang_kab') }}',
+                            type: 'get',
+                            dataType: 'json',
+                            success: function(data) {
+                                document.getElementById('kb').innerHTML = data;
+                                console.log(data);
+                            }
+                        });
+
+                        $.ajax({
+                            url: '{{ route('diklat.cabang_pro') }}',
+                            type: 'get',
+                            dataType: 'json',
+                            success: function(data) {
+                                document.getElementById('pv').innerHTML = data;
+                                console.log(data);
+                            }
+                        });
+
+                        $.ajax({
+                            url: '{{ route('diklat.cabang_tot') }}',
+                            type: 'get',
+                            dataType: 'json',
+                            success: function(data) {
+                                document.getElementById('cb').innerHTML = data;
+                                console.log(data);
+                            }
+                        });
                     }
                 },
                 error: function(data) {
