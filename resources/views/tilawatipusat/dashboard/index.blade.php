@@ -36,7 +36,7 @@
                     <a href="#">
                         Pengguna metode Tilawati seluruh Indonesia sebanyak
                         {{ number_format($guru + $santri, 0, ',', '.') }} " Pengguna <br>
-                        Terdiri dari ( {{ number_format($guru, 0, ',', '.') }} Guru) & (
+                        Terdiri dari <br> ( {{ number_format($guru, 0, ',', '.') }} Guru) & (
                         {{ number_format($santri, 0, ',', '.') }} Santri)
                         <br><br>
                         Bersumber pada : <br><b id="cb">-</b> <b>Cabang</b> & <b id="lm">-</b> <b>Lembaga</b> yang tersebar luas di
