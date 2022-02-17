@@ -633,5 +633,19 @@ class CabangCont extends Controller
 
         return redirect()->back();
     }
+
+    public function cabang_hapus(Request $request)
+    {
+        $data = Cabang::where('id', $request->id)->first();
+        $user = User::where('id', $data->user_id)->first();
+        $data->hapus;
+        $user->hapus;
+        return response()->json(
+            [
+              'success' => 'Cabang Berhasil Dihapus!',
+              'message' => 'Cabang Berhasil Dihapus!'
+            ]
+        );
+    }
     
 }
