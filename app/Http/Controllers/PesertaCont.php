@@ -244,7 +244,7 @@ class PesertaCont extends Controller
                                         return  $data->tmptlahir2.' - '.Carbon::parse($data->tgllahir)->isoFormat('D MMMM Y');
                                     }else {
                                         # code...
-                                        return  '<a href="" style="color:red"> Kosong / Salah Penulisan</a>' .' - '.Carbon::parse($data->tgllahir)->isoFormat('D MMMM Y');
+                                        return  '<a href="#" style="color:red" data-toggle="modal" data-target="#addkota2" data-id ="'.$data->id.'"> Kosong / Salah Penulisan</a>' .' - '.Carbon::parse($data->tgllahir)->isoFormat('D MMMM Y');
                                     }
                                 }
 
@@ -252,10 +252,10 @@ class PesertaCont extends Controller
                                     # code...
                                     if ($data->tmptlahir2 !== null) {
                                         # code...
-                                        return  $data->tmptlahir2.' - '.'<a style="color:red" href="#">Tgl Salah Format</a>';
+                                        return  $data->tmptlahir2.' - '.'<a style="color:red" href="#" data-toggle="modal" data-target="#addtgl" data-id ="'.$data->id.'">Tgl Salah Format</a>';
                                     }else {
                                         # code...
-                                        return  $data->tmptlahir.' - '.'<a style="color:red" href="#">Tgl Salah Format</a>';
+                                        return  $data->tmptlahir.' - '.'<a style="color:red" href="#" data-toggle="modal" data-target="#addtgl" data-id ="'.$data->id.'">Tgl Salah Format</a>';
                                     }
                                     
                                 }
@@ -264,10 +264,10 @@ class PesertaCont extends Controller
                                     # code...
                                     if ($data->tmptlahir2 !== null) {
                                         # code...
-                                        return  $data->tmptlahir2.' - '.'<a style="color:red" href="#">Tgl Salah Format</a>';
+                                        return  $data->tmptlahir2.' - '.'<a style="color:red" href="#" data-toggle="modal" data-target="#addtgl">Tgl Salah Format</a>';
                                     }else {
                                         # code...
-                                        return  '<a href="" style="color:red"> Kosong / Salah Penulisan</a>' .' - '.'<a style="color:red" href="#">Tgl Salah Format</a>';
+                                        return  '<a href="" style="color:red" data-id ="'.$data->id.'"  data-toggle="modal" data-target="#addkota3"> Kosong / Salah Penulisan</a>' .' - '.'<a style="color:red" href="#" data-toggle="modal" data-target="#addtgl" data-id ="'.$data->id.'">Tgl Salah Format</a>';
                                     }
                                     
                                 }
@@ -1900,6 +1900,35 @@ class PesertaCont extends Controller
         }
     }
 
+    public function add_tgl(Request $request)
+    {
+        if(request()->ajax())
+        {
+            if ($request->peserta_id !== null) {
+                # code...
+                $pes_id = $request->peserta_id;
+                $tgl = $request->tgllahir;
+                $data = Peserta::where('id',$pes_id)->update([
+                    'tgllahir' => $tgl
+                ]);
+                return response()->json(
+                    [
+                    'success' => 'Data Tangal Lahir Peserta Berhasil Diperbarui',
+                    'message' => 'Data Tangal Lahir Peserta Berhasil Diperbarui'
+                    ]
+                );
+            }else{
+               
+                return response()->json(
+                    [
+                    'error' => 'Jangan diurutkan berdasarkan kabupaten',
+                    'message' => 'Tidak bisa merubah data apabila diurutkan berdasarkan kabupaten yang kosong'
+                    ]
+                );
+            }
+        }
+    }
+
     public function add_kota(Request $request)
     {
         if(request()->ajax())
@@ -1910,6 +1939,66 @@ class PesertaCont extends Controller
                 $kab_id = $request->sel_kab;
                 $data = Peserta::where('id',$pes_id)->update([
                     'kabupaten_id' => $kab_id
+                ]);
+                return response()->json(
+                    [
+                    'success' => 'Data Kota Peserta Berhasil Diperbarui',
+                    'message' => 'Data Kota Peserta Berhasil Diperbarui'
+                    ]
+                );
+            }else{
+               
+                return response()->json(
+                    [
+                    'error' => 'Jangan diurutkan berdasarkan kabupaten',
+                    'message' => 'Tidak bisa merubah data apabila diurutkan berdasarkan kabupaten yang kosong'
+                    ]
+                );
+            }
+        }
+    }
+
+    public function add_kota2(Request $request)
+    {
+        if(request()->ajax())
+        {
+            if ($request->peserta_id !== null) {
+                # code...
+                $pes_id = $request->peserta_id;
+                $kab_id = $request->sel_kab;
+                $tmptlahir = Kabupaten::where('id',$kab_id)->first();
+                $data = Peserta::where('id',$pes_id)->update([
+                    'tmptlahir' => $tmptlahir->nama
+                ]);
+                return response()->json(
+                    [
+                    'success' => 'Data Kota Peserta Berhasil Diperbarui',
+                    'message' => 'Data Kota Peserta Berhasil Diperbarui'
+                    ]
+                );
+            }else{
+               
+                return response()->json(
+                    [
+                    'error' => 'Jangan diurutkan berdasarkan kabupaten',
+                    'message' => $kab_id.'Tidak bisa merubah data apabila diurutkan berdasarkan kabupaten yang kosong'
+                    ]
+                );
+            }
+        }
+    }
+
+    public function add_kota3(Request $request)
+    {
+        if(request()->ajax())
+        {
+            if ($request->peserta_id !== null) {
+                # code...
+                $pes_id = $request->peserta_id;
+                $kab_id = $request->sel_kab;
+                $tmptlahir = Kabupaten::where('id',$kab_id)->first();
+                $data = Peserta::where('id',$pes_id)->update([
+                    'tmptlahir' => $tmptlahir->nama
                 ]);
                 return response()->json(
                     [

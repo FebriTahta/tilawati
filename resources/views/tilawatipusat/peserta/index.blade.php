@@ -130,7 +130,8 @@
                     @if ($salah1 + $salah2 + $salah3 > 0)
                         <code>Data anda mengalami beberapa kesalahan format penulisan. Silahkan klik pada data yang salah
                             dan ganti dengan data yang benar</code><br>
-                        <code>Beberapa fitur akan dimatikan seperti tidak dapat dicetak / diterbitkan syahadah apabila data anda tidak dibenarkan terlebih dahulu.</code>
+                        <code>Beberapa fitur akan dimatikan seperti tidak dapat dicetak / diterbitkan syahadah apabila data
+                            anda tidak dibenarkan terlebih dahulu.</code>
                     @endif
                     <br><br>
                     @if (count($errors) > 0)
@@ -689,6 +690,78 @@
     </div>
 
     <div class="col-sm-6 col-md-3 m-t-30">
+        <div class="modal fade bs-example-modal-tmptlahir" id="addkota2" tabindex="-1" role="dialog"
+            aria-labelledby="mySmallModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-md">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <form id="tambahkota2" method="POST" enctype="multipart/form-data">@csrf
+                            <input type="hidden" id="idpeserta" name="peserta_id">
+                            <div class="form-group text-center col-12">
+                                <p>Daftar Kota & Kabupaten</p>
+                                <select name="sel_kab" id="sel_kab2" style="text-transform: lowercase; max-width: auto;"
+                                    class="form-control select2" required>
+                                    <option value=""> Cari & Pilih Kab / Kota</option>
+                                </select>
+                            </div>
+                            <div class="form-group text-center">
+                                <input type="submit" id="tambah2" value="Tambahkan" class="btn btn-sm btn-primary">
+                            </div>
+                        </form>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+    </div>
+
+    <div class="col-sm-6 col-md-3 m-t-30">
+        <div class="modal fade bs-example-modal-tmptlahir" id="addkota3" tabindex="-1" role="dialog"
+            aria-labelledby="mySmallModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-md">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <form id="tambahkota3" method="POST" enctype="multipart/form-data">@csrf
+                            <input type="hidden" id="idpeserta" name="peserta_id">
+                            <div class="form-group text-center col-12">
+                                <p>Daftar Kota & Kabupaten</p>
+                                <select name="sel_kab" id="sel_kab3" style="text-transform: lowercase; max-width: auto;"
+                                    class="form-control select2" required>
+                                    <option value=""> Cari & Pilih Kab / Kota</option>
+                                </select>
+                            </div>
+                            <div class="form-group text-center">
+                                <input type="submit" id="tambah3" value="Tambahkan" class="btn btn-sm btn-primary">
+                            </div>
+                        </form>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+    </div>
+
+    <div class="col-sm-6 col-md-3 m-t-30">
+        <div class="modal fade bs-example-modal-tgllahir" id="addtgl" tabindex="-1" role="dialog"
+            aria-labelledby="mySmallModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-md">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <form id="tambahtgl" method="POST" enctype="multipart/form-data">@csrf
+                            <input type="hidden" id="idpeserta" name="peserta_id">
+                            <div class="form-group text-center col-12">
+                                <p>Tanggal Lahir Peserta</p>
+                                <input type="date" class="form-control" name="tgllahir">
+                            </div>
+                            <div class="form-group text-center">
+                                <input type="submit" id="tambah4" value="Tambahkan" class="btn btn-sm btn-primary">
+                            </div>
+                        </form>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+    </div>
+
+    <div class="col-sm-6 col-md-3 m-t-30">
         <div class="modal fade bs-example-modal-peserta" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -810,6 +883,48 @@
                 cache: true
             }
         });
+        $('#sel_kab2').select2({
+            placeholder: 'Pilih Kota / Kabupaten yang Tepat sesuai data sensus 2021',
+            class: 'form-control',
+            ajax: {
+                url: "{{ route('kabupaten') }}",
+                dataType: 'json',
+                delay: 250,
+                processResults: function(data) {
+                    return {
+                        results: $.map(data, function(item) {
+                            return {
+                                text: item.id,
+                                text: item.nama,
+                                id: item.id
+                            }
+                        })
+                    };
+                },
+                cache: true
+            }
+        });
+        $('#sel_kab3').select2({
+            placeholder: 'Pilih Kota / Kabupaten yang Tepat sesuai data sensus 2021',
+            class: 'form-control',
+            ajax: {
+                url: "{{ route('kabupaten') }}",
+                dataType: 'json',
+                delay: 250,
+                processResults: function(data) {
+                    return {
+                        results: $.map(data, function(item) {
+                            return {
+                                text: item.id,
+                                text: item.nama,
+                                id: item.id
+                            }
+                        })
+                    };
+                },
+                cache: true
+            }
+        });
         $('.modal-scan').on('show.bs.modal', function(event) {
             var button = $(event.relatedTarget)
             id = button.data('id')
@@ -894,6 +1009,46 @@
             });
         });
 
+        //tambah tanggal
+        $('#tambahtgl').submit(function(e) {
+            var pelatihan_id = $('#pelatihan_id').val();
+            e.preventDefault();
+            var formData = new FormData(this);
+            $.ajax({
+                type: 'POST',
+                url: "{{ route('add_tgl') }}",
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                beforeSend: function() {
+                    $('#tambah4').attr('disabled', 'disabled');
+                    $('#tambah4').val('Proses Menambahkan Tanggal Lahir');
+                },
+                success: function(data) {
+                    if (data.success) {
+                        window.location.reload();
+                        $("#tambahtgl")[0].reset();
+                        toastr.success(data.success);
+                        var oTable = $('#datatable-buttons').dataTable();
+                        oTable.fnDraw(false);
+                        $('#tambah4').val('Tambah!');
+                        $('#tambah4').attr('disabled', false);
+                        $('#addtgl').modal('hide');
+                        // swal("Done!", data.message, "success");
+                    } else {
+                        $("#tambahtgl")[0].reset();
+                        swal("Error!", data.message, "error");
+                        $('#tambah4').val('Tambah!');
+                        $('#tambah4').attr('disabled', false);
+                        $('#addtgl').modal('hide');
+                    }
+                },
+                error: function(data) {
+                    console.log(data);
+                }
+            });
+        });
         //tambahkota
         $('#tambahkota').submit(function(e) {
             var pelatihan_id = $('#pelatihan_id').val();
@@ -944,7 +1099,126 @@
             });
         });
 
+        $('#tambahkota2').submit(function(e) {
+            var pelatihan_id = $('#pelatihan_id').val();
+            e.preventDefault();
+            var formData = new FormData(this);
+            $.ajax({
+                type: 'POST',
+                url: "{{ route('add_kota2') }}",
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                beforeSend: function() {
+                    $('#tambah2').attr('disabled', 'disabled');
+                    $('#tambah2').val('Proses Menambahkan Kota');
+                },
+                success: function(data) {
+                    if (data.success) {
+                        window.location.reload();
+                        $.ajax({
+                            url: '/peserta_yang_kabupatennya_kosong/' + pelatihan_id,
+                            type: 'get',
+                            dataType: 'json',
+                            success: function(data) {
+                                document.getElementById('kabkos').innerHTML = data;
+                                console.log(data);
+                            }
+                        });
+                        $("#tambahkota2")[0].reset();
+                        toastr.success(data.success);
+                        var oTable = $('#datatable-buttons').dataTable();
+                        oTable.fnDraw(false);
+                        $('#tambah2').val('Tambah!');
+                        $('#tambah2').attr('disabled', false);
+                        $('#addkota2').modal('hide');
+                        // swal("Done!", data.message, "success");
+                    } else {
+                        $("#tambahkota2")[0].reset();
+                        swal("Error!", data.message, "error");
+                        $('#tambah2').val('Tambah!');
+                        $('#tambah2').attr('disabled', false);
+                        $('#addkota2').modal('hide');
+                    }
+                },
+                error: function(data) {
+                    console.log(data);
+                }
+            });
+        });
+
+        $('#tambahkota3').submit(function(e) {
+            var pelatihan_id = $('#pelatihan_id').val();
+            e.preventDefault();
+            var formData = new FormData(this);
+            $.ajax({
+                type: 'POST',
+                url: "{{ route('add_kota3') }}",
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                beforeSend: function() {
+                    $('#tambah3').attr('disabled', 'disabled');
+                    $('#tambah3').val('Proses Menambahkan Kota');
+                },
+                success: function(data) {
+                    if (data.success) {
+                        window.location.reload();
+                        $.ajax({
+                            url: '/peserta_yang_kabupatennya_kosong/' + pelatihan_id,
+                            type: 'get',
+                            dataType: 'json',
+                            success: function(data) {
+                                document.getElementById('kabkos').innerHTML = data;
+                                console.log(data);
+                            }
+                        });
+                        $("#tambahkota3")[0].reset();
+                        toastr.success(data.success);
+                        var oTable = $('#datatable-buttons').dataTable();
+                        oTable.fnDraw(false);
+                        $('#tambah3').val('Tambah!');
+                        $('#tambah3').attr('disabled', false);
+                        $('#addkota3').modal('hide');
+                        // swal("Done!", data.message, "success");
+                    } else {
+                        $("#tambahkota3")[0].reset();
+                        swal("Error!", data.message, "error");
+                        $('#tambah3').val('Tambah!');
+                        $('#tambah3').attr('disabled', false);
+                        $('#addkota3').modal('hide');
+                    }
+                },
+                error: function(data) {
+                    console.log(data);
+                }
+            });
+        });
+
+        $('#addtgl').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget)
+            var id = button.data('id')
+            var modal = $(this)
+            // console.log(id);
+            modal.find('.modal-body #idpeserta').val(id);
+        })
         $('#addkota').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget)
+            var id = button.data('id')
+            var modal = $(this)
+            // console.log(id);
+            modal.find('.modal-body #idpeserta').val(id);
+        })
+        $('#addkota2').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget)
+            var id = button.data('id')
+            var modal = $(this)
+            // console.log(id);
+            modal.find('.modal-body #idpeserta').val(id);
+        })
+        $('#addkota3').on('show.bs.modal', function(event) {
             var button = $(event.relatedTarget)
             var id = button.data('id')
             var modal = $(this)
