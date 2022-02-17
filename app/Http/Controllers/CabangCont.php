@@ -637,9 +637,8 @@ class CabangCont extends Controller
     public function cabang_hapus(Request $request)
     {
         $data = Cabang::where('id', $request->id)->first();
-        $user = User::where('id', $data->user_id)->first();
-        $data->hapus;
-        $user->hapus;
+        $user = User::where('id', $data->user_id)->delete();
+        Cabang::where('id', $data->id)->delete();
         return response()->json(
             [
               'success' => 'Cabang Berhasil Dihapus!',
