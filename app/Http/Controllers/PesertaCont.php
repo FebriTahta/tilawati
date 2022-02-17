@@ -244,7 +244,7 @@ class PesertaCont extends Controller
                                         return  $data->tmptlahir2.' - '.Carbon::parse($data->tgllahir)->isoFormat('D MMMM Y');
                                     }else {
                                         # code...
-                                        return  '<a href="" style="color:red"> Tempat Lahir Salah Penulisan</a>' .' - '.Carbon::parse($data->tgllahir)->isoFormat('D MMMM Y');
+                                        return  '<a href="" style="color:red"> Kosong / Salah Penulisan</a>' .' - '.Carbon::parse($data->tgllahir)->isoFormat('D MMMM Y');
                                     }
                                 }
 
@@ -267,7 +267,7 @@ class PesertaCont extends Controller
                                         return  $data->tmptlahir2.' - '.'<a style="color:red" href="#">Tgl Salah Format</a>';
                                     }else {
                                         # code...
-                                        return  '<a href="" style="color:red"> Tempat Lahir Salah Penulisan</a>' .' - '.'<a style="color:red" href="#">Tgl Salah Format</a>';
+                                        return  '<a href="" style="color:red"> Kosong / Salah Penulisan</a>' .' - '.'<a style="color:red" href="#">Tgl Salah Format</a>';
                                     }
                                     
                                 }
