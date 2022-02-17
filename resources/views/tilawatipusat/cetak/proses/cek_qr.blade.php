@@ -94,17 +94,21 @@
                 </div>
             @endif
             @if ($salah1 + $salah2 + $salah3 > 0)
-                <a href="/diklat-peserta/{{$pelatihan_id}}" class="btn btn-info"> KLIK DISINI MENUJU DATA PESERTA DIKLAT</a>
+                <a href="/diklat-peserta/{{ $pelatihan_id }}" class="btn btn-info"> KLIK DISINI MENUJU DATA PESERTA
+                    DIKLAT</a>
             @endif
         </div>
 
         <div class="col-xl-6" style="margin-top: 20px">
-            <div class="card card-body">
-                @if ($salah1 + $salah2 + $salah3 > 0)
+
+            @if ($salah1 + $salah2 + $salah3 > 0)
+                <div class="card card-body">
+
                     <code>Beberapa data peserta ini kosong / mengalami kesalahan penulisan. Mohon periksa kembali apabila
                         dilakukan pencetakan syahadah</code>
-                @endif
-            </div>
+
+                </div>
+            @endif
             <form id="create_qr" method="POST" style="float: left"> @csrf
                 <input type="hidden" name="pelatihan_id2" id="pel_id" value="{{ $pelatihan_id }}">
                 <input type="submit" id="btnbuat" class="btn btn-primary" value="Generate Qr Code">
