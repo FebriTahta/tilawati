@@ -211,10 +211,11 @@
                         <div class="card m-b-30">
                             <div class="card-body">
                                 <div class="container-fluid">
-                                    <form id="hapuslembaga" method="POST" enctype="multipart/form-data">@csrf
+                                    <form id="hapuscabang" method="POST" enctype="multipart/form-data">@csrf
                                         <div class="form-group text-center">
-                                            <h5>Anda yakin akan menghapus Lembaga tersebut ?</h5>
-                                            <input type="hidden" class="form-control text-capitalize" id="id" name="id"
+                                            <h5>"User Akses Cabang Tersebut" juga akan terhapus apabila menghapus Cabang</h5>
+                                            <p>YAKIN INGIN MENGHAPUS CABANG TERSEBUT ?</p>
+                                            <input type="text" class="form-control text-capitalize" id="id" name="id"
                                                 required>
                                         </div>
                                         <div class="row" style="text-align: center">
@@ -237,7 +238,7 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
-    
+
     <div class="modal fade bs-example-modal-kepala-bagian-lama" id="mod_cabang2" tabindex="-1" role="dialog"
         aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable modal-md">
@@ -518,6 +519,15 @@
 
     <script>
         var kode;
+
+        $('#modal-hapus').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget)
+            var id = button.data('id')
+            var modal = $(this)
+            console.log(id);
+            modal.find('.modal-body #id').val(id);
+        })
+        
         $('#form_tambah_cabang').submit(function(e) {
             e.preventDefault();
             var formData = new FormData(this);
