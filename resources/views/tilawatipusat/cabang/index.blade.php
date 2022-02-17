@@ -202,7 +202,8 @@
         </div><!-- /.modal -->
     </div>
 
-    <div class="modal fade" id="modal-hapus-data" tabindex="-1" role="dialog" id="modal-hapus" aria-labelledby="mySmallModalLabel"
+    <div class="col-sm-6 col-md-3 m-t-30">
+        <div class="modal fade" id="modal-hapus-data" tabindex="-1" id="modal-hapus" role="dialog" aria-labelledby="mySmallModalLabel"
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-md">
                 <div class="modal-content">
@@ -238,6 +239,7 @@
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
+    </div>
 
     <div class="modal fade bs-example-modal-kepala-bagian-lama" id="mod_cabang2" tabindex="-1" role="dialog"
         aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
