@@ -34,12 +34,12 @@
                 @slot('title')
                     {{-- <a href="/diklat-lembaga">Pengguna metode Tilawati seluruh Indonesia sebanyak " --}}
                     <a href="#">
-                        Pengguna metode Tilawati seluruh Indonesia sebanyak
+                        Pengguna metode Tilawati seluruh Indonesia <br> Tercatat
                         {{ number_format($guru + $santri, 0, ',', '.') }} " Pengguna <br>
                         Terdiri dari <br> ( {{ number_format($guru, 0, ',', '.') }} Guru) & (
                         {{ number_format($santri, 0, ',', '.') }} Santri)
                         <br><br>
-                        Bersumber pada : <br><b id="cb">-</b> <b>Cabang</b> & <b id="lm">-</b> <b>Lembaga</b> yang tersebar luas di
+                        Bersumber pada : <br><b id="cb">-</b> <b>Cabang</b> & <b id="lm">-</b> <b>Lembaga</b> <br> Tersebar luas di
                         <b><span id="lmpv">- </span> Provinsi
                         </b> & <b><span id="lmkb">- </span> Kabupaten / Kota </b>
                     </a>
