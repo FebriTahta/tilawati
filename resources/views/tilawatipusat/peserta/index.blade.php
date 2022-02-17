@@ -204,22 +204,22 @@
                         <div id="message"></div>
                         <table id="datatable-buttons" class="table table-peserta table-bordered dt-responsive nowrap"
                             style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
-                            <thead class="text-bold text-primary" style="font-size: 11px">
+                            <thead class="text-bold text-primary text-uppercase" style="font-size: 11px;">
                                 <tr>
                                     <th>id</th>
                                     <th style="5%"><input type="checkbox" id="master"></th>
-                                    <th>peserta</th>
-                                    <th>kab / kota</th>
+                                    <th>Peserta</th>
+                                    <th>Kab / Kota</th>
                                     {{-- <th>kec</th>
                                                     <th>kel</th> --}}
                                     <th>TTL</th>
-                                    <th>phone</th>
-                                    <th>alamat</th>
-                                    <th>alamat "M"</th>
+                                    <th>Phone</th>
+                                    <th>Alamat</th>
+                                    <th>Alamat "M"</th>
                                     @if ($diklat->program->name == "standarisasi guru al qur'an level 1")
-                                        <th>jilid</th>
+                                        <th>Jilid</th>
                                     @endif
-                                    <th>nilai</th>
+                                    <th>Nilai</th>
                                     <th>Kriteria</th>
                                     <th>Option</th>
                                 </tr>
@@ -229,19 +229,19 @@
                             <tfoot class="text-primary" style="text-transform: uppercase;font-size: 11px">
                                 <tr>
                                     <th>id</th>
-                                    <th style="5%">pilih</th>
-                                    <th>peserta</th>
-                                    <th>kab / kota</th>
+                                    <th style="5%">Pilih</th>
+                                    <th>Peserta</th>
+                                    <th>Kab / Kota</th>
                                     {{-- <th>kec</th>
                                                     <th>kel</th> --}}
                                     <th>TTL</th>
-                                    <th>phone</th>
-                                    <th>alamat</th>
-                                    <th>alamat "M"</th>
+                                    <th>Phone</th>
+                                    <th>Alamat</th>
+                                    <th>Alamat "M"</th>
                                     @if ($diklat->program->name == "standarisasi guru al qur'an level 1")
-                                        <th>jilid</th>
+                                        <th>Jilid</th>
                                     @endif
-                                    <th>nilai</th>
+                                    <th>Nilai</th>
                                     <th>Kriteria</th>
                                     <th>Option</th>
                                 </tr>
