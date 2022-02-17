@@ -82,10 +82,6 @@ class PesertaDiklatImport2 implements ToCollection, WithStartRow
                     if ($peserta == null) {
                         
                         # code...
-                        if ($row[5] !== null) {
-                            # code...
-                            $masuk = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row[5]);
-                        }
 
                         $dt_pel = new Peserta;
                         $dt_pel->phonegara_id = 175;
@@ -143,9 +139,10 @@ class PesertaDiklatImport2 implements ToCollection, WithStartRow
                         }
                         $dt_pel->tmptlahir = $row[4];
 
-                        if ($row[5] !== null) {
+                        if (is_numeric($row[5]) !== false) {
                             # code...
-                            $dt_pel->tgllahir = $masuk;
+                            $masuk = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row[5]);
+                            $dt_pel->tgllahir=$masuk;
                         }
                         
                         $lembaga = Lembaga::where('name',$row[6])->first();
@@ -184,7 +181,8 @@ class PesertaDiklatImport2 implements ToCollection, WithStartRow
                         
                         // ->generate('https://www.tilawatipusat.com/diklat-profile-peserta/'.$dt_pel->id.'/'.$dt_pel->pelatihan->program->id.'/'.$dt_pel->pelatihan->id, public_path('images/'.$id.'qrcode.png'));
                     }else{
-                        if ($row[5] !== null) {
+
+                        if (is_numeric($row[5]) !== false) {
                             # code...
                             $masuk1 = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row[5]);
                             $dt_pel = Peserta::updateOrCreate(
