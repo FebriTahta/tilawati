@@ -96,29 +96,40 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                    <?php $peserta_salah = App\Models\Peserta::where('pelatihan_id', $diklat->id)->get(); ?>
+                    <?php $peserta_salah = App\Models\Peserta::where('pelatihan_id', $diklat->id)->get();
+                    $salah1 = 0;
+                    $salah2 = 0;
+                    $salah3 = 0; ?>
                     @if ($peserta_salah->where('tmptlahir', null)->count() > 0)
                         <div class="col-lg-12 alert alert-danger">
-                            <p>{{$peserta_salah->where('tmptlahir', null)->count()}} Peserta dengan kesalahan penulisan tempat lahir</p>
+                            <p>{{ $salah1 = $peserta_salah->where('tmptlahir', null)->count() }} Peserta dengan kesalahan
+                                penulisan
+                                tempat lahir</p>
                         </div>
                     @endif
                     @if ($peserta_salah->where('tgllahir', '-')->count() > 0 || $peserta_salah->where('tgllahir', null)->count() > 0)
                         <div class="col-lg-12 alert alert-danger">
-                            <p>{{$peserta_salah->where('tgllahir', null)->count() + $peserta_salah->where('tgllahir', '-')->count()}} Peserta dengan kesalahan penulisan tanggal lahir</p>
+                            <p>{{ $salah2 = $peserta_salah->where('tgllahir', null)->count() + $peserta_salah->where('tgllahir', '-')->count() }}
+                                Peserta dengan kesalahan penulisan tanggal lahir</p>
                         </div>
                     @endif
                     @if ($peserta_salah->where('kabupaten_id', null)->count() > 0)
-                    <div class="col-lg-12 alert alert-danger">
-                        <p>{{$peserta_salah->where('kabupaten_id', null)->count()}} Peserta dengan kesalahan penulisan asal kabupaten / kota</p>
-                    </div>
+                        <div class="col-lg-12 alert alert-danger">
+                            <p>{{ $salah3 = $peserta_salah->where('kabupaten_id', null)->count() }} Peserta dengan
+                                kesalahan
+                                penulisan asal kabupaten / kota</p>
+                        </div>
                     @endif
                 </div>
-                
                 <div class="card-body">
                     <input type="hidden" id="jenis_program" value="{{ $diklat->program->name }}">
                     <h4 class="card-title text-capitalize">Data Peserta Pelatihan </h4>
                     @if ($diklat->program->penilaian->count() == 0)
                         <code>Tambahkan kategori penilaian pada program diklat terlebih dahulu pada menu program</code>
+                    @endif
+                    @if ($salah1 + $salah2 + $salah3 > 0)
+                        <code>Data anda mengalami beberapa kesalahan format penulisan. Silahkan klik pada data yang salah
+                            dan ganti dengan data yang benar</code>
                     @endif
                     <br><br>
                     @if (count($errors) > 0)
@@ -152,24 +163,39 @@
                     <button class="btn btn-sm btn-outline-success  mb-1 mr-1" style="width:130px " data-toggle="modal"
                         @if ($diklat->program->penilaian->count() == 0) disabled @else data-target=".bs-example-modal-peserta" @endif><i
                             class="mdi mdi-cloud-upload"></i> import peserta</button>
-                    @if (auth()->user()->role == 'pusat')
-                        <button class="text-right btn btn-sm mr-1 mb-1 btn-outline-primary" id="cetak_all"><i
-                                class="fa fa-download"></i> pengiriman modul</button>
-                        <button class="text-right btn btn-sm mr-1 mb-1 btn-outline-info" id="depan_all"><i
-                                class="fa fa-print"></i> depan</button>
-                        <button class="text-right btn btn-sm mr-1 mb-1 btn-outline-info" id="belakang_all"><i
-                                class="fa fa-print"></i> belakang</button>
+                    @if (auth()->user()->role == 'pusat' || auth()->user()->username == 'tilawati cahaya amanah')
+                        @if ($salah1 + $salah2 + $salah3 > 0)
+                            <button type="button" class=" btn btn-sm mr-1 mb-1 btn-outline-primary" disabled><i
+                                    class="fa fa-download" disabled></i> pengiriman modul!</button>
+                            <button type="button" class=" btn btn-sm mr-1 mb-1 btn-outline-info" disabled><i
+                                    class="fa fa-print" disabled></i> depan!</button>
+                            <button type="button" class=" btn btn-sm mr-1 mb-1 btn-outline-info" disabled><i
+                                    class="fa fa-print" disabled></i> belakang!</button>
+                            <button type="button" class=" btn btn-sm mr-1 mb-1 btn-outline-secondary" disabled><i
+                                    class="fa fa-print" disabled></i> depan versi lama!</button>
+                            <button type="button" class=" btn btn-sm mr-1 mb-1 btn-outline-warning" disabled><i
+                                    class="fa fa-download" disabled></i> download data peserta!</button>
 
-                        <button class="text-right btn btn-sm mr-1 mb-1 btn-outline-secondary" id="depan_lama_all"><i
-                                class="fa fa-print"></i> depan versi lama</button>
+
+
+                        @else
+                            <button class="text-right btn btn-sm mr-1 mb-1 btn-outline-primary" id="cetak_all"><i
+                                    class="fa fa-download"></i> pengiriman modul</button>
+                            <button class="text-right btn btn-sm mr-1 mb-1 btn-outline-info" id="depan_all"><i
+                                    class="fa fa-print"></i> depan</button>
+                            <button class="text-right btn btn-sm mr-1 mb-1 btn-outline-info" id="belakang_all"><i
+                                    class="fa fa-print"></i> belakang</button>
+
+                            <button class="text-right btn btn-sm mr-1 mb-1 btn-outline-secondary" id="depan_lama_all"><i
+                                    class="fa fa-print"></i> depan versi lama</button>
+                            <a href="/export-peserta-diklat/{{ $diklat->id }}"
+                                class="text-right btn btn-sm mr-1 mb-1 btn-outline-warning"><i class="fa fa-download"></i>
+                                download data peserta</a>
+                        @endif
                     @endif
 
                     <button class="text-right btn btn-sm mr-1 mb-1 btn-outline-danger" id="hapus_all"><i
                             class="fa fa-trash"></i> hapus data</button>
-
-                    <a href="/export-peserta-diklat/{{ $diklat->id }}"
-                        class="text-right btn btn-sm mr-1 mb-1 btn-outline-warning"><i class="fa fa-download"></i> Download
-                        Data Peserta</a>
                     {{-- <form action="/error-penilaian-kategori" method="POST">@csrf
                                         <button type="submit" class="text-right btn btn-sm mr-1 btn-outline-info" id="belakang_all"><i class="fa fa-print"></i> belakang</button>
                                     </form> --}}
@@ -885,27 +911,7 @@
                 },
                 success: function(data) {
                     if (data.success) {
-                        // $('#sel_kab').select2({
-                        //     placeholder: 'Pilih Kota / Kabupaten yang Tepat sesuai data sensus 2021',
-                        //     class: 'form-control',
-                        //     ajax: {
-                        //         url: "{{ route('kabupaten') }}",
-                        //         dataType: 'json',
-                        //         delay: 250,
-                        //         processResults: function (data) {
-                        //         return {
-                        //             results:  $.map(data, function (item) {
-                        //                 return {
-                        //                     text: item.id,
-                        //                     text: item.nama,
-                        //                     id: item.id
-                        //                 }
-                        //             })
-                        //         };
-                        //         },
-                        //         cache: true
-                        //     }
-                        // });
+                        window.location.reload();
                         $.ajax({
                             url: '/peserta_yang_kabupatennya_kosong/' + pelatihan_id,
                             type: 'get',

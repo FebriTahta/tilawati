@@ -227,7 +227,7 @@
                     </div>
 
                 @else
-                    <li class="menu-title text-danger">- BATAS AKSES -</li>
+                    <li class="menu-title text-danger">BATAS AKSES - - - - - - - - - - - -<i class="fa fa-arrow-right"></i></li>
                 @endif
             </ul>
         </div>
