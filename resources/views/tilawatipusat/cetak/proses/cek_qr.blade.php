@@ -15,9 +15,15 @@
             @component('common-tilawatipusat.dashboard2-widget3')
                 @slot('title')
                     <?php $diklat = App\Models\Pelatihan::where('id', $pelatihan_id)->first(); ?>
+                    @if (auth()->user()->role == 'pusat')
+                    <span class="text-capitalize">Cabang : Tilawati
+                        {{ $diklat->cabang->kabupaten->nama }}
+                        ({{ auth()->user()->cabang->name }})</span>
+                    @else
                     <span class="text-capitalize">Cabang : Tilawati
                         {{ strtolower(substr(auth()->user()->cabang->kabupaten->nama, 5)) }}
                         ({{ auth()->user()->cabang->name }})</span>
+                    @endif
                 @endslot
                 @slot('total')
                     <span>{{ $diklat->program->name }}</span>
