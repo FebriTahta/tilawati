@@ -538,7 +538,7 @@
 						@else
 							<tr>
 								<th>{{ $i++ }}</th>
-								<td class="nilai6" style="text-transform: uppercase">&nbsp; &nbsp;<b> {{ $item->penilaian->name }}</b></th>
+								<td class="nilai6" style="text-transform: uppercase">&nbsp; &nbsp;<b> {{ $item->penilaian }}</b></th>
 								<th colspan="3" class="nilai5"></th>
 								<th >{{ $item->nominal }}</th>
 							</tr>
