@@ -257,7 +257,7 @@
 							@if ($item->kategori !== 'skill')
 								<tr>
 									<td class="pop"></td>
-									<td class="pop2" >&nbsp; &nbsp;&nbsp;<span style="text-transform: capitalize">{{ $item->penilaian->name }}</span></td>
+									<td class="pop2" >&nbsp; &nbsp;&nbsp;<span style="text-transform: capitalize">{{ $item->penilaian }}</span></td>
 									<td class="nilai" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->max }}</td>
 									<td class="nilai2" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->min}}</td>
 									<td class="nilai3" style="text-align: center">&nbsp; &nbsp;{{ $item->nominal }}</td>
@@ -344,7 +344,7 @@
 							@if ($item->kategori !== 'skill')
 								<tr>
 									<td class="pop"></td>
-									<td class="pop2" >&nbsp; &nbsp;&nbsp;<span style="text-transform: capitalize">{{ $item->penilaian }}</span></td>
+									<td class="pop2" >&nbsp; &nbsp;&nbsp;<span style="text-transform: capitalize">{{ $item->penilaian->name }}</span></td>
 									<td class="nilai" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->max }}</td>
 									@if ($key < 1)
 									<td class="nilai2" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->min - 1}}</td>
