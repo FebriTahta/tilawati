@@ -530,8 +530,8 @@
 							<tr>
 								<td class="pop"></td>
 								<td class="pop2" >&nbsp; &nbsp;&nbsp;<span style="text-transform: capitalize">{{ $item->penilaian }}</span></td>
-								<td class="nilai" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->max }}</td>
-								<td class="nilai2" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->min }}</td>
+								<td class="nilai" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian }}</td>
+								<td class="nilai2" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian }}</td>
 								<td class="nilai3" style="text-align: center">&nbsp; &nbsp;{{ $item->nominal }}</td>
 								<td style="border-top: 0;border-bottom: 0;"></td>
 							</tr>
