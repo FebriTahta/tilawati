@@ -18,7 +18,7 @@
                     @if (auth()->user()->role == 'pusat')
                     <span class="text-capitalize">Cabang : Tilawati
                         {{ $diklat->cabang->kabupaten->nama }}
-                        ({{ auth()->user()->cabang->name }})</span>
+                        ({{ $dikalt->cabang->name }})</span>
                     @else
                     <span class="text-capitalize">Cabang : Tilawati
                         {{ strtolower(substr(auth()->user()->cabang->kabupaten->nama, 5)) }}
