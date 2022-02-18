@@ -130,7 +130,7 @@
 			@if ($pelatihan->keterangan=='guru')
 			style="margin-left:113px; margin-top: 4px"
 			@else
-			style="margin-left:116px; margin-top: 10px"
+			style="margin-left:116px; margin-top: 4px"
 			@endif
 			>
 				<tbody>
