@@ -450,6 +450,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     Route::get('/daftar-pengguna',[UserController::class,'daftar_pengguna'])->name('daftar_pengguna');
     Route::get('/data-pengguna',[UserController::class, 'getuser_data'])->name('user.data');
     Route::post('/reset-password',[UserController::class,'reset_password'])->name('reset_pass');
+    Route::post('/ubah-password',[UserController::class,'ganti_pass'])->name('ganti_pass');
     Route::post('/export-user',[ExportCont::class,'export_user'])->name('export.user');
 
     Route::get('/export-data-peserta/{cabang_id}/{pelatihan_id}',[ExportCont::class,'export_data_peserta']);

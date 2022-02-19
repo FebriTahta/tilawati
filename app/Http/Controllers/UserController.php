@@ -32,7 +32,10 @@ class UserController extends Controller
                 ->addColumn('pass', function ($data) {
                     return $data->user->pass;
                 })
-                ->rawColumns(['kota','cabang'])
+                ->addColumn('opsi', function ($data) {
+                    return '<a href="#" type="button" class="btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#modal-edit" data-id="'.$data->user_id.'" data-username="'.$data->user->username.'" data-pass="'.$data->user->pass.'"> Ubah Data</a>';
+                })
+                ->rawColumns(['kota','cabang','opsi'])
                 ->make(true);
         }
     }
@@ -40,6 +43,26 @@ class UserController extends Controller
     public function daftar_pengguna(Request $request)
     {
         return view('tilawatipusat.user.index');
+    }
+
+    public function ganti_pass(Request $request)
+    {
+        if (auth()->user()->role == 'pusat') {
+            # code...
+            $data = User::where('id',$request->id)->first();
+            $data->update([
+                'username' => $request->username,
+                'pass'=> $request->pass,
+                'password'=>Hash::make($request->pass)
+            ]);
+
+            return response()->json(
+                [
+                  'success' => 'User Data Upto Date!',
+                  'message' => 'User Data Upto Date!'
+                ]
+            );
+        }
     }
 
     public function reset_password(Request $request)
