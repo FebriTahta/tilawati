@@ -83,6 +83,7 @@
                         <h5>-1 Download Template Peserta Diklat</h5>
                         <h5>-2 Copy & Paste Data Anda Pada Template Yang Sudah Di Download</h5>
                         <h5>-3 Pastikan Pada Kolom Penilaian Apabila Tidak Ada Nilainya, Maka Diisi Dengan Angka <u>0</u></h5>
+                        <h5>-4 BERBEDA DIKLAT BERBEDA TEMPLATE. JADI HATI HATI DALAM MENGINPUTKAN DATA</h5>
                         <h5>JIKA ANDA MELEWATI SALAH SATU POIN DI ATAS DATA TIDAK DAPAT DIINPUTKAN</h5>
                         <a href="/diklat-diklat">Klik Disini Untuk Kembali</a>
 
