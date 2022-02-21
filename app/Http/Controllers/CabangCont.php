@@ -561,6 +561,73 @@ class CabangCont extends Controller
         );
     }
 
+    public function add_data_trainer(Request $request)
+    {
+        if (auth()->user()->role == 'cabang') {
+            # code...
+            $trainer = Trainer::updateOrCreate(
+                [
+                    'id' => $request->id
+                ],
+                [
+                    'cabang_id' => auth()->user()->cabang->id,
+                    'name'        => $request->name,
+                    'telp'        => $request->telp,
+                    'alamat'        => $request->alamat
+                ]
+            );
+    
+            if ($request->macamtrainer_id[1] !== null) {
+                # code...
+                $ok_trainer = new macamtrainer_trainer;
+                    $ok_trainer->created_at = new \DateTime;
+                    $ok_trainer->macamtrainer_id = 1;
+                    $ok_trainer->trainer_id = $trainer->id;
+                    $ok_trainer->save();
+            }
+            if ($request->macamtrainer_id[2] !== null) {
+                # code...
+                $ok_trainer = new macamtrainer_trainer;
+                    $ok_trainer->created_at = new \DateTime;
+                    $ok_trainer->macamtrainer_id = 2;
+                    $ok_trainer->trainer_id = $trainer->id;
+                    $ok_trainer->save();
+            }
+            if ($request->macamtrainer_id[3] !== null) {
+                # code...
+                $ok_trainer = new macamtrainer_trainer;
+                    $ok_trainer->created_at = new \DateTime;
+                    $ok_trainer->macamtrainer_id = 3;
+                    $ok_trainer->trainer_id = $trainer->id;
+                    $ok_trainer->save();
+            }
+            if ($request->macamtrainer_id[4] !== null) {
+                # code...
+                $ok_trainer = new macamtrainer_trainer;
+                    $ok_trainer->created_at = new \DateTime;
+                    $ok_trainer->macamtrainer_id = 4;
+                    $ok_trainer->trainer_id = $trainer->id;
+                    $ok_trainer->save();
+            }
+    
+            return response()->json(
+                [
+                  'success' => 'OK!',
+                  'message' => 'OK!'
+                ]
+            );
+        }else {
+            # code...
+            return response()->json(
+                [
+                  'success' => 'harus cabang!',
+                  'message' => 'harus cabang!'
+                ]
+            );
+        }
+        
+    }
+
     public function data_kpa(Request $request)
     {
         $cabang_id  = auth()->user()->cabang->id;

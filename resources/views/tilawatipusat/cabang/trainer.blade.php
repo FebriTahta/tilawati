@@ -1,17 +1,20 @@
 @extends('layouts.tilawatipusat_layouts.master')
 
-@section('title') Cabang @endsection
+@section('title')
+    Cabang
+@endsection
 @section('css')
-
     <!-- DataTables -->
     <link href="{{ URL::asset('tilawatipusat/libs/datatables/datatables.min.css') }}" rel="stylesheet" type="text/css" />
-
 @endsection
 @section('content')
-
     @component('common-tilawatipusat.breadcrumb')
-        @slot('title') Trainer @endslot
-        @slot('title_li') {{ substr($cabang->kabupaten->nama, 5) }} @endslot
+        @slot('title')
+            Trainer
+        @endslot
+        @slot('title_li')
+            {{ substr($cabang->kabupaten->nama, 5) }}
+        @endslot
     @endcomponent
 
     <div class="row">
@@ -25,14 +28,21 @@
                     {{-- <button class="btn btn-sm btn-success mb-2 mr-1 text-uppercase" style="width:130px; font-size: 12px "
                         data-toggle="modal" data-target="#modal-add"><i class="mdi mdi-plus"></i> Add
                         Trainer</button> --}}
+
+                    <button class="btn btn-sm btn-outline-info mb-2 mr-1 text-uppercase d-none" style="font-size: 12px "
+                        data-toggle="modal" data-target="#modal-add"><i class="mdi mdi-plus"></i> Tambah
+                        Trainer</button>
+
                     <button class="btn btn-sm btn-outline-success mb-2 mr-1 text-uppercase" style="font-size: 12px "
                         data-toggle="modal" data-target="#modal_import"><i class="mdi mdi-import"></i> Import
                         Trainer</button>
+
                     <a href="/export-template-trainer" class="btn btn-sm btn-outline-primary mb-2 mr-1 text-uppercase"
                         style="font-size: 12px "><i class="mdi mdi-download"></i> Unduh Template</a>
 
-                    <a href="/export-template-trainer-data/{{$cabang->id}}" class="btn btn-sm btn-outline-warning mb-2 mr-1 text-uppercase"
-                        style="font-size: 12px "><i class="mdi mdi-download"></i> Unduh Data Trainer</a>
+                    <a href="/export-template-trainer-data/{{ $cabang->id }}"
+                        class="btn btn-sm btn-outline-warning mb-2 mr-1 text-uppercase" style="font-size: 12px "><i
+                            class="mdi mdi-download"></i> Unduh Data Trainer</a>
                     <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
                         <table id="tabel-trainer" class="table table-cabang table-bordered dt-responsive nowrap"
                             style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
@@ -140,19 +150,38 @@
                                             <textarea name="alamat" id="alamat" class="form-control" id="" cols="3"
                                                 rows="3"></textarea>
                                         </div>
-                                        <div class="col-md-12 col-12 form-group " style="margin-bottom: 10px" id="dynamic_field">
-                                            <label for=""><button type="button" class="btn btn-outline-primary btn-sm" name="add"
-                                                    id="add"><i class="fa fa-plus"></i></button> Trainer</label>
+                                        {{-- <div class="col-md-12 col-12 form-group " style="margin-bottom: 10px"
+                                            id="dynamic_field">
+                                            <label for=""><button type="button" class="btn btn-outline-primary btn-sm"
+                                                    name="add" id="add"><i class="fa fa-plus"></i></button>
+                                                Trainer</label>
                                             <select name="trainer" id="trainer" class="form-control" required>
                                                 <option value="Instruktur Strategi">Instruktur Strategi</option>
                                                 <option value="Instruktur Lagu">Instruktur Lagu</option>
-                                                <option value="Instruktur Strategi & Lagu">Instruktur Strategi & Lagu</option>
+                                                <option value="Instruktur Strategi & Lagu">Instruktur Strategi & Lagu
+                                                </option>
                                                 <option value="Munaqisy">Munaqisy</option>
                                                 <option value="Supervisor">Supervisor</option>
                                             </select>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                     <hr>
+                                    <?php $macam = App\Models\Macamtrainer::all();?>
+                                        <h5 class="border-bottom">ISI "Ok" SESUAI STATUS TRAINER</h5>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="row">
+                                                    @foreach ($macam as $key => $items)
+                                                        <div class="col-md-6 col-12 form-group">
+                                                            <label for="">{{ $items->jenis }}</label>
+                                                            <input type="text" id=""
+                                                                name="macamtrainer_id[{{ $key + 1 }}]"
+                                                                class="form-control">
+                                                        </div>
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                        </div>
                                     <div class="form-group text-right">
                                         <input type="submit" id="z" class="btn btn-outline-primary" value="Submit!">
                                     </div>
@@ -200,13 +229,9 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
-
-
-
 @endsection
 
 @section('script')
-
     <!-- Toast -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.all.min.js"></script>
@@ -226,23 +251,24 @@
         $('#add').click(function() {
             i++;
             $('#dynamic_field').append('<tr class="col-xl-12" id="row' + i +
-                '" class="dynamic-added"><td>'
-                    +'<label for="" style="margin-top:10px"><button type="button" name="remove" id="' + i + '" class="btn btn-sm btn-danger btn_remove"> <i class="fa fa-minus"></i></button> Trainer</label>'
-                                            +'<select name="trainer" class="form-control mb-10" required>'
-                                                +'<option value="Instruktur Strategi">Instruktur Strategi</option>'
-                                                +'<option value="Instruktur Lagu">Instruktur Lagu</option>'
-                                                +'<option value="Instruktur Strategi & Lagu">Instruktur Strategi & Lagu</option>'
-                                                +'<option value="Munaqisy">Munaqisy</option>'
-                                                +'<option value="Supervisor">Supervisor</option>'
-                                            +'</select>'
-                +'</td><td></td></tr>');
+                '" class="dynamic-added"><td>' +
+                '<label for="" style="margin-top:10px"><button type="button" name="remove" id="' + i +
+                '" class="btn btn-sm btn-danger btn_remove"> <i class="fa fa-minus"></i></button> Trainer</label>' +
+                '<select name="trainer" class="form-control mb-10" required>' +
+                '<option value="Instruktur Strategi">Instruktur Strategi</option>' +
+                '<option value="Instruktur Lagu">Instruktur Lagu</option>' +
+                '<option value="Instruktur Strategi & Lagu">Instruktur Strategi & Lagu</option>' +
+                '<option value="Munaqisy">Munaqisy</option>' +
+                '<option value="Supervisor">Supervisor</option>' +
+                '</select>' +
+                '</td><td></td></tr>');
         });
 
-        $(document).on('click', '.btn_remove', function(){  
-           var button_id = $(this).attr("id");   
-           $('#row'+button_id+'').remove();  
-           console.log(button_id);
-        });  
+        $(document).on('click', '.btn_remove', function() {
+            var button_id = $(this).attr("id");
+            $('#row' + button_id + '').remove();
+            console.log(button_id);
+        });
         $('#trainer_store').submit(function(e) {
             e.preventDefault();
             var formData = new FormData(this);
