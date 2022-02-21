@@ -169,12 +169,24 @@ class PesertaDiklatImport2 implements ToCollection, WithStartRow
 
                         foreach ( $dt_pel->pelatihan->program->penilaian as $key => $value) {
                             # code...
-                            $dt_n = new Nilai;
+                            if ($row[$key+10] !== null) {
+                                # code...
+                                $dt_n = new Nilai;
                                 $dt_n->peserta_id = $dt_pel->id;
                                 $dt_n->penilaian_id=$value->id;
                                 $dt_n->nominal=$row[$key+10];
                                 $dt_n->kategori=$value->kategori;
                                 $dt_n->save();
+                            }else {
+                                # code...
+                                $dt_n = new Nilai;
+                                $dt_n->peserta_id = $dt_pel->id;
+                                $dt_n->penilaian_id=$value->id;
+                                $dt_n->nominal=0;
+                                $dt_n->kategori=$value->kategori;
+                                $dt_n->save();
+                            }
+                                
                         }
                         
                         $id = $dt_pel->id;
@@ -221,16 +233,33 @@ class PesertaDiklatImport2 implements ToCollection, WithStartRow
                         
                         foreach ( $peserta->pelatihan->program->penilaian as $key => $value) {
                             # code...
-                            Nilai::updateOrCreate(
-                                [
-                                    'peserta_id'    => $peserta->id,
-                                    'penilaian_id'  => $value->id,
-                                ],
-                                [
-                                    'nominal'       => $row[$key+10],
-                                    'kategori'      => $value->kategori,
-                                ]
-                            );
+                            if ($row[$key+10] !== null) {
+                                # code...
+                                Nilai::updateOrCreate(
+                                    [
+                                        'peserta_id'    => $peserta->id,
+                                        'penilaian_id'  => $value->id,
+                                    ],
+                                    [
+                                        'nominal'       => $row[$key+10],
+                                        'kategori'      => $value->kategori,
+                                    ]
+                                );
+                            } else {
+                                # code...
+                                Nilai::updateOrCreate(
+                                    [
+                                        'peserta_id'    => $peserta->id,
+                                        'penilaian_id'  => $value->id,
+                                    ],
+                                    [
+                                        'nominal'       => 0,
+                                        'kategori'      => $value->kategori,
+                                    ]
+                                );
+                            }
+                            
+                            
                         }
                         
                     }
