@@ -182,7 +182,7 @@ class PesertaDiklatImport2 implements ToCollection, WithStartRow
                                 $dt_n = new Nilai;
                                 $dt_n->peserta_id = $dt_pel->id;
                                 $dt_n->penilaian_id=$value->id;
-                                $dt_n->nominal=0;
+                                $dt_n->nominal='0';
                                 $dt_n->kategori=$value->kategori;
                                 $dt_n->save();
                             }
