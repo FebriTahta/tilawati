@@ -34,6 +34,7 @@
                 <th rowspan="2">KEPALA LEMBAGA</th>
                 <th rowspan="2">STATUS LEMBAGA</th>
                 <th rowspan="2">WA / TELP</th>
+                <th rowspan="2">KAB / KOTA ASAL LEMBAGA</th>
                 <th rowspan="2">JUMLAH GURU</th>
                 <th rowspan="2">JUMLAH SANTRI</th>
                 <th rowspan="2">ALAMAT</th>
@@ -49,6 +50,7 @@
                 <td>Nama Lengkap Kepala Lembaga</td>
                 <td>PESANTREN, TPQ , UMUM, SD / - SMA, PAUD, KBTK</td>
                 <td>Nomor WA Aktif / Telp</td>
+                <td>SURABAYA(Tidak Disingkat)</td>
                 <td>50 (hanya angka)</td>
                 <td>100 (hanya angka)</td>
                 <td>Alamat Lengkap Lembaga</td>

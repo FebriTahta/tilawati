@@ -42,10 +42,18 @@ class lembagaCont extends Controller
                         return $kepala;
                     })
                     ->addColumn('kabupaten', function ($data) {
-                        return $kabupaten = $data->kabupaten->nama;
+                        if ($data->kabupaten !== null) {
+                            return $kabupaten = $data->kabupaten->nama;
+                        }else{
+                            return "-";
+                        }
                     })
                     ->addColumn('provinsi', function ($data) {
-                        return $provinsi = $data->provinsi->nama;
+                        if ($data->provinsi !== null) {
+                            return $provinsi = $data->provinsi->nama;
+                        }else{
+                            return "-";
+                        }
                     })
                     ->addColumn('statuss', function ($data) {
                         if ($data->status == 'Aktif' || $data->status == 'aktif' || $data->status == 'aktif '|| $data->status == 'Aktif ' || $data->status == ' aktif' || $data->status == ' Aktif') {
@@ -84,10 +92,19 @@ class lembagaCont extends Controller
                         return $kepala;
                     })
                     ->addColumn('kabupaten', function ($data) {
-                        return $kabupaten = $data->kabupaten->nama;
+                        if ($data->kabupaten !== null) {
+                            return $kabupaten = $data->kabupaten->nama;
+                        }else{
+                            return "-";
+                        }
                     })
                     ->addColumn('provinsi', function ($data) {
-                        return $provinsi = $data->provinsi->nama;
+
+                        if ($data->provinsi !== null) {
+                            return $provinsi = $data->provinsi->nama;
+                        }else{
+                            return "-";
+                        }
                     })
                     ->addColumn('statuss', function ($data) {
                         if ($data->status == 'Aktif' || $data->status == 'aktif') {
