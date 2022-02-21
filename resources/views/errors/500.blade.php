@@ -76,13 +76,13 @@
 		   	<div class="row">
 		   		<div class="col-twelve">
 			  		
-			  			<h1 class="kern-this">Kesalahan Pengguna.</h1>
-			  			<p style="color:white">
+			  			<h1 class="">Kesalahan Pengguna.</h1>
+			  			<h5 style="color:white">
 						Tolong Pastikan Anda Mengikuti Semua Langkah Yang Sudah Diterangkan
-			  			</p>
-                        <p>- Download Template Peserta Diklat</p>
-                        <p>- Copy & Paste Data Anda Pada Template Yang Sudah Di Download</p>
-                        <p>- Pastikan Pada Kolom Penilaian Apabila Tidak Ada Nilainya, Maka Diisi Dengan Angka <u>0</u></p>
+</h5>
+                        <h5>- Download Template Peserta Diklat</h5>
+                        <h5>- Copy & Paste Data Anda Pada Template Yang Sudah Di Download</h5>
+                        <h5>- Pastikan Pada Kolom Penilaian Apabila Tidak Ada Nilainya, Maka Diisi Dengan Angka <u>0</u></h5>
                         <h5>JIKA ANDA MELEWATI SALAH SATU POIN DI ATAS DATA TIDAK DAPAT DIINPUTKAN</h5>
 
 			  			<!-- <div class="search">
