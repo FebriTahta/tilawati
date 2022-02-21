@@ -36,11 +36,11 @@
 	<!-- header 
    ================================================== -->
    <header class="main-header">
-   	<div class="row">
+   	<!-- <div class="row">
    		<div class="logo">
 	         <a href="/diklat-diklat">TILAWATI PUSAT</a>
 	      </div>   		
-   	</div>   
+   	</div>    -->
 
    	<!-- <a class="menu-toggle" href="#"><span>Menu</span></a>	 -->
    </header> <!-- /header -->
@@ -80,10 +80,11 @@
 			  			<h5 style="color:white">
 						Tolong Pastikan Anda Mengikuti Semua Langkah Yang Sudah Diterangkan
 </h5>
-                        <h5>- Download Template Peserta Diklat</h5>
-                        <h5>- Copy & Paste Data Anda Pada Template Yang Sudah Di Download</h5>
-                        <h5>- Pastikan Pada Kolom Penilaian Apabila Tidak Ada Nilainya, Maka Diisi Dengan Angka <u>0</u></h5>
+                        <h5>-1 Download Template Peserta Diklat</h5>
+                        <h5>-2 Copy & Paste Data Anda Pada Template Yang Sudah Di Download</h5>
+                        <h5>-3 Pastikan Pada Kolom Penilaian Apabila Tidak Ada Nilainya, Maka Diisi Dengan Angka <u>0</u></h5>
                         <h5>JIKA ANDA MELEWATI SALAH SATU POIN DI ATAS DATA TIDAK DAPAT DIINPUTKAN</h5>
+                        <a href="/diklat-diklat">Klik Disini Untuk Kembali</a>
 
 			  			<!-- <div class="search">
 				      	<form>
