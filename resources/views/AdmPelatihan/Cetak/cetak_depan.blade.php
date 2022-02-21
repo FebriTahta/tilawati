@@ -103,7 +103,6 @@
 												# code...
 												$text = $item->alamat . ' ' . substr($item->kecamatan->nama, 0) . ' ' . substr($item->kabupaten->nama, 5);
 											}
-											
 										}else {
 											# code...
 											$text = $item->alamat . ' ' . substr($item->kecamatan->nama, 0) . ' ' . substr($item->kabupaten->nama, 5);
@@ -114,9 +113,6 @@
                                     }
                                 }
                             } else {
-                                # code...
-                        
-                                //
                                 # code...
                                 if ($item->kecamatan !== null) {
                                     # code...

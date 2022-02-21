@@ -64,6 +64,7 @@ Route::get('/e-certificate/{slug_diklat}',[LandingCont::class,'ecertificate']);
 Route::get('/data/e-certificate/{diklat_id}',[LandingCont::class,'ecertificate_data']);
 Route::get('/tes_data',[LandingCont::class,'tes_data']);
 Route::get('/pilih-daftar-kabupaten',[SubController::class, 'fetch_kabupaten'])->name('kabupaten');
+Route::post('/pilih-tambah-kota-lembaga',[LembagaCont::class, 'add_kota'])->name('add_kota_lembaga');
 Route::post('/pilih-tambah-kota',[PesertaCont::class, 'add_kota'])->name('add_kota');
 Route::post('/pilih-tambah-kota2',[PesertaCont::class, 'add_kota2'])->name('add_kota2');
 Route::post('/pilih-tambah-kota3',[PesertaCont::class, 'add_kota3'])->name('add_kota3');

@@ -43,9 +43,9 @@ class lembagaCont extends Controller
                     })
                     ->addColumn('kabupaten', function ($data) {
                         if ($data->kabupaten !== null) {
-                            return $kabupaten = $data->kabupaten->nama;
+                            return substr($kabupaten = $data->kabupaten->nama,5);
                         }else{
-                            return "-";
+                            return '<a href="#" data-toggle="modal" data-target="#addkota" data-id="'.$data->id.'" class="text-danger">kosong / salah penulisan </a>';
                         }
                     })
                     ->addColumn('provinsi', function ($data) {
@@ -93,13 +93,12 @@ class lembagaCont extends Controller
                     })
                     ->addColumn('kabupaten', function ($data) {
                         if ($data->kabupaten !== null) {
-                            return $kabupaten = $data->kabupaten->nama;
+                            return substr($kabupaten = $data->kabupaten->nama,5);
                         }else{
-                            return "-";
+                            return '<a href="#" data-toggle="modal" data-target="#addkota" data-id="'.$data->id.'" class="text-danger">kosong / salah penulisan </a>';
                         }
                     })
                     ->addColumn('provinsi', function ($data) {
-
                         if ($data->provinsi !== null) {
                             return $provinsi = $data->provinsi->nama;
                         }else{
@@ -444,5 +443,36 @@ class lembagaCont extends Controller
               'message' => 'Lembaga Berhasil Diperbarui!'
             ]
         );
+    }
+
+    public function add_kota(Request $request)
+    {
+        if(request()->ajax())
+        {
+            if ($request->id !== null) {
+                # code...
+                $id = $request->id;
+                $kab_id = $request->sel_kab;
+                $kab = Kabupaten::where('id', $kab_id)->first();
+                $data = Lembaga::where('id',$id)->update([
+                    'kabupaten_id' => $kab_id,
+                    'provinsi_id' => $kab->provinsi_id
+                ]);
+                return response()->json(
+                    [
+                    'success' => 'Data Kota Peserta Berhasil Diperbarui',
+                    'message' => 'Data Kota Peserta Berhasil Diperbarui'
+                    ]
+                );
+            }else{
+               
+                return response()->json(
+                    [
+                    'error' => 'Jangan diurutkan berdasarkan kabupaten',
+                    'message' => 'Tidak bisa merubah data apabila diurutkan berdasarkan kabupaten yang kosong'
+                    ]
+                );
+            }
+        }
     }
 }

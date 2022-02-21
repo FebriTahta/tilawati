@@ -6,6 +6,8 @@
 @section('css')
     <!-- DataTables -->
     <link href="{{ URL::asset('tilawatipusat/libs/datatables/datatables.min.css') }}" rel="stylesheet" type="text/css" />
+    <!-- Select2 -->
+    <link href="{{ URL::asset('tilawatipusat/libs/select2/select2.min.css') }}" rel="stylesheet" type="text/css" />
 @endsection
 @section('content')
 
@@ -75,7 +77,18 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-
+                    @if (auth()->user()->role == 'cabang')
+                        <?php $salah1 = App\Models\Lembaga::where('cabang_id', auth()->user()->cabang->id)
+                            ->where('kabupaten_id', null)
+                            ->count(); ?>
+                        @if ($salah1 > 0)
+                            <div class="col-lg-12 alert alert-danger">
+                                <p>{{ $salah1 }} Lembaga dengan kesalahan
+                                    penulisan
+                                    Kota / Kabupaten</p>
+                            </div>
+                        @endif
+                    @endif
                     <h4 class="card-title">Data lembaga</h4>
                     <p class="card-title-desc">Ter-update berdasarkan Tahun 2021 </br><code>Data Import dan Eksport Berbeda
                             Format (Berhati-hati ketika meng-importkan data baru)</code></p>
@@ -372,6 +385,29 @@
         <!-- /.modal-dialog -->
     </div>
 
+    <div class="modal fade bs-example-modal-kota" id="addkota" tabindex="-1" role="dialog"
+        aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-md">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <form id="tambahkota" method="POST" enctype="multipart/form-data">@csrf
+                        <input type="hidden" id="idpeserta" name="id">
+                        <div class="form-group text-center col-12">
+                            <p>Daftar Kota & Kabupaten</p>
+                            <select name="sel_kab" id="sel_kab" style="text-transform: lowercase; max-width: auto;"
+                                class="form-control select2" required>
+                                <option value=""> Cari & Pilih Kab / Kota</option>
+                            </select>
+                        </div>
+                        <div class="form-group text-center">
+                            <input type="submit" id="tambah" value="Tambahkan" class="btn btn-sm btn-primary">
+                        </div>
+                    </form>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
     <div class="modal fade bs-example-modal-diklat-hapus" id="modal-hapus" tabindex="-1" role="dialog"
         aria-labelledby="mySmallModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-md">
@@ -489,7 +525,7 @@
                                                     <option value="Pribadi">3. Pribadi</option>
                                                 </select>
                                             </div>
-                                            
+
                                             <div class="form-group col-xl-3">
                                                 <label for=""><i class="text-danger"> </i>Kode Pos</label>
                                                 <input type="number" class="form-control" id="pos" name="pos">
@@ -500,13 +536,15 @@
                                             </div>
                                             <div class="form-group col-xl-3">
                                                 <label for=""><i class="text-danger">* </i>Jumlah Guru</label>
-                                                <input type="number" class="form-control" id="guru" name="jml_guru" required>
+                                                <input type="number" class="form-control" id="guru" name="jml_guru"
+                                                    required>
                                             </div>
                                             <div class="form-group col-xl-3">
                                                 <label for=""><i class="text-danger">* </i>Jumlah Santri</label>
-                                                <input type="number" class="form-control" id="santri" name="jml_santri" required>
+                                                <input type="number" class="form-control" id="santri" name="jml_santri"
+                                                    required>
                                             </div>
-                                            
+
                                             <div class="form-group col-xl-6">
                                                 <select name="status" class="form-control" required>
                                                     <option value=""><i class="text-danger">*</i> Status</option>
@@ -552,6 +590,8 @@
     <!-- Datatable init js -->
     <script src="{{ URL::asset('tilawatipusat/js/pages/datatables.init.js') }}"></script>
 
+    <script src="{{ URL::asset('/tilawatipusat/libs/select2/select2.min.js') }}"></script>
+
     <script>
         $('#modal-hapus').on('show.bs.modal', function(event) {
             var button = $(event.relatedTarget)
@@ -560,6 +600,7 @@
             console.log(id);
             modal.find('.modal-body #id').val(id);
         })
+
 
         $('#modal-edit').on('show.bs.modal', function(event) {
             var button = $(event.relatedTarget)
@@ -705,6 +746,7 @@
                 }
             });
         });
+
         var kode;
         $('#tambahlembaga').submit(function(e) {
             e.preventDefault();
@@ -723,6 +765,7 @@
                 },
                 success: function(data) {
                     if (data.success) {
+                        window.location.reload();
                         toastr.success(data.success);
                         $("#tambahlembaga")[0].reset();
                         var oTable = $('#datatable-buttons').dataTable();
@@ -761,6 +804,7 @@
                 success: function(data) {
                     if (data.success) {
                         toastr.success(data.success);
+                        window.location.reload();
                         $("#tambahlembaga2")[0].reset();
                         var oTable = $('#datatable-buttons').dataTable();
                         oTable.fnDraw(false);
@@ -1217,6 +1261,7 @@
                 },
                 success: function(data) {
                     if (data.success) {
+
                         //sweetalert and refresh datatable
                         $("#importlembaga")[0].reset();
                         toastr.success(data.success);
@@ -1226,6 +1271,7 @@
                         $('#btnimport').attr('disabled', false);
                         $('.bs-example-modal-lembaga').modal('hide');
                         // swal("Done!", data.message, "success");
+                        window.location.reload();
                         $.ajax({
                             url: '{{ route('diklat.lembaga_tot') }}',
                             type: 'get',
@@ -1288,6 +1334,78 @@
                         $('#message').html('<div class="alert alert-danger">' + data.error + '</div>');
                         $('#btnimport').attr('disabled', false);
                         $('#btnimport').val('Import');
+                    }
+                },
+                error: function(data) {
+                    console.log(data);
+                }
+            });
+        });
+    </script>
+
+    <script>
+        $('#sel_kab').select2({
+            placeholder: 'Pilih Kota / Kabupaten yang Tepat sesuai data sensus 2021',
+            class: 'form-control',
+            ajax: {
+                url: "{{ route('kabupaten') }}",
+                dataType: 'json',
+                delay: 250,
+                processResults: function(data) {
+                    return {
+                        results: $.map(data, function(item) {
+                            return {
+                                text: item.id,
+                                text: item.nama,
+                                id: item.id
+                            }
+                        })
+                    };
+                },
+                cache: true
+            }
+        });
+
+        $('#addkota').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget)
+            var id = button.data('id')
+            var modal = $(this)
+            // console.log(id);
+            modal.find('.modal-body #idpeserta').val(id);
+        })
+
+        $('#tambahkota').submit(function(e) {
+            var pelatihan_id = $('#pelatihan_id').val();
+            e.preventDefault();
+            var formData = new FormData(this);
+            $.ajax({
+                type: 'POST',
+                url: "{{ route('add_kota_lembaga') }}",
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                beforeSend: function() {
+                    $('#tambah').attr('disabled', 'disabled');
+                    $('#tambah').val('Proses Menambahkan Kota');
+                },
+                success: function(data) {
+                    if (data.success) {
+                        window.location.reload();
+                        $("#tambahkota")[0].reset();
+                        toastr.success(data.success);
+                        var oTable = $('#datatable-buttons').dataTable();
+                        oTable.fnDraw(false);
+                        $('#tambah').val('Tambah!');
+                        $('#tambah').attr('disabled', false);
+                        $('#addkota').modal('hide');
+                        // swal("Done!", data.message, "success");
+                    } else {
+                        $("#tambahkota")[0].reset();
+                        swal("Error!", data.message, "error");
+                        $('#tambah').val('Tambah!');
+                        $('#tambah').attr('disabled', false);
+                        $('#addkota').modal('hide');
                     }
                 },
                 error: function(data) {
