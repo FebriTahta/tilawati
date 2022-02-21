@@ -38,7 +38,7 @@
    <header class="main-header">
    	<div class="row">
    		<div class="logo">
-	         <a href="/">TILAWATI PUSAT</a>
+	         <a href="/diklat-diklat">TILAWATI PUSAT</a>
 	      </div>   		
    	</div>   
 
