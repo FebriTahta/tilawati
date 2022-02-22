@@ -124,7 +124,7 @@
                         <textarea name="alamat" class="form-control text-uppercase" id="" cols="30"
                             rows="5">{{ $peserta->alamat }}</textarea>
                     </div>
-                    @if (auth()->user()->role == 'pusat')
+                    @if (auth()->user()->role == 'pusat' || auth()->user()->username == 'tilawati cahaya amanah')
                         <div class="form-group col-12 col-xl-12">
                             <label for="">Brsyahadah</label>
                             <select name="bersyahadah" id="" class="form-control text-uppercase">
