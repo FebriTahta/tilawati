@@ -6,6 +6,7 @@
 @section('css')
     <!-- DataTables -->
     <link href="{{ URL::asset('tilawatipusat/libs/datatables/datatables.min.css') }}" rel="stylesheet" type="text/css" />
+    
 @endsection
 @section('content')
     @component('common-tilawatipusat.breadcrumb')
