@@ -554,36 +554,11 @@ class CabangCont extends Controller
         );
         macamtrainer_trainer::where('trainer_id', $request->id)->delete();
 
-        
-        if ($request->macamtrainer_id[1] !== null) {
+        foreach ($request->status as $key => $value) {
             # code...
             $ok_trainer = new macamtrainer_trainer;
                 $ok_trainer->created_at = new \DateTime;
-                $ok_trainer->macamtrainer_id = 1;
-                $ok_trainer->trainer_id = $trainer->id;
-                $ok_trainer->save();
-        }
-        if ($request->macamtrainer_id[2] !== null) {
-            # code...
-            $ok_trainer = new macamtrainer_trainer;
-                $ok_trainer->created_at = new \DateTime;
-                $ok_trainer->macamtrainer_id = 2;
-                $ok_trainer->trainer_id = $trainer->id;
-                $ok_trainer->save();
-        }
-        if ($request->macamtrainer_id[3] !== null) {
-            # code...
-            $ok_trainer = new macamtrainer_trainer;
-                $ok_trainer->created_at = new \DateTime;
-                $ok_trainer->macamtrainer_id = 3;
-                $ok_trainer->trainer_id = $trainer->id;
-                $ok_trainer->save();
-        }
-        if ($request->macamtrainer_id[4] !== null) {
-            # code...
-            $ok_trainer = new macamtrainer_trainer;
-                $ok_trainer->created_at = new \DateTime;
-                $ok_trainer->macamtrainer_id = 4;
+                $ok_trainer->macamtrainer_id = $value;
                 $ok_trainer->trainer_id = $trainer->id;
                 $ok_trainer->save();
         }
