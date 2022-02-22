@@ -20,7 +20,7 @@ class CetakCont extends Controller
 
     public function belakang(){
         $dt_pel = Pelatihan::all();
-        $dt_pro = Program::all();
+        $dt_pro = Program::where('status',1)->get();
         return view('tilawatipusat.cetak.belakang.index',compact('dt_pel','dt_pro'));
     }
 
