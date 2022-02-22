@@ -102,7 +102,7 @@
                             </div>
 
 
-                            <div class="form-group text-right">
+                            <div class="form-group text-right" style="margin-top: 20px">
                                 <input type="submit" id="z" class="btn btn-outline-primary" value="UPDATE!">
 
                                 <a href="{{ url()->previous() }}" class="btn btn-outline-secondary">BACK</a>
