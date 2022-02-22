@@ -183,13 +183,30 @@ class CabangCont extends Controller
                 ->addColumn('opsi', function ($data){
                     // $btn = '<a href="#" data-toggle="modal" data-target="#modal-cabang" data-name="'.$data->name.'" data-alamat="'.$data->alamat.'" class="btn btn-sm btn-outline-primary"><i class="fa fa-edit"></i> Update!</a>';
                     // $btn .= ' <a href="#" class="btn btn-sm btn-outline-danger" data-id="'.$data->id.'" data-user_id="'.$data->user_id.'" data-toggle="modal" data-target="#modal-hapus"><i class="fa fa-trash"></i></a>'; 
-                    $btn = '<a href="#" data-toggle="modal" data-target="#modal-cabang2" data-id="'.$data->id.'" data-name="'.$data->name.'" data-alamat="'.$data->alamat.'" 
-                    data-kadivre="'.$data->kadivre.'" data-teritorial="'.$data->teritorial.'" data-telp="'.$data->telp.'" 
-                    data-email="'.$data->email.'" data-status="'.$data->status.'" data-kepalacabang="'.$data->kepalacabang.'"
-                    data-kabupaten="'.$data->kabupaten_id.'" data-provinsi="'.$data->provinsi_id.'" class="btn btn-sm btn-outline-primary"><i class="fa fa-edit"></i> Update!</a>';
-                    $btn .= ' <a href="#" class="btn btn-sm btn-outline-danger" data-id="'.$data->id.'" data-user_id="'.$data->user_id.'" data-toggle="modal" data-target="#modal-hapus"><i class="fa fa-trash"></i></a>'; 
-                    
-                    return $btn;
+                    if (auth()->user()->role=='pusat') {
+                        # code...
+                        $btn = '<a href="#" data-toggle="modal" data-target="#modal-cabang2" data-id="'.$data->id.'" data-name="'.$data->name.'" data-alamat="'.$data->alamat.'" 
+                        data-kadivre="'.$data->kadivre.'" data-teritorial="'.$data->teritorial.'" data-telp="'.$data->telp.'" 
+                        data-email="'.$data->email.'" data-status="'.$data->status.'" data-kepalacabang="'.$data->kepalacabang.'"
+                        data-kabupaten="'.$data->kabupaten_id.'" data-provinsi="'.$data->provinsi_id.'" class="btn btn-sm btn-outline-primary"><i class="fa fa-edit"></i> Update!</a>';
+                        $btn .= ' <a href="#" class="btn btn-sm btn-outline-danger" data-id="'.$data->id.'" data-user_id="'.$data->user_id.'" data-toggle="modal" data-target="#modal-hapus"><i class="fa fa-trash"></i></a>'; 
+                        return $btn;
+                    }else {
+                        # code...
+                        if (auth()->user()->cabang->id == $data->id) {
+                            # code...
+                            $btn = '<a href="#" data-toggle="modal" data-target="#modal-cabang2" data-id="'.$data->id.'" data-name="'.$data->name.'" data-alamat="'.$data->alamat.'" 
+                            data-kadivre="'.$data->kadivre.'" data-teritorial="'.$data->teritorial.'" data-telp="'.$data->telp.'" 
+                            data-email="'.$data->email.'" data-status="'.$data->status.'" data-kepalacabang="'.$data->kepalacabang.'"
+                            data-kabupaten="'.$data->kabupaten_id.'" data-provinsi="'.$data->provinsi_id.'" class="btn btn-sm btn-outline-primary"><i class="fa fa-edit"></i> Update!</a>';
+                            // $btn .= ' <a href="#" class="btn btn-sm btn-outline-danger" data-id="'.$data->id.'" data-user_id="'.$data->user_id.'" data-toggle="modal" data-target="#modal-hapus"><i class="fa fa-trash"></i></a>'; 
+                            return $btn;
+                        }else {
+                            # code...
+                            return '<span style="color:red">Fitur Pusat</span>';
+                        }
+                        
+                    }
                 })
                 ->addColumn('tot_lembaga', function ($data){
                     return $data->lembaga->count().' - LEMBAGA';
@@ -270,12 +287,32 @@ class CabangCont extends Controller
                 //     return $kepala;
                 // })
                 ->addColumn('opsi', function ($data){
-                    $btn = '<a href="#" data-toggle="modal" data-target="#modal-cabang2" data-id="'.$data->id.'" data-name="'.$data->name.'" data-alamat="'.$data->alamat.'" 
-                    data-kadivre="'.$data->kadivre.'" data-teritorial="'.$data->teritorial.'" data-telp="'.$data->telp.'" 
-                    data-email="'.$data->email.'" data-status="'.$data->status.'" data-kepalacabang="'.$data->kepalacabang.'"
-                    data-kabupaten="'.$data->kabupaten_id.'" data-provinsi="'.$data->provinsi_id.'" class="btn btn-sm btn-outline-primary"><i class="fa fa-edit"></i> Update!</a>';
-                    $btn .= ' <a href="#" class="btn btn-sm btn-outline-danger" data-id="'.$data->id.'" data-user_id="'.$data->user_id.'" data-toggle="modal" data-target="#modal-hapus"><i class="fa fa-trash"></i></a>'; 
-                    return $btn;
+                    // $btn = '<a href="#" data-toggle="modal" data-target="#modal-cabang" data-name="'.$data->name.'" data-alamat="'.$data->alamat.'" class="btn btn-sm btn-outline-primary"><i class="fa fa-edit"></i> Update!</a>';
+                    // $btn .= ' <a href="#" class="btn btn-sm btn-outline-danger" data-id="'.$data->id.'" data-user_id="'.$data->user_id.'" data-toggle="modal" data-target="#modal-hapus"><i class="fa fa-trash"></i></a>'; 
+                    if (auth()->user()->role=='pusat') {
+                        # code...
+                        $btn = '<a href="#" data-toggle="modal" data-target="#modal-cabang2" data-id="'.$data->id.'" data-name="'.$data->name.'" data-alamat="'.$data->alamat.'" 
+                        data-kadivre="'.$data->kadivre.'" data-teritorial="'.$data->teritorial.'" data-telp="'.$data->telp.'" 
+                        data-email="'.$data->email.'" data-status="'.$data->status.'" data-kepalacabang="'.$data->kepalacabang.'"
+                        data-kabupaten="'.$data->kabupaten_id.'" data-provinsi="'.$data->provinsi_id.'" class="btn btn-sm btn-outline-primary"><i class="fa fa-edit"></i> Update!</a>';
+                        $btn .= ' <a href="#" class="btn btn-sm btn-outline-danger" data-id="'.$data->id.'" data-user_id="'.$data->user_id.'" data-toggle="modal" data-target="#modal-hapus"><i class="fa fa-trash"></i></a>'; 
+                        return $btn;
+                    }else {
+                        # code...
+                        if (auth()->user()->cabang->id == $data->id) {
+                            # code...
+                            $btn = '<a href="#" data-toggle="modal" data-target="#modal-cabang2" data-id="'.$data->id.'" data-name="'.$data->name.'" data-alamat="'.$data->alamat.'" 
+                            data-kadivre="'.$data->kadivre.'" data-teritorial="'.$data->teritorial.'" data-telp="'.$data->telp.'" 
+                            data-email="'.$data->email.'" data-status="'.$data->status.'" data-kepalacabang="'.$data->kepalacabang.'"
+                            data-kabupaten="'.$data->kabupaten_id.'" data-provinsi="'.$data->provinsi_id.'" class="btn btn-sm btn-outline-primary"><i class="fa fa-edit"></i> Update!</a>';
+                            // $btn .= ' <a href="#" class="btn btn-sm btn-outline-danger" data-id="'.$data->id.'" data-user_id="'.$data->user_id.'" data-toggle="modal" data-target="#modal-hapus"><i class="fa fa-trash"></i></a>'; 
+                            return $btn;
+                        }else {
+                            # code...
+                            return '<span style="color:red">Fitur Pusat</span>';
+                        }
+                        
+                    }
                 })
                 ->rawColumns(['provinsi','kabupaten','total_kpa','trainers','opsi','tot_lembaga'])
                 ->make(true);
