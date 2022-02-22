@@ -477,7 +477,7 @@ class DiklatCont extends Controller
         // }])->get();
         if (auth()->user()->role=='cabang') {
             # code...
-            $dt_program = Program::where('status',1)->where('name','!=','TOT Instruktur')->where('name','!=','training of trainer')->get();
+            $dt_program = Program::where('status',1)->where('name','!=','TOT Instruktur')->where('name','!=','training of trainer')->where('name','!=','training of trainer instruktur')->get();
         } else {
             # code...
             $dt_program = Program::all();

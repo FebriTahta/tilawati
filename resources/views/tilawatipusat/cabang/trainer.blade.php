@@ -6,6 +6,7 @@
 @section('css')
     <!-- DataTables -->
     <link href="{{ URL::asset('tilawatipusat/libs/datatables/datatables.min.css') }}" rel="stylesheet" type="text/css" />
+    
 @endsection
 @section('content')
     @component('common-tilawatipusat.breadcrumb')
@@ -29,7 +30,7 @@
                         data-toggle="modal" data-target="#modal-add"><i class="mdi mdi-plus"></i> Add
                         Trainer</button> --}}
 
-                    <button class="btn btn-sm btn-outline-info mb-2 mr-1 text-uppercase d-none" style="font-size: 12px "
+                    <button class="btn btn-sm btn-outline-info mb-2 mr-1 text-uppercase" style="font-size: 12px "
                         data-toggle="modal" data-target="#modal-add"><i class="mdi mdi-plus"></i> Tambah
                         Trainer</button>
 

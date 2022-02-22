@@ -6,6 +6,11 @@
 @section('css')
     <!-- DataTables -->
     <link href="{{ URL::asset('tilawatipusat/libs/datatables/datatables.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ URL::asset('tilawatipusat/libs/select2/select2.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ URL::asset('tilawatipusat/libs/bootstrap-datepicker/bootstrap-datepicker.min.css') }}" rel="stylesheet">
+    <link href="{{ URL::asset('tilawatipusat/libs/bootstrap-colorpicker/bootstrap-colorpicker.min.css') }}"
+        rel="stylesheet">
+    <link href="{{ URL::asset('tilawatipusat/libs/bootstrap-touchspin/bootstrap-touchspin.min.css') }}" rel="stylesheet" />
 @endsection
 @section('content')
     @component('common-tilawatipusat.breadcrumb')
@@ -30,8 +35,8 @@
                     <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
                         <form id="trainer_store" class="text-capitalize" method="POST" enctype="multipart/form-data">@csrf
                             <div class="row">
-                                <input type="hidden" name="id" id="id" value="{{$trainer->id}}">
-                                <input type="hidden" name="cabang_id" value="{{$trainer->cabang_id}}">
+                                <input type="hidden" name="id" id="id" value="{{ $trainer->id }}">
+                                <input type="hidden" name="cabang_id" value="{{ $trainer->cabang_id }}">
                                 <div class="col-md-6 col-12 form-group">
                                     <label for="">Nama</label>
                                     <input type="text" id="name" name="name" value="{{ $trainer->name }}"
@@ -69,11 +74,11 @@
                                 </div>
                                 @endforeach
                             </div> --}}
-                            <h5 class="border-bottom">ISI "Ok" SESUAI STATUS TRAINER</h5>
+                            {{-- <h5 class="border-bottom">ISI "Ok" SESUAI STATUS TRAINER</h5> --}}
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div class="row">
-                                    @foreach ($macam as $key=> $items)
+                                    {{-- <div class="row">
+                                    @foreach ($macam as $key => $items)
                                         
                                             <div class="col-md-6 col-12 form-group">
                                                 <label for="">{{ $items->jenis }}</label>
@@ -81,14 +86,25 @@
                                             </div>
                                         
                                     @endforeach
+                                    </div> --}}
+                                    <div class="form-group mb-0">
+                                        <label class="control-label">Sebagai</label>
+                                        <select class="select2 form-control select2-multiple" name="status[]" multiple="multiple"
+                                            data-placeholder="Status Trainer ..." required>
+                                            <optgroup label="-">
+                                                @foreach ($macam as $key => $items)
+                                                <option value="{{ $items->id }}">{{ $items->jenis }}</option>
+                                                @endforeach
+                                            </optgroup>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
 
 
-                            <div class="form-group text-right">
+                            <div class="form-group text-right" style="margin-top: 20px">
                                 <input type="submit" id="z" class="btn btn-outline-primary" value="UPDATE!">
-                                
+
                                 <a href="{{ url()->previous() }}" class="btn btn-outline-secondary">BACK</a>
                             </div>
                         </form>
@@ -110,7 +126,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.all.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    <script src="{{ URL::asset('tilawatipusat/libs/select2/select2.min.js') }}"></script>
+    <script src="{{ URL::asset('tilawatipusat/libs/bootstrap-datepicker/bootstrap-datepicker.min.js') }}"></script>
+    <script src="{{ URL::asset('tilawatipusat/libs/bootstrap-colorpicker/bootstrap-colorpicker.min.js') }}"></script>
+    <script src="{{ URL::asset('tilawatipusat/libs/bootstrap-touchspin/bootstrap-touchspin.min.js') }}"></script>
+    <script src="{{ URL::asset('tilawatipusat/libs/bootstrap-maxlength/bootstrap-maxlength.min.js') }}"></script>
 
+    <!-- form advanced init -->
+    <script src="{{ URL::asset('tilawatipusat/js/pages/form-advanced.init.js') }}"></script>
     <!-- Required datatable js -->
     <script src="{{ URL::asset('tilawatipusat/libs/datatables/datatables.min.js') }}"></script>
     <script src="{{ URL::asset('tilawatipusat/libs/jszip/jszip.min.js') }}"></script>
