@@ -27,7 +27,7 @@ class LembagaImport implements ToCollection, WithChunkReading
             # code...
             if ($key >= 6) {
                 // $cabang = Cabang::where('cabang_id',$cabang_id)->first();
-                $data = Lembaga::where('cabang_id', $this->cabang_id)->where('name',$row[1])->first();
+                $data = Lembaga::where('cabang_id', $this->cabang_id)->where('name',$row[1])->where('kepalalembaga',$row[2])->orwhere('telp',$row[4])->first();
                 $cabang = Cabang::where('id',$this->cabang_id)->first();
                 $kode = mt_rand(100000, 999999);
                 $hasil = 'lmb-'.$kode.'-cb-'.$cabang->id.'-'.$cabang->lembaga->count();
@@ -74,6 +74,8 @@ class LembagaImport implements ToCollection, WithChunkReading
                     $lembaga->save();
                 }else {
                     # code...
+
+                    
                 }
             }
             // // $username_user      = $row[1];
