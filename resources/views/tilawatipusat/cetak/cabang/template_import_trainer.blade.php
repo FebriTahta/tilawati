@@ -31,7 +31,7 @@
             <tr style="border: black; text-transform: uppercase">
                 <th rowspan="2">NO</th>
                 <th rowspan="2">NAMA TRAINER</th>
-                <th rowspan="2">UBAH COLUMN "C" INI KE FORMAT TEXT AGAR FORMAT NOMOR TELP SESUAI</th>
+                <th rowspan="2">NOMOR TELP / WA AKTIF</th>
                 <th rowspan="2">ALAMAT</th>
                 @foreach ($macam as $item)
                 <th rowspan="2">{{$item->jenis}}</th>
@@ -44,7 +44,7 @@
             <tr>
                 <td>1</td>
                 <td>Nama Lengkap + Gelar</td>
-                <td>Nomor WA Aktif / Telp</td>
+                <td>UBAH COLUMN "C" INI KE FORMAT TEXT AGAR FORMAT NOMOR TELP SESUAI</td>
                 <td>Alamat Lengkap</td>
                 <?php $total = $macam->count();?>
                 @for ($i=0; $i < $total; $i++)
