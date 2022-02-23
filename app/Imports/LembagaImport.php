@@ -78,7 +78,7 @@ class LembagaImport implements ToCollection, WithChunkReading
                     
                 // }
 
-                $lembaga = new Lembaga;
+                    $lembaga = new Lembaga;
                     $lembaga->kode = $hasil;
                     $lembaga->cabang_id = $this->cabang_id;
                     $lembaga->name = $row[1];
