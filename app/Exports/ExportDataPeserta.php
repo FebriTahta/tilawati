@@ -24,6 +24,7 @@ class ExportDataPeserta implements FromView,ShouldAutoSize
     public function view(): View
     {
         $peserta = Peserta::where('pelatihan_id',$this->pelatihan_id)->get();
-        return view('tilawatipusat.cetak.cabang.data-peserta-cabang',compact('peserta'));
+        $pelatihan = Pelatihan::where('id', $this->pelatihan_id)->first();
+        return view('tilawatipusat.cetak.cabang.data-peserta-cabang',compact('peserta','pelatihan'));
     }
 }
