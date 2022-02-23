@@ -35,7 +35,7 @@ class ExportDataTrainer implements FromView,ShouldAutoSize,WithColumnFormatting
     public function columnFormats(): View
     {
         return [
-            'E' => NumberFormat::FORMAT_TEXT,
+            'C' => NumberFormat::FORMAT_TEXT,
         ];
     }
 }
