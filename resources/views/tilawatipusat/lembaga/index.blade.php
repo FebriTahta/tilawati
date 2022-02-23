@@ -108,8 +108,8 @@
                                 class="mdi mdi-download"></i> Unduh Data Lembaga</a>
 
                         <a href="/hapus-lembaga/{{ auth()->user()->cabang->id }}"
-                            class="btn btn-sm btn-outline-warning mb-2 mr-1 text-uppercase" style="font-size: 12px "><i
-                                class="mdi mdi-trash"></i> Hapus Semua</a>
+                            class="btn btn-sm btn-outline-danger mb-2 mr-1 text-uppercase" style="font-size: 12px "><i
+                                class="fa fa-trash"></i> Hapus Semua</a>
                     @endif
 
                     {{-- <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive"> --}}
