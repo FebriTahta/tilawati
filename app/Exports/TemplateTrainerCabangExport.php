@@ -6,8 +6,10 @@ use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\WithColumnFormatting;
+use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
 
-class TemplateTrainerCabangExport implements ShouldAutoSize,FromView
+class TemplateTrainerCabangExport implements ShouldAutoSize,FromView,WithColumnFormatting
 {
     /**
     * @return \Illuminate\Support\Collection
@@ -21,5 +23,12 @@ class TemplateTrainerCabangExport implements ShouldAutoSize,FromView
     {
         $macam = Macamtrainer::all();
         return view('tilawatipusat.cetak.cabang.template_import_trainer',compact('macam'));
+    }
+
+    public function columnFormats(): View
+    {
+        return [
+            'C' => NumberFormat::FORMAT_TEXT,
+        ];
     }
 }
