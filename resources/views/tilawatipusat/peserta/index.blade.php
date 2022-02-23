@@ -130,8 +130,6 @@
                     @if ($salah1 + $salah2 + $salah3 > 0)
                         <code>Data anda mengalami beberapa kesalahan format penulisan. Silahkan klik pada data yang salah
                             dan ganti dengan data yang benar</code><br>
-                        <code>Beberapa fitur akan dimatikan seperti tidak dapat dicetak / diterbitkan syahadah apabila data
-                            anda tidak dibenarkan terlebih dahulu.</code>
                     @endif
                     <br><br>
                     @if (count($errors) > 0)
@@ -167,16 +165,16 @@
                             class="mdi mdi-cloud-upload"></i> import peserta</button>
                     @if (auth()->user()->role == 'pusat' || auth()->user()->username == 'tilawati cahaya amanah')
                         @if ($salah1 + $salah2 + $salah3 > 0)
-                            {{-- <button type="button" class=" btn btn-sm mr-1 mb-1 btn-outline-primary" disabled><i
+                            <button type="button" class=" btn btn-sm mr-1 mb-1 btn-outline-primary" ><i
                                     class="fa fa-download" disabled></i> pengiriman modul!</button>
-                            <button type="button" class=" btn btn-sm mr-1 mb-1 btn-outline-info" disabled><i
+                            <button type="button" class=" btn btn-sm mr-1 mb-1 btn-outline-info" ><i
                                     class="fa fa-print" disabled></i> depan!</button>
-                            <button type="button" class=" btn btn-sm mr-1 mb-1 btn-outline-info" disabled><i
+                            <button type="button" class=" btn btn-sm mr-1 mb-1 btn-outline-info" ><i
                                     class="fa fa-print" disabled></i> belakang!</button>
-                            <button type="button" class=" btn btn-sm mr-1 mb-1 btn-outline-secondary" disabled><i
+                            <button type="button" class=" btn btn-sm mr-1 mb-1 btn-outline-secondary" ><i
                                     class="fa fa-print" disabled></i> depan versi lama!</button>
-                            <button type="button" class=" btn btn-sm mr-1 mb-1 btn-outline-warning" disabled><i
-                                    class="fa fa-download" disabled></i> download data peserta!</button> --}}
+                            <button type="button" class=" btn btn-sm mr-1 mb-1 btn-outline-warning" ><i
+                                    class="fa fa-download" disabled></i> download data peserta!</button>
 
 
 
