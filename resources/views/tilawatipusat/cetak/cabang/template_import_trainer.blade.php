@@ -31,7 +31,7 @@
             <tr style="border: black; text-transform: uppercase">
                 <th rowspan="2">NO</th>
                 <th rowspan="2">NAMA TRAINER</th>
-                <th rowspan="2">WA / TELP</th>
+                <th rowspan="2">UBAH COLUMN "C" INI KE FORMAT TEXT AGAR FORMAT NOMOR TELP SESUAI</th>
                 <th rowspan="2">ALAMAT</th>
                 @foreach ($macam as $item)
                 <th rowspan="2">{{$item->jenis}}</th>
