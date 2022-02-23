@@ -475,4 +475,10 @@ class lembagaCont extends Controller
             }
         }
     }
+
+    public function hapus_semua($cabang_id)
+    {
+        Lembaga::where('cabang_id', $cabang_id)->delete();
+        return redirect()->back();
+    }
 }
