@@ -25,7 +25,7 @@ class TemplateTrainerCabangExport implements ShouldAutoSize,FromView,WithColumnF
         return view('tilawatipusat.cetak.cabang.template_import_trainer',compact('macam'));
     }
 
-    public function columnFormats(): View
+    public function columnFormats(): array
     {
         return [
             'C' => NumberFormat::FORMAT_TEXT,
