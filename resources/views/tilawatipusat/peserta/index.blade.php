@@ -164,36 +164,18 @@
                         @if ($diklat->program->penilaian->count() == 0) disabled @else data-target=".bs-example-modal-peserta" @endif><i
                             class="mdi mdi-cloud-upload"></i> import peserta</button>
                     @if (auth()->user()->role == 'pusat' || auth()->user()->username == 'tilawati cahaya amanah')
-                        @if ($salah1 + $salah2 + $salah3 > 0)
-                            <button class="text-right btn btn-sm mr-1 mb-1 btn-outline-primary" id="cetak_all"><i
-                                    class="fa fa-download"></i> pengiriman modul</button>
-                            <button class="text-right btn btn-sm mr-1 mb-1 btn-outline-info" id="depan_all"><i
-                                    class="fa fa-print"></i> depan</button>
-                            <button class="text-right btn btn-sm mr-1 mb-1 btn-outline-info" id="belakang_all"><i
-                                    class="fa fa-print"></i> belakang</button>
+                        <button class="text-right btn btn-sm mr-1 mb-1 btn-outline-primary" id="cetak_all"><i
+                                class="fa fa-download"></i> pengiriman modul</button>
+                        <button class="text-right btn btn-sm mr-1 mb-1 btn-outline-info" id="depan_all"><i
+                                class="fa fa-print"></i> depan</button>
+                        <button class="text-right btn btn-sm mr-1 mb-1 btn-outline-info" id="belakang_all"><i
+                                class="fa fa-print"></i> belakang</button>
 
-                            <button class="text-right btn btn-sm mr-1 mb-1 btn-outline-secondary" id="depan_lama_all"><i
-                                    class="fa fa-print"></i> depan versi lama</button>
-                            <a href="/export-peserta-diklat/{{ $diklat->id }}"
-                                class="text-right btn btn-sm mr-1 mb-1 btn-outline-warning"><i class="fa fa-download"></i>
-                                download data peserta</a>
-
-
-
-                        @else
-                            <button class="text-right btn btn-sm mr-1 mb-1 btn-outline-primary" id="cetak_all"><i
-                                    class="fa fa-download"></i> pengiriman modul</button>
-                            <button class="text-right btn btn-sm mr-1 mb-1 btn-outline-info" id="depan_all"><i
-                                    class="fa fa-print"></i> depan</button>
-                            <button class="text-right btn btn-sm mr-1 mb-1 btn-outline-info" id="belakang_all"><i
-                                    class="fa fa-print"></i> belakang</button>
-
-                            <button class="text-right btn btn-sm mr-1 mb-1 btn-outline-secondary" id="depan_lama_all"><i
-                                    class="fa fa-print"></i> depan versi lama</button>
-                            <a href="/export-peserta-diklat/{{ $diklat->id }}"
-                                class="text-right btn btn-sm mr-1 mb-1 btn-outline-warning"><i class="fa fa-download"></i>
-                                download data peserta</a>
-                        @endif
+                        <button class="text-right btn btn-sm mr-1 mb-1 btn-outline-secondary" id="depan_lama_all"><i
+                                class="fa fa-print"></i> depan versi lama</button>
+                        <a href="/export-peserta-diklat/{{ $diklat->id }}"
+                            class="text-right btn btn-sm mr-1 mb-1 btn-outline-warning"><i class="fa fa-download"></i>
+                            download data peserta</a>
                     @endif
 
                     <button class="text-right btn btn-sm mr-1 mb-1 btn-outline-danger" id="hapus_all"><i
