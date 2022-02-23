@@ -1,5 +1,5 @@
 <?php
-
+ 
 namespace App\Exports;
 use App\Models\Peserta;
 use App\Models\Pelatihan;
