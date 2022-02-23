@@ -78,7 +78,15 @@ class PesertaDiklatImport2 implements ToCollection, WithStartRow
         foreach ($collection as $key => $row) {
             # code...
             $diklat = Pelatihan::where('id',$this->id)->first();
-                    $peserta= Peserta::where('name',$row[0])->where('alamat',$row[1])->where('pelatihan_id', $this->id)->first();
+                    if (is_numeric($row[5]) !== false) {
+                        # code...
+                        $tgllahir = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row[5]);
+                    }else {
+                        # code...
+                        $tgllahir="";
+                    }
+
+                    $peserta= Peserta::where('name',$row[0])->where('tgllahir',$tgllahir)->where('pelatihan_id', $this->id)->first();
                     if ($peserta == null) {
                         
                         # code...
