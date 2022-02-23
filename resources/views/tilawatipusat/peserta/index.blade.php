@@ -166,15 +166,15 @@
                     @if (auth()->user()->role == 'pusat' || auth()->user()->username == 'tilawati cahaya amanah')
                         @if ($salah1 + $salah2 + $salah3 > 0)
                             <button type="button" class=" btn btn-sm mr-1 mb-1 btn-outline-primary" ><i
-                                    class="fa fa-download" disabled></i> pengiriman modul!</button>
+                                    class="fa fa-download" ></i> pengiriman modul!</button>
                             <button type="button" class=" btn btn-sm mr-1 mb-1 btn-outline-info" ><i
-                                    class="fa fa-print" disabled></i> depan!</button>
+                                    class="fa fa-print" ></i> depan!</button>
                             <button type="button" class=" btn btn-sm mr-1 mb-1 btn-outline-info" ><i
-                                    class="fa fa-print" disabled></i> belakang!</button>
+                                    class="fa fa-print" ></i> belakang!</button>
                             <button type="button" class=" btn btn-sm mr-1 mb-1 btn-outline-secondary" ><i
-                                    class="fa fa-print" disabled></i> depan versi lama!</button>
+                                    class="fa fa-print" ></i> depan versi lama!</button>
                             <button type="button" class=" btn btn-sm mr-1 mb-1 btn-outline-warning" ><i
-                                    class="fa fa-download" disabled></i> download data peserta!</button>
+                                    class="fa fa-download" ></i> download data peserta!</button>
 
 
 
