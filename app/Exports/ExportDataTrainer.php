@@ -6,8 +6,10 @@ use Maatwebsite\Excel\Concerns\FromView;
 use App\Models\Trainer;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\WithColumnFormatting;
+use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
 
-class ExportDataTrainer implements FromView,ShouldAutoSize
+class ExportDataTrainer implements FromView,ShouldAutoSize,WithColumnFormatting
 {
     public function __construct($cabang_id,$macam)
     {
@@ -28,5 +30,12 @@ class ExportDataTrainer implements FromView,ShouldAutoSize
         $macam = $this->macam;
         $trainer = Trainer::where('cabang_id', $this->cabang_id)->get();
         return view('tilawatipusat.cetak.cabang.data-instruktur-cabang',compact('trainer','macam'));
+    }
+
+    public function columnFormats(): View
+    {
+        return [
+            'E' => NumberFormat::FORMAT_TEXT,
+        ];
     }
 }
