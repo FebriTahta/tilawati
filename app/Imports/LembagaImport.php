@@ -27,57 +27,13 @@ class LembagaImport implements ToCollection, WithChunkReading
             # code...
             if ($key >= 6) {
                 // $cabang = Cabang::where('cabang_id',$cabang_id)->first();
-                // $data = Lembaga::where('cabang_id', $this->cabang_id)->where('name',$row[1])->where('telp',$row[4])->first();
+                $data = Lembaga::where('cabang_id', $this->cabang_id)->where('name',$row[1])->where('kepalalembaga',$row[2])->where('telp',$row[4])->first();
                 $cabang = Cabang::where('id',$this->cabang_id)->first();
                 $kode = mt_rand(100000, 999999);
                 $hasil = 'lmb-'.$kode.'-cb-'.$cabang->id.'-'.$cabang->lembaga->count();
 
-                // if ($data == null) {
-                //     # code...
-                //     $lembaga = new Lembaga;
-                //     $lembaga->kode = $hasil;
-                //     $lembaga->cabang_id = $this->cabang_id;
-                //     $lembaga->name = $row[1];
-                //     $lembaga->kepalalembaga = $row[2];
-                //     $lembaga->jenjang = $row[3];
-                //     $lembaga->telp = $row[4];
-
-                //     if ($row[5] !== null) {
-                //         # code...
-                //         $kab     = strtoupper($row[5]);
-                //         $kab_kab = 'KAB. '.$kab;
-                //         $kab_kot = 'KOTA '.$kab;
-                //         $tes_kab = Kabupaten::select('*')->whereIn('nama',[$kab_kab])->first();
-                //         $tes_kot = Kabupaten::select('*')->whereIn('nama',[$kab_kot])->first();
-                //         //proses logika untuk mendapatkan kabupaten id & menginput provinsi id otomatis dari kabupaten
-                //         if ($tes_kab !== null) {
-                //             # code...
-                //             $kabupaten_id = $tes_kab->id;
-                //             $lembaga->kabupaten_id = $kabupaten_id;
-                //             $lembaga->provinsi_id = $tes_kab->provinsi->id;
-                //         } 
-                //         if ($tes_kot !== null) {
-                //             # code...
-                //             $kabupaten_id = $tes_kot->id;
-                //             $lembaga->kabupaten_id = $kabupaten_id;
-                //             $lembaga->provinsi_id = $tes_kot->provinsi->id;
-                //         }
-                //     }
-                //     $lembaga->jml_guru = $row[6];
-                //     $lembaga->jml_santri = $row[7];
-                //     $lembaga->alamat = $row[8];
-                //     $lembaga->pengelola = $row[9];
-                //     $lembaga->status = $row[10];
-                //     // $lembaga->provinsi_id = $cabang->provinsi_id;
-                //     // $lembaga->kabupaten_id= $cabang->kabupaten_id;
-                //     $lembaga->created_at = new \DateTime;
-                //     $lembaga->save();
-                // }else {
-                //     # code...
-
-                    
-                // }
-
+                if ($data == null) {
+                    # code...
                     $lembaga = new Lembaga;
                     $lembaga->kode = $hasil;
                     $lembaga->cabang_id = $this->cabang_id;
@@ -116,6 +72,11 @@ class LembagaImport implements ToCollection, WithChunkReading
                     // $lembaga->kabupaten_id= $cabang->kabupaten_id;
                     $lembaga->created_at = new \DateTime;
                     $lembaga->save();
+                }else {
+                    # code...
+
+                    
+                }
             }
             // // $username_user      = $row[1];
             // // $kepala_lembaga      = $row[2];
