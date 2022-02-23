@@ -32,7 +32,7 @@ class ExportDataTrainer implements FromView,ShouldAutoSize,WithColumnFormatting
         return view('tilawatipusat.cetak.cabang.data-instruktur-cabang',compact('trainer','macam'));
     }
 
-    public function columnFormats(): View
+    public function columnFormats(): array
     {
         return [
             'C' => NumberFormat::FORMAT_TEXT,
