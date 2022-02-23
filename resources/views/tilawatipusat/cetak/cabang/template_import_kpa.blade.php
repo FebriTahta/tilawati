@@ -43,7 +43,7 @@
                 <td>Daftar Nama KPA</td>
                 <td>Nama Lengkap Ketua KPA</td>
                 <td>Wilayah KPA</td>
-                <td>Nomor Telp Aktif / WA</td>
+                <td>Ubah Column "E" Ini Ke Text Agar Format Nomor Telpon Sesuai</td>
             </tr>
         </tbody>
     </table>

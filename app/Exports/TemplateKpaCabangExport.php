@@ -27,7 +27,6 @@ class TemplateKpaCabangExport implements FromView,ShouldAutoSize,WithColumnForma
     {
         return [
             'E' => NumberFormat::FORMAT_TEXT,
-            // 'F' => NumberFormat::FORMAT_DATE_DDMMYYYY
         ];
     }
 }
