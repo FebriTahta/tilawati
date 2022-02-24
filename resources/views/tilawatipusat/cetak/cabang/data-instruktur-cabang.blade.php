@@ -15,7 +15,7 @@
     <table>
         <thead style="font-weight: bold; text-transform: uppercase">
             <tr>
-                <th rowspan="3" colspan="8">DATA INSTRUKTUR CABANG <br> <small>Per - 2022</small></th>
+                <th rowspan="3" colspan="8">DATA INSTRUKTUR CABANG <br> <span style="text-transform: uppercase">{{ $cabang->name }}</span> <br> <small> Per - 2022</small></th>
             </tr>
         </thead>
     </table>

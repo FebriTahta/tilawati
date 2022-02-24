@@ -461,6 +461,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     Route::get('/data-trainer/cabang',[CabangCont::class,'data_trainer'])->name('data.trainer.cabang');
     Route::get('/edit-trainer/cabang/{trainer_id}',[CabangCont::class,'edit_trainer'])->name('edit.trainer');
     Route::get('/list-data-trainer/cabang',[CabangCont::class,'list_trainer_cabang'])->name('list.trainer.cabang');
+    Route::get('/show-list-data-trainer/{cabang_id}',[CabangCont::class,'show_list_trainer_cabang'])->name('show.list.trainer.cabang');
     Route::post('/store-data-trainer/cabang',[CabangCont::class,'store_trainer_cabang'])->name('store.trainer.cabang');
     Route::post('/delete-data-trainer/cabang',[CabangCont::class,'delete_trainer_cabang'])->name('delete.trainer.cabang');
     Route::post('/update-data-trainer',[CabangCont::class,'update_data_trainer'])->name('update.data.trainer');

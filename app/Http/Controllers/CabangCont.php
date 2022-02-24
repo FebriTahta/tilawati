@@ -162,7 +162,7 @@ class CabangCont extends Controller
                         // }
                         // return implode(' | ', $trains);
                         // return Trainer::where('cabang_id', $data->id)->where('trainer',$value->trainer)->count().' TRAINER';
-                        return '<a href="#" data-toggle="modal" data-target="#modaltrainer">'.Trainer::where('cabang_id', $data->id)->count().' Trainer</a>';
+                        return '<a href="#" data-toggle="modal" data-target="#modaltrainer" data-cabang_id="'.$data->id.'">'.Trainer::where('cabang_id', $data->id)->count().' Trainer</a>';
                     } else {
                         # code...
                         return ' - ';
@@ -261,7 +261,7 @@ class CabangCont extends Controller
                         // }
                         // return implode(' | ', $trains);
                         // return Trainer::where('cabang_id', $data->id)->where('trainer',$value->trainer)->count().' TRAINER';
-                        return '<a href="#" data-toggle="modal" data-target="#modaltrainer">'.Trainer::where('cabang_id', $data->id)->count().' Trainer</a>';
+                        return '<a href="#" data-download="/export-template-trainer-data/'.$data->id.'" data-toggle="modal" data-cabang_name="'.$data->name.'" data-target="#modaltrainer" data-cabang_id="'.$data->id.'">'.Trainer::where('cabang_id', $data->id)->count().' Trainer</a>';
                     } else {
                         # code...
                         return ' - ';
@@ -492,6 +492,26 @@ class CabangCont extends Controller
                         
                     })
                     ->rawColumns(['action','trains'])
+                    ->make(true);
+        }
+    }
+
+    public function show_list_trainer_cabang(Request $request, $cabang_id)
+    {
+        if(request()->ajax())
+        {
+            $data   = Trainer::where('cabang_id',$cabang_id)->with('cabang')->orderBy('id','asc');
+                    return DataTables::of($data)
+                    ->addColumn('trains', function ($data) {
+                        $x=[];
+                        foreach ($data->macamtrainer as $key => $value) {
+                            # code...
+                            $x[] =$value->jenis;
+                        }
+                        return implode("<br>", $x);
+                        
+                    })
+                    ->rawColumns(['trains'])
                     ->make(true);
         }
     }

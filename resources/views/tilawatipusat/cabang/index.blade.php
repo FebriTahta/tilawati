@@ -82,7 +82,6 @@
                     <a href="/export-kpa-cabang" target="_blank" class="btn btn-sm btn-outline-primary mb-2 mr-1"
                         style="width: 130px"><i class="fa fa-download">
                             KPA Cabang</i></a> --}}
-
                     <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
                         <table id="datatable-buttons" class="table table-cabang table-bordered dt-responsive nowrap"
                             style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
@@ -255,32 +254,37 @@
         aria-labelledby="mySmallModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
+                <div class="card">
+                    <a href="#" id="download-trainer" type="button" class="btn btn-sm btn-info text-uppercase"><i class="fa fa-download"></i> Download Data Trainer</a>
+                </div>
                 <div class="modal-body">
+                    <div class="col-xl-12" style="margin-bottom:30px">
+                        <h5>TRAINER <br> <span class="text-uppercase" id="cabang_name"></span></h5>
+                    </div>
                     <div class="col-xl-12">
-                        <div class="card m-b-30">
-                            <div class="card-body">
-                                <div class="container-fluid">
-                                    <div class="form-group text-center">
-                                        <h5>"User Akses Cabang Tersebut" juga akan terhapus apabila menghapus Cabang
-                                        </h5>
-                                        <p class="text-danger">YAKIN INGIN MENGHAPUS CABANG TERSEBUT ?</p>
-                                        <input type="hidden" class="form-control text-capitalize" id="id" name="id"
-                                            required>
-                                    </div>
-                                    <div class="row" style="text-align: center">
-                                        <div class="form-group col-6 col-xl-6">
-                                            <input type="submit" name="hapus" id="btnhapus" class="btn btn-danger"
-                                                value="Ya, Hapus!" />
-                                        </div>
-                                        <div class="form-group col-6 col-xl-6">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                                                No, Cancel!
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div><!-- container fluid -->
-                            </div>
-                        </div>
+                        <table id="datatable-buttons-trainer" class="table table-cabang table-bordered dt-responsive nowrap"
+                        style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
+                        <thead class="text-bold text-primary" style="text-transform: uppercase; font-size: 10px">
+                            <tr>
+                                <th>No</th>
+                                <th>Nama</th>
+                                <th>Trainer</th>
+                                <th>Phone</th>
+                            </tr>
+                        </thead>
+
+                        <tbody style="font-size: 10px">
+                        </tbody>
+
+                        <tfoot class="text-bold text-primary" style="text-transform: uppercase; font-size: 10px">
+                            <tr>
+                                <th>No</th>
+                                <th>Nama</th>
+                                <th>Trainer</th>
+                                <th>Phone</th>
+                            </tr>
+                        </tfoot>
+                    </table>
                     </div> <!-- end col -->
                 </div>
             </div><!-- /.modal-content -->
@@ -572,6 +576,48 @@
             var modal = $(this)
             console.log(id);
             modal.find('.modal-body #id').val(id);
+        })
+
+        $('#modaltrainer').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget)
+            var cabang_id = button.data('cabang_id')
+            var cabang_name = button.data('cabang_name')
+            var download = button.data('download')
+            var modal = $(this)
+            console.log(cabang_id);
+            modal.find('.modal-body #cabang_name').html(cabang_name);
+            document.getElementById("download-trainer").href = download;
+            $('#datatable-buttons-trainer').DataTable({
+                //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
+                destroy: true,
+                processing: true,
+                serverSide: true,
+                ajax: {
+                    url: '/show-list-data-trainer/'+cabang_id,
+                },
+                columns: [
+                    {
+                        width: 20,
+                        "data": null,
+                        "sortable": false,
+                        render: function(data, type, row, meta) {
+                            return meta.row + meta.settings._iDisplayStart + 1;
+                        }
+                    },
+                    {
+                        data: 'name',
+                        name: 'name'
+                    },
+                    {
+                        data: 'trains',
+                        name: 'trains'
+                    },
+                    {
+                        data: 'telp',
+                        name: 'telp'
+                    },
+                ]
+            });
         })
 
         $('#hapuscabang').submit(function(e) {
