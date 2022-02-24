@@ -251,6 +251,42 @@
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 
+    <div class="modal fade bs-example-modal-diklat-hapus" id="modaltrainer" tabindex="-1" role="dialog"
+        aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="col-xl-12">
+                        <div class="card m-b-30">
+                            <div class="card-body">
+                                <div class="container-fluid">
+                                    <div class="form-group text-center">
+                                        <h5>"User Akses Cabang Tersebut" juga akan terhapus apabila menghapus Cabang
+                                        </h5>
+                                        <p class="text-danger">YAKIN INGIN MENGHAPUS CABANG TERSEBUT ?</p>
+                                        <input type="hidden" class="form-control text-capitalize" id="id" name="id"
+                                            required>
+                                    </div>
+                                    <div class="row" style="text-align: center">
+                                        <div class="form-group col-6 col-xl-6">
+                                            <input type="submit" name="hapus" id="btnhapus" class="btn btn-danger"
+                                                value="Ya, Hapus!" />
+                                        </div>
+                                        <div class="form-group col-6 col-xl-6">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                                No, Cancel!
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div><!-- container fluid -->
+                            </div>
+                        </div>
+                    </div> <!-- end col -->
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
     <div class="modal fade bs-example-modal-kepala-bagian-lama" id="mod_cabang2" tabindex="-1" role="dialog"
         aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable modal-md">
