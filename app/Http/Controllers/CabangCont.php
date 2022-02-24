@@ -162,7 +162,7 @@ class CabangCont extends Controller
                         // }
                         // return implode(' | ', $trains);
                         // return Trainer::where('cabang_id', $data->id)->where('trainer',$value->trainer)->count().' TRAINER';
-                        return Trainer::where('cabang_id', $data->id)->count().' TRAINER';
+                        return '<a href="#" data-toggle="modal" data-target="#modaltrainer">'.Trainer::where('cabang_id', $data->id)->count().' TRAINER</a>';
                     } else {
                         # code...
                         return ' - ';
