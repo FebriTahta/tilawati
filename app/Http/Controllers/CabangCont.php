@@ -145,7 +145,14 @@ class CabangCont extends Controller
                     return $data->kabupaten->nama;
                 })
                 ->addColumn('total_kpa', function ($data) {
-                    return $data->kpa->count().' - KPA';
+                    if ($data->kpa->count() > 0) {
+                        # code...
+                        return '<a href="#" data-toggle="modal" data-target="#modalkpa" data-id="'.$data->id.'" data-cabang_name="'.$data->name .'">'.$data->kpa->count().' KPA</a>';
+                    }else {
+                        # code...
+                        return "-";
+                    }
+                    
                 })
                 ->addColumn('trainers', function ($data) {
 
@@ -225,7 +232,13 @@ class CabangCont extends Controller
                     }
                 })
                 ->addColumn('total_kpa', function ($data) {
-                    return $data->kpa->count().' - KPA';
+                    if ($data->kpa->count() > 0) {
+                        # code...
+                        return '<a href="#" data-download="/export-template-kpa-data/'.$data->id.'" data-toggle="modal" data-target="#modalkpa" data-cabang_id="'.$data->id.'" data-cabang_name="'.$data->name .'">'.$data->kpa->count().' KPA</a>';
+                    }else {
+                        # code...
+                        return "-";
+                    }
                 })
                 ->addColumn('tot_lembaga', function ($data){
                     return $data->lembaga->count().' - LEMBAGA';
@@ -716,6 +729,25 @@ class CabangCont extends Controller
         $kpa = Kpa::where('cabang_id',$cabang_id)->with('cabang')->first();
         $cabang = Cabang::where('id',$cabang_id)->select('id','name','kabupaten_id')->with('kabupaten')->first();
         return view('tilawatipusat.cabang.kpa',compact('kpa','cabang'));
+    }
+
+    public function show_data_kpa(Request $request, $cabang_id)
+    {
+        if(request()->ajax())
+        {
+            # code...
+            $data   = Kpa::where('cabang_id',$cabang_id)->with('cabang')->orderBy('id','asc');
+                    return DataTables::of($data)
+                    ->addColumn('action', function ($data) {
+                        $stats = '<a href="#" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modal_hapus" data-id="'.$data->id.'"><i class="fa fa-trash"></i></a>';
+                        $stats .= ' <a href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-add" data-id="'.$data->id.'" data-name="'.$data->name.'"
+                        data-telp="'.$data->telp.'" data-wilayah="'.$data->wilayah.'" data-ketua="'.$data->ketua.'"><i class="fa fa-edit"></i></a>';
+                        return $stats;
+                    })
+                    ->rawColumns(['action'])
+                    ->make(true);
+
+        }
     }
 
     public function store_kpa_cabang(Request $request)

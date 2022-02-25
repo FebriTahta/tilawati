@@ -468,6 +468,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     Route::post('/add-data-trainer',[CabangCont::class,'add_data_trainer'])->name('add.data.trainer');
     // NEW DATA KPA CABANG RAKERNAS
     Route::get('/data-kpa/cabang',[CabangCont::class,'data_kpa'])->name('data.kpa.cabang');
+    Route::get('/show-data-kpa/{cabang_id}',[CabangCont::class,'show_data_kpa'])->name('show.data.kpa.cabang');
     Route::post('/store-data-kpa/cabang',[CabangCont::class,'store_kpa_cabang'])->name('store.kpa.cabang');
     Route::post('/delete-data-kpa/cabang',[CabangCont::class,'delete_kpa_cabang'])->name('delete.kpa.cabang');
     // KEPALA CABANG

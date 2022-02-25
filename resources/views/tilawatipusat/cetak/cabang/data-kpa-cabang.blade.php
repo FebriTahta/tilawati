@@ -15,7 +15,7 @@
     <table>
         <thead style="font-weight: bold; text-transform: uppercase">
             <tr>
-                <th rowspan="3" colspan="10">DATA KPA CABANG <br> <small>Seluruh Indonesia Per - 2022</small></th>
+                <th rowspan="3" colspan="10">DATA KPA CABANG <br> <span>{{$cabang->name}}</span> <br> <small> Per - 2022</small></th>
             </tr>
         </thead>
     </table>
@@ -39,11 +39,13 @@
         <tbody>
             <tr></tr>
             @foreach ($kpa as $key=> $item)
+            <tr>
                 <td>{{$key+1}}</td>
                 <td>{{$item->name}}</td>
                 <td>{{$item->ketua}}</td>
                 <td>{{$item->wilayah}}</td>
                 <td>{{$item->telp}}</td>
+            </tr>
             @endforeach
         </tbody>
     </table>

@@ -6,7 +6,7 @@ use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\FromCollection;
 
-class PesertaDiklatExport2 implements FromCollection
+class PesertaDiklatExport2 implements FromCollection,ShouldAutoSize
 {
 
     public function __construct($pelatihan_id)
