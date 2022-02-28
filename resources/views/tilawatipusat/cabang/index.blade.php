@@ -694,6 +694,7 @@
                         width: 20,
                         "data": null,
                         "sortable": false,
+                        "searchabble": false,
                         render: function(data, type, row, meta) {
                             return meta.row + meta.settings._iDisplayStart + 1;
                         }
@@ -735,6 +736,7 @@
                         width: 20,
                         "data": null,
                         "sortable": false,
+                        "searchabble": false,
                         render: function(data, type, row, meta) {
                             return meta.row + meta.settings._iDisplayStart + 1;
                         }
