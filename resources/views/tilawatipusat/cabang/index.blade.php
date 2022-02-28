@@ -254,9 +254,10 @@
         aria-labelledby="mySmallModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
-                <div class="card">
+                <div class="modal-header">
                     <a href="#" id="download-trainer" type="button" class="btn btn-sm btn-info text-uppercase"><i
                             class="fa fa-download"></i> Download Data Trainer</a>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
                     <div class="col-xl-12" style="margin-bottom:30px">
@@ -296,9 +297,10 @@
         aria-labelledby="mySmallModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
-                <div class="card">
+                <div class="modal-header">
                     <a href="#" id="download-kpa" type="button" class="btn btn-sm btn-info text-uppercase"><i
                             class="fa fa-download"></i> Download Data KPA</a>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
                     <div class="col-xl-12" style="margin-bottom:30px">
@@ -340,16 +342,18 @@
         aria-labelledby="mySmallModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
-                <div class="card">
+                <div class="modal-header">
                     <a href="#" id="download-lembaga" type="button" class="btn btn-sm btn-info text-uppercase"><i
                             class="fa fa-download"></i> Download Data Lembaga</a>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
                     <div class="col-xl-12" style="margin-bottom:30px">
                         <h5>LEMBAGA <br> <span class="text-uppercase" id="cabang_name"></span></h5>
                     </div>
                     <div class="col-xl-12">
-                        <table id="datatable-buttons-lembaga" class="table table-cabang table-bordered dt-responsive nowrap"
+                        <table id="datatable-buttons-lembaga"
+                            class="table table-cabang table-bordered dt-responsive nowrap"
                             style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
                             <thead class="text-bold text-primary" style="text-transform: uppercase; font-size: 10px">
                                 <tr>
@@ -751,7 +755,7 @@
                         data: 'telp',
                         name: 'telp'
                     },
-                    
+
                 ]
             });
         })
@@ -774,8 +778,7 @@
                 ajax: {
                     url: '/diklat-lembaga-data-cabang/' + cabang_id,
                 },
-                columns: [
-                    {
+                columns: [{
                         data: 'name',
                         name: 'name'
                     },
@@ -799,7 +802,7 @@
                         data: 'jml_santri',
                         name: 'jml_santri'
                     },
-                    
+
                 ]
             });
         })
