@@ -268,7 +268,7 @@
                             style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
                             <thead class="text-bold text-primary" style="text-transform: uppercase; font-size: 10px">
                                 <tr>
-                                    <th>No</th>
+                                    
                                     <th>Nama</th>
                                     <th>Trainer</th>
                                     <th>Phone</th>
@@ -280,7 +280,7 @@
 
                             <tfoot class="text-bold text-primary" style="text-transform: uppercase; font-size: 10px">
                                 <tr>
-                                    <th>No</th>
+                                    
                                     <th>Nama</th>
                                     <th>Trainer</th>
                                     <th>Phone</th>
@@ -311,7 +311,7 @@
                             style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
                             <thead class="text-bold text-primary" style="text-transform: uppercase; font-size: 10px">
                                 <tr>
-                                    <th>ID</th>
+                                    
                                     <th>KPA</th>
                                     <th>KETUA</th>
                                     <th>WILAYAH</th>
@@ -324,7 +324,7 @@
 
                             <tfoot class="text-bold text-primary" style="text-transform: uppercase; font-size: 10px">
                                 <tr>
-                                    <th>ID</th>
+                                    
                                     <th>KPA</th>
                                     <th>KETUA</th>
                                     <th>WILAYAH</th>
@@ -690,15 +690,7 @@
                 ajax: {
                     url: '/show-list-data-trainer/' + cabang_id,
                 },
-                columns: [{
-                        width: 20,
-                        "data": null,
-                        "sortable": false,
-                        "searchabble": false,
-                        render: function(data, type, row, meta) {
-                            return meta.row + meta.settings._iDisplayStart + 1;
-                        }
-                    },
+                columns: [
                     {
                         data: 'name',
                         name: 'name'
@@ -732,15 +724,7 @@
                 ajax: {
                     url: '/show-data-kpa/' + cabang_id,
                 },
-                columns: [{
-                        width: 20,
-                        "data": null,
-                        "sortable": false,
-                        "searchabble": false,
-                        render: function(data, type, row, meta) {
-                            return meta.row + meta.settings._iDisplayStart + 1;
-                        }
-                    },
+                columns: [
                     {
                         data: 'name',
                         name: 'name'
