@@ -336,6 +336,52 @@
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 
+    <div class="modal fade bs-example-modal-diklat-hapus" id="modallembaga" tabindex="-1" role="dialog"
+        aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="card">
+                    <a href="#" id="download-lembaga" type="button" class="btn btn-sm btn-info text-uppercase"><i
+                            class="fa fa-download"></i> Download Data Lembaga</a>
+                </div>
+                <div class="modal-body">
+                    <div class="col-xl-12" style="margin-bottom:30px">
+                        <h5>LEMBAGA <br> <span class="text-uppercase" id="cabang_name"></span></h5>
+                    </div>
+                    <div class="col-xl-12">
+                        <table id="datatable-buttons-lembaga" class="table table-cabang table-bordered dt-responsive nowrap"
+                            style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
+                            <thead class="text-bold text-primary" style="text-transform: uppercase; font-size: 10px">
+                                <tr>
+                                    <th>LEMBAGA</th>
+                                    <th>STATUS</th>
+                                    <th>KEPALA</th>
+                                    <th>TELP</th>
+                                    <th>GURU</th>
+                                    <th>SANTRI</th>
+                                </tr>
+                            </thead>
+
+                            <tbody style="font-size: 10px">
+                            </tbody>
+
+                            <tfoot class="text-bold text-primary" style="text-transform: uppercase; font-size: 10px">
+                                <tr>
+                                    <th>LEMBAGA</th>
+                                    <th>STATUS</th>
+                                    <th>KEPALA</th>
+                                    <th>TELP</th>
+                                    <th>GURU</th>
+                                    <th>SANTRI</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div> <!-- end col -->
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
     <div class="modal fade bs-example-modal-kepala-bagian-lama" id="mod_cabang2" tabindex="-1" role="dialog"
         aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable modal-md">
@@ -704,6 +750,54 @@
                     {
                         data: 'telp',
                         name: 'telp'
+                    },
+                    
+                ]
+            });
+        })
+
+        $('#modallembaga').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget)
+            var cabang_id = button.data('cabang_id')
+            var cabang_name = button.data('cabang_name')
+            var download = button.data('download')
+            var modal = $(this)
+            console.log(cabang_id);
+            modal.find('.modal-body #cabang_name').html(cabang_name);
+            console.log(download);
+            document.getElementById("download-lembaga").href = download;
+            $('#datatable-buttons-lembaga').DataTable({
+                //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
+                destroy: true,
+                processing: true,
+                serverSide: true,
+                ajax: {
+                    url: '/diklat-lembaga-data-cabang/' + cabang_id,
+                },
+                columns: [
+                    {
+                        data: 'name',
+                        name: 'name'
+                    },
+                    {
+                        data: 'statuss',
+                        name: 'status'
+                    },
+                    {
+                        data: 'kepalalembaga',
+                        name: 'kepalalembaga'
+                    },
+                    {
+                        data: 'telp',
+                        name: 'telp'
+                    },
+                    {
+                        data: 'jml_guru',
+                        name: 'jml_guru'
+                    },
+                    {
+                        data: 'jml_santri',
+                        name: 'jml_santri'
                     },
                     
                 ]

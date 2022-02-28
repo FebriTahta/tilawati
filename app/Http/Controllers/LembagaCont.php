@@ -21,6 +21,37 @@ class lembagaCont extends Controller
         return view('tilawatipusat.lembaga.index',compact('cabang','kabupaten','jenjang'));
     }
 
+    public function lembaga_data_cabang(Request $request, $cabang_id)
+    {
+        if(request()->ajax())
+        {
+            $data   = Lembaga::where('cabang_id', $cabang_id);
+            return DataTables::of($data)
+                // ->addColumn('kabupaten', function ($data) {
+                //     if ($data->kabupaten !== null) {
+                //         return substr($kabupaten = $data->kabupaten->nama,5);
+                //     }else{
+                //         return '<a href="#" data-toggle="modal" data-target="#addkota" data-id="'.$data->id.'" class="text-danger">kosong / salah penulisan </a>';
+                //     }
+                // })
+                ->addColumn('statuss', function ($data) {
+                    if ($data->status == 'Aktif' || $data->status == 'aktif') {
+                        # code...
+                        $btn = '<span class="badge badge-success btn text-white">Aktif</span>';
+                        return $btn;
+                    } else {
+                        # code...
+                        $btn = '<span class="badge badge-danger btn text-white">Non Aktif</span>';
+                        return $btn;
+                    }
+                    
+                })
+            ->rawColumns(['statuss'])
+            ->make(true);
+            
+        }
+    }
+
     public function lembaga_data(Request $request)
     {
         if(request()->ajax())

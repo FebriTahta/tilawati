@@ -180,6 +180,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     Route::post('/pelatihan-jenjang-del', [SubController::class, 'hapusjenjang'])->name('jenjang.del');
     //lembaga
     Route::get('/pelatihan-lembaga-data',[LembagaController::class, 'getlembaga_data'])->name('lembaga.data');
+    // Route::get('/pelatihan-lembaga-data-cabang',[LembagaController::class, 'getlembaga_data_cabang'])->name('lembaga.data.cabang');
     Route::get('/pelatihan-lembaga', [LembagaController::class , 'index'])->name('lembaga.index');
     Route::get('/pelatihan-lembaga-create', [LembagaController::class, 'create'])->name('lembaga.create');
     Route::post('/pelatihan-lembaga-post', [LembagaController::class, 'store'])->name('lembaga.store');
@@ -262,6 +263,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     Route::post('/diklat-lembaga-store',[LembagaCont::class,'store'])->name('diklat.lembaga_store');
     Route::post('/diklat-lembaga-update',[LembagaCont::class,'store2'])->name('diklat.lembaga_store2');
     Route::get('/diklat-lembaga-data',[LembagaCont::class, 'lembaga_data'])->name('diklat.lembaga_data');
+    Route::get('/diklat-lembaga-data-cabang/{cabang_id}',[LembagaCont::class, 'lembaga_data_cabang'])->name('diklat.lembaga_data_cabang');
     Route::get('/diklat-lembaga-total',[LembagaCont::class, 'lembaga_total'])->name('diklat.lembaga_tot');
     Route::get('/diklat-lembaga-total2',[LembagaCont::class, 'lembaga_total2'])->name('diklat.lembaga_tot2');
     Route::get('/diklat-lembaga-kabupaten-total',[LembagaCont::class, 'lembaga_kabupaten'])->name('diklat.lembaga_kab');

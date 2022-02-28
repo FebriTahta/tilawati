@@ -216,7 +216,14 @@ class CabangCont extends Controller
                     }
                 })
                 ->addColumn('tot_lembaga', function ($data){
-                    return $data->lembaga->count().' - LEMBAGA';
+                    if ($data->lembaga->count() > 0) {
+                        # code...
+                        return '<a href="" data-toggle="modal" data-target="#modallembaga" data-download="/export-template-lembaga/'.$data->id.'" data-cabang_id="'.$data->id.'" data-cabang_name="'.$data->name .'">'.$data->lembaga->count().' - LEMBAGA</a>';
+                        
+                    }else {
+                        # code...
+                        return '-';
+                    }
                 })
                 ->rawColumns(['provinsi','kabupaten','total_kpa','trainer','opsi','tot_lembaga'])
                 ->make(true);
@@ -241,7 +248,14 @@ class CabangCont extends Controller
                     }
                 })
                 ->addColumn('tot_lembaga', function ($data){
-                    return $data->lembaga->count().' - LEMBAGA';
+                    if ($data->lembaga->count() > 0) {
+                        # code...
+                        return '<a href="" data-toggle="modal" data-target="#modallembaga" data-download="/export-template-lembaga/'.$data->id.'" data-cabang_id="'.$data->id.'" data-cabang_name="'.$data->name .'">'.$data->lembaga->count().' - LEMBAGA</a>';
+                        
+                    }else {
+                        # code...
+                        return '-';
+                    }
                 })
                 ->addColumn('trainers', function ($data) {
 
