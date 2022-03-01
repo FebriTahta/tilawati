@@ -51,7 +51,7 @@ class DashboardCont extends Controller
 
     public function download_qr_tilawati(Request $request)
     {
-        $filepath = public_path('images/').$request->slug2.'.png';
+        $filepath = public_path('images/tilawati_qr.png');
         return Response::download($filepath);
     }
 }
