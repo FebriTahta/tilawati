@@ -6,6 +6,7 @@ use App\Models\Cabang;
 use DB;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use Response;
 use Illuminate\Http\Request;
 
 class DashboardCont extends Controller
