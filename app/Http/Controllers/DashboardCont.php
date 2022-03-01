@@ -33,4 +33,24 @@ class DashboardCont extends Controller
 
         return redirect()->back();
     }
+
+    public function generate_qr_tilawati(Request $request)
+    {
+        \QrCode::size(150)
+        ->format('png') 
+        ->generate('https://www.tilawatipusat.com/', public_path('images/tilawati_qr.png'));
+
+            return response()->json(
+                [
+                  'success' => 'QR Dibuat',
+                  'message' => 'QR Dibuat'
+                ]
+            );
+    }
+
+    public function download_qr_tilawati(Request $request)
+    {
+        $filepath = public_path('images/').$request->slug2.'.png';
+        return Response::download($filepath);
+    }
 }

@@ -26,6 +26,17 @@
         @slot('title_li') @endslot
     @endcomponent
     <div class="row">
+        <div class="col-xl-12" style="margin-bottom: 20px">
+            <form id="generate" method="POST">@csrf
+                <input type="hidden" name="slug" id="qr_slug" class="form-control" required>
+                <input style="width: 150px" type="submit" id="btngenerate" class="btn btn-primary" value="Generate QR">
+            </form>
+            <form target="_blank" action="/download_qr_tilawati" method="POST"> @csrf
+                <input type="hidden" name="slug2" id="qr_slug2" class="form-control" required>
+                <button style="width: 150px; margin-top: 10px" type="submit" class="btn btn-info">Download QR</button>
+            </form>
+        </div>
+
         <div class="col-xl-6">
             @component('common-tilawatipusat.dashboard-widget')
                 <?php $guru = App\Models\Lembaga::sum('jml_guru');
@@ -51,6 +62,7 @@
 
             @endcomponent
         </div>
+        
         <div class="col-xl-6">
             <div class="card" style="min-height: 260px">
                 {{-- @if (auth()->user()->role == 'cabang') --}}
@@ -493,5 +505,45 @@
                 }
             });
         }
+
+        $('#generate').submit(function(e) {
+                e.preventDefault();
+                var formData = new FormData(this);
+                $.ajax({
+                type:'POST',
+                url: "{{ route('generate_qr_tilawati')}}",
+                data: formData,
+                cache:false,
+                contentType: false,
+                processData: false,
+                beforeSend:function(){
+                    $('#btngenerate').attr('disabled','disabled');
+                    $('#btngenerate').val('Proses Generate QR');
+                },
+                success: function(data){
+                    if(data.success)
+                    {
+                        toastr.success(data.success);
+                        $('#btngenerate').val('Generate');
+                        $('#btngenerate').attr('disabled',false);
+                        var oTable = $('#datatable-buttons').dataTable();
+                        oTable.fnDraw(false);
+                        swal({ title: "Success!",
+                            text: "QR Berhasil Dibuat!",
+                            type: "success"})
+                    }
+                    if(data.error)
+                    {
+                        $('#message').html('<div class="alert alert-danger">'+data.error+'</div>');
+                        $('#z').attr('disabled',false);
+                        $('#z').val('Import');
+                    }
+                },
+                error: function(data)
+                {
+                    console.log(data);
+                    }
+                });
+            });
     </script>
 @endsection
