@@ -26,17 +26,6 @@
         @slot('title_li') @endslot
     @endcomponent
     <div class="row">
-        <div class="col-xl-12" style="margin-bottom: 20px">
-            {{-- <form id="generate" method="POST">@csrf
-                <input type="hidden" name="slug" id="qr_slug" class="form-control" required>
-                <input style="width: 150px" type="submit" id="btngenerate" class="btn btn-primary" value="Generate QR">
-            </form> --}}
-            <form target="_blank" action="/download_qr_tilawati" method="POST"> @csrf
-                <input type="hidden" name="slug2" id="qr_slug2" class="form-control" required>
-                <button style="width: 150px; margin-top: 10px" type="submit" class="btn btn-info">Download QR</button>
-            </form>
-        </div>
-
         <div class="col-xl-6">
             @component('common-tilawatipusat.dashboard-widget')
                 <?php $guru = App\Models\Lembaga::sum('jml_guru');
@@ -58,8 +47,6 @@
                 @slot('iconClass') mdi mdi-mdi mdi-contact-mail-outline
                 tag-plus-outline @endslot
                 @slot('price') @endslot
-
-
             @endcomponent
         </div>
         
@@ -113,6 +100,17 @@
             </div>
         </div>
         
+        <div class="col-xl-12" style="margin-bottom: 20px">
+            {{-- <form id="generate" method="POST">@csrf
+                <input type="hidden" name="slug" id="qr_slug" class="form-control" required>
+                <input style="width: 150px" type="submit" id="btngenerate" class="btn btn-primary" value="Generate QR">
+            </form> --}}
+            <form target="_blank" action="/download_qr_tilawati" method="POST"> @csrf
+                <input type="hidden" name="slug2" id="qr_slug2" class="form-control" required>
+                <button style="width: 150px; margin-top: 10px" type="submit" class="btn btn-info">Download QR</button>
+            </form>
+        </div>
+
     </div>
 
 
