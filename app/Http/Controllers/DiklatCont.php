@@ -878,7 +878,7 @@ class DiklatCont extends Controller
     {
         \QrCode::size(150)
         ->format('png') 
-        ->merge('assets/images/tilawati.jpg', 0.5, true)
+        ->merge('assets/images/image.png', 0.5, true)
         ->generate('https://www.registrasi.tilawatipusat.com/'.$request->slug, public_path('images/'.$request->slug.'.png'));
             
             return response()->json(
