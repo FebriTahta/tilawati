@@ -87,7 +87,8 @@ class PesertaPendaftaranExport implements FromQuery, WithHeadings, ShouldAutoSiz
             # code...
             $kel = '-';
         }
-        if (is_numeric($row->tgllahir) == true) {
+        
+        if (DateTime::createFromFormat('Y-m-d', $row->tgllahir) !== false) {
             # code...
             $tgl_lahir = Carbon::parse($row->tgllahir)->format('d/m/Y');
         }else{
