@@ -85,16 +85,22 @@ class NilaiCont extends Controller
         if ($rata2 > 74) {
             # code...
             $syahadah = '1';
+            Peserta::where('id',$peserta_id)->update(
+                ['bersyahadah'=>'1']
+            );
             $hasil_syahadah = 'BERSYAHADAH';
         } else {
             # code...
             $syahadah = '0';
+            Peserta::where('id',$peserta_id)->update(
+                ['bersyahadah'=>'0']
+            );
             $hasil_syahadah = 'BELUM BERSYAHADAH';
         }
         // $krit = $request->mykriteria;
         $pes = Peserta::where('id', $peserta_id)->first();
         $pro = $pes->program->name;
-
+        
         if ($pro == "standarisasi guru al qur'an level 1") {
             # code...
             $krits = "LULUS DIKLAT LEVEL 1 GURU AL QURAN METODE TILAWATI";
@@ -112,29 +118,29 @@ class NilaiCont extends Controller
             $krits = "LULUS DIKLAT LEVEL 1 GURU AL QURAN METODE TILAWATI";
         }
         
-        if ($syahadah == 1) {
-            # code...
-            $data_peserta = DB::table('pesertas')
-            ->where('id', $peserta_id)  // find your user by their id
-            ->update(array('bersyahadah' => $syahadah,'kriteria' => $krits,'jilid' =>''));  // update the record in the DB. 
-            // ->update(array('bersyahadah' => $syahadah,'kriteria' => $request->mykriteria));  // update the record in the DB. 
-        }else {
-            # code...
-                $data_peserta = DB::table('pesertas')
-            ->where('id', $peserta_id)  // find your user by their id
-            ->update(array('bersyahadah' => $syahadah,'kriteria' => ''));  // update the record in the DB. 
-            // ->update(array('bersyahadah' => $syahadah,'kriteria' => $request->mykriteria));  // update the record in the DB. 
-        }
+        // if ($syahadah == 1) {
+        //     # code...
+        //     $data_peserta = DB::table('pesertas')
+        //     ->where('id', $peserta_id)  // find your user by their id
+        //     ->update(array('bersyahadah' => $syahadah,'kriteria' => $krits,'jilid' =>''));  // update the record in the DB. 
+        //     // ->update(array('bersyahadah' => $syahadah,'kriteria' => $request->mykriteria));  // update the record in the DB. 
+        // }else {
+        //     # code...
+        //         $data_peserta = DB::table('pesertas')
+        //     ->where('id', $peserta_id)  // find your user by their id
+        //     ->update(array('bersyahadah' => $syahadah,'kriteria' => ''));  // update the record in the DB. 
+        //     // ->update(array('bersyahadah' => $syahadah,'kriteria' => $request->mykriteria));  // update the record in the DB. 
+        // }
 
-        $data_peserta2= DB::table('pesertas')->where('id',$peserta_id)->first();
+        // $data_peserta2= DB::table('pesertas')->where('id',$peserta_id)->first();
 
         // cetak qr code
-        if ($data_peserta2->bersyahadah == 1) {
-            # code...
-            $qr = \QrCode::size(200)
-            ->format('png')
-            ->generate('https://www.profile.tilawatipusat.com/'.$data_peserta2->slug, public_path('images/'.$data_peserta2->slug.'.png'));
-        }
+        // if ($data_peserta2->bersyahadah == 1) {
+        //     # code...
+        //     $qr = \QrCode::size(200)
+        //     ->format('png')
+        //     ->generate('https://www.profile.tilawatipusat.com/'.$data_peserta2->slug, public_path('images/'.$data_peserta2->slug.'.png'));
+        // }
 
         return redirect()->back()->with(['success' => 'NILAI '.strtoupper($data_peserta2->name).' BERHASIL DI UPDATE '.$hasil_syahadah.' '.strtoupper($request->mykriteria)]);
     }
