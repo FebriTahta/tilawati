@@ -89,12 +89,12 @@ class PesertaPendaftaranExport implements FromQuery, WithHeadings, ShouldAutoSiz
             $kel = '-';
         }
         
-        // if (DateTime::createFromFormat('Y-m-d', $row->tgllahir) !== false) {
-        //     # code...
-        //     $tgl_lahir = Carbon::parse($row->tgllahir)->format('d/m/Y');
-        // }else{
-        //     $tgl_lahir = $row->tgllahir;
-        // }
+        if (DateTime::createFromFormat('Y-m-d', $row->tgllahir) !== false) {
+            # code...
+            $tgl_lahir = Carbon::parse($row->tgllahir)->format('d/m/Y');
+        }else{
+            $tgl_lahir = $row->tgllahir;
+        }
         return [
             
             $nama,
@@ -107,7 +107,8 @@ class PesertaPendaftaranExport implements FromQuery, WithHeadings, ShouldAutoSiz
             // $row->tgllahir,
             // $tgl_lahir,
             // Carbon::parse($row->tgllahir)->format('d/m/Y')
-            Date::dateTimeToExcel(Carbon::parse($row->tgllahir)),
+            // Date::dateTimeToExcel(Carbon::parse($row->tgllahir)),
+            $tgl_lahir
         ];
     }
 
