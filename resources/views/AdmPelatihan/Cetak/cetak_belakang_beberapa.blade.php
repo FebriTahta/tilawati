@@ -374,8 +374,8 @@
 					@endforeach
 					
 					<?php 
-						$nilaia = $p->nilai->where('penilaian_id', 30)->sum('nominal');
-						$nilaib = $p->nilai->where('penilaian_id', 32)->sum('nominal');
+						$nilaia = $p->nilai->where('penilaian_id', 37)->sum('nominal');
+						$nilaib = $p->nilai->where('penilaian_id', 39)->sum('nominal');
 						$total 	= $nilaia + $nilaib;
 					?>
 					<tr>
@@ -445,7 +445,7 @@
 									<td style="border-top: 0;border-bottom: 0;"></td>
 								</tr>
 								<?php $z--; ?>
-							@else
+							@else 
 								<tr>
 									<?php $tot[$key] = $item->nominal?>
 									
@@ -465,8 +465,8 @@
 						@endif
 					@endforeach
 					<?php 
-						$nilaia = $p->nilai->where('penilaian_id', 31)->sum('nominal');
-						$nilaib = $p->nilai->where('penilaian_id', 32)->sum('nominal');
+						$nilaia = $p->nilai->where('penilaian_id', 38)->sum('nominal');
+						$nilaib = $p->nilai->where('penilaian_id', 39)->sum('nominal');
 						$total 	= $nilaia + $nilaib;
 					?>
 					<tr>
