@@ -29,7 +29,7 @@
             <td>KELURAHAN </td> --}}
             <td>083xxxxxxxxx</td>
             <td>SURABAYA (tidak disingkat)</td>
-            <td>6/23/1995 (FORMAT DATE (OTOMATIS))</td>
+            <td>(FORMAT DATE EXCEl YANG BENAR)</td>
             <td>NAMA LEMBAGA</td>
             <td>1 (1-5)</td>
             <td>LULUS SEBAGAI ... </td>

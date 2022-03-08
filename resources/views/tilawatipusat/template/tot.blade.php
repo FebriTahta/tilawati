@@ -27,7 +27,7 @@
             <td>SURABAYA (TIDAK DISINGKAT)</td>
             <td>083xxxxxxxxx</td>
             <td>SURABAYA (TIDAK DISINGKAT)</td>
-            <td>6/23/1995 (FORMAT DATE (OTOMATIS))</td>
+            <td>(FORMAT DATE EXCEl YANG BENAR)</td>
             <td>NAMA LEMBAGA</td>
             <td>1 (1-5)</td>
             <td>LULUS SEBAGAI ... </td>

@@ -24,7 +24,7 @@
             <td>TIDAK DISINGKAT</td>
             <td>083xxxxxxxxx</td>
             <td>TIDAK DISINGKAT</td>
-            <td>(BULAN/TANGGAL/TAHUN)</td>
+            <td>(FORMAT DATE EXCEl YANG BENAR)</td>
             <td>NAMA LEMBAGA</td>
             <td>(1-5)</td>
             <td>DIISI APABILA LULUS</td>
