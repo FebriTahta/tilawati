@@ -425,10 +425,10 @@ class PesertaCont extends Controller
                         ->addColumn('cabang', function ($data) {
                             return $data->pelatihan->cabang->name;
                         })
-                        ->addColumn('tgllahir', function ($data) {
-                            $a = Carbon::parse($data->tgllahir)->isoFormat('D MMMM Y');
-                            return $data->tmptlahir.'-'.$a;
-                        })
+                        // ->addColumn('tgllahir', function ($data) {
+                        //     $a = Carbon::parse($data->tgllahir)->isoFormat('D MMMM Y');
+                        //     return $data->tmptlahir.'-'.$a;
+                        // })
                         
                 ->rawColumns(['nilai','kabupaten','cabang','program','tgllahir'])
                 ->make(true);
