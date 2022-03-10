@@ -342,7 +342,7 @@ class lembagaCont extends Controller
         $dt_usr->role       = 'lembaga';
         $dt_usr->created_at = new \DateTime;
         $dt_usr->save();
-        $kab = Kabupaten::where('id', $request->kabupaten)->first();
+        $kab = Kabupaten::where('id', $request->kabupaten_id)->first();
         $pro = $kab->provinsi_id;
         $kode = mt_rand(100000, 999999);
         
@@ -359,10 +359,11 @@ class lembagaCont extends Controller
                     'cabang_id'     => $request->cabang_id,
                     'jenjang_id'    => $request->jenjang_id,
                     'provinsi_id'   => $pro,
-                    'kabupaten_id'  => $request->kabupaten,
+                    'kabupaten_id'  => $request->kabupaten_id,
                     'kecamatan_id'  => $request->kecamatan_id,
                     'kelurahan_id'  => $request->kelurahan_id,
                     'name'          => $request->name,
+                    'kepalalembaga' => $request->kepalalembaga,
                     'telp'          => $request->telp,
                     'website'       => $request->website,
                     'daerah'        => substr($kab, 5),
@@ -389,10 +390,11 @@ class lembagaCont extends Controller
                     'cabang_id'     => $request->cabang_id,
                     'jenjang_id'    => $request->jenjang_id,
                     'provinsi_id'   => $pro,
-                    'kabupaten_id'  => $request->kabupaten,
+                    'kabupaten_id'  => $request->kabupaten_id,
                     'kecamatan_id'  => $request->kecamatan_id,
                     'kelurahan_id'  => $request->kelurahan_id,
                     'name'          => $request->name,
+                    'kepalalembaga' => $request->kepalalembaga,
                     'telp'          => $request->telp,
                     'website'       => $request->website,
                     'daerah'        => substr($kab, 5),

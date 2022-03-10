@@ -60,6 +60,7 @@
                             <div class="card-title-desc"> Isi Jilid ini apabila peserta diklat belum lulus / belum
                                 bersyahadah </br></div>
                             <div class="jilid">
+                                <label for="jilid">JILID</label>
                                 <input type="text" class="form-control" name="jilid" id="jilid"
                                     value="{{ $peserta->jilid }}">
                             </div>

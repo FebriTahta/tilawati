@@ -217,19 +217,61 @@
                                 <div class="card-body">
                                     <form method="POST" id="tambahlembaga">@csrf
                                         <div class="row">
+                                            <?php $kab = App\Models\Kabupaten::orderBy('nama','asc')->get(); ?>
+                                            <div class=" form-group col-md-4" style="margin-bottom: 10px">
+                                                <label for="kabupaten_id"><small>1. KOTA / KABUPATEN</small></label>
+                                                <select name="kabupaten_id" data-width="100%" id="kota"
+                                                    class="form-control required" style="font-size: 12px" required>
+                                                    <option value=""></option>
+                                                    @foreach ($kab as $item)
+                                                        <option value="{{ $item->id }}">{{ substr($item->nama,5) }} ( {{substr($item->nama,0,5)}} )</option>
+                                                    @endforeach
+                                                </select>
+
+                                            </div>
+                                            <div class=" form-group col-md-4" id="block_kecamatan" style="display: none">
+                                                <label for="kecamatan_id"><small>2. KECAMATAN</small></label>
+                                                <select name="kecamatan_id" data-width="100%" id="kecamatan"
+                                                    class="form-control required" required
+                                                    style="font-size: 12px; text-transform: uppercase">
+                                                    <option value=""></option>
+                                                </select>
+
+                                            </div>
+                                            <div class=" form-group col-md-4" id="block_kelurahan" style="display: none">
+                                                <label for="kelurahan_id"><small>3. KELURAHAN</small></label>
+                                                <select name="kelurahan_id" data-width="100%" id="kelurahan"
+                                                    class="form-control required" required
+                                                    style="font-size: 12px; text-transform: uppercase">
+                                                    <option value=""></option>
+                                                </select>
+
+                                            </div>
+                                        </div>
+                                        <div class="row">
                                             <div class="form-group col-sm-12">
-                                                <select name="cabang_id" id="cabang_id" class="form-control" required>
+                                                {{-- <select name="cabang_id" id="cabang_id" class="form-control" required>
                                                     <option value="">1. Cabang</option>
                                                     @foreach ($cabang as $item)
                                                         <option value="{{ $item->id }}">{{ $item->name }}</option>
                                                     @endforeach
-                                                </select>
+                                                </select> --}}
+                                                <input type="hidden" name="cabang_id" id="cabang_id"
+                                                    value="{{ auth()->user()->cabang->id }}" required>
                                             </div>
-                                            <div class="form-group col-sm-4">
+                                            {{-- <div class="form-group col-sm-4">
                                                 <input type="hidden" class="form-control" name="kabupaten" id="kabupaten"
                                                     readonly>
                                                 <input type="text" class="form-control" id="kabupaten_id"
                                                     name="kabupaten_id" value="2. Kabupaten / Kota" readonly>
+                                                </div>
+                                            <div class="form-group col-sm-4">
+                                                
+                                                <select name="kabupaten_id" id="kabupaten_id" class="form-control"
+                                                    required>
+                                                    <option value=""><i class="text-danger">2. </i> Kabupaten</option>
+                                                    
+                                                </select>
                                             </div>
                                             <div class="form-group col-sm-4">
                                                 <select name="kecamatan_id" id="kecamatan_id" class="form-control"
@@ -242,10 +284,15 @@
                                                     required>
                                                     <option value=""><i class="text-danger">4. </i> Kelurahan</option>
                                                 </select>
-                                            </div>
+                                            </div> --}}
+                                            <hr>
                                             <div class="form-group col-xl-6">
                                                 <label for=""><i class="text-danger">* </i>Nama Lembaga</label>
                                                 <input type="text" class="form-control" name="name" required>
+                                            </div>
+                                            <div class="form-group col-xl-6">
+                                                <label for=""><i class="text-danger">* </i>Nama Kepala Lembaga</label>
+                                                <input type="text" class="form-control" name="kepalalembaga" required>
                                             </div>
                                             <div class="form-group col-xl-6">
                                                 <label for=""><i class="text-danger">* </i>Telp Lembaga</label>
@@ -267,27 +314,30 @@
                                             </div>
                                             <div class="form-group col-xl-6">
                                                 <select name="jenjang_id" class="form-control" id="" required>
-                                                    <option value=""><i class="text-danger">*</i> Kelembagaan</option>
+                                                    <option value=""><i class="text-danger">*</i> Kelembagaan
+                                                    </option>
                                                     @foreach ($jenjang as $item)
-                                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                                        <option value="{{ $item->id }}">{{ $item->name }}
+                                                        </option>
                                                     @endforeach
                                                 </select>
                                             </div>
                                             <div class="form-group col-xl-6">
                                                 <select name="pengelola" class="form-control" id="pengelola" required>
-                                                    <option value=""><i class="text-danger">*</i> Pengelolaan</option>
+                                                    <option value=""><i class="text-danger">*</i> Pengelolaan
+                                                    </option>
                                                     <option value="Yayasan">1. Yayasan</option>
                                                     <option value="Masjid">2. Masjid</option>
                                                     <option value="Pribadi">3. Pribadi</option>
                                                 </select>
                                             </div>
                                             <div class="form-group col-xl-3">
-                                                <label for=""><i class="text-danger">* </i>Kode Pos</label>
-                                                <input type="number" class="form-control" name="pos" required>
+                                                <label for=""><i class="text-danger"> </i>Kode Pos</label>
+                                                <input type="number" class="form-control" name="pos" >
                                             </div>
                                             <div class="form-group col-xl-3">
-                                                <label for=""><i class="text-danger">* </i>Tahun Masuk</label>
-                                                <input type="date" class="form-control" name="tahunmasuk" required>
+                                                <label for=""><i class="text-danger"> </i>Tahun Masuk</label>
+                                                <input type="date" class="form-control" name="tahunmasuk" >
                                             </div>
                                             <div class="form-group col-xl-3">
                                                 <label for=""><i class="text-danger">* </i>Jumlah Guru</label>
@@ -892,90 +942,182 @@
 
         $(document).ready(function() {
             //trigger ajax untuk provinsi kabupaten kecamatan kelurahan
-            $('select[name="cabang_id"]').on('change', function() {
-                //mencari kota/kab dari provinsi 3 tingkat
-                var cabang_id = $('#cabang_id').val();
-                console.log(cabang_id);
-                if (cabang_id) {
+            // $('select[name="cabang_id"]').on('change', function() {
+            //     //mencari kota/kab dari provinsi 3 tingkat
+            //     var cabang_id = $('#cabang_id').val();
+            //     console.log(cabang_id);
+            //     if (cabang_id) {
+            //         $.ajax({
+            //             url: '/fetch5/' + cabang_id,
+            //             type: "GET",
+            //             dataType: "json",
+            //             success: function(cb) {
+            //                 var p_id2 = cb.kabupaten_id;
+            //                 console.log('kabupaten' + p_id2);
+            //                 $("#kabupaten").val(p_id2);
+            //                 $.ajax({
+            //                     url: '/fetch7/' + p_id2,
+            //                     type: "GET",
+            //                     dataType: "json",
+            //                     success: function(dk) {
+            //                         var pid2 = dk.nama;
+            //                         var pid3 = dk.id;
+            //                         console.log('' + pid2);
+            //                         $("#kabupaten_id").val(pid2);
+            //                         $.ajax({
+            //                             url: '/fetch2/' + pid3,
+            //                             type: "GET",
+            //                             dataType: "json",
+            //                             success: function(dk) {
+            //                                 $('select[name="kecamatan_id"]')
+            //                                     .empty();
+            //                                 $.each(dk, function(key,
+            //                                     value) {
+            //                                     $('select[name="kecamatan_id"]')
+            //                                         .append(
+            //                                             '<option value="' +
+            //                                             key +
+            //                                             '">' +
+            //                                             value +
+            //                                             '</option>'
+            //                                         );
+            //                                 });
+            //                                 var x = $(
+            //                                     "#kecamatan_id option:selected"
+            //                                 ).val();
+            //                                 console.log('kecamatan_id' +
+            //                                     x);
+            //                                 $.ajax({
+            //                                     url: '/fetch3/' +
+            //                                         x,
+            //                                     type: "GET",
+            //                                     dataType: "json",
+            //                                     success: function(
+            //                                         city) {
+            //                                         $('select[name="kelurahan_id"]')
+            //                                             .empty();
+            //                                         $.each(city,
+            //                                             function(
+            //                                                 key,
+            //                                                 value
+            //                                             ) {
+            //                                                 $('select[name="kelurahan_id"]')
+            //                                                     .append(
+            //                                                         '<option value="' +
+            //                                                         key +
+            //                                                         '">' +
+            //                                                         value +
+            //                                                         '</option>'
+            //                                                     );
+            //                                             }
+            //                                         );
+            //                                         var y =
+            //                                             $(
+            //                                                 "#kelurahan_id option:selected"
+            //                                             )
+            //                                             .val();
+            //                                     }
+            //                                 });
+            //                             }
+            //                         });
+            //                     }
+            //                 });
+            //             }
+            //         });
+            //     }
+            // });
+
+            $('select[name="kabupaten_id"]').on('change', function() {
+                var kabupaten_id = $(this).val();
+                document.getElementById('block_kecamatan').style.display = "";
+                document.getElementById('block_kelurahan').style.display = "none";
+                document.getElementById('kelurahan').value = "";
+                if (kabupaten_id) {
                     $.ajax({
-                        url: '/fetch5/' + cabang_id,
+                        url: '/fetch2/' + kabupaten_id,
                         type: "GET",
                         dataType: "json",
-                        success: function(cb) {
-                            var p_id2 = cb.kabupaten_id;
-                            console.log('kabupaten' + p_id2);
-                            $("#kabupaten").val(p_id2);
-                            $.ajax({
-                                url: '/fetch7/' + p_id2,
-                                type: "GET",
-                                dataType: "json",
-                                success: function(dk) {
-                                    var pid2 = dk.nama;
-                                    var pid3 = dk.id;
-                                    console.log('' + pid2);
-                                    $("#kabupaten_id").val(pid2);
-                                    $.ajax({
-                                        url: '/fetch2/' + pid3,
-                                        type: "GET",
-                                        dataType: "json",
-                                        success: function(dk) {
-                                            $('select[name="kecamatan_id"]')
-                                                .empty();
-                                            $.each(dk, function(key,
-                                                value) {
-                                                $('select[name="kecamatan_id"]')
-                                                    .append(
-                                                        '<option value="' +
-                                                        key +
-                                                        '">' +
-                                                        value +
-                                                        '</option>'
-                                                    );
-                                            });
-                                            var x = $(
-                                                "#kecamatan_id option:selected"
-                                            ).val();
-                                            console.log('kecamatan_id' +
-                                                x);
-                                            $.ajax({
-                                                url: '/fetch3/' +
-                                                    x,
-                                                type: "GET",
-                                                dataType: "json",
-                                                success: function(
-                                                    city) {
-                                                    $('select[name="kelurahan_id"]')
-                                                        .empty();
-                                                    $.each(city,
-                                                        function(
-                                                            key,
-                                                            value
-                                                        ) {
-                                                            $('select[name="kelurahan_id"]')
-                                                                .append(
-                                                                    '<option value="' +
-                                                                    key +
-                                                                    '">' +
-                                                                    value +
-                                                                    '</option>'
-                                                                );
-                                                        }
-                                                    );
-                                                    var y =
-                                                        $(
-                                                            "#kelurahan_id option:selected"
-                                                        )
-                                                        .val();
-                                                }
-                                            });
-                                        }
-                                    });
-                                }
+                        success: function(data) {
+                            $('select[name="kecamatan_id"]').empty();
+                            $.each(data, function(key, value) {
+                                $('select[name="kecamatan_id"]').append(
+                                    '<option value="' + key + '">' + value +
+                                    '</option>');
                             });
+                            // menampilkan hasil kecamatan awal		
+                            // var kab = $( "#kecamatan option:selected" ).val();
+                            document.getElementById('kecamatan').value = "";
+                            // sini
+
+
+                            // console.log(kab);
+                            // if(kab) {
+                            // 	$.ajax({
+                            // 		url: '/fetch3/' + kab,
+                            // 		type: "GET",
+                            // 		dataType: "json",
+                            // 		success:function(data) {                      
+                            // 			$('select[name="kelurahan_id"]').empty();
+                            // 			$.each(data, function(key, value) {
+                            // 			$('select[name="kelurahan_id"]').append('<option value="'+ key +'">'+ value +'</option>');
+                            // 			});
+
+                            // 			var kel = $( "#kelurahan option:selected" ).val();
+                            // 			$.ajax({
+                            // 				url: '/nama_kelurahan/' + kel,
+                            // 				type: "GET",
+                            // 				dataType: "json",
+                            // 				success:function(data) {                      
+                            // 					console.log(data.nama);
+                            // 					document.getElementById("set_kelurahan").innerHTML = ", "+data.nama;
+                            // 				}
+                            // 			});
+
+                            // 		}
+                            // 	});
+                            // 	$.ajax({
+                            // 		url: '/nama_kecamatan/' + kab,
+                            // 		type: "GET",
+                            // 		dataType: "json",
+                            // 		success:function(data) {                      
+                            // 			console.log(data.nama);
+                            // 			document.getElementById("set_kecamatan").innerHTML = ", "+data.nama;
+                            // 		}
+                            // 	});
+                            // }else{
+                            // 	$('select[name="kelurahan_id"]').val("");
+                            // }
                         }
                     });
+                } else {
+                    $('select[name="kecamatan_id"]').empty().disabled();
                 }
-            });
+            })
+
+            $('select[name="kecamatan_id"]').on('change', function() {
+                var kecamatan_id = $(this).val();
+                document.getElementById('block_kelurahan').style.display = "";
+                if (kecamatan_id) {
+                    $.ajax({
+                        url: '/fetch3/' + kecamatan_id,
+                        type: "GET",
+                        dataType: "json",
+                        success: function(data) {
+                            $('select[name="kelurahan_id"]').empty();
+                            $.each(data, function(key, value) {
+                                $('select[name="kelurahan_id"]').append(
+                                    '<option value="' + key + '">' + value +
+                                    '</option>');
+                            });
+                            // menampilkan hasil kecamatan awal		
+                            // var x = $( "#kelurahan_id option:selected" ).val();
+                            document.getElementById('kelurahan').value = "";
+                        }
+                    });
+                } else {
+                    $('select[name="kelurahan_id"]').empty().disabled();
+                }
+            })
 
             $('select[name="kabupaten_id"]').on('change', function() {
                 //mencari kota/kab dari provinsi 3 tingkat
