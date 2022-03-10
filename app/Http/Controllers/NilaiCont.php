@@ -62,7 +62,10 @@ class NilaiCont extends Controller
 
     public function update(Request $request){
         
+        
+
         $peserta_id = $request->peserta_id;
+        
         // update nilai
         foreach ($request->nominal as $key => $value) {
             # code...
@@ -122,19 +125,19 @@ class NilaiCont extends Controller
             # code...
                 $data_peserta = DB::table('pesertas')
             ->where('id', $peserta_id)  // find your user by their id
-            ->update(array('bersyahadah' => $syahadah,'kriteria' => ''));  // update the record in the DB. 
+            ->update(array('bersyahadah' => $syahadah,'kriteria' => '','jilid' =>$request->jilid));  // update the record in the DB. 
             // ->update(array('bersyahadah' => $syahadah,'kriteria' => $request->mykriteria));  // update the record in the DB. 
         }
 
         $data_peserta2= DB::table('pesertas')->where('id',$peserta_id)->first();
 
         // cetak qr code
-        if ($data_peserta2->bersyahadah == 1) {
-            # code...
-            $qr = \QrCode::size(200)
-            ->format('png')
-            ->generate('https://www.profile.tilawatipusat.com/'.$data_peserta2->slug, public_path('images/'.$data_peserta2->slug.'.png'));
-        }
+        // if ($data_peserta2->bersyahadah == 1) {
+        //     # code...
+        //     $qr = \QrCode::size(200)
+        //     ->format('png')
+        //     ->generate('https://www.profile.tilawatipusat.com/'.$data_peserta2->slug, public_path('images/'.$data_peserta2->slug.'.png'));
+        // }
 
         return redirect()->back()->with(['success' => 'NILAI '.strtoupper($data_peserta2->name).' BERHASIL DI UPDATE '.$hasil_syahadah.' '.strtoupper($request->mykriteria)]);
     }
