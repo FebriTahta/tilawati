@@ -247,14 +247,14 @@ class PesertaCont extends Controller
                                 // return $data->tgllahir;
                                 if ($data->tmptlahir !== null && $data->tgllahir !== null) {
                                     # code...
-                                    // if ($data->tmptlahir2 !== null) {
-                                    //     # code...
-                                    //     return  $data->tmptlahir2.' - '.Carbon::parse($data->tgllahir)->isoFormat('D MMMM Y');
-                                    // }else {
-                                    //     # code...
-                                    //     return  $data->tmptlahir.' - '.Carbon::parse($data->tgllahir)->isoFormat('D MMMM Y');
-                                    // }
-                                    return  $data->tmptlahir.' - '.Carbon::parse($data->tgllahir)->isoFormat('D MMMM Y');
+                                    if ($data->tmptlahir2 !== null) {
+                                        # code...
+                                        return  $data->tmptlahir2.' - '.Carbon::parse($data->tgllahir)->isoFormat('D MMMM Y');
+                                    }else {
+                                        # code...
+                                        return  $data->tmptlahir.' - '.Carbon::parse($data->tgllahir)->isoFormat('D MMMM Y');
+                                    }
+                                    
                                     
                                 }
 
