@@ -453,6 +453,7 @@ class lembagaCont extends Controller
                 // 'kecamatan_id'  => $request->kecamatan_id,
                 // 'kelurahan_id'  => $request->kelurahan_id,
                 'name'          => $request->name,
+                'kepalalembaga' => $request->kepalalembaga,
                 'telp'          => $request->telp,
                 'website'       => $request->website,
                 'daerah'        => substr($kab->nama, 5),
