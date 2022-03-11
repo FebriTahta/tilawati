@@ -270,7 +270,7 @@
                                 @else
                                     @foreach ($diklat->program->penilaian as $item)
                                         @if ($item->kategori !== 'skill')
-                                            <div class="form-group col-xl-6 col-12">
+                                            <div class="form-group col-xl-6 col-6">
                                                 <label for="" class="text-capitalize">{{ $item->name }}
                                                     @if ($item->max !== null || $item->min !== null)
                                                         <br><i class="text-danger">Min:{{ $item->min }}</i> & <i
@@ -283,7 +283,7 @@
                                                     max="{{ $item->max }}" class="form-control">
                                             </div>
                                         @else
-                                            <div class="form-group col-xl-6 col-12">
+                                            <div class="form-group col-xl-6 col-6">
                                                 <label for="" class="text-capitalize">{{ $item->name }}
                                                     @if ($item->max !== null || $item->min !== null)
                                                         <br><i class="text-danger">Min:{{ $item->min }}</i> & <i
@@ -310,14 +310,10 @@
                                                 </select> --}}
 
                                 {{-- <input type="text" class="form-control" id="kriterias" name="kriteria"> --}}
-                                <?php $keiteria = App\Models\Kriteria::where('program_id', $diklat->program->id)->get(); ?>
-                                <label for="program">KRITERIA</label>
-                                <input list="listkriteria" name="mykriteria" class="form-control">
-                                <datalist id="listkriteria">
-                                    @foreach ($kriteria as $krit)
-                                        <option value="{{ $krit->name }}">
-                                    @endforeach
-                                </datalist>
+                                
+                                <label for="program">JILID BAGI PESERTA YANG BELUM BERSYAHADAH</label>
+                                <input type="number" name="jilid" class="form-control">
+                                
                             </div>
                             @if ($diklat->program->penilaian->count() !== 0)
                                 <div class="form-group text-right">

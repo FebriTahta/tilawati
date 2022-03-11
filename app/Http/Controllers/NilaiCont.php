@@ -5,6 +5,7 @@ use App\Models\Nilai;
 use App\Models\Peserta;
 use App\Models\Kriteria;
 use App\Models\Program;
+use App\Models\Penilaian;
 use DB;
 use File;
 use SimpleSoftwareIO\QrCode\Generator;
@@ -16,6 +17,7 @@ class NilaiCont extends Controller
     {
         $peserta_id = $request->peserta_id;
         $id= $request->id;
+        $lulus_tak='';
         if (count($request->nominal) > 0) {
             # code...
             foreach ($request->nominal as $key => $value) {
@@ -27,37 +29,78 @@ class NilaiCont extends Controller
                     'kategori'=>$request->kategori[$key]
                 );
                 $nilai = Nilai::insert($data);
+                $penil = Penilaian::find($request->penilaian_id[$key]);
+                if ($request->nominal[$key] < $penil->min) {
+                    # code...
+                    $lulus_tak = $key+1; 
+                }
             }
         }
         $total  = Nilai::where('peserta_id',$peserta_id)->where("kategori","al-qur'an")->sum('nominal');
         $total2 = Nilai::where('peserta_id',$peserta_id)->where("kategori","skill")->sum('nominal');
         $total3 = Nilai::where('peserta_id',$peserta_id)->where("kategori","skill")->count();
-        $rata2  = ($total + $total2)/($total3+1);
+        // $rata2  = ($total + $total2)/($total3+1);
+        $rata2  = $total;
         $syahadah;
+        $hasil_syahadah;
         if ($rata2 > 74) {
             # code...
-            $syahadah = '1';
+            if ($lulus_tak > 0) {
+                # code...
+                $syahadah = '0';
+                $hasil_syahadah = 'BELUM BERSYAHADAH';
+            }else {
+                # code...
+                $syahadah = '1';
+                $hasil_syahadah = 'BERSYAHADAH';
+            }
+            
         } else {
             # code...
             $syahadah = '0';
+            $hasil_syahadah = 'BELUM BERSYAHADAH';
         }
-        $data2  = Peserta::updateOrCreate(
-            [
-              'id' => $peserta_id
-            ],
-            [
-                'kriteria_id'=>$request->kriteria_id,
-                'kriteria'=>$request->mykriteria,
-                'bersyahadah' => $syahadah,
-            ]
-        );     
+        $pes = Peserta::where('id', $peserta_id)->first();
+        $pro = $pes->program->name;
+
+        if ($pro == "standarisasi guru al qur'an level 1") {
+            # code...
+            $krits = "LULUS DIKLAT LEVEL 1 GURU AL QURAN METODE TILAWATI";
+        } elseif ($pro == "standarisasi guru al qur'an level 2") {
+            # code...
+            $krits = "LULUS DIKLAT LEVEL 2 GURU AL QURAN METODE TILAWATI";
+        } elseif ( $pro =="munaqosyah santri"){
+            # code...
+            $krits = "SEBAGAI SANTRI KHATAM AL QURAN 30 JUZ";
+        } elseif ( $pro =="diklat guru tahfidz"){
+            # code...
+            $krits = "SEBAGAI GURU TAHFIDZ AL QURAN METODE TILAWATI";
+        } elseif ( $pro =="diklat guru tahfidz"){
+            # code...
+            $krits = "LULUS DIKLAT LEVEL 1 GURU AL QURAN METODE TILAWATI";
+        }
+        
+        if ($syahadah == 1) {
+            # code...
+            $data_peserta = DB::table('pesertas')
+            ->where('id', $peserta_id)  // find your user by their id
+            ->update(array('bersyahadah' => $syahadah,'kriteria' => $krits,'jilid' =>''));  // update the record in the DB. 
+            // ->update(array('bersyahadah' => $syahadah,'kriteria' => $request->mykriteria));  // update the record in the DB. 
+        }else {
+            # code...
+                $data_peserta = DB::table('pesertas')
+            ->where('id', $peserta_id)  // find your user by their id
+            ->update(array('bersyahadah' => $syahadah,'kriteria' => '','jilid' =>$request->jilid));  // update the record in the DB. 
+            // ->update(array('bersyahadah' => $syahadah,'kriteria' => $request->mykriteria));  // update the record in the DB. 
+        }    
         return response()->json(
             [
-               $data,$data2,
+              
               'success' => 'Peserta Telah Dinilai!',
               'message' => 'Peserta Telah Dinilai!'
             ]
         );
+        
     }
 
     public function update(Request $request){

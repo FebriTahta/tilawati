@@ -142,17 +142,36 @@ class PesertaCont extends Controller
                                     // $rata2 = $data->nilai->sum('nominal');
                                     $ratax = ($total + $total2)/($total3+1);
                                     $rata2 = $total;
-                                    if ($rata2 > 84) {
+
+                                    $lulus_tak='';
+                                    foreach ($data->nilai->where("kategori","al-qur'an") as $key => $value) {
                                         # code...
-                                        return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-primary">'.$rata2.' mengaji & '.$ratax.' rata-rata (baik)</a>';
+                                        $penil = Penilaian::find($value->penilaian_id);
+                                        if ($value->nominal < $penil->min) {
+                                            # code...
+                                            $lulus_tak = $key+1;
+                                        }
                                     }
-                                    elseif($rata2 < 84 && $rata2 > 74){
-                                        return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-info">'.$rata2.' mengaji & '.$ratax.' rata-rata (cukup)</a>';
-                                    }
-                                    else {
+
+
+                                    if ($lulus_tak > 0) {
                                         # code...
                                         return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-warning">'.$rata2.' mengaji & '.$ratax.' rata-rata (belum bersyahadah)</a>';
+                                    }else {
+                                        # code...
+                                        if ($rata2 > 84) {
+                                            # code...
+                                            return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-primary">'.$rata2.' mengaji & '.$ratax.' rata-rata (baik)</a>';
+                                        }
+                                        elseif($rata2 < 84 && $rata2 > 74){
+                                            return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-info">'.$rata2.' mengaji & '.$ratax.' rata-rata (cukup)</a>';
+                                        }
+                                        else {
+                                            # code...
+                                            return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-warning">'.$rata2.' mengaji & '.$ratax.' rata-rata (belum bersyahadah)</a>';
+                                        }
                                     }
+                                    
                                 }
                                 
                             }
@@ -602,13 +621,13 @@ class PesertaCont extends Controller
                     );
                     $program = Pelatihan::where('id', $data->pelatihan_id)->first();
                     $program_id = $program->program_id;
-                    $qr = \QrCode::size(200)
-                        ->format('png')
-                        // ->generate('https://www.tilawatipusat.com/diklat-profile-peserta/'.$data->id.'/'.$program_id.'/'.$data->pelatihan_id, public_path('images/'.$data->id.'qrcode.png'));
-                        ->generate('https://www.profile.tilawatipusat.com/'.$slug, public_path('images/'.$slug.'.png'));
+                    // $qr = \QrCode::size(200)
+                    //     ->format('png')
+                    //     // ->generate('https://www.tilawatipusat.com/diklat-profile-peserta/'.$data->id.'/'.$program_id.'/'.$data->pelatihan_id, public_path('images/'.$data->id.'qrcode.png'));
+                    //     ->generate('https://www.profile.tilawatipusat.com/'.$slug, public_path('images/'.$slug.'.png'));
                         return response()->json(
                         [
-                           $data,$qr,
+                           $data,
                           'success' => 'Peserta Baru Berhasil Ditambahkan!',
                           'message' => 'Peserta Baru Berhasil Ditambahkan!'
                         ]
@@ -652,13 +671,13 @@ class PesertaCont extends Controller
                 );
                 $program = Pelatihan::where('id', $data->pelatihan_id)->first();
                 $program_id = $program->program_id;
-                $qr = \QrCode::size(100)
-                    ->format('png')
-                    // ->generate('https://www.tilawatipusat.com/diklat-profile-peserta/'.$data->id.'/'.$program_id.'/'.$data->pelatihan_id, public_path('images/'.$data->id.'qrcode.png'));
-                    ->generate('https://www.profile.tilawatipusat.com/'.$slug, public_path('images/'.$slug.'.png'));
+                // $qr = \QrCode::size(100)
+                //     ->format('png')
+                //     // ->generate('https://www.tilawatipusat.com/diklat-profile-peserta/'.$data->id.'/'.$program_id.'/'.$data->pelatihan_id, public_path('images/'.$data->id.'qrcode.png'));
+                //     ->generate('https://www.profile.tilawatipusat.com/'.$slug, public_path('images/'.$slug.'.png'));
                     return response()->json(
                     [
-                       $data,$qr,
+                       $data,
                       'success' => 'Peserta Baru Berhasil Ditambahkan!',
                       'message' => 'Peserta Baru Berhasil Ditambahkan!'
                     ]
@@ -700,13 +719,13 @@ class PesertaCont extends Controller
                     );
                     $program = Pelatihan::where('id', $data->pelatihan_id)->first();
                     $program_id = $program->program_id;
-                    $qr = \QrCode::size(200)
-                        ->format('png')
-                        // ->generate('https://www.tilawatipusat.com/diklat-profile-peserta/'.$data->id.'/'.$program_id.'/'.$data->pelatihan_id, public_path('images/'.$data->id.'qrcode.png'));
-                        ->generate('https://www.profile.tilawatipusat.com/'.$slug, public_path('images/'.$slug.'.png'));
+                    // $qr = \QrCode::size(200)
+                    //     ->format('png')
+                    //     // ->generate('https://www.tilawatipusat.com/diklat-profile-peserta/'.$data->id.'/'.$program_id.'/'.$data->pelatihan_id, public_path('images/'.$data->id.'qrcode.png'));
+                    //     ->generate('https://www.profile.tilawatipusat.com/'.$slug, public_path('images/'.$slug.'.png'));
                         return response()->json(
                         [
-                           $data,$qr,
+                           $data,
                           'success' => 'Peserta Baru Berhasil Ditambahkan!',
                           'message' => 'Peserta Baru Berhasil Ditambahkan!'
                         ]
@@ -750,13 +769,13 @@ class PesertaCont extends Controller
                 );
                 $program = Pelatihan::where('id', $data->pelatihan_id)->first();
                 $program_id = $program->program_id;
-                $qr = \QrCode::size(100)
-                    ->format('png')
-                    // ->generate('https://www.tilawatipusat.com/diklat-profile-peserta/'.$data->id.'/'.$program_id.'/'.$data->pelatihan_id, public_path('images/'.$data->id.'qrcode.png'));
-                    ->generate('https://www.profile.tilawatipusat.com/'.$slug, public_path('images/'.$slug.'.png'));
+                // $qr = \QrCode::size(100)
+                //     ->format('png')
+                //     // ->generate('https://www.tilawatipusat.com/diklat-profile-peserta/'.$data->id.'/'.$program_id.'/'.$data->pelatihan_id, public_path('images/'.$data->id.'qrcode.png'));
+                //     ->generate('https://www.profile.tilawatipusat.com/'.$slug, public_path('images/'.$slug.'.png'));
                     return response()->json(
                     [
-                       $data,$qr,
+                       $data,
                       'success' => 'Peserta Baru Berhasil Ditambahkan!',
                       'message' => 'Peserta Baru Berhasil Ditambahkan!'
                     ]

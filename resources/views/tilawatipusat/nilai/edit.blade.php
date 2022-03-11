@@ -23,11 +23,27 @@
         <div class="col-xl-6">
             @component('common-tilawatipusat.dashboard-widget')
                 @slot('title')
+                    <?php
+                                    $lulus_tak='';
+                                    foreach ($peserta->nilai->where("kategori","al-qur'an") as $key => $value) {
+                                        # code...
+                                        $penil = App\Models\Penilaian::find($value->penilaian_id);
+                                        if ($value->nominal < $penil->min) {
+                                            # code...
+                                            $lulus_tak = $key+1;
+                                        }
+                                    }
+                    ?>
+                    
                     <p><b> TOTAL NILAI </b></p> <b>UTAMA : {{ $rata1 }} & RATA-RATA : {{ $rata2 }}</b> &nbsp;&nbsp;
-                    @if ($rata1 > 74)
-                        <b class="badge badge-info">BERSYAHADAH</b>
+                    @if ($lulus_tak > 0)
+                        <b class="badge badge-warning">BELUM BERSYAHADAH SEBAGIAN NILAI DIBAWAH STANDAR</b>
                     @else
-                        <b class="badge badge-warning">BELUM BERSYAHADAH</b>
+                        @if ($rata1 > 74)
+                            <b class="badge badge-info">BERSYAHADAH</b>
+                        @else
+                            <b class="badge badge-warning">BELUM BERSYAHADAH</b>
+                        @endif
                     @endif
                 @endslot
                 @slot('iconClass')
