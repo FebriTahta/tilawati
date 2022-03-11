@@ -1351,8 +1351,8 @@
                         name: 'name'
                     },
                     {
-                        data: 'kepala',
-                        name: 'kepala.name'
+                        data: 'kepalalembaga',
+                        name: 'kepalalembaga'
                     },
                     {
                         data: 'telp',
