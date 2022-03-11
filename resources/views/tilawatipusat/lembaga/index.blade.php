@@ -546,6 +546,10 @@
                                                 <input type="text" class="form-control" id="name" name="name" required>
                                             </div>
                                             <div class="form-group col-xl-6">
+                                                <label for=""><i class="text-danger">* </i>Nama Kepala Lembaga</label>
+                                                <input type="text" class="form-control" id="kepala" name="kepalalembaga" required>
+                                            </div>
+                                            <div class="form-group col-xl-6">
                                                 <label for=""><i class="text-danger">* </i>Telp Lembaga</label>
                                                 <input type="number" class="form-control" id="telp" name="telp" required>
                                             </div>
