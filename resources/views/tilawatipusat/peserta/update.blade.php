@@ -126,7 +126,7 @@
                             rows="5">{{ $peserta->alamat }}</textarea>
                     </div>
                     <div class="form-group  col-12 col-xl-12">
-                        <label for="alamat"><i class="text-danger">*</i> Alamat Pengiriman Modul</label>
+                        <label for="alamat"><i class="text-danger">*</i> Alamat Pengiriman Modul </label>
                         <textarea name="alamatx" class="form-control text-uppercase" id="" cols="30"
                             rows="5">{{ $peserta->alamatx }}</textarea>
                     </div>
