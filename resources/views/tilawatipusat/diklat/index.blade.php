@@ -277,7 +277,7 @@
                                                         </div>
                                                     </div>
                                                     <br>
-                                                    <img  src="https://placehold.it/80x80"  id="preview" class="img-thumbnail">
+                                                    <img  src=""  id="preview" class="img-thumbnail">
                                                 </div>
                                             </div>
                                         </form>
