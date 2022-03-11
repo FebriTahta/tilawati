@@ -244,52 +244,59 @@ class PesertaCont extends Controller
                         })
                         ->addColumn('ttl', function($data){
                                 # code...
-                                if ($data->tmptlahir !== null && $data->tgllahir !== null) {
-                                    # code...
-                                    // if ($data->tmptlahir2 !== null) {
-                                    //     # code...
-                                    //     return  $data->tmptlahir2.' - '.Carbon::parse($data->tgllahir)->isoFormat('D MMMM Y');
-                                    // }else {
-                                    //     # code...
-                                    //     return  $data->tmptlahir.' - '.Carbon::parse($data->tgllahir)->isoFormat('D MMMM Y');
-                                    // }
-                                    return  $data->tmptlahir.' - '.Carbon::parse($data->tgllahir)->isoFormat('D MMMM Y');
-                                    
-                                }
 
-                                if ($data->tmptlahir == null && $data->tgllahir !== null) {
+                                if (is_numeric($data->tgllahir) == true) {
                                     # code...
-                                    if ($data->tmptlahir2 !== null) {
+                                    if ($data->tmptlahir !== null && $data->tgllahir !== null) {
                                         # code...
-                                        return  $data->tmptlahir2.' - '.Carbon::parse($data->tgllahir)->isoFormat('D MMMM Y');
-                                    }else {
-                                        # code...
-                                        return  '<a href="#" style="color:red" data-toggle="modal" data-target="#addkota2" data-id ="'.$data->id.'"> Kosong / Salah Penulisan</a>' .' - '.Carbon::parse($data->tgllahir)->isoFormat('D MMMM Y');
+                                        // if ($data->tmptlahir2 !== null) {
+                                        //     # code...
+                                        //     return  $data->tmptlahir2.' - '.Carbon::parse($data->tgllahir)->isoFormat('D MMMM Y');
+                                        // }else {
+                                        //     # code...
+                                        //     return  $data->tmptlahir.' - '.Carbon::parse($data->tgllahir)->isoFormat('D MMMM Y');
+                                        // }
+                                        return  $data->tmptlahir.' - '.Carbon::parse($data->tgllahir)->isoFormat('D MMMM Y');
+                                        
                                     }
-                                }
-
-                                if ($data->tmptlahir !== null && $data->tgllahir == null) {
+    
+                                    if ($data->tmptlahir == null && $data->tgllahir !== null) {
+                                        # code...
+                                        if ($data->tmptlahir2 !== null) {
+                                            # code...
+                                            return  $data->tmptlahir2.' - '.Carbon::parse($data->tgllahir)->isoFormat('D MMMM Y');
+                                        }else {
+                                            # code...
+                                            return  '<a href="#" style="color:red" data-toggle="modal" data-target="#addkota2" data-id ="'.$data->id.'"> Kosong / Salah Penulisan</a>' .' - '.Carbon::parse($data->tgllahir)->isoFormat('D MMMM Y');
+                                        }
+                                    }
+    
+                                    if ($data->tmptlahir !== null && $data->tgllahir == null) {
+                                        # code...
+                                        if ($data->tmptlahir2 !== null) {
+                                            # code...
+                                            return  $data->tmptlahir2.' - '.'<a style="color:red" href="#" data-toggle="modal" data-target="#addtgl" data-id ="'.$data->id.'">Tgl Salah Format</a>';
+                                        }else {
+                                            # code...
+                                            return  $data->tmptlahir.' - '.'<a style="color:red" href="#" data-toggle="modal" data-target="#addtgl" data-id ="'.$data->id.'">Tgl Salah Format</a>';
+                                        }
+                                        
+                                    }
+    
+                                    if ($data->tmptlahir == null && $data->tgllahir == null) {
+                                        # code...
+                                        if ($data->tmptlahir2 !== null) {
+                                            # code...
+                                            return  $data->tmptlahir2.' - '.'<a style="color:red" href="#" data-toggle="modal" data-target="#addtgl">Tgl Salah Format</a>';
+                                        }else {
+                                            # code...
+                                            return  '<a href="" style="color:red" data-id ="'.$data->id.'"  data-toggle="modal" data-target="#addkota3"> Kosong / Salah Penulisan</a>' .' - '.'<a style="color:red" href="#" data-toggle="modal" data-target="#addtgl" data-id ="'.$data->id.'">Tgl Salah Format</a>';
+                                        }
+                                        
+                                    }
+                                }else {
                                     # code...
-                                    if ($data->tmptlahir2 !== null) {
-                                        # code...
-                                        return  $data->tmptlahir2.' - '.'<a style="color:red" href="#" data-toggle="modal" data-target="#addtgl" data-id ="'.$data->id.'">Tgl Salah Format</a>';
-                                    }else {
-                                        # code...
-                                        return  $data->tmptlahir.' - '.'<a style="color:red" href="#" data-toggle="modal" data-target="#addtgl" data-id ="'.$data->id.'">Tgl Salah Format</a>';
-                                    }
-                                    
-                                }
-
-                                if ($data->tmptlahir == null && $data->tgllahir == null) {
-                                    # code...
-                                    if ($data->tmptlahir2 !== null) {
-                                        # code...
-                                        return  $data->tmptlahir2.' - '.'<a style="color:red" href="#" data-toggle="modal" data-target="#addtgl">Tgl Salah Format</a>';
-                                    }else {
-                                        # code...
-                                        return  '<a href="" style="color:red" data-id ="'.$data->id.'"  data-toggle="modal" data-target="#addkota3"> Kosong / Salah Penulisan</a>' .' - '.'<a style="color:red" href="#" data-toggle="modal" data-target="#addtgl" data-id ="'.$data->id.'">Tgl Salah Format</a>';
-                                    }
-                                    
+                                    return '';
                                 }
                         })
                         ->addColumn('alamatmodul', function($data){
