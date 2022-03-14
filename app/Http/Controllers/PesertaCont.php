@@ -159,11 +159,11 @@ class PesertaCont extends Controller
                                         return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-warning">'.$rata2.' mengaji & '.$ratax.' rata-rata (belum bersyahadah)</a>';
                                     }else {
                                         # code...
-                                        if ($rata2 > 84) {
+                                        if ($rata2 > 83) {
                                             # code...
                                             return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-primary">'.$rata2.' mengaji & '.$ratax.' rata-rata (baik)</a>';
                                         }
-                                        elseif($rata2 < 84 && $rata2 > 74){
+                                        elseif($rata2 < 83 && $rata2 > 74){
                                             return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-info">'.$rata2.' mengaji & '.$ratax.' rata-rata (cukup)</a>';
                                         }
                                         else {
@@ -834,11 +834,11 @@ class PesertaCont extends Controller
                                     
                                     // $rata2 = $data->nilai->sum('nominal');
                                     $rata2 = ($total + $total2)/($total3+1);
-                                    if ($rata2 > 84) {
+                                    if ($rata2 > 83) {
                                         # code...
                                         return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-primary">'.$rata2.' (baik)</a>';
                                     }
-                                    elseif($rata2 < 84 && $rata2 > 74){
+                                    elseif($rata2 < 83 && $rata2 > 74){
                                         return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-info">'.$rata2.' (cukup)</a>';
                                     }
                                     else {
@@ -901,11 +901,11 @@ class PesertaCont extends Controller
                                     
                                     // $rata2 = $data->nilai->sum('nominal');
                                     $rata2 = ($total + $total2)/($total3+1);
-                                    if ($rata2 > 84) {
+                                    if ($rata2 > 83) {
                                         # code...
                                         return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-primary">'.$rata2.' (baik)</a>';
                                     }
-                                    elseif($rata2 < 84 && $rata2 > 74){
+                                    elseif($rata2 < 83 && $rata2 > 74){
                                         return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-info">'.$rata2.' (cukup)</a>';
                                     }
                                     else {
@@ -972,11 +972,11 @@ class PesertaCont extends Controller
                                     
                                     // $rata2 = $data->nilai->sum('nominal');
                                     $rata2 = ($total + $total2)/($total3+1);
-                                    if ($rata2 > 84) {
+                                    if ($rata2 > 83) {
                                         # code...
                                         return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-primary">'.$rata2.' (baik)</a>';
                                     }
-                                    elseif($rata2 < 84 && $rata2 > 74){
+                                    elseif($rata2 < 83 && $rata2 > 74){
                                         return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-info ">'.$rata2.' (cukup)</a>';
                                     }
                                     else {
@@ -1027,11 +1027,11 @@ class PesertaCont extends Controller
                                     
                                     // $rata2 = $data->nilai->sum('nominal');
                                     $rata2 = ($total + $total2)/($total3+1);
-                                    if ($rata2 > 84) {
+                                    if ($rata2 > 83) {
                                         # code...
                                         return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-primary">'.$rata2.' (baik)</a>';
                                     }
-                                    elseif($rata2 < 84 && $rata2 > 74){
+                                    elseif($rata2 < 83 && $rata2 > 74){
                                         return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge  badge-info">'.$rata2.' (cukup)</a>';
                                     }
                                     else {
@@ -1662,11 +1662,11 @@ class PesertaCont extends Controller
                                     // $rata2 = $data->nilai->sum('nominal');
                                     $ratax = ($total + $total2)/($total3+1);
                                     $rata2 = $total;
-                                    if ($rata2 > 84) {
+                                    if ($rata2 > 83) {
                                         # code...
                                         return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-primary">'.$rata2.' mengaji & '.$ratax.' rata-rata (baik)</a>';
                                     }
-                                    elseif($rata2 < 84 && $rata2 > 74){
+                                    elseif($rata2 < 83 && $rata2 > 74){
                                         return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge  badge-info">'.$rata2.' mengaji & '.$ratax.' rata-rata (cukup)</a>';
                                     }
                                     else {
@@ -1726,11 +1726,11 @@ class PesertaCont extends Controller
                                     $ratax = ($total + $total2)/($total3+1);
                                     $rata2 = $total;
 
-                                    if ($rata2 > 84) {
+                                    if ($rata2 > 83) {
                                         # code...
                                         return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-primary">'.$rata2.' mengaji & '.$ratax.' rata-rata (baik)</a>';
                                     }
-                                    elseif($rata2 < 84 && $rata2 > 74){
+                                    elseif($rata2 < 83 && $rata2 > 74){
                                         return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-info">'.$rata2.' mengaji & '.$ratax.' rata-rata (cukup)</a>';
                                     }
                                     else {
@@ -1804,11 +1804,11 @@ class PesertaCont extends Controller
                                     // $rata2 = $data->nilai->sum('nominal');
                                     $ratax = ($total + $total2)/($total3+1);
                                     $rata2 = $total;
-                                    if ($rata2 > 84) {
+                                    if ($rata2 > 83) {
                                         # code...
                                         return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-primary">'.$rata2.' mengaji & '.$ratax.' rata-rata (baik)</a>';
                                     }
-                                    elseif($rata2 < 84 && $rata2 > 74){
+                                    elseif($rata2 < 83 && $rata2 > 74){
                                         return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-info">'.$rata2.' mengaji & '.$ratax.' rata-rata (cukup)</a>';
                                     }
                                     else {
@@ -1869,11 +1869,11 @@ class PesertaCont extends Controller
                                     // $rata2 = $data->nilai->sum('nominal');
                                     $ratax = ($total + $total2)/($total3+1);
                                     $rata2 = $total;
-                                    if ($rata2 > 84) {
+                                    if ($rata2 > 83) {
                                         # code...
                                         return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-primary">'.$rata2.' mengaji & '.$ratax.' rata-rata (baik)</a>';
                                     }
-                                    elseif($rata2 < 84 && $rata2 > 74){
+                                    elseif($rata2 < 83 && $rata2 > 74){
                                         return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-info">'.$rata2.' mengaji & '.$ratax.' rata-rata (cukup)</a>';
                                     }
                                     else {
