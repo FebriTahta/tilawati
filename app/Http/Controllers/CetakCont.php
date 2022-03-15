@@ -82,7 +82,8 @@ class CetakCont extends Controller
                 return Redirect::back()->withFail('Tidak ada Kepala Cabang yang terdaftar pada Cabang - '.$pelatihan->cabang->name.'');
             } else {
                 # code...
-                $direktur   = $pelatihan->cabang->kepala->name;
+                // $direktur   = $pelatihan->cabang->kepala->name;
+                $direktur   = $pelatihan->cabang->kepalacabang;
                 $pdf        = PDF::loadview('AdmPelatihan.Cetak.cetak_depan',compact('peserta','direktur','kepala','kabupaten','cabang','pelatihan'))->setPaper($customPaper, 'portrait');
                 return $pdf->download('ijazah-depan-peserta-_'.$pelatihan->name.'.pdf','I');
             }
