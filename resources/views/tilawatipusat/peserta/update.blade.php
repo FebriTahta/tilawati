@@ -57,8 +57,8 @@
                         <label for="tgllahir"><i class="text-danger">*</i> Tanggal Lahir</label>
                         ({{ Carbon\Carbon::parse($peserta->tgllahir)->isoFormat('D MMMM Y') }})
                         <input placeholder="dd-mm-yyyy" type="date"
-                            value="{{ Carbon\Carbon::parse($peserta->tgllahir)->format('Y-m-d') }}" name="tgllahir"
-                            {{-- value="{{$peserta->tgllahir}}" name="tgllahir" --}}
+                            {{-- value="{{ Carbon\Carbon::parse($peserta->tgllahir)->format('Y-m-d') }}" name="tgllahir" --}}
+                            value="{{$peserta->tgllahir}}" name="tgllahir"
                             id="tgllahir" class="form-control"
                             style="max-height: 40px; color: rgb(0, 0, 0); font-size: 13px;">
                     </div>
