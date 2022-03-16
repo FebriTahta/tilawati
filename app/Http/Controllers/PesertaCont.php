@@ -2482,10 +2482,10 @@ class PesertaCont extends Controller
                 $token = "dyr07JcBSmVsb1YrVBTB2A5zNKor0BZ9krv2WnQsjWHG1CRhSktdqazkfuOSY9qh";
                 $datas = [
                     'phone' => $value->telp,
-                    'message' => '*TILAWATI PUSAT - '.strtoupper($pelatihan->program->name).'*. *Yth. '.$value->name.'*.
+                    'message' => '*PENGIRIMAN SYAHADAH TILAWATI PUSAT - '.strtoupper($pelatihan->program->name).'*. *Yth. '.$value->name.'*.
                     
                     *PESAN*
-                    Dimohon Ustadz / Ustadzah menginformasikan untuk Alamat Pengiriman Syahadah / Ijazah dibawah ini.
+                    Dimohon Ustadz / Ustadzah menginformasikan untuk Alamat Pengiriman Syahadah / Ijazah paling lambat pada pukul 12 siang hari ini.
                     
                     *ALAMAT PENGIRIMAN*
                     ...
