@@ -2474,6 +2474,38 @@ class PesertaCont extends Controller
     public function minta_modul($pelatihan_id)
     {
         $data = Peserta::where('pelatihan_id',$pelatihan_id)->where('bersyahadah',1)->where('alamatx',null)->get();
+        // SEND WA
+        $curl = curl_init();
+                $token = "dyr07JcBSmVsb1YrVBTB2A5zNKor0BZ9krv2WnQsjWHG1CRhSktdqazkfuOSY9qh";
+                $datas = [
+                    'phone' => $peserta->telp,
+                    'message' => '*TILAWATI PUSAT - '.strtoupper($data->program->name).'*. *Yth. '.$data->name.'*.
+                    
+                    *PESAN*
+                    Dimohon Ustadz / Ustadzah menginformasikan untuk Alamat Pengiriman Syahadah / Ijazah dibawah ini.
+                    
+                    *ALAMAT PENGIRIMAN*
+                    ...
+                    ',
+                    'secret' => false, // or true
+                    'priority' => false, // or true
+                ];
+                curl_setopt($curl, CURLOPT_HTTPHEADER,
+                    array(
+                        "Authorization: $token",
+                    )
+                );
+                curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
+                curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($datas));
+                curl_setopt($curl, CURLOPT_URL, "https://simo.wablas.com/api/send-message");
+                curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
+                curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+                $result = curl_exec($curl);
+                curl_close($curl);
+        
+        
+        
         return $data;
     }
 
