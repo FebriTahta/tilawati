@@ -52,7 +52,7 @@
                         <label for=""><i class="text-danger"></i> Tempat Lahir (Alternatif Wajib Diisi Apabilda Diupdate)</label>
                         <input type="text" class="form-control text-uppercase" name="tmptlahir2"
                         @if ($peserta->tmptlahir2 == null)
-                            value="{{$peserta->tmptlahir}}"
+                            value="{{substr($peserta->tmptlahir,5)}}"
                         @else
                             value="{{$peserta->tmptlahir2}}"
                         @endif
