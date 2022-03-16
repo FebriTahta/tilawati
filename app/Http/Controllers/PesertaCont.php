@@ -2473,13 +2473,16 @@ class PesertaCont extends Controller
 
     public function minta_modul($pelatihan_id)
     {
+        $pelatihan = Pelatihan::find($pelatihan_id);
         $data = Peserta::where('pelatihan_id',$pelatihan_id)->where('bersyahadah',1)->where('alamatx',null)->get();
         // SEND WA
-        $curl = curl_init();
+        foreach ($data as $key => $value) {
+            # code...
+            $curl = curl_init();
                 $token = "dyr07JcBSmVsb1YrVBTB2A5zNKor0BZ9krv2WnQsjWHG1CRhSktdqazkfuOSY9qh";
                 $datas = [
-                    'phone' => $peserta->telp,
-                    'message' => '*TILAWATI PUSAT - '.strtoupper($data->program->name).'*. *Yth. '.$data->name.'*.
+                    'phone' => $value->telp,
+                    'message' => '*TILAWATI PUSAT - '.strtoupper($pelatihan->program->name).'*. *Yth. '.$value->name.'*.
                     
                     *PESAN*
                     Dimohon Ustadz / Ustadzah menginformasikan untuk Alamat Pengiriman Syahadah / Ijazah dibawah ini.
@@ -2503,9 +2506,8 @@ class PesertaCont extends Controller
                 curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
                 $result = curl_exec($curl);
                 curl_close($curl);
-        
-        
-        
+        }
+
         return $data;
     }
 
