@@ -495,6 +495,8 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     Route::post('/generate_qr_peserta',[CekController::class,'generate_qr_peserta']);
     // HAPUS SEMuA LEMBAGA CABANG
     Route::get('/hapus-lembaga/{cabang_id}',[LembagaCont::class,'hapus_semua']);
+
+    Route::get('/minta-modul/{pelatihan_id}'.[PesertaCont::class,'minta_modul']);
 });
 
 Route::group(['middleware' => ['auth', 'CheckRole:bendahara']], function () {

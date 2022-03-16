@@ -2471,4 +2471,10 @@ class PesertaCont extends Controller
         return view('tilawatipusat.peserta.cabang_program',compct('cabang','program'));
     }
 
+    public function minta_modul($pelatihan_id)
+    {
+        $data = Peserta::where('pelatihan_id',$pelatihan_id)->where('bersyahadah',1)->where('alamatx',null)->get();
+        return $data;
+    }
+
 }
