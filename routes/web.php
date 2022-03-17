@@ -376,7 +376,9 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     Route::post('/diklat-nilai-update',[NilaiCont::class,'update'])->name('diklat.nilai_update');
     Route::get('/diklat-nilai-edit/{id}',[NilaiCont::class,'edit'])->name('diklat.nilai_edit');
 
-    Route::get('/diklat-ijazah-depan-guru',[CetakCont::class, 'depan_guru'])->name('diklat.depan_guru'); 
+    Route::get('/diklat-ijazah-depan-guru',[CetakCont::class, 'depan_guru'])->name('diklat.depan_guru');
+    Route::get('/diklat-ijazah-depan-guru-lama',[CetakCont::class, 'depan_guru_lama'])->name('diklat.depan_guru_lama');
+
     Route::get('/diklat-ijazah-belakang',[CetakCont::class, 'belakang'])->name('diklat.belakang');
     Route::get('/diklat-detail-ijazah-peserta',[CetakCont::class, 'detail_peserta'])->name('diklat.detail_peserta');
     Route::get('/diklat-ijazah-depan-santri',[CetakCont::class, 'depan_santri'])->name('diklat.depan_santri');

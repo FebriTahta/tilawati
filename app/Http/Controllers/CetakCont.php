@@ -18,6 +18,13 @@ class CetakCont extends Controller
         return view('tilawatipusat.cetak.depan.index',compact('dt_pel','dt_pro'));
     }
 
+    public function depan_guru_lama()
+    {
+        $dt_pel = Pelatihan::all();
+        $dt_pro = Program::where('status',1)->get();
+        return view('tilawatipusat.cetak.depan.index2',compact('dt_pel','dt_pro'));
+    }
+
     public function belakang(){
         $dt_pel = Pelatihan::all();
         $dt_pro = Program::where('status',1)->get();
