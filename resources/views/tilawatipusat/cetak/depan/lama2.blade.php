@@ -72,61 +72,73 @@
 			>
 				<tbody>
 				<tr style="height: 27px;"><?php $tahun = date('Y')?>
-				{{-- <td class="bawah" style="width: 210px; height: 27px; border: solid"><small> </small></td> --}}
-				{{-- <td class="bawah" style="width: 100px; height: 27px; border: solid">&nbsp;</td> --}}
-				<?php $lokasicetak = strtolower($item->pelatihan->cabang->kabupaten->nama)?>
-				<td class="atas" style="width: 241px; height: 27px; text-transform: lowercase;text-transform: capitalize; border: solid">Surabaya, {{ Carbon\Carbon::parse($item->pelatihan->tanggal)->isoFormat('D MMMM Y') }}</td>
+					{{-- kosong --}}
+					<td class="bawah" style="width: 210px; height: 27px; border: solid"><small> </small></td>
+					{{-- kosong --}}
+					<td class="bawah" style="width: 100px; height: 27px; border: solid">&nbsp;</td>
+					{{-- tanggal pelaksanaan --}}
+					<?php $lokasicetak = strtolower($item->pelatihan->cabang->kabupaten->nama)?>
+					<td class="atas" style="width: 241px; height: 27px; text-transform: lowercase;text-transform: capitalize; border: solid">Surabaya, {{ Carbon\Carbon::parse($item->pelatihan->tanggal)->isoFormat('D MMMM Y') }}</td>
 				</tr>
 				<tr style="height: 78px;">
-				<td class="bawah" style="width: 210px; height: 70px;border: solid">
-					<div class="tepi" style="width: 70px; padding: 2px;border: solid">
-						<img src="images/{{ $item->slug }}.png" alt="" width="70px" height="70px">
-					</div>
-				</td>
-				<td class="bawah" style="width: 210px; height: 70px;border: solid">&nbsp;</td>
-				<td class="bawah" style="width: 241px; height: 70px;border: solid">
-					
-				</td>
+					{{-- QR --}}
+					<td class="bawah" style="width: 210px; height: 70px;border: solid">
+						<div class="tepi" style="width: 70px; padding: 2px;border: solid">
+							<img src="images/{{ $item->slug }}.png" alt="" width="70px" height="70px">
+						</div>
+					</td>
+					{{-- kosong --}}
+					<td class="bawah" style="width: 100px; height: 70px;border: solid">&nbsp;</td>
+					{{-- kosong --}}
+					<td class="bawah" style="width: 241px; height: 70px;border: solid">
+						
+					</td>
 				</tr>
 				<tr style="height: 5px;">
-				<td class="bawah" style="width: 210px; height: 5px;">No. Syahadah : &nbsp;{{ $item->pelatihan_id }}/{{ $tahun }}/{{ $item->id }}</td>
-				<td class="bawah" style="width: 135px; height: 5px;">&nbsp;</td>
-				<td class="atas" style="width: 241px; height: 5px;"> 
-                    @if ($item->pelatihan->cabang->name == 'Cahaya Amanah' || $item->pelatihan->cabang->name == 'Tilawati Pusat')
-                    Dr. KH. Umar Jaeni ,M.Pd
-                    @else
-                    {{$item->pelatihan->cabang->kepalacabang}}
-                    @endif
-                </td>
+					{{-- no syahadah --}}
+					<td class="bawah" style="width: 210px; height: 5px;">No. Syahadah : &nbsp;{{ $item->pelatihan_id }}/{{ $tahun }}/{{ $item->id }}</td>
+					{{-- kosong --}}
+					<td class="bawah" style="width: 100px; height: 5px;">&nbsp;</td>
+					{{-- direktur --}}
+					<td class="atas" style="width: 241px; height: 5px;"> 
+						@if ($item->pelatihan->cabang->name == 'Cahaya Amanah' || $item->pelatihan->cabang->name == 'Tilawati Pusat')
+						Dr. KH. Umar Jaeni ,M.Pd
+						@else
+						{{$item->pelatihan->cabang->kepalacabang}}
+						@endif
+					</td>
 				</tr>
 				<tr style="height: 4px;">
-				<td class="bawah" style="width: 210px; height: 4px;">&nbsp;</td>
-				<td class="bawah" style="width: 110px; height: 4px;">&nbsp;</td>
-				<td class="bawah" style="width: 241px; height: 2px; text-transform: capitalize"> 
-                    @if ($item->pelatihan->cabang->name == 'Cahaya Amanah' || $item->pelatihan->cabang->name == 'Tilawati Pusat')
-                    Direktur Eksekutif
-                    @else
-					<?	$kabupaten 	= substr($item->pelatihan->cabang->kabupaten->nama, 5); $kab = strtolower($kabupaten);
-						$provinsi 	= strtolower($item->pelatihan->cabang->kabupaten->provinsi->nama); 
-					$data_kabupaten = App\Models\Kabupaten::where('id', $item->pelatihan->cabang->kabupaten->id)->first();
-					$jum_cabang		= $data_kabupaten->cabang->count();
-					?>
-						@if ($jum_cabang > 1)
-							@if (substr($item->pelatihan->cabang->kabupaten->nama,5,3)=='ADM')
-							{{ 'Kacab. ' .strtoupper(substr($provinsi,0,3)).' '.ucfirst(substr($provinsi,4))}}
-							@else
-							{{ 'Kacab. '.ucfirst($item->pelatihan->cabang->name).' '.ucfirst($kab) }}
-							@endif
+					{{-- kosong --}}
+					<td class="bawah" style="width: 210px; height: 4px; border: solid">&nbsp;</td>
+					{{-- kosong --}}
+					<td class="bawah" style="width: 100px; height: 4px; border: solid">&nbsp;</td>
+					{{-- kepala cabang mana --}}
+					<td class="bawah" style="width: 241px; height: 2px; text-transform: capitalize"> 
+						@if ($item->pelatihan->cabang->name == 'Cahaya Amanah' || $item->pelatihan->cabang->name == 'Tilawati Pusat')
+						Direktur Eksekutif
 						@else
-							@if (substr($item->pelatihan->cabang->kabupaten->nama,5,3)=='ADM')
-							{{ 'Kacab. ' .strtoupper(substr($provinsi,0,3)).' '.ucfirst(substr($provinsi,4))}}	
+						<?	$kabupaten 	= substr($item->pelatihan->cabang->kabupaten->nama, 5); $kab = strtolower($kabupaten);
+							$provinsi 	= strtolower($item->pelatihan->cabang->kabupaten->provinsi->nama); 
+						$data_kabupaten = App\Models\Kabupaten::where('id', $item->pelatihan->cabang->kabupaten->id)->first();
+						$jum_cabang		= $data_kabupaten->cabang->count();
+						?>
+							@if ($jum_cabang > 1)
+								@if (substr($item->pelatihan->cabang->kabupaten->nama,5,3)=='ADM')
+								{{ 'Kacab. ' .strtoupper(substr($provinsi,0,3)).' '.ucfirst(substr($provinsi,4))}}
+								@else
+								{{ 'Kacab. '.ucfirst($item->pelatihan->cabang->name).' '.ucfirst($kab) }}
+								@endif
 							@else
-							{{ 'Kacab. '.ucfirst($kab).' '.ucfirst($provinsi)}}
+								@if (substr($item->pelatihan->cabang->kabupaten->nama,5,3)=='ADM')
+								{{ 'Kacab. ' .strtoupper(substr($provinsi,0,3)).' '.ucfirst(substr($provinsi,4))}}	
+								@else
+								{{ 'Kacab. '.ucfirst($kab).' '.ucfirst($provinsi)}}
+								@endif
 							@endif
-						@endif
 
-                    @endif
-                </td>
+						@endif
+					</td>
 				</tr>
 				</tbody>
 			</table>
