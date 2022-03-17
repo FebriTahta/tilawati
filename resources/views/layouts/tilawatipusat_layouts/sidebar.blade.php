@@ -115,8 +115,6 @@
                         <ul class="sub-menu" aria-expanded="false">
                             <li><a style="font-size: 12px" href="{{ route('diklat.depan_guru') }}">CETAK IJAZAH</a>
                             </li>
-                            <li><a style="font-size: 12px" href="{{ route('diklat.depan_guru') }}">CETAK IJAZAH VERSI LAMA</a>
-                            </li>
                             {{-- <li><a href="{{ route('diklat.depan_santri') }}">Santri</a></li> --}}
                         </ul>
                     </li>
@@ -157,6 +155,8 @@
                         </a>
                         <ul class="sub-menu" aria-expanded="false">
                             <li><a style="font-size: 12px" href="{{ route('diklat.depan_guru') }}">CETAK IJAZAH</a>
+                            </li>
+                            <li><a style="font-size: 12px" href="{{ route('diklat.depan_guru_lama') }}">CETAK IJAZAH VERSI LAMA</a>
                             </li>
                             {{-- <li><a href="{{ route('diklat.depan_santri') }}">Santri</a></li> --}}
                         </ul>
