@@ -30,7 +30,7 @@
 		@foreach ($peserta as $item)
 		<div class="print">
 			<table 
-			style="height: 180px; width: 900px;margin-left:138px;margin-top:304px"
+			style="height: 180px; width: 900px;margin-left:138px;margin-top:350px"
 			class="dalam">
 				<tbody>
 				<tr class="atas">
@@ -68,7 +68,7 @@
 			</table>			
 			<table 
 		
-			style="margin-left:188px"
+			style="margin-left:56px;"
 			>
 				<tbody>
 				<tr style="height: 27px;"><?php $tahun = date('Y')?>
