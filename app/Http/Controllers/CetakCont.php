@@ -176,5 +176,14 @@ class CetakCont extends Controller
         return $pdf->download('ijazah-depan-peserta-pdf.pdf','I');
     }
 
+    public function cetak_depan_lama(Request $request)
+    {
+        $pelatihan_id   = $request->pelatihan_id;
+        $peserta        = Peserta::where('pelatihan_id', $pelatihan_id)->where('kriteria','<>','')->where('bersyahadah',1)->get();
+        $customPaper    = array(0,0,792,612);
+        $pdf            = PDF::loadview('tilawatipusat.cetak.depan.lama2',compact('peserta'))->setPaper($customPaper, 'portrait');
+        return $pdf->download('ijazah-depan-peserta-pdf.pdf','I');
+    }
+
 
 }
