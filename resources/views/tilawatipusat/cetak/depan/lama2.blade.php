@@ -30,7 +30,7 @@
 		@foreach ($peserta as $item)
 		<div class="print">
 			<table 
-			style="height: 180px; width: 900px;margin-left:138px;margin-top:350px"
+			style="height: 180px; width: 900px;margin-left:138px;margin-top:275px"
 			class="dalam">
 				<tbody>
 				<tr class="atas">
