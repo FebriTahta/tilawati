@@ -68,7 +68,7 @@
 			</table>			
 			<table 
 		
-			style="margin-left:56px;"
+			style="margin-left:169px;"
 			>
 				<tbody>
 				<tr style="height: 27px;"><?php $tahun = date('Y')?>
