@@ -30,7 +30,7 @@
 		@foreach ($peserta as $item)
 		<div class="print">
 			<table 
-			style="height: 180px; width: 900px;margin-left:138px;margin-top:283px"
+			style="height: 180px; width: 900px;margin-left:138px;margin-top:290px"
 			class="dalam">
 				<tbody>
 				<tr class="atas">
@@ -75,7 +75,7 @@
 					{{-- kosong --}}
 					<td class="bawah" style="width: 210px; height: 27px;  "><small> </small></td>
 					{{-- kosong --}}
-					<td class="bawah" style="width: 100px; height: 27px;  ">&nbsp;</td>
+					<td class="bawah" style="width: 156px; height: 27px;  ">&nbsp;</td>
 					{{-- tanggal pelaksanaan --}}
 					<?php $lokasicetak = strtolower($item->pelatihan->cabang->kabupaten->nama)?>
 					<td class="atas" style="width: 241px; height: 27px; text-transform: lowercase;text-transform: capitalize;  ">Surabaya, {{ Carbon\Carbon::parse($item->pelatihan->tanggal)->isoFormat('D MMMM Y') }}</td>
@@ -88,7 +88,7 @@
 						</div>
 					</td>
 					{{-- kosong --}}
-					<td class="bawah" style="width: 100px; height: 70px; ">&nbsp;</td>
+					<td class="bawah" style="width: 156px; height: 70px; ">&nbsp;</td>
 					{{-- kosong --}}
 					<td class="bawah" style="width: 241px; height: 70px; ">
 						
@@ -98,7 +98,7 @@
 					{{-- no syahadah --}}
 					<td class="bawah" style="width: 210px; height: 5px;">No. Syahadah : &nbsp;{{ $item->pelatihan_id }}/{{ $tahun }}/{{ $item->id }}</td>
 					{{-- kosong --}}
-					<td class="bawah" style="width: 100px; height: 5px;">&nbsp;</td>
+					<td class="bawah" style="width: 156px; height: 5px;">&nbsp;</td>
 					{{-- direktur --}}
 					<td class="atas" style="width: 241px; height: 5px;"> 
 						@if ($item->pelatihan->cabang->name == 'Cahaya Amanah' || $item->pelatihan->cabang->name == 'Tilawati Pusat')
@@ -112,7 +112,7 @@
 					{{-- kosong --}}
 					<td class="bawah" style="width: 210px; height: 4px;  ">&nbsp;</td>
 					{{-- kosong --}}
-					<td class="bawah" style="width: 100px; height: 4px;  ">&nbsp;</td>
+					<td class="bawah" style="width: 156px; height: 4px;  ">&nbsp;</td>
 					{{-- kepala cabang mana --}}
 					<td class="bawah" style="width: 241px; height: 2px; text-transform: capitalize"> 
 						@if ($item->pelatihan->cabang->name == 'Cahaya Amanah' || $item->pelatihan->cabang->name == 'Tilawati Pusat')
