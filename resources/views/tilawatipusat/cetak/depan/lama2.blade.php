@@ -73,24 +73,24 @@
 				<tbody>
 				<tr style="height: 27px;"><?php $tahun = date('Y')?>
 					{{-- kosong --}}
-					<td class="bawah" style="width: 210px; height: 27px; border: solid"><small> </small></td>
+					<td class="bawah" style="width: 210px; height: 27px;  "><small> </small></td>
 					{{-- kosong --}}
-					<td class="bawah" style="width: 100px; height: 27px; border: solid">&nbsp;</td>
+					<td class="bawah" style="width: 100px; height: 27px;  ">&nbsp;</td>
 					{{-- tanggal pelaksanaan --}}
 					<?php $lokasicetak = strtolower($item->pelatihan->cabang->kabupaten->nama)?>
-					<td class="atas" style="width: 241px; height: 27px; text-transform: lowercase;text-transform: capitalize; border: solid">Surabaya, {{ Carbon\Carbon::parse($item->pelatihan->tanggal)->isoFormat('D MMMM Y') }}</td>
+					<td class="atas" style="width: 241px; height: 27px; text-transform: lowercase;text-transform: capitalize;  ">Surabaya, {{ Carbon\Carbon::parse($item->pelatihan->tanggal)->isoFormat('D MMMM Y') }}</td>
 				</tr>
 				<tr style="height: 78px;">
 					{{-- QR --}}
-					<td class="bawah" style="width: 210px; height: 70px;border: solid">
-						<div class="tepi" style="width: 70px; padding: 2px;border: solid">
+					<td class="bawah" style="width: 210px; height: 70px; ">
+						<div class="tepi" style="width: 70px; padding: 2px; ">
 							<img src="images/{{ $item->slug }}.png" alt="" width="70px" height="70px">
 						</div>
 					</td>
 					{{-- kosong --}}
-					<td class="bawah" style="width: 100px; height: 70px;border: solid">&nbsp;</td>
+					<td class="bawah" style="width: 100px; height: 70px; ">&nbsp;</td>
 					{{-- kosong --}}
-					<td class="bawah" style="width: 241px; height: 70px;border: solid">
+					<td class="bawah" style="width: 241px; height: 70px; ">
 						
 					</td>
 				</tr>
@@ -110,9 +110,9 @@
 				</tr>
 				<tr style="height: 4px;">
 					{{-- kosong --}}
-					<td class="bawah" style="width: 210px; height: 4px; border: solid">&nbsp;</td>
+					<td class="bawah" style="width: 210px; height: 4px;  ">&nbsp;</td>
 					{{-- kosong --}}
-					<td class="bawah" style="width: 100px; height: 4px; border: solid">&nbsp;</td>
+					<td class="bawah" style="width: 100px; height: 4px;  ">&nbsp;</td>
 					{{-- kepala cabang mana --}}
 					<td class="bawah" style="width: 241px; height: 2px; text-transform: capitalize"> 
 						@if ($item->pelatihan->cabang->name == 'Cahaya Amanah' || $item->pelatihan->cabang->name == 'Tilawati Pusat')
