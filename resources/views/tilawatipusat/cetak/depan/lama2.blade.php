@@ -95,7 +95,7 @@
                     @if ($item->pelatihan->cabang->name == 'Cahaya Amanah' || $item->pelatihan->cabang->name == 'Tilawati Pusat')
                     Dr. KH. Umar Jaeni ,M.Pd
                     @else
-                    {{$item->pelatihan->cabang->kepala->name}}
+                    {{$item->pelatihan->cabang->kepalacabang}}
                     @endif
                 </td>
 				</tr>
