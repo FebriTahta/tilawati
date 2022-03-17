@@ -7,14 +7,14 @@
 	<style>
 		body{
 			font-family: Arial, Helvetica, sans-serif;
-			font-size: 16px;
+			font-size: 14px;
 		}
 		.page-break {
 			page-break-after: always;
 			page-break-inside: avoid;
 		}
 		.atas {
-			font-size: 16px;
+			font-size: 14px;
 			font-family: Arial, Helvetica, sans-serif;
 		}
 		.bawah {
@@ -30,7 +30,7 @@
 		@foreach ($peserta as $item)
 		<div class="print">
 			<table 
-			style="height: 180px; width: 900px;margin-left:100px;margin-top:350px"
+			style="height: 180px; width: 900px;margin-left:81px;margin-top:293px"
 			class="dalam">
 				<tbody>
 				<tr class="atas">
@@ -69,7 +69,6 @@
 			<table 
 		
 			style="margin-left:113px; margin-top: 20px"
-			
 			>
 				<tbody>
 				<tr style="height: 27px;"><?php $tahun = date('Y')?>
