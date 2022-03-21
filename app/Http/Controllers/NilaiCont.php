@@ -157,6 +157,12 @@ class NilaiCont extends Controller
         } elseif ( $pro =="diklat guru tahfidz"){
             # code...
             $krits = "LULUS DIKLAT LEVEL 1 GURU AL QURAN METODE TILAWATI";
+        }elseif ($pro == "pembinaan & munaqosyah ulang") {
+            # code...
+            $krits = "LULUS DIKLAT LEVEL 1 GURU AL QURAN METODE TILAWATI";
+        }else {
+            # code...
+            $krits = "LULUS DIKLAT LEVEL 1 GURU AL QURAN METODE TILAWATI";
         }
         
         if ($syahadah == 1) {
