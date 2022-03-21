@@ -52,11 +52,11 @@
                         <label for=""><i class="text-danger"></i> Tempat Lahir (Alternatif Wajib Diisi Apabilda Diupdate)</label>
                         <input type="text" class="form-control text-uppercase" name="tmptlahir2"
                         @if ($peserta->tmptlahir2 == null)
-                            value="{{substr($peserta->tmptlahir,5)}}"
+                            value="{{$peserta->tmptlahir)}}"
                         @else
                             value="{{$peserta->tmptlahir2}}"
                         @endif
-                        value="{{ $peserta->tmptlahir2 }}" required>
+                        required>
                     </div>
                     <div class="form-group col-12 col-xl-6">
                         <label for="tgllahir"><i class="text-danger">*</i> Tanggal Lahir</label>
