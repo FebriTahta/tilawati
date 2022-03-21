@@ -138,6 +138,7 @@ class NilaiCont extends Controller
             $hasil_syahadah = 'BELUM BERSYAHADAH';
         }
         // $krit = $request->mykriteria;
+        $krits = '';
         $pes = Peserta::where('id', $peserta_id)->first();
         $pro = $pes->program->name;
 
