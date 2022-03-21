@@ -142,15 +142,24 @@ class NilaiCont extends Controller
         $rata2  = $total;
         $syahadah;
         $hasil_syahadah;
-        if ($rata2 > 74) {
+        
+        if ($total2 !== 0 || $total2 !== null) {
             # code...
-            $syahadah = '1';
-            $hasil_syahadah = 'BERSYAHADAH';
-        } else {
+            if ($rata2 > 74) {
+                # code...
+                $syahadah = '1';
+                $hasil_syahadah = 'BERSYAHADAH';
+            } else {
+                # code...
+                $syahadah = '0';
+                $hasil_syahadah = 'BELUM BERSYAHADAH';
+            }
+        }else {
             # code...
             $syahadah = '0';
             $hasil_syahadah = 'BELUM BERSYAHADAH';
         }
+
         // $krit = $request->mykriteria;
         $krits = '';
         $pes = Peserta::where('id', $peserta_id)->first();
