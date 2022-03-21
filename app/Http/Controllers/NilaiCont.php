@@ -62,7 +62,7 @@ class NilaiCont extends Controller
         }
         $pes = Peserta::where('id', $peserta_id)->first();
         $pro = $pes->program->name;
-
+        $krits = '';
         if ($pro == "standarisasi guru al qur'an level 1") {
             # code...
             $krits = "LULUS DIKLAT LEVEL 1 GURU AL QURAN METODE TILAWATI";
@@ -76,6 +76,12 @@ class NilaiCont extends Controller
             # code...
             $krits = "SEBAGAI GURU TAHFIDZ AL QURAN METODE TILAWATI";
         } elseif ( $pro =="diklat guru tahfidz"){
+            # code...
+            $krits = "LULUS DIKLAT LEVEL 1 GURU AL QURAN METODE TILAWATI";
+        }elseif ($pro == "pembinaan & munaqosyah ulang") {
+            # code...
+            $krits = "LULUS DIKLAT LEVEL 1 GURU AL QURAN METODE TILAWATI";
+        }else {
             # code...
             $krits = "LULUS DIKLAT LEVEL 1 GURU AL QURAN METODE TILAWATI";
         }
