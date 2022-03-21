@@ -43,23 +43,31 @@ class NilaiCont extends Controller
         $rata2  = $total;
         $syahadah;
         $hasil_syahadah;
-        if ($rata2 > 74) {
+        if ($total2 !== 0 || $total2 !== null) {
             # code...
-            if ($lulus_tak > 0) {
+            if ($rata2 > 74) {
+                # code...
+                if ($lulus_tak > 0) {
+                    # code...
+                    $syahadah = '0';
+                    $hasil_syahadah = 'BELUM BERSYAHADAH';
+                }else {
+                    # code...
+                    $syahadah = '1';
+                    $hasil_syahadah = 'BERSYAHADAH';
+                }
+                
+            } else {
                 # code...
                 $syahadah = '0';
                 $hasil_syahadah = 'BELUM BERSYAHADAH';
-            }else {
-                # code...
-                $syahadah = '1';
-                $hasil_syahadah = 'BERSYAHADAH';
             }
-            
-        } else {
+        }else {
             # code...
             $syahadah = '0';
             $hasil_syahadah = 'BELUM BERSYAHADAH';
         }
+        
         $pes = Peserta::where('id', $peserta_id)->first();
         $pro = $pes->program->name;
         $krits = '';
@@ -134,11 +142,26 @@ class NilaiCont extends Controller
         $rata2  = $total;
         $syahadah;
         $hasil_syahadah;
-        if ($rata2 > 74) {
+        if ($total2 !== 0 || $total2 !== null) {
             # code...
-            $syahadah = '1';
-            $hasil_syahadah = 'BERSYAHADAH';
-        } else {
+            if ($rata2 > 74) {
+                # code...
+                if ($lulus_tak > 0) {
+                    # code...
+                    $syahadah = '0';
+                    $hasil_syahadah = 'BELUM BERSYAHADAH';
+                }else {
+                    # code...
+                    $syahadah = '1';
+                    $hasil_syahadah = 'BERSYAHADAH';
+                }
+                
+            } else {
+                # code...
+                $syahadah = '0';
+                $hasil_syahadah = 'BELUM BERSYAHADAH';
+            }
+        }else {
             # code...
             $syahadah = '0';
             $hasil_syahadah = 'BELUM BERSYAHADAH';
