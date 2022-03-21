@@ -142,26 +142,11 @@ class NilaiCont extends Controller
         $rata2  = $total;
         $syahadah;
         $hasil_syahadah;
-        if ($total2 !== 0 || $total2 !== null) {
+        if ($rata2 > 74) {
             # code...
-            if ($rata2 > 74) {
-                # code...
-                if ($lulus_tak > 0) {
-                    # code...
-                    $syahadah = '0';
-                    $hasil_syahadah = 'BELUM BERSYAHADAH';
-                }else {
-                    # code...
-                    $syahadah = '1';
-                    $hasil_syahadah = 'BERSYAHADAH';
-                }
-                
-            } else {
-                # code...
-                $syahadah = '0';
-                $hasil_syahadah = 'BELUM BERSYAHADAH';
-            }
-        }else {
+            $syahadah = '1';
+            $hasil_syahadah = 'BERSYAHADAH';
+        } else {
             # code...
             $syahadah = '0';
             $hasil_syahadah = 'BELUM BERSYAHADAH';
