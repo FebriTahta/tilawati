@@ -95,10 +95,11 @@ class PesertaPendaftaranExport implements FromQuery, WithHeadings, ShouldAutoSiz
         }else{
             $tgl_lahir = $row->tgllahir;
         }
+
         return [
             
             $nama,
-            strtoupper($row->alamat),
+            strtoupper($row->alamat.' '.$kel.' '.$kec),
             // $kel,
             // $kec,
             $kab,
