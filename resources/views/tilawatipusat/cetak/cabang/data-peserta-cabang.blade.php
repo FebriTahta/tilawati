@@ -49,7 +49,15 @@
             <tr>
                 <td>{{$item->id}}</td>
                 <td>{{$item->name}}</td>
-                <td>{{$item->alamat}}</td>
+                <td>{{$item->alamat}}
+                    @if ($item->kecamatan !== null)
+                        {{$item->kecamatan->nama}}
+                    @endif
+
+                    @if ($item->kelurahan !== null)
+                        {{$item->kelurahan->nama}}
+                    @endif
+                </td>
                 <td>
                     @if ($item->kabupaten !== null)
                     {{$item->kabupaten->nama}}
