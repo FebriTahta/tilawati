@@ -105,12 +105,24 @@
                             <p>{{ $salah1 = $peserta_salah->where('tmptlahir', null)->count() }} Peserta dengan kesalahan
                                 penulisan
                                 tempat lahir</p>
+                                <?php $salah_tempat_lahir = App\Models\Peserta::where('tmptlahir', null)->where('pelatihan_id', $diklat->id)->get(); ?>
+                                <ul>
+                                    @foreach ($salah_tempat_lahir as $item)
+                                        <li>{{ $item->id.' - '.$item->name}}</li>
+                                    @endforeach
+                                </ul>
                         </div>
                     @endif
                     @if ($peserta_salah->where('tgllahir', '-')->count() > 0 || $peserta_salah->where('tgllahir', null)->count() > 0)
                         <div class="col-lg-12 alert alert-danger">
                             <p>{{ $salah2 = $peserta_salah->where('tgllahir', null)->count() + $peserta_salah->where('tgllahir', '-')->count() }}
                                 Peserta dengan kesalahan penulisan tanggal lahir</p>
+                                <?php $salah_tanggal = App\Models\Peserta::where('tgllahir', null)->where('pelatihan_id', $diklat->id)->get(); ?>
+                                <ul>
+                                    @foreach ($salah_tanggal as $item)
+                                        <li>{{ $item->id.' - '.$item->name}}</li>
+                                    @endforeach
+                                </ul>
                         </div>
                     @endif
                     @if ($peserta_salah->where('kabupaten_id', null)->count() > 0)
@@ -118,6 +130,12 @@
                             <p>{{ $salah3 = $peserta_salah->where('kabupaten_id', null)->count() }} Peserta dengan
                                 kesalahan
                                 penulisan asal kabupaten / kota</p>
+                                <?php $salah_kota = App\Models\Peserta::where('kabupaten_id', null)->where('pelatihan_id', $diklat->id)->get(); ?>
+                                <ul>
+                                    @foreach ($salah_kota as $item)
+                                        <li>{{ $item->id.' - '.$item->name}}</li>
+                                    @endforeach
+                                </ul>
                         </div>
                     @endif
                 </div>
