@@ -139,7 +139,7 @@ class NilaiCont extends Controller
         $total2 = Nilai::where('peserta_id',$peserta_id)->where("kategori","skill")->sum('nominal');
         $total3 = Nilai::where('peserta_id',$peserta_id)->where("kategori","skill")->count();
         // $rata2  = ($total + $total2)/($total3+1);
-        $rata2  = $total;
+        $rata2  = $total; 
         $syahadah;
         $hasil_syahadah;
         
