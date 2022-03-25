@@ -143,7 +143,7 @@ class NilaiCont extends Controller
         $syahadah;
         $hasil_syahadah;
         
-        if ($total2 !== 0) {
+        if ($total2 !== null) {
             # code...
             if ($rata2 > 74) {
                 # code...
@@ -156,8 +156,8 @@ class NilaiCont extends Controller
             }
         }else {
             # code...
-            $syahadah = '1';
-            $hasil_syahadah = 'BERSYAHADAH';
+            $syahadah = '0';
+            $hasil_syahadah = 'BELUM BERSYAHADAH';
         }
 
         // $krit = $request->mykriteria;
