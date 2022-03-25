@@ -134,6 +134,10 @@ class NilaiCont extends Controller
             }
         }
 
+        $krits = '';
+        $pes = Peserta::where('id', $peserta_id)->first();
+        $pro = $pes->program->name;
+
         // update keterangan bersyahadah
         $total  = Nilai::where('peserta_id',$peserta_id)->where("kategori","al-qur'an")->sum('nominal');
         $total2 = Nilai::where('peserta_id',$peserta_id)->where("kategori","skill")->sum('nominal');
@@ -143,27 +147,46 @@ class NilaiCont extends Controller
         $syahadah;
         $hasil_syahadah;
         
-        if ($total2 !== null) {
+        if ($pro == 'munaqosyah santri') {
             # code...
-            if ($rata2 > 74) {
+            if ($total2 !== null) {
                 # code...
-                $syahadah = '1';
-                $hasil_syahadah = 'BERSYAHADAH';
-            } else {
+                if ($rata2 > 70) {
+                    # code...
+                    $syahadah = '1';
+                    $hasil_syahadah = 'BERSYAHADAH';
+                } else {
+                    # code...
+                    $syahadah = '0';
+                    $hasil_syahadah = 'BELUM BERSYAHADAH';
+                }
+            }else {
                 # code...
                 $syahadah = '0';
                 $hasil_syahadah = 'BELUM BERSYAHADAH';
             }
         }else {
             # code...
-            $syahadah = '0';
-            $hasil_syahadah = 'BELUM BERSYAHADAH';
+            if ($total2 !== null) {
+                # code...
+                if ($rata2 > 74) {
+                    # code...
+                    $syahadah = '1';
+                    $hasil_syahadah = 'BERSYAHADAH';
+                } else {
+                    # code...
+                    $syahadah = '0';
+                    $hasil_syahadah = 'BELUM BERSYAHADAH';
+                }
+            }else {
+                # code...
+                $syahadah = '0';
+                $hasil_syahadah = 'BELUM BERSYAHADAH';
+            }
         }
 
         // $krit = $request->mykriteria;
-        $krits = '';
-        $pes = Peserta::where('id', $peserta_id)->first();
-        $pro = $pes->program->name;
+        
 
         if ($pro == "standarisasi guru al qur'an level 1") {
             # code...
