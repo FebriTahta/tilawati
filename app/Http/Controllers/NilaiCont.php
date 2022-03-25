@@ -151,7 +151,7 @@ class NilaiCont extends Controller
                 $hasil_syahadah = 'BERSYAHADAH';
             } else {
                 # code...
-                $syahadah = '0';
+                $syahadah = '1';
                 $hasil_syahadah = 'BELUM BERSYAHADAH';
             }
         }else {
