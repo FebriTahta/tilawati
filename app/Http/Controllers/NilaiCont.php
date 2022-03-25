@@ -147,7 +147,7 @@ class NilaiCont extends Controller
         $syahadah;
         $hasil_syahadah;
         
-        if ($pro == 'munaqosyah santri') {
+        if ($pro =="munaqosyah santri") {
             # code...
             if ($total2 !== null) {
                 # code...
