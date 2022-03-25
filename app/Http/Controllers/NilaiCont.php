@@ -122,7 +122,7 @@ class NilaiCont extends Controller
         
 
         $peserta_id = $request->peserta_id;
-        
+        $lulus_tak='';
         // update nilai
         foreach ($request->nominal as $key => $value) {
             # code...
@@ -131,8 +131,14 @@ class NilaiCont extends Controller
                 Nilai::where('id',$request->id[$key])->where('penilaian_id',$request->penilaian_id[$key])->update(
                     ['nominal'=>$request->nominal[$key]]
                 );
+                $penil = Penilaian::find($request->penilaian_id[$key]);
+                if ($request->nominal[$key] < $penil->min) {
+                    # code...
+                    $lulus_tak = $key+1; 
+                }
             }
         }
+        
 
         $krits = '';
         $pes = Peserta::where('id', $peserta_id)->first();
@@ -153,12 +159,27 @@ class NilaiCont extends Controller
                 # code...
                 if ($rata2 > 69) {
                     # code...
-                    $syahadah = '1';
-                    $hasil_syahadah = 'BERSYAHADAH';
+                    if ($lulus_tak > 0) {
+                        # code...
+                        $syahadah = '0';
+                        $hasil_syahadah = 'BELUM BERSYAHADAH';
+                    }else {
+                        # code...
+                        $syahadah = '1';
+                        $hasil_syahadah = 'BERSYAHADAH';
+                    }
+
                 } else {
+                    # code...
+                    if ($lulus_tak > 0) {
                     # code...
                     $syahadah = '0';
                     $hasil_syahadah = 'BELUM BERSYAHADAH';
+                    }else {
+                        # code...
+                        $syahadah = '1';
+                        $hasil_syahadah = 'BERSYAHADAH';
+                    }
                 }
             }else {
                 # code...
@@ -171,12 +192,26 @@ class NilaiCont extends Controller
                 # code...
                 if ($rata2 > 74) {
                     # code...
-                    $syahadah = '1';
-                    $hasil_syahadah = 'BERSYAHADAH';
+                    if ($lulus_tak > 0) {
+                        # code...
+                        $syahadah = '0';
+                        $hasil_syahadah = 'BELUM BERSYAHADAH';
+                    }else {
+                        # code...
+                        $syahadah = '1';
+                        $hasil_syahadah = 'BERSYAHADAH';
+                    }
                 } else {
                     # code...
-                    $syahadah = '0';
-                    $hasil_syahadah = 'BELUM BERSYAHADAH';
+                    if ($lulus_tak > 0) {
+                        # code...
+                        $syahadah = '0';
+                        $hasil_syahadah = 'BELUM BERSYAHADAH';
+                    }else {
+                        # code...
+                        $syahadah = '1';
+                        $hasil_syahadah = 'BERSYAHADAH';
+                    }
                 }
             }else {
                 # code...
