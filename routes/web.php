@@ -376,7 +376,9 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     Route::post('/diklat-nilai-update',[NilaiCont::class,'update'])->name('diklat.nilai_update');
     Route::get('/diklat-nilai-edit/{id}',[NilaiCont::class,'edit'])->name('diklat.nilai_edit');
 
-    Route::get('/diklat-ijazah-depan-guru',[CetakCont::class, 'depan_guru'])->name('diklat.depan_guru'); 
+    Route::get('/diklat-ijazah-depan-guru',[CetakCont::class, 'depan_guru'])->name('diklat.depan_guru');
+    Route::get('/diklat-ijazah-depan-guru-lama',[CetakCont::class, 'depan_guru_lama'])->name('diklat.depan_guru_lama');
+
     Route::get('/diklat-ijazah-belakang',[CetakCont::class, 'belakang'])->name('diklat.belakang');
     Route::get('/diklat-detail-ijazah-peserta',[CetakCont::class, 'detail_peserta'])->name('diklat.detail_peserta');
     Route::get('/diklat-ijazah-depan-santri',[CetakCont::class, 'depan_santri'])->name('diklat.depan_santri');
@@ -390,6 +392,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     Route::post('/pelatihan-cetak-depan-print-beberapa', [CetakCont::class, 'cetak_depan_beberapa'])->name('depan.cetak_beberapa');
     Route::post('/pelatihan-cetak-belakang-print-beberapa', [CetakCont::class, 'cetak_belakang_beberapa'])->name('belakang.cetak_beberapa');
     Route::post('/pelatihan-cetak-peserta-depan-versi-lama-beberapa',[CetakCont::class,'cetak_depan_lama_beberapa'])->name('depan.cetak_versi_lama_beberapa');
+    Route::post('/pelatihan-cetak-peserta-depan-versi-lama',[CetakCont::class,'cetak_depan_lama'])->name('depan.cetak_versi_lama');
     
     Route::post('/peserta-hapus-beberapa',[PesertaCont::class,'hapus_beberapa'])->name('peserta.hapus_beberapa');
 
@@ -495,6 +498,8 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     Route::post('/generate_qr_peserta',[CekController::class,'generate_qr_peserta']);
     // HAPUS SEMuA LEMBAGA CABANG
     Route::get('/hapus-lembaga/{cabang_id}',[LembagaCont::class,'hapus_semua']);
+
+    Route::get('/minta-modul/{pelatihan_id}',[PesertaCont::class,'minta_modul']);
 });
 
 Route::group(['middleware' => ['auth', 'CheckRole:bendahara']], function () {

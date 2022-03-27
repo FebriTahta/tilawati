@@ -49,17 +49,28 @@
             <tr>
                 <td>{{$item->id}}</td>
                 <td>{{$item->name}}</td>
-                <td>{{$item->alamat}}</td>
+                <td>{{$item->alamat}}
+                    @if ($item->kecamatan !== null)
+                        {{$item->kecamatan->nama}}
+                    @endif
+
+                    @if ($item->kelurahan !== null)
+                        {{$item->kelurahan->nama}}
+                    @endif
+                </td>
                 <td>
                     @if ($item->kabupaten !== null)
-                    {{$item->kabupaten->kota}}
+                    {{$item->kabupaten->nama}}
                     @else
                     -
                     @endif
                 </td>
                 <td>{{$item->telp}}</td>
                 <td>{{$item->tmptlahir}}</td>
-                <td>{{$item->tgllahir}}</td>
+                <td>
+                    {{-- {{$item->tgllahir}} --}}
+                    {{Carbon\Carbon::parse($item->tgllahir)->isoFormat('D MMMM Y')}}
+                </td>
                 <td>-</td>
                 <td>{{$item->jilid}}</td>
                 <td>{{$item->kriteria}}</td>

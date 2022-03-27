@@ -19,6 +19,56 @@
             NILAI
         @endslot
     @endcomponent
+    @if ($peserta->pelatihan->program->name == "munaqosyah santri")
+    <div class="row">
+        <div class="col-xl-6">
+            @component('common-tilawatipusat.dashboard-widget')
+                @slot('title')
+                    <?php
+                                    $lulus_tak='';
+                                    foreach ($peserta->nilai->where("kategori","al-qur'an") as $key => $value) {
+                                        # code...
+                                        $penil = App\Models\Penilaian::find($value->penilaian_id);
+                                        if ($value->nominal < $penil->min) {
+                                            # code...
+                                            $lulus_tak = $key+1;
+                                        }
+                                    }
+                    ?>
+                    
+                    <p><b> TOTAL NILAI </b></p> <b>UTAMA : {{ $rata1 }} & RATA-RATA : {{ $rata2 }}</b> &nbsp;&nbsp;
+                    @if ($lulus_tak > 0)
+                        <b class="badge badge-warning">BELUM BERSYAHADAH SEBAGIAN NILAI DIBAWAH STANDAR</b>
+                    @else
+                        @if ($rata1 > 69)
+                            <b class="badge badge-info">BERSYAHADAH</b>
+                        @else
+                            <b class="badge badge-warning">BELUM BERSYAHADAH</b>
+                        @endif
+                    @endif
+                @endslot
+                @slot('iconClass')
+                    mdi mdi-tag-plus-outline
+                @endslot
+                @slot('price')
+                @endslot
+            @endcomponent
+        </div>
+        <div class="col-xl-6">
+            @component('common-tilawatipusat.dashboard-widget')
+                @slot('title')
+                    <p><b>{{ strtoupper($peserta->name) }}</b></p><b class="text-uppercase">
+                        {{ $peserta->pelatihan->program->name }}</b> &nbsp;&nbsp;
+                @endslot
+                @slot('iconClass')
+                    mdi mdi-tag-plus-outline
+                @endslot
+                @slot('price')
+                @endslot
+            @endcomponent
+        </div>
+    </div>
+    @else
     <div class="row">
         <div class="col-xl-6">
             @component('common-tilawatipusat.dashboard-widget')
@@ -67,6 +117,8 @@
             @endcomponent
         </div>
     </div>
+    @endif
+    
     <div class="row">
         <div class="col-lg-12">
             <form action="{{ route('diklat.nilai_update') }}" method="POST">@csrf

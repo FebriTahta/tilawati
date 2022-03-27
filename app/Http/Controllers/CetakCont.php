@@ -18,6 +18,13 @@ class CetakCont extends Controller
         return view('tilawatipusat.cetak.depan.index',compact('dt_pel','dt_pro'));
     }
 
+    public function depan_guru_lama()
+    {
+        $dt_pel = Pelatihan::all();
+        $dt_pro = Program::where('status',1)->get();
+        return view('tilawatipusat.cetak.depan.index2',compact('dt_pel','dt_pro'));
+    }
+
     public function belakang(){
         $dt_pel = Pelatihan::all();
         $dt_pro = Program::where('status',1)->get();
@@ -46,7 +53,7 @@ class CetakCont extends Controller
         $kabupaten  = substr($cabang, 5);
         $peserta    = Peserta::where('pelatihan_id', $id)->where('bersyahadah','1')->get();
         $customPaper = array(0,0,792,612);
-        if ($pelatihan->cabang->name == 'Cahaya Amanah' || $pelatihan->cabang->name == 'Tilawati Pusat') {
+        if ($pelatihan->cabang->name == 'Cahaya Amanah' || $pelatihan->cabang->name == 'Tilawati Pusat' || substr($pelatihan->cabang->name,0,3) == 'RPQ') {
             # code...
             $direktur   = "Dr. KH. Umar Jaeni, M.Pd";
             $jabatan    = "Direktur Eksekutif";
@@ -82,7 +89,8 @@ class CetakCont extends Controller
                 return Redirect::back()->withFail('Tidak ada Kepala Cabang yang terdaftar pada Cabang - '.$pelatihan->cabang->name.'');
             } else {
                 # code...
-                $direktur   = $pelatihan->cabang->kepala->name;
+                // $direktur   = $pelatihan->cabang->kepala->name;
+                $direktur   = $pelatihan->cabang->kepalacabang;
                 $pdf        = PDF::loadview('AdmPelatihan.Cetak.cetak_depan',compact('peserta','direktur','kepala','kabupaten','cabang','pelatihan'))->setPaper($customPaper, 'portrait');
                 return $pdf->download('ijazah-depan-peserta-_'.$pelatihan->name.'.pdf','I');
             }
@@ -165,6 +173,15 @@ class CetakCont extends Controller
         $peserta        = Peserta::whereIn('id',explode(",",$peserta_id_array))->where('kriteria','<>','')->get();
         $customPaper    = array(0,0,792,612);
         $pdf            = PDF::loadview('tilawatipusat.cetak.depan.lama',compact('peserta'))->setPaper($customPaper, 'portrait');
+        return $pdf->download('ijazah-depan-peserta-pdf.pdf','I');
+    }
+
+    public function cetak_depan_lama(Request $request)
+    {
+        $pelatihan_id   = $request->pelatihan_id;
+        $peserta        = Peserta::where('pelatihan_id', $pelatihan_id)->where('kriteria','<>','')->where('bersyahadah',1)->get();
+        $customPaper    = array(0,0,792,612);
+        $pdf            = PDF::loadview('tilawatipusat.cetak.depan.lama2',compact('peserta'))->setPaper($customPaper, 'portrait');
         return $pdf->download('ijazah-depan-peserta-pdf.pdf','I');
     }
 

@@ -43,26 +43,34 @@ class NilaiCont extends Controller
         $rata2  = $total;
         $syahadah;
         $hasil_syahadah;
-        if ($rata2 > 74) {
+        if ($total2 !== 0 || $total2 !== null) {
             # code...
-            if ($lulus_tak > 0) {
+            if ($rata2 > 74) {
+                # code...
+                if ($lulus_tak > 0) {
+                    # code...
+                    $syahadah = '0';
+                    $hasil_syahadah = 'BELUM BERSYAHADAH';
+                }else {
+                    # code...
+                    $syahadah = '1';
+                    $hasil_syahadah = 'BERSYAHADAH';
+                }
+                
+            } else {
                 # code...
                 $syahadah = '0';
                 $hasil_syahadah = 'BELUM BERSYAHADAH';
-            }else {
-                # code...
-                $syahadah = '1';
-                $hasil_syahadah = 'BERSYAHADAH';
             }
-            
-        } else {
+        }else {
             # code...
             $syahadah = '0';
             $hasil_syahadah = 'BELUM BERSYAHADAH';
         }
+        
         $pes = Peserta::where('id', $peserta_id)->first();
         $pro = $pes->program->name;
-
+        $krits = '';
         if ($pro == "standarisasi guru al qur'an level 1") {
             # code...
             $krits = "LULUS DIKLAT LEVEL 1 GURU AL QURAN METODE TILAWATI";
@@ -76,6 +84,12 @@ class NilaiCont extends Controller
             # code...
             $krits = "SEBAGAI GURU TAHFIDZ AL QURAN METODE TILAWATI";
         } elseif ( $pro =="diklat guru tahfidz"){
+            # code...
+            $krits = "LULUS DIKLAT LEVEL 1 GURU AL QURAN METODE TILAWATI";
+        }elseif ($pro == "pembinaan & munaqosyah ulang") {
+            # code...
+            $krits = "LULUS DIKLAT LEVEL 1 GURU AL QURAN METODE TILAWATI";
+        }else {
             # code...
             $krits = "LULUS DIKLAT LEVEL 1 GURU AL QURAN METODE TILAWATI";
         }
@@ -108,7 +122,7 @@ class NilaiCont extends Controller
         
 
         $peserta_id = $request->peserta_id;
-        
+        $lulus_tak='';
         // update nilai
         foreach ($request->nominal as $key => $value) {
             # code...
@@ -117,29 +131,97 @@ class NilaiCont extends Controller
                 Nilai::where('id',$request->id[$key])->where('penilaian_id',$request->penilaian_id[$key])->update(
                     ['nominal'=>$request->nominal[$key]]
                 );
+                $penil = Penilaian::find($request->penilaian_id[$key]);
+                if ($request->nominal[$key] < $penil->min) {
+                    # code...
+                    $lulus_tak = $key+1; 
+                }
             }
         }
+        
+
+        $krits = '';
+        $pes = Peserta::where('id', $peserta_id)->first();
+        $pro = $pes->program->name;
 
         // update keterangan bersyahadah
         $total  = Nilai::where('peserta_id',$peserta_id)->where("kategori","al-qur'an")->sum('nominal');
         $total2 = Nilai::where('peserta_id',$peserta_id)->where("kategori","skill")->sum('nominal');
         $total3 = Nilai::where('peserta_id',$peserta_id)->where("kategori","skill")->count();
         // $rata2  = ($total + $total2)/($total3+1);
-        $rata2  = $total;
+        $rata2  = $total; 
         $syahadah;
         $hasil_syahadah;
-        if ($rata2 > 74) {
+        
+        if ($pro =="munaqosyah santri") {
             # code...
-            $syahadah = '1';
-            $hasil_syahadah = 'BERSYAHADAH';
-        } else {
+            if ($total2 !== null) {
+                # code...
+                if ($rata2 > 69) {
+                    # code...
+                    if ($lulus_tak > 0) {
+                        # code...
+                        $syahadah = '0';
+                        $hasil_syahadah = 'BELUM BERSYAHADAH';
+                    }else {
+                        # code...
+                        $syahadah = '1';
+                        $hasil_syahadah = 'BERSYAHADAH';
+                    }
+
+                } else {
+                    # code...
+                    if ($lulus_tak > 0) {
+                    # code...
+                    $syahadah = '0';
+                    $hasil_syahadah = 'BELUM BERSYAHADAH';
+                    }else {
+                        # code...
+                        $syahadah = '1';
+                        $hasil_syahadah = 'BERSYAHADAH';
+                    }
+                }
+            }else {
+                # code...
+                $syahadah = '0';
+                $hasil_syahadah = 'BELUM BERSYAHADAH';
+            }
+        }else {
             # code...
-            $syahadah = '0';
-            $hasil_syahadah = 'BELUM BERSYAHADAH';
+            if ($total2 !== null) {
+                # code...
+                if ($rata2 > 74) {
+                    # code...
+                    if ($lulus_tak > 0) {
+                        # code...
+                        $syahadah = '0';
+                        $hasil_syahadah = 'BELUM BERSYAHADAH';
+                    }else {
+                        # code...
+                        $syahadah = '1';
+                        $hasil_syahadah = 'BERSYAHADAH';
+                    }
+                } else {
+                    # code...
+                    if ($lulus_tak > 0) {
+                        # code...
+                        $syahadah = '0';
+                        $hasil_syahadah = 'BELUM BERSYAHADAH';
+                    }else {
+                        # code...
+                        $syahadah = '1';
+                        $hasil_syahadah = 'BERSYAHADAH';
+                    }
+                }
+            }else {
+                # code...
+                $syahadah = '0';
+                $hasil_syahadah = 'BELUM BERSYAHADAH';
+            }
         }
+
         // $krit = $request->mykriteria;
-        $pes = Peserta::where('id', $peserta_id)->first();
-        $pro = $pes->program->name;
+        
 
         if ($pro == "standarisasi guru al qur'an level 1") {
             # code...
@@ -154,6 +236,12 @@ class NilaiCont extends Controller
             # code...
             $krits = "SEBAGAI GURU TAHFIDZ AL QURAN METODE TILAWATI";
         } elseif ( $pro =="diklat guru tahfidz"){
+            # code...
+            $krits = "LULUS DIKLAT LEVEL 1 GURU AL QURAN METODE TILAWATI";
+        }elseif ($pro == "pembinaan & munaqosyah ulang") {
+            # code...
+            $krits = "LULUS DIKLAT LEVEL 1 GURU AL QURAN METODE TILAWATI";
+        }else {
             # code...
             $krits = "LULUS DIKLAT LEVEL 1 GURU AL QURAN METODE TILAWATI";
         }

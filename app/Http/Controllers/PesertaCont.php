@@ -96,7 +96,7 @@ class PesertaCont extends Controller
 
                                         $ratax = ($total + $penilaian2 + $penilaian3)/3;
                                         $rata2 = $total;
-                                        if ($rata2 > 70) {
+                                        if ($rata2 > 70 && $data->bersyahadah > 0) {
                                             # code...
                                             return '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-info">'.round($rata2,1).' BERSYAHADAH '.$data->bersyahadah.'</a>';
                                         } else {
@@ -110,7 +110,7 @@ class PesertaCont extends Controller
 
                                         $ratax = ($total + $penilaian1 + $penilaian3)/3;
                                         $rata2 = $total;
-                                        if ($rata2 > 74) {
+                                        if ($rata2 > 74 && $data->bersyahadah > 0) {
                                             # code...
                                             return '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-info">'.round($rata2,1).' BERSYAHADAH</a>';
                                         } else {
@@ -125,7 +125,7 @@ class PesertaCont extends Controller
                                         
                                         $ratax = ($total + $total2)/($total3+1);
                                         $rata2 = $total;
-                                        if ($rata2 > 70) {
+                                        if ($rata2 > 70 && $data->bersyahadah > 0) {
                                             # code...
                                             return '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-info">'.round($rata2,1).' BERSYAHADAH</a>';
                                         } else {
@@ -133,7 +133,9 @@ class PesertaCont extends Controller
                                             return '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-warning">'.round($rata2,1).' BELUM BERSYAADAH</a>';
                                         }
                                     }
-                                } else {
+                                } 
+                                elseif ($data->pelatihan->program->name == 'munaqosyah santri') {
+                                    # code...
                                     # code...
                                     $total  = $data->nilai->where("kategori","al-qur'an")->sum('nominal');
                                     $total2 = $data->nilai->where("kategori","skill")->sum('nominal');
@@ -159,7 +161,44 @@ class PesertaCont extends Controller
                                         return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-warning">'.$rata2.' mengaji & '.$ratax.' rata-rata (belum bersyahadah)</a>';
                                     }else {
                                         # code...
-                                        if ($rata2 > 74) {
+                                        if ($rata2 > 69 && $data->bersyahadah > 0) {
+                                            # code...
+                                            return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-primary">'.$rata2.' mengaji & '.$ratax.' rata-rata (bersyahadah)</a>';
+                                        }
+                                        
+                                        else {
+                                            # code...
+                                            return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-warning">'.$rata2.' mengaji & '.$ratax.' rata-rata (belum bersyahadah)</a>';
+                                        }
+                                    }
+                                }
+                                else {
+                                    # code...
+                                    $total  = $data->nilai->where("kategori","al-qur'an")->sum('nominal');
+                                    $total2 = $data->nilai->where("kategori","skill")->sum('nominal');
+                                    $total3 = $data->nilai->where("kategori","skill")->count();
+                                    
+                                    // $rata2 = $data->nilai->sum('nominal');
+                                    $ratax = ($total + $total2)/($total3+1);
+                                    $rata2 = $total;
+
+                                    $lulus_tak='';
+                                    foreach ($data->nilai->where("kategori","al-qur'an") as $key => $value) {
+                                        # code...
+                                        $penil = Penilaian::find($value->penilaian_id);
+                                        if ($value->nominal < $penil->min) {
+                                            # code...
+                                            $lulus_tak = $key+1;
+                                        }
+                                    }
+
+
+                                    if ($lulus_tak > 0) {
+                                        # code...
+                                        return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-warning">'.$rata2.' mengaji & '.$ratax.' rata-rata (belum bersyahadah)</a>';
+                                    }else {
+                                        # code...
+                                        if ($rata2 > 74 && $data->bersyahadah > 0) {
                                             # code...
                                             return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-primary">'.$rata2.' mengaji & '.$ratax.' rata-rata (bersyahadah)</a>';
                                         }
@@ -2469,6 +2508,46 @@ class PesertaCont extends Controller
         $cabang = Cabang::find($cabang_id);
         $program= Program::find($program_id);
         return view('tilawatipusat.peserta.cabang_program',compct('cabang','program'));
+    }
+
+    public function minta_modul($pelatihan_id)
+    {
+        $pelatihan = Pelatihan::find($pelatihan_id);
+        $data = Peserta::where('pelatihan_id',$pelatihan_id)->where('bersyahadah',1)->where('alamatx',null)->get();
+        // SEND WA
+        foreach ($data as $key => $value) {
+            # code...
+            $curl = curl_init();
+                $token = "dyr07JcBSmVsb1YrVBTB2A5zNKor0BZ9krv2WnQsjWHG1CRhSktdqazkfuOSY9qh";
+                $datas = [
+                    'phone' => $value->telp,
+                    'message' => '*PENGIRIMAN SYAHADAH TILAWATI PUSAT - '.strtoupper($pelatihan->program->name).'*. *Yth. '.$value->name.'*.
+                    
+                    *PESAN*
+                    Dimohon Ustadz / Ustadzah menginformasikan untuk Alamat Pengiriman Syahadah / Ijazah paling lambat pada pukul 12 siang hari ini.
+                    
+                    *ALAMAT PENGIRIMAN*
+                    ...
+                    ',
+                    'secret' => false, // or true
+                    'priority' => false, // or true
+                ];
+                curl_setopt($curl, CURLOPT_HTTPHEADER,
+                    array(
+                        "Authorization: $token",
+                    )
+                );
+                curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
+                curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($datas));
+                curl_setopt($curl, CURLOPT_URL, "https://simo.wablas.com/api/send-message");
+                curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
+                curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+                $result = curl_exec($curl);
+                curl_close($curl);
+        }
+
+        return $data;
     }
 
 }
