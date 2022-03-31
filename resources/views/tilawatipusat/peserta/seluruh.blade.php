@@ -21,6 +21,11 @@
     @endcomponent
                     <div class="row">
                         <div class="col-xl-12 col-md-12">
+                            {{-- tes --}}
+                            <div class="card">
+                                <?php $peserta_diklat = App\Models\Peserta::where('pelatihan_id', 5469)->get();?>
+                                {{$peserta_diklat}}
+                            </div>
                             <div class="card">
                                 @if(Session::has('fail'))
                                     <div class="col-lg-12 alert alert-danger">
