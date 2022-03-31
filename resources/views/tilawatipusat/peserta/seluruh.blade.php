@@ -24,7 +24,7 @@
                             {{-- tes --}}
                             <div class="card">
                                 <?php $peserta_diklat = App\Models\Peserta::where('pelatihan_id', 5469)->where('qr', 1)->get();?>
-                                {{$peserta_diklat}}
+                                {{$peserta_diklat->count()}}
                             </div>
                             <div class="card">
                                 @if(Session::has('fail'))
