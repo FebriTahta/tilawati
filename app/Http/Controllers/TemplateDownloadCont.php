@@ -21,8 +21,8 @@ class TemplateDownloadCont extends Controller
         }else{
             $jenis  = $request->jenis;
             // return $jenis;
-            // return Excel::download(new TemplateDownloadExport($jenis),'template-'.$jenis.'.xlsx');
-            return $jenis;
+            return Excel::download(new TemplateDownloadExport($jenis),'template-'.$jenis.'.xlsx');
+            // return $jenis;
         }
     }
 }
