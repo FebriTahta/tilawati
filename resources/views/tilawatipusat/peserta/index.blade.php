@@ -135,7 +135,7 @@
                                 <?php $salah_kota = App\Models\Peserta::where('kabupaten_id', null)->where('pelatihan_id', $diklat->id)->get(); ?>
                                 <ul>
                                     @foreach ($salah_kota as $item)
-                                        <li>{{ $item->id.' - '.$item->name.' - '.$item->kota2}}</li>
+                                        <li>{{ $item->id.' - '.$item->name}}</li>
                                     @endforeach
                                 </ul>
                         </div>
