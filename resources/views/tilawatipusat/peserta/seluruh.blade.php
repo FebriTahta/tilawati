@@ -21,6 +21,8 @@
     @endcomponent
                     <div class="row">
                         <div class="col-xl-12 col-md-12">
+                            {{-- tes --}}
+                            {{--  --}}
                             <div class="card">
                                 @if(Session::has('fail'))
                                     <div class="col-lg-12 alert alert-danger">
