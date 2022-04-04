@@ -17,7 +17,7 @@
             <th>Suara dan Lagu</th>
             <th>MSM</th>
             <th>MS</th>
-            <th>PK</th>
+            <th>PK {{$jenis}}</th>
         </tr>
     </thead>
     <tbody>
