@@ -126,19 +126,20 @@
                         </div>
                     @endif
                     @if ($peserta_salah->where('kabupaten_id', null)->count() > 0)
-                        {{-- @if ($peserta_salah->where('kota2', null)->count() > 0)
+                        @if ($peserta_salah->where('kota2', null)->count() > 0)
                         <div class="col-lg-12 alert alert-danger">
                             <p>{{ $salah3 = $peserta_salah->where('kabupaten_id', null)->count() }} Peserta dengan
                                 kesalahan
-                                penulisan asal kabupaten / kota</p>
+                                penulisan asal kabupaten / kota 
+                            </p>
                                 <?php $salah_kota = App\Models\Peserta::where('kabupaten_id', null)->where('pelatihan_id', $diklat->id)->get(); ?>
                                 <ul>
                                     @foreach ($salah_kota as $item)
-                                        <li>{{ $item->id.' - '.$item->name}}</li>
+                                        <li>{{ $item->id.' - '.$item->name.' - '.$item->kota2}}</li>
                                     @endforeach
                                 </ul>
                         </div>
-                        @endif --}}
+                        @endif
                     @endif
                 </div>
                 <div class="card-body">
