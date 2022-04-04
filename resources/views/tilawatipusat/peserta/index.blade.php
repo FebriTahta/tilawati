@@ -126,6 +126,7 @@
                         </div>
                     @endif
                     @if ($peserta_salah->where('kabupaten_id', null)->count() > 0)
+                        @if ($peserta_salah->where('kota2', null)->count() > 0)
                         <div class="col-lg-12 alert alert-danger">
                             <p>{{ $salah3 = $peserta_salah->where('kabupaten_id', null)->count() }} Peserta dengan
                                 kesalahan
@@ -137,6 +138,7 @@
                                     @endforeach
                                 </ul>
                         </div>
+                        @endif
                     @endif
                 </div>
                 <div class="card-body">
