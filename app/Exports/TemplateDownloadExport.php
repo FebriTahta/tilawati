@@ -36,7 +36,7 @@ class TemplateDownloadExport implements FromView, ShouldAutoSize, WithColumnForm
         } elseif ($this->jenis == "munaqosyah santri") {
             # code...
             return view('tilawatipusat.template.muna_santri');
-        } elseif ($this->jenis == "diklat guru tahfidz") {
+        } elseif ($this->jenis == "diklat guru tahfidz") { 
             # code...
             return view('tilawatipusat.template.guru_tahfidz');
         } elseif($this->jenis == "diklat munaqisy lembaga") {
@@ -49,10 +49,10 @@ class TemplateDownloadExport implements FromView, ShouldAutoSize, WithColumnForm
             # code...
             return view('tilawatipusat.template.tot');
         }
-        else {
-            # code...
-            return view('tilawatipusat.template.tot');
-        }
+        // else {
+        //     # code...
+        //     return view('tilawatipusat.template.tot');
+        // }
     }
 
     public function columnFormats(): array
