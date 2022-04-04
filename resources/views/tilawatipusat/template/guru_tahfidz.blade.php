@@ -14,7 +14,7 @@
             <th>Tahfidz</th>
             <th>Tajwid</th>
             <th>Fashohah</th>
-            <th>Microteaching</th>
+            <th>Microteaching</th> 
         </tr>
     </thead>
     <tbody>
