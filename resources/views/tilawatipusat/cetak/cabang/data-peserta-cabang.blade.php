@@ -60,7 +60,7 @@
                 </td>
                 <td>
                     @if ($item->kabupaten !== null)
-                    {{substr($item->kabupaten->nama,0,4)}}
+                    {{substr($item->kabupaten->nama,4)}}
                     @else
                     - {{substr($item->kota2)}}
                     @endif
