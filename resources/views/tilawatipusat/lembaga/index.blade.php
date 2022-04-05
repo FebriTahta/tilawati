@@ -256,8 +256,11 @@
                                                         <option value="{{ $item->id }}">{{ $item->name }}</option>
                                                     @endforeach
                                                 </select> --}}
+                                                @if (auth()->user()->role == 'cabang')
                                                 <input type="hidden" name="cabang_id" id="cabang_id"
-                                                    value="{{ auth()->user()->cabang->id }}" required>
+                                                value="{{ auth()->user()->cabang->id }}" required>
+                                                @endif
+                                                
                                             </div>
                                             {{-- <div class="form-group col-sm-4">
                                                 <input type="hidden" class="form-control" name="kabupaten" id="kabupaten"
