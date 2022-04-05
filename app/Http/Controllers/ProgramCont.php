@@ -21,7 +21,8 @@ class ProgramCont extends Controller
     {
         if(request()->ajax())
         {
-            $data   = Program::with('penilaian')->where('status',1)->get();
+            // $data   = Program::with('penilaian')->where('status',1)->get();
+            $data   = Program::with('penilaian')->orderBy('status','asc')->get();
                 return DataTables::of($data)
                     ->addColumn('penilaian', function ($data) {
                         if ($data->penilaian->count()==0) {
@@ -55,6 +56,15 @@ class ProgramCont extends Controller
                                 
                             }
                             return implode(" - ", $x);
+                        }
+                    })
+                    ->addColumn('status', function ($data) {
+                        if ($data->status == 1) {
+                            # code...
+                            return 'diklat';
+                        }else {
+                            # code...
+                            return 'webinar';
                         }
                     })
                     ->addColumn('option', function ($data) {
@@ -99,7 +109,7 @@ class ProgramCont extends Controller
             [
                 'name' => $request->name,
                 'slug' => Str::slug($request->name),
-                'status' => 1,
+                'status' => $request->status,
             ]
         );
         return response()->json(

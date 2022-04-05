@@ -39,6 +39,7 @@
                                             <thead class="text-bold text-primary" style="text-transform: capitalize">
                                                 <tr>
                                                     <th>program</th>
+                                                    <th>status</th>
                                                     <th>penilaian</th>
                                                     <th>option</th>
                                                 </tr>
@@ -50,6 +51,7 @@
                                             <tfoot class="text-primary" style="text-transform: capitalize">
                                                 <tr>
                                                     <th>program</th>
+                                                    <th>status</th>
                                                     <th>penilaian</th>
                                                     <th>option</th>
                                                 </tr>
@@ -84,6 +86,13 @@
                                                             <div class="form-group">
                                                                 <label for="">Program</label>
                                                                 <input type="text" class="form-control text-capitalize" name="name" required>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="">Status</label>
+                                                                <select name="status" id="" class="form-control" required>
+                                                                    <option value="1">diklat</option>
+                                                                    <option value="2">webinar</option>
+                                                                </select>
                                                             </div>
                                                             <div class="form-group">
                                                                 <input type="submit" name="tambahP" id="tambahP" class="btn btn-info" value="Simpan" />
@@ -752,6 +761,10 @@
                     {
                     data:'name',
                     name:'name'
+                    },
+                    {
+                    data:'status',
+                    name:'status'
                     },
                     {
                     data:'penilaian',
