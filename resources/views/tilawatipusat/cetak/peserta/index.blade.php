@@ -22,7 +22,11 @@
                 <td>{{ strtoupper($item->name) }}</td>
                 <?php $date1 = \Carbon\Carbon::parse($item->pelatihan->tanggal)->isoFormat('D/M/Y')?>
                 <td>{{ $date1 }}</td>
-                <td>{{ strtoupper($item->program->name) }}</td>
+                <td> 
+                    @if ($item->program !== null)
+                    {{ strtoupper($item->program->name) }} 
+                    @endif
+                </td>
                 <td>{{ $item->alamat }}</td>
                 <td>
                     @if ($item->kabupaten == null)
