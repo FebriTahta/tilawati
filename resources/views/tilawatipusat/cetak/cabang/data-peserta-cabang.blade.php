@@ -60,9 +60,9 @@
                 </td>
                 <td>
                     @if ($item->kabupaten !== null)
-                    {{$item->kabupaten->nama}}
+                    {{substr($item->kabupaten->nama,0,4)}}
                     @else
-                    -
+                    - {{substr($item->kota2)}}
                     @endif
                 </td>
                 <td>{{$item->telp}}</td>
