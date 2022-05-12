@@ -41,7 +41,6 @@ class CekController extends Controller
         // );
         \QrCode::size(150)
                 ->format('png') ->generate('https://www.profile.tilawatipusat.com/'.$data->slug, public_path('images/'.$data->slug.'.png'));
-        return $data;
         return redirect()->back();
     }
 
