@@ -9,6 +9,7 @@ use App\Jobs\QRJob;
 use SimpleSoftwareIO\QrCode\Generator;
 use Excel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class CekController extends Controller
 {
@@ -24,7 +25,11 @@ class CekController extends Controller
     public function force_qr(Request $request)
     {
         // return $request->id;
-        $data = Peserta::where('id',$request->id)->first();
+        $data   = Peserta::where('id',$request->id)->first();
+        $diklat = Pelatihan::where('id', $request->pelatihan_id)->first();
+        
+        $slug   = Str::slug($data->name.'-'.$diklat->program->name.'-'.Carbon::parse($diklat->tanggal)->isoFormat('MMMM-D-Y').'-'.$diklat->cabang->name.'-'.$diklat->cabang->kabupaten->nama);
+        $data->update('slug', $slug);
         // $value::updateOrCreate(
         //     [
         //         'id'=> $request->id
@@ -33,8 +38,8 @@ class CekController extends Controller
         //         'slug'=> $value->name
         //     ]
         // );
-        // \QrCode::size(150)
-        //         ->format('png') ->generate('https://www.profile.tilawatipusat.com/'.$data->slug, public_path('images/'.$data->slug.'.png'));
+        \QrCode::size(150)
+                ->format('png') ->generate('https://www.profile.tilawatipusat.com/'.$data->slug, public_path('images/'.$data->slug.'.png'));
         return $data;
         return redirect()->back();
     }
