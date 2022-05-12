@@ -227,8 +227,9 @@ class DashboardController extends Controller
         $peserta = [];
         if ($request->type=='all') {
             $month = [01,02,03,04,05,06,07,8,9,10,11,12];
+            $date_now = date('Y');
             $monthNames = collect($month)->transform(function ($value) {
-                return \Carbon\Carbon::parse('2021-'.$value.'-01')->format('M');
+                return \Carbon\Carbon::parse($date_now.'-'.$value.'-01')->format('M');
             })->toArray();
             foreach ($month as $key => $value) {
                 // $peserta[] = Peserta::query()->with(array('pelatihan'=>function($query){
@@ -297,8 +298,9 @@ class DashboardController extends Controller
         $pel = [];
         if ($request->type=='all') {
             $month = [01,02,03,04,05,06,07,8,9,10,11,12];
+            $date_now = date('Y');
             $monthNames2 = collect($month)->transform(function ($value) {
-                return \Carbon\Carbon::parse('2021-'.$value.'-01')->format('M');
+                return \Carbon\Carbon::parse($date_now.'-'.$value.'-01')->format('M');
             })->toArray();
             foreach ($month as $key => $value) {
                 $pel[] = Pelatihan::where(\DB::raw("DATE_FORMAT(tanggal, '%m')"),$value)->count();
