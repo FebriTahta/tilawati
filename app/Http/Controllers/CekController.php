@@ -10,6 +10,7 @@ use SimpleSoftwareIO\QrCode\Generator;
 use Excel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Carbon\Carbon;
 
 class CekController extends Controller
 {
