@@ -857,6 +857,7 @@
                                     <div class="card-body">
                                         <div class="container-fluid text-center">
                                             <input type="text" id="id" name="id" required>
+                                            <input type="text" name="pelatihan_id" value="{{$pelatihan_id}}">
                                             <div class="text-center text-uppercase" style="margin-top: 10px">
                                                 <p class="text-danger">UBAH QR / GENERATE QR BARu</p>
                                             </div>
