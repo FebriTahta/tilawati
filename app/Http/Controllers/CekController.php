@@ -24,6 +24,14 @@ class CekController extends Controller
     public function force_qr(Request $request)
     {
         $value = Peserta::find($request->id)->first();
+        $value::updateOrCreate(
+            [
+                'id'=> $request->id
+            ],
+            [
+                'slug'=> $value->name
+            ]
+        );
         \QrCode::size(150)
                 ->format('png') ->generate('https://www.profile.tilawatipusat.com/'.$value->slug, public_path('images/'.$value->slug.'.png'));
         return $value->slug;
