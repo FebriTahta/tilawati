@@ -23,7 +23,7 @@ class CekController extends Controller
 
     public function force_qr(Request $request)
     {
-        $value = Peserta::find($request->id)->first();
+        $data = Peserta::find($request->id)->first();
         $value::updateOrCreate(
             [
                 'id'=> $request->id
@@ -33,8 +33,8 @@ class CekController extends Controller
             ]
         );
         \QrCode::size(150)
-                ->format('png') ->generate('https://www.profile.tilawatipusat.com/'.$value->slug, public_path('images/'.$value->slug.'.png'));
-        return $value->slug;
+                ->format('png') ->generate('https://www.profile.tilawatipusat.com/'.$data->slug, public_path('images/'.$data->slug.'.png'));
+        return $data->slug;
         return redirect()->back();
     }
 
