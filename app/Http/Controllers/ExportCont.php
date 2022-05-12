@@ -97,4 +97,9 @@ class ExportCont extends Controller
     {
         return Excel::download(new TemplateDiklatExport, 'template-level-1.xlsx');
     }
+
+    public function download_data_cabang()
+    {
+        return Excel::download(new CabangDataExport,'data-cabang-'.date('Y').'.xlsx');
+    }
 }

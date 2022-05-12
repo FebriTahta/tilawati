@@ -425,6 +425,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     Route::get('/export-template-kpa-data/{cabang_id}',[ExportCont::class,'export_template_kpa_cabang_data'])->name('exmport.template.kpa.cabang.data');
     Route::get('/export-template-lembaga',[ExportCont::class,'export_template_lembaga_cabang'])->name('export.template.lembaga.cabang');
     Route::get('/export-template-lembaga/{cabang_id}',[ExportCont::class,'export_template_lembaga_cabang_data'])->name('export.template.lembaga.cabang.data');
+    Route::get('/export-download-data-cabang',[ExportCont::class,'download_data_cabang']);
 
     Route::get('/kode-negara',[KodeAdminCont::class,'page_negara'])->name('negara');
     Route::get('/data-kode-negara',[KodeAdminCont::class,'data_negara'])->name('data_negara');

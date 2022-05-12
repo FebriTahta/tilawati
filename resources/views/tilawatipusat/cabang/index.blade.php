@@ -74,7 +74,7 @@
                         rpq</button> --}}
                     <button class="btn btn-sm btn-success mb-2 mr-1" style="width:130px " data-toggle="modal"
                         data-target=".bs-example-modal-tambah-cabang"><i class="mdi mdi-plus"></i> tambah cabang</button>
-                    <a href="/export-data-cabang"
+                    <a href="/export-download-data-cabang"
                         class="btn btn-sm btn-outline-warning mb-2 mr-1 text-uppercase" style="font-size: 12px "><i
                     class="mdi mdi-download"></i> Unduh Data Cabang</a>
                     <br>
