@@ -496,6 +496,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     //QR 
     Route::get('/cek-qr-code/{pelatihan_id}',[CekController::class,'cek_qr']);
     Route::post('/generate_qr_peserta',[CekController::class,'generate_qr_peserta']);
+    Route::post('/force_qr',[CekController::class,'force_qr']);
     // HAPUS SEMuA LEMBAGA CABANG
     Route::get('/hapus-lembaga/{cabang_id}',[LembagaCont::class,'hapus_semua']);
 
