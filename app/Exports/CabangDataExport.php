@@ -29,7 +29,7 @@ class CabangDataExport implements FromQuery, WithHeadings, ShouldAutoSize,  With
         
         if ($row->provinsi !== null) {
             # code...
-            $prov = substr($row->provinsi->nama,5);
+            $prov = substr($row->provinsi->nama);
         } else {
             # code...
             $prov = '-';
