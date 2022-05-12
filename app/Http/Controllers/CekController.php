@@ -26,6 +26,7 @@ class CekController extends Controller
         $value = Peserta::find($request->id)->first();
         \QrCode::size(150)
                 ->format('png') ->generate('https://www.profile.tilawatipusat.com/'.$value->slug, public_path('images/'.$value->slug.'.png'));
+        return $value->slug;
         return redirect()->back();
     }
 
