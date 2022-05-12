@@ -24,7 +24,7 @@ class CekController extends Controller
     public function force_qr(Request $request)
     {
         // return $request->id;
-        $data = Peserta::where('id',$request->id)->update(['slug' => "Updated Slug"]);
+        $data = Peserta::where('id',$request->id)->first();
         // $value::updateOrCreate(
         //     [
         //         'id'=> $request->id
