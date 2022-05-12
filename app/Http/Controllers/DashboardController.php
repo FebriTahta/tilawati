@@ -229,9 +229,10 @@ class DashboardController extends Controller
         if ($request->type=='all') {
             $month = [01,02,03,04,05,06,07,8,9,10,11,12];
             $monthNames = collect($month)->transform(function ($value) {
-                return \Carbon\Carbon::parse('2022-'.$value.'-01')->format('M');
+                return \Carbon\Carbon::parse(date('Y').'-'.$value.'-01')->format('M');
             })->toArray();
             foreach ($month as $key => $value) {
+                
                 $peserta[] = Peserta::where(\DB::raw("DATE_FORMAT(tanggal, '%m')"),$value)->count();
             }
             $respon=[
@@ -268,7 +269,7 @@ class DashboardController extends Controller
                 $start = strtotime("+1 month", $start);
             }
             $monthNames = collect($month)->transform(function ($value) {
-                return \Carbon\Carbon::parse('2022-'.$value.'-01')->format('M');
+                return \Carbon\Carbon::parse(date('Y').'-'.$value.'-01')->format('M');
             })->toArray();
             foreach ($month as $key => $value) {
                 $peserta[] = Peserta::where(\DB::raw("DATE_FORMAT(tanggal, '%m')"),$value)->count();
