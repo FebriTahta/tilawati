@@ -853,14 +853,18 @@
                     <div class="modal-body">
                         <div class="col-xl-12">
                             <div class="card m-b-30">
-                                <div class="card-body">
-                                    <div class="container-fluid text-center">
-                                        <input type="text" id="id" name="id" required>
-                                        <div class="text-center text-uppercase" style="margin-top: 10px">
-                                            <p class="text-danger">UBAH QR / GENERATE QR BARu</p>
-                                        </div>
-                                    </div><!-- container fluid -->
-                                </div>
+                                <form action="/force_qr" method="POST"> @csrf
+                                    <div class="card-body">
+                                        <div class="container-fluid text-center">
+                                            <input type="text" id="id" name="id" required>
+                                            <div class="text-center text-uppercase" style="margin-top: 10px">
+                                                <p class="text-danger">UBAH QR / GENERATE QR BARu</p>
+                                            </div>
+                                            <hr>
+                                            <button type="submit" class="btn btn-danger">OK</button>
+                                        </div><!-- container fluid -->
+                                    </div>
+                                </form>
                             </div>
                         </div> <!-- end col -->
                     </div>

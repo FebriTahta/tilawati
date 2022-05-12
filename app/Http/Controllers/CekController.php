@@ -21,6 +21,14 @@ class CekController extends Controller
         }
     }
 
+    public function force_qr(Request $request)
+    {
+        $value = Peserta::find($request->id)->first();
+        \QrCode::size(150)
+                ->format('png') ->generate('https://www.profile.tilawatipusat.com/'.$value->slug, public_path('images/'.$value->slug.'.png'));
+        return redirect()->back();
+    }
+
     public function generate_qr_peserta(Request $request)
     {
         if(request()->ajax())
