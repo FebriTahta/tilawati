@@ -6,6 +6,7 @@ use App\Exports\UserExport;
 use App\Exports\ExportDataPeserta;
 use App\Exports\TemplateTrainerCabangExport;
 use App\Exports\TemplateKpaCabangExport;
+use App\Exports\CabangDataExport;
 use App\Exports\ExportDataKPA;
 use App\Exports\LembagaDataExport;
 use App\Exports\ExportDataTrainer;
