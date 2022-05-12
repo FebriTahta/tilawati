@@ -26,11 +26,11 @@ class CekController extends Controller
     public function force_qr(Request $request)
     {
         // return $request->id;
-        // $diklat = Pelatihan::where('id', $request->pelatihan_id)->first();
+        $diklat = Pelatihan::where('id', $request->pelatihan_id)->first();
         $data   = Peserta::where('id',$request->id)->first();
-        // $slug   = Str::slug($data->name.'-'.$diklat->program->name.'-'.Carbon::parse($diklat->tanggal)->isoFormat('MMMM-D-Y').'-'.$diklat->cabang->name.'-'.$diklat->cabang->kabupaten->nama);
-        // $x = Peserta::where('id',$request->id)->update(['slug', 'woid']);
-        
+        $slug   = Str::slug($data->name.'-'.$diklat->program->name.'-'.Carbon::parse($diklat->tanggal)->isoFormat('MMMM-D-Y').'-'.$diklat->cabang->name.'-'.$diklat->cabang->kabupaten->nama);
+        $x = Peserta::where('id',$request->id)->update(['title' => $slug]);
+    
         // $value::updateOrCreate(
         //     [
         //         'id'=> $request->id
