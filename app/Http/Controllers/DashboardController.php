@@ -225,9 +225,9 @@ class DashboardController extends Controller
     public function dataForChart(Request $request)
     {
         $peserta = [];
+        $date_now = date('Y');
         if ($request->type=='all') {
             $month = [01,02,03,04,05,06,07,8,9,10,11,12];
-            $date_now = date('Y');
             $monthNames = collect($month)->transform(function ($value) {
                 return \Carbon\Carbon::parse($date_now.'-'.$value.'-01')->format('M');
             })->toArray();
@@ -296,9 +296,10 @@ class DashboardController extends Controller
     public function dataForChart2(Request $request)
     {           
         $pel = [];
+        $date_now = date('Y');
         if ($request->type=='all') {
             $month = [01,02,03,04,05,06,07,8,9,10,11,12];
-            $date_now = date('Y');
+            
             $monthNames2 = collect($month)->transform(function ($value) {
                 return \Carbon\Carbon::parse($date_now.'-'.$value.'-01')->format('M');
             })->toArray();
