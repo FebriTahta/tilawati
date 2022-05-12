@@ -68,4 +68,11 @@ class CabangDataExport implements FromQuery, WithHeadings, ShouldAutoSize,  With
             "TELP"
         ];
     }
+
+    public function columnFormats(): array
+    {
+        return [
+            'I' => NumberFormat::FORMAT_TEXT,            
+        ];
+    }
 }
