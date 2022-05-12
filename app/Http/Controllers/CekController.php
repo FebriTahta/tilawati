@@ -27,9 +27,10 @@ class CekController extends Controller
     {
         // return $request->id;
         $diklat = Pelatihan::where('id', $request->pelatihan_id)->first();
+        $data   = Peserta::where('id',$request->id)->first();
         $slug   = Str::slug($data->name.'-'.$diklat->program->name.'-'.Carbon::parse($diklat->tanggal)->isoFormat('MMMM-D-Y').'-'.$diklat->cabang->name.'-'.$diklat->cabang->kabupaten->nama);
         Peserta::where('id',$request->id)->update('slug', $slug);
-        $data   = Peserta::where('id',$request->id)->first();
+        
         // $value::updateOrCreate(
         //     [
         //         'id'=> $request->id
