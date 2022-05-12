@@ -273,7 +273,7 @@ class DashboardController extends Controller
                 $start = strtotime("+1 month", $start);
             }
             $monthNames = collect($month)->transform(function ($value) {
-                return \Carbon\Carbon::parse('2021-'.$value.'-01')->format('M');
+                return \Carbon\Carbon::parse($date_now.'-'.$value.'-01')->format('M');
             })->toArray();
             foreach ($month as $key => $value) {
                 $peserta[] = Peserta::where(\DB::raw("DATE_FORMAT(tanggal, '%m')"),$value)->count();
@@ -339,7 +339,7 @@ class DashboardController extends Controller
                  $start = strtotime("+1 month", $start);
              }
              $monthNames2 = collect($month)->transform(function ($value) {
-                 return \Carbon\Carbon::parse('2021-'.$value.'-01')->format('M');
+                 return \Carbon\Carbon::parse($date_now.'-'.$value.'-01')->format('M');
              })->toArray();
              foreach ($month as $key => $value) {
                  $pel[] = Pelatihan::where(\DB::raw("DATE_FORMAT(tanggal, '%m')"),$value)->count();
