@@ -209,6 +209,7 @@ class CabangCont extends Controller
             }else{
                 $data   = Cabang::orderBy('created_at','DESC')->with('provinsi','kabupaten','kpa','trainer');
                 return DataTables::of($data)
+                
                 ->addColumn('provinsi', function ($data) {
                     if ($data->provinsi == null) {
                         # code...
@@ -769,6 +770,22 @@ class CabangCont extends Controller
               'message' => 'Cabang Berhasil Dihapus!'
             ]
         );
+    }
+
+    public function urut_cabang(Request $request)
+    {
+        $data = Cabang::orderBy('created_at','asc')->get();
+       
+        foreach ($data as $key => $value) {
+            # code...
+            $value->update(
+                [
+                    'kode' => $key+1
+                ]
+            );
+        }
+
+        return redirect()->back();
     }
     
 }

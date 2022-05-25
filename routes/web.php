@@ -58,6 +58,7 @@ Route::get('/', function () {
     return redirect('/login');
     // return view('maintenance');
 });
+Route::get('/urut-cabang',[CabangCont::class,'urut_cabang']);
 Route::post('/download-template',[TemplateDownloadCont::class,'download_template'])->name('download.template');
 
 Route::get('/e-certificate/{slug_diklat}',[LandingCont::class,'ecertificate']);
