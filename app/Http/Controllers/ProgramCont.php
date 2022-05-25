@@ -71,7 +71,7 @@ class ProgramCont extends Controller
                         $btn = ' <button class="btn btn-sm btn-primary" data-toggle="modal" data-target=".bs-example-modal-kategori"
                         data-id="'.$data->id.'"><i class="fa fa-plus"></i> kategori</button>';
                         $btn .= ' <button class="btn btn-sm btn-warning" data-toggle="modal" data-target=".bs-example-modal-program-update"
-                        data-id="'.$data->id.'" data-name="'.$data->name.'"><i class="mdi mdi-pencil-outline"></i></button>';
+                        data-id="'.$data->id.'" data-name="'.$data->name.'" data-status="'.$data->status.'"><i class="mdi mdi-pencil-outline"></i></button>';
                         $btn .= ' <button class="btn btn-sm btn-danger" data-toggle="modal" data-target=".bs-example-modal-program-hapus"
                         data-id="'.$data->id.'"><i class="fa fa-trash"></i> </button>';
                         return $btn;

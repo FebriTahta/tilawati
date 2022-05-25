@@ -167,6 +167,9 @@
                                                             <div class="form-group">
                                                                 <input type="text" name="name" class="form-control" id="name" required>
                                                             </div>
+                                                            <div class="form-group">
+                                                                <input type="text" name="status" class="form-control" id="status" required>
+                                                            </div>
                                                             <div class="row">
                                                                 <div class="form-group col-6 col-xl-6">
                                                                     <input type="submit" name="update" id="updateP" class="btn btn-warning" value="Update" />
