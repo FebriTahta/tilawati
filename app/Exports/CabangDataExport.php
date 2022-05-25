@@ -44,6 +44,7 @@ class CabangDataExport implements FromQuery, WithHeadings, ShouldAutoSize,  With
         }
 
         return [
+            $row->kode,
             strtoupper($row->name),
             strtoupper($row->status),
             $prov,
@@ -58,6 +59,7 @@ class CabangDataExport implements FromQuery, WithHeadings, ShouldAutoSize,  With
 
     public function headings(): array{
         return [
+            "KODE",
             "NAMA CABANG",
             "STATUS",
             "PROVINSI",
