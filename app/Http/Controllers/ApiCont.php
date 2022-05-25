@@ -11,7 +11,8 @@ class ApiCont extends Controller
 {
     public function daftar_cabang()
     {
-        $data = Cabang::join('kabupaten','cabangs.kabupaten_id','kabupaten.id')
+        $data = Cabang::orderBy('kode','ASC')
+        ->join('kabupaten','cabangs.kabupaten_id','kabupaten.id')
         ->select('name','status','nama','kepalacabang','alamat','telp')
         ->get();
 
