@@ -135,8 +135,7 @@ class CabangCont extends Controller
         {
             if(!empty($request->dari))
             {
-                $data   = Cabang::with('provinsi','kabupaten','kpa','trainer')->orderBy('id','desc')
-                ->whereBetween('created_at', array($request->dari, $request->sampai));
+                $data   = Cabang::orderBy('id','desc')->whereBetween('created_at', array($request->dari, $request->sampai))->with('provinsi','kabupaten','kpa','trainer');
                 return DataTables::of($data)
                 ->addColumn('provinsi', function ($data) {
                     return $data->provinsi->nama;
@@ -158,35 +157,15 @@ class CabangCont extends Controller
 
                     if ($data->trainer->count() > 0) {
                         # code...
-                        // $trainers = Trainer::where('cabang_id', $data->id)
-                        //         ->select('trainer')->distinct()->get();
-
-                        // $trains=[ ];
-                        // foreach ($trainers as $key => $value) {
-                        //     # code...
-                        //     $tot_train = Trainer::where('cabang_id', $data->id)->where('trainer',$value->trainer)->count();
-                        //     $trains[] =  $value->trainer.' - '.$tot_train;
-                        // }
-                        // return implode(' | ', $trains);
-                        // return Trainer::where('cabang_id', $data->id)->where('trainer',$value->trainer)->count().' TRAINER';
+                        
                         return '<a href="#" data-toggle="modal" data-target="#modaltrainer" data-cabang_id="'.$data->id.'">'.Trainer::where('cabang_id', $data->id)->count().' Trainer</a>';
                     } else {
                         # code...
                         return ' - ';
                     }
-                    // return Trainer::where('cabang_id', $data->id)->where('trainer',$value->trainer)->count().' TRAINER';
+                    
                 })
-                // ->addColumn('kepala', function($data){
-                //     if ($data->kepala !== null) {
-                //         # code...
-                //         $kepala ='<a href="#" data-toggle="modal"
-                //         data-target=".bs-example-modal-kepala-lembaga" data-kode="'.$data->kode.'">'. $data->kepala->name.'</a>';
-                //     }else{
-                //         $kepala = '<button class="btn btn-sm badge badge-danger" data-toggle="modal"
-                //         data-target=".bs-example-modal-kepala-lembaga" data-kode="'.$data->kode.'">Kosong</button>';
-                //     }
-                //     return $kepala;
-                // })
+               
                 ->addColumn('opsi', function ($data){
                     // $btn = '<a href="#" data-toggle="modal" data-target="#modal-cabang" data-name="'.$data->name.'" data-alamat="'.$data->alamat.'" class="btn btn-sm btn-outline-primary"><i class="fa fa-edit"></i> Update!</a>';
                     // $btn .= ' <a href="#" class="btn btn-sm btn-outline-danger" data-id="'.$data->id.'" data-user_id="'.$data->user_id.'" data-toggle="modal" data-target="#modal-hapus"><i class="fa fa-trash"></i></a>'; 
@@ -259,35 +238,10 @@ class CabangCont extends Controller
                 })
                 ->addColumn('trainers', function ($data) {
 
-                    // if ($data->trainer->count() > 0) {
-                    //     # code...
-                    //     $trainers = Trainer::where('cabang_id', $data->id)
-                    //             ->select('trainer')->distinct()->get();
-
-                    //     $trains=[ ];
-                    //     foreach ($trainers as $key => $value) {
-                    //         # code...
-                    //         $tot_train = Trainer::where('cabang_id', $data->id)->where('trainer',$value->trainer)->count();
-                    //         $trains[] =  $value->trainer.' - '.$tot_train;
-                    //     }
-                    //     return implode(' | ', $trains);
-                    // } else {
-                    //     # code...
-                    //     return ' - ';
-                    // }
+                    
                     if ($data->trainer->count() > 0) {
                         # code...
-                        // $trainers = Trainer::where('cabang_id', $data->id)
-                        //         ->select('trainer')->distinct()->get();
-
-                        // $trains=[ ];
-                        // foreach ($trainers as $key => $value) {
-                        //     # code...
-                        //     $tot_train = Trainer::where('cabang_id', $data->id)->where('trainer',$value->trainer)->count();
-                        //     $trains[] =  $value->trainer.' - '.$tot_train;
-                        // }
-                        // return implode(' | ', $trains);
-                        // return Trainer::where('cabang_id', $data->id)->where('trainer',$value->trainer)->count().' TRAINER';
+                       
                         return '<a href="#" data-download="/export-template-trainer-data/'.$data->id.'" data-toggle="modal" data-cabang_name="'.$data->name.'" data-target="#modaltrainer" data-cabang_id="'.$data->id.'">'.Trainer::where('cabang_id', $data->id)->count().' Trainer</a>';
                     } else {
                         # code...
@@ -302,17 +256,7 @@ class CabangCont extends Controller
                         return $data->kabupaten->nama;
                     }
                 })
-                // ->addColumn('kepala', function($data){
-                //     if ($data->kepala !== null) {
-                //         # code...
-                //         $kepala ='<a href="#" data-toggle="modal"
-                //         data-target=".bs-example-modal-kepala-lembaga" data-kode="'.$data->kode.'">'. $data->kepala->name.'</a>';
-                //     }else{
-                //         $kepala = '<button class="btn btn-sm badge badge-danger" data-toggle="modal"
-                //         data-target=".bs-example-modal-kepala-lembaga" data-kode="'.$data->kode.'">Kosong</button>';
-                //     }
-                //     return $kepala;
-                // })
+                
                 ->addColumn('opsi', function ($data){
                     // $btn = '<a href="#" data-toggle="modal" data-target="#modal-cabang" data-name="'.$data->name.'" data-alamat="'.$data->alamat.'" class="btn btn-sm btn-outline-primary"><i class="fa fa-edit"></i> Update!</a>';
                     // $btn .= ' <a href="#" class="btn btn-sm btn-outline-danger" data-id="'.$data->id.'" data-user_id="'.$data->user_id.'" data-toggle="modal" data-target="#modal-hapus"><i class="fa fa-trash"></i></a>'; 

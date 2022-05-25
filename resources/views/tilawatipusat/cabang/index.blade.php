@@ -90,6 +90,7 @@
                             style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
                             <thead class="text-bold text-primary" style="text-transform: uppercase; font-size: 10px">
                                 <tr>
+                                    <th>Kode</th>
                                     <th>Nama</th>
                                     <th>KEPALA</th>
                                     <th>PROVINSI</th>
@@ -111,6 +112,7 @@
 
                             <tfoot class="text-bold text-primary" style="text-transform: uppercase; font-size: 10px">
                                 <tr>
+                                    <th>Kode</th>
                                     <th>Nama</th>
                                     <th>KEPALA</th>
                                     <th>PROVINSI</th>
@@ -1269,7 +1271,12 @@
                 ajax: {
                     url: '{{ route('diklat.cabang_data') }}',
                 },
-                columns: [{
+                columns: [
+                    {
+                        data: 'kode',
+                        name: 'kode'
+                    },
+                    {
                         data: 'name',
                         name: 'name'
                     },
