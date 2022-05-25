@@ -168,7 +168,11 @@
                                                                 <input type="text" name="name" class="form-control" id="name" required>
                                                             </div>
                                                             <div class="form-group">
-                                                                <input type="text" name="status" class="form-control" id="status" required>
+                                                                <label for="">Status</label>
+                                                                <select name="status" id="" class="form-control" required>
+                                                                    <option value="1">diklat</option>
+                                                                    <option value="2">webinar</option>
+                                                                </select>
                                                             </div>
                                                             <div class="row">
                                                                 <div class="form-group col-6 col-xl-6">
