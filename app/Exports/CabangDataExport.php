@@ -18,7 +18,7 @@ class CabangDataExport implements FromQuery, WithHeadings, ShouldAutoSize,  With
 
     public function query(){
         return Cabang::query()
-            ->select('name','status','provinsi_id','kabupaten_id','kepalacabang','kadivre','teritorial','alamat','telp');
+            ->select('name','status','provinsi_id','kabupaten_id','kepalacabang','kadivre','teritorial','alamat','telp','kode');
     }
 
     /**

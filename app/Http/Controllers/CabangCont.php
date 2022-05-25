@@ -135,7 +135,7 @@ class CabangCont extends Controller
         {
             if(!empty($request->dari))
             {
-                $data   = Cabang::orderBy('id','desc')->whereBetween('created_at', array($request->dari, $request->sampai))->with('provinsi','kabupaten','kpa','trainer');
+                $data   = Cabang::orderBy('created_at','desc')->whereBetween('created_at', array($request->dari, $request->sampai))->with('provinsi','kabupaten','kpa','trainer');
                 return DataTables::of($data)
                 ->addColumn('provinsi', function ($data) {
                     return $data->provinsi->nama;
@@ -207,7 +207,7 @@ class CabangCont extends Controller
                 ->rawColumns(['provinsi','kabupaten','total_kpa','trainer','opsi','tot_lembaga'])
                 ->make(true);
             }else{
-                $data   = Cabang::with('provinsi','kabupaten','kpa','trainer')->orderBy('id','desc');
+                $data   = Cabang::orderBy('id','desc')->whereBetween('created_at', array($request->dari, $request->sampai))->with('provinsi','kabupaten','kpa','trainer');
                 return DataTables::of($data)
                 ->addColumn('provinsi', function ($data) {
                     if ($data->provinsi == null) {
