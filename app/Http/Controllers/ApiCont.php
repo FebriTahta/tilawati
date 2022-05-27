@@ -14,7 +14,7 @@ class ApiCont extends Controller
         $data = Cabang::orderBy('kode','ASC')
         ->join('kabupaten','cabangs.kabupaten_id','kabupaten.id')
         ->select('name','status','nama','kepalacabang','alamat','telp')
-        ->get();
+        ->paginate(10);
 
         if($data)
         {
