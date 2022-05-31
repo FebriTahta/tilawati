@@ -18,7 +18,7 @@ class CabangDataExport implements FromQuery, WithHeadings, ShouldAutoSize,  With
 
     public function query(){
         return Cabang::query()
-            ->select('name','status','provinsi_id','kabupaten_id','kepalacabang','kadivre','teritorial','alamat','telp','kode','created_at')
+            ->select('name','status','provinsi_id','kabupaten_id','kepalacabang','kadivre','teritorial','alamat','telp','created_at')
             ->orderBy('created_at','ASC');
     }
 
@@ -45,7 +45,7 @@ class CabangDataExport implements FromQuery, WithHeadings, ShouldAutoSize,  With
         }
 
         return [
-            $row->kode,
+            // $row->kode,
             strtoupper($row->name),
             strtoupper($row->status),
             $prov,
@@ -60,7 +60,7 @@ class CabangDataExport implements FromQuery, WithHeadings, ShouldAutoSize,  With
 
     public function headings(): array{
         return [
-            "KODE",
+            // "KODE",
             "NAMA CABANG",
             "STATUS",
             "PROVINSI",
