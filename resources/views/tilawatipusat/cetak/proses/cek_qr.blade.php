@@ -115,30 +115,33 @@
 
                 </div>
             @endif
-            <form id="create_qr" method="POST" style="float: left"> @csrf
-                <input type="hidden" name="pelatihan_id2" id="pel_id" value="{{ $pelatihan_id }}">
-                <input type="submit" id="btnbuat" class="btn btn-primary" value="Generate Qr Code">
-            </form>
-            
-            
+            <div class="row">
+                <div class="col-xl-6" style="margin-top: 20px">
+                    <form action="{{ route('diklat.depan_cetak_syahadah') }}" method="POST" style="float: right">@csrf
+                        <input type="hidden" name="pelatihan_id" value="{{ $pelatihan_id }}">
+                        <div class="form-group" style="margin-right: 10px">
+                            <input type="submit" id="btncetak" class="btn btn-outline-primary" value="Cetak Syahadah Depan">
+                        </div>
+                    </form>
+                </div>
+                <div class="col-xl-6" style="margin-top: 20px">
+                    <form action="{{ route('depan.cetak_versi_lama') }}" method="POST" style="float: right">@csrf
+                        <input type="hidden" name="pelatihan_id" value="{{ $pelatihan_id }}">
+                        <div class="form-group" style="margin-right: 10px">
+                            <input type="submit" id="btncetak" class="btn btn-outline-info" value="Cetak Syahadah Depan Versi Lama">
+                        </div>
+                    </form>
+                </div>
+                <div class="col-xl-6" style="margin-top: 20px">
+                    <form id="create_qr" method="POST" style="float: left"> @csrf
+                        <input type="hidden" name="pelatihan_id2" id="pel_id" value="{{ $pelatihan_id }}">
+                        <input type="submit" id="btnbuat" class="btn btn-primary" value="Generate Qr Code">
+                    </form>    
+                </div>
+            </div>
         </div>
 
-        <div class="col-xl-6" style="margin-top: 20px">
-            <form action="{{ route('diklat.depan_cetak_syahadah') }}" method="POST" style="float: right">@csrf
-                <input type="hidden" name="pelatihan_id" value="{{ $pelatihan_id }}">
-                <div class="form-group" style="margin-right: 10px">
-                    <input type="submit" id="btncetak" class="btn btn-outline-primary" value="Cetak Syahadah Depan">
-                </div>
-            </form>
-        </div>
-        <div class="col-xl-6" style="margin-top: 20px">
-            <form action="{{ route('depan.cetak_versi_lama') }}" method="POST" style="float: right">@csrf
-                <input type="hidden" name="pelatihan_id" value="{{ $pelatihan_id }}">
-                <div class="form-group" style="margin-right: 10px">
-                    <input type="submit" id="btncetak" class="btn btn-outline-info" value="Cetak Syahadah Depan Versi Lama">
-                </div>
-            </form>
-        </div>
+        
     @endsection
 
     @section('script')
