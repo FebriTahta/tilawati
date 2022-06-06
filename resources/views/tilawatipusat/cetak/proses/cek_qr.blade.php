@@ -117,6 +117,12 @@
             @endif
             <div class="row">
                 <div class="col-xl-12" style="margin-top: 20px">
+                    <form id="create_qr" method="POST" style="float: right"> @csrf
+                        <input type="hidden" name="pelatihan_id2" id="pel_id" value="{{ $pelatihan_id }}">
+                        <input type="submit" id="btnbuat" class="btn btn-primary" value="Generate Qr Code">
+                    </form>    
+                </div>
+                <div class="col-xl-12" style="margin-top: 20px">
                     <form action="{{ route('diklat.depan_cetak_syahadah') }}" method="POST" style="float: right">@csrf
                         <input type="hidden" name="pelatihan_id" value="{{ $pelatihan_id }}">
                         <div class="form-group" style="margin-right: 10px">
@@ -132,12 +138,7 @@
                         </div>
                     </form>
                 </div>
-                <div class="col-xl-12" style="margin-top: 20px">
-                    <form id="create_qr" method="POST" style="float: left"> @csrf
-                        <input type="hidden" name="pelatihan_id2" id="pel_id" value="{{ $pelatihan_id }}">
-                        <input type="submit" id="btnbuat" class="btn btn-primary" value="Generate Qr Code">
-                    </form>    
-                </div>
+               
             </div>
         </div>
 
