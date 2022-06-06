@@ -202,6 +202,9 @@
                         <a href="/export-peserta-diklat/{{ $diklat->id }}"
                             class="text-right btn btn-sm mr-1 mb-1 btn-outline-warning"><i class="fa fa-download"></i>
                             download data peserta</a>
+                        {{-- <a href="/reset-status-qr/{{ $diklat->id }}"
+                            class="text-right btn btn-sm mr-1 mb-1 btn-outline-warning"><i class="fa fa-cross"></i>
+                            Reset QR</a> --}}
                     @endif
 
                     <button class="text-right btn btn-sm mr-1 mb-1 btn-outline-danger" id="hapus_all"><i
