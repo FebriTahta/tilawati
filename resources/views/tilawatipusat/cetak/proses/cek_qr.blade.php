@@ -142,7 +142,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 
 
-        <script>
+        <script> 
             $('#create_qr').submit(function(e) {
                 e.preventDefault();
                 var formData = new FormData(this);

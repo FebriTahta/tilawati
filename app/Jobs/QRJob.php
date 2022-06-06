@@ -31,9 +31,10 @@ class QRJob implements ShouldQueue
      */
     public function handle()
     {
-            $this->value->update(['qr'=>'1']);
-                \QrCode::size(150)
-                ->format('png') ->generate('https://www.profile.tilawatipusat.com/'.$this->value->slug, public_path('images/'.$this->value->slug.'.png'));
+        set_time_limit(0);
+        $this->value->update(['qr'=>'1']);
+            \QrCode::size(150)
+        ->format('png') ->generate('https://www.profile.tilawatipusat.com/'.$this->value->slug, public_path('images/'.$this->value->slug.'.png'));
     }
 
     

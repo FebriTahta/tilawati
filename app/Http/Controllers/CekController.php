@@ -38,6 +38,7 @@ class CekController extends Controller
     {
         if(request()->ajax())
         {
+            set_time_limit(0);
             // $data = Peserta::where('pelatihan_id', $pelatihan_id)->where('bersyahadah',1)->get();
             // foreach ($data as $key => $value) {
             //     # code...
