@@ -71,10 +71,10 @@ class CekController extends Controller
             ->chunk(1, function($pesertass) {
                 foreach ($pesertass as $value) {
                     // apply some action to the chunked results here
-                    // $value->update(['qr'=>'1']);
-                    // \QrCode::size(150)
-                    // ->format('png') ->generate('https://www.profile.tilawatipusat.com/'.$value->slug, public_path('images/'.$value->slug.'.png'));
-                    QRJob::dispatch($value);
+                    $value->update(['qr'=>'1']);
+                    \QrCode::size(150)
+                    ->format('png') ->generate('https://www.profile.tilawatipusat.com/'.$value->slug, public_path('images/'.$value->slug.'.png'));
+                    // QRJob::dispatch($value);
                 }
             });
 
