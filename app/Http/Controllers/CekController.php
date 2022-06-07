@@ -78,7 +78,7 @@ class CekController extends Controller
                 }
             });
 
-            return redirect()->back();
+            // return redirect()->back();
             // return response()->json($pelatihan_id,200);
     }
 
