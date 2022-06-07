@@ -78,8 +78,8 @@ class CekController extends Controller
                 }
             });
 
-            
-            return response()->json($pelatihan_id,200);
+            return redirect()->back();
+            // return response()->json($pelatihan_id,200);
     }
 
     public function reset_stat_qr()
