@@ -37,35 +37,9 @@ class CekController extends Controller
 
     public function generate_qr_peserta(Request $request)
     {
-        if(request()->ajax())
-        {
-            set_time_limit(0);
-            // $data = Peserta::where('pelatihan_id', $pelatihan_id)->where('bersyahadah',1)->get();
-            // foreach ($data as $key => $value) {
-            //     # code...
-            //     $value->update(['qr'=>'1']);
-            //     \QrCode::size(150)
-            //     ->format('png') ->generate('https://www.profile.tilawatipusat.com/'.$value->slug, public_path('images/'.$value->slug.'.png'));
-            // }
-            // $datas = $data->count();
-            // return response()->json($datas,200);
-            // $data = new GenerateQrPeserta($pelatihan_id);
-            // new GenerateQrPeserta($pelatihan_id);
-
-            // $jobs = new GenerateQrPeserta($pelatihan_id);
-            // GenerateQrPeserta::dispatch($pelatihan_id)->beforeCommit();
-            // $this->dispatch($jobs);
-            // dispatch(new QRJob($pelatihan_id));
-            // $pelatihan_id = $request->pel_id;
-            // $tes = new QRJob($pelatihan_id);
-            // $this->dispatch($tes);
-            // return response()->json('queue-start',200);
-            
-        }
-        // $pel = Pelatihan::where('id',$request->pel_id)->first();
-            set_time_limit(0);
+        
+            // set_time_limit(0);
             $pelatihan_id = $request->pelatihan_id2;
-            // $this->dispatch(new QRJob($pelatihan_id));
             $data = Peserta::where('pelatihan_id', $pelatihan_id)
             ->where('bersyahadah',1)
             ->chunk(1, function($pesertass) {
@@ -77,7 +51,6 @@ class CekController extends Controller
                     // QRJob::dispatch($value);
                 }
             });
-
             // return redirect()->back();
             // return response()->json($pelatihan_id,200);
     }

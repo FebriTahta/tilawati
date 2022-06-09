@@ -493,6 +493,9 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     Route::get('/export-template-diklat/{jenis}',[ExportCont::class,'export_template_diklat']);
     Route::get('/export-peserta-diklat/{pelatihan_id}',[ExportCont::class,'export_data_peserta']);
 
+    // EXPORT LEMBAGA SEARCH
+    Route::post('/export-lembaga-search-provinsi',[ExportCont::class,'export_lembaga_search_provinsi']);
+
     //IMPORT WITHOUT QUEUE & QR
     Route::post('/import-peserta-diklat2',[ImportController::class,'import_peserta_diklat2'])->name('import-peserta-diklat2');
     //QR 

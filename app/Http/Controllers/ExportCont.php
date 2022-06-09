@@ -15,8 +15,10 @@ use App\Exports\TemplateDiklatExport;
 use App\Exports\CabangExport;
 use App\Exports\CabangKpaExport;
 use App\Exports\PesertaPendaftaranExport;
+use App\Exports\LembagaDataExportSearchProvinsi;
 use App\Models\Pelatihan;
 use App\Models\Macamtrainer;
+use App\Models\Provinsi;
 use Excel;
 use Redirect;
 use Illuminate\Http\Request;
@@ -102,5 +104,12 @@ class ExportCont extends Controller
     public function download_data_cabang()
     {
         return Excel::download(new CabangDataExport,'data-cabang-'.date('Y').'.xlsx');
+    }
+
+    public function export_lembaga_search_provinsi(Request $request)
+    {
+        $provinsi_id = $request->prov_id;
+        $provinsi    = Provinsi::find($provinsi_id);
+        return Excel::download(new LembagaDataExportSearchProvinsi($provinsi_id),'Lembaga-'.$provinsi->nama.'.xlsx');
     }
 }

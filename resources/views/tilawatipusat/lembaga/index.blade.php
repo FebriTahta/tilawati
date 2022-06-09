@@ -52,25 +52,39 @@
                 @endcomponent
             </div>
         @endif
+    </div>
 
-        {{-- <div class="col-xl-4">
-                            @component('common-tilawatipusat.dashboard-widget')
-                            
-                                @slot('title') <b id="kb"> ??? </b> Kabupaten  @endslot
-                                @slot('iconClass') mdi mdi-city  @endslot
-                                @slot('price')   @endslot
-                                
-                            @endcomponent
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="prov"> Cari Berdasarkan Provinsi</label>
+                            <div class="row">
+                                <div class="col-md-9" style="margin-bottom: 10px">
+                                    <select name="prov" class="form-control" id="prov">
+                                        <option value=""></option>
+                                        @php
+                                            $prov = App\Models\Provinsi::all();
+                                        @endphp
+                                        @foreach ($prov as $item)
+                                            <option value="{{$item->id}}">{{$item->nama}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-md-3" style="margin-bottom: 10px">
+                                    <form action="/export-lembaga-search-provinsi" method="POST">@csrf
+                                        <input type="hidden" name="prov_id" id="prov_id">
+                                        <button type="submit" class="btn btn-outline-primary" style="min-width: 160px">Cetak Data</button>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-xl-4">
-                            @component('common-tilawatipusat.dashboard-widget')
-                            
-                                @slot('title') <b id="pv"> 2,456 </b>  Provinsi  @endslot
-                                @slot('iconClass') mdi mdi-city-variant-outline  @endslot
-                                @slot('price')  @endslot
-                                
-                            @endcomponent
-                        </div> --}}
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="row">
@@ -250,44 +264,14 @@
                                         </div>
                                         <div class="row">
                                             <div class="form-group col-sm-12">
-                                                {{-- <select name="cabang_id" id="cabang_id" class="form-control" required>
-                                                    <option value="">1. Cabang</option>
-                                                    @foreach ($cabang as $item)
-                                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
-                                                    @endforeach
-                                                </select> --}}
+                                                
                                                 @if (auth()->user()->role == 'cabang')
                                                 <input type="hidden" name="cabang_id" id="cabang_id"
                                                 value="{{ auth()->user()->cabang->id }}" required>
                                                 @endif
                                                 
                                             </div>
-                                            {{-- <div class="form-group col-sm-4">
-                                                <input type="hidden" class="form-control" name="kabupaten" id="kabupaten"
-                                                    readonly>
-                                                <input type="text" class="form-control" id="kabupaten_id"
-                                                    name="kabupaten_id" value="2. Kabupaten / Kota" readonly>
-                                                </div>
-                                            <div class="form-group col-sm-4">
-                                                
-                                                <select name="kabupaten_id" id="kabupaten_id" class="form-control"
-                                                    required>
-                                                    <option value=""><i class="text-danger">2. </i> Kabupaten</option>
-                                                    
-                                                </select>
-                                            </div>
-                                            <div class="form-group col-sm-4">
-                                                <select name="kecamatan_id" id="kecamatan_id" class="form-control"
-                                                    required>
-                                                    <option value=""><i class="text-danger">3. </i> Kecamatan</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group col-sm-4">
-                                                <select name="kelurahan_id" id="kelurahan_id" class="form-control"
-                                                    required>
-                                                    <option value=""><i class="text-danger">4. </i> Kelurahan</option>
-                                                </select>
-                                            </div> --}}
+                                            
                                             <hr>
                                             <div class="form-group col-xl-6">
                                                 <label for=""><i class="text-danger">* </i>Nama Lembaga</label>
@@ -520,26 +504,7 @@
                                     <form method="POST" id="tambahlembaga2">@csrf
                                         <div class="row">
                                             <input type="hidden" name="kabupaten_id" id="kab">
-                                            {{-- <div class="form-group col-xl-6">
-                                                <select name="kabupaten_id" id="kab" class="form-control" id="" required>
-                                                    
-                                                    @foreach ($kb as $item)
-                                                        <option value="{{ $item->id }}">{{ $item->nama }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div> --}}
-                                            {{-- <div class="form-group col-sm-6">
-                                                <select name="kecamatan_id2" id="kecamatan_id2" class="form-control"
-                                                    required>
-                                                    <option value=""><i class="text-danger">3. </i> Kecamatan</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group col-sm-6">
-                                                <select name="kelurahan_id2" id="kelurahan_id2" class="form-control"
-                                                    required>
-                                                    <option value=""><i class="text-danger">4. </i> Kelurahan</option>
-                                                </select>
-                                            </div> --}}
+                                            
                                         </div>
                                         <div class="row">
                                             <input type="hidden" name="id" id="id">
@@ -718,9 +683,7 @@
                         $('#btnhapus').val('Ya, Hapus!');
                         $('.bs-example-modal-diklat-hapus').modal('hide');
                         $('#btnhapus').attr('disabled', false);
-                        // swal({ title: "Success!",
-                        //     text: "Diklat Berhasil Di Dihapus!",
-                        //     type: "success"})
+                        
                         $.ajax({
                             url: '{{ route('diklat.lembaga_nonaktif') }}',
                             type: 'get',
@@ -760,26 +723,6 @@
                                 console.log(data);
                             }
                         });
-
-                        // $.ajax({
-                        //     url:'{{ route('diklat.lembaga_kab') }}',
-                        //     type: 'get',
-                        //     dataType: 'json',
-                        //     success:function(data) {
-                        //         document.getElementById('kb').innerHTML = data;
-                        //         console.log(data);
-                        //     }
-                        // });
-
-                        // $.ajax({
-                        //     url:'{{ route('diklat.lembaga_pro') }}',
-                        //     type: 'get',
-                        //     dataType: 'json',
-                        //     success:function(data) {
-                        //         document.getElementById('pv').innerHTML = data;
-                        //         console.log(data);
-                        //     }
-                        // });
 
                         $.ajax({
                             url: '{{ route('diklat.lembaga_tot') }}',
@@ -834,11 +777,7 @@
                         $('#tambahlembaga_btn').val('Submit!');
                         $('.bs-example-modal-tambah-lembaga').modal('hide');
                         $('#tambahlembaga_btn').attr('disabled', false);
-                        // swal({
-                        //     title: "Success!",
-                        //     text: "Lembaga Baru Berhasil Di Tabahkan!",
-                        //     type: "success"
-                        // })
+                        
                     }
                 },
                 error: function(data) {
@@ -872,11 +811,7 @@
                         $('#btnsub').val('Submit!');
                         $('#modal-edit').modal('hide');
                         $('#btnsub').attr('disabled', false);
-                        // swal({
-                        //     title: "Success!",
-                        //     text: "Lembaga Baru Berhasil Di Tabahkan!",
-                        //     type: "success"
-                        // })
+                        
                     }
                 },
                 error: function(data) {
@@ -948,91 +883,7 @@
 
 
         $(document).ready(function() {
-            //trigger ajax untuk provinsi kabupaten kecamatan kelurahan
-            // $('select[name="cabang_id"]').on('change', function() {
-            //     //mencari kota/kab dari provinsi 3 tingkat
-            //     var cabang_id = $('#cabang_id').val();
-            //     console.log(cabang_id);
-            //     if (cabang_id) {
-            //         $.ajax({
-            //             url: '/fetch5/' + cabang_id,
-            //             type: "GET",
-            //             dataType: "json",
-            //             success: function(cb) {
-            //                 var p_id2 = cb.kabupaten_id;
-            //                 console.log('kabupaten' + p_id2);
-            //                 $("#kabupaten").val(p_id2);
-            //                 $.ajax({
-            //                     url: '/fetch7/' + p_id2,
-            //                     type: "GET",
-            //                     dataType: "json",
-            //                     success: function(dk) {
-            //                         var pid2 = dk.nama;
-            //                         var pid3 = dk.id;
-            //                         console.log('' + pid2);
-            //                         $("#kabupaten_id").val(pid2);
-            //                         $.ajax({
-            //                             url: '/fetch2/' + pid3,
-            //                             type: "GET",
-            //                             dataType: "json",
-            //                             success: function(dk) {
-            //                                 $('select[name="kecamatan_id"]')
-            //                                     .empty();
-            //                                 $.each(dk, function(key,
-            //                                     value) {
-            //                                     $('select[name="kecamatan_id"]')
-            //                                         .append(
-            //                                             '<option value="' +
-            //                                             key +
-            //                                             '">' +
-            //                                             value +
-            //                                             '</option>'
-            //                                         );
-            //                                 });
-            //                                 var x = $(
-            //                                     "#kecamatan_id option:selected"
-            //                                 ).val();
-            //                                 console.log('kecamatan_id' +
-            //                                     x);
-            //                                 $.ajax({
-            //                                     url: '/fetch3/' +
-            //                                         x,
-            //                                     type: "GET",
-            //                                     dataType: "json",
-            //                                     success: function(
-            //                                         city) {
-            //                                         $('select[name="kelurahan_id"]')
-            //                                             .empty();
-            //                                         $.each(city,
-            //                                             function(
-            //                                                 key,
-            //                                                 value
-            //                                             ) {
-            //                                                 $('select[name="kelurahan_id"]')
-            //                                                     .append(
-            //                                                         '<option value="' +
-            //                                                         key +
-            //                                                         '">' +
-            //                                                         value +
-            //                                                         '</option>'
-            //                                                     );
-            //                                             }
-            //                                         );
-            //                                         var y =
-            //                                             $(
-            //                                                 "#kelurahan_id option:selected"
-            //                                             )
-            //                                             .val();
-            //                                     }
-            //                                 });
-            //                             }
-            //                         });
-            //                     }
-            //                 });
-            //             }
-            //         });
-            //     }
-            // });
+            
 
             $('select[name="kabupaten_id"]').on('change', function() {
                 var kabupaten_id = $(this).val();
@@ -1057,43 +908,7 @@
                             // sini
 
 
-                            // console.log(kab);
-                            // if(kab) {
-                            // 	$.ajax({
-                            // 		url: '/fetch3/' + kab,
-                            // 		type: "GET",
-                            // 		dataType: "json",
-                            // 		success:function(data) {                      
-                            // 			$('select[name="kelurahan_id"]').empty();
-                            // 			$.each(data, function(key, value) {
-                            // 			$('select[name="kelurahan_id"]').append('<option value="'+ key +'">'+ value +'</option>');
-                            // 			});
-
-                            // 			var kel = $( "#kelurahan option:selected" ).val();
-                            // 			$.ajax({
-                            // 				url: '/nama_kelurahan/' + kel,
-                            // 				type: "GET",
-                            // 				dataType: "json",
-                            // 				success:function(data) {                      
-                            // 					console.log(data.nama);
-                            // 					document.getElementById("set_kelurahan").innerHTML = ", "+data.nama;
-                            // 				}
-                            // 			});
-
-                            // 		}
-                            // 	});
-                            // 	$.ajax({
-                            // 		url: '/nama_kecamatan/' + kab,
-                            // 		type: "GET",
-                            // 		dataType: "json",
-                            // 		success:function(data) {                      
-                            // 			console.log(data.nama);
-                            // 			document.getElementById("set_kecamatan").innerHTML = ", "+data.nama;
-                            // 		}
-                            // 	});
-                            // }else{
-                            // 	$('select[name="kelurahan_id"]').val("");
-                            // }
+                            
                         }
                     });
                 } else {
@@ -1275,25 +1090,6 @@
                 }
             });
 
-            // $.ajax({
-            //     url:'{{ route('diklat.lembaga_kab') }}',
-            //     type: 'get',
-            //     dataType: 'json',
-            //     success:function(data) {
-            //         document.getElementById('kb').innerHTML = data;
-            //         console.log(data);
-            //     }
-            // });
-
-            // $.ajax({
-            //     url:'{{ route('diklat.lembaga_pro') }}',
-            //     type: 'get',
-            //     dataType: 'json',
-            //     success:function(data) {
-            //         document.getElementById('pv').innerHTML = data;
-            //         console.log(data);
-            //     }
-            // });
 
             $.ajax({
                 url: '{{ route('diklat.lembaga_tot') }}',
@@ -1339,6 +1135,128 @@
                 ]
             });
 
+
+            // var prov = $('#prov').val();
+            $('#prov').on('change', function() {
+                var prov_id = this.value;
+                $('#prov_id').val(prov_id);
+                if (prov_id !== '') {
+                    $('#datatable-buttons').DataTable({
+                        //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
+                        destroy: true,
+                        ordering: false,
+                        processing: true,
+                        serverSide: true,
+                        ajax: {
+                            url: '{{ route('diklat.lembaga_data') }}',
+                            data: {
+                                prov_id:prov_id
+                            }
+                        },
+                        columns: [{
+                                data: 'name',
+                                name: 'name'
+                            },
+                            {
+                                data: 'kepalalembaga',
+                                name: 'kepalalembaga'
+                            },
+                            {
+                                data: 'telp',
+                                name: 'telp'
+                            },
+                            {
+                                data: 'kabupaten',
+                                name: 'kabupaten.nama'
+                            },
+                            {
+                                data: 'provinsi',
+                                name: 'provinsi.nama'
+                            },
+                            {
+                                data: 'jml_guru',
+                                name: 'jml_guru'
+                            },
+                            {
+                                data: 'jml_santri',
+                                name: 'jml_santri'
+                            },
+                            {
+                                data: 'alamat',
+                                name: 'alamat'
+                            },
+                            {
+                                data: 'pengelola',
+                                name: 'pengelola'
+                            },
+                            {
+                                data: 'statuss',
+                                name: 'statuss'
+                            },
+                            {
+                                data: 'opsi',
+                                name: 'opsi'
+                            },
+                        ]
+                    });
+                }else{
+                    $('#datatable-buttons').DataTable({
+                        //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
+                        destroy: true,
+                        ordering: false,
+                        processing: true,
+                        serverSide: true,
+                        ajax: {
+                            url: '{{ route('diklat.lembaga_data') }}',
+                        },
+                        columns: [{
+                                data: 'name',
+                                name: 'name'
+                            },
+                            {
+                                data: 'kepalalembaga',
+                                name: 'kepalalembaga'
+                            },
+                            {
+                                data: 'telp',
+                                name: 'telp'
+                            },
+                            {
+                                data: 'kabupaten',
+                                name: 'kabupaten.nama'
+                            },
+                            {
+                                data: 'provinsi',
+                                name: 'provinsi.nama'
+                            },
+                            {
+                                data: 'jml_guru',
+                                name: 'jml_guru'
+                            },
+                            {
+                                data: 'jml_santri',
+                                name: 'jml_santri'
+                            },
+                            {
+                                data: 'alamat',
+                                name: 'alamat'
+                            },
+                            {
+                                data: 'pengelola',
+                                name: 'pengelola'
+                            },
+                            {
+                                data: 'statuss',
+                                name: 'statuss'
+                            },
+                            {
+                                data: 'opsi',
+                                name: 'opsi'
+                            },
+                        ]
+                    });
+                }
+            })
 
             $('#datatable-buttons').DataTable({
                 //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization

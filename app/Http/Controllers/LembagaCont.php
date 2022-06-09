@@ -27,13 +27,7 @@ class lembagaCont extends Controller
         {
             $data   = Lembaga::where('cabang_id', $cabang_id);
             return DataTables::of($data)
-                // ->addColumn('kabupaten', function ($data) {
-                //     if ($data->kabupaten !== null) {
-                //         return substr($kabupaten = $data->kabupaten->nama,5);
-                //     }else{
-                //         return '<a href="#" data-toggle="modal" data-target="#addkota" data-id="'.$data->id.'" class="text-danger">kosong / salah penulisan </a>';
-                //     }
-                // })
+                
                 ->addColumn('statuss', function ($data) {
                     if ($data->status == 'Aktif' || $data->status == 'aktif') {
                         # code...
@@ -60,15 +54,7 @@ class lembagaCont extends Controller
                 $data   = Lembaga::orderBy('id','asc')->where('cabang_id', auth()->user()->cabang->id)->with(['kepala','provinsi','kabupaten']);
                 return DataTables::of($data)
                     ->addColumn('kepala', function($data){
-                        // if ($data->kepala == null) {
-                        //     # code...
-                        //     $kepala = '<button class="btn btn-sm badge badge-danger" data-toggle="modal"
-                        //     data-target=".bs-example-modal-kepala-lembaga" data-kode="'.$data->kode.'">Kosong</button>';
-                        // } else {
-                        //     # code...
-                        //     $kepala ='<a href="#" data-toggle="modal"
-                        //     data-target=".bs-example-modal-kepala-lembaga" data-kode="'.$data->kode.'">'. $data->kepala->name.'</a>';
-                        // }
+                        
                         $kepala = $data->kepalalembaga;
                         return $kepala;
                     })
@@ -107,55 +93,95 @@ class lembagaCont extends Controller
                 ->make(true);
             }else {
                 # code...
-                $data   = Lembaga::orderBy('tahunmasuk','desc')->with(['kepala','provinsi','kabupaten']);
-                return DataTables::of($data)
-                    ->addColumn('kepala', function($data){
-                        // if ($data->kepala == null) {
-                        //     # code...
-                        //     $kepala = '<button class="btn btn-sm badge badge-danger" data-toggle="modal"
-                        //     data-target=".bs-example-modal-kepala-lembaga" data-kode="'.$data->kode.'">Kosong</button>';
-                        // } else {
-                        //     # code...
-                        //     $kepala ='<a href="#" data-toggle="modal"
-                        //     data-target=".bs-example-modal-kepala-lembaga" data-kode="'.$data->kode.'">'. $data->kepala->name.'</a>';
-                        // }
-                        $kepala = $data->kepalalembaga;
-                        return $kepala;
-                    })
-                    ->addColumn('kabupaten', function ($data) {
-                        if ($data->kabupaten !== null) {
-                            return substr($kabupaten = $data->kabupaten->nama,5);
-                        }else{
-                            return '<a href="#" data-toggle="modal" data-target="#addkota" data-id="'.$data->id.'" class="text-danger">kosong / salah penulisan </a>';
-                        }
-                    })
-                    ->addColumn('provinsi', function ($data) {
-                        if ($data->provinsi !== null) {
-                            return $provinsi = $data->provinsi->nama;
-                        }else{
-                            return "-";
-                        }
-                    })
-                    ->addColumn('statuss', function ($data) {
-                        if ($data->status == 'Aktif' || $data->status == 'aktif') {
-                            # code...
-                            $btn = '<span class="badge badge-success btn text-white">Aktif</span>';
-                            return $btn;
-                        } else {
-                            # code...
-                            $btn = '<span class="badge badge-danger btn text-white">Non Aktif</span>';
-                            return $btn;
-                        }
+                if(!empty($request->prov_id))
+                {
+                    # code...
+                    $data   = Lembaga::orderBy('tahunmasuk','desc')->where('provinsi_id', $request->prov_id)->with(['kepala','provinsi','kabupaten']);
+                    return DataTables::of($data)
+                        ->addColumn('kepala', function($data){
                         
-                    })
-                    ->addColumn('opsi', function ($data) {
-                        $btn = '<a href="#" data-toggle="modal" data-id="'.$data->id.'" data-target="#modal-hapus" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i></a>';
-                        $btn .= ' <a href="#" data-toggle="modal" data-id="'.$data->id.'" data-name="'.$data->name.'" data-kepala="'.$data->kepalalembaga.'" data-telp="'.$data->telp.'" data-kab="'.$data->kabupaten_id.'" data-guru="'.$data->jml_guru.'" data-santri="'.$data->jml_santri.'" data-alamat="'.$data->alamat.'" data-pengelola="'.$data->pengelola.'" data-status="'.$data->status.'" data-pos="'.$data->pos.'" data-email="'.$data->email.'" data-website="'.$data->website.'" data-jenjang="'.$data->jenjang_id.'" data-target="#modal-edit" class="btn btn-sm btn-outline-primary"><i class="fa fa-edit"></i></a>';
-                        return $btn;
+                            $kepala = $data->kepalalembaga;
+                            return $kepala;
+                        })
+                        ->addColumn('kabupaten', function ($data) {
+                            if ($data->kabupaten !== null) {
+                                return substr($kabupaten = $data->kabupaten->nama,5);
+                            }else{
+                                return '<a href="#" data-toggle="modal" data-target="#addkota" data-id="'.$data->id.'" class="text-danger">kosong / salah penulisan </a>';
+                            }
+                        })
+                        ->addColumn('provinsi', function ($data) {
+                            if ($data->provinsi !== null) {
+                                return $provinsi = $data->provinsi->nama;
+                            }else{
+                                return "-";
+                            }
+                        })
+                        ->addColumn('statuss', function ($data) {
+                            if ($data->status == 'Aktif' || $data->status == 'aktif') {
+                                # code...
+                                $btn = '<span class="badge badge-success btn text-white">Aktif</span>';
+                                return $btn;
+                            } else {
+                                # code...
+                                $btn = '<span class="badge badge-danger btn text-white">Non Aktif</span>';
+                                return $btn;
+                            }
+                            
+                        })
+                        ->addColumn('opsi', function ($data) {
+                            $btn = '<a href="#" data-toggle="modal" data-id="'.$data->id.'" data-target="#modal-hapus" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i></a>';
+                            $btn .= ' <a href="#" data-toggle="modal" data-id="'.$data->id.'" data-name="'.$data->name.'" data-kepala="'.$data->kepalalembaga.'" data-telp="'.$data->telp.'" data-kab="'.$data->kabupaten_id.'" data-guru="'.$data->jml_guru.'" data-santri="'.$data->jml_santri.'" data-alamat="'.$data->alamat.'" data-pengelola="'.$data->pengelola.'" data-status="'.$data->status.'" data-pos="'.$data->pos.'" data-email="'.$data->email.'" data-website="'.$data->website.'" data-jenjang="'.$data->jenjang_id.'" data-target="#modal-edit" class="btn btn-sm btn-outline-primary"><i class="fa fa-edit"></i></a>';
+                            return $btn;
+                            
+                        })
+                    ->rawColumns(['kepala','kabupaten','provinsi','statuss','opsi'])
+                    ->make(true);
+
+                }else {
+                    # code...
+                    $data   = Lembaga::orderBy('tahunmasuk','desc')->with(['kepala','provinsi','kabupaten']);
+                    return DataTables::of($data)
+                        ->addColumn('kepala', function($data){
                         
-                    })
-                ->rawColumns(['kepala','kabupaten','provinsi','statuss','opsi'])
-                ->make(true);
+                            $kepala = $data->kepalalembaga;
+                            return $kepala;
+                        })
+                        ->addColumn('kabupaten', function ($data) {
+                            if ($data->kabupaten !== null) {
+                                return substr($kabupaten = $data->kabupaten->nama,5);
+                            }else{
+                                return '<a href="#" data-toggle="modal" data-target="#addkota" data-id="'.$data->id.'" class="text-danger">kosong / salah penulisan </a>';
+                            }
+                        })
+                        ->addColumn('provinsi', function ($data) {
+                            if ($data->provinsi !== null) {
+                                return $provinsi = $data->provinsi->nama;
+                            }else{
+                                return "-";
+                            }
+                        })
+                        ->addColumn('statuss', function ($data) {
+                            if ($data->status == 'Aktif' || $data->status == 'aktif') {
+                                # code...
+                                $btn = '<span class="badge badge-success btn text-white">Aktif</span>';
+                                return $btn;
+                            } else {
+                                # code...
+                                $btn = '<span class="badge badge-danger btn text-white">Non Aktif</span>';
+                                return $btn;
+                            }
+                            
+                        })
+                        ->addColumn('opsi', function ($data) {
+                            $btn = '<a href="#" data-toggle="modal" data-id="'.$data->id.'" data-target="#modal-hapus" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i></a>';
+                            $btn .= ' <a href="#" data-toggle="modal" data-id="'.$data->id.'" data-name="'.$data->name.'" data-kepala="'.$data->kepalalembaga.'" data-telp="'.$data->telp.'" data-kab="'.$data->kabupaten_id.'" data-guru="'.$data->jml_guru.'" data-santri="'.$data->jml_santri.'" data-alamat="'.$data->alamat.'" data-pengelola="'.$data->pengelola.'" data-status="'.$data->status.'" data-pos="'.$data->pos.'" data-email="'.$data->email.'" data-website="'.$data->website.'" data-jenjang="'.$data->jenjang_id.'" data-target="#modal-edit" class="btn btn-sm btn-outline-primary"><i class="fa fa-edit"></i></a>';
+                            return $btn;
+                            
+                        })
+                    ->rawColumns(['kepala','kabupaten','provinsi','statuss','opsi'])
+                    ->make(true);
+                }
             }
             
         }
