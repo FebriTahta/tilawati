@@ -61,7 +61,13 @@
                         $num_char = 60;
                         if (strlen($item->alamat) > $num_char) {
                             # code...
-							$text = $item->alamat." ".substr($item->kabupaten->nama,5);
+                            if ($item->kabupaten !== null) {
+                                # code...
+                                $text = $item->alamat." ".substr($item->kabupaten->nama,5);
+                            }else {
+                                # code...
+                                $item->alamat;
+                            }
                         } else {
                             # code...
                             if ($item->kabupaten !== null) {
