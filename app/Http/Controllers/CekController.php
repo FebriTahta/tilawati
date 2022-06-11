@@ -39,39 +39,39 @@ class CekController extends Controller
     {
         
             // set_time_limit(0);
-            $pelatihan_id = $request->pelatihan_id2;
-            $data = Peserta::where('pelatihan_id', $pelatihan_id)
-            ->where('bersyahadah',1)
-            ->chunk(1, function($pesertass) {
-                foreach ($pesertass as $value) {
-                    // apply some action to the chunked results here
-                    $value->update(['qr'=>'1']);
-                    \QrCode::size(150)
-                    ->format('png') ->generate('https://www.profile.tilawatipusat.com/'.$value->slug, public_path('images/'.$value->slug.'.png'));
-                    // QRJob::dispatch($value);
-                }
-            });
-            // return redirect()->back();
+            // $pelatihan_id = $request->pelatihan_id2;
+            // $data = Peserta::where('pelatihan_id', $pelatihan_id)
+            // ->where('bersyahadah',1)
+            // ->chunk(1, function($pesertass) {
+            //     foreach ($pesertass as $value) {
+            //         // apply some action to the chunked results here
+            //         $value->update(['qr'=>'1']);
+            //         \QrCode::size(150)
+            //         ->format('png') ->generate('https://www.profile.tilawatipusat.com/'.$value->slug, public_path('images/'.$value->slug.'.png'));
+            //         // QRJob::dispatch($value);
+            //     }
+            // });
+            return redirect()->back();
             // return response()->json($pelatihan_id,200);
     }
 
     public function reset_stat_qr()
     {
         set_time_limit(0);
-            // $pelatihan_id = $request->pelatihan_id2;
-            // // $this->dispatch(new QRJob($pelatihan_id));
-            // $data = Peserta::where('pelatihan_id', $pelatihan_id)
-            // ->where('bersyahadah',1)
-            // ->chunk(1, function($pesertass) {
-            //     foreach ($pesertass as $value) {
-            //         // apply some action to the chunked results here
-            //         // $value->update(['qr'=>'1']);
-            //         // \QrCode::size(150)
-            //         // ->format('png') ->generate('https://www.profile.tilawatipusat.com/'.$value->slug, public_path('images/'.$value->slug.'.png'));
-            //         QRJob::dispatch($value);
-            //     }
-            // });
+            $pelatihan_id = $request->pelatihan_id2;
+            // $this->dispatch(new QRJob($pelatihan_id));
+            $data = Peserta::where('pelatihan_id', $pelatihan_id)
+            ->where('bersyahadah',1)
+            ->chunk(1, function($pesertass) {
+                foreach ($pesertass as $value) {
+                    // apply some action to the chunked results here
+                    // $value->update(['qr'=>'1']);
+                    // \QrCode::size(150)
+                    // ->format('png') ->generate('https://www.profile.tilawatipusat.com/'.$value->slug, public_path('images/'.$value->slug.'.png'));
+                    QRJob::dispatch($value);
+                }
+            });
 
-        return redirect()->back();
+        // return redirect()->back();
     }
 }
