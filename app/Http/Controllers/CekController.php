@@ -55,7 +55,7 @@ class CekController extends Controller
             // return response()->json($pelatihan_id,200);
     }
 
-    public function reset_stat_qr()
+    public function reset_stat_qr(Request $request)
     {
             set_time_limit(0);
             $pelatihan_id = $request->pelatihan_id2;
