@@ -114,7 +114,7 @@
                                 }
                             } else {
                                 # code...
-                                SUDAH KUBILANG TOLONG DIISI DENGAN BENAR.
+                                'SUDAH KUBILANG TOLONG DIISI DENGAN BENAR.';
                                 // if ($item->kecamatan !== null) {
                                 //     # code...
                                 //     $text = $item->alamat . ' ' . substr($item->kecamatan->nama, 0);
