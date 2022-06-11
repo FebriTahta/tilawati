@@ -114,13 +114,14 @@
                                 }
                             } else {
                                 # code...
-                                if ($item->kecamatan !== null) {
-                                    # code...
-                                    $text = $item->alamat . ' ' . substr($item->kecamatan->nama, 0);
-                                } else {
-                                    # code...
-                                    $text = $item->alamat;
-                                }
+                                SUDAH KUBILANG TOLONG DIISI DENGAN BENAR.
+                                // if ($item->kecamatan !== null) {
+                                //     # code...
+                                //     $text = $item->alamat . ' ' . substr($item->kecamatan->nama, 0);
+                                // } else {
+                                //     # code...
+                                //     $text = $item->alamat;
+                                // }
                             }
                         }
                         
