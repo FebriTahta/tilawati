@@ -117,8 +117,8 @@
             @endif
             <div class="row">
                 <div class="col-xl-12" style="margin-top: 20px">
-                    <form action="/generate_qr_peserta" method="POST" enctype="multipart/form-data">@csrf
-                    {{-- <form id="create_qr" method="POST" style="float: right"> @csrf --}}
+                    {{-- <form action="/generate_qr_peserta" method="POST" enctype="multipart/form-data">@csrf --}}
+                    <form id="create_qr" method="POST" style="float: right"> @csrf
                         <input type="hidden" name="pelatihan_id2" id="pel_id" value="{{ $pelatihan_id }}">
                         <input type="submit" id="btnbuat" class="btn btn-primary" value="Generate Qr Code">
                     </form>    
@@ -139,7 +139,13 @@
                         </div>
                     </form>
                 </div>
-               
+                <div class="col-xl-12">
+                    <form action="/reset-status-qr" method="POST" style="float: right"> @csrf
+                        <input type="hidden" name="pelatihan_id2" id="pel_id" value="{{ $pelatihan_id }}">
+                        <input type="submit" id="btnbuat" class="btn btn-danger" value="Reset Status QR">
+                    </form>  
+                </div>
+
             </div>
         </div>
 
