@@ -59,7 +59,8 @@
                     Total QR Code
                 @endslot
                 @slot('total')
-                    <span id="tot_qr"> </span> Qr Code
+                    {{-- <span id="tot_qr"> </span> Qr Code --}}
+                    <span>UNTUK SEMENTARA QR DI NON AKTIFKAN</span>
                 @endslot
                 @slot('chartId')
                 @endslot
@@ -120,7 +121,7 @@
                     {{-- <form action="/generate_qr_peserta" method="POST" enctype="multipart/form-data">@csrf --}}
                     <form id="create_qr" method="POST" style="float: right"> @csrf
                         <input type="hidden" name="pelatihan_id2" id="pel_id" value="{{ $pelatihan_id }}">
-                        <input type="submit" id="btnbuat" class="btn btn-primary" value="Generate Qr Code">
+                        <input type="submit" id="btnbuat" class="btn btn-primary" value="Generate Qr Code" disabled>
                     </form>    
                 </div>
                 <div class="col-xl-12" style="margin-top: 20px">
@@ -142,7 +143,7 @@
                 <div class="col-xl-12">
                     <form action="/reset-status-qr" method="POST" style="float: right"> @csrf
                         <input type="hidden" name="pelatihan_id2" id="pel_id" value="{{ $pelatihan_id }}">
-                        <input type="submit" id="btnbuat" class="btn btn-danger" value="Reset Status QR">
+                        <input type="submit" id="btnbuat" class="btn btn-danger" value="Reset Status QR" disabled>
                     </form>  
                 </div>
 
