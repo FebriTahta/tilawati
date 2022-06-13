@@ -35,11 +35,11 @@ class CekController extends Controller
         return redirect()->back();
     }
 
-    public function generate_qr_peserta(Request $request)
+    public function generate_qr_peserta($pelatihan_id,Request $request)
     {
         
             set_time_limit(0);
-            $pelatihan_id = $request->pelatihan_id2;
+            // $pelatihan_id = $request->pelatihan_id2;
             $data = Peserta::where('pelatihan_id', $pelatihan_id)
             ->where('bersyahadah',1)
             ->chunk(1, function($pesertass) {
