@@ -14,6 +14,8 @@ class QRJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
     public $value;
+    public $tries = 5;
+    public $timeout = 28900;
     /**
      * Create a new job instance.
      *
@@ -35,6 +37,11 @@ class QRJob implements ShouldQueue
         $this->value->update(['qr'=>'1']);
             \QrCode::size(150)
         ->format('png') ->generate('https://www.profile.tilawatipusat.com/'.$this->value->slug, public_path('images/'.$this->value->slug.'.png'));
+    }
+
+    public function retryUntil()
+    {
+        return now()->addSeconds(5);
     }
 
     
