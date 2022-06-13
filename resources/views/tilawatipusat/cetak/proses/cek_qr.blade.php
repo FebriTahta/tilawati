@@ -59,8 +59,8 @@
                     Total QR Code
                 @endslot
                 @slot('total')
-                    {{-- <span id="tot_qr"> </span> Qr Code --}}
-                    <span>Untuk sementara QR di Non Aktifkan</span>
+                    <span id="tot_qr"> </span> Qr Code
+                    {{-- <span>Untuk sementara QR di Non Aktifkan</span> --}}
                 @endslot
                 @slot('chartId')
                 @endslot
@@ -193,7 +193,7 @@
             });
         </script>
 
-        {{-- <script>
+        <script>
             var pelatihan_id = $('#pel_id').val();
             var total_peserta = $('#tot_pes').html();
             var total_qr = $('#tot_qr').html();
@@ -218,5 +218,5 @@
                 }, 1000);
 
             })
-        </script> --}}
+        </script>
     @endsection
