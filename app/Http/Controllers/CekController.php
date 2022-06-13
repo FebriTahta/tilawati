@@ -64,5 +64,7 @@ class CekController extends Controller
             ->update([
                 'qr'=>'0'
             ]);
+
+            return redirect()->back();
     }
 }
