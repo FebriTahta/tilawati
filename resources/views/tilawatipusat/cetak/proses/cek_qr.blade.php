@@ -60,7 +60,7 @@
                 @endslot
                 @slot('total')
                     {{-- <span id="tot_qr"> </span> Qr Code --}}
-                    <span>UNTUK SEMENTARA QR DI NON AKTIFKAN</span>
+                    <span>Untuk sementara QR di Non Aktifkan</span>
                 @endslot
                 @slot('chartId')
                 @endslot
