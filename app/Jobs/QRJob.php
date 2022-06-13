@@ -14,7 +14,7 @@ class QRJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
     public $value;
-    public $tries = 5;
+    public $tries = 100;
     /**
      * Create a new job instance.
      *
@@ -40,7 +40,7 @@ class QRJob implements ShouldQueue
 
     public function retryUntil()
     {
-        return now()->addSeconds(8);
+        return now()->addSeconds(10);
     }
 
     
