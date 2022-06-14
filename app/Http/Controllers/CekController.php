@@ -55,16 +55,15 @@ class CekController extends Controller
             // return response()->json($pelatihan_id,200);
     }
 
-    public function reset_stat_qr(Request $request)
+    public function reset_stat_qr(Request $request, $pelatihan_id)
     {
             set_time_limit(0);
-            $pelatihan_id = $request->pelatihan_id2;
+            // $pelatihan_id = $request->pelatihan_id2;
             $data = Peserta::where('pelatihan_id', $pelatihan_id)
             ->where('bersyahadah',1)
             ->update([
                 'qr'=>'0'
             ]);
-
-            return redirect()->back();
+            // return redirect()->back();
     }
 }

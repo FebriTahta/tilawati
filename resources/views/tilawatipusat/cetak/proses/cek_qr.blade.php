@@ -141,9 +141,10 @@
                     </form>
                 </div>
                 <div class="col-xl-12">
-                    <form action="/reset-status-qr" method="POST" style="float: right"> @csrf
+                    <form id="reset_qr" method="POST" style="float: right"> @csrf
+                    {{-- <form action="/reset-status-qr" method="POST" style="float: right"> @csrf --}}
                         <input type="hidden" name="pelatihan_id2" id="pel_id" value="{{ $pelatihan_id }}">
-                        <input type="submit" id="btnbuat" class="btn btn-danger" value="Reset Status QR" >
+                        <input type="submit" id="btnreset" class="btn btn-danger" value="Reset Status QR" >
                     </form>  
                 </div>
 
@@ -185,6 +186,36 @@
                             // oTable.fnDraw(false);
                             $('#btnbuat').attr('disabled', 'disabled');
                             $('#btnbuat').val('SELESAI');
+                        }
+                    },
+                    error: function(data) {
+                        console.log(data);
+                    }
+                });
+            });
+
+            $('#reset_qr').submit(function(e) {
+                e.preventDefault();
+                var formData = new FormData(this);
+                $.ajax({
+                    type: 'GET',
+                    url: "/reset-status-qr/"+pelatihan_id,
+                    data: formData,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    beforeSend: function() {
+                        $('#btnreset').attr('disabled', 'disabled');
+                        $('#btnreset').val('Reset QR Processing..');
+
+                    },
+                    success: function(data) {
+                        if (data.success) {
+                            // $("#tambahkriteria")[0].reset();
+                            // var oTable = $('#datatable-buttons').dataTable();
+                            // oTable.fnDraw(false);
+                            // $('#btnreset').attr('disabled', 'disabled');
+                            $('#btnreset').val('SELESAI');
                         }
                     },
                     error: function(data) {

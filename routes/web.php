@@ -502,7 +502,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     Route::get('/cek-qr-code/{pelatihan_id}',[CekController::class,'cek_qr']);
     Route::get('/generate_qr_peserta/{pelatihan_id}',[CekController::class,'generate_qr_peserta']);
     Route::post('/force_qr',[CekController::class,'force_qr']);
-    Route::post('/reset-status-qr',[CekController::class,'reset_stat_qr']);
+    Route::post('/reset-status-qr/{pelatihan_id}',[CekController::class,'reset_stat_qr']);
 
 
     // HAPUS SEMuA LEMBAGA CABANG
