@@ -59,11 +59,6 @@ Route::get('/', function () {
     // return view('maintenance');
 });
 
-Route::get('/login', function () {
-    return redirect()->away('https://admin.nurulfalah.org/login');
-    // return view('maintenance');
-});
-
 Route::get('/urut-cabang',[CabangCont::class,'urut_cabang']);
 Route::post('/download-template',[TemplateDownloadCont::class,'download_template'])->name('download.template');
 

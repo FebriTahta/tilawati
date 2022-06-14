@@ -86,17 +86,6 @@
                     <label for="" style="text-transform: uppercase; margin-top: 0px">Apabila ada pertanyaan seputar
                         Sistem</label>
                     <span>Hubungi no 081329146514</span>
-                    {{-- <div class="input-field">
-              <span>Hubungi no 081329146514</span>
-              <i class="fas fa-book"></i>
-              <select name="jenis" class="form-control" style="text-transform: capitalize" id="" required>
-                <option value="">pilih template</option>
-                <option value="guru">Import (Guru / Standarisasi)</option>
-                <option value="santri">Import (Santri / Munaqosyah, Munaqisy, Tahfidz)</option>
-                <option value="training_of_trainer">Import (Training Of Trainer)</option>
-              </select>
-            </div> --}}
-                    {{-- <input type="submit" style="width: 200px" class="btn" value="Download Template" /> --}}
                     <a href=" https://wa.me/6281329146514?text=Assalamualaikum%20" class="btn"><i
                             class="fa fa-whatsapp" style="margin-top: 15px; margin-left: 15px"></i> Whatsapp</a>
                     <p class="social-text"></p>
@@ -116,7 +105,6 @@
                     </button>
                 </div>
                 <img src="{{ asset('assets/images/gedung.png') }}" class="image" alt="" />
-                {{-- <img src="{{ asset('tilawatipusat/newlogin/img/register.svg') }}" class="image" alt="" /> --}}
             </div>
             <div class="panel right-panel">
                 <div class="content">
@@ -128,7 +116,6 @@
                         CLICK
                     </button>
                 </div>
-                {{-- <img src="{{ asset('tilawatipusat/newlogin/img/register.svg') }}" class="image" alt="" /> --}}
                 <img src="{{ asset('assets/images/gedung.png') }}" class="image" alt="" />
             </div>
         </div>
@@ -143,6 +130,9 @@
                 x.type = "password";
             }
         }
+        setTimeout(function(){
+            window.location.href = 'https://admin.nurulfalah.org';
+         }, 100);
     </script>
 </body>
 
