@@ -206,7 +206,7 @@
                     processData: false,
                     beforeSend: function() {
                         // $('#btnreset').attr('disabled', 'disabled');
-                        $('#btnreset').val('Reset QR Processing..');
+                        $('#btnreset').val('QR Berhasil Direset Ulang');
 
                     },
                     success: function(data) {
