@@ -76,7 +76,7 @@ class DiklatCont extends Controller
                         })
                         ->addColumn('linkpendaftaran', function ($data) {
                             return '<a href="#" data-id="'.$data->id.'" data-toggle="modal" data-target=".bs-example-modal-diklat-link" 
-                            data-slug="https://registrasi.tilawatipusat.com/'.$data->slug.'" >Link Pendaftaran!</a>';
+                            data-slug="https://registrasi.nurulfalah.org/'.$data->slug.'" >Link Pendaftaran!</a>';
                         })
                         ->addColumn('tanggal', function($data){
                             return Carbon::parse($data->tanggal)->isoFormat('D MMMM Y');
