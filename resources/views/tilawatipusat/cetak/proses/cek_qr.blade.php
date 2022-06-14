@@ -235,7 +235,7 @@
                     // console.log(total_peserta);
                     if ($('#tot_qr').html() == total_peserta) {
                         $('#btnbuat').attr('disabled', 'disabled');
-                        $('#btnbuat').val('SELESAI');
+                        $('#btnbuat').val('Reset Status QR Lagi');
                     }
                     $.ajax({
                         url: '/cek-qr-code/' + pelatihan_id,
