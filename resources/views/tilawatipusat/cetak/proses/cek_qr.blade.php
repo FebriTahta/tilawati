@@ -214,7 +214,7 @@
                             // $("#tambahkriteria")[0].reset();
                             // var oTable = $('#datatable-buttons').dataTable();
                             // oTable.fnDraw(false);
-                            $('#btnreset').attr('disabled', 'enable');
+                            $('#btnreset').attr('disabled', false);
                             $('#btnreset').val('SELESAI');
                         }
                     },
