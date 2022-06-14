@@ -205,7 +205,7 @@
                     contentType: false,
                     processData: false,
                     beforeSend: function() {
-                        $('#btnreset').attr('disabled', 'disabled');
+                        // $('#btnreset').attr('disabled', 'disabled');
                         $('#btnreset').val('Reset QR Processing..');
 
                     },
@@ -214,8 +214,8 @@
                             // $("#tambahkriteria")[0].reset();
                             // var oTable = $('#datatable-buttons').dataTable();
                             // oTable.fnDraw(false);
-                            $('#btnreset').attr('disabled', false);
-                            $('#btnreset').val('SELESAI');
+                            // $('#btnreset').attr('disabled', 'disabled');
+                            $('#btnreset').val('OK. Reset Lagi ?');
                         }
                     },
                     error: function(data) {
@@ -235,7 +235,7 @@
                     // console.log(total_peserta);
                     if ($('#tot_qr').html() == total_peserta) {
                         $('#btnbuat').attr('disabled', 'disabled');
-                        $('#btnbuat').val('Reset Status QR Lagi');
+                        $('#btnbuat').val('SELESAI');
                     }
                     $.ajax({
                         url: '/cek-qr-code/' + pelatihan_id,
