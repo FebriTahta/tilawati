@@ -143,19 +143,19 @@ $date = $item->tgllahir; ?>
                         @if ($item->tmptlahir !== null && $item->tmptlahir2 == null)
                             <td class="atas" style="width: 750px; height: 10px; text-transform: uppercase">
                                 @if (substr($item->tmptlahir, 5, 4) == 'KOTA')
-                                    {{substr($item->tmptlahir, 5, 4)}}
+                                    {{substr($item->tmptlahir, 5)}}
                                 @elseif(substr($item->tmptlahir, 5, 4) == 'ADM.')
                                     {{substr($item->tmptlahir, 10)}}
                                 @elseif(substr($item->tmptlahir, 5, 4) == 'KAB.')
-                                    {{substr($item->tmptlahir, 5, 4)}}
+                                    {{substr($item->tmptlahir, 5)}}
                                 @else
-                                    {{-- {{ $item->tmptlahir }}, --}}
+                                    {{substr($item->tmptlahir, 5)}}
                                 @endif
                                 {{ Carbon\Carbon::parse($date)->isoFormat('D MMMM Y') }}&nbsp;</td>
                         
                         @endif
 
-                        {{-- @if ($item->tmptlahir2 !== null)
+                        @if ($item->tmptlahir2 !== null)
                             <td class="atas" style="width: 750px; height: 10px; text-transform: uppercase">
                                 @if (substr($item->tmptlahir2, 5, 4) == 'KOTA')
                                     {{substr($item->tmptlahir2, 5)}}
@@ -167,7 +167,7 @@ $date = $item->tgllahir; ?>
                                     {{ $item->tmptlahir2 }},
                                 @endif
                                 {{ Carbon\Carbon::parse($date)->isoFormat('D MMMM Y') }}&nbsp;</td>
-                        @endif --}}
+                        @endif
                         
                         <td class="atas" style="width: 52px; height: 10px;">&nbsp;</td>
                     </tr>
