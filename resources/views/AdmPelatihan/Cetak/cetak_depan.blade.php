@@ -164,7 +164,7 @@ $date = $item->tgllahir; ?>
                                 @elseif(substr($item->tmptlahir2, 5, 4) == 'KAB.')
                                     {{substr($item->tmptlahir2, 5)}}
                                 @else
-                                    {{ $item->tmptlahir2 }},
+                                    {{substr($item->tmptlahir2, 5, 4)}}
                                 @endif
                                 {{ Carbon\Carbon::parse($date)->isoFormat('D MMMM Y') }}&nbsp;</td>
                         @endif
