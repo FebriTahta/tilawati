@@ -140,7 +140,7 @@
                         <td class="atas" style="width: 170px; height: 10px; ">Tempat Tanggal Lahir&nbsp;</td>
                         <td class="atas" style="width: 11px; height: 10px;">:</td><?php date_default_timezone_set('Asia/Jakarta');
 $date = $item->tgllahir; ?>
-                        @if ($item->tmptlahir !== null && $item->tmptlahir2 == null)
+                        @if ($item->tmptlahir2 == null)
                             <td class="atas" style="width: 750px; height: 10px; text-transform: uppercase">
                                 @if (substr($item->tmptlahir, 5, 4) == 'KOTA')
                                     {{substr($item->tmptlahir, 5)}}
@@ -164,7 +164,7 @@ $date = $item->tgllahir; ?>
                                 @elseif(substr($item->tmptlahir2, 5, 4) == 'KAB.')
                                     {{substr($item->tmptlahir2, 5)}}
                                 @else
-                                    {{substr($item->tmptlahir2, -4)}}
+                                    {{$item->tmptlahir2}}
                                 @endif
                                 {{ Carbon\Carbon::parse($date)->isoFormat('D MMMM Y') }}&nbsp;</td>
                         @endif
