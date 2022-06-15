@@ -155,7 +155,7 @@ $date = $item->tgllahir; ?>
                         
                         @endif
 
-                        @if ($item->tmptlahir2 !== null)
+                        {{-- @if ($item->tmptlahir2 !== null)
                             <td class="atas" style="width: 750px; height: 10px; text-transform: uppercase">
                                 @if (substr($item->tmptlahir2, 5, 4) == 'KOTA')
                                     {{substr($item->tmptlahir2, 5)}}
@@ -167,7 +167,7 @@ $date = $item->tgllahir; ?>
                                     {{ $item->tmptlahir2 }},
                                 @endif
                                 {{ Carbon\Carbon::parse($date)->isoFormat('D MMMM Y') }}&nbsp;</td>
-                        @endif
+                        @endif --}}
                         
                         <td class="atas" style="width: 52px; height: 10px;">&nbsp;</td>
                     </tr>
