@@ -181,9 +181,6 @@
                     },
                     success: function(data) {
                         if (data.success) {
-                            // $("#tambahkriteria")[0].reset();
-                            // var oTable = $('#datatable-buttons').dataTable();
-                            // oTable.fnDraw(false);
                             $('#btnbuat').attr('disabled', 'disabled');
                             $('#btnbuat').val('SELESAI');
                         }
