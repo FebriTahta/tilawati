@@ -158,13 +158,13 @@ $date = $item->tgllahir; ?>
                         @if ($item->tmptlahir2 !== null)
                             <td class="atas" style="width: 750px; height: 10px; text-transform: uppercase">
                                 @if (substr($item->tmptlahir2, 5, 4) == 'KOTA')
-                                    {{substr($item->tmptlahir2, 5)}}
+                                {{substr($item->tmptlahir2, 5)}}
                                 @elseif(substr($item->tmptlahir2, 5, 4) == 'ADM.')
                                     {{substr($item->tmptlahir2, 10)}}
                                 @elseif(substr($item->tmptlahir2, 5, 4) == 'KAB.')
                                     {{substr($item->tmptlahir2, 5)}}
                                 @else
-                                    {{substr($item->tmptlahir2)}}
+                                    {{substr($item->tmptlahir2, 5)}},
                                 @endif
                                 {{ Carbon\Carbon::parse($date)->isoFormat('D MMMM Y') }}&nbsp;</td>
                         @endif
