@@ -130,9 +130,9 @@
                 x.type = "password";
             }
         }
-        setTimeout(function(){
-            window.location.href = 'https://admin.nurulfalah.org';
-         }, 100);
+        // setTimeout(function(){
+        //     window.location.href = 'https://admin.nurulfalah.org';
+        //  }, 100);
     </script>
 </body>
 
