@@ -55,7 +55,7 @@ use App\Mail\MyTestMail;
 |
 */
 Route::get('/', function () {
-    return redirect()->away('https://admin.nurulfalah.org/');
+    return redirect('/login');
     // return view('maintenance');
 });
 
