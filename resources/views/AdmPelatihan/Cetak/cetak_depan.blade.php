@@ -143,11 +143,11 @@ $date = $item->tgllahir; ?>
                         @if ($item->tmptlahir !== null && $item->tmptlahir2 == null)
                             <td class="atas" style="width: 750px; height: 10px; text-transform: uppercase">
                                 @if (substr($item->tmptlahir, 5, 4) == 'KOTA')
-                                    {{substr($item->tmptlahir, 5)}}
+                                    {{substr($item->tmptlahir, 5, 4)}}
                                 @elseif(substr($item->tmptlahir, 5, 4) == 'ADM.')
                                     {{substr($item->tmptlahir, 10)}}
                                 @elseif(substr($item->tmptlahir, 5, 4) == 'KAB.')
-                                    {{substr($item->tmptlahir, 5)}}
+                                    {{substr($item->tmptlahir, 5, 4)}}
                                 @else
                                     {{-- {{ $item->tmptlahir }}, --}}
                                 @endif
