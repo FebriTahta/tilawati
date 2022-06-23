@@ -70,7 +70,7 @@
                     @if (substr($item->tmptlahir, 5, 4) == 'KOTA' || substr($item->tmptlahir, 5, 4) == 'KAB.')
                         {{substr($item->tmptlahir, 5)}}
                     @else
-                        {{$item->tmptlahir}}    
+                        {{substr($item->tmptlahir, 5, 4)}}    
                     @endif
                 </td>
                 <td>
