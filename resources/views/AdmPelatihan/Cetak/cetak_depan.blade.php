@@ -142,11 +142,11 @@
 $date = $item->tgllahir; ?>
                         @if ($item->tmptlahir2 == null)
                             <td class="atas" style="width: 750px; height: 10px; text-transform: uppercase">
-                                @if (substr($item->tmptlahir, 5, 4) == 'KOTA')
+                                @if (substr($item->tmptlahir, 0, 4) == 'KOTA')
                                     {{substr($item->tmptlahir, 5)}}
-                                @elseif(substr($item->tmptlahir, 5, 4) == 'ADM.')
+                                @elseif(substr($item->tmptlahir, 0, 4) == 'ADM.')
                                     {{substr($item->tmptlahir, 10)}}
-                                @elseif(substr($item->tmptlahir, 5, 4) == 'KAB.')
+                                @elseif(substr($item->tmptlahir, 0, 4) == 'KAB.')
                                     {{substr($item->tmptlahir, 5)}}
                                 @else
                                     {{$item->tmptlahir}},
@@ -157,11 +157,11 @@ $date = $item->tgllahir; ?>
 
                         @if ($item->tmptlahir2 !== null)
                             <td class="atas" style="width: 750px; height: 10px; text-transform: uppercase">
-                                @if (substr($item->tmptlahir2, 5, 4) == 'KOTA')
-                                {{substr($item->tmptlahir2, 5)}}
-                                @elseif(substr($item->tmptlahir2, 5, 4) == 'ADM.')
+                                @if (substr($item->tmptlahir2, 0, 4) == 'KOTA')
+                                {{substr($item->tmptlahir2, 0)}}
+                                @elseif(substr($item->tmptlahir2, 0, 4) == 'ADM.')
                                     {{substr($item->tmptlahir2, 10)}}
-                                @elseif(substr($item->tmptlahir2, 5, 4) == 'KAB.')
+                                @elseif(substr($item->tmptlahir2, 0, 4) == 'KAB.')
                                     {{substr($item->tmptlahir2, 5)}}
                                 @else
                                     {{$item->tmptlahir2}},
