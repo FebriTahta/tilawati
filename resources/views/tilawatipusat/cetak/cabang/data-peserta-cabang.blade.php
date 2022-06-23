@@ -49,7 +49,7 @@
             <tr>
                 <td>{{$item->id}}</td>
                 <td>{{$item->name}}</td>
-                <td>{{$item->alamat}}
+                <td>{{strtoupper($item->alamat)}}
                     @if ($item->kecamatan !== null)
                         {{$item->kecamatan->nama}}
                     @endif
@@ -60,13 +60,24 @@
                 </td>
                 <td>
                     @if ($item->kabupaten !== null)
-                    {{substr($item->kabupaten->nama,4)}}
+                        {{substr($item->kabupaten->nama,4)}}
                     @else
-                    - {{substr($item->kota2)}}
+                    -   {{substr($item->kota2)}}
                     @endif
                 </td>
                 <td>{{$item->telp}}</td>
-                <td>{{$item->tmptlahir}}</td>
+                <td>
+                    @if (substr($item->tmptlahir, 5, 4) == 'KOTA' || substr($item->tmptlahir, 5, 4) == 'KAB.')
+                        {{substr($item->tmptlahir, 5)}}
+                    @else
+                        @if (substr($item->tmptlahir, 5, 3) == 'ADM')
+                            {{substr($item->tmptlahir, 10)}}
+                        @else
+                            {{$item->tmptlahir}}    
+                        @endif
+                        
+                    @endif
+                </td>
                 <td>
                     {{-- {{$item->tgllahir}} --}}
                     {{Carbon\Carbon::parse($item->tgllahir)->isoFormat('D MMMM Y')}}
