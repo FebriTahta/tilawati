@@ -208,7 +208,7 @@ $date = $item->tgllahir; ?>
                         <td class="bawah" style="width: 210px; height: 5px;">&nbsp;</td>
                         <td class="atas" style="width: 241px; height: 5px;">
                             {{-- {{ $direktur }} --}}
-                            @if ($item->pelatihan->cabang->name == 'Cahaya Amanah' || $item->pelatihan->cabang->name == 'Tilawati Pusat')
+                            @if ($item->pelatihan->cabang->name == 'Cahaya Amanah' || $item->pelatihan->cabang->name == 'Tilawati Pusat' || $item->pelatihan->cabang->status == "RPQ")
                                 Dr. KH. Umar Jaeni ,M.Pd
                             @else
                                 {{-- {{ $item->pelatihan->cabang->kepala->name }} --}}
@@ -221,7 +221,7 @@ $date = $item->tgllahir; ?>
                         <td class="bawah" style="width: 185px; height: 4px;">&nbsp;</td>
                         <td class="bawah" style="width: 241px; height: 2px; text-transform: capitalize">
                             {{-- {{ $kepala }} --}}
-                            @if ($item->pelatihan->cabang->name == 'Cahaya Amanah' || $item->pelatihan->cabang->name == 'Tilawati Pusat')
+                            @if ($item->pelatihan->cabang->name == 'Cahaya Amanah' || $item->pelatihan->cabang->name == 'Tilawati Pusat' || $item->pelatihan->cabang->status == "RPQ")
                                 Direktur Eksekutif
                             @else
                                 <?	$kabupaten 	= substr($item->pelatihan->cabang->kabupaten->nama, 5); $kab = strtolower($kabupaten);
