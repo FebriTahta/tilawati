@@ -115,7 +115,7 @@
 					<td class="bawah" style="width: 156px; height: 4px;  ">&nbsp;</td>
 					{{-- kepala cabang mana --}}
 					<td class="bawah" style="width: 241px; height: 2px; text-transform: capitalize"> 
-						@if ($item->pelatihan->cabang->name == 'Cahaya Amanah' || $item->pelatihan->cabang->name == 'Tilawati Pusat')
+						@if ($item->pelatihan->cabang->name == 'Cahaya Amanah' || $item->pelatihan->cabang->name == 'Tilawati Pusat' || $item->pelatihan->cabang->status == "RPQ")
 						Direktur Eksekutif
 						@else
 						<?	$kabupaten 	= substr($item->pelatihan->cabang->kabupaten->nama, 5); $kab = strtolower($kabupaten);
