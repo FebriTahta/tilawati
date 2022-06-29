@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Cabang;
+use App\Models\Program;
+use App\Models\Pelatihan;
 use App\Helpers\ApiFormatter;
 
 class ApiCont extends Controller
@@ -15,6 +17,22 @@ class ApiCont extends Controller
         ->join('kabupaten','cabangs.kabupaten_id','kabupaten.id')
         ->select('name','status','nama','kepalacabang','alamat','telp')
         ->paginate(10);
+
+        if($data)
+        {
+            return ApiFormatter::createApi(200, 'success' ,$data);
+        }else {
+            return ApiFormatter::createApi(400, 'failed');
+        }
+    }
+
+    public function diklat_online()
+    {
+        $data = Pelatihan::where('cabang_id',79)
+        ->where('pendaftaran','!=','ditutup')
+        ->join('program','pelatihan.program_id','program.id')
+        ->select('groupwa')
+        ->get();
 
         if($data)
         {

@@ -22,3 +22,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::get('daftar-cabang-api',[ApiCont::class,'daftar_cabang']);
+Route::get('daftar-diklat-online',[ApiCont::class,'diklat_online']);
