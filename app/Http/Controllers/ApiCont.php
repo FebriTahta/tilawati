@@ -31,7 +31,7 @@ class ApiCont extends Controller
         $data = Pelatihan::where('cabang_id',79)
         ->where('pendaftaran','!=','ditutup')
         ->join('programs','pelatihans.program_id','programs.id')
-        ->select('groupwa')
+        ->select('groupwa','programs.name')
         ->get();
 
         if($data)
