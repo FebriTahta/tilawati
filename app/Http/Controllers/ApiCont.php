@@ -29,8 +29,7 @@ class ApiCont extends Controller
     public function diklat_online()
     {
         $data = Pelatihan::where('cabang_id',79)
-        // ->orderBy('id','ASC')
-        ->where('pendaftaran','!=','ditutup')
+        ->where('pendaftaran', null)
         ->join('programs','pelatihans.program_id','programs.id')
         ->select('pelatihans.slug','programs.name','pelatihans.tanggal')
         ->get();
