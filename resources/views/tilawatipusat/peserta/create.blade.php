@@ -33,7 +33,7 @@
                                                     </div>
                                                     @if ($diklat->keterangan == 'santri')
                                                     <div class="form-group col-12 col-xl-12">
-                                                        <label for=""><i class="text-danger">*</i> Asal Lembaga</label>
+                                                        <label for=""> Asal Lembaga</label>
                                                         <div class="form-group">
                                                            <select id="sel_lembaga" name="lembaga_id" class="form-control select2">
                                                                <option value="0"><i class="text-danger">*</i></option>
@@ -50,9 +50,9 @@
                                                         <input type="email" class="form-control input-mask" data-inputmask="'alias':'email'" placeholder="_@_._" name="email">
                                                     </div>
                                                     <div class="form-group col-12 col-xl-6">
-                                                        <label for=""><i class="text-danger">*</i> Telp</label>
+                                                        <label for=""> Telp</label>
                                                         {{-- <input type="telp" placeholder="081351265451" pattern="[0-9]{3}[0-9]{3}[0-9]{3}[0-9]{3}" maxlength="12" class="form-control " name="telp" required> --}}
-                                                        <input type="number" placeholder="081351265451" class="form-control " name="telp" required>
+                                                        <input type="number" placeholder="081351265451" class="form-control " name="telp">
                                                     </div>
                                                     <div class="form-group col-12 col-xl-6">
                                                         <label for=""><i class="text-danger">*</i> Asal Kota</label>
@@ -60,18 +60,9 @@
                                                             <option value="0"><i class="text-danger"></i></option>
                                                         </select>
                                                     </div>
-                                                    {{-- <div class="form-group col-12 col-xl-6">
-                                                        <label for=""><i class="text-danger"></i> Tempat Lahir</label>
-                                                        <select id="kota2" name="tmptlahir" class="form-control select2">
-                                                            <option value="0"><i class="text-danger"></i></option>
-                                                        </select>
-                                                    </div> --}}
 
                                                     <div class="form-group col-12 col-xl-6">
                                                         <label for=""><i class="text-danger"></i> Tempat Lahir</label>
-                                                        {{-- <select id="kota2" name="tmptlahir" class="form-control select2">
-                                                            <option value="0"><i class="text-danger"></i></option>
-                                                        </select> --}}
                                                         <input type="text" name="tmptlahir" class="form-control" required>
                                                     </div>
 

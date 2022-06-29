@@ -82,7 +82,7 @@ class CetakCont extends Controller
                     $jabatan     = 'Kacab. '.strtolower($kabupaten).' '.strtolower($pelatihan->cabang->kabupaten->provinsi->nama);
                 }
             }
-
+ 
             $kepala     = ucwords($jabatan);
             if ($pelatihan->cabang->kepala == null) {
                 # code...
