@@ -1434,7 +1434,7 @@ class PesertaCont extends Controller
                 })
                 ->addColumn('total', function($data){
                     $total = $data->pelatihan;
-                    return $total;
+                    return $total::where('keterangan','guru')->count();
                 })
                 ->rawColumns(['cabang','jumlahdiklat','namadiklat','total'])->make(true);
                 
