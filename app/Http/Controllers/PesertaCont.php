@@ -1411,7 +1411,7 @@ class PesertaCont extends Controller
                     $guru = array_sum($dataz);
                     $santri = array_sum($datax);
 
-                    return 'Guru : '.$guru;
+                    return '<pre>Guru : '.$guru.'</pre>';
                 })
                 ->addColumn('total_santri', function($data){
                     $dataz = [];
@@ -1430,7 +1430,7 @@ class PesertaCont extends Controller
                     $guru = array_sum($dataz);
                     $santri = array_sum($datax);
 
-                    return 'Santri : '.$santri;
+                    return '<pre>Santri : '.$santri.'</pre>';
                 })
                 ->rawColumns(['cabang','jumlahdiklat','namadiklat','total_guru','total_santri'])->make(true);
 
@@ -1484,7 +1484,7 @@ class PesertaCont extends Controller
                     $guru = array_sum($dataz);
                     $santri = array_sum($datax);
 
-                    return 'Guru : '.$guru;
+                    return '<pre>Guru : '.$guru.'</pre>';
                 })
                 ->addColumn('total_santri', function($data){
                     $dataz = [];
@@ -1503,7 +1503,7 @@ class PesertaCont extends Controller
                     $guru = array_sum($dataz);
                     $santri = array_sum($datax);
 
-                    return 'Santri : '.$santri;
+                    return '<pre>Santri : '.$santri.'</pre>';
                 })
                 ->rawColumns(['cabang','jumlahdiklat','namadiklat','total_guru','total_santri'])->make(true);
                 
