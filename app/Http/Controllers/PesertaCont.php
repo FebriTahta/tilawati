@@ -1362,23 +1362,6 @@ class PesertaCont extends Controller
         {
             if(!empty($request->dari))
             {
-                // $data   = Pelatihan::whereBetween('tanggal', array($request->dari, $request->sampai))->with('cabang')->select('cabang_id')->distinct();
-                // return DataTables::of($data)
-                // ->addColumn('cabang', function ($data) {
-                //     return $data->cabang->name.' ( '.$data->cabang->kabupaten->nama.' ) ';
-                // })
-                // ->addColumn('action', function ($data) {
-                //     $btn = '<a href="/diklat-peserta-diklat-cabang/'.$data->cabang->id.'" class="btn btn-sm btn-info"> check </a>';
-                //     return $btn;
-                // })
-                // ->rawColumns(['cabang','action'])
-                // ->make(true);
-                // $data = Cabang::has('pelatihan')->with(['pelatihan' => function ($query) use($request) {
-                //     $query->where('jenis','diklat')->whereBetween('tanggal', array($request->dari, $request->sampai));
-                // }]);
-                
-                // return DataTables::of($data)
-
                 $data = Cabang::has('pelatihan')->with(['pelatihan' => function ($query) use($request) {
                     $query->where('jenis','diklat')->whereBetween('tanggal', array($request->dari, $request->sampai));
                 }]);
@@ -1411,45 +1394,12 @@ class PesertaCont extends Controller
                     }
                     return $string=implode("<br>",$hasil);                    
                 })
-                ->rawColumns(['cabang','jumlahdiklat','namadiklat'])->make(true);
+                ->addColumn('total', function($data){
+                   return '-';
+                })
+                ->rawColumns(['cabang','jumlahdiklat','namadiklat','total'])->make(true);
 
             }else{
-                // $data   = Pelatihan::with(['cabang','peserta'])->select('cabang_id')->distinct();
-                // return DataTables::of($data)
-                // ->addColumn('cabang', function ($data) {
-                //     return $data->cabang->name.' ( '.$data->cabang->kabupaten->nama.' ) ';
-                // })
-                // ->addColumn('action', function ($data) {
-                //     // $btn = '<a href="/diklat-peserta-diklat-cabang/'.$data->cabang->id.'" class="btn btn-sm btn-info"> check </a>';
-                //     $cabang = Cabang::where('id',$data->cabang_id)->with('pelatihan')->get();
-                //     $btn = $cabang->pelatihan->program_id;
-                    
-                //     return $btn;
-                // })
-                // ->rawColumns(['cabang','action'])
-                // ->make(true);
-                // $data = Cabang::whereHas('pelatihan', function($query) use ($request){
-                //     return $query->where('jenis','diklat');
-                // })->get();
-
-                // $data = Pelatihan::where('jenis','diklat')->has('peserta')->with(['cabang','program'])->select('cabang_id')->distinct();
-                // return DataTables::of($data)
-                // ->addColumn('cabang', function($data){
-                //     return $data->cabang->name.' ( '.$data->cabang->kabupaten->nama.' ) ';
-                // })
-                // ->addColumn('jumlahdiklat', function($data){
-                //     $datas = $data->cabang->pelatihan->count();
-                //     return $datas;
-                // })
-                // ->addColumn('namadiklat', function($data){
-                //     foreach ($data->cabang->pelatihan as $key => $value) {
-                //         # code...
-                //         $datax  = Program::where('id',$value->program_id)->first();
-                //         $dataz[]= $datax->name.' ('.$value->peserta->count().' p)';
-                //     }
-                //     return $string=implode("<br>",$dataz);
-                // })
-                // ->rawColumns(['cabang','jumlahdiklat','namadiklat'])->make(true);
 
                 $data = Cabang::has('pelatihan')->with(['pelatihan' => function ($query) use($request) {
                     $query->where('jenis','diklat');
@@ -1482,7 +1432,11 @@ class PesertaCont extends Controller
                     }
                     return $string=implode("<br>",$hasil);                    
                 })
-                ->rawColumns(['cabang','jumlahdiklat','namadiklat'])->make(true);
+                ->addColumn('total', function($data){
+                    $total = $data->pelatihan;
+                    return $total;
+                })
+                ->rawColumns(['cabang','jumlahdiklat','namadiklat','total'])->make(true);
                 
             }
         }

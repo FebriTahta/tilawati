@@ -223,6 +223,7 @@
                                                     <th>CABANG</th>
                                                     <th>TOTAL</th>
                                                     <th>PROGRAM DIKLAT</th>
+                                                    <th>TOTAL BINAAN</th>
                                                 </tr>
                                             </thead>
                     
@@ -234,6 +235,7 @@
                                                     <th>CABANG</th>
                                                     <th>TOTAL</th>
                                                     <th>PROGRAM DIKLAT</th>
+                                                    <th>TOTAL BINAAN</th>
                                                 </tr>
                                             </tfoot>
                                         </table>
@@ -705,6 +707,10 @@
                             {
                             data:'namadiklat',
                             name:'namadiklat'
+                            },
+                            {
+                            data:'total',
+                            name:'total'
                             },
                             
                         ]
