@@ -1394,7 +1394,7 @@ class PesertaCont extends Controller
                     }
                     return $string=implode("<br>",$hasil);                    
                 })
-                ->addColumn('total_guru', function($data){
+                ->addColumn('total_guru', function($data) use($request) {
                     $dataz = [];
                     $datax = [];
                     $pelatihan_guru     = Pelatihan::where('cabang_id', $data->id)->where('keterangan', 'guru')->whereBetween('tanggal', array($request->dari, $request->sampai))->get();
@@ -1413,7 +1413,7 @@ class PesertaCont extends Controller
 
                     return '<pre>Guru : '.$guru.'</pre>';
                 })
-                ->addColumn('total_santri', function($data){
+                ->addColumn('total_santri', function($data) use($request) {
                     $dataz = [];
                     $datax = [];
                     $pelatihan_guru     = Pelatihan::where('cabang_id', $data->id)->where('keterangan', 'guru')->whereBetween('tanggal', array($request->dari, $request->sampai))->get();
