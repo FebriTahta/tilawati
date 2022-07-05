@@ -1394,10 +1394,45 @@ class PesertaCont extends Controller
                     }
                     return $string=implode("<br>",$hasil);                    
                 })
-                ->addColumn('total', function($data){
-                   return '-';
+                ->addColumn('total_guru', function($data){
+                    $dataz = [];
+                    $datax = [];
+                    $pelatihan_guru     = Pelatihan::where('cabang_id', $data->id)->where('keterangan', 'guru')->whereBetween('tanggal', array($request->dari, $request->sampai))->get();
+                    $pelatihan_santri   = Pelatihan::where('cabang_id', $data->id)->where('keterangan', 'santri')->whereBetween('tanggal', array($request->dari, $request->sampai))->get();
+
+                    foreach ($pelatihan_guru as $key => $value) {
+                        # code...
+                        $dataz[] = $value->peserta->count();
+                    }
+                    foreach ($pelatihan_santri as $key => $value) {
+                        # code...
+                        $datax[] = $value->peserta->count();
+                    }
+                    $guru = array_sum($dataz);
+                    $santri = array_sum($datax);
+
+                    return 'Guru : '.$guru;
                 })
-                ->rawColumns(['cabang','jumlahdiklat','namadiklat','total'])->make(true);
+                ->addColumn('total_santri', function($data){
+                    $dataz = [];
+                    $datax = [];
+                    $pelatihan_guru     = Pelatihan::where('cabang_id', $data->id)->where('keterangan', 'guru')->whereBetween('tanggal', array($request->dari, $request->sampai))->get();
+                    $pelatihan_santri   = Pelatihan::where('cabang_id', $data->id)->where('keterangan', 'santri')->whereBetween('tanggal', array($request->dari, $request->sampai))->get();
+
+                    foreach ($pelatihan_guru as $key => $value) {
+                        # code...
+                        $dataz[] = $value->peserta->count();
+                    }
+                    foreach ($pelatihan_santri as $key => $value) {
+                        # code...
+                        $datax[] = $value->peserta->count();
+                    }
+                    $guru = array_sum($dataz);
+                    $santri = array_sum($datax);
+
+                    return 'Santri : '.$santri;
+                })
+                ->rawColumns(['cabang','jumlahdiklat','namadiklat','total_guru','total_santri'])->make(true);
 
             }else{
 
@@ -1432,7 +1467,7 @@ class PesertaCont extends Controller
                     }
                     return $string=implode("<br>",$hasil);                    
                 })
-                ->addColumn('total', function($data){
+                ->addColumn('total_guru', function($data){
                     $dataz = [];
                     $datax = [];
                     $pelatihan_guru     = Pelatihan::where('cabang_id', $data->id)->where('keterangan', 'guru')->get();
@@ -1449,9 +1484,28 @@ class PesertaCont extends Controller
                     $guru = array_sum($dataz);
                     $santri = array_sum($datax);
 
-                    return 'Guru : '.$guru.' & Santri : '.$santri;
+                    return 'Guru : '.$guru;
                 })
-                ->rawColumns(['cabang','jumlahdiklat','namadiklat','total'])->make(true);
+                ->addColumn('total_santri', function($data){
+                    $dataz = [];
+                    $datax = [];
+                    $pelatihan_guru     = Pelatihan::where('cabang_id', $data->id)->where('keterangan', 'guru')->get();
+                    $pelatihan_santri   = Pelatihan::where('cabang_id', $data->id)->where('keterangan', 'santri')->get();
+
+                    foreach ($pelatihan_guru as $key => $value) {
+                        # code...
+                        $dataz[] = $value->peserta->count();
+                    }
+                    foreach ($pelatihan_santri as $key => $value) {
+                        # code...
+                        $datax[] = $value->peserta->count();
+                    }
+                    $guru = array_sum($dataz);
+                    $santri = array_sum($datax);
+
+                    return 'Santri : '.$santri;
+                })
+                ->rawColumns(['cabang','jumlahdiklat','namadiklat','total_guru','total_santri'])->make(true);
                 
             }
         }

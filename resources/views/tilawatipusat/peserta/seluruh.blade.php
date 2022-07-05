@@ -221,9 +221,10 @@
                                             <thead class="text-bold text-primary">
                                                 <tr>
                                                     <th>CABANG</th>
-                                                    <th>TOTAL</th>
+                                                    <th>TOTAL DIKLAT</th>
                                                     <th>PROGRAM DIKLAT</th>
-                                                    <th>TOTAL BINAAN</th>
+                                                    <th>TOTAL GURU</th>
+                                                    <th>TOTAL SANTRI</th>
                                                 </tr>
                                             </thead>
                     
@@ -235,7 +236,8 @@
                                                     <th>CABANG</th>
                                                     <th>TOTAL</th>
                                                     <th>PROGRAM DIKLAT</th>
-                                                    <th>TOTAL BINAAN</th>
+                                                    <th>TOTAL GURU</th>
+                                                    <th>TOTAL SANTRI</th>
                                                 </tr>
                                             </tfoot>
                                         </table>
@@ -709,8 +711,12 @@
                             name:'namadiklat'
                             },
                             {
-                            data:'total',
-                            name:'total'
+                            data:'total_guru',
+                            name:'total_guru'
+                            },
+                            {
+                            data:'total_santri',
+                            name:'total_santri'
                             },
                             
                         ]
