@@ -1433,8 +1433,13 @@ class PesertaCont extends Controller
                     return $string=implode("<br>",$hasil);                    
                 })
                 ->addColumn('total', function($data){
-                    $total = $data->pelatihan;
-                    return $total::where('keterangan','guru')->count();
+                    $dataz = [];
+                    $pelatihan = Pelatihan::where('cabang_id', $data->id)->where('keterangan', 'guru')->get();
+                    foreach ($pelatihan as $key => $value) {
+                        # code...
+                        $dataz[] = $value->peserta->count();
+                    }
+                    return array_sum($dataz);
                 })
                 ->rawColumns(['cabang','jumlahdiklat','namadiklat','total'])->make(true);
                 
