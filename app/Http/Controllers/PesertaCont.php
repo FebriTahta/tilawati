@@ -1434,12 +1434,22 @@ class PesertaCont extends Controller
                 })
                 ->addColumn('total', function($data){
                     $dataz = [];
-                    $pelatihan = Pelatihan::where('cabang_id', $data->id)->where('keterangan', 'guru')->get();
-                    foreach ($pelatihan as $key => $value) {
+                    $datax = [];
+                    $pelatihan_guru     = Pelatihan::where('cabang_id', $data->id)->where('keterangan', 'guru')->get();
+                    $pelatihan_santri   = Pelatihan::where('cabang_id', $data->id)->where('keterangan', 'santri')->get();
+
+                    foreach ($pelatihan_guru as $key => $value) {
                         # code...
                         $dataz[] = $value->peserta->count();
                     }
-                    return array_sum($dataz);
+                    foreach ($pelatihan_santri as $key => $value) {
+                        # code...
+                        $datax[] = $value->peserta->count();
+                    }
+                    $guru = array_sum($dataz);
+                    $santri = array_sum($datax);
+
+                    return 'Guru : '.$guru.' & Santri : '.$santri;
                 })
                 ->rawColumns(['cabang','jumlahdiklat','namadiklat','total'])->make(true);
                 
