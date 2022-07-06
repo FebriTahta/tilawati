@@ -218,9 +218,9 @@
                                 <div class="modal-body">
                                     <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
                                         <div style="text-align: center">
-                                            <input type="text" id="dari_download" name="dari">
-                                            <input type="text" id="sampai_download" name="sampai">
                                             <form action="/export-laporan-data-cabang" method="POST">@csrf
+                                                <input type="text" id="dari_download" name="dari" class="form-control mb-2">
+                                                <input type="text" id="sampai_download" name="sampai" class="form-control mb-2">
                                                 <button type="submit" class="btn btn-sm btn-primary">DOWNLOAD DATA</button>
                                             </form>
                                         </div>
