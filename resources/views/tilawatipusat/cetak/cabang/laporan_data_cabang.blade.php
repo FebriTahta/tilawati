@@ -60,6 +60,22 @@
                         {{$item->pelatihan->where('program_id', $p->id)->count()}} - {{$p->name}} <br>
                     @endforeach
                 </td>
+                <td>
+                    @foreach ($pelatihan_guru as $key => $value)
+                        @php
+                            $datax[] = $value->peserta->count();
+                        @endphp
+                    @endforeach
+                    {{array_sum($datax)}}
+                </td>
+                <td>
+                    @foreach ($pelatihan_santri as $key => $value)
+                        @php
+                            $datay[] = $value->peserta->count();
+                        @endphp
+                    @endforeach
+                    {{array_sum($datay)}}
+                </td>
             </tr>
             @endforeach
         </tbody>
