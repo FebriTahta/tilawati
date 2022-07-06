@@ -764,14 +764,20 @@
                         ]
                     });
                 }
+
+                $('#dari').on('change', function() {
+                    $('#dari_download').val(this.value);
+                });
+                $('#sampai').on('change', function() {
+                    $('#sampai_download').val(this.value);
+                });
+
                 $('#filter').click(function(){
                     var dari = $('#dari').val();
                     var sampai = $('#sampai').val();
                     if(dari != '' &&  sampai != '')
                     {
                         load_data(dari, sampai);
-                        $('#dari_download').val(dari);
-                        $('#sampai_download').val(sampai);
                     }
                     else
                     {
