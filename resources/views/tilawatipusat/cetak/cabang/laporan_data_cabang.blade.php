@@ -46,20 +46,19 @@
                 <td>{{$item->pelatihan->count()}}</td>
                 <td>
                     @php
-                    $item=$data;
                     $dataz = [];
-                    foreach ($data->pelatihan as $key => $value) {
+                    foreach ($item->pelatihan as $key => $value) {
                         # code...
-                        $datax  = Program::where('id',$value->program_id)->first();                        
+                        $datax  = App\Models\Program::where('id',$value->program_id)->first();                        
                         $dataz[$key] = $datax->id;
                     }
-                    $programs = Program::whereIn('id',$dataz)->distinct()->get();
+                    $programs = App\Models\Program::whereIn('id',$dataz)->distinct()->get();
                     
                     foreach ($programs as $key => $value) {
                         # code...
-                        $total      = $data->pelatihan->where('program_id',$value->id)->count();
-                        $peserta    = Peserta::where('cabang_id', $data->id)->where('program_id',$value->id)->count();
-                        $keterangan = Pelatihan::where('program_id',$value->id)->select('keterangan')->first();
+                        $total      = $item->pelatihan->where('program_id',$value->id)->count();
+                        $peserta    = App\Models\Peserta::where('cabang_id', $item->id)->where('program_id',$value->id)->count();
+                        $keterangan = App\Models\Pelatihan::where('program_id',$value->id)->select('keterangan')->first();
                         $hasil[]    = "<pre>$total diklat   $value->name  ($peserta $keterangan->keterangan)</pre>";
                     }
                     return $string=implode("<br>",$hasil);    
