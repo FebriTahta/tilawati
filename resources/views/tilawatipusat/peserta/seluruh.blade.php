@@ -790,6 +790,8 @@
                     $('#sampai').val('');
                     $('#from').val('');
                     $('#till').val('');
+                    $('#dari_download').val('');
+                    $('#sampai_download').val('');
                     load_data();
                 });
             });
