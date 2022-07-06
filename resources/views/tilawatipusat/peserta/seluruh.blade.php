@@ -218,6 +218,8 @@
                                 <div class="modal-body">
                                     <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
                                         <div style="text-align: center">
+                                            <input type="text" id="dari_download" name="dari">
+                                            <input type="text" id="sampai_download" name="sampai">
                                             <form action="/export-laporan-data-cabang" method="POST">@csrf
                                                 <button type="submit" class="btn btn-sm btn-primary">DOWNLOAD DATA</button>
                                             </form>
@@ -768,6 +770,8 @@
                     if(dari != '' &&  sampai != '')
                     {
                         load_data(dari, sampai);
+                        $('#dari_download').val(dari);
+                        $('#sampai_download').val(sampai);
                     }
                     else
                     {
