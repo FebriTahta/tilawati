@@ -497,6 +497,9 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     // EXPORT LEMBAGA SEARCH
     Route::post('/export-lembaga-search-provinsi',[ExportCont::class,'export_lembaga_search_provinsi']);
 
+    // EXPORT LAPORAN CABANG BERKALA
+    Route::post('/export-laporan-data-cabang',[ExportCont::class,'export_laporan_data_cabang']);
+
     //IMPORT WITHOUT QUEUE & QR
     Route::post('/import-peserta-diklat2',[ImportController::class,'import_peserta_diklat2'])->name('import-peserta-diklat2');
     //QR 

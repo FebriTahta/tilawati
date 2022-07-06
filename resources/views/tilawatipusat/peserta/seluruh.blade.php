@@ -217,6 +217,9 @@
                                 </div>
                                 <div class="modal-body">
                                     <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
+                                        <form action="/export-laporan-data-cabang" method="POST">@csrf
+                                            <button type="submit" class="btn btn-sm btn-primary">DOWNLOAD DATA</button>
+                                        </form>
                                         <table id="datatable-buttons2" class="table table-diklat-cabang table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
                                             <thead class="text-bold text-primary">
                                                 <tr>

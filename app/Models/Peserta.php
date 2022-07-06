@@ -39,6 +39,7 @@ class Peserta extends Model
         'bersyahadah',
         'kota',
         'kota2',
+        'asal_cabang',
         'status',
         'qr'
 
