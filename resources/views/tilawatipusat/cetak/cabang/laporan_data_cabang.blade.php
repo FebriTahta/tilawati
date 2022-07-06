@@ -72,7 +72,7 @@
                             $y[] = $g->peserta->count();
                         @endphp
                     @endforeach
-                    {{array_sum($y) .'Guru'}}
+                    {{array_sum($y) .' Guru'}}
                 </td>
                 <td>
                     @foreach ($pelatihan_santri as $s)
