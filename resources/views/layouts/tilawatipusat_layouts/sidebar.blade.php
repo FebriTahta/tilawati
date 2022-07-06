@@ -104,6 +104,18 @@
                     </ul>
                 </li>
 
+                @if (auth()->user()->role == 'pusat')
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="mdi mdi-checkbox-multiple-blank-outline"></i>
+                        <span style="font-size: 12px">Data Api Cabang</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="true">
+                        <li><a style="font-size: 12px" href="/tampilan-api-cabang-tilawati">Api Cabang Tilawati</a></li>
+                    </ul>
+                </li>
+                @endif
+
                 @if (auth()->user()->username == 'tilawati cahaya amanah')
                     <li class="menu-title">Cetak</li>
 

@@ -62,7 +62,7 @@
                     @if ($item->kabupaten !== null)
                         {{substr($item->kabupaten->nama,4)}}
                     @else
-                    -   {{substr($item->kota2)}}
+                    -   {{$item->kota2}}
                     @endif
                 </td>
                 <td>{{$item->telp}}</td>
@@ -70,7 +70,7 @@
                     @if (substr($item->tmptlahir, 0, 4) == 'KOTA' || substr($item->tmptlahir, 0, 4) == 'KAB.')
                         {{substr($item->tmptlahir, 5)}}
                     @else
-                        {{substr($item->tmptlahir)}}    
+                        {{$item->tmptlahir}}    
                     @endif
                 </td>
                 <td>

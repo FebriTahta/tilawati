@@ -29,5 +29,10 @@ class Kecamatan extends Model
     {
         return $this->hasMany(Kepala::class);
     }
+
+    public function apicabangtilawati()
+    {
+        return $this->hasMany(Apicabangtilawati::class);
+    }
     
 }

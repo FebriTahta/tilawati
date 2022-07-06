@@ -15,6 +15,11 @@ class Kabupaten extends Model
         'nama',
         'id_jenis',
     ];
+
+    public function apicabangtilawati()
+    {
+        return $this->hasMany(Apicabangtilawati::class);
+    }
     
     public function kecamatan()
     {

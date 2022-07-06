@@ -39,6 +39,7 @@ use App\Http\Controllers\SertifikatCont;
 use App\Http\Controllers\BroadcastController;
 use App\Http\Controllers\WebinarCont;
 use App\Http\Controllers\ErrorCont;
+use App\Http\Controllers\ApicabangCont;
 use App\Http\Controllers\CekController;
 use App\Http\Controllers\TemplateDownloadCont;
 use Illuminate\Support\Facades\Mail;
@@ -513,6 +514,14 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     Route::get('/hapus-lembaga/{cabang_id}',[LembagaCont::class,'hapus_semua']);
 
     Route::get('/minta-modul/{pelatihan_id}',[PesertaCont::class,'minta_modul']);
+
+
+
+
+    // API FE & BE
+    Route::get('/tampilan-api-cabang-tilawati',[ApicabangCont::class,'index_api_tilawati']);
+    Route::get('/tampilan-api-cabang-nurul-falah',[ApicabangCont::class,'index_api_nf']);
+    
 });
 
 Route::group(['middleware' => ['auth', 'CheckRole:bendahara']], function () {
