@@ -15,7 +15,7 @@
     <table>
         <thead style="font-weight: bold; text-transform: uppercase">
             <tr>
-                <th rowspan="3" colspan="5">Laporan Data Cabang <br> <small>{{date('d - m - Y')}} {{$data->first()}}</small></th>
+                <th rowspan="3" colspan="5">Laporan Data Cabang <br> <small>{{date('d - m - Y')}}</small></th>
             </tr>
         </thead>
     </table>
@@ -40,8 +40,10 @@
         <tbody>
             <tr></tr>
             @foreach ($data as $key => $item)
+            <tr>
                 <td>{{$key+1}}</td>
                 <td>{{$item->name}}</td>
+            </tr>
             @endforeach
         </tbody>
     </table>
