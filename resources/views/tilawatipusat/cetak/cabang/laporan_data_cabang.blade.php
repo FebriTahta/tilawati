@@ -59,11 +59,11 @@
                         $total      = $item->pelatihan->where('program_id',$value->id)->count();
                         $peserta    = App\Models\Peserta::where('cabang_id', $item->id)->where('program_id',$value->id)->count();
                         $keterangan = App\Models\Pelatihan::where('program_id',$value->id)->select('keterangan')->first();
-                        $hasil[]    = "<pre>$total diklat   $value->name  ($peserta $keterangan->keterangan)</pre>";
+                        $hasil[]    = "$total diklat   $value->name";
                     }
-                    return $string=implode("<br>",$hasil);    
+                    
                     @endphp
-                    {{$string}}
+                    {{implode("<br>",$hasil)}}
                 </td>
             </tr>
             @endforeach
