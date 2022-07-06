@@ -63,6 +63,7 @@
                 <td>
                     @foreach ($pelatihan_guru as $key => $value)
                         @php
+                            $pelatihan_guru     = App\Models\Pelatihan::where('cabang_id', $item->id)->where('keterangan', 'guru')->get();
                             $datax[] = $value->peserta->count();
                         @endphp
                     @endforeach
@@ -71,6 +72,7 @@
                 <td>
                     @foreach ($pelatihan_santri as $key => $value)
                         @php
+                            $pelatihan_santri   = Pelatihan::where('cabang_id', $item->id)->where('keterangan', 'santri')->get();
                             $datay[] = $value->peserta->count();
                         @endphp
                     @endforeach
