@@ -45,25 +45,12 @@
                 <td>{{$item->name}}</td>
                 <td>{{$item->pelatihan->count()}}</td>
                 <td>
-                    @php
-                    $dataz = [];
-                    foreach ($item->pelatihan as $key => $value) {
-                        # code...
-                        $datax  = App\Models\Program::where('id',$value->program_id)->first();                        
-                        $dataz[$key] = $datax->id;
-                    }
-                    $programs = App\Models\Program::whereIn('id',$dataz)->distinct()->get();
-                    
-                    foreach ($programs as $key => $value) {
-                        # code...
-                        $total      = $item->pelatihan->where('program_id',$value->id)->count();
-                        $peserta    = App\Models\Peserta::where('cabang_id', $item->id)->where('program_id',$value->id)->count();
-                        $keterangan = App\Models\Pelatihan::where('program_id',$value->id)->select('keterangan')->first();
-                        $hasil[]    = "$total diklat   $value->name";
-                    }
-                    
-                    @endphp
-                    {{implode("<br>",$hasil)}}
+                        @php
+                        
+                        @endphp
+                    @foreach ($programs as $p)
+                        {{$item->pelatihan->where('program_id', $p->id)->count()}} - {{$p->name}} <br>
+                    @endforeach
                 </td>
             </tr>
             @endforeach
