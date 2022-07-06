@@ -60,23 +60,27 @@
                         {{$item->pelatihan->where('program_id', $p->id)->count()}} - {{$p->name}} <br>
                     @endforeach
                 </td>
+                    @php
+                        $pelatihan_guru     = App\Models\Pelatihan::where('cabang_id',$item->id)->where('keterangan','guru')->get();
+                        $pelatihan_santri   = App\Models\Pelatihan::where('cabang_id',$item->id)->where('keterangan','santri')->get();
+                        $y = [];
+                        $x = [];
+                    @endphp
                 <td>
-                    @foreach ($pelatihan_guru as $key => $value)
+                    @foreach ($pelatihan_guru as $g)
                         @php
-                            $pelatihan_guru     = App\Models\Pelatihan::where('cabang_id', $item->id)->where('keterangan', 'guru')->get();
-                            $datax[] = $value->peserta->count();
+                            $y[] = $g->peserta->count();
                         @endphp
                     @endforeach
-                    {{array_sum($datax)}}
+                    {{array_sum($y) .'Guru'}}
                 </td>
                 <td>
-                    @foreach ($pelatihan_santri as $key => $value)
+                    @foreach ($pelatihan_santri as $s)
                         @php
-                            $pelatihan_santri   = Pelatihan::where('cabang_id', $item->id)->where('keterangan', 'santri')->get();
-                            $datay[] = $value->peserta->count();
+                            $x[] = $s->peserta->count();
                         @endphp
                     @endforeach
-                    {{array_sum($datay)}}
+                    {{array_sum($x) .' Santri'}}
                 </td>
             </tr>
             @endforeach
