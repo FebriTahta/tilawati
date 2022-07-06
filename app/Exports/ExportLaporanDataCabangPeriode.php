@@ -23,7 +23,7 @@ class ExportLaporanDataCabangPeriode implements FromView, ShouldAutoSize
         $dari = $this->dari;
         $sampai = $this->sampai;
 
-        $data = Cabang::has('pelatihan')->with(['pelatihan' => function ($query)  {
+        $data = Cabang::has('pelatihan')->with(['pelatihan' => function ($query) use ($dari, $sampai) {
             $query->where('jenis','diklat')->whereBetween('tanggal', array($dari, $sampai));
         }])->get();
         
