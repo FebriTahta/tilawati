@@ -119,8 +119,7 @@ class ExportCont extends Controller
     {
         $dari = $request->dari;
         $sampai = $request->sampai;
-        
-        return $dari;
+    
         if ($dari == null) {
             # code...
             return Excel::download(new ExportLaporanDataCabang(),'Laporan_Data_Lembaga_Periode_'.date('d_m_Y').'.xlsx');
