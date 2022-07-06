@@ -45,9 +45,17 @@
                 <td>{{$item->name}}</td>
                 <td>{{$item->pelatihan->count()}}</td>
                 <td>
-                        @php
-                        
-                        @endphp
+                    @php
+                    $dataz = [];
+                    foreach ($item->pelatihan as $key => $value) {
+                        # code...
+                        $datax  = App\Models\Program::where('id',$value->program_id)->first();                        
+                        $dataz[$key] = $datax->id;
+                    }
+                    $programs = App\Models\Program::whereIn('id',$dataz)->distinct()->get();
+                    
+                    
+                    @endphp
                     @foreach ($programs as $p)
                         {{$item->pelatihan->where('program_id', $p->id)->count()}} - {{$p->name}} <br>
                     @endforeach
