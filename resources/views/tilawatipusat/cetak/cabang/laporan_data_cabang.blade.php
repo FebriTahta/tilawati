@@ -29,12 +29,12 @@
     <table>
         <thead style="font-weight: bold; border: black">
             <tr style="border: black; text-transform: uppercase; font-weight: bold">
-                <th rowspan="2">NO</th>
-                <th rowspan="2">NAMA CABANG</th>
-                <th rowspan="2">TOTAL DIKLAT</th>
-                <th rowspan="2">PROGRAM DIKLAT</th>
-                <th rowspan="2">GURU</th>
-                <th rowspan="2">SANTRI</th>
+                <th >NO</th>
+                <th >NAMA CABANG</th>
+                <th >TOTAL DIKLAT</th>
+                <th >PROGRAM DIKLAT</th>
+                <th >GURU</th>
+                <th >SANTRI</th>
             </tr>
         </thead >
         <tbody>
@@ -43,6 +43,29 @@
             <tr>
                 <td>{{$key+1}}</td>
                 <td>{{$item->name}}</td>
+                <td>{{$item->pelatihan->count()}}</td>
+                <td>
+                    @php
+                    $item=$data;
+                    $dataz = [];
+                    foreach ($data->pelatihan as $key => $value) {
+                        # code...
+                        $datax  = Program::where('id',$value->program_id)->first();                        
+                        $dataz[$key] = $datax->id;
+                    }
+                    $programs = Program::whereIn('id',$dataz)->distinct()->get();
+                    
+                    foreach ($programs as $key => $value) {
+                        # code...
+                        $total      = $data->pelatihan->where('program_id',$value->id)->count();
+                        $peserta    = Peserta::where('cabang_id', $data->id)->where('program_id',$value->id)->count();
+                        $keterangan = Pelatihan::where('program_id',$value->id)->select('keterangan')->first();
+                        $hasil[]    = "<pre>$total diklat   $value->name  ($peserta $keterangan->keterangan)</pre>";
+                    }
+                    return $string=implode("<br>",$hasil);    
+                    @endphp
+                    {{$string}}
+                </td>
             </tr>
             @endforeach
         </tbody>

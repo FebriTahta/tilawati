@@ -14,7 +14,7 @@ class ExportLaporanDataCabang implements FromView, ShouldAutoSize
     {
         $data = Cabang::has('pelatihan')->with(['pelatihan' => function ($query)  {
             $query->where('jenis','diklat');
-        }]);
+        }])->get();
         return view('tilawatipusat.cetak.cabang.laporan_data_cabang',compact('data'));
     }
 }
