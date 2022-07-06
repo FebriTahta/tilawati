@@ -120,12 +120,14 @@ class ExportCont extends Controller
         $dari = $request->dari;
         $sampai = $request->sampai;
         
-        if ($dari && $sampai !== null) {
-            # code...
-            return Excel::download(new ExportLaporanDataCabangPeriode($dari,$sampai),'Laporan_Data_Lembaga_Periode_'.date('d_m_Y').'.xlsx');
-        }else {
-            # code...
-            return Excel::download(new ExportLaporanDataCabang(),'Laporan_Data_Lembaga_Periode_'.$dari.'_sampai_'.$sampai.'.xlsx');
-        }
+        return Excel::download(new ExportLaporanDataCabang(),'Laporan_Data_Lembaga_Periode_'.date('d_m_Y').'.xlsx');
+
+        // if ($dari && $sampai !== null) {
+        //     # code...
+        //     return Excel::download(new ExportLaporanDataCabangPeriode($dari,$sampai),'Laporan_Data_Lembaga_Periode_'.date('d_m_Y').'.xlsx');
+        // }else {
+        //     # code...
+        //     return Excel::download(new ExportLaporanDataCabang(),'Laporan_Data_Lembaga_Periode_'.$dari.'_sampai_'.$sampai.'.xlsx');
+        // }
     }
 }
