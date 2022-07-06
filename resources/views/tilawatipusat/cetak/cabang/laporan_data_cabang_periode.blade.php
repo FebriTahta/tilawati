@@ -15,7 +15,7 @@
     <table>
         <thead style="font-weight: bold; text-transform: uppercase">
             <tr>
-                <th rowspan="3" colspan="5">Laporan Data Cabang <br> <small>{{date('d - m - Y')}}</small></th>
+                <th rowspan="3" colspan="5">Laporan Data Cabang <br> <small>{{$dari}} sampai {{$sampai}}</small></th>
             </tr>
         </thead>
     </table>
