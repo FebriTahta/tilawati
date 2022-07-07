@@ -28,6 +28,8 @@
                         @if (auth()->user()->role == 'pusat')
                             <code>Api ini diperuntukan untuk aplikasi mobile (My Nurul Falah)</code>
                     </p>
+                    <p>link api : </p>
+                    <a class="text-primary" href="https://admin.nurulfalah.org/api/daftar-perwakilan-tilawai">https://admin.nurulfalah.org/api/daftar-perwakilan-tilawai</a>
                     <button class="btn btn-sm btn-success mb-2 mr-1" style="width:130px ; margin-bottom: 5px"
                         data-toggle="modal" data-target=".bs-example-modal-cabang"><i class="mdi mdi-cloud-upload"></i>
                         import cabang</button>
