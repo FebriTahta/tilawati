@@ -43,7 +43,11 @@
                                 <tr>
                                     {{-- <th>Kode</th> --}}
                                     <th>Nama</th>
-                                    
+                                    <th>Kepala Cabang</th>
+                                    <th>Alamat Sekertariat</th>
+                                    <th>Kota / Kabupaten</th>
+                                    <th>Provinsi</th>
+                                    <th>Telpon</th>
                                     <th>OPSI</th>
                                 </tr>
                             </thead>
@@ -55,7 +59,11 @@
                                 <tr>
                                     {{-- <th>Kode</th> --}}
                                     <th>Nama</th>
-                                    
+                                    <th>Kepala Cabang</th>
+                                    <th>Alamat Sekertariat</th>
+                                    <th>Kota / Kabupaten</th>
+                                    <th>Provinsi</th>
+                                    <th>Telpon</th>
                                     <th>OPSI</th>
                                 </tr>
                             </tfoot>
@@ -979,6 +987,26 @@
                     {
                         data: 'name',
                         name: 'name'
+                    },
+                    {
+                        data: 'kepalacabang',
+                        name: 'kepalacabang'
+                    },
+                    {
+                        data: 'alamat',
+                        name: 'alamat'
+                    },
+                    {
+                        data: 'kabupaten',
+                        name: 'kabupaten'
+                    },
+                    {
+                        data: 'provinsi',
+                        name: 'provinsi'
+                    },
+                    {
+                        data: 'telp',
+                        name: 'telp'
                     },
                     {
                         data: 'opsi',
