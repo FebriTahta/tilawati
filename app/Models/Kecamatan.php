@@ -34,5 +34,10 @@ class Kecamatan extends Model
     {
         return $this->hasMany(Apicabangtilawati::class);
     }
+
+    public function apicabangnf()
+    {
+        return $this->hasMany(Apicabangnf::class);
+    }
     
 }
