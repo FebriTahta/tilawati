@@ -13,6 +13,7 @@ use App\Imports\PesertaTahfidzImport;
 use App\Imports\PesertaMunaqisyImport;
 use App\Imports\CabangImport;
 use App\Imports\ApicabangtilawatiImport;
+use App\Imports\ApicabangnfImport;
 use App\Imports\LembagaImport;
 use App\Imports\RpqImport;
 use App\Imports\PesertaDiklatImport;
@@ -105,6 +106,15 @@ class ImportController extends Controller
     public function importapicabangtilawati(Request $request)
     {
         $data = Excel::import(new ApicabangtilawatiImport(), $request->file('file'));
+        return Response()->json([
+            $data,
+            'success'=>'Data Cabang Berhasil Ditambahkan Melalui file Excel'
+        ]);
+    }
+
+    public function importapicabangnf(Request $request)
+    {
+        $data = Excel::import(new ApicabangnfImport(), $request->file('file'));
         return Response()->json([
             $data,
             'success'=>'Data Cabang Berhasil Ditambahkan Melalui file Excel'

@@ -24,7 +24,8 @@ class Apicabangnf extends Model
         'telp',
         'ekspedisi',
         'teritorial',
-        'email'
+        'email',
+        'nfmap'
     ];
 
     public function provinsi()

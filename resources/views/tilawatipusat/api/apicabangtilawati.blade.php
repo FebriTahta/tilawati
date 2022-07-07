@@ -28,11 +28,11 @@
                         @if (auth()->user()->role == 'pusat')
                             <code>Api ini diperuntukan untuk aplikasi mobile (My Nurul Falah)</code>
                     </p>
-                    <p class="card-title-desc" >link api : <a class="text-primary card-title-desc" href="https://admin.nurulfalah.org/api/daftar-perwakilan-tilawai">https://admin.nurulfalah.org/api/daftar-perwakilan-tilawai</a></p>
+                    <p class="card-title-desc" >link api : <a class="text-primary card-title-desc" target="_blank" href="https://admin.nurulfalah.org/api/daftar-perwakilan-tilawai">https://admin.nurulfalah.org/api/daftar-perwakilan-tilawai</a></p>
                     <br>
-                    <button class="btn btn-sm btn-success mb-2 mr-1" style="width:130px ; margin-bottom: 5px"
+                    {{-- <button class="btn btn-sm btn-success mb-2 mr-1" style="width:130px ; margin-bottom: 5px"
                         data-toggle="modal" data-target=".bs-example-modal-cabang"><i class="mdi mdi-cloud-upload"></i>
-                        import cabang</button>
+                        import cabang</button> --}}
                     <a href="/export-api-data-perwakilan-cabang"
                         class="btn btn-sm btn-outline-primary mb-2 mr-1 text-uppercase" style="font-size: 12px "><i
                     class="mdi mdi-download"></i> Unduh Data Perwakilan Tilawati</a>
@@ -450,13 +450,7 @@
                                                     class="text-capitalize form-control" id="" cols="5" rows="3"
                                                     required></textarea>
                                             </div>
-                                            <div class="form-group col-xl-6">
-                                                <label for=""><i class="text-danger">* </i>Status</label>
-                                                <select name="status" id="x" class="form-control text-capitalize">
-                                                    <option value="CABANG">CABANG</option>
-                                                    <option value="RPQ">RPQ</option>
-                                                </select>
-                                            </div>
+                                            
                                             <div class="form-group col-xl-6">
                                                 <label for=""><i class="text-danger">* </i>Telp Cabang</label>
                                                 <input type="text" class="form-control" id="telp" name="telp" required>
@@ -466,6 +460,11 @@
                                                 <label for=""><i class="text-danger ">* </i>Alamat Cabang</label>
                                                 <textarea name="alamat" class="text-capitalize form-control" id="alamat"
                                                     cols="5" rows="3" required></textarea>
+                                            </div>
+
+                                            <div class="form-group col-xl-6">
+                                                <label for=""><i class="text-danger">* </i>Status</label>
+                                                <input type="text" class="form-control" id="statuss" name="status" required>
                                             </div>
                                             
                                             <div class="form-group col-xl-12 col-12">
@@ -1115,7 +1114,7 @@
             modal.find('.modal-body #id').val(id);
             modal.find('.modal-body #name').val(name);
             modal.find('.modal-body #kepalacabang').val(kepalacabang);
-            modal.find('.modal-body #x').val(status);
+            modal.find('.modal-body #statuss').val(status);
             modal.find('.modal-body #alamat').val(alamat);
             modal.find('.modal-body #telp').val(telp);
             modal.find('.modal-body #kadivre').val(kadivre);

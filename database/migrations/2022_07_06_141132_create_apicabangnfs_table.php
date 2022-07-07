@@ -31,6 +31,7 @@ class CreateApicabangnfsTable extends Migration
             $table->string('pos')->nullable();
             $table->string('telp')->nullable();
             $table->string('ekspedisi')->nullable();
+            $table->string('nfmap')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

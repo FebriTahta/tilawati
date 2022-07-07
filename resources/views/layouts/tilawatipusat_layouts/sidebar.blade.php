@@ -111,7 +111,8 @@
                         <span style="font-size: 12px">Data Api Cabang</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="true">
-                        <li><a style="font-size: 12px" href="/tampilan-api-cabang-tilawati">Api Cabang Tilawati</a></li>
+                        <li><a style="font-size: 12px" href="/tampilan-api-cabang-tilawati">Api Perwakilan Cabang Tilawati</a></li>
+                        <li><a style="font-size: 12px" href="/tampilan-api-cabang-nurul-falah">Api Cabang Nurul Falah</a></li>
                     </ul>
                 </li>
                 @endif
