@@ -7,6 +7,7 @@ use App\Exports\ExportDataPeserta;
 use App\Exports\TemplateTrainerCabangExport;
 use App\Exports\TemplateKpaCabangExport;
 use App\Exports\CabangDataExport;
+use App\Exports\ApicabangtilawatiExport;
 use App\Exports\ExportDataKPA;
 use App\Exports\LembagaDataExport;
 use App\Exports\ExportDataTrainer;
@@ -106,6 +107,11 @@ class ExportCont extends Controller
     public function download_data_cabang()
     {
         return Excel::download(new CabangDataExport,'data-cabang-'.date('Y').'.xlsx');
+    }
+
+    public function download_api_perwakilan_cabang()
+    {
+        return Excel::download(new ApicabangtilawatiExport,'data-perwakilan-tilawati-'.date('Y').'.xlsx');
     }
 
     public function export_lembaga_search_provinsi(Request $request)

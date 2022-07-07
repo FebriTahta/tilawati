@@ -521,6 +521,10 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     // API FE & BE
     Route::get('/tampilan-api-cabang-tilawati',[ApicabangCont::class,'index_api_tilawati']);
     Route::get('/tampilan-api-cabang-nurul-falah',[ApicabangCont::class,'index_api_nf']);
+    Route::post('/importCabangApi',[ImportController::class, 'importapicabangtilawati'])->name('import.cabangapi');
+    Route::post('/update-api-cabang',[ApicabangCont::class,'update_api_cabang'])->name('update.apicabang');
+    // Route::get('/export-download-data-cabang',[ExportCont::class,'download_data_cabang']);
+    Route::get('/export-api-data-perwakilan-cabang',[ExportCont::class,'download_api_perwakilan_cabang']);
     
 });
 

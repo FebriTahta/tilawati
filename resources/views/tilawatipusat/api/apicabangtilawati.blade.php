@@ -10,81 +10,32 @@
 @section('content')
     @component('common-tilawatipusat.breadcrumb')
         @slot('title')
-            Cabang
+            Api Perwakilan
         @endslot
         @slot('title_li')
             Tilawati
         @endslot
     @endcomponent
-    <div class="row">
-        <div class="col-xl-4">
-            @component('common-tilawatipusat.dashboard-widget')
-                @slot('title')
-                    <b id="cb"> 2,456 </b> Cabang
-                @endslot
-                @slot('iconClass')
-                    mdi mdi-bank-outline
-                @endslot
-                @slot('price')
-                @endslot
-            @endcomponent
-        </div>
-        <div class="col-xl-4">
-            @component('common-tilawatipusat.dashboard-widget')
-                @slot('title')
-                    <b id="kb"> 2,456 </b> Kabupaten
-                @endslot
-                @slot('iconClass')
-                    mdi mdi-city
-                @endslot
-                @slot('price')
-                @endslot
-            @endcomponent
-        </div>
-        <div class="col-xl-4">
-            @component('common-tilawatipusat.dashboard-widget')
-                @slot('title')
-                    <b id="pv"> 2,456 </b> Provinsi
-                @endslot
-                @slot('iconClass')
-                    mdi mdi-city-variant-outline
-                @endslot
-                @slot('price')
-                @endslot
-            @endcomponent
-        </div>
-    </div>
+
 
     <div class="row">
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
 
-                    <h4 class="card-title">Data Cabang</h4>
-                    <p class="card-title-desc">Ter-update berdasarkan Tahun 2021 </br>
+                    <h4 class="card-title">Data Api Cabang / Perwakilan Tilawati</h4>
+                    <p class="card-title-desc">Ter-update berdasarkan Tahun {{date('Y')}} </br>
                         @if (auth()->user()->role == 'pusat')
-                            <code>Data Import dan Eksport Berbeda Format (Berhati-hati ketika meng-importkan data
-                                baru)</code>
+                            <code>Api ini diperuntukan untuk aplikasi mobile (My Nurul Falah)</code>
                     </p>
-                    {{-- <button class="btn btn-sm btn-success mb-2 mr-1" style="width:130px ; margin-bottom: 5px"
+                    <button class="btn btn-sm btn-success mb-2 mr-1" style="width:130px ; margin-bottom: 5px"
                         data-toggle="modal" data-target=".bs-example-modal-cabang"><i class="mdi mdi-cloud-upload"></i>
                         import cabang</button>
-                    <button class="btn btn-sm btn-success mb-2 mr-1" style="width:130px ; margin-bottom: 5px"
-                        data-toggle="modal" data-target=".bs-example-modal-rpq"><i class="mdi mdi-cloud-upload"></i> import
-                        rpq</button> --}}
-                    <button class="btn btn-sm btn-success mb-2 mr-1" style="width:130px " data-toggle="modal"
-                        data-target=".bs-example-modal-tambah-cabang"><i class="mdi mdi-plus"></i> tambah cabang</button>
-                    <a href="/export-download-data-cabang"
-                        class="btn btn-sm btn-outline-warning mb-2 mr-1 text-uppercase" style="font-size: 12px "><i
-                    class="mdi mdi-download"></i> Unduh Data Cabang</a>
+                    <a href="/export-api-data-perwakilan-cabang"
+                        class="btn btn-sm btn-outline-primary mb-2 mr-1 text-uppercase" style="font-size: 12px "><i
+                    class="mdi mdi-download"></i> Unduh Data Perwakilan Tilawati</a>
                     <br>
                     @endif
-                    {{-- <a href="/export-data-cabang" target="_blank" class="btn btn-sm btn-outline-primary mb-2 mr-1"
-                        style="width: 130px"><i class="fa fa-download">
-                            Trainer Cabang</i></a>
-                    <a href="/export-kpa-cabang" target="_blank" class="btn btn-sm btn-outline-primary mb-2 mr-1"
-                        style="width: 130px"><i class="fa fa-download">
-                            KPA Cabang</i></a> --}}
                     <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
                         <table id="datatable-buttons" class="table table-cabang table-bordered dt-responsive nowrap"
                             style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
@@ -92,17 +43,7 @@
                                 <tr>
                                     {{-- <th>Kode</th> --}}
                                     <th>Nama</th>
-                                    <th>KEPALA</th>
-                                    <th>PROVINSI</th>
-                                    <th>KABUPATEN</th>
-                                    <th>TELP</th>
-                                    <th>ALAMAT</th>
-                                    <th>STATUS</th>
-                                    <th>KADIVRE</th>
-                                    <th>WILAYAH</th>
-                                    <th>TOTAL KPA</th>
-                                    <th>TRAINER</th>
-                                    <th>LEMBAGA</th>
+                                    
                                     <th>OPSI</th>
                                 </tr>
                             </thead>
@@ -114,17 +55,7 @@
                                 <tr>
                                     {{-- <th>Kode</th> --}}
                                     <th>Nama</th>
-                                    <th>KEPALA</th>
-                                    <th>PROVINSI</th>
-                                    <th>KABUPATEN</th>
-                                    <th>TELP</th>
-                                    <th>ALAMAT</th>
-                                    <th>STATUS</th>
-                                    <th>KADIVRE</th>
-                                    <th>WILAYAH</th>
-                                    <th>TOTAL KPA</th>
-                                    <th>TRAINER</th>
-                                    <th>LEMBAGA</th>
+                                    
                                     <th>OPSI</th>
                                 </tr>
                             </tfoot>
@@ -467,104 +398,7 @@
     </div>
 
     {{-- tambah cabang baru --}}
-    <div class="col-sm-6 col-md-3 m-t-30">
-        <div class="modal fade bs-example-modal-tambah-cabang" id="modal-cabang" tabindex="-1" role="dialog"
-            aria-labelledby="mySmallModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title mt-0">DATA CABANGS </h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-
-                    <div class="modal-body">
-                        <div class="col-xl-12">
-                            <div class="card m-b-30">
-                                <div class="card-body">
-                                    <form method="POST" id="form_tambah_cabang">@csrf
-                                        <div class="row">
-
-                                            <div class="form-group col-xl-6">
-                                                <select name="provinsi_id" id="mySelect" class="form-control" required>
-                                                    <option value="">1* Provinsi</option>
-                                                    @foreach ($dt_props2 as $item)
-                                                        <option value="{{ $item->id }}">{{ $item->nama }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                            <div class="form-group col-xl-6">
-                                                <select id="kabupaten_id" name="kabupaten_id" class="form-control"
-                                                    required>
-                                                    <option value="">2* Kabupaten / Kota</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group col-xl-6">
-                                                <label for=""><i class="text-danger">* </i>Nama Cabang</label>
-                                                <input type="text" class="form-control text-capitalize" id="name"
-                                                    name="name" required>
-                                            </div>
-                                            <div class="form-group col-xl-6">
-                                                <label for=""><i class="text-danger">* </i>Kepala Cabang</label>
-                                                <input type="text" class="form-control text-capitalize" name="kepalacabang"
-                                                    id="kepalacabang" required>
-                                            </div>
-                                            <div class="form-group col-xl-6">
-                                                <label for=""><i class="text-danger">* </i>Kadivre</label>
-                                                <input type="text" class="form-control" name="kadivre" id="kadivre"
-                                                    required>
-                                            </div>
-                                            <div class="form-group col-xl-6">
-                                                <label for=""><i class="text-danger ">* </i>Wilayah</label>
-                                                <textarea name="teritorial" id="teritorial"
-                                                    class="text-capitalize form-control" id="" cols="5" rows="3"
-                                                    required></textarea>
-                                            </div>
-                                            <div class="form-group col-xl-6">
-                                                <label for=""><i class="text-danger">* </i>Status</label>
-                                                <select name="status" id="x" class="form-control text-capitalize">
-                                                    <option value="CABANG">CABANG</option>
-                                                    <option value="RPQ">RPQ</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group col-xl-6">
-                                                <label for=""><i class="text-danger">* </i>Telp Cabang</label>
-                                                <input type="text" class="form-control" id="telp" name="telp" required>
-                                            </div>
-                                            {{-- <div class="form-group col-xl-6">
-                                                <label for=""><i class="text-danger"> </i>Email Cabang</label>
-                                                <input type="email" class="form-control" id="email" name="email">
-                                            </div> --}}
-                                            <div class="form-group col-xl-6">
-                                                <label for=""><i class="text-danger ">* </i>Alamat Cabang</label>
-                                                <textarea name="alamat" class="text-capitalize form-control" id="alamat"
-                                                    cols="5" rows="3" required></textarea>
-                                            </div>
-                                            {{-- <div class="form-group col-xl-3">
-                                                <label for=""><i class="text-danger">* </i>Kode Pos</label>
-                                                <input type="number" class="form-control" name="pos" required>
-                                            </div>
-                                            <div class="form-group col-xl-12">
-                                                <label for=""><i class="text-danger">* </i>Alamat Ekspedisi (untuk
-                                                    pengiriman)</label>
-                                                <textarea name="ekspedisi" class="form-control text-capitalize" id=""
-                                                    cols="5" rows="3" required></textarea>
-                                            </div> --}}
-                                            <div class="form-group col-xl-12 col-12">
-                                                <input type="submit" id="tambahlembaga_btn" style="width: 100%"
-                                                    class="btn btn-info" value="Submit!">
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div> <!-- end col -->
-                    </div>
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
-    </div>
+    
 
     <div class="col-sm-6 col-md-3 m-t-30">
         <div class="modal fade bs-example-modal-tambah-cabang" id="modal-cabang2" tabindex="-1" role="dialog"
@@ -617,25 +451,13 @@
                                                 <label for=""><i class="text-danger">* </i>Telp Cabang</label>
                                                 <input type="text" class="form-control" id="telp" name="telp" required>
                                             </div>
-                                            {{-- <div class="form-group col-xl-6">
-                                                <label for=""><i class="text-danger"> </i>Email Cabang</label>
-                                                <input type="email" class="form-control" id="email" name="email">
-                                            </div> --}}
+                                            
                                             <div class="form-group col-xl-6">
                                                 <label for=""><i class="text-danger ">* </i>Alamat Cabang</label>
                                                 <textarea name="alamat" class="text-capitalize form-control" id="alamat"
                                                     cols="5" rows="3" required></textarea>
                                             </div>
-                                            {{-- <div class="form-group col-xl-3">
-                                                <label for=""><i class="text-danger">* </i>Kode Pos</label>
-                                                <input type="number" class="form-control" name="pos" required>
-                                            </div>
-                                            <div class="form-group col-xl-12">
-                                                <label for=""><i class="text-danger">* </i>Alamat Ekspedisi (untuk
-                                                    pengiriman)</label>
-                                                <textarea name="ekspedisi" class="form-control text-capitalize" id=""
-                                                    cols="5" rows="3" required></textarea>
-                                            </div> --}}
+                                            
                                             <div class="form-group col-xl-12 col-12">
                                                 <input type="submit" id="tambahlembaga_btn2" style="width: 100%"
                                                     class="btn btn-info" value="Submit!">
@@ -820,37 +642,6 @@
                         $('#btnhapus').val('Ya, Hapus!');
                         $('.bs-example-modal-diklat-hapus').modal('hide');
                         $('#btnhapus').attr('disabled', false);
-
-                        // UPDATE JUMLAH DATA
-                        $.ajax({
-                            url: '{{ route('diklat.cabang_kab') }}',
-                            type: 'get',
-                            dataType: 'json',
-                            success: function(data) {
-                                document.getElementById('kb').innerHTML = data;
-                                console.log(data);
-                            }
-                        });
-
-                        $.ajax({
-                            url: '{{ route('diklat.cabang_pro') }}',
-                            type: 'get',
-                            dataType: 'json',
-                            success: function(data) {
-                                document.getElementById('pv').innerHTML = data;
-                                console.log(data);
-                            }
-                        });
-
-                        $.ajax({
-                            url: '{{ route('diklat.cabang_tot') }}',
-                            type: 'get',
-                            dataType: 'json',
-                            success: function(data) {
-                                document.getElementById('cb').innerHTML = data;
-                                console.log(data);
-                            }
-                        });
                     }
                 },
                 error: function(data) {
@@ -887,36 +678,6 @@
                             text: "Cabang Baru Berhasil Di Tabahkan!",
                             type: "success"
                         })
-
-                        $.ajax({
-                            url: '{{ route('diklat.cabang_kab') }}',
-                            type: 'get',
-                            dataType: 'json',
-                            success: function(data) {
-                                document.getElementById('kb').innerHTML = data;
-                                console.log(data);
-                            }
-                        });
-
-                        $.ajax({
-                            url: '{{ route('diklat.cabang_pro') }}',
-                            type: 'get',
-                            dataType: 'json',
-                            success: function(data) {
-                                document.getElementById('pv').innerHTML = data;
-                                console.log(data);
-                            }
-                        });
-
-                        $.ajax({
-                            url: '{{ route('diklat.cabang_tot') }}',
-                            type: 'get',
-                            dataType: 'json',
-                            success: function(data) {
-                                document.getElementById('cb').innerHTML = data;
-                                console.log(data);
-                            }
-                        });
                     }
                 },
                 error: function(data) {
@@ -930,7 +691,7 @@
             var formData = new FormData(this);
             $.ajax({
                 type: 'POST',
-                url: "{{ route('update.cabang') }}",
+                url: "{{ route('update.apicabang') }}",
                 data: formData,
                 cache: false,
                 contentType: false,
@@ -954,36 +715,6 @@
                         //     text: "Cabang Baru Berhasil Di Tabahkan!",
                         //     type: "success"
                         // })
-
-                        $.ajax({
-                            url: '{{ route('diklat.cabang_kab') }}',
-                            type: 'get',
-                            dataType: 'json',
-                            success: function(data) {
-                                document.getElementById('kb').innerHTML = data;
-                                console.log(data);
-                            }
-                        });
-
-                        $.ajax({
-                            url: '{{ route('diklat.cabang_pro') }}',
-                            type: 'get',
-                            dataType: 'json',
-                            success: function(data) {
-                                document.getElementById('pv').innerHTML = data;
-                                console.log(data);
-                            }
-                        });
-
-                        $.ajax({
-                            url: '{{ route('diklat.cabang_tot') }}',
-                            type: 'get',
-                            dataType: 'json',
-                            success: function(data) {
-                                document.getElementById('cb').innerHTML = data;
-                                console.log(data);
-                            }
-                        });
                     }
                 },
                 error: function(data) {
@@ -1233,35 +964,7 @@
                 ]
             });
 
-            $.ajax({
-                url: '{{ route('diklat.cabang_kab') }}',
-                type: 'get',
-                dataType: 'json',
-                success: function(data) {
-                    document.getElementById('kb').innerHTML = data;
-                    console.log(data);
-                }
-            });
-
-            $.ajax({
-                url: '{{ route('diklat.cabang_pro') }}',
-                type: 'get',
-                dataType: 'json',
-                success: function(data) {
-                    document.getElementById('pv').innerHTML = data;
-                    console.log(data);
-                }
-            });
-
-            $.ajax({
-                url: '{{ route('diklat.cabang_tot') }}',
-                type: 'get',
-                dataType: 'json',
-                success: function(data) {
-                    document.getElementById('cb').innerHTML = data;
-                    console.log(data);
-                }
-            });
+           
 
             $('#datatable-buttons').DataTable({
                 //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
@@ -1269,67 +972,13 @@
                 processing: true,
                 serverSide: true,
                 ajax: {
-                    url: '{{ route('diklat.cabang_data') }}',
+                    url: '/tampilan-api-cabang-tilawati',
                 },
                 columns: [
-                    // {
-                    //     data: 'kode',
-                    //     name: 'kode'
-                    // },
+                    
                     {
                         data: 'name',
                         name: 'name'
-                    },
-                    // {
-                    //     data: 'kepala',
-                    //     name: 'kepala.name',
-                    //     orderable: false,
-                    // },
-                    {
-                        data: 'kepalacabang',
-                        name: 'kepalacabang',
-                    },
-                    {
-                        data: 'provinsi',
-                        name: 'provinsi.nama'
-                    },
-                    {
-                        data: 'kabupaten',
-                        name: 'kabupaten.nama'
-                    },
-                    {
-                        data: 'telp',
-                        name: 'telp'
-                    },
-                    {
-                        data: 'alamat',
-                        name: 'alamat'
-                    },
-                    {
-                        data: 'status',
-                        name: 'status'
-                    },
-                    {
-                        data: 'kadivre',
-                        name: 'kadivre'
-                    },
-                    {
-                        data: 'teritorial',
-                        name: 'teritorial'
-                    },
-                    {
-                        data: 'total_kpa',
-                        name: 'total_kpa'
-                    },
-                    {
-                        searchable: false,
-                        orderable: false,
-                        data: 'trainers',
-                        name: 'trainers'
-                    },
-                    {
-                        data: 'tot_lembaga',
-                        name: 'tot_lembaga'
                     },
                     {
                         data: 'opsi',
@@ -1357,15 +1006,7 @@
                 success: function(data) {
                     if (data.success) {
                         //get total data cabang
-                        $.ajax({
-                            url: '{{ route('dashboard.cabang') }}',
-                            type: 'get',
-                            dataType: 'json',
-                            success: function(data) {
-                                document.getElementById('cb').innerHTML = data;
-                                console.log(data);
-                            }
-                        });
+                        
                         //sweetalert and refresh datatable
                         $("#importrpq")[0].reset();
                         toastr.success(data.success);
@@ -1393,7 +1034,7 @@
             var formData = new FormData(this);
             $.ajax({
                 type: 'POST',
-                url: "{{ route('import.cabang') }}",
+                url: "{{ route('import.cabangapi') }}",
                 data: formData,
                 cache: false,
                 contentType: false,
