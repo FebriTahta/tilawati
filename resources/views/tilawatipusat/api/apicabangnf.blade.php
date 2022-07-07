@@ -30,9 +30,9 @@
                     </p>
                     <p class="card-title-desc" >link api : <a class="text-primary card-title-desc" target="_blank" href="https://admin.nurulfalah.org/api/daftar-cabang-nf">https://admin.nurulfalah.org/api/daftar-cabang-nf</a></p>
                     <br>
-                    <button class="btn btn-sm btn-success mb-2 mr-1" style="width:130px ; margin-bottom: 5px"
+                    {{-- <button class="btn btn-sm btn-success mb-2 mr-1" style="width:130px ; margin-bottom: 5px"
                         data-toggle="modal" data-target=".bs-example-modal-cabang"><i class="mdi mdi-cloud-upload"></i>
-                        import cabang</button>
+                        import cabang</button> --}}
                     <a href="/export-api-data-cabang-nf"
                         class="btn btn-sm btn-outline-primary mb-2 mr-1 text-uppercase" style="font-size: 12px "><i
                     class="mdi mdi-download"></i> Unduh Data Cabang NF</a>
