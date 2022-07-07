@@ -63,7 +63,7 @@ class ApiCont extends Controller
     public function api_cabang_nf(Request $request)
     {
         $data = Apicabangnf::orderBy('kode','ASC')
-        ->join('kabupaten','apicabangtilawatis.kabupaten_id','kabupaten.id')
+        ->join('kabupaten','apicabangnfs.kabupaten_id','kabupaten.id')
         ->select('name','status','nama','kepalacabang','alamat','telp','nfmap')
         ->paginate(10);
 
