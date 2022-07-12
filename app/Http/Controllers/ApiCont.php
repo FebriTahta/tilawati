@@ -65,13 +65,12 @@ class ApiCont extends Controller
         $data = Apicabangtilawati::orderBy('kode','ASC')
         ->join('kabupaten','apicabangtilawatis.kabupaten_id','kabupaten.id')
         ->join('provinsi','apicabangtilawatis.provinsi_id','provinsi_id')
-        ->select('name','status','nama','kepalacabang','alamat','telp','provinsi.nama')
+        ->select('name','status','nama','kepalacabang','alamat','telp')
         ->where('name', 'like', '%'. $search . '%')
         ->orWhere('nama', 'like', '%'. $search . '%')
         ->orWhere('kepalacabang', 'like', '%'. $search . '%')
         ->orWhere('alamat', 'like', '%'. $search . '%')
         ->orWhere('telp', 'like', '%'. $search . '%')
-        ->orWhere('provinsi.nama', 'like', '%'. $search . '%')
         ->paginate(10);
 
         if($data)
