@@ -243,10 +243,7 @@
                     </div>
 
                 @else
-                    
-                    <li class="menu-title text-danger">BATAS AKSES - - - - - - - - - - - -<i class="fa fa-arrow-right"></i></li>
-                @endif
-                @if (auth()->user()->id == '17' || auth()->user()->role == 'pusat')
+                    @if (auth()->user()->id == '21' || auth()->user()->role == 'pusat')
                         <li class="menu-title">LAPORAN DATA KERJA</li>
                         <li>
                             <a href="{{ route('diklat.seluruh_peserta') }}" class="waves-effect">
@@ -256,6 +253,8 @@
                             </a>
                         </li>
                     @endif
+                    <li class="menu-title text-danger">BATAS AKSES - - - - - - - - - - - -<i class="fa fa-arrow-right"></i></li>
+                @endif
             </ul>
         </div>
         <!-- Sidebar -->
