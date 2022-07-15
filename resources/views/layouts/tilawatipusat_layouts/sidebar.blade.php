@@ -243,6 +243,16 @@
                     </div>
 
                 @else
+                    @if (auth()->user()->id == '17' || auth()->user()->role == 'pusat')
+                        <li class="menu-title">LAPORAN DATA KERJA</li>
+                        <li>
+                            <a href="{{ route('diklat.seluruh_peserta') }}" class="waves-effect">
+                                <i class="mdi mdi-smart-card-outline"></i>
+                                <span class="badge badge-pill badge-danger float-right"></span>
+                                <span style="font-size: 12px">Laporan & Daftar Peserta Keseluruhan</span>
+                            </a>
+                        </li>
+                    @endif
                     <li class="menu-title text-danger">BATAS AKSES - - - - - - - - - - - -<i class="fa fa-arrow-right"></i></li>
                 @endif
             </ul>
