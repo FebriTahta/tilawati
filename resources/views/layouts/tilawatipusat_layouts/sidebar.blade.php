@@ -230,7 +230,7 @@
                                 <span style="font-size: 12px">E-Sertifikat</span>
                             </a>
                         </li>
-                        @if (auth()->user()->cabang->kode == '259566' || auth()->user()->role == 'pusat')
+                        {{-- @if (auth()->user()->cabang->kode == '259566' || auth()->user()->role == 'pusat') --}}
                         <li class="menu-title">LAPORAN DATA KERJA</li>
                         <li>
                             <a href="{{ route('diklat.seluruh_peserta') }}" class="waves-effect">
@@ -239,7 +239,7 @@
                                 <span style="font-size: 12px">Laporan & Daftar Peserta Keseluruhan</span>
                             </a>
                         </li>
-                        @endif
+                        {{-- @endif --}}
                     </div>
 
                 @else
