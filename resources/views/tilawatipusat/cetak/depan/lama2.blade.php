@@ -64,7 +64,18 @@
 						@endif --}}
 
 							@if ($item->kota2 == null)
-								kosong 
+								@if (substr($item->kota, 4, 4) == "ADM")
+										{{substr($item->kota, 10)}}
+									@endif
+									@if(substr($item->kota, 0, 4) == 'KOTA')
+											{{substr($item->kota, 5)}}
+									@elseif(substr($item->kota, 0, 4) == 'KAB.')
+											{{substr($item->kota, 5)}}
+									@else
+										{{$item->kota}}
+								@endif
+							@else
+							{{$item->kota2}}
 							@endif
 
 						{{-- @if (substr($item->kota, 4, 4) == "ADM")
