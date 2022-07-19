@@ -63,7 +63,7 @@
 
 						@if ($item->tmptlahir2 !== null)
 							@if (substr($item->tmptlahir2, 0, 4) == 'KOTA')
-							{{substr($item->tmptlahir2, 0)}}
+							{{substr($item->tmptlahir2, 5)}}
 							@elseif(substr($item->tmptlahir2, 0, 4) == 'ADM.')
 								{{substr($item->tmptlahir2, 10)}}
 							@elseif(substr($item->tmptlahir2, 0, 4) == 'KAB.')
