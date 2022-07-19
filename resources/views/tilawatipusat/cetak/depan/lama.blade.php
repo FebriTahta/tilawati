@@ -42,7 +42,19 @@
 				<tr class="atas">
                     <td class="atas" style="width: 170px; height: 23px;"></td>
                     <td class="atas" style="width: 11px; height: 23px;"></td>
-                    <td class="atas" style="width: 750px; height: 23px; text-transform: uppercase" >{{ $item->alamat }} {{$item->kota}}</td>
+                    <td class="atas" style="width: 750px; height: 23px; text-transform: uppercase" >{{ $item->alamat }} 
+						
+						@if (substr($item->kota, 0, 4) == 'KOTA')
+								{{substr($item->kota, 5)}}
+						@elseif(substr($item->kota, 0, 4) == 'ADM.')
+								{{substr($item->kota, 10)}}
+						@elseif(substr($item->kota, 0, 4) == 'KAB.')
+								{{substr($item->kota, 5)}}
+						@else
+								{{$item->kota}},
+						@endif
+					
+					</td>
                     <td class="atas" style="width: 52px; height: 23px;">&nbsp;</td>
 				</tr>
 				<tr class="atas">
