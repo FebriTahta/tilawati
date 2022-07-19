@@ -61,9 +61,9 @@
 							@endif
 						@endif
 
-						@if ($item->tmptlahir2 !== null)
+						{{-- @if ($item->tmptlahir2 !== null)
 							@if (substr($item->tmptlahir2, 0, 4) == 'KOTA')
-							{{substr($item->tmptlahir2, 0)}}
+								{{substr($item->tmptlahir2, 0)}}
 							@elseif(substr($item->tmptlahir2, 0, 4) == 'ADM.')
 								{{substr($item->tmptlahir2, 10)}}
 							@elseif(substr($item->tmptlahir2, 0, 4) == 'KAB.')
@@ -71,7 +71,7 @@
 							@else
 								{{$item->tmptlahir2}},
 							@endif
-						@endif
+						@endif --}}
 						
 						, {{ Carbon\Carbon::parse($date)->isoFormat('D MMMM Y') }}&nbsp;</td>
                     <td class="atas" style="width: 52px; height: 23px;">&nbsp;</td>
