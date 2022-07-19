@@ -48,7 +48,7 @@
 								{{-- {{substr($item->kota, 10)}} --}}
 								COOOK 
 						@endif
-						
+						{{substr($item->kota, 0, 10)}}
 						{{-- @if(substr($item->kota, 0, 4) == 'KOTA')
 								{{substr($item->kota, 5)}}
 						@elseif(substr($item->kota, 0, 4) == 'KAB.')
