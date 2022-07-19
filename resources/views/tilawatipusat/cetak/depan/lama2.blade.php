@@ -44,7 +44,7 @@
                     <td class="atas" style="width: 11px; height: 23px;"></td>
                     <td class="atas" style="width: 750px; height: 23px; text-transform: uppercase" >{{ $item->alamat }} 
 						
-						@if (substr($item->kota, 4, 4) == 'ADM')
+						@if (substr($item->kota, 0, 10) == 'KOTA ADM.')
 								{{substr($item->kota, 10)}}
 						@elseif(substr($item->kota, 0, 4) == 'KOTA')
 								{{substr($item->kota, 5)}}
@@ -53,7 +53,6 @@
 						@else
 								{{substr($item->kota, 5)}},
 						@endif
-						{{-- {{substr($item->kota, 4,4)}} --}}
 					
 					</td>
                     <td class="atas" style="width: 52px; height: 23px;">&nbsp;</td>
