@@ -57,11 +57,16 @@
 							
 						@endif --}}
 
-						@if ($item->kota2 !== null)
+						{{-- @if ($item->kota2 !== null)
 							{{$item->kota2}}
 						@else
 							{{$item->kota}}
-						@endif
+						@endif --}}
+
+							@if ($item->kota2 == null)
+								kosong 
+							@endif
+
 						{{-- @if (substr($item->kota, 4, 4) == "ADM")
 								{{substr($item->kota, 10)}}
 							@endif
