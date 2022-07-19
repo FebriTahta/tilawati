@@ -655,7 +655,7 @@
                             },
                             {
                             data:'tempat',
-                            name:'pelatihan.name',
+                            name:'pelatihan.tempat',
                             },
                             {
                             data:'tanggal',
