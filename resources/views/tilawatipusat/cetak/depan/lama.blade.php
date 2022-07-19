@@ -48,7 +48,32 @@
 				<tr class="atas">
                     <td class="atas" style="width: 170px; height: 23px; "></td>
                     <td class="atas" style="width: 11px; height: 23px;"></td><?php date_default_timezone_set('Asia/Jakarta'); $date=$item->tgllahir;?>
-                    <td class="atas" style="width: 750px; height: 23px; text-transform: uppercase" >{{ $item->tmptlahir }}, {{ Carbon\Carbon::parse($date)->isoFormat('D MMMM Y') }}&nbsp;</td>
+                    <td class="atas" style="width: 750px; height: 23px; text-transform: uppercase" >
+						@if ($item->tmptlahir2 == null)
+							@if (substr($item->tmptlahir, 0, 4) == 'KOTA')
+								{{substr($item->tmptlahir, 5)}}
+							@elseif(substr($item->tmptlahir, 0, 4) == 'ADM.')
+								{{substr($item->tmptlahir, 10)}}
+							@elseif(substr($item->tmptlahir, 0, 4) == 'KAB.')
+								{{substr($item->tmptlahir, 5)}}
+							@else
+								{{$item->tmptlahir}},
+							@endif
+						@endif
+
+						@if ($item->tmptlahir2 !== null)
+							@if (substr($item->tmptlahir2, 0, 4) == 'KOTA')
+							{{substr($item->tmptlahir2, 0)}}
+							@elseif(substr($item->tmptlahir2, 0, 4) == 'ADM.')
+								{{substr($item->tmptlahir2, 10)}}
+							@elseif(substr($item->tmptlahir2, 0, 4) == 'KAB.')
+								{{substr($item->tmptlahir2, 5)}}
+							@else
+								{{$item->tmptlahir2}},
+							@endif
+						@endif
+						
+						, {{ Carbon\Carbon::parse($date)->isoFormat('D MMMM Y') }}&nbsp;</td>
                     <td class="atas" style="width: 52px; height: 23px;">&nbsp;</td>
 				</tr>
 				
