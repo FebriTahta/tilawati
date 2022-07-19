@@ -135,6 +135,7 @@
                                                 <th>alamat</th>
                                                 <th>cabang</th>
                                                 <th>diklat</th>
+                                                <th>tempat</th>
                                                 <th>tanggal</th>
                                                 <th>nilai</th>
                                                 <th>Kriteria</th>
@@ -156,6 +157,7 @@
                                                 <th>alamat</th>
                                                 <th>cabang</th>
                                                 <th>diklat</th>
+                                                <th>tempat</th>
                                                 <th>tanggal</th>
                                                 <th>nilai</th>
                                                 <th>Kriteria</th>
@@ -650,6 +652,10 @@
                             {
                             data:'program',
                             name:'program.name',
+                            },
+                            {
+                            data:'tempat',
+                            name:'pelatihan.name',
                             },
                             {
                             data:'tanggal',

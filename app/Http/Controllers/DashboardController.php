@@ -221,7 +221,7 @@ class DashboardController extends Controller
          return datatables()->of($data)->make(true);
         }
     }
-    
+     
     public function dataForChart(Request $request)
     {
         $peserta = [];
