@@ -51,7 +51,7 @@
 						@elseif(substr($item->kota, 0, 4) == 'KAB.')
 								{{substr($item->kota, 5)}}
 						@else
-								{{$item->kota}},
+								{{substr($item->kota, 5)}},
 						@endif
 					
 					</td>
