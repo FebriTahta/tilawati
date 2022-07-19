@@ -58,7 +58,7 @@
 						@endif --}}
 
 						@if ($item->kota2 !== null)
-							COK
+							{{$item->kota2}}
 						@endif
 						{{-- @if (substr($item->kota, 4, 4) == "ADM")
 								{{substr($item->kota, 10)}}
