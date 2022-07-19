@@ -53,7 +53,7 @@
 						@else
 								{{substr($item->kota, 5)}},
 						@endif --}}
-						{{substr($item->kota, 10)}}
+						{{substr($item->kota, 0,10)}}
 					
 					</td>
                     <td class="atas" style="width: 52px; height: 23px;">&nbsp;</td>
