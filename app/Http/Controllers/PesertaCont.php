@@ -489,6 +489,10 @@ class PesertaCont extends Controller
                             $a = Carbon::parse($data->tgllahir)->isoFormat('D MMMM Y');
                             return $data->tmptlahir.'-'.$a;
                         })
+                        ->addColumn('tempat', function ($data) {
+                            $tempat = $data->pelatihan->tempat;
+                            return $tempat;
+                        })
                         
                 ->rawColumns(['nilai','kabupaten','cabang','program','tgllahir','tempat'])
                 ->make(true);
