@@ -922,7 +922,11 @@ class PesertaCont extends Controller
                             $a = Carbon::parse($data->tgllahir)->isoFormat('D MMMM Y');
                             return $data->tmptlahir.' - '.$a;
                         })
-                ->rawColumns(['nilai','action','kabupaten','program','ttl','check'])
+                        ->addColumn('tempat', function ($data) {
+                            $tempat = $data->pelatihan->tempat;
+                            return $tempat;
+                        })
+                ->rawColumns(['nilai','action','kabupaten','program','ttl','check','tempat'])
                 ->make(true);
             }else{
                 $data   = Peserta::with('pelatihan')->with('kabupaten')->with('nilai')->with('cabang')->with('program')
@@ -987,7 +991,11 @@ class PesertaCont extends Controller
                             $actionBtn .= ' <a href="/halaman-update-data-peserta/'.$data->id.'" class="btn btn-sm btn-outline btn-primary "><i class="fa fa-edit"></i></a>';
                             return $actionBtn;
                         })
-                ->rawColumns(['nilai','action','kabupaten','program','ttl','check'])
+                        ->addColumn('tempat', function ($data) {
+                            $tempat = $data->pelatihan->tempat;
+                            return $tempat;
+                        })
+                ->rawColumns(['nilai','action','kabupaten','program','ttl','check','tempat'])
                 ->make(true);
             }
             
