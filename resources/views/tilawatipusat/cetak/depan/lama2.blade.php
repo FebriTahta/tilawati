@@ -46,7 +46,9 @@
 						
 						@if (substr($item->kota, 0, 10) == 'KOTA ADM.')
 								{{substr($item->kota, 10)}}
-						@elseif(substr($item->kota, 0, 4) == 'KOTA')
+						@endif
+						
+						@if(substr($item->kota, 0, 4) == 'KOTA')
 								{{substr($item->kota, 5)}}
 						@elseif(substr($item->kota, 0, 4) == 'KAB.')
 								{{substr($item->kota, 5)}}
