@@ -47,7 +47,7 @@
 						@if (substr($item->kota, 0, 4) == 'KOTA')
 								{{substr($item->kota, 5)}}
 						@elseif(substr($item->kota, 0, 4) == 'ADM.')
-								{{substr($item->kota, 10)}}
+								Woi
 						@elseif(substr($item->kota, 0, 4) == 'KAB.')
 								{{substr($item->kota, 5)}}
 						@else
