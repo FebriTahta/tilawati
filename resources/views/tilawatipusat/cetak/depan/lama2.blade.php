@@ -45,16 +45,17 @@
                     <td class="atas" style="width: 750px; height: 23px; text-transform: uppercase" >{{ $item->alamat }} 
 						
 						@if (substr($item->kota, 0, 10) == 'KOTA ADM.')
-								{{substr($item->kota, 10)}}
+								{{-- {{substr($item->kota, 10)}} --}}
+								COOOK 
 						@endif
 						
-						@if(substr($item->kota, 0, 4) == 'KOTA')
+						{{-- @if(substr($item->kota, 0, 4) == 'KOTA')
 								{{substr($item->kota, 5)}}
 						@elseif(substr($item->kota, 0, 4) == 'KAB.')
 								{{substr($item->kota, 5)}}
 						@else
 								{{substr($item->kota, 5)}}
-						@endif
+						@endif --}}
 						{{-- {{substr($item->kota, 0,10)}} --}}
 					
 					</td>
