@@ -100,7 +100,7 @@
                     $salah1 = 0;
                     $salah2 = 0;
                     $salah3 = 0; ?>
-                    @if ($peserta_salah->where('tmptlahir', null)->count() > 0)
+                    @if ($peserta_salah->where('tmptlahir', null)->count() > 0 && $peserta_salah->where('tmptlahir2', null)->count() > 0)
                         <div class="col-lg-12 alert alert-danger">
                             <p>{{ $salah1 = $peserta_salah->where('tmptlahir', null)->count() }} Peserta dengan kesalahan
                                 penulisan
