@@ -70,7 +70,7 @@ class ApiCont extends Controller
         ->orWhere('kepalacabang', 'like', '%'. $search . '%')
         ->orWhere('alamat', 'like', '%'. $search . '%')
         ->orWhere('telp', 'like', '%'. $search . '%')
-        ->get();
+        ->get(); 
 
         if($data)
         {
