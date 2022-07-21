@@ -60,6 +60,21 @@ class ApiCont extends Controller
         }
     }
 
+    public function api_cabang_tilawati_paginate(Request $request)
+    {
+        $data = Apicabangtilawati::orderBy('kode','ASC')
+        ->join('kabupaten','apicabangtilawatis.kabupaten_id','kabupaten.id')
+        ->select('name','status','nama','kepalacabang','alamat','telp')
+        ->paginate(10);
+
+        if($data)
+        {
+            return ApiFormatter::createApi(200, 'success' ,$data);
+        }else {
+            return ApiFormatter::createApi(400, 'failed');
+        }
+    }
+
     public function search_api_cabang_tilawati($search)
     {
         $data = Apicabangtilawati::orderBy('kode','ASC')

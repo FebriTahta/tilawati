@@ -24,5 +24,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('daftar-cabang-api',[ApiCont::class,'daftar_cabang']);
 Route::get('daftar-diklat-online',[ApiCont::class,'diklat_online']);
 Route::get('daftar-perwakilan-tilawai',[ApiCont::class,'api_cabang_tilawati']);
+Route::get('daftar-perwakilan-tilawai-paginate',[ApiCont::class,'api_cabang_tilawati_paginate']);
 Route::get('daftar-perwakilan-tilawati-search/{search}',[ApiCont::class,'search_api_cabang_tilawati']);
 Route::get('daftar-cabang-nf',[ApiCont::class,'api_cabang_nf']);
