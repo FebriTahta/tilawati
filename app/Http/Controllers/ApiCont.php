@@ -50,7 +50,7 @@ class ApiCont extends Controller
         $data = Apicabangtilawati::orderBy('kode','ASC')
         ->join('kabupaten','apicabangtilawatis.kabupaten_id','kabupaten.id')
         ->select('name','status','nama','kepalacabang','alamat','telp')
-        ->paginate(10);
+        ->get();
 
         if($data)
         {
@@ -70,7 +70,7 @@ class ApiCont extends Controller
         ->orWhere('kepalacabang', 'like', '%'. $search . '%')
         ->orWhere('alamat', 'like', '%'. $search . '%')
         ->orWhere('telp', 'like', '%'. $search . '%')
-        ->get(); 
+        ->paginate(10);
 
         if($data)
         {
