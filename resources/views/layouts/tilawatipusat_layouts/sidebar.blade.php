@@ -117,7 +117,7 @@
                 </li>
                 @endif
 
-                @if (auth()->user()->username == 'tilawati cahaya amanah')
+                @if (auth()->user()->role == 'cabang')
                     <li class="menu-title">Cetak</li>
 
                     <li>
@@ -126,7 +126,7 @@
                             <span style="font-size: 12px">Depan</span>
                         </a>
                         <ul class="sub-menu" aria-expanded="false">
-                            <li><a style="font-size: 12px" href="{{ route('diklat.depan_guru') }}">CETAK IJAZAH</a>
+                            <li><a style="font-size: 12px" href="{{ route('diklat.depan_guru') }}">CETAK SYAHADAH</a>
                             </li>
                             {{-- <li><a href="{{ route('diklat.depan_santri') }}">Santri</a></li> --}}
                         </ul>
@@ -138,7 +138,7 @@
                             <span style="font-size: 12px">Belakang</span>
                         </a>
                         <ul class="sub-menu" aria-expanded="false">
-                            <li><a style="font-size: 12px" href="{{ route('diklat.belakang') }}">CETAK IJAZAH</a>
+                            <li><a style="font-size: 12px" href="{{ route('diklat.belakang') }}">CETAK SYAHADAH</a>
                             </li>
                         </ul>
                     </li>
