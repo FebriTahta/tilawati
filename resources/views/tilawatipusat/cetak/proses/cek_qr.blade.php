@@ -132,6 +132,7 @@
                         </div>
                     </form>
                 </div>
+                @if (auth()->user()->role == 'pusat')
                 <div class="col-xl-12" style="margin-top: 20px">
                     <form action="{{ route('depan.cetak_versi_lama') }}" method="POST" style="float: right">@csrf
                         <input type="hidden" name="pelatihan_id" value="{{ $pelatihan_id }}">
@@ -140,6 +141,7 @@
                         </div>
                     </form>
                 </div>
+                @endif
                 <div class="col-xl-12">
                     <form id="reset_qr" method="POST" style="float: right"> @csrf
                     {{-- <form action="/reset-status-qr" method="POST" style="float: right"> @csrf --}}
