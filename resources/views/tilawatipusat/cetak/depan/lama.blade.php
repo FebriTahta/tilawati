@@ -51,7 +51,7 @@
 						@elseif(substr($item->kota, 0, 4) == 'KAB.')
 								{{substr($item->kota, 5)}}
 						@else
-								{{substr($item->kota, 5)}},
+								{{substr($item->kota, 5)}}
 						@endif
 					
 					</td>
@@ -69,7 +69,7 @@
 							@elseif(substr($item->tmptlahir, 0, 4) == 'KAB.')
 								{{substr($item->tmptlahir, 5)}}
 							@else
-								{{$item->tmptlahir}},
+								{{$item->tmptlahir}}
 							@endif
 						@endif
 
@@ -81,7 +81,7 @@
 							@elseif(substr($item->tmptlahir2, 0, 4) == 'KAB.')
 								{{substr($item->tmptlahir2, 5)}}
 							@else
-								{{$item->tmptlahir2}},
+								{{$item->tmptlahir2}}
 							@endif
 						@endif
 						
