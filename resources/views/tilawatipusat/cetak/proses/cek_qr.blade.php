@@ -137,7 +137,7 @@
                     <form action="{{ route('depan.cetak_versi_lama') }}" method="POST" style="float: right">@csrf
                         <input type="hidden" name="pelatihan_id" value="{{ $pelatihan_id }}">
                         <div class="form-group" style="margin-right: 10px">
-                            <input type="submit" id="btncetak" class="btn btn-outline-info" value="Cetak Syahadah Depan Versi Lama (SANTRI)">
+                            <input type="submit" id="btncetak" class="btn btn-outline-info" value="Cetak Syahadah Depan Versi Lama">
                         </div>
                     </form>
                 </div>
