@@ -132,7 +132,7 @@
                         </div>
                     </form>
                 </div>
-                @if (auth()->user()->role == 'pusat')
+                @if (auth()->user()->role == 'pusat' || auth()->user()->role == 'cabang')
                 <div class="col-xl-12" style="margin-top: 20px">
                     <form action="{{ route('depan.cetak_versi_lama') }}" method="POST" style="float: right">@csrf
                         <input type="hidden" name="pelatihan_id" value="{{ $pelatihan_id }}">
