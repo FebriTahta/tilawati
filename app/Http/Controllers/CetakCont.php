@@ -70,7 +70,13 @@ class CetakCont extends Controller
                     $jabatan     = 'Kacab. '.strtoupper(substr($pelatihan->cabang->kabupaten->provinsi->nama,0,3)).' '.ucfirst(substr($pelatihan->cabang->kabupaten->provinsi->nama,4));
                 } else {
                     # code...
-                    $jabatan     = 'Kacab. '.ucwords($pelatihan->cabang->name).' '.strtolower($kabupaten);
+                    if ($pelatihan->cabang->name == 'Tilawati Gresik Al Hikmah') {
+                        # code...
+                        $jabatan     = 'Kacab. Al Hikmah '.strtolower($kabupaten);
+                    }else {
+                        # code...
+                        $jabatan     = 'Kacab. '.ucwords($pelatihan->cabang->name).' '.strtolower($kabupaten);
+                    }
                 }
             }else {
                 # code...
@@ -79,10 +85,14 @@ class CetakCont extends Controller
                     $jabatan     = 'Kacab. '.strtoupper(substr($pelatihan->cabang->kabupaten->provinsi->nama,0,3)).' '.ucfirst(substr($pelatihan->cabang->kabupaten->provinsi->nama,4));
                 }else {
                     # code...
-                    $jabatan     = 'Kacab. '.strtolower($kabupaten).' '.strtolower($pelatihan->cabang->kabupaten->provinsi->nama);
+                    if ($pelatihan->cabang->name == 'Tilawati Gresik Al Hikmah') {
+                        $jabatan     = 'Kacab. Al Hikmah '.strtolower($kabupaten);
+                    }else{
+                        $jabatan     = 'Kacab. '.strtolower($kabupaten).' '.strtolower($pelatihan->cabang->kabupaten->provinsi->nama);
+                    }
                 }
             }
- 
+  
             $kepala     = ucwords($jabatan);
             if ($pelatihan->cabang->kepala == null) {
                 # code...
