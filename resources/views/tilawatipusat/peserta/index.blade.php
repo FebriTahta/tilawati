@@ -105,7 +105,7 @@
                             <p>{{ $salah1 = $peserta_salah->where('tmptlahir', null)->where('tmptlahir2', null)->count() }} Peserta dengan kesalahan
                                 penulisan
                                 tempat lahir</p>
-                                <?php $salah_tempat_lahir = App\Models\Peserta::where('tmptlahir', null)->where('pelatihan_id', $diklat->id)->get(); ?>
+                                <?php $salah_tempat_lahir = App\Models\Peserta::where('tmptlahir', null)->where('tmptlahir2', null)->where('pelatihan_id', $diklat->id)->get(); ?>
                                 <ul>
                                     @foreach ($salah_tempat_lahir as $item)
                                         <li>{{ $item->id.' - '.$item->name}}</li>
