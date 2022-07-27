@@ -67,10 +67,14 @@
                 </td>
                 <td>{{$item->telp}}</td>
                 <td>
-                    @if (substr($item->tmptlahir, 0, 4) == 'KOTA' || substr($item->tmptlahir, 0, 4) == 'KAB.')
-                        {{substr($item->tmptlahir, 5)}}
+                    @if ($item->tmptlahir2 !== null)
+                        {{$item->tmptlahir2}}
                     @else
-                        {{$item->tmptlahir}}    
+                        @if (substr($item->tmptlahir, 0, 4) == 'KOTA' || substr($item->tmptlahir, 0, 4) == 'KAB.')
+                            {{substr($item->tmptlahir, 5)}}
+                        @else
+                            {{$item->tmptlahir}}    
+                        @endif
                     @endif
                 </td>
                 <td>
