@@ -102,7 +102,7 @@
                     $salah3 = 0; ?>
                     @if ($peserta_salah->where('tmptlahir', null)->where('tmptlahir2', null)->count() > 0)
                         <div class="col-lg-12 alert alert-danger">
-                            <p>{{ $salah1 = $peserta_salah->where('tmptlahir', null)->count() }} Peserta dengan kesalahan
+                            <p>{{ $salah1 = $peserta_salah->where('tmptlahir', null)->where('tmptlahir2', null)->count() }} Peserta dengan kesalahan
                                 penulisan
                                 tempat lahir</p>
                                 <?php $salah_tempat_lahir = App\Models\Peserta::where('tmptlahir', null)->where('pelatihan_id', $diklat->id)->get(); ?>
