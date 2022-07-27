@@ -509,14 +509,10 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     Route::post('/force_qr',[CekController::class,'force_qr']);
     Route::get('/reset-status-qr/{pelatihan_id}', [CekController::class,'reset_stat_qr']);
 
-
     // HAPUS SEMuA LEMBAGA CABANG
     Route::get('/hapus-lembaga/{cabang_id}',[LembagaCont::class,'hapus_semua']);
 
     Route::get('/minta-modul/{pelatihan_id}',[PesertaCont::class,'minta_modul']);
-
-
-
 
     // API FE & BE
     Route::get('/tampilan-api-cabang-tilawati',[ApicabangCont::class,'index_api_tilawati']);

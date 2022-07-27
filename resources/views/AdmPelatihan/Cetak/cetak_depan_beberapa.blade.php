@@ -146,7 +146,6 @@
                                 $text = $item->alamat . ' ' . $item->kelurahan->nama . ' ' . $item->kecamatan->nama . ' ' . $item->kota2;
                             }
                         }
-                        
                         ?>
                         <td class="atas" style="width: 750px; height: 10px;text-transform: uppercase">
                             {{ $text }}</td>
@@ -154,8 +153,10 @@
                     </tr>
                     <tr class="atas" style="height: 10px;">
                         <td class="atas" style="width: 170px; height: 10px; ">Tempat Tanggal Lahir&nbsp;</td>
-                        <td class="atas" style="width: 11px; height: 10px;">:</td><?php date_default_timezone_set('Asia/Jakarta');
-$date = $item->tgllahir; ?>
+                        <td class="atas" style="width: 11px; height: 10px;">:</td>
+                        <?php date_default_timezone_set('Asia/Jakarta');
+                            $date = $item->tgllahir; 
+                        ?>
                         @if ($item->tmptlahir !== null && $item->tmptlahir2 == null)
                             <td class="atas" style="width: 750px; height: 10px;text-transform: uppercase">
                                 {{ $item->tmptlahir }},
@@ -207,11 +208,9 @@ $date = $item->tgllahir; ?>
                             &nbsp;{{ $item->pelatihan_id }}/{{ $tahun }}/{{ $item->id }}</td>
                         <td class="bawah" style="width: 210px; height: 5px;">&nbsp;</td>
                         <td class="atas" style="width: 241px; height: 5px;">
-                            {{-- {{ $direktur }} --}}
                             @if ($item->pelatihan->cabang->name == 'Cahaya Amanah' || $item->pelatihan->cabang->name == 'Tilawati Pusat' || $item->pelatihan->cabang->status == "RPQ")
                                 Dr. KH. Umar Jaeni ,M.Pd
                             @else
-                                {{-- {{ $item->pelatihan->cabang->kepala->name }} --}}
                                 {{ $item->pelatihan->cabang->kepalacabang }}
                             @endif
                         </td>
@@ -225,10 +224,10 @@ $date = $item->tgllahir; ?>
                                 Direktur Eksekutif
                             @else
                                 <?	$kabupaten 	= substr($item->pelatihan->cabang->kabupaten->nama, 5); $kab = strtolower($kabupaten);
-      $provinsi 	= strtolower($item->pelatihan->cabang->kabupaten->provinsi->nama); 
-     $data_kabupaten = App\Models\Kabupaten::where('id', $item->pelatihan->cabang->kabupaten->id)->first();
-     $jum_cabang		= $data_kabupaten->cabang->count();
-     ?>
+                                    $provinsi 	= strtolower($item->pelatihan->cabang->kabupaten->provinsi->nama); 
+                                    $data_kabupaten = App\Models\Kabupaten::where('id', $item->pelatihan->cabang->kabupaten->id)->first();
+                                    $jum_cabang		= $data_kabupaten->cabang->count();
+                                ?>
                                 @if ($jum_cabang > 1)
                                     @if (substr($item->pelatihan->cabang->kabupaten->nama, 5, 3) == 'ADM')
                                         {{ 'Kacab. ' . strtoupper(substr($provinsi, 0, 3)) . ' ' . ucfirst(substr($provinsi, 4)) }}
@@ -250,7 +249,6 @@ $date = $item->tgllahir; ?>
                                         @endif
                                     @endif
                                 @endif
-
                             @endif
                         </td>
                     </tr>
@@ -259,5 +257,4 @@ $date = $item->tgllahir; ?>
         </div>
     @endforeach
 </body>
-
 </html>
