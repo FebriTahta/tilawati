@@ -14,8 +14,54 @@
         table.dataTable.prov th:nth-child(2) {
             text-align: center;
         }
-
     </style>
+
+    <!-- High Chart -->
+    <style>
+        .highcharts-figure,
+        .highcharts-data-table table {
+            min-width: 320px;
+            max-width: 660px;
+            margin: 1em auto;
+        }
+
+        .highcharts-data-table table {
+            font-family: Verdana, sans-serif;
+            border-collapse: collapse;
+            border: 1px solid #ebebeb;
+            margin: 10px auto;
+            text-align: center;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .highcharts-data-table caption {
+            padding: 1em 0;
+            font-size: 1.2em;
+            color: #555;
+        }
+
+        .highcharts-data-table th {
+            font-weight: 600;
+            padding: 0.5em;
+        }
+
+        .highcharts-data-table td,
+        .highcharts-data-table th,
+        .highcharts-data-table caption {
+            padding: 0.5em;
+        }
+
+        .highcharts-data-table thead tr,
+        .highcharts-data-table tr:nth-child(even) {
+            background: #f8f8f8;
+        }
+
+        .highcharts-data-table tr:hover {
+            background: #f1f7ff;
+        }
+    </style>
+
     <!-- DataTables -->
     <link href="{{ URL::asset('tilawatipusat/libs/datatables/datatables.min.css') }}" rel="stylesheet" type="text/css" />
 @endsection
@@ -26,39 +72,40 @@
         @slot('title_li') @endslot
     @endcomponent
     <div class="row">
-        <div class="col-xl-6">
-            @component('common-tilawatipusat.dashboard-widget')
-                <?php $guru = App\Models\Lembaga::sum('jml_guru');
-                $santri = App\Models\Lembaga::sum('jml_santri');
-                ?>
-                @slot('title')
-                    {{-- <a href="/diklat-lembaga">Pengguna metode Tilawati seluruh Indonesia sebanyak " --}}
-                    <a href="#">
-                        Pengguna metode Tilawati seluruh Indonesia <br> Tercatat
-                        {{ number_format($guru + $santri, 0, ',', '.') }} " Pengguna <br>
-                        Terdiri dari <br> ( {{ number_format($guru, 0, ',', '.') }} Guru) & (
-                        {{ number_format($santri, 0, ',', '.') }} Santri)
-                        <br><br>
-                        Bersumber pada : <br><b id="cb">-</b> <b>Cabang</b> & <b id="lm">-</b> <b>Lembaga</b> <br> Tersebar luas di
-                        <b><span id="lmpv">- </span> Provinsi
-                        </b> & <b><span id="lmkb">- </span> Kabupaten / Kota </b>
-                    </a>
-                @endslot
-                @slot('iconClass') mdi mdi-mdi mdi-contact-mail-outline
-                tag-plus-outline @endslot
-                @slot('price') @endslot
-            @endcomponent
+        <div class="col-xl-3">
+            <div class="card" style="min-height: 250px">
+                <div class="card-body">
+                    <figure class="highcharts-figure">
+                        <div id="container"></div>
+                    </figure>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3">
+            <div class="card" style="min-height: 250px">
+                <div class="card-body">
+                    @php
+                        $jenjang1 = App\Models\Lembaga::select('jenjang')->distinct()->get();
+                        $jenjang = App\Models\Lembaga::where('jenjang','PAUD/KB')->get();
+                    @endphp
+                    {{$jenjang1}}{{$jenjang1->count()}}
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3">
+            <div class="card" style="min-height: 250px">
+                <div class="card-body">
+                    
+                    {{$jenjang}}
+                </div>
+            </div>
         </div>
         
         <div class="col-xl-6">
-            <div class="card" style="min-height: 260px">
-                {{-- @if (auth()->user()->role == 'cabang') --}}
+            <div class="card" style="min-height: 250px">
                 <div class="card-body">
-                    <div class="mb-4 card-title">
-                        <p class="text-info"><u class="text-info"> {{ $diklat_ini }} </u> Kegiatan Terbaru</p>
-                    </div>
-                    <div class="mb-4">
-                        <i class="fas fa-quote-left h4 text-primary"></i>
+                    <div class="">
+                        <p class="text-info text-uppercase" style="font-size: 20px"><i class="fas fa-quote-left h4 text-primary" ></i> {{ $diklat_ini }} Kegiatan Terbaru</p>
                     </div>
                     <div id="reviewExampleControls" class="carousel slide review-carousel" data-ride="carousel">
                         <div class="carousel-inner">
@@ -70,7 +117,7 @@
                                         <div>
                                             <p>Diklat {{ $item->program->name }} <br> Pada :
                                                 <b>{{ Carbon\Carbon::parse($item->tanggal)->isoFormat('D MMMM Y') }},
-                                                </b>di {{ $item->tempat }}, diikuti <b>{{ $item->peserta->count() }}
+                                                </b> {{ $item->tempat }}, diikuti <b>{{ $item->peserta->count() }}
                                                     peserta </b>
                                             </p>
                                             <div class="media mt-4">
@@ -81,7 +128,7 @@
                                                 </div>
                                                 <div class="media-body">
                                                     <h5 class="font-size-16 mb-1">{{ $item->cabang->status }}</h5>
-                                                    <p class="mb-2">{{ $item->cabang->name }}</p>
+                                                    <p class="mb-2 text-uppercase">{{ $item->cabang->name }}</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -99,19 +146,8 @@
                 </div>
             </div>
         </div>
-        
-        <div class="col-xl-12" style="margin-bottom: 20px">
-            {{-- <form id="generate" method="POST">@csrf
-                <input type="hidden" name="slug" id="qr_slug" class="form-control" required>
-                <input style="width: 150px" type="submit" id="btngenerate" class="btn btn-primary" value="Generate QR">
-            </form> --}}
-            <form target="_blank" action="/download_qr_tilawati" method="POST"> @csrf
-                <input type="hidden" name="slug2" id="qr_slug2" class="form-control" required>
-                <button style="width: 150px; margin-top: 10px" type="submit" class="btn btn-info">Download QR</button>
-            </form>
-        </div>
-
     </div>
+    
 
 
     <div class="row">
@@ -154,7 +190,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
         <div class="col-xl-6">
             <div class="card">
@@ -260,6 +295,13 @@
     <!-- Datatable init js -->
     <script src="{{ URL::asset('tilawatipusat/js/pages/datatables.init.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+
+    <!-- High Chart -->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
 
     <script>
         var id_prov;
@@ -543,5 +585,63 @@
                     }
                 });
             });
+    </script>
+
+    <!--High Chart-->
+    <script>
+        Highcharts.chart('container', {
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie'
+            },
+            title: {
+                text: 'LEMBAGA FORMAL'
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.5f}%</b>'
+            },
+            accessibility: {
+                point: {
+                    valueSuffix: '%'
+                }
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: false
+                    },
+                    showInLegend: true
+                }
+            },
+            series: [{
+                name: 'Brands',
+                colorByPoint: true,
+                data: [{
+                    name: 'Chrome',
+                    y: 61.41,
+                    sliced: true,
+                    selected: true
+                }, {
+                    name: 'Internet Explorer',
+                    y: 11.84
+                }, {
+                    name: 'Firefox',
+                    y: 10.85
+                }, {
+                    name: 'Edge',
+                    y: 4.67
+                }, {
+                    name: 'Safari',
+                    y: 4.18
+                }, {
+                    name: 'Other',
+                    y: 7.05
+                }]
+            }]
+        });
     </script>
 @endsection
