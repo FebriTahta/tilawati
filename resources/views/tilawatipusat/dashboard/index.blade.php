@@ -95,7 +95,6 @@
         <div class="col-xl-3">
             <div class="card" style="min-height: 250px">
                 <div class="card-body">
-                    
                     {{$jenjang}}
                 </div>
             </div>
