@@ -72,7 +72,7 @@
         @slot('title_li') @endslot
     @endcomponent
     <div class="row">
-        <div class="col-xl-3">
+        {{-- <div class="col-xl-3">
             <div class="card" style="min-height: 250px">
                 <div class="card-body">
                     <figure class="highcharts-figure">
@@ -98,7 +98,7 @@
                     {{$jenjang}}
                 </div>
             </div>
-        </div>
+        </div> --}}
         
         <div class="col-xl-6">
             <div class="card" style="min-height: 250px">

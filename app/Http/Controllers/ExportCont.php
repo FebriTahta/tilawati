@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Exports\SeluruhPesertaExport;
 use App\Exports\UserExport;
 use App\Exports\ExportDataPeserta;
+use App\Exports\ExportDataPesertaFull;
 use App\Exports\TemplateTrainerCabangExport;
 use App\Exports\TemplateKpaCabangExport;
 use App\Exports\CabangDataExport;
@@ -78,6 +79,11 @@ class ExportCont extends Controller
     public function export_data_peserta($pelatihan_id)
     {
         return Excel::download(new ExportDataPeserta($pelatihan_id), 'data-peserta.xlsx');
+    }
+
+    public function export_data_peserta_full($pelatihan_id)
+    {
+        return Excel::download(new ExportDataPesertaFull($pelatihan_id), 'data-peserta.xlsx');
     }
 
     public function export_template_kpa_cabang()

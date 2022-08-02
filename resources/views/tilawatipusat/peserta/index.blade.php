@@ -202,14 +202,17 @@
                         <a href="/export-peserta-diklat/{{ $diklat->id }}"
                             class="text-right btn btn-sm mr-1 mb-1 btn-outline-warning"><i class="fa fa-download"></i>
                             download data peserta</a>
+                        <a href="/export-peserta-diklat-full/{{ $diklat->id }}"
+                            class="text-right btn btn-sm mr-1 mb-1 btn-outline-primary"><i class="fa fa-download"></i>
+                            download data peserta full</a>
                         {{-- <a href="/reset-status-qr/{{ $diklat->id }}"
                             class="text-right btn btn-sm mr-1 mb-1 btn-outline-warning"><i class="fa fa-cross"></i>
                             Reset QR</a> --}}
                     @endif
 
-                    <button class="text-right btn btn-sm mr-1 mb-1 btn-outline-danger" id="hapus_all"><i
+                    {{-- <button class="text-right btn btn-sm mr-1 mb-1 btn-outline-danger" id="hapus_all"><i
                             class="fa fa-trash"></i> hapus data</button>
-                    <a href="/minta-modul/{{$pelatihan_id}}" class="btn btn-info btn-sm">Minta Modul Pengiriman</a>
+                    <a href="/minta-modul/{{$pelatihan_id}}" class="btn btn-info btn-sm">Minta Modul Pengiriman</a> --}}
                     {{-- <form action="/error-penilaian-kategori" method="POST">@csrf
                                         <button type="submit" class="text-right btn btn-sm mr-1 btn-outline-info" id="belakang_all"><i class="fa fa-print"></i> belakang</button>
                                     </form> --}}
