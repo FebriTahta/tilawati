@@ -12,13 +12,13 @@
     </style>
 </head>
 <body>
-    <table>
+    {{-- <table>
         <thead style="font-weight: bold; text-transform: uppercase">
             <tr>
                 <th rowspan="3" colspan="10">DATA PESERTA DIKLAT CABANG {{strtoupper($pelatihan->cabang->name)}}<br> <small>Seluruh Indonesia Per - 2022 | {{$pelatihan->program->name}} | {{$pelatihan->id}}</small></th>
             </tr>
         </thead>
-    </table>
+    </table> --}}
     {{-- spasi --}}
     <table>
         <thead>
@@ -29,7 +29,7 @@
     <table>
         <thead style="font-weight: bold; border: black">
             <tr style="border: black; text-transform: uppercase">
-                <th rowspan="2">ID</th>
+                {{-- <th rowspan="2">ID</th> --}}
                 <th rowspan="2">NAMA PESERTA</th>
                 <th rowspan="2">ALAMAT </th>
                 <th rowspan="2">KOTA</th>
@@ -50,7 +50,7 @@
             <tr></tr>
             @foreach ($peserta as $item)
             <tr>
-                <td>{{$item->id}}</td>
+                {{-- <td>{{$item->id}}</td> --}}
                 <td>{{$item->name}}</td>
                 <td>{{strtoupper($item->alamat)}}
                     @if ($item->kecamatan !== null)
