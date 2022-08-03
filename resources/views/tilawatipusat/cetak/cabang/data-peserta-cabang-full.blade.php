@@ -30,18 +30,18 @@
         <thead style="font-weight: bold; border: black">
             <tr style="border: black; text-transform: uppercase">
                 {{-- <th rowspan="2">ID</th> --}}
-                <th rowspan="2">NAMA PESERTA</th>
-                <th rowspan="2">ALAMAT </th>
-                <th rowspan="2">KOTA</th>
-                <th rowspan="2">WA / TELP</th>
-                <th rowspan="2">TEMPAT LAHIR</th>
-                <th rowspan="2">TANGGAL LAHIR</th>
-                <th rowspan="2">LEMBAGA</th>
-                <th rowspan="2">JILID</th>
-                <th rowspan="2">KRITERIA</th>
-                <th rowspan="2">BERSYAHADAH</th>
+                <th >NAMA PESERTA</th>
+                <th >ALAMAT </th>
+                <th >KOTA</th>
+                <th >WA / TELP</th>
+                <th >TEMPAT LAHIR</th>
+                <th >TANGGAL LAHIR</th>
+                <th >LEMBAGA</th>
+                <th >JILID</th>
+                <th >KRITERIA</th>
+                <th >BERSYAHADAH</th>
                 @foreach ($pelatihan->program->penilaian as $item)
-                <th rowspan="2">{{$item->name}}</th>
+                <th >{{$item->name}}</th>
                 @endforeach
                 
             </tr>
