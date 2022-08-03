@@ -472,12 +472,13 @@ class DiklatCont extends Controller
 
     public function create(Request $request)
     {
-        // $dt_program = Program::with(['pelatihan' => function ($query) {
-        //     $query->where('jenis','diklat');
-        // }])->get();
         if (auth()->user()->role=='cabang') {
             # code...
-            $dt_program = Program::where('status',1)->where('name','!=','TOT Instruktur')->where('name','!=','training of trainer')->where('name','!=','training of trainer instruktur')->get();
+            $dt_program = Program::where('status',1)
+                            ->where('name',"standarisasi guru al qur'an level 1")
+                            ->orWhere('name',"standarisasi guru al qur'an level 2")
+                            ->orWhere('name',"munaqosyah santri")
+                            ->get();
         } else {
             # code...
             $dt_program = Program::all();
