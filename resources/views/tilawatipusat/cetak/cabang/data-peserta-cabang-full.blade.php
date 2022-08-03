@@ -47,7 +47,6 @@
             </tr>
         </thead >
         <tbody>
-            <tr></tr>
             @foreach ($peserta as $item)
             <tr>
                 {{-- <td>{{$item->id}}</td> --}}
