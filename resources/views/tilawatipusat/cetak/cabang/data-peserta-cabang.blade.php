@@ -51,11 +51,11 @@
                 <td>{{$item->name}}</td>
                 <td style="text-transform: uppercase">
                     @if ($item->kecamatan !== null)
-                        {{$item->kecamatan->nama}}
+                        {{strtoupper($item->kecamatan->nama)}}
                     @endif
 
                     @if ($item->kelurahan !== null)
-                        {{$item->kelurahan->nama}}
+                        {{strtoupper($item->kelurahan->nama)}}
                     @endif
                     {{strtoupper($item->alamat)}}
                     
