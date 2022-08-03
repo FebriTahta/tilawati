@@ -200,7 +200,7 @@
                         <button class="text-right btn btn-sm mr-1 mb-1 btn-outline-secondary" id="depan_lama_all"><i
                                 class="fa fa-print"></i> depan versi lama</button>
                         <a href="/export-peserta-diklat/{{ $diklat->id }}"
-                            class="text-right btn btn-sm mr-1 mb-1 btn-outline-warning"><i class="fa fa-download"></i>
+                            class="text-right btn btn-sm mr-1 mb-1 btn-outline-success"><i class="fa fa-download"></i>
                             download data peserta</a>
                         <a href="/export-peserta-diklat-full/{{ $diklat->id }}"
                             class="text-right btn btn-sm mr-1 mb-1 btn-outline-primary"><i class="fa fa-download"></i>
