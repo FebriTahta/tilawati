@@ -49,6 +49,10 @@ class TemplateDownloadExport implements FromView, ShouldAutoSize, WithColumnForm
             # code...
             return view('tilawatipusat.template.tot');
         }
+        elseif($this->jenis == "Diklat Standarisasi Level 2 Cabang") {
+            # code...
+            return view('tilawatipusat.template.lvl2');
+        }
         else {
             # code...
             return view('tilawatipusat.template.tot');
