@@ -53,13 +53,13 @@
                 {{-- <td>{{$item->id}}</td> --}}
                 <td>{{$item->name}}</td>
                 <td>{{strtoupper($item->alamat)}}
-                    @if ($item->kecamatan !== null)
+                    {{-- @if ($item->kecamatan !== null)
                         {{$item->kecamatan->nama}}
                     @endif
 
                     @if ($item->kelurahan !== null)
                         {{$item->kelurahan->nama}}
-                    @endif
+                    @endif --}}
                 </td>
                 <td>
                     @if ($item->alamatx !== null)
