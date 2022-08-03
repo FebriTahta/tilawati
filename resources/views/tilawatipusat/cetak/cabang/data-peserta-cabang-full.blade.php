@@ -32,6 +32,7 @@
                 {{-- <th rowspan="2">ID</th> --}}
                 <th >NAMA PESERTA</th>
                 <th >ALAMAT </th>
+                <th >ALAMAT MODUL</th>
                 <th >KOTA</th>
                 <th >WA / TELP</th>
                 <th >TEMPAT LAHIR</th>
@@ -58,6 +59,13 @@
 
                     @if ($item->kelurahan !== null)
                         {{$item->kelurahan->nama}}
+                    @endif
+                </td>
+                <td>
+                    @if ($item->alamatx !== null)
+                        {{$item->alamatx}}
+                    @else
+                        kosong
                     @endif
                 </td>
                 <td>
