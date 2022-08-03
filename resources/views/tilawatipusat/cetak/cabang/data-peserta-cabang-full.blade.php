@@ -53,15 +53,16 @@
                 {{-- <td>{{$item->id}}</td> --}}
                 <td>{{$item->name}}</td>
                 <td style="text-transform: uppercase">
-                    @if ($item->kecamatan !== null)
-                        {{strtoupper($item->kecamatan->nama)}}
-                    @endif
-
+                    {{strtoupper($item->alamat)}}
+                    
                     @if ($item->kelurahan !== null)
                         {{strtoupper($item->kelurahan->nama)}}
                     @endif
-                    {{strtoupper($item->alamat)}}
-                   
+                    @if ($item->kecamatan !== null)
+                    {{strtoupper($item->kecamatan->nama)}}
+                    @endif
+
+                    
                 </td>
                 <td>
                     @if ($item->alamatx !== null)
