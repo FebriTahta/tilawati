@@ -401,7 +401,15 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
 
     Route::post('/diklat-import-peserta',[ImportController::class,'importPesertaDiklat'])->name('diklat.import_peserta');
 
+    // FOR NEW CHART
     Route::get('/diklat-dashboard',[DashboardCont::class,'index'])->name('diklat.dashboard');
+    Route::get('/chart-lembaga-formal',[DashboardCont::class,'lembaga_formal'])->name('chart.lembaga.formal');
+    Route::get('/chart-lembaga-non-formal',[DashboardCont::class,'lembaga_non_formal'])->name('chart.lembaga.nonformal');
+    Route::get('/chart-perkembangan-pengguna',[DashboardCont::class,'perkembangan_pengguna'])->name('chart.perkembangan.pengguna');
+    Route::get('/chart-perkembangan-pengguna-bulanan',[DashboardCont::class,'perkembangan_pengguna_bulanan'])->name('chart.perkembangan.bulanan');
+    // MAPS
+    Route::get('/maps-data-cabang',[DashboardCont::class,'maps_data_cabang'])->name('maps.data.cabang');
+    Route::post('/maps-data-cabang-store',[CabangCont::class,'store_location_cabang'])->name('maps.cabang.store');
 
     Route::get('/sertifikat',[SertifikatCont::class,'index'])->name('sertifikat');
     Route::get('/sertifikat-daftar-pelatihan',[SertifikatCont::class,'daftar_pelatihan'])->name('sertifikat.daftar.pelatihan');
