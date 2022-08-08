@@ -6,7 +6,7 @@ use App\Models\Cabang;
 use App\Models\Lembaga;
 use App\Models\Trainer;
 use App\Models\Peserta;
-use App\Models\KPA;
+use App\Models\Kpa;
 use DB;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
@@ -26,7 +26,7 @@ class DashboardCont extends Controller
             $query->where('keterangan','guru');
         })->count();
         $trainer = Trainer::count();
-        $kpa     = KPA::count();
+        $kpa     = Kpa::count();
         $diklat = Pelatihan::orderBy('tanggal','desc')->limit(5)->get();
         $diklat_ini = $diklat->count();
         return view('tilawatipusat.dashboard.index',compact('diklat','diklat_ini','cabang','santri','guru','lembaga','trainer','kpa'));
