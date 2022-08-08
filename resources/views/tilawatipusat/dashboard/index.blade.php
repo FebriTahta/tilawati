@@ -22,13 +22,13 @@
     integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
     crossorigin=""/>
 
-    <link href="http://fonts.cdnfonts.com/css/boobookitty" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/boobookitty" rel="stylesheet">
                 
-    <link href="http://fonts.cdnfonts.com/css/ringo" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/ringo" rel="stylesheet">
 
-    <link href="http://fonts.cdnfonts.com/css/origin" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/origin" rel="stylesheet">
 
-    <link href="http://fonts.cdnfonts.com/css/sannisa" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/sannisa" rel="stylesheet">
 
      <!-- Make sure you put this AFTER Leaflet's CSS -->
     <style>
