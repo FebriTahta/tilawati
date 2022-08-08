@@ -335,7 +335,7 @@ class DashboardCont extends Controller
     {
         if ($request->ajax()) {
             $maps_cabang = Cabang::whereNotNull('lng')->whereNotNull('lat')
-                            ->select('id','name','kepalacabang','alamat','lng','lat')
+                            ->select('id','name','kepalacabang','alamat','lng','lat','telp')
                             ->get();
             if (count($maps_cabang) > 0) {
                 # code...

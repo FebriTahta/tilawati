@@ -912,14 +912,14 @@
                     var marker = L.marker([value.lng,value.lat],{
                         // icon: myIcon
                     }).addTo(map)
-                        .bindPopup('<b>'+value.name+'</b><br />Cabang.');
+                        .bindPopup('<b>'+value.name+'</b> <br />Kepala : '+value.kepalacabang+' <br />Alamat : '+value.alamat+' <br /> Telp : '+value.telp+'');
                 });
             }
         });
 
-        // var marker = L.marker([-7.2754438,112.6426438],{
-        //     // icon: myIcon
-        // }).addTo(map)
-        //     .bindPopup('<b>Tilawati Pusat!</b><br />Nurul Falah Surabaya.').openPopup();
+        var marker = L.marker([-7.2754438,112.6426438],{
+            // icon: myIcon
+        }).addTo(map)
+            .bindPopup("<b>Tilawati Pusat!</b><br />Kepala : Dr. KH. Umar Jaeni, M. Pd	<br />Alamat : Pesantren Al- Qur'an Nurul Falah Surabaya. <br />Telp : 0318281278").openPopup();
     </script>
 @endsection
