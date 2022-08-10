@@ -78,10 +78,10 @@
                                     foreach ($peserta->nilai->where("kategori","al-qur'an") as $key => $value) {
                                         # code...
                                         $penil = App\Models\Penilaian::find($value->penilaian_id);
-                                        if ($value->nominal < $penil->min) {
-                                            # code...
-                                            $lulus_tak = $key+1;
-                                        }
+                                        // if ($value->nominal < $penil->min) {
+                                        //     # code...
+                                        //     $lulus_tak = $key+1;
+                                        // }
                                     }
                     ?>
                     
