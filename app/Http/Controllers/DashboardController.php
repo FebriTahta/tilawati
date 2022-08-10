@@ -340,7 +340,6 @@ class DashboardController extends Controller
              })->toArray();
              foreach ($month as $key => $value) {
                  $pel[] = Pelatihan::where(\DB::raw("DATE_FORMAT(tanggal, '%m')"),$value)->count();
-                 
              }
              $respon=[
                  'status'=>'success',

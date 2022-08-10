@@ -295,34 +295,78 @@ class DashboardCont extends Controller
     public function perkembangan_pengguna_bulanan(Request $request)
     {
         if ($request->ajax()) {
-            $tahun = Peserta::orderBy('tanggal','asc')->select(\DB::raw("YEAR(tanggal) as year"))->distinct()->get();
-            $years = $tahun->pluck('year');
-            $value_an_year = [];
-            $bulanan = [];
-            $month = [01,02,03,04,05,06,07,8,9,10,11,12];
-            
-            $monthNames = collect($month)->transform(function ($value) {
-                return \Carbon\Carbon::parse(date('Y').'-'.$value.'-01')->format('M');
-            })->toArray();
-    
-            $cetak_bulanan = [];
-            
-            if ($request->thn == null) {
+            if ($request->dari !== null) {
                 # code...
-                $tahun_sekarang = date('Y');
-                foreach($month as $key => $bln){
-                    $bulanan[] = Peserta::where(\DB::raw("DATE_FORMAT(tanggal, '%Y')"), $tahun_sekarang)->where(\DB::raw("DATE_FORMAT(tanggal, '%m')"), $bln)->count();
-                }
-            }
+                $dari_bulan = substr($request->dari,5);
+                $dari_tahun = substr($request->dari,0,4);
 
-            return response()->json(
-                [
-                    'status'    => 200,
-                    'totalbulanan'  => $bulanan,
-                    'namabulan'     => $monthNames,
-                    'message'   => 'chart perkembangan pengguna tilawati'
-                ]
-            );         
+                $sampai_bulan = substr($request->sampai,5);
+                $sampai_tahun = substr($request->sampai,0,4);
+
+                $tahun = Peserta::orderBy('tanggal','asc')->select(\DB::raw("YEAR(tanggal) as year"))->distinct()->get();
+                $years = $tahun->pluck('year');
+                $value_an_year = [];
+                $bulanan = [];
+                $month = [01,02,03,04,05,06,07,8,9,10,11,12];
+                
+                $monthNames = collect($month)->transform(function ($value) {
+                    return \Carbon\Carbon::parse(date('Y').'-'.$value.'-01')->format('M');
+                })->toArray();
+        
+                $cetak_bulanan = [];
+                
+                if ($request->thn == null) {
+                    # code...
+                    $tahun_sekarang = date('Y');
+                    foreach($month as $key => $bln){
+                        // $bulanan[] = Peserta::where(\DB::raw("DATE_FORMAT(tanggal, '%Y')"), $tahun_sekarang)->where(\DB::raw("DATE_FORMAT(tanggal, '%m')"), $bln)->count();
+                        $bulanan[] = Peserta::whereBetween('tanggal', array($request->dari, $request->sampai))->count();
+                    }
+                }
+
+                return response()->json(
+                    [
+                        'status'    => 200,
+                        'dari'      => substr($request->dari,0,4).' & '.substr($request->dari,5),
+                        'sampai'    => substr($request->sampai,0,4).' & '.substr($request->sampai,5),
+                        'totalbulanan'  => $bulanan,
+                        'namabulan'     => $monthNames,
+                        'message'   => 'chart perkembangan pengguna tilawati search dari dan sampai'
+                    ]
+                );     
+
+
+            }else {
+                # code...
+                $tahun = Peserta::orderBy('tanggal','asc')->select(\DB::raw("YEAR(tanggal) as year"))->distinct()->get();
+                $years = $tahun->pluck('year');
+                $value_an_year = [];
+                $bulanan = [];
+                $month = [01,02,03,04,05,06,07,8,9,10,11,12];
+                
+                $monthNames = collect($month)->transform(function ($value) {
+                    return \Carbon\Carbon::parse(date('Y').'-'.$value.'-01')->format('M');
+                })->toArray();
+        
+                $cetak_bulanan = [];
+                
+                if ($request->thn == null) {
+                    # code...
+                    $tahun_sekarang = date('Y');
+                    foreach($month as $key => $bln){
+                        $bulanan[] = Peserta::where(\DB::raw("DATE_FORMAT(tanggal, '%Y')"), $tahun_sekarang)->where(\DB::raw("DATE_FORMAT(tanggal, '%m')"), $bln)->count();
+                    }
+                }
+
+                return response()->json(
+                    [
+                        'status'    => 200,
+                        'totalbulanan'  => $bulanan,
+                        'namabulan'     => $monthNames,
+                        'message'   => 'chart perkembangan pengguna tilawati'
+                    ]
+                );     
+            }    
         }
     }
 

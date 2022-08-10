@@ -180,14 +180,14 @@
         <div class="col-xl-12">
             <div class="card">
                 <div class="row card-body">
-                    <div class="col-12 col-xl-12 form-group">
+                    <div class="col-12 col-xl-3 form-group">
                         <label>Dari :</label>
                         <input type="month" name="dari" id="dari" class="form-control">
                         <span class="red dari" style="color: red"></span>
                     </div>
-                    {{-- <div class="col-12 col-xl-3 form-group">
+                    <div class="col-12 col-xl-3 form-group">
                         <label>Sampai :</label>
-                        <input type="date" name="sampai" id="sampai" class="form-control">
+                        <input type="month" name="sampai" id="sampai" class="form-control">
                         <span class="red sampai" style="color: red"></span>
                     </div>
                     <div class="form-group col-12 col-xl-3">
@@ -199,7 +199,7 @@
                         <label for="">Reset :</label>
                         <button class="btn btn-rounded btn-danger form-control" name="refresh" id="refresh"> <i
                                 class="fa fa-stop"></i></button>
-                    </div> --}}
+                    </div>
                 </div>
             </div>
         </div>
@@ -384,6 +384,70 @@
                 //         console.log(data);
                 //     }
                 // });
+                $.ajax({
+                    url: '{{ route("chart.perkembangan.bulanan") }}',
+                    data: {
+                        dari: dari,
+                        sampai: sampai
+                    },
+                    type: 'get',
+                    dataType: 'json',
+                    success: function(response) {
+                        console.log(response);
+                        Highcharts.chart('container4', {
+                            chart: {
+                                type: 'column'
+                            },
+                            title: {
+                                align: 'left',
+                                text: '<h2 style="text-transform:uppercase">Perkembangan Pengguna Metode Tilawati</h2>'
+                            },
+                            subtitle: {
+                                align: 'left',
+                                text: '<p>data diambil berdasarkan peserta diklat yang mendaftar online maupun offline pada tiap cabang yang tersebar di seluruh penjuru wilayah indonesia</p>'
+                            },
+                            accessibility: {
+                                announceNewData: {
+                                    enabled: true
+                                }
+                            },
+                            xAxis: {
+                                // type: 'category'
+                                categories : response.namabulan
+                            },
+                            yAxis: {
+                                title: {
+                                    text: 'Total Pengguna Tilawati'
+                                }
+
+                            },
+                            legend: {
+                                enabled: false
+                            },
+                            plotOptions: {
+                                series: {
+                                    borderWidth: 0,
+                                    dataLabels: {
+                                        enabled: true,
+                                    }
+                                }
+                            },
+
+                            tooltip: {
+                                headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.0f}</b> of total<br/>'
+                            },
+                            
+                            series: [
+                                {
+                                    name: "Pengguna Tilawati : ",
+                                    colorByPoint: true,
+                                    data: response.totalbulanan
+                                }
+                            ],
+                        });
+                    }
+                });
             }
 
             $('#filter').click(function() {
@@ -907,19 +971,25 @@
             dataType: "JSON",
             success: function(response) {
                 $.each( response.maps_cabang, function( key, value ) {
-                    console.log(value.lng);
-                    console.log(value.lat);
-                    var marker = L.marker([value.lng,value.lat],{
-                        // icon: myIcon
-                    }).addTo(map)
+                    if (value.id == '79') {
+                        var marker = L.marker([value.lng,value.lat],{
+                                // icon: myIcon
+                            }).addTo(map)
+                        .bindPopup('<b>'+value.name+'</b> <br />Kepala : '+value.kepalacabang+' <br />Alamat : '+value.alamat+' <br /> Telp : '+value.telp+'').openPopup();
+                    }else{
+                        var marker = L.marker([value.lng,value.lat],{
+                            // icon: myIcon
+                            }).addTo(map)
                         .bindPopup('<b>'+value.name+'</b> <br />Kepala : '+value.kepalacabang+' <br />Alamat : '+value.alamat+' <br /> Telp : '+value.telp+'');
+                    }
+                    
                 });
             }
         });
 
-        var marker = L.marker([-7.2754438,112.6426438],{
-            // icon: myIcon
-        }).addTo(map)
-            .bindPopup("<b>Tilawati Pusat!</b><br />Kepala : Dr. KH. Umar Jaeni, M. Pd	<br />Alamat : Pesantren Al- Qur'an Nurul Falah Surabaya. <br />Telp : 0318281278").openPopup();
+        // var marker = L.marker([-7.2754438,112.6426438],{
+        //     // icon: myIcon
+        // }).addTo(map)
+        //     .bindPopup("<b>Tilawati Pusat!</b><br />Kepala : Dr. KH. Umar Jaeni, M. Pd	<br />Alamat : Pesantren Al- Qur'an Nurul Falah Surabaya. <br />Telp : 0318281278").openPopup();
     </script>
 @endsection
