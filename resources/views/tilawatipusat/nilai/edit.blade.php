@@ -153,7 +153,7 @@
                                     <input type="hidden" id="id" value="{{ $peserta->id }}" name="peserta_id">
                                 </div>
                                 <div class="row">
-                                    {{App\Models\Penilaian::where('id',26)->first();}}
+                                    {{App\Models\Penilaian::where('id',26)->first()}}
                                     @foreach ($peserta->nilai as $key => $item)
                                         {{$item}}
                                         {{-- <div class="form-group col-xl-6 col-12">
