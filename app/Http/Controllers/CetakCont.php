@@ -178,7 +178,7 @@ class CetakCont extends Controller
         $peserta        = Peserta::whereIn('id',explode(",",$peserta_id_array))->where('kriteria','<>','')->get();
         $customPaper    = array(0,0,792,612);
         $pdf            = PDF::loadview('tilawatipusat.cetak.depan.lama',compact('peserta'))->setPaper($customPaper, 'portrait');
-        return $pdf->download('ijazah-depan-peserta-pdf.pdf','I');
+        return $pdf->download('ijazah-depan-peserta-pdf.pdf','I'); 
     }
 
     public function cetak_depan_lama(Request $request)
