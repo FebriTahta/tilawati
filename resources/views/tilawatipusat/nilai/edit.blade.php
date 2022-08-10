@@ -86,7 +86,7 @@
                     ?>
                     
                     <p><b> TOTAL NILAI </b></p> <b>UTAMA : {{ $rata1 }} & RATA-RATA : {{ $rata2 }}</b> &nbsp;&nbsp;
-                    @if ($lulus_tak > 0)
+                    {{-- @if ($lulus_tak > 0)
                         <b class="badge badge-warning">BELUM BERSYAHADAH SEBAGIAN NILAI DIBAWAH STANDAR</b>
                     @else
                         @if ($rata1 > 74)
@@ -94,7 +94,7 @@
                         @else
                             <b class="badge badge-warning">BELUM BERSYAHADAH</b>
                         @endif
-                    @endif
+                    @endif --}}
                 @endslot
                 @slot('iconClass')
                     mdi mdi-tag-plus-outline
