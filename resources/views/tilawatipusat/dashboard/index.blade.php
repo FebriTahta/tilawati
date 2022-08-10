@@ -972,14 +972,10 @@
             success: function(response) {
                 $.each( response.maps_cabang, function( key, value ) {
                     if (value.id == '79') {
-                        var marker = L.marker([value.lng,value.lat],{
-                                // icon: myIcon
-                            }).addTo(map)
+                        var marker = L.marker([value.lng,value.lat]).addTo(map)
                         .bindPopup('<b>'+value.name+'</b> <br />Kepala : '+value.kepalacabang+' <br />Alamat : '+value.alamat+' <br /> Telp : '+value.telp+'').openPopup();
                     }else{
-                        var marker = L.marker([value.lng,value.lat],{
-                            // icon: myIcon
-                            }).addTo(map)
+                        var marker = L.marker([value.lng,value.lat]).addTo(map)
                         .bindPopup('<b>'+value.name+'</b> <br />Kepala : '+value.kepalacabang+' <br />Alamat : '+value.alamat+' <br /> Telp : '+value.telp+'');
                     }
                     
