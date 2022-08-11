@@ -2161,6 +2161,7 @@ class PesertaCont extends Controller
                             'email'         => $request->email,
                             'jilid'         => $request->jilid,
                             'munaqisy'      => $request->munaqisy,
+                            'asal_cabang'   => $request->asal_cabang,
                         ]
                     );
                 }else {
@@ -2196,6 +2197,7 @@ class PesertaCont extends Controller
                             'email'         => $request->email,
                             'jilid'         => $request->jilid,
                             'munaqisy'      => $request->munaqisy,
+                            'asal_cabang'   => $request->asal_cabang,
                         ]
                     );
                 }
@@ -2235,6 +2237,7 @@ class PesertaCont extends Controller
                             'email'         => $request->email,
                             'jilid'         => $request->jilid,
                             'munaqisy'      => $request->munaqisy,
+                            'asal_cabang'   => $request->asal_cabang,
                         ]
                     );
                 }else {
@@ -2270,6 +2273,7 @@ class PesertaCont extends Controller
                             'email'         => $request->email,
                             'jilid'         => $request->jilid,
                             'munaqisy'      => $request->munaqisy,
+                            'asal_cabang'   => $request->asal_cabang,
                         ]
                     );
                 }
@@ -2313,6 +2317,7 @@ class PesertaCont extends Controller
                             'jilid'         => $request->jilid,
                             'kriteria'      => $request->kriteria,
                             'munaqisy'      => $request->munaqisy,
+                            'asal_cabang'   => $request->asal_cabang,
                         ]
                     );
                 }else {
@@ -2350,6 +2355,7 @@ class PesertaCont extends Controller
                             'jilid'         => $request->jilid,
                             'kriteria'      => $request->kriteria,
                             'munaqisy'      => $request->munaqisy,
+                            'asal_cabang'   => $request->asal_cabang,
                         ]
                     );
                 }
@@ -2391,6 +2397,7 @@ class PesertaCont extends Controller
                             'jilid'         => $request->jilid,
                             'kriteria'      => $request->kriteria,
                             'munaqisy'      => $request->munaqisy,
+                            'asal_cabang'   => $request->asal_cabang,
                         ]
                     );
                 }else {
@@ -2428,6 +2435,7 @@ class PesertaCont extends Controller
                             'jilid'         => $request->jilid,
                             'kriteria'      => $request->kriteria,
                             'munaqisy'      => $request->munaqisy,
+                            'asal_cabang'   => $request->asal_cabang,
                         ]
                     );
                 }
