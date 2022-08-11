@@ -54,7 +54,7 @@
                 <td>65  (0 untuk nilai yang tidak ada)</td>
                 <td>65  (0 untuk nilai yang tidak ada)</td>
                 <td>65  (0 untuk nilai yang tidak ada)</td>
-                <td>65  (0 untuk nilai yang tidak ada)</td>
+                
             </tr>
             <tr>
                 <td>FEBRI RIZQI TAHTA, S.Kom</td>
@@ -74,7 +74,7 @@
                 <td>95</td>
                 <td>95</td>
                 <td>95</td>
-                <td>95</td>
+                
             </tr>
         </tbody>
     </table>
