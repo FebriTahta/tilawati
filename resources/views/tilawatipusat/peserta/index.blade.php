@@ -225,6 +225,9 @@
                                 <tr>
                                     <th>id</th>
                                     <th style="5%"><input type="checkbox" id="master"></th>
+                                    @if ($diklat->program->name == "Diklat Munaqisy Cabang")
+                                        <th>Asal Cabang</th>
+                                    @endif
                                     <th>Peserta</th>
                                     <th>Kab / Kota</th>
                                     {{-- <th>kec</th>
@@ -247,6 +250,9 @@
                                 <tr>
                                     <th>id</th>
                                     <th style="5%">Pilih</th>
+                                    @if ($diklat->program->name == "Diklat Munaqisy Cabang")
+                                        <th>Asal Cabang</th>
+                                    @endif
                                     <th>Peserta</th>
                                     <th>Kab / Kota</th>
                                     {{-- <th>kec</th>
@@ -1507,7 +1513,71 @@
 
                     ]
                 });
-            } else {
+            }else if (jenis_program == "Diklat Munaqisy Cabang") {
+                $('#datatable-buttons').DataTable({
+                    //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
+                    destroy: true,
+                    processing: true,
+                    serverSide: true,
+                    ajax: {
+                        url: '/diklat-peserta-data/' + pel_id,
+                    },
+                    columns: [{
+                            data: 'idpeserta',
+                            name: 'id'
+                        },
+                        {
+                            data: 'check',
+                            name: 'check',
+                            orderable: false,
+                        },
+                        {
+                            data: 'asal_cabang',
+                            name: 'asal_cabang'
+                        },
+                        {
+                            data: 'namapeserta',
+                            name: 'name'
+                        },
+
+                        {
+                            data: 'kabupaten',
+                            name: 'kabupaten.nama',
+                            orderable: false,
+                        },
+                        {
+                            data: 'ttl',
+                            name: 'ttl'
+                        },
+                        {
+                            data: 'telp',
+                            name: 'telp'
+                        },
+                        {
+                            data: 'alamat',
+                            name: 'alamat'
+                        },
+                        {
+                            data: 'alamatmodul',
+                            name: 'alamatx'
+                        },
+                        {
+                            data: 'nilai',
+                            name: 'nilai'
+                        },
+                        {
+                            data: 'krits',
+                            name: 'kriteria',
+                        },
+                        {
+                            data: 'action',
+                            name: 'action'
+                        },
+
+                    ]
+                });
+            }
+            else {
                 $('#datatable-buttons').DataTable({
                     //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
                     destroy: true,
