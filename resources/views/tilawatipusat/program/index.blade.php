@@ -38,7 +38,6 @@
                                         <table id="datatable-buttons" class="table table-program table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
                                             <thead class="text-bold text-primary" style="text-transform: capitalize">
                                                 <tr>
-                                                    <th>id</th>
                                                     <th>program</th>
                                                     <th>status</th>
                                                     <th>penilaian</th>
@@ -51,7 +50,6 @@
 
                                             <tfoot class="text-primary" style="text-transform: capitalize">
                                                 <tr>
-                                                    <th>id</th>
                                                     <th>program</th>
                                                     <th>status</th>
                                                     <th>penilaian</th>
@@ -766,10 +764,7 @@
                     url:'{{ route("diklat.program_data") }}',
                 },
                 columns: [
-                    {
-                    data:'id',
-                    name:'id'
-                    },
+                    
                     {
                     data:'name',
                     name:'name'
