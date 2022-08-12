@@ -276,9 +276,6 @@ class NilaiCont extends Controller
     public function edit($id)
     {
         $peserta    = Peserta::find($id);
-        $program = $peserta;
-        $ya = Program::where('id',5)->first();
-        return $ya;
         if ($peserta->pelatihan->keterangan == 'instruktur') {
             # code...
             if ($peserta->kriteria == 'SEBAGAI INSTRUKTUR LAGU METODE TILAWATI') {
