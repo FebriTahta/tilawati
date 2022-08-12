@@ -50,22 +50,21 @@ class PesertaCont extends Controller
 
     public function hapus_beberapa(Request $request)
     {
-        // if(request()->ajax())
-        // {
-        //     $peserta_id_array = $request->id;
-        //     $peserta        = Peserta::whereIn('id',explode(",",$peserta_id_array))->delete();
-
-        //     return response()->json(
-        //         [
-        //         'success' => 'Data Peserta Telah dihapus',
-        //         'message' => 'Data Peserta Telah dihapus'
-        //         ]
-        //     );
-        // }
-
-        $peserta_id_array = $request->id;
-        $peserta        = Peserta::whereIn('id',explode(",",$peserta_id_array))->delete();
-        return redirect()->back();
+        if(request()->ajax())
+        {
+            $peserta_id_array = $request->id;
+            $peserta        = Peserta::whereIn('id',explode(",",$peserta_id_array))->delete();
+            return response()->json(
+                [
+                'success' => 'Data Peserta Telah dihapus',
+                'message' => 'Data Peserta Telah dihapus'
+                ]
+            );
+        }else{
+            $peserta_id_array = $request->id;
+            $peserta        = Peserta::whereIn('id',explode(",",$peserta_id_array))->delete();
+            return redirect()->back();
+        }
     }
 
     public function peserta_data(Request $request,$id)

@@ -210,9 +210,9 @@
                             Reset QR</a> --}}
                     @endif
 
-                    {{-- <button class="text-right btn btn-sm mr-1 mb-1 btn-outline-danger" id="hapus_all"><i
-                            class="fa fa-trash"></i> hapus data</button>
-                    <a href="/minta-modul/{{$pelatihan_id}}" class="btn btn-info btn-sm">Minta Modul Pengiriman</a> --}}
+                    <button class="text-right btn btn-sm mr-1 mb-1 btn-outline-danger" id="hapus_all"><i
+                            class="fa fa-trash"></i> hapus data </button>
+                    {{-- <a href="/minta-modul/{{$pelatihan_id}}" class="btn btn-info btn-sm">Minta Modul Pengiriman</a> --}}
                     {{-- <form action="/error-penilaian-kategori" method="POST">@csrf
                                         <button type="submit" class="text-right btn btn-sm mr-1 btn-outline-info" id="belakang_all"><i class="fa fa-print"></i> belakang</button>
                                     </form> --}}
