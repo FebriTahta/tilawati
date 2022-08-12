@@ -37,6 +37,6 @@ class ErrorCont extends Controller
         $x32 = Nilai::where('penilaian_id',32)->count();
 
 
-        return $x26.' - '.$x27.' - '.$x28.' - '.$x29.' - '.$x30.' - '.$x31.' - '.$x32.' - '.$x33;
+        return $x26.' - '.$x27.' - '.$x28.' - '.$x29.' - '.$x30.' - '.$x31.' - '.$x32;
     }
 }
