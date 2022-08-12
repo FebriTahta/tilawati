@@ -277,7 +277,8 @@ class NilaiCont extends Controller
     {
         $peserta    = Peserta::find($id);
         $program = $peserta;
-        return $program;
+        $ya = Program::where('id',5)->first();
+        return $ya;
         if ($peserta->pelatihan->keterangan == 'instruktur') {
             # code...
             if ($peserta->kriteria == 'SEBAGAI INSTRUKTUR LAGU METODE TILAWATI') {
