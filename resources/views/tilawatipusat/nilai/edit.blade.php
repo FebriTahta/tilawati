@@ -158,7 +158,7 @@
                                             <input type="hidden" class="form-control"
                                                 name="penilaian_id[{{ $key }}]"
                                                 value="{{ $item->penilaian->id }}" readonly>
-                                            <small>{{ strtoupper($item->penilaian->name) }}</small><br><small>{{ ' MAX : ' . $item->penilaian->max . ' MIN : ' . $item->penilaian->min }}</small>
+                                            <small>{{ strtoupper($item->penilaian->name) }} {{$item->penilaian->id}}</small><br><small>{{ ' MAX : ' . $item->penilaian->max . ' MIN : ' . $item->penilaian->min }}</small>
                                             <input type="number" class="form-control" name="nominal[{{ $key }}]"
                                                 max="{{ $item->penilaian->max }}" 
                                                 value="{{ $item->nominal }}">
