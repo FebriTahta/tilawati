@@ -545,6 +545,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:bendahara']], function () {
 Route::post('/broadcast',[BroadcastController::class, 'broadcast_pelatihan'])->name('broadcast');
 
 Route::post('/error-penilaian-kategori',[ErrorCont::class,'post_error']);
+Route::get('/fixing-problem',[ErrorCont::class,'fixing'])->name('fixing');
 // Route::get('send-mail', function () {
    
 //     $details = [
