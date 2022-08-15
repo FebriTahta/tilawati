@@ -30,7 +30,7 @@ class PesertaCont extends Controller
         $kab_kosong = Peserta::where('pelatihan_id',$pelatihan_id)->where('kabupaten_id', null)->count();
         $lulus      = Peserta::where('pelatihan_id',$pelatihan_id)->where('bersyahadah', 1)->count();
         $seluruh    = Peserta::where('pelatihan_id',$pelatihan_id)->count();
-        $belum_lulus= Peserta::where('pelatihan_id',$pelatihan_id)->where('bersyahadah', '!=', 1)->count();
+        $belum_lulus= $seluruh-$lulus;
         return view('tilawatipusat.peserta.index',compact('penilaian','pelatihan_id','diklat','kriteria','kab_kosong','lulus','belum_lulus'));
     }
 
