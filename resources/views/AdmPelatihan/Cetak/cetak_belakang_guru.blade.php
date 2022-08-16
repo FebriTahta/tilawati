@@ -509,7 +509,12 @@
 							<th colspan="3" class="penilaian">Penilaian</th>
 							<th rowspan="2" style="text-align: center">Jumlah</th>
 					</tr>
-					
+					<tr>     
+						<th class="pe">Max</th>
+						<th class="pe">Min</th>
+						<th class="pe">Nilai</th>
+						
+					</tr>
 					<tr>
 						<th>1</th>
 						<td style="border-right: none">&nbsp; &nbsp;<b> Al-Qur'an</b></td>
