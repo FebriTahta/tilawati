@@ -86,19 +86,7 @@
                                     if ($item->kelurahan !== null && $item->kecamatan !== null) {
                                         # code...
                                         $text = $item->alamat . ' ' . substr($item->kelurahan->nama, 0) . ' ' . substr($item->kecamatan->nama, 0) . ' ' . substr($item->kabupaten->nama, 10);
-										if (strlen($text) > $num_char) {
-											# code...
-											$text = $item->alamat . ' ' . substr($item->kecamatan->nama, 0) . ' ' . substr($item->kabupaten->nama, 10);
-											if (strlen($text) > $num_char) {
-												# code...
-												$text = $item->alamat . ' ' . substr($item->kabupaten->nama, 10);
-											}else {
-												# code...
-												$text = $item->alamat . ' ' . substr($item->kecamatan->nama, 0) . ' ' . substr($item->kabupaten->nama, 10);
-											}
-										}else{
-											$text = $item->alamat . ' ' . substr($item->kelurahan->nama, 0) . ' ' . substr($item->kecamatan->nama, 0) . ' ' . substr($item->kabupaten->nama, 10);
-										}
+										
                                     } else {
                                         # code...
                                         $text = $item->alamat . ' ' . substr($item->kabupaten->nama, 10);
@@ -108,20 +96,7 @@
                                     if ($item->kelurahan !== null && $item->kecamatan !== null) {
                                         # code...
                                         $text = $item->alamat . ' ' . substr($item->kelurahan->nama, 0) . ' ' . substr($item->kecamatan->nama, 0) . ' ' . substr($item->kabupaten->nama, 5);
-										if (strlen($text) > $num_char) {
-											# code...
-											$text = $item->alamat . ' ' . substr($item->kecamatan->nama, 0) . ' ' . substr($item->kabupaten->nama, 5);
-											if (strlen($text) > $num_char) {
-												# code...
-												$text = $item->alamat . ' ' . substr($item->kabupaten->nama, 5);
-											} else {
-												# code...
-												$text = $item->alamat . ' ' . substr($item->kecamatan->nama, 0) . ' ' . substr($item->kabupaten->nama, 5);
-											}
-										}else {
-											# code...
-											$text = $item->alamat . ' ' . substr($item->kecamatan->nama, 0) . ' ' . substr($item->kabupaten->nama, 5);
-										}
+										
                                     } else {
                                         # code...
                                         $text = $item->alamat . ' ' . substr($item->kabupaten->nama, 5);
