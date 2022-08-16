@@ -519,7 +519,7 @@
 						<th>1</th>
 						<td style="border-right: none">&nbsp; &nbsp;<b> Al-Qur'an</b></td>
 						<th colspan="3" class="pe3" style="border-left: none"></th>
-						<th >{{ $jumlah = $p->nilai->where("kategori","al-qur'an")->sum('nominal') }}</th>
+						<th ></th>
 					</tr>
 					@foreach ($p->nilai as $key=> $item)
 						@if ($item !== null)
