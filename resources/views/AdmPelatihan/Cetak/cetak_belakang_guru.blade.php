@@ -552,6 +552,16 @@
 							<th >
 							@if ($p->pelatihan->program->name=='munaqosyah santri')
 								{{ $rata2 = $jumlah }}
+							@elseif($p->program->name == 'Diklat Munaqisy Cabang')
+								@php
+									$x = $p->nilai->where("kategori","al-qur'an")->sum('nominal');
+									$y = $p->nilai->where("kategori","skill")->sum('nominal');
+									$z = $p->nilai->where("kategori","skill")->count();
+									$satu  = $x;
+									$dua   = round($y / $z);
+									$rata2 = round(($satu+$dua)/2);
+								@endphp
+								{{$rata2}}
 							@else
 								{{ $rata2 = ($jumlah+ $item->nominal)/2 }}
 							@endif
