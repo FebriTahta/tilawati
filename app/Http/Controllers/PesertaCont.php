@@ -116,7 +116,24 @@ class PesertaCont extends Controller
                                             # code...
                                             return '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-warning">'.round($rata2,1).' BELUM BERSYAADAH</a>';
                                         }
-                                    }else {
+                                    }elseif($data->program->name == 'Diklat Munaqisy Cabang'){
+                                        $total  = $data->nilai->where("kategori","al-qur'an")->sum('nominal');
+                                        $total2 = $data->nilai->where("kategori","skill")->sum('nominal');
+                                        $total3 = $data->nilai->where("kategori","skill")->count();
+                                        
+                                        $x =   $total;
+                                        $y =   round($total2/3);
+                                        $ratax = ($x + $y)/2;
+                                        $rata2 = $ratax;
+                                        if ($rata2 > 70 && $data->bersyahadah > 0) {
+                                            # code...
+                                            return '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-info">'.round($rata2,1).' BERSYAHADAH</a>';
+                                        } else {
+                                            # code...
+                                            return '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-warning">'.round($rata2,1).' BELUM BERSYAADAH</a>';
+                                        }
+                                    }
+                                    else {
                                         # code...
                                         $total  = $data->nilai->where("kategori","al-qur'an")->sum('nominal');
                                         $total2 = $data->nilai->where("kategori","skill")->sum('nominal');
