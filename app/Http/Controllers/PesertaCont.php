@@ -116,24 +116,6 @@ class PesertaCont extends Controller
                                             # code...
                                             return '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-warning">'.round($rata2,1).' BELUM BERSYAADAH</a>';
                                         }
-                                    }elseif($data->program->name == 'Diklat Munaqisy Cabang'){
-                                        $total  = $data->nilai->where("kategori","al-qur'an")->sum('nominal');
-                                        $total2 = $data->nilai->where("kategori","skill")->sum('nominal');
-                                        $total3 = $data->nilai->where("kategori","skill")->count();
-                                        
-                                        $x =   $total;
-                                        $y =   round($total2/3);
-                                        $ratax = ($x + $y)/2;
-                                        $rata2 = $ratax;
-                                        if ($rata2 > 70 && $data->bersyahadah > 0) {
-                                            # code...
-                                            // return '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-info">'.round($rata2,1).' BERSYAHADAH</a>';
-                                            return 'x';
-                                        } else {
-                                            # code...
-                                            // return '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-warning">'.round($rata2,1).' BELUM BERSYAADAH</a>';
-                                            return 'y';
-                                        }
                                     }
                                     else {
                                         # code...
@@ -187,6 +169,47 @@ class PesertaCont extends Controller
                                         else {
                                             # code...
                                             return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-warning">'.$rata2.' mengaji & '.$ratax.' rata-rata (belum bersyahadah)</a>';
+                                        }
+                                    }
+                                }
+                                elseif ($data->program->name == 'Diklat Munaqisy Cabang') {
+                                    # code...
+                                    # code...
+                                    $total  = $data->nilai->where("kategori","al-qur'an")->sum('nominal');
+                                    $total2 = $data->nilai->where("kategori","skill")->sum('nominal');
+                                    $total3 = $data->nilai->where("kategori","skill")->count();
+                                    
+                                    // $rata2 = $data->nilai->sum('nominal');
+                                    $x = $total;
+                                    $y = $total2/$total3;
+                                    $ratax = ($x + $y)/2;
+                                    $rata2 = $ratax;
+
+                                    
+                                    $lulus_tak='';
+                                    foreach ($data->nilai->where("kategori","al-qur'an") as $key => $value) {
+                                        # code...
+                                        $penil = Penilaian::find($value->penilaian_id);
+                                        if ($value->nominal < $penil->min) {
+                                            # code...
+                                            $lulus_tak = $key+1;
+                                        }
+                                    }
+
+
+                                    if ($lulus_tak > 0) {
+                                        # code...
+                                        return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-warning">'.$rata2.' mengaji & '.$ratax.' rata-rata (belum bersyahadah)</a>';
+                                    }else {
+                                        # code...
+                                        if ($rata2 > 74 && $data->bersyahadah > 0) {
+                                            # code...
+                                            return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-primary">'.$rata2.' rata-rata (bersyahadah)</a>';
+                                        }
+                                        
+                                        else {
+                                            # code...
+                                            return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-warning">'.$rata2.' rata-rata (belum bersyahadah)</a>';
                                         }
                                     }
                                 }
