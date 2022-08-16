@@ -601,8 +601,8 @@
 				</table>
 				<div id="textbox" style="margin-top: 20px">
 					<div class="alignleft" style="margin-left: 180px">Istimewa : 85 - 95</div>
-					<div class="alignleft" style="margin-left: 90px">Baik : 74 - 84</div>
-					<div class="alignright" style="margin-right: 170px">Cukup : 75 - 84</div>
+					<div class="alignleft" style="margin-left: 150px">Baik : 74 - 84</div>
+					<div class="alignright" style="margin-right: 90px">Cukup : 75 - 84</div>
 				</div>
 			</div>
 			@else
