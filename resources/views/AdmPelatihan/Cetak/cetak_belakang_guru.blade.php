@@ -559,8 +559,8 @@
 					@if ($p->pelatihan->keterangan == 'guru')
 						<tr>
 							<th></th>
-							<td class="nilai6">&nbsp; &nbsp;<b> RATA - RATA NILAI</b></th>
-							<th colspan="3" class="nilai5"></th>
+							<td class="nilai6" style="border-right: none">&nbsp; &nbsp;<b> RATA - RATA NILAI</b></th>
+							<th style="border-left: none" colspan="3" class="nilai5"></th>
 							<th >
 							@if ($p->pelatihan->program->name=='munaqosyah santri')
 								{{ $rata2 = $jumlah }}
@@ -586,8 +586,8 @@
 					@endif
 					<tr>
 						<th></th>
-						<td class="nilai6">&nbsp; &nbsp;<b> PRESTASI</b></th>
-						<th colspan="3" class="nilai5"></th> 
+						<td class="nilai6" style="border-right: none">&nbsp; &nbsp;<b> PRESTASI</b></th>
+						<th colspan="3" style="border-left: none" class="nilai5"></th> 
 						<th >
 							@if ($rata2 >= 85)
 								Istimewa
