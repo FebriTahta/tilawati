@@ -66,14 +66,14 @@
 						@if ($item->kota2 == null)
 							@if ($item->kecamatan !== null)
 								@if (substr($item->kota, 4, 4) == "ADM")
-										{{substr($item->kecamatan->name)}} {{substr($item->kota, 10)}}
+										{{$item->kecamatan->name}} {{substr($item->kota, 10)}}
 									@endif
 									@if(substr($item->kota, 0, 4) == 'KOTA')
-										{{substr($item->kecamatan->name)}} {{substr($item->kota, 5)}}
+										{{$item->kecamatan->name}} {{substr($item->kota, 5)}}
 									@elseif(substr($item->kota, 0, 4) == 'KAB.')
-										{{substr($item->kecamatan->name)}} {{substr($item->kota, 5)}}
+										{{$item->kecamatan->name}} {{substr($item->kota, 5)}}
 									@else
-										{{substr($item->kecamatan->name)}} {{$item->kota}}
+										{{$item->kecamatan->name}} {{$item->kota}}
 								@endif
 							@else
 								@if (substr($item->kota, 4, 4) == "ADM")
@@ -90,7 +90,7 @@
 							
 						@else
 							@if ($item->kecamatan !== null)
-								{{substr($item->kecamatan->name)}} {{$item->kota2}}
+								{{$item->kecamatan->name}} {{$item->kota2}}
 							@else
 								{{$item->kota2}}
 							@endif
