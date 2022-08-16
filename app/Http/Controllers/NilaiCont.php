@@ -312,13 +312,26 @@ class NilaiCont extends Controller
             
         } else {
             # code...
-            $total      = $peserta->nilai->where("kategori","al-qur'an")->sum('nominal');
-            $total2     = $peserta->nilai->where("kategori","skill")->sum('nominal');
-            $total3     = $peserta->nilai->where("kategori","skill")->count();
-            $rata2      = ($total + $total2)/($total3+1);
-            $rata1      = $total;
-            $kriteria   = Kriteria::where('program_id', $peserta->program_id)->get();
-            return view('tilawatipusat.nilai.edit',compact('peserta','total','rata2','kriteria','rata1'));
+            if ($peserta->program->name == 'Diklat Munaqisy Cabang') {
+                # code...
+                $total      = $peserta->nilai->where("kategori","al-qur'an")->sum('nominal');
+                $total2     = $peserta->nilai->where("kategori","skill")->sum('nominal');
+                $total3     = $peserta->nilai->where("kategori","skill")->count();
+                $x          = $total2 / $total3;
+                $y          = $total + $total2;
+                $rata2      = ($x + $y) / 2;
+                $rata1      = $total;
+                $kriteria   = Kriteria::where('program_id', $peserta->program_id)->get();
+                return view('tilawatipusat.nilai.edit',compact('peserta','total','rata2','kriteria','rata1'));
+            }else{
+                $total      = $peserta->nilai->where("kategori","al-qur'an")->sum('nominal');
+                $total2     = $peserta->nilai->where("kategori","skill")->sum('nominal');
+                $total3     = $peserta->nilai->where("kategori","skill")->count();
+                $rata2      = ($total + $total2)/($total3+1);
+                $rata1      = $total;
+                $kriteria   = Kriteria::where('program_id', $peserta->program_id)->get();
+                return view('tilawatipusat.nilai.edit',compact('peserta','total','rata2','kriteria','rata1'));
+            }
         }
     }
 }
