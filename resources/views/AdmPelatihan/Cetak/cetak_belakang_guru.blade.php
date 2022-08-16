@@ -521,17 +521,16 @@
 						<th colspan="3" class="pe3"></th>
 						<th >{{ $jumlah = $p->nilai->where("kategori","al-qur'an")->sum('nominal') }}</th>
 					</tr>
-					<?php $i = 2; $x = 1?>
 					@foreach ($p->nilai as $key=> $item)
 						@if ($item !== null)
 							@if ($item->kategori !== 'skill')
 								<tr>
 									<td class="pop"></td>
-									<td class="pop2" >&nbsp; &nbsp;&nbsp;<span style="text-transform: capitalize">{{ $item->penilaian->name }}</span></td>
-									<td class="nilai" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->max }}</td>
-									<td class="nilai2" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->min }}</td>
-									<td class="nilai3" style="text-align: center">&nbsp; &nbsp;{{ $item->nominal }}</td>
-									<td style="border-top: 0;border-bottom: 0;"></td>
+									<td class="pop2" style="border-right: none">&nbsp; &nbsp;&nbsp;<span style="text-transform: capitalize; ">{{ $item->penilaian->name }}</span></td>
+									<td class="nilai" style="text-align: center; border-left: none" >&nbsp; &nbsp;</td>
+									<td class="nilai2" style="text-align: center">&nbsp; &nbsp;</td>
+									<td class="nilai3" style="text-align: center">&nbsp; &nbsp;</td>
+									<th style="border-top: 0;border-bottom: 0;">{{ $item->nominal }}</th>
 								</tr>
 							@endif
 						@endif
