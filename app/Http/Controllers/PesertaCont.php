@@ -127,10 +127,12 @@ class PesertaCont extends Controller
                                         $rata2 = $ratax;
                                         if ($rata2 > 70 && $data->bersyahadah > 0) {
                                             # code...
-                                            return '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-info">'.round($rata2,1).' BERSYAHADAH</a>';
+                                            // return '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-info">'.round($rata2,1).' BERSYAHADAH</a>';
+                                            return 'x';
                                         } else {
                                             # code...
-                                            return '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-warning">'.round($rata2,1).' BELUM BERSYAADAH</a>';
+                                            // return '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-warning">'.round($rata2,1).' BELUM BERSYAADAH</a>';
+                                            return 'y';
                                         }
                                     }
                                     else {
