@@ -600,9 +600,9 @@
 					</tr>
 				</table>
 				<div id="textbox" style="margin-top: 20px">
-					<div class="alignleft" style="margin-left: 180px">Istimewa : 85 - 95</div>
-					<div class="alignleft" style="margin-left: 150px">Baik : 75 - 84</div>
-					<div class="alignright" style="margin-right: 210px">Cukup : 65 - 74</div>
+					<div class="alignleft" style="margin-left: 180px"><b> Istimewa : 85 - 95</b></div>
+					<div class="alignleft" style="margin-left: 150px"><b>Baik : 75 - 84</b></div>
+					<div class="alignright" style="margin-right: 210px"><b>Cukup : 65 - 74</b></div>
 				</div>
 			</div>
 			@else
