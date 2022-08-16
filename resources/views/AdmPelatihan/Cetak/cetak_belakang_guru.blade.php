@@ -538,7 +538,7 @@
 					@endforeach
 					<tr>
 						<th>2</th>
-						<td colspan="3">&nbsp; &nbsp;<b> Praktek Munaqisy </b></td>
+						<td>&nbsp; &nbsp;<b> Praktek Munaqisy </b></td>
 						<th colspan="3"></th>
 						<th ></th>
 					</tr>
