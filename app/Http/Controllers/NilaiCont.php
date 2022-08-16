@@ -122,9 +122,6 @@ class NilaiCont extends Controller
     }
 
     public function update(Request $request){
-        
-        
-
         $peserta_id = $request->peserta_id;
         $lulus_tak='';
         // update nilai
@@ -245,7 +242,11 @@ class NilaiCont extends Controller
         }elseif ($pro == "pembinaan & munaqosyah ulang") {
             # code...
             $krits = "LULUS DIKLAT LEVEL 1 GURU AL QURAN METODE TILAWATI";
-        }else {
+        }elseif ($pro == "Diklat Munaqisy Cabang") {
+            # code...
+            $krits = "SEBAGAI MUNAQISY CABANG METODE TILAWATI";
+        }
+        else {
             # code...
             $krits = "LULUS DIKLAT LEVEL 1 GURU AL QURAN METODE TILAWATI";
         }
