@@ -89,7 +89,7 @@
                     @if ($lulus_tak > 0)
                         <b class="badge badge-warning">BELUM BERSYAHADAH SEBAGIAN NILAI DIBAWAH STANDAR</b>
                     @else
-                        @if ($rata1 > 74)
+                        @if ($rata2 > 74)
                             <b class="badge badge-info">BERSYAHADAH</b>
                         @else
                             <b class="badge badge-warning">BELUM BERSYAHADAH</b>
