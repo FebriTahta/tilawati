@@ -506,15 +506,10 @@
 					<tr>
 							<th rowspan="2">No.</th>
 							<th rowspan="2" style="border-right: none">Bidang Penilaian</th>
-							<th colspan="3" class="penilaian" style="border-bottom: none; border-left: none;"></th>
+							
 							<th rowspan="2" style="text-align: center">Jumlah</th>
 					</tr>
-					<tr>     
-						<th class="pe"></th>
-						<th class="pe"></th>
-						<th class="pe"></th>
-						
-					</tr>
+					
 					<tr>
 						<th>1</th>
 						<td style="border-right: none">&nbsp; &nbsp;<b> Al-Qur'an</b></td>
