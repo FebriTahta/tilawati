@@ -43,70 +43,118 @@
                     <td class="atas" style="width: 170px; height: 23px;"></td>
                     <td class="atas" style="width: 11px; height: 23px;"></td>
                     <td class="atas" style="width: 750px; height: 23px; text-transform: uppercase" >{{ $item->alamat }} 
-						{{-- @if ($item->kota2 !== null)
-							@if (substr($item->kota2, 4, 4) == "ADM")
-								{{substr($item->kot2, 10)}}
+						
+
+						{{-- @if ($item->kota2 == null)
+							@if ($item->kecamatan !== null && $item->kelurahan !== null)
+								@if (substr($item->kota, 4, 4) == "ADM")
+										{{$item->kelurahan}} {{$item->kecamatan->name}} {{substr($item->kota, 10)}}
+									@endif
+									@if(substr($item->kota, 0, 4) == 'KOTA')
+										{{$item->kelurahan}} {{$item->kecamatan->name}} {{substr($item->kota, 5)}}
+									@elseif(substr($item->kota, 0, 4) == 'KAB.')
+										{{$item->kelurahan}} {{$item->kecamatan->name}} {{substr($item->kota, 5)}}
+									@else
+										{{$item->kelurahan}} {{$item->kecamatan->name}} {{$item->kota}}
+								@endif
+							@else
+								@if (substr($item->kota, 4, 4) == "ADM")
+										{{substr($item->kota, 10)}}
+									@endif
+									@if(substr($item->kota, 0, 4) == 'KOTA')
+											{{substr($item->kota, 5)}}
+									@elseif(substr($item->kota, 0, 4) == 'KAB.')
+											{{substr($item->kota, 5)}}
+									@else
+										{{$item->kota}}
+								@endif
 							@endif
-							@if(substr($item->kota2, 0, 4) == 'KOTA')
-									{{substr($item->kota2, 5)}}
-							@elseif(substr($item->kota2, 0, 4) == 'KAB.')
-									{{substr($item->kota2, 5)}}
+							
+						@else
+							@if ($item->kecamatan !== null && $item->kelurahan !== null)
+								{{$item->kelurahan}} {{$item->kecamatan->name}} {{$item->kota2}}
 							@else
 								{{$item->kota2}}
 							@endif
 							
 						@endif --}}
 
-						{{-- @if ($item->kota2 !== null)
-							{{$item->kota2}}
-						@else
-							{{$item->kota}}
-						@endif --}}
+						<?php
+                        $num_char = 60;
+                        if (strlen($item->alamat) > $num_char) {
+                            # code...
+                            if ($item->kabupaten !== null) {
+                                # code...
+                                $text = $item->alamat." ".substr($item->kabupaten->nama,5);
+                            }else {
+                                # code...
+                                $item->alamat;
+                            }
+                        } else {
+                            # code...
+                            if ($item->kabupaten !== null) {
+                                # code...
+                                if (substr($item->kabupaten->nama, 5, 3) == 'ADM') {
+                                    # code...
+                                    if ($item->kelurahan !== null && $item->kecamatan !== null) {
+                                        # code...
+                                        $text = $item->alamat . ' ' . substr($item->kelurahan->nama, 0) . ' ' . substr($item->kecamatan->nama, 0) . ' ' . substr($item->kabupaten->nama, 10);
+										if (strlen($text) > $num_char) {
+											# code...
+											$text = $item->alamat . ' ' . substr($item->kecamatan->nama, 0) . ' ' . substr($item->kabupaten->nama, 10);
+											if (strlen($text) > $num_char) {
+												# code...
+												$text = $item->alamat . ' ' . substr($item->kabupaten->nama, 10);
+											}else {
+												# code...
+												$text = $item->alamat . ' ' . substr($item->kecamatan->nama, 0) . ' ' . substr($item->kabupaten->nama, 10);
+											}
+										}else{
+											$text = $item->alamat . ' ' . substr($item->kelurahan->nama, 0) . ' ' . substr($item->kecamatan->nama, 0) . ' ' . substr($item->kabupaten->nama, 10);
+										}
+                                    } else {
+                                        # code...
+                                        $text = $item->alamat . ' ' . substr($item->kabupaten->nama, 10);
+                                    }
+                                } else {
+                                    # code...
+                                    if ($item->kelurahan !== null && $item->kecamatan !== null) {
+                                        # code...
+                                        $text = $item->alamat . ' ' . substr($item->kelurahan->nama, 0) . ' ' . substr($item->kecamatan->nama, 0) . ' ' . substr($item->kabupaten->nama, 5);
+										if (strlen($text) > $num_char) {
+											# code...
+											$text = $item->alamat . ' ' . substr($item->kecamatan->nama, 0) . ' ' . substr($item->kabupaten->nama, 5);
+											if (strlen($text) > $num_char) {
+												# code...
+												$text = $item->alamat . ' ' . substr($item->kabupaten->nama, 5);
+											} else {
+												# code...
+												$text = $item->alamat . ' ' . substr($item->kecamatan->nama, 0) . ' ' . substr($item->kabupaten->nama, 5);
+											}
+										}else {
+											# code...
+											$text = $item->alamat . ' ' . substr($item->kecamatan->nama, 0) . ' ' . substr($item->kabupaten->nama, 5);
+										}
+                                    } else {
+                                        # code...
+                                        $text = $item->alamat . ' ' . substr($item->kabupaten->nama, 5);
+                                    }
+                                }
+                            } else {
+                                # code...
+                                $text = $item->alamat;
+                                // if ($item->kecamatan !== null) {
+                                //     # code...
+                                //     $text = $item->alamat . ' ' . substr($item->kecamatan->nama, 0);
+                                // } else {
+                                //     # code...
+                                //     $text = $item->alamat;
+                                // }
+                            }
+                        }
+                        ?>
 
-							@if ($item->kota2 == null)
-								@if ($item->kecamatan !== null)
-									@if (substr($item->kota, 4, 4) == "ADM")
-											{{$item->kecamatan->name}} {{substr($item->kota, 10)}}
-										@endif
-										@if(substr($item->kota, 0, 4) == 'KOTA')
-											{{$item->kecamatan->name}} {{substr($item->kota, 5)}}
-										@elseif(substr($item->kota, 0, 4) == 'KAB.')
-											{{$item->kecamatan->name}} {{substr($item->kota, 5)}}
-										@else
-											{{$item->kecamatan->name}} {{$item->kota}}
-									@endif
-								@else
-									@if (substr($item->kota, 4, 4) == "ADM")
-											{{substr($item->kota, 10)}}
-										@endif
-										@if(substr($item->kota, 0, 4) == 'KOTA')
-												{{substr($item->kota, 5)}}
-										@elseif(substr($item->kota, 0, 4) == 'KAB.')
-												{{substr($item->kota, 5)}}
-										@else
-											{{$item->kota}}
-									@endif
-								@endif
-								
-							@else
-								@if ($item->kecamatan !== null)
-									{{$item->kecamatan->name}} {{$item->kota2}}
-								@else
-									{{$item->kota2}}
-								@endif
-								
-							@endif
-
-						{{-- @if (substr($item->kota, 4, 4) == "ADM")
-								{{substr($item->kota, 10)}}
-							@endif
-							@if(substr($item->kota, 0, 4) == 'KOTA')
-									{{substr($item->kota, 5)}}
-							@elseif(substr($item->kota, 0, 4) == 'KAB.')
-									{{substr($item->kota, 5)}}
-							@else
-								{{$item->kota}}
-						@endif --}}
+						{{$text}}
 						
 					
 					</td>

@@ -130,7 +130,6 @@
                                 // }
                             }
                         }
-                        
                         ?>
                         <td class="atas" style="width: 750px; height: 10px; text-transform: uppercase">
                             {{ $text }}</td>
