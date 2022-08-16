@@ -505,10 +505,16 @@
 				class="table1">
 					<tr>
 							<th rowspan="2">No.</th>
-							<th rowspan="2" style="border-right: none">Bidang Penilaian</th>
+							<th rowspan="2" colspan="4" style="border-right: none">Bidang Penilaian</th>
+							{{-- <th colspan="3" class="penilaian" style="border-bottom: none; border-left: none;"></th> --}}
 							<th rowspan="2" style="text-align: center">Jumlah</th>
 					</tr>
-					
+					<tr>     
+						<th class="pe"></th>
+						<th class="pe"></th>
+						<th class="pe"></th>
+						
+					</tr>
 					<tr>
 						<th>1</th>
 						<td style="border-right: none">&nbsp; &nbsp;<b> Al-Qur'an</b></td>
@@ -521,7 +527,9 @@
 								<tr>
 									<td class="pop"></td>
 									<td class="pop2" style="border-right: none">&nbsp; &nbsp;&nbsp;<span style="text-transform: capitalize; ">{{ $item->penilaian->name }}</span></td>
-									
+									<td class="nilai" style="text-align: center; border-left: none" >&nbsp; &nbsp;</td>
+									<td class="nilai2" style="text-align: center">&nbsp; &nbsp;</td>
+									<td class="nilai3" style="text-align: center">&nbsp; &nbsp;</td>
 									<th style="border-top: 0;border-bottom: 0;">{{ $item->nominal }}</th>
 								</tr>
 							@endif
@@ -539,7 +547,9 @@
 								<tr>
 									<td class="pop"></td>
 									<td class="pop2" style="border-right: none">&nbsp; &nbsp;&nbsp;<span style="text-transform: capitalize; ">{{ $item->penilaian->name }}</span></td>
-									
+									<td class="nilai" style="text-align: center; border-left: none" >&nbsp; &nbsp;</td>
+									<td class="nilai2" style="text-align: center">&nbsp; &nbsp;</td>
+									<td class="nilai3" style="text-align: center">&nbsp; &nbsp;</td>
 									<th style="border-top: 0;border-bottom: 0;">{{ $item->nominal }}</th>
 								</tr>
 							@endif
@@ -550,7 +560,7 @@
 						<tr>
 							<th></th>
 							<td class="nilai6">&nbsp; &nbsp;<b> RATA - RATA NILAI</b></th>
-							
+							<th colspan="3" class="nilai5"></th>
 							<th >
 							@if ($p->pelatihan->program->name=='munaqosyah santri')
 								{{ $rata2 = $jumlah }}
@@ -577,7 +587,7 @@
 					<tr>
 						<th></th>
 						<td class="nilai6">&nbsp; &nbsp;<b> PRESTASI</b></th>
-						
+						<th colspan="3" class="nilai5"></th> 
 						<th >
 							@if ($rata2 >= 85)
 								Istimewa
