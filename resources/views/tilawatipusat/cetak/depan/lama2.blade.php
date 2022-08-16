@@ -80,19 +80,7 @@
 						@endif --}}
 
 						<?php
-                        $num_char = 60;
-                        if (strlen($item->alamat) > $num_char) {
-                            # code...
-                            if ($item->kabupaten !== null) {
-                                # code...
-                                $text = $item->alamat." ".substr($item->kabupaten->nama,5);
-                            }else {
-                                # code...
-                                $item->alamat;
-                            }
-                        } else {
-                            # code...
-                            if ($item->kabupaten !== null) {
+                       if ($item->kabupaten !== null) {
                                 # code...
                                 if (substr($item->kabupaten->nama, 5, 3) == 'ADM') {
                                     # code...
@@ -151,7 +139,6 @@
                                 //     $text = $item->alamat;
                                 // }
                             }
-                        }
                         ?>
 
 						{{$text}}
