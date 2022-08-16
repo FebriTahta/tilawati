@@ -551,7 +551,7 @@
 									<td class="nilai" style="text-align: center">&nbsp; &nbsp;</td>
 									<td class="nilai2" style="text-align: center">&nbsp; &nbsp;</td>
 									<td class="nilai3" style="text-align: center">&nbsp; &nbsp;</td>
-									<td style="border-top: 0;border-bottom: 0;">{{ $item->nominal }}</td>
+									<th style="border-top: 0;border-bottom: 0;">{{ $item->nominal }}</th>
 								</tr>
 							@endif
 						@endif
