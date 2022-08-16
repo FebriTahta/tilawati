@@ -182,7 +182,7 @@ class PesertaCont extends Controller
                                     // $rata2 = $data->nilai->sum('nominal');
                                     $x = $total;
                                     $y = $total2/$total3;
-                                    $ratax = ($x + $y)/2;
+                                    $ratax = round(($x + $y)/2);
                                     $rata2 = $ratax;
 
                                     
