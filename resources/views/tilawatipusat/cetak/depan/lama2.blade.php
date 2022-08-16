@@ -42,7 +42,7 @@
 				<tr class="atas">
                     <td class="atas" style="width: 170px; height: 23px;"></td>
                     <td class="atas" style="width: 11px; height: 23px;"></td>
-                    <td class="atas" style="width: 750px; height: 23px; text-transform: uppercase" >{{ $item->alamat }} 
+                    <td class="atas" style="width: 750px; height: 23px; text-transform: uppercase" >
 						
 
 						{{-- @if ($item->kota2 == null)
