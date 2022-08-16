@@ -539,7 +539,7 @@
 					<tr>
 						<th>2</th>
 						<td>&nbsp; &nbsp;<b> Praktek Munaqisy </b></td>
-						<th colspan="3"></th>
+						<th colspan="3" style="border-left: none"></th>
 						<th ></th>
 					</tr>
 
