@@ -340,20 +340,23 @@
                                     @endforeach
                                 @endif
                             </div>
-                            <div class="form-group">
-                                {{-- <label for="">Sebagai</label>
-                                                <select name="kriteria_id" onchange="pilihKriteria()" id="kriteria_id" class="form-control">
-                                                    @foreach ($diklat->program->kriteria as $item)
-                                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
-                                                    @endforeach
-                                                </select> --}}
+                            @if($diklat->program->name !== 'Diklat Munaqisy Cabang')
+                                <div class="form-group">
+                                    {{-- <label for="">Sebagai</label>
+                                                    <select name="kriteria_id" onchange="pilihKriteria()" id="kriteria_id" class="form-control">
+                                                        @foreach ($diklat->program->kriteria as $item)
+                                                            <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                                        @endforeach
+                                                    </select> --}}
 
-                                {{-- <input type="text" class="form-control" id="kriterias" name="kriteria"> --}}
-                                
-                                <label for="program">JILID BAGI PESERTA YANG BELUM BERSYAHADAH</label>
-                                <input type="number" name="jilid" class="form-control">
-                                
-                            </div>
+                                    {{-- <input type="text" class="form-control" id="kriterias" name="kriteria"> --}}
+                                    
+                                    <label for="program">JILID BAGI PESERTA YANG BELUM BERSYAHADAH</label>
+                                    <input type="number" name="jilid" class="form-control">
+                                    
+                                </div>
+                            @endif
+
                             @if ($diklat->program->penilaian->count() !== 0)
                                 <div class="form-group text-right">
                                     <input type="submit" class="btn btn-sm btn-info" value="Submit Nilai" id="btnsubmit">
