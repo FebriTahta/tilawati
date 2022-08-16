@@ -510,9 +510,9 @@
 							<th rowspan="2" style="text-align: center">Jumlah</th>
 					</tr>
 					<tr>     
-						<th class="pe">Max</th>
-						<th class="pe">Min</th>
-						<th class="pe">Nilai</th>
+						<th></th>
+						<th ></th>
+						<th ></th>
 						
 					</tr>
 					<tr>
