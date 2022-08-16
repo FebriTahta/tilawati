@@ -533,24 +533,16 @@
 									<td class="nilai3" style="text-align: center">&nbsp; &nbsp;{{ $item->nominal }}</td>
 									<td style="border-top: 0;border-bottom: 0;"></td>
 								</tr>
-							@else
-								{{-- <tr>
-									<th></th>
-									<td class="nilai6" style="text-transform: uppercase">&nbsp; &nbsp;<b> {{ $item->penilaian->name }}</b></th>
-									<th colspan="3" class="nilai5"></th>
-									<th >{{ $item->nominal }}</th>
-								</tr> --}}
-								<tr>
-									<th>2</th>
-									<td>&nbsp; &nbsp;<b> Praktek Munaqisy </b></td>
-									<th colspan="3" class="pe3"></th>
-									<th ></th>
-								</tr>
 							@endif
-						@else
-							{{--  --}}
 						@endif
 					@endforeach
+					<tr>
+						<th>2</th>
+						<td>&nbsp; &nbsp;<b> Praktek Munaqisy </b></td>
+						<th colspan="6" class="pe3"></th>
+						<th ></th>
+					</tr>
+
 					@if ($p->pelatihan->keterangan == 'guru')
 						<tr>
 							<th></th>
