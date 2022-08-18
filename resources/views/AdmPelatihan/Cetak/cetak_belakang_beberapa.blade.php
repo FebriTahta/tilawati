@@ -527,9 +527,9 @@
 					@foreach ($p->nilai as $key=> $item)
 						@if ($item !== null)
 							@if ($item->kategori !== 'skill')
-								<tr>
+								<tr style="font-size: 12px">
 									<td class="pop"></td>
-									<td class="pop2" style="border-right: none">&nbsp; &nbsp;&nbsp;<span style="text-transform: capitalize; ">{{ ucwords(strtolower($item->penilaian->name)) }}</span></td>
+									<td class="pop2" style="border-right: none;">&nbsp; &nbsp;&nbsp;<span style="text-transform: capitalize; ">{{ ucwords(strtolower($item->penilaian->name)) }}</span></td>
 									<td class="nilai" style="text-align: center; border-left: none" >&nbsp; &nbsp;</td>
 									<td class="nilai2" style="text-align: center">&nbsp; &nbsp;</td>
 									<td class="nilai3" style="text-align: center">&nbsp; &nbsp;</td>
@@ -547,7 +547,7 @@
 					@foreach ($p->nilai as $key=> $item)
 						@if ($item !== null)
 							@if ($item->kategori == 'skill')
-								<tr>
+								<tr style="font-size: 12px">
 									<td class="pop"></td>
 									<td class="pop2" style="border-right: none">&nbsp; &nbsp;&nbsp;<span style="text-transform: capitalize; ">{{ ucwords(strtolower($item->penilaian->name)) }}</span></td>
 									<td class="nilai" style="text-align: center; border-left: none" >&nbsp; &nbsp;</td>
