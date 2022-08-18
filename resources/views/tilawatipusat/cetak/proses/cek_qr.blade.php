@@ -87,13 +87,16 @@
                     @foreach ($peserta_salah->where('tmptlahir', null)->where('bersyahadah', 1) as $item)
                         [ {{$item->id}} ] {{$item->name}}
                     @endforeach
-                    <p></p>
+                    
                 </div>
             @endif
             @if ($peserta_salah->where('tgllahir', '-')->where('bersyahadah', 1)->count() > 0 || $peserta_salah->where('tgllahir', null)->count() > 0)
                 <div class="col-lg-12 alert alert-danger">
                     <p>{{ $salah2 =$peserta_salah->where('tgllahir', null)->where('bersyahadah', 1)->count() +$peserta_salah->where('tgllahir', '-')->where('bersyahadah', 1)->count() }}
                         Peserta dengan kesalahan penulisan tanggal lahir</p>
+                    @foreach ($peserta_salah->where('tgllahir', null)->where('bersyahadah', 1) as $item)
+                        [ {{$item->id}} ] {{$item->name}}
+                    @endforeach
                 </div>
             @endif
             @if ($peserta_salah->where('kabupaten_id', null)->where('bersyahadah', 1)->count() > 0)
@@ -102,6 +105,10 @@
                         Peserta dengan
                         kesalahan
                         penulisan asal kabupaten / kota</p>
+                    @foreach ($peserta_salah->where('kabupaten_id', null)->where('bersyahadah', 1) as $item)
+                        [ {{$item->id}} ] {{$item->name}}
+                    @endforeach
+                   
                 </div>
             @endif
             @if ($salah1 + $salah2 + $salah3 > 0)
