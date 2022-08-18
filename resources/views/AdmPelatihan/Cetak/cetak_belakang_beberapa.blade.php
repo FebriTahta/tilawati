@@ -529,7 +529,7 @@
 							@if ($item->kategori !== 'skill')
 								<tr>
 									<td class="pop"></td>
-									<td class="pop2" style="border-right: none">&nbsp; &nbsp;&nbsp;<span style="text-transform: capitalize; ">{{ $item->penilaian->name }}</span></td>
+									<td class="pop2" style="border-right: none">&nbsp; &nbsp;&nbsp;<span style="text-transform: lowercase; ">{{ ucwords($item->penilaian->name) }}</span></td>
 									<td class="nilai" style="text-align: center; border-left: none" >&nbsp; &nbsp;</td>
 									<td class="nilai2" style="text-align: center">&nbsp; &nbsp;</td>
 									<td class="nilai3" style="text-align: center">&nbsp; &nbsp;</td>
@@ -549,7 +549,7 @@
 							@if ($item->kategori == 'skill')
 								<tr>
 									<td class="pop"></td>
-									<td class="pop2" style="border-right: none">&nbsp; &nbsp;&nbsp;<span style="text-transform: capitalize; ">{{ $item->penilaian->name }}</span></td>
+									<td class="pop2" style="border-right: none">&nbsp; &nbsp;&nbsp;<span style="text-transform: lowercase; ">{{ ucwords($item->penilaian->name) }}</span></td>
 									<td class="nilai" style="text-align: center; border-left: none" >&nbsp; &nbsp;</td>
 									<td class="nilai2" style="text-align: center">&nbsp; &nbsp;</td>
 									<td class="nilai3" style="text-align: center">&nbsp; &nbsp;</td>
@@ -567,16 +567,7 @@
 							<th >
 							@if ($p->pelatihan->program->name=='munaqosyah santri')
 								{{ $rata2 = $jumlah }}
-							@elseif($p->program->name == 'Diklat Munaqisy Cabang')
-								@php
-									$x = $p->nilai->where("kategori","al-qur'an")->sum('nominal');
-									$y = $p->nilai->where("kategori","skill")->sum('nominal');
-									$z = $p->nilai->where("kategori","skill")->count();
-									$satu  = $x;
-									$dua   = round($y / $z);
-									$rata2 = round(($satu+$dua)/2);
-								@endphp
-								{{$rata2}}
+							
 							@else
 								{{ $rata2 = ($jumlah+ $item->nominal)/2 }}
 							@endif
@@ -668,16 +659,7 @@
 						<th >
 						@if ($p->pelatihan->program->name=='munaqosyah santri')
 							{{ $rata2 = $jumlah }}
-						@elseif($p->program->name == 'Diklat Munaqisy Cabang')
-								@php
-									$x = $p->nilai->where("kategori","al-qur'an")->sum('nominal');
-									$y = $p->nilai->where("kategori","skill")->sum('nominal');
-									$z = $p->nilai->where("kategori","skill")->count();
-									$satu  = $x;
-									$dua   = round($y / $z);
-									$rata2 = round(($satu+$dua)/2);
-								@endphp
-								{{$rata2}}
+						
 						@else
 							{{ $rata2 = ($jumlah+ $item->nominal)/2 }}
 						@endif
