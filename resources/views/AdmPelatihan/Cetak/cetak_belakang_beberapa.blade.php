@@ -529,7 +529,7 @@
 							@if ($item->kategori !== 'skill')
 								<tr>
 									<td class="pop"></td>
-									<td class="pop2" style="border-right: none">&nbsp; &nbsp;&nbsp;<span style="text-transform: lowercase; ">{{ ucwords($item->penilaian->name) }}</span></td>
+									<td class="pop2" style="border-right: none">&nbsp; &nbsp;&nbsp;<span style="text-transform: capitalize; ">{{ ucwords(strtolower($item->penilaian->name)) }}</span></td>
 									<td class="nilai" style="text-align: center; border-left: none" >&nbsp; &nbsp;</td>
 									<td class="nilai2" style="text-align: center">&nbsp; &nbsp;</td>
 									<td class="nilai3" style="text-align: center">&nbsp; &nbsp;</td>
@@ -549,7 +549,7 @@
 							@if ($item->kategori == 'skill')
 								<tr>
 									<td class="pop"></td>
-									<td class="pop2" style="border-right: none">&nbsp; &nbsp;&nbsp;<span style="text-transform: lowercase; ">{{ ucwords($item->penilaian->name) }}</span></td>
+									<td class="pop2" style="border-right: none">&nbsp; &nbsp;&nbsp;<span style="text-transform: capitalize; ">{{ ucwords(strtolower($item->penilaian->name)) }}</span></td>
 									<td class="nilai" style="text-align: center; border-left: none" >&nbsp; &nbsp;</td>
 									<td class="nilai2" style="text-align: center">&nbsp; &nbsp;</td>
 									<td class="nilai3" style="text-align: center">&nbsp; &nbsp;</td>
