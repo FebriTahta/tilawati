@@ -505,6 +505,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     Route::get('/export-template-diklat/{jenis}',[ExportCont::class,'export_template_diklat']);
     Route::get('/export-peserta-diklat/{pelatihan_id}',[ExportCont::class,'export_data_peserta']);
     Route::get('/export-peserta-diklat-full/{pelatihan}',[ExportCont::class,'export_data_peserta_full']);
+    Route::get('/export-peserta-diklat-untuk-import/{pelatihan}',[ExportCont::class,'export_data_peserta_untuk_import']);
 
     // EXPORT LEMBAGA SEARCH
     Route::post('/export-lembaga-search-provinsi',[ExportCont::class,'export_lembaga_search_provinsi']);
