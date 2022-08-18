@@ -84,6 +84,10 @@
                         dengan kesalahan
                         penulisan
                         tempat lahir</p>
+                    @foreach ($peserta_salah->where('tmptlahir', null)->where('bersyahadah', 1) as $item)
+                        [ {{$item->id}} ] {{$item->name}}
+                    @endforeach
+                    <p></p>
                 </div>
             @endif
             @if ($peserta_salah->where('tgllahir', '-')->where('bersyahadah', 1)->count() > 0 || $peserta_salah->where('tgllahir', null)->count() > 0)
