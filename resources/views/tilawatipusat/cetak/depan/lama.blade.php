@@ -202,11 +202,13 @@
 					<td class="bawah" style="width: 156px; height: 5px;">&nbsp;</td>
 					{{-- direktur --}}
 					<td class="atas" style="width: 241px; height: 5px;"> 
+						<u>
 						@if ($item->pelatihan->cabang->name == 'Cahaya Amanah' || $item->pelatihan->cabang->name == 'Tilawati Pusat' || $item->pelatihan->cabang->status == "RPQ")
-						Dr. KH. Umar Jaeni ,M.Pd
+						Dr. KH. Umar Jaeni, M.Pd
 						@else
 						{{$item->pelatihan->cabang->kepalacabang}}
 						@endif
+						</u>
 					</td>
 				</tr>
 				<tr style="height: 4px;">
