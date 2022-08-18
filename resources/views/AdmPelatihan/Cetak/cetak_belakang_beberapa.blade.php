@@ -499,7 +499,7 @@
 			@elseif($p->program->name == 'Diklat Munaqisy Cabang')
 
 			{{-- munaqisy cabang --}}
-			<div style="page-break-inside: avoid">
+			<div style="page-break-inside: avoid; font-size: 12px">
 				<div>
 					<p style="margin-top: 160px;margin-left: 358px" class="syahadah">No. Syahadah : {{ $p->pelatihan->id }}/2022/{{ $p->id }}</p>
 				</div>
