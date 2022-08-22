@@ -144,7 +144,7 @@
                     </form>
                 </div>
 
-                @if (auth()->user()->role == 'pusat' || auth()->user()->username == 'tilawati cahaya amanah')
+                {{-- @if (auth()->user()->role == 'pusat' || auth()->user()->username == 'tilawati cahaya amanah') --}}
 
                 @if (auth()->user()->role == 'pusat' || auth()->user()->role == 'cabang')
 
