@@ -143,11 +143,11 @@
                         </div>
                     </form>
                 </div>
-<<<<<<< HEAD
+
                 @if (auth()->user()->role == 'pusat' || auth()->user()->username == 'tilawati cahaya amanah')
-=======
+
                 @if (auth()->user()->role == 'pusat' || auth()->user()->role == 'cabang')
->>>>>>> c115bb753607d574f191a37c0217a0f0daed0e2e
+
                 <div class="col-xl-12" style="margin-top: 20px">
                     <form action="{{ route('depan.cetak_versi_lama') }}" method="POST" style="float: right">@csrf
                         <input type="hidden" name="pelatihan_id" value="{{ $pelatihan_id }}">
