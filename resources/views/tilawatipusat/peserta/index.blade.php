@@ -257,7 +257,7 @@
                                 <tr>
                                     <th>id</th>
                                     <th style="5%">Pilih</th>
-                                    @if ($diklat->program->name == "Diklat Munaqisy Cabang")
+                                    @if ($diklat->program->name == "Diklat Munaqisy Cabang" || $diklat->program->name == "Training Of Trainer Guru Al-Qur'an")
                                         <th>Asal Cabang</th>
                                     @endif
                                     <th>Peserta</th>
