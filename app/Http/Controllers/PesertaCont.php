@@ -30,7 +30,7 @@ class PesertaCont extends Controller
         $kab_kosong = Peserta::where('pelatihan_id',$pelatihan_id)->where('kabupaten_id', null)->count();
         $lulus      = Peserta::where('pelatihan_id',$pelatihan_id)->where('bersyahadah', 1)->count();
         $seluruh    = Peserta::where('pelatihan_id',$pelatihan_id)->count();
-        $belum_lulus= Peserta::where('pelatihan_id',$pelatihan_id)->where('bersyahadah', '!=', 1)->count();
+        $belum_lulus= $seluruh-$lulus;
         return view('tilawatipusat.peserta.index',compact('penilaian','pelatihan_id','diklat','kriteria','kab_kosong','lulus','belum_lulus'));
     }
 
@@ -50,22 +50,21 @@ class PesertaCont extends Controller
 
     public function hapus_beberapa(Request $request)
     {
-        // if(request()->ajax())
-        // {
-        //     $peserta_id_array = $request->id;
-        //     $peserta        = Peserta::whereIn('id',explode(",",$peserta_id_array))->delete();
-
-        //     return response()->json(
-        //         [
-        //         'success' => 'Data Peserta Telah dihapus',
-        //         'message' => 'Data Peserta Telah dihapus'
-        //         ]
-        //     );
-        // }
-
-        $peserta_id_array = $request->id;
-        $peserta        = Peserta::whereIn('id',explode(",",$peserta_id_array))->delete();
-        return redirect()->back();
+        if(request()->ajax())
+        {
+            $peserta_id_array = $request->id;
+            $peserta        = Peserta::whereIn('id',explode(",",$peserta_id_array))->delete();
+            return response()->json(
+                [
+                'success' => 'Data Peserta Telah dihapus',
+                'message' => 'Data Peserta Telah dihapus'
+                ]
+            );
+        }else{
+            $peserta_id_array = $request->id;
+            $peserta        = Peserta::whereIn('id',explode(",",$peserta_id_array))->delete();
+            return redirect()->back();
+        }
     }
 
     public function peserta_data(Request $request,$id)
@@ -117,7 +116,8 @@ class PesertaCont extends Controller
                                             # code...
                                             return '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-warning">'.round($rata2,1).' BELUM BERSYAADAH</a>';
                                         }
-                                    }else {
+                                    }
+                                    else {
                                         # code...
                                         $total  = $data->nilai->where("kategori","al-qur'an")->sum('nominal');
                                         $total2 = $data->nilai->where("kategori","skill")->sum('nominal');
@@ -169,6 +169,47 @@ class PesertaCont extends Controller
                                         else {
                                             # code...
                                             return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-warning">'.$rata2.' mengaji & '.$ratax.' rata-rata (belum bersyahadah)</a>';
+                                        }
+                                    }
+                                }
+                                elseif ($data->program->name == 'Diklat Munaqisy Cabang') {
+                                    # code...
+                                    # code...
+                                    $total  = $data->nilai->where("kategori","al-qur'an")->sum('nominal');
+                                    $total2 = $data->nilai->where("kategori","skill")->sum('nominal');
+                                    $total3 = $data->nilai->where("kategori","skill")->count();
+                                    
+                                    // $rata2 = $data->nilai->sum('nominal');
+                                    $x = $total;
+                                    $y = $total2/$total3;
+                                    $ratax = round(($x + $y)/2);
+                                    $rata2 = $ratax;
+
+                                    
+                                    $lulus_tak='';
+                                    foreach ($data->nilai->where("kategori","al-qur'an") as $key => $value) {
+                                        # code...
+                                        $penil = Penilaian::find($value->penilaian_id);
+                                        if ($value->nominal < $penil->min) {
+                                            # code...
+                                            $lulus_tak = $key+1;
+                                        }
+                                    }
+
+
+                                    if ($lulus_tak > 0) {
+                                        # code...
+                                        return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-warning">'.$rata2.' mengaji & '.$ratax.' rata-rata (belum bersyahadah)</a>';
+                                    }else {
+                                        # code...
+                                        if ($rata2 > 74 && $data->bersyahadah > 0) {
+                                            # code...
+                                            return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-primary">'.$rata2.' rata-rata (bersyahadah)</a>';
+                                        }
+                                        
+                                        else {
+                                            # code...
+                                            return $button = '<a href="/diklat-nilai-edit/'.$data->id.'" data-id="'.$data->id.'" data-target="#nilaiPeserta" class="badge badge-warning">'.$rata2.' rata-rata (belum bersyahadah)</a>';
                                         }
                                     }
                                 }
@@ -2161,6 +2202,7 @@ class PesertaCont extends Controller
                             'email'         => $request->email,
                             'jilid'         => $request->jilid,
                             'munaqisy'      => $request->munaqisy,
+                            'asal_cabang'   => $request->asal_cabang,
                         ]
                     );
                 }else {
@@ -2196,6 +2238,7 @@ class PesertaCont extends Controller
                             'email'         => $request->email,
                             'jilid'         => $request->jilid,
                             'munaqisy'      => $request->munaqisy,
+                            'asal_cabang'   => $request->asal_cabang,
                         ]
                     );
                 }
@@ -2235,6 +2278,7 @@ class PesertaCont extends Controller
                             'email'         => $request->email,
                             'jilid'         => $request->jilid,
                             'munaqisy'      => $request->munaqisy,
+                            'asal_cabang'   => $request->asal_cabang,
                         ]
                     );
                 }else {
@@ -2270,6 +2314,7 @@ class PesertaCont extends Controller
                             'email'         => $request->email,
                             'jilid'         => $request->jilid,
                             'munaqisy'      => $request->munaqisy,
+                            'asal_cabang'   => $request->asal_cabang,
                         ]
                     );
                 }
@@ -2313,6 +2358,7 @@ class PesertaCont extends Controller
                             'jilid'         => $request->jilid,
                             'kriteria'      => $request->kriteria,
                             'munaqisy'      => $request->munaqisy,
+                            'asal_cabang'   => $request->asal_cabang,
                         ]
                     );
                 }else {
@@ -2350,6 +2396,7 @@ class PesertaCont extends Controller
                             'jilid'         => $request->jilid,
                             'kriteria'      => $request->kriteria,
                             'munaqisy'      => $request->munaqisy,
+                            'asal_cabang'   => $request->asal_cabang,
                         ]
                     );
                 }
@@ -2391,6 +2438,7 @@ class PesertaCont extends Controller
                             'jilid'         => $request->jilid,
                             'kriteria'      => $request->kriteria,
                             'munaqisy'      => $request->munaqisy,
+                            'asal_cabang'   => $request->asal_cabang,
                         ]
                     );
                 }else {
@@ -2428,6 +2476,7 @@ class PesertaCont extends Controller
                             'jilid'         => $request->jilid,
                             'kriteria'      => $request->kriteria,
                             'munaqisy'      => $request->munaqisy,
+                            'asal_cabang'   => $request->asal_cabang,
                         ]
                     );
                 }

@@ -130,7 +130,6 @@
                                 // }
                             }
                         }
-                        
                         ?>
                         <td class="atas" style="width: 750px; height: 10px; text-transform: uppercase">
                             {{ $text }}</td>
@@ -224,7 +223,7 @@ $date = $item->tgllahir; ?>
                         <td class="bawah" style="width: 210px; height: 5px;">No. Syahadah :
                             &nbsp;{{ $item->pelatihan_id }}/{{ $tahun }}/{{ $item->id }}</td>
                         <td class="bawah" style="width: 210px; height: 5px;">&nbsp;</td>
-                        <td class="atas" style="width: 241px; height: 5px;">{{ $direktur }}</td>
+                        <td class="atas" style="width: 241px; height: 5px;"><u>{{ $direktur }}</u></td>
                     </tr>
                     <tr style="height: 4px;">
                         <td class="bawah" style="width: 210px; height: 4px;">&nbsp;</td>

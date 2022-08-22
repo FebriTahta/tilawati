@@ -32,6 +32,12 @@
                         <label for="nama">Nama Peserta</label>
                         <input type="text" class="form-control" value="{{ $peserta->name }}" id="nama" name="name">
                     </div>
+                    @if ($peserta->pelatihan->program->name == 'Diklat Munaqisy Cabang')
+                    <div class="form-group col-xl-4">
+                        <label for="asal_cabang">Asal Cabang</label>
+                        <input type="text" class="form-control" value="{{ strtoupper($peserta->asal_cabang) }}" id="asal_cabang" name="asal_cabang">
+                    </div>
+                    @endif
                     @if ($peserta->gelar != null)
                         <div class="form-group col-xl-2">
                             <label for="nama">Gelar</label>

@@ -78,18 +78,25 @@
             $salah1 = 0;
             $salah2 = 0;
             $salah3 = 0; ?>
-            @if ($peserta_salah->where('tmptlahir', null)->where('bersyahadah', 1)->count() > 0)
+            @if ($peserta_salah->where('tmptlahir', null)->where('bersyahadah', 1)->count() > 0 && $peserta_salah->where('tmptlahir2', null)->where('bersyahadah', 1)->count())
                 <div class="col-lg-12 alert alert-danger">
                     <p>{{ $salah1 = $peserta_salah->where('tmptlahir', null)->where('bersyahadah', 1)->count() }} Peserta
                         dengan kesalahan
                         penulisan
                         tempat lahir</p>
+                    @foreach ($peserta_salah->where('tmptlahir', null)->where('bersyahadah', 1) as $item)
+                        [ {{$item->id}} ] {{$item->name}}
+                    @endforeach
+                    
                 </div>
             @endif
             @if ($peserta_salah->where('tgllahir', '-')->where('bersyahadah', 1)->count() > 0 || $peserta_salah->where('tgllahir', null)->count() > 0)
                 <div class="col-lg-12 alert alert-danger">
                     <p>{{ $salah2 =$peserta_salah->where('tgllahir', null)->where('bersyahadah', 1)->count() +$peserta_salah->where('tgllahir', '-')->where('bersyahadah', 1)->count() }}
                         Peserta dengan kesalahan penulisan tanggal lahir</p>
+                    @foreach ($peserta_salah->where('tgllahir', null)->where('bersyahadah', 1) as $item)
+                        [ {{$item->id}} ] {{$item->name}}
+                    @endforeach
                 </div>
             @endif
             @if ($peserta_salah->where('kabupaten_id', null)->where('bersyahadah', 1)->count() > 0)
@@ -98,6 +105,10 @@
                         Peserta dengan
                         kesalahan
                         penulisan asal kabupaten / kota</p>
+                    @foreach ($peserta_salah->where('kabupaten_id', null)->where('bersyahadah', 1) as $item)
+                        [ {{$item->id}} ] {{$item->name}}
+                    @endforeach
+                   
                 </div>
             @endif
             @if ($salah1 + $salah2 + $salah3 > 0)
@@ -132,7 +143,11 @@
                         </div>
                     </form>
                 </div>
+<<<<<<< HEAD
                 @if (auth()->user()->role == 'pusat' || auth()->user()->username == 'tilawati cahaya amanah')
+=======
+                @if (auth()->user()->role == 'pusat' || auth()->user()->role == 'cabang')
+>>>>>>> c115bb753607d574f191a37c0217a0f0daed0e2e
                 <div class="col-xl-12" style="margin-top: 20px">
                     <form action="{{ route('depan.cetak_versi_lama') }}" method="POST" style="float: right">@csrf
                         <input type="hidden" name="pelatihan_id" value="{{ $pelatihan_id }}">

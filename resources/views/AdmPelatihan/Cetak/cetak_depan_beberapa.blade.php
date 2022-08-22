@@ -146,7 +146,6 @@
                                 $text = $item->alamat . ' ' . $item->kelurahan->nama . ' ' . $item->kecamatan->nama . ' ' . $item->kota2;
                             }
                         }
-                        
                         ?>
                         <td class="atas" style="width: 750px; height: 10px;text-transform: uppercase">
                             {{ $text }}</td>
@@ -154,15 +153,33 @@
                     </tr>
                     <tr class="atas" style="height: 10px;">
                         <td class="atas" style="width: 170px; height: 10px; ">Tempat Tanggal Lahir&nbsp;</td>
-                        <td class="atas" style="width: 11px; height: 10px;">:</td><?php date_default_timezone_set('Asia/Jakarta');
-$date = $item->tgllahir; ?>
+                        <td class="atas" style="width: 11px; height: 10px;">:</td>
+                        <?php date_default_timezone_set('Asia/Jakarta');
+                            $date = $item->tgllahir; 
+                        ?>
                         @if ($item->tmptlahir !== null && $item->tmptlahir2 == null)
                             <td class="atas" style="width: 750px; height: 10px;text-transform: uppercase">
-                                {{ $item->tmptlahir }},
+                                @if (substr($item->tmptlahir, 0, 4) == 'KOTA')
+                                    {{substr($item->tmptlahir, 5)}}
+                                @elseif(substr($item->tmptlahir, 0, 4) == 'ADM.')
+                                    {{substr($item->tmptlahir, 10)}}
+                                @elseif(substr($item->tmptlahir, 0, 4) == 'KAB.')
+                                    {{substr($item->tmptlahir, 5)}}
+                                @else
+                                    {{$item->tmptlahir}}
+                                @endif,
                                 {{ Carbon\Carbon::parse($date)->isoFormat('D MMMM Y') }}&nbsp;</td>
                         @else
                             <td class="atas" style="width: 750px; height: 10px;text-transform: uppercase">
-                                {{ $item->tmptlahir2 }},
+                                @if (substr($item->tmptlahir2, 0, 4) == 'KOTA')
+                                {{substr($item->tmptlahir2, 0)}}
+                                @elseif(substr($item->tmptlahir2, 0, 4) == 'ADM.')
+                                    {{substr($item->tmptlahir2, 10)}}
+                                @elseif(substr($item->tmptlahir2, 0, 4) == 'KAB.')
+                                    {{substr($item->tmptlahir2, 5)}}
+                                @else
+                                    {{$item->tmptlahir2}}
+                                @endif,
                                 {{ Carbon\Carbon::parse($date)->isoFormat('D MMMM Y') }}&nbsp;</td>
                         @endif
                         <td class="atas" style="width: 52px; height: 10px;">&nbsp;</td>
@@ -207,13 +224,13 @@ $date = $item->tgllahir; ?>
                             &nbsp;{{ $item->pelatihan_id }}/{{ $tahun }}/{{ $item->id }}</td>
                         <td class="bawah" style="width: 210px; height: 5px;">&nbsp;</td>
                         <td class="atas" style="width: 241px; height: 5px;">
-                            {{-- {{ $direktur }} --}}
+                            <u>
                             @if ($item->pelatihan->cabang->name == 'Cahaya Amanah' || $item->pelatihan->cabang->name == 'Tilawati Pusat' || $item->pelatihan->cabang->status == "RPQ")
-                                Dr. KH. Umar Jaeni ,M.Pd
+                                Dr. KH. Umar Jaeni, M.Pd
                             @else
-                                {{-- {{ $item->pelatihan->cabang->kepala->name }} --}}
                                 {{ $item->pelatihan->cabang->kepalacabang }}
                             @endif
+                            </u>
                         </td>
                     </tr>
                     <tr style="height: 4px;">
@@ -225,24 +242,31 @@ $date = $item->tgllahir; ?>
                                 Direktur Eksekutif
                             @else
                                 <?	$kabupaten 	= substr($item->pelatihan->cabang->kabupaten->nama, 5); $kab = strtolower($kabupaten);
-      $provinsi 	= strtolower($item->pelatihan->cabang->kabupaten->provinsi->nama); 
-     $data_kabupaten = App\Models\Kabupaten::where('id', $item->pelatihan->cabang->kabupaten->id)->first();
-     $jum_cabang		= $data_kabupaten->cabang->count();
-     ?>
+                                    $provinsi 	= strtolower($item->pelatihan->cabang->kabupaten->provinsi->nama); 
+                                    $data_kabupaten = App\Models\Kabupaten::where('id', $item->pelatihan->cabang->kabupaten->id)->first();
+                                    $jum_cabang		= $data_kabupaten->cabang->count();
+                                ?>
                                 @if ($jum_cabang > 1)
                                     @if (substr($item->pelatihan->cabang->kabupaten->nama, 5, 3) == 'ADM')
                                         {{ 'Kacab. ' . strtoupper(substr($provinsi, 0, 3)) . ' ' . ucfirst(substr($provinsi, 4)) }}
                                     @else
-                                        {{ 'Kacab. ' . ucfirst($item->pelatihan->cabang->name) . ' ' . ucfirst($kab) }}
+                                        @if ($item->pelatihan->cabang->name == 'Tilawati Gresik Al Hikmah')
+                                            Kacab. Al Hikmah Gresik	
+                                        @else
+                                            {{ 'Kacab. ' . ucfirst($item->pelatihan->cabang->name) . ' ' . ucfirst($kab) }}
+                                        @endif
                                     @endif
                                 @else
                                     @if (substr($item->pelatihan->cabang->kabupaten->nama, 5, 3) == 'ADM')
                                         {{ 'Kacab. ' . strtoupper(substr($provinsi, 0, 3)) . ' ' . ucfirst(substr($provinsi, 4)) }}
                                     @else
-                                        {{ 'Kacab. ' . ucfirst($kab) . ' ' . ucfirst($provinsi) }}
+                                        @if ($item->pelatihan->cabang->name == 'Tilawati Gresik Al Hikmah')
+                                            Kacab. Al Hikmah Gresik	
+                                        @else
+                                            {{ 'Kacab. ' . ucfirst($kab) . ' ' . ucfirst($provinsi) }}
+                                        @endif
                                     @endif
                                 @endif
-
                             @endif
                         </td>
                     </tr>
@@ -251,5 +275,4 @@ $date = $item->tgllahir; ?>
         </div>
     @endforeach
 </body>
-
 </html>

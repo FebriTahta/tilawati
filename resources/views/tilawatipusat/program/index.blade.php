@@ -349,7 +349,7 @@
                                                     <div class="container-fluid">
                                                         <form id="update-penilaian"  method="POST" enctype="multipart/form-data">@csrf
                                                             <div class="form-group">
-                                                                <input type="hidden" id="id" name="id" class="form-control">
+                                                                <input type="text" id="id" name="id" class="form-control" readonly>
                                                                 <input type="hidden" id="program_id" name="program_id" class="form-control">
                                                                 <input type="hidden" id="kategori" name="kategori" class="form-control">
                                                             </div>

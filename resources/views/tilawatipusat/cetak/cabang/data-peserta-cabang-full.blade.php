@@ -12,56 +12,64 @@
     </style>
 </head>
 <body>
-    <table>
+    {{-- <table>
         <thead style="font-weight: bold; text-transform: uppercase">
             <tr>
                 <th rowspan="3" colspan="10">DATA PESERTA DIKLAT CABANG {{strtoupper($pelatihan->cabang->name)}}<br> <small>Seluruh Indonesia Per - 2022 | {{$pelatihan->program->name}} | {{$pelatihan->id}}</small></th>
             </tr>
         </thead>
-    </table>
+    </table> --}}
     {{-- spasi --}}
-    <table>
+    {{-- <table>
         <thead>
             <tr></tr>
         </thead>
-    </table>
+    </table> --}}
     {{-- spasi --}}
     <table>
         <thead style="font-weight: bold; border: black">
             <tr style="border: black; text-transform: uppercase">
-                <th rowspan="2">ID</th>
-                <th rowspan="2">NAMA PESERTA</th>
-                <th rowspan="2">ALAMAT </th>
-                <th rowspan="2">KOTA</th>
-                <th rowspan="2">WA / TELP</th>
-                <th rowspan="2">TEMPAT LAHIR</th>
-                <th rowspan="2">TANGGAL LAHIR</th>
-                <th rowspan="2">LEMBAGA</th>
-                <th rowspan="2">JILID</th>
-                <th rowspan="2">KRITERIA</th>
-                <th rowspan="2">BERSYAHADAH</th>
+                {{-- <th rowspan="2">ID</th> --}}
+                <th >NAMA PESERTA</th>
+                <th >ALAMAT </th>
+                <th >ALAMAT MODUL</th>
+                <th >KOTA</th>
+                <th >WA / TELP</th>
+                <th >TEMPAT LAHIR</th>
+                <th >TANGGAL LAHIR</th>
+                <th >LEMBAGA</th>
+                <th >JILID</th>
+                <th >KRITERIA</th>
+                <th >BERSYAHADAH</th>
+                @foreach ($pelatihan->program->penilaian as $item)
+                <th >{{$item->name}}</th>
+                @endforeach
                 
             </tr>
         </thead >
         <tbody>
-            <tr></tr>
             @foreach ($peserta as $item)
             <tr>
-                <td>{{$item->id}}</td>
+                {{-- <td>{{$item->id}}</td> --}}
                 <td>{{$item->name}}</td>
                 <td style="text-transform: uppercase">
-                    
                     {{strtoupper($item->alamat)}}
                     
                     @if ($item->kelurahan !== null)
                         {{strtoupper($item->kelurahan->nama)}}
                     @endif
-
                     @if ($item->kecamatan !== null)
-                        {{strtoupper($item->kecamatan->nama)}}
+                    {{strtoupper($item->kecamatan->nama)}}
                     @endif
 
                     
+                </td>
+                <td>
+                    @if ($item->alamatx !== null)
+                        {{$item->alamatx}}
+                    @else
+                        kosong
+                    @endif
                 </td>
                 <td>
                     @if ($item->kabupaten !== null)
@@ -90,6 +98,9 @@
                 <td>{{$item->jilid}}</td>
                 <td>{{$item->kriteria}}</td>
                 <td>{{$item->bersyahadah}}</td>
+                @foreach ($item->nilai as $n)
+                <td>{{$n->nominal}}</td>
+                @endforeach
             </tr>
             @endforeach
         </tbody>

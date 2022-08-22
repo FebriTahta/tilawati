@@ -204,7 +204,18 @@ class CabangCont extends Controller
                         return '-';
                     }
                 })
-                ->rawColumns(['provinsi','kabupaten','total_kpa','trainer','opsi','tot_lembaga'])
+
+                ->addColumn('location', function ($data){
+                    if ($data->lng == null && $data->lat == null) {
+                        # code...
+                        return '<a href="#" class="text-danger" data-toggle="modal" data-target="#modallocation" data-id="'.$data->id.'" data-cabang_name="'.$data->name .'" data-lng="'.$data->lng.'" data-lat="'.$data->lat.'">Kosong</a>';
+                        
+                    }else {
+                        # code...
+                        return '<a href="#" class="text-success" data-toggle="modal" data-target="#modallocation" data-id="'.$data->id.'" data-cabang_name="'.$data->name .'" data-lng="'.$data->lng.'" data-lat="'.$data->lat.'">Ready On Map</a>';
+                    }
+                })
+                ->rawColumns(['provinsi','kabupaten','total_kpa','trainer','opsi','tot_lembaga','location'])
                 ->make(true);
             }else{
                 $data   = Cabang::orderBy('created_at','DESC')->with('provinsi','kabupaten','kpa','trainer');
@@ -286,7 +297,18 @@ class CabangCont extends Controller
                         
                     }
                 })
-                ->rawColumns(['provinsi','kabupaten','total_kpa','trainers','opsi','tot_lembaga'])
+
+                ->addColumn('location', function ($data){
+                    if ($data->lng == null && $data->lat == null) {
+                        # code...
+                        return '<a href="#" class="text-danger" data-toggle="modal" data-target="#modallocation" data-id="'.$data->id.'" data-cabang_name="'.$data->name .'" data-lng="'.$data->lng.'" data-lat="'.$data->lat.'">Kosong</a>';
+                        
+                    }else {
+                        # code...
+                        return '<a href="#" class="text-success" data-toggle="modal" data-target="#modallocation" data-id="'.$data->id.'" data-cabang_name="'.$data->name .'" data-lng="'.$data->lng.'" data-lat="'.$data->lat.'">Ready On Map</a>';
+                    }
+                })
+                ->rawColumns(['provinsi','kabupaten','total_kpa','trainers','opsi','tot_lembaga','location'])
                 ->make(true);
             }
         }
@@ -554,6 +576,35 @@ class CabangCont extends Controller
             ]
         );
     }
+
+    public function store_location_cabang(Request $request)
+    {
+        if (auth()->user()->role == 'cabang') {
+            # code...
+            return response()->json(
+                [
+                  'success' => 'Maaf Anda Tidak Berhak Mengubah / Menambahkan Lokasi Cabang',
+                  'message' => 'Maaf Anda Tidak Berhak Mengubah / Menambahkan Lokasi Cabang'
+                ]
+            );
+        }else {
+            # code...
+            $location = Cabang::find($request->id)->update(
+                [
+                    'lng' => $request->lng,
+                    'lat' => $request->lat,
+                ]
+            );
+            return response()->json(
+                [
+                  'success' => 'Lokasi Cabang Tersebut Berhasil Diperbarui',
+                  'message' => 'Lokasi Cabang Tersebut Berhasil Diperbarui'
+                ]
+            );
+        }
+    }
+
+
 
     public function delete_trainer_cabang(Request $request)
     {

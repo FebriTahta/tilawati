@@ -102,10 +102,10 @@
                     $salah3 = 0; ?>
                     @if ($peserta_salah->where('tmptlahir', null)->where('tmptlahir2', null)->count() > 0)
                         <div class="col-lg-12 alert alert-danger">
-                            <p>{{ $salah1 = $peserta_salah->where('tmptlahir', null)->count() }} Peserta dengan kesalahan
+                            <p>{{ $salah1 = $peserta_salah->where('tmptlahir', null)->where('tmptlahir2', null)->count() }} Peserta dengan kesalahan
                                 penulisan
                                 tempat lahir</p>
-                                <?php $salah_tempat_lahir = App\Models\Peserta::where('tmptlahir', null)->where('pelatihan_id', $diklat->id)->get(); ?>
+                                <?php $salah_tempat_lahir = App\Models\Peserta::where('tmptlahir', null)->where('tmptlahir2', null)->where('pelatihan_id', $diklat->id)->get(); ?>
                                 <ul>
                                     @foreach ($salah_tempat_lahir as $item)
                                         <li>{{ $item->id.' - '.$item->name}}</li>
@@ -199,17 +199,27 @@
 
                         <button class="text-right btn btn-sm mr-1 mb-1 btn-outline-secondary" id="depan_lama_all"><i
                                 class="fa fa-print"></i> depan versi lama</button>
-                        <a href="/export-peserta-diklat/{{ $diklat->id }}"
-                            class="text-right btn btn-sm mr-1 mb-1 btn-outline-warning"><i class="fa fa-download"></i>
-                            download data peserta</a>
+                        {{-- <a href="/export-peserta-diklat/{{ $diklat->id }}"
+                            class="text-right btn btn-sm mr-1 mb-1 btn-outline-success"><i class="fa fa-download"></i>
+                            download data peserta</a> --}}
+                            @if (auth()->user()->role == 'pusat')
+                            <a href="/export-peserta-diklat-full/{{ $diklat->id }}"
+                                class="text-right btn btn-sm mr-1 mb-1 btn-outline-primary"><i class="fa fa-download"></i>
+                                download data peserta full</a>
+                            @endif
+                        
+
+                        <a href="/export-peserta-diklat-untuk-import/{{ $diklat->id }}"
+                                class="text-right btn btn-sm mr-1 mb-1 btn-outline-success"><i class="fa fa-download"></i>
+                                download data peserta untuk import</a>
                         {{-- <a href="/reset-status-qr/{{ $diklat->id }}"
                             class="text-right btn btn-sm mr-1 mb-1 btn-outline-warning"><i class="fa fa-cross"></i>
                             Reset QR</a> --}}
                     @endif
 
                     <button class="text-right btn btn-sm mr-1 mb-1 btn-outline-danger" id="hapus_all"><i
-                            class="fa fa-trash"></i> hapus data</button>
-                    <a href="/minta-modul/{{$pelatihan_id}}" class="btn btn-info btn-sm">Minta Modul Pengiriman</a>
+                            class="fa fa-trash"></i> hapus data </button>
+                    {{-- <a href="/minta-modul/{{$pelatihan_id}}" class="btn btn-info btn-sm">Minta Modul Pengiriman</a> --}}
                     {{-- <form action="/error-penilaian-kategori" method="POST">@csrf
                                         <button type="submit" class="text-right btn btn-sm mr-1 btn-outline-info" id="belakang_all"><i class="fa fa-print"></i> belakang</button>
                                     </form> --}}
@@ -222,6 +232,9 @@
                                 <tr>
                                     <th>id</th>
                                     <th style="5%"><input type="checkbox" id="master"></th>
+                                    @if ($diklat->program->name == "Diklat Munaqisy Cabang")
+                                        <th>Asal Cabang</th>
+                                    @endif
                                     <th>Peserta</th>
                                     <th>Kab / Kota</th>
                                     {{-- <th>kec</th>
@@ -244,6 +257,9 @@
                                 <tr>
                                     <th>id</th>
                                     <th style="5%">Pilih</th>
+                                    @if ($diklat->program->name == "Diklat Munaqisy Cabang")
+                                        <th>Asal Cabang</th>
+                                    @endif
                                     <th>Peserta</th>
                                     <th>Kab / Kota</th>
                                     {{-- <th>kec</th>
@@ -331,20 +347,23 @@
                                     @endforeach
                                 @endif
                             </div>
-                            <div class="form-group">
-                                {{-- <label for="">Sebagai</label>
-                                                <select name="kriteria_id" onchange="pilihKriteria()" id="kriteria_id" class="form-control">
-                                                    @foreach ($diklat->program->kriteria as $item)
-                                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
-                                                    @endforeach
-                                                </select> --}}
+                            @if($diklat->program->name !== 'Diklat Munaqisy Cabang')
+                                <div class="form-group">
+                                    {{-- <label for="">Sebagai</label>
+                                                    <select name="kriteria_id" onchange="pilihKriteria()" id="kriteria_id" class="form-control">
+                                                        @foreach ($diklat->program->kriteria as $item)
+                                                            <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                                        @endforeach
+                                                    </select> --}}
 
-                                {{-- <input type="text" class="form-control" id="kriterias" name="kriteria"> --}}
-                                
-                                <label for="program">JILID BAGI PESERTA YANG BELUM BERSYAHADAH</label>
-                                <input type="number" name="jilid" class="form-control">
-                                
-                            </div>
+                                    {{-- <input type="text" class="form-control" id="kriterias" name="kriteria"> --}}
+                                    
+                                    <label for="program">JILID BAGI PESERTA YANG BELUM BERSYAHADAH</label>
+                                    <input type="number" name="jilid" class="form-control">
+                                    
+                                </div>
+                            @endif
+
                             @if ($diklat->program->penilaian->count() !== 0)
                                 <div class="form-group text-right">
                                     <input type="submit" class="btn btn-sm btn-info" value="Submit Nilai" id="btnsubmit">
@@ -1504,7 +1523,71 @@
 
                     ]
                 });
-            } else {
+            }else if (jenis_program == "Diklat Munaqisy Cabang" || jenis_program == "TRAINING OF TRAINER GURU AL-QUR'AN" ||jenis_program == "Training Of Trainer Guru Al-Qur'an" ) {
+                $('#datatable-buttons').DataTable({
+                    //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
+                    destroy: true,
+                    processing: true,
+                    serverSide: true,
+                    ajax: {
+                        url: '/diklat-peserta-data/' + pel_id,
+                    },
+                    columns: [{
+                            data: 'idpeserta',
+                            name: 'id'
+                        },
+                        {
+                            data: 'check',
+                            name: 'check',
+                            orderable: false,
+                        },
+                        {
+                            data: 'asal_cabang',
+                            name: 'asal_cabang'
+                        },
+                        {
+                            data: 'namapeserta',
+                            name: 'name'
+                        },
+
+                        {
+                            data: 'kabupaten',
+                            name: 'kabupaten.nama',
+                            orderable: false,
+                        },
+                        {
+                            data: 'ttl',
+                            name: 'ttl'
+                        },
+                        {
+                            data: 'telp',
+                            name: 'telp'
+                        },
+                        {
+                            data: 'alamat',
+                            name: 'alamat'
+                        },
+                        {
+                            data: 'alamatmodul',
+                            name: 'alamatx'
+                        },
+                        {
+                            data: 'nilai',
+                            name: 'nilai'
+                        },
+                        {
+                            data: 'krits',
+                            name: 'kriteria',
+                        },
+                        {
+                            data: 'action',
+                            name: 'action'
+                        },
+
+                    ]
+                });
+            }
+            else {
                 $('#datatable-buttons').DataTable({
                     //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
                     destroy: true,

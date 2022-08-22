@@ -42,28 +42,22 @@
 				<tr class="atas">
                     <td class="atas" style="width: 170px; height: 23px;"></td>
                     <td class="atas" style="width: 11px; height: 23px;"></td>
-                    <td class="atas" style="width: 750px; height: 23px; text-transform: uppercase" >{{ $item->alamat }} 
-						{{-- @if ($item->kota2 !== null)
-							@if (substr($item->kota2, 4, 4) == "ADM")
-								{{substr($item->kot2, 10)}}
-							@endif
-							@if(substr($item->kota2, 0, 4) == 'KOTA')
-									{{substr($item->kota2, 5)}}
-							@elseif(substr($item->kota2, 0, 4) == 'KAB.')
-									{{substr($item->kota2, 5)}}
+                    <td class="atas" style="width: 750px; height: 23px; text-transform: uppercase" >
+						
+
+						{{-- @if ($item->kota2 == null)
+							@if ($item->kecamatan !== null && $item->kelurahan !== null)
+								@if (substr($item->kota, 4, 4) == "ADM")
+										{{$item->kelurahan}} {{$item->kecamatan->name}} {{substr($item->kota, 10)}}
+									@endif
+									@if(substr($item->kota, 0, 4) == 'KOTA')
+										{{$item->kelurahan}} {{$item->kecamatan->name}} {{substr($item->kota, 5)}}
+									@elseif(substr($item->kota, 0, 4) == 'KAB.')
+										{{$item->kelurahan}} {{$item->kecamatan->name}} {{substr($item->kota, 5)}}
+									@else
+										{{$item->kelurahan}} {{$item->kecamatan->name}} {{$item->kota}}
+								@endif
 							@else
-								{{$item->kota2}}
-							@endif
-							
-						@endif --}}
-
-						{{-- @if ($item->kota2 !== null)
-							{{$item->kota2}}
-						@else
-							{{$item->kota}}
-						@endif --}}
-
-							@if ($item->kota2 == null)
 								@if (substr($item->kota, 4, 4) == "ADM")
 										{{substr($item->kota, 10)}}
 									@endif
@@ -74,20 +68,55 @@
 									@else
 										{{$item->kota}}
 								@endif
-							@else
-							{{$item->kota2}}
 							@endif
-
-						{{-- @if (substr($item->kota, 4, 4) == "ADM")
-								{{substr($item->kota, 10)}}
-							@endif
-							@if(substr($item->kota, 0, 4) == 'KOTA')
-									{{substr($item->kota, 5)}}
-							@elseif(substr($item->kota, 0, 4) == 'KAB.')
-									{{substr($item->kota, 5)}}
+							
+						@else
+							@if ($item->kecamatan !== null && $item->kelurahan !== null)
+								{{$item->kelurahan}} {{$item->kecamatan->name}} {{$item->kota2}}
 							@else
-								{{$item->kota}}
+								{{$item->kota2}}
+							@endif
+							
 						@endif --}}
+
+						<?php
+                       if ($item->kabupaten !== null) {
+                                # code...
+                                if (substr($item->kabupaten->nama, 5, 3) == 'ADM') {
+                                    # code...
+                                    if ($item->kelurahan !== null && $item->kecamatan !== null) {
+                                        # code...
+                                        $text = $item->alamat . ' ' . substr($item->kelurahan->nama, 0) . ' ' . substr($item->kecamatan->nama, 0) . ' ' . substr($item->kabupaten->nama, 10);
+										
+                                    } else {
+                                        # code...
+                                        $text = $item->alamat . ' ' . substr($item->kabupaten->nama, 10);
+                                    }
+                                } else {
+                                    # code...
+                                    if ($item->kelurahan !== null && $item->kecamatan !== null) {
+                                        # code...
+                                        $text = $item->alamat . ' ' . substr($item->kelurahan->nama, 0) . ' ' . substr($item->kecamatan->nama, 0) . ' ' . substr($item->kabupaten->nama, 5);
+										
+                                    } else {
+                                        # code...
+                                        $text = $item->alamat . ' ' . substr($item->kabupaten->nama, 5);
+                                    }
+                                }
+                            } else {
+                                # code...
+                                $text = $item->alamat;
+                                // if ($item->kecamatan !== null) {
+                                //     # code...
+                                //     $text = $item->alamat . ' ' . substr($item->kecamatan->nama, 0);
+                                // } else {
+                                //     # code...
+                                //     $text = $item->alamat;
+                                // }
+                            }
+                        ?>
+
+						{{$text}}
 						
 					
 					</td>
@@ -174,11 +203,13 @@
 					<td class="bawah" style="width: 156px; height: 5px;">&nbsp;</td>
 					{{-- direktur --}}
 					<td class="atas" style="width: 241px; height: 5px;"> 
+						<u>
 						@if ($item->pelatihan->cabang->name == 'Cahaya Amanah' || $item->pelatihan->cabang->name == 'Tilawati Pusat' || $item->pelatihan->cabang->status == "RPQ")
-						Dr. KH. Umar Jaeni ,M.Pd
+						Dr. KH. Umar Jaeni, M.Pd
 						@else
 						{{$item->pelatihan->cabang->kepalacabang}}
 						@endif
+						</u>
 					</td>
 				</tr>
 				<tr style="height: 4px;">
@@ -200,13 +231,21 @@
 								@if (substr($item->pelatihan->cabang->kabupaten->nama,5,3)=='ADM')
 								{{ 'Kacab. ' .strtoupper(substr($provinsi,0,3)).' '.ucfirst(substr($provinsi,4))}}
 								@else
-								{{ 'Kacab. '.ucfirst($item->pelatihan->cabang->name).' '.ucfirst($kab) }}
+									@if ($item->pelatihan->cabang->name == 'Tilawati Gresik Al Hikmah')
+										Kacab. Al Hikmah Gresik	
+									@else
+										{{ 'Kacab. '.ucfirst($item->pelatihan->cabang->name).' '.ucfirst($kab) }}
+									@endif
 								@endif
 							@else
 								@if (substr($item->pelatihan->cabang->kabupaten->nama,5,3)=='ADM')
 								{{ 'Kacab. ' .strtoupper(substr($provinsi,0,3)).' '.ucfirst(substr($provinsi,4))}}	
 								@else
-								{{ 'Kacab. '.ucfirst($kab).' '.ucfirst($provinsi)}}
+									@if ($item->pelatihan->cabang->name == 'Tilawati Gresik Al Hikmah')
+										Kacab. Al Hikmah Gresik	
+									@else
+										{{ 'Kacab. '.ucfirst($kab).' '.ucfirst($provinsi)}}
+									@endif
 								@endif
 							@endif
 

@@ -401,7 +401,15 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
 
     Route::post('/diklat-import-peserta',[ImportController::class,'importPesertaDiklat'])->name('diklat.import_peserta');
 
+    // FOR NEW CHART
     Route::get('/diklat-dashboard',[DashboardCont::class,'index'])->name('diklat.dashboard');
+    Route::get('/chart-lembaga-formal',[DashboardCont::class,'lembaga_formal'])->name('chart.lembaga.formal');
+    Route::get('/chart-lembaga-non-formal',[DashboardCont::class,'lembaga_non_formal'])->name('chart.lembaga.nonformal');
+    Route::get('/chart-perkembangan-pengguna',[DashboardCont::class,'perkembangan_pengguna'])->name('chart.perkembangan.pengguna');
+    Route::get('/chart-perkembangan-pengguna-bulanan',[DashboardCont::class,'perkembangan_pengguna_bulanan'])->name('chart.perkembangan.bulanan');
+    // MAPS
+    Route::get('/maps-data-cabang',[DashboardCont::class,'maps_data_cabang'])->name('maps.data.cabang');
+    Route::post('/maps-data-cabang-store',[CabangCont::class,'store_location_cabang'])->name('maps.cabang.store');
 
     Route::get('/sertifikat',[SertifikatCont::class,'index'])->name('sertifikat');
     Route::get('/sertifikat-daftar-pelatihan',[SertifikatCont::class,'daftar_pelatihan'])->name('sertifikat.daftar.pelatihan');
@@ -450,12 +458,14 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
 
     Route::post('/peserta-pindah-pelatihan',[DiklatCont::class,'peserta_pindah_pelatihan'])->name('peserta_pindah_pelatihan');
     Route::post('/generate_qr',[DiklatCont::class,'generate_qr'])->name('generate_qr');
-    Route::post('/generate_qr_tilawati',[DashboardCont::class,'generate_qr_tilawati'])->name('generate_qr_tilawati');
-
     Route::post('/download_qr',[DiklatCont::class,'download_qr'])->name('download_qr');
-    Route::post('/download_qr_tilawati',[DashboardCont::class,'download_qr_tilawati'])->name('download_qr_tilawati');
 
+    Route::post('/generate_qr_tilawati',[DashboardCont::class,'generate_qr_tilawati'])->name('generate_qr_tilawati');
+    Route::post('/download_qr_tilawati',[DashboardCont::class,'download_qr_tilawati'])->name('download_qr_tilawati');
     Route::post('/generate-user',[DashboardCont::class, 'generate'])->name('generate_user');
+    
+    // NEW INFO GRAFIS
+
 
 
     // NEW DATA USER DLL
@@ -494,6 +504,8 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     // EXPORT TEMPLATE DIKLAT NEW 
     Route::get('/export-template-diklat/{jenis}',[ExportCont::class,'export_template_diklat']);
     Route::get('/export-peserta-diklat/{pelatihan_id}',[ExportCont::class,'export_data_peserta']);
+    Route::get('/export-peserta-diklat-full/{pelatihan}',[ExportCont::class,'export_data_peserta_full']);
+    Route::get('/export-peserta-diklat-untuk-import/{pelatihan}',[ExportCont::class,'export_data_peserta_untuk_import']);
 
     // EXPORT LEMBAGA SEARCH
     Route::post('/export-lembaga-search-provinsi',[ExportCont::class,'export_lembaga_search_provinsi']);
@@ -509,14 +521,10 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     Route::post('/force_qr',[CekController::class,'force_qr']);
     Route::get('/reset-status-qr/{pelatihan_id}', [CekController::class,'reset_stat_qr']);
 
-
     // HAPUS SEMuA LEMBAGA CABANG
     Route::get('/hapus-lembaga/{cabang_id}',[LembagaCont::class,'hapus_semua']);
 
     Route::get('/minta-modul/{pelatihan_id}',[PesertaCont::class,'minta_modul']);
-
-
-
 
     // API FE & BE
     Route::get('/tampilan-api-cabang-tilawati',[ApicabangCont::class,'index_api_tilawati']);
@@ -538,6 +546,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:bendahara']], function () {
 Route::post('/broadcast',[BroadcastController::class, 'broadcast_pelatihan'])->name('broadcast');
 
 Route::post('/error-penilaian-kategori',[ErrorCont::class,'post_error']);
+Route::get('/fixing-problem',[ErrorCont::class,'fixing'])->name('fixing');
 // Route::get('send-mail', function () {
    
 //     $details = [

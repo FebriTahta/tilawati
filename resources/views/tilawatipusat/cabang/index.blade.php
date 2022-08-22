@@ -103,6 +103,7 @@
                                     <th>TOTAL KPA</th>
                                     <th>TRAINER</th>
                                     <th>LEMBAGA</th>
+                                    <th>LOCATION</th>
                                     <th>OPSI</th>
                                 </tr>
                             </thead>
@@ -125,6 +126,7 @@
                                     <th>TOTAL KPA</th>
                                     <th>TRAINER</th>
                                     <th>LEMBAGA</th>
+                                    <th>LOCATION</th>
                                     <th>OPSI</th>
                                 </tr>
                             </tfoot>
@@ -617,27 +619,65 @@
                                                 <label for=""><i class="text-danger">* </i>Telp Cabang</label>
                                                 <input type="text" class="form-control" id="telp" name="telp" required>
                                             </div>
-                                            {{-- <div class="form-group col-xl-6">
-                                                <label for=""><i class="text-danger"> </i>Email Cabang</label>
-                                                <input type="email" class="form-control" id="email" name="email">
-                                            </div> --}}
+                                            
                                             <div class="form-group col-xl-6">
                                                 <label for=""><i class="text-danger ">* </i>Alamat Cabang</label>
                                                 <textarea name="alamat" class="text-capitalize form-control" id="alamat"
                                                     cols="5" rows="3" required></textarea>
                                             </div>
-                                            {{-- <div class="form-group col-xl-3">
-                                                <label for=""><i class="text-danger">* </i>Kode Pos</label>
-                                                <input type="number" class="form-control" name="pos" required>
-                                            </div>
-                                            <div class="form-group col-xl-12">
-                                                <label for=""><i class="text-danger">* </i>Alamat Ekspedisi (untuk
-                                                    pengiriman)</label>
-                                                <textarea name="ekspedisi" class="form-control text-capitalize" id=""
-                                                    cols="5" rows="3" required></textarea>
-                                            </div> --}}
+                                            
                                             <div class="form-group col-xl-12 col-12">
                                                 <input type="submit" id="tambahlembaga_btn2" style="width: 100%"
+                                                    class="btn btn-info" value="Submit!">
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div> <!-- end col -->
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+    </div>
+
+    <div class="col-sm-6 col-md-3 m-t-30">
+        <div class="modal fade bs-example-modal-tambah-cabang" id="modallocation" tabindex="-1" role="dialog"
+            aria-labelledby="mySmallModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title mt-0">LOKASI CABANG <span id="cabangname_modallocation" class="text-primary" style="text-transform: uppercase"></span> (LONGITUDE & LATITUDE) </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="col-xl-12">
+                            <div class="card m-b-30">
+                                <div class="card-body">
+                                    <form method="POST" id="form_add_map">@csrf
+                                        <div class="row">
+                                            <div class="form-group col-xl-12">
+                                                <label for=""><i class="text-danger">* </i>ID Cabang</label>
+                                                <input type="text" id="id" class="form-control" name="id" readonly required>
+                                            </div>
+                                            
+                                            <div class="form-group col-xl-6">
+                                                <label for=""><i class="text-danger">* </i>Longitude</label>
+                                                <input type="text" class="form-control text-capitalize" id="lng"
+                                                    name="lng" required>
+                                            </div>
+
+                                            <div class="form-group col-xl-6">
+                                                <label for=""><i class="text-danger">* </i>Latitude</label>
+                                                <input type="text" class="form-control text-capitalize" id="lat"
+                                                    name="lat" required>
+                                            </div>
+
+                                            <div class="form-group col-xl-12 col-12">
+                                                <input type="submit" id="btnaddmap" style="width: 100%"
                                                     class="btn btn-info" value="Submit!">
                                             </div>
                                         </div>
@@ -676,6 +716,21 @@
             var modal = $(this)
             console.log(id);
             modal.find('.modal-body #id').val(id);
+        })
+
+        $('#modallocation').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget)
+            var id = button.data('id')
+            var cabang_name = button.data('cabang_name')
+            var lng = button.data('lng')
+            var lat = button.data('lat')
+            var modal = $(this)
+            console.log(id);
+            modal.find('.modal-body #id').val(id);
+            modal.find('.modal-header #cabangname_modallocation').html(cabang_name);
+            modal.find('.modal-body #lng').val(lng);
+            modal.find('.modal-body #lat').val(lat);
+            console.log(cabang_name);
         })
 
         $('#modaltrainer').on('show.bs.modal', function(event) {
@@ -917,6 +972,42 @@
                                 console.log(data);
                             }
                         });
+                    }
+                },
+                error: function(data) {
+                    console.log(data);
+                }
+            });
+        });
+
+        $('#form_add_map').submit(function(e) {
+            e.preventDefault();
+            var formData = new FormData(this);
+            $.ajax({
+                type: 'POST',
+                url: "{{ route('maps.cabang.store') }}",
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                beforeSend: function() {
+                    $('#btnaddmap').attr('disabled', 'disabled');
+                    $('#btnaddmap').val('Proses Menyimpan Data');
+
+                },
+                success: function(data) {
+                    if (data.success) {
+                        $("#form_add_map")[0].reset();
+                        var oTable = $('#datatable-buttons').dataTable();
+                        oTable.fnDraw(false);
+                        $('#btnaddmap').val('Submit!');
+                        $('#modallocation').modal('hide');
+                        $('#btnaddmap').attr('disabled', false);
+                        swal({
+                            title: "Success!",
+                            text: "Lokasi Berhasil Diperbarui",
+                            type: "success"
+                        })
                     }
                 },
                 error: function(data) {
@@ -1330,6 +1421,10 @@
                     {
                         data: 'tot_lembaga',
                         name: 'tot_lembaga'
+                    },
+                    {
+                        data: 'location',
+                        name: 'location'
                     },
                     {
                         data: 'opsi',

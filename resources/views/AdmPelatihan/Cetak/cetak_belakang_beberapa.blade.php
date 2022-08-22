@@ -496,6 +496,118 @@
 			</div>
 			{{--  --}}
 			@endif
+			@elseif($p->program->name == 'Diklat Munaqisy Cabang')
+
+			{{-- munaqisy cabang --}}
+			<div style="page-break-inside: avoid; font-size: 11px">
+				<div>
+					<p style="margin-top: 160px;margin-left: 358px" class="syahadah">No. Syahadah : {{ $p->pelatihan->id }}/2022/{{ $p->id }}</p>
+				</div>
+				<table 
+				style="width: 782px; margin-left:154px"
+				class="table1">
+					<tr>
+							<th rowspan="2">No.</th>
+							<th rowspan="2" style="border-right: none; text-align: right">Bidang Penilaian</th>
+							<th colspan="3" class="penilaian" style="border-bottom: none; border-left: none;"></th>
+							<th rowspan="2" style="text-align: center">Jumlah</th>
+					</tr>
+					<tr>
+						<th class="pe"></th>
+						<th class="pe"></th>
+						<th class="pe"></th>
+						
+					</tr>
+					<tr>
+						<th>1</th>
+						<td style="border-right: none">&nbsp; &nbsp;<b> Al-Qur'an</b></td>
+						<th colspan="3" class="pe3" style="border-left: none"></th>
+						<th ></th>
+					</tr>
+					@foreach ($p->nilai as $key=> $item)
+						@if ($item !== null)
+							@if ($item->kategori !== 'skill')
+								<tr style="font-size: 12px">
+									<td class="pop"></td>
+									<td class="pop2" style="border-right: none;">&nbsp; &nbsp;&nbsp;<span style="text-transform: capitalize; ">{{ ucwords(strtolower($item->penilaian->name)) }}</span></td>
+									<td class="nilai" style="text-align: center; border-left: none" >&nbsp; &nbsp;</td>
+									<td class="nilai2" style="text-align: center">&nbsp; &nbsp;</td>
+									<td class="nilai3" style="text-align: center">&nbsp; &nbsp;</td>
+									<th style="border-top: 0;border-bottom: 0;">{{ $item->nominal }}</th>
+								</tr>
+							@endif
+						@endif
+					@endforeach
+					<tr>
+						<th>2</th>
+						<td style="border-right: none">&nbsp; &nbsp;<b> Praktek Munaqisy </b></td>
+						<th colspan="3" style="border-left: none"></th>
+						<th ></th>
+					</tr>
+					@foreach ($p->nilai as $key=> $item)
+						@if ($item !== null)
+							@if ($item->kategori == 'skill')
+								<tr style="font-size: 12px">
+									<td class="pop"></td>
+									<td class="pop2" style="border-right: none">&nbsp; &nbsp;&nbsp;<span style="text-transform: capitalize; ">{{ ucwords(strtolower($item->penilaian->name)) }}</span></td>
+									<td class="nilai" style="text-align: center; border-left: none" >&nbsp; &nbsp;</td>
+									<td class="nilai2" style="text-align: center">&nbsp; &nbsp;</td>
+									<td class="nilai3" style="text-align: center">&nbsp; &nbsp;</td>
+									<th style="border-top: 0;border-bottom: 0;">{{$item->nominal}}</th>
+								</tr>
+							@endif
+						@endif
+					@endforeach
+
+					@if ($p->pelatihan->keterangan == 'guru')
+						<tr>
+							<th></th>
+							<td class="nilai6" style="border-right: none">&nbsp; &nbsp;<b> RATA - RATA NILAI</b></th>
+							<th style="border-left: none" colspan="3" class="nilai5"></th>
+							<th >
+							@if ($p->pelatihan->program->name=='munaqosyah santri')
+								{{ $rata2 = $jumlah }}
+							@elseif($p->program->name == 'Diklat Munaqisy Cabang')
+								@php
+									$x = $p->nilai->where("kategori","al-qur'an")->sum('nominal');
+									$y = $p->nilai->where("kategori","skill")->sum('nominal');
+									$z = $p->nilai->where("kategori","skill")->count();
+									$satu  = $x;
+									$dua   = round($y / $z);
+									$rata2 = round(($satu+$dua)/2);
+								@endphp
+								{{$rata2}}
+							@else
+								{{ $rata2 = ($jumlah+ $item->nominal)/2 }}
+							@endif
+								</th>
+						</tr>
+					@else
+					<?php 
+						$rata2 = $jumlah
+					?>
+					@endif
+					<tr>
+						<th></th>
+						<td class="nilai6" style="border-right: none">&nbsp; &nbsp;<b> PRESTASI</b></th>
+						<th colspan="3" style="border-left: none" class="nilai5"></th> 
+						<th >
+							@if ($rata2 >= 85)
+								Istimewa
+							@elseif($rata2 > 74 && $rata2 < 85)
+								Baik
+							@else
+								Cukup
+							@endif
+						</th>
+					</tr>
+				</table>
+				<div id="textbox" style="margin-top: 20px">
+					<div class="alignleft" style="margin-left: 180px"><b> Istimewa : 85 - 95</b></div>
+					<div class="alignleft" style="margin-left: 150px"><b>Baik : 75 - 84</b></div>
+					<div class="alignright" style="margin-right: 210px"><b>Cukup : 65 - 74</b></div>
+				</div>
+			</div>
 		@else
 		{{-- Selain TOT --}}
 		<div style="page-break-inside: avoid">
@@ -556,6 +668,16 @@
 						<th >
 						@if ($p->pelatihan->program->name=='munaqosyah santri')
 							{{ $rata2 = $jumlah }}
+						@elseif($p->program->name == 'Diklat Munaqisy Cabang')
+								@php
+									$x = $p->nilai->where("kategori","al-qur'an")->sum('nominal');
+									$y = $p->nilai->where("kategori","skill")->sum('nominal');
+									$z = $p->nilai->where("kategori","skill")->count();
+									$satu  = $x;
+									$dua   = round($y / $z);
+									$rata2 = round(($satu+$dua)/2);
+								@endphp
+								{{$rata2}}
 						@else
 							{{ $rata2 = ($jumlah+ $item->nominal)/2 }}
 						@endif

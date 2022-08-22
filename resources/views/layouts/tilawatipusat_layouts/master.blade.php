@@ -9,7 +9,7 @@
     <meta content="Themesbrand" name="author" />
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <!-- App favicon -->
-    
+    @yield('css')
     <link rel="shortcut icon" href="{{ URL::asset('tilawatipusat/images/favicon.ico') }}">
     @include('layouts.tilawatipusat_layouts.head')
 

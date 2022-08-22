@@ -89,7 +89,11 @@ class NilaiCont extends Controller
         }elseif ($pro == "pembinaan & munaqosyah ulang") {
             # code...
             $krits = "LULUS DIKLAT LEVEL 1 GURU AL QURAN METODE TILAWATI";
-        }else {
+        }elseif ($pro == "Diklat Munaqisy Cabang") {
+            # code...
+            $krits = "SEBAGAI MUNAQISY CABANG METODE TILAWATI";
+        }
+        else {
             # code...
             $krits = "LULUS DIKLAT LEVEL 1 GURU AL QURAN METODE TILAWATI";
         }
@@ -118,9 +122,6 @@ class NilaiCont extends Controller
     }
 
     public function update(Request $request){
-        
-        
-
         $peserta_id = $request->peserta_id;
         $lulus_tak='';
         // update nilai
@@ -241,7 +242,11 @@ class NilaiCont extends Controller
         }elseif ($pro == "pembinaan & munaqosyah ulang") {
             # code...
             $krits = "LULUS DIKLAT LEVEL 1 GURU AL QURAN METODE TILAWATI";
-        }else {
+        }elseif ($pro == "Diklat Munaqisy Cabang") {
+            # code...
+            $krits = "SEBAGAI MUNAQISY CABANG METODE TILAWATI";
+        }
+        else {
             # code...
             $krits = "LULUS DIKLAT LEVEL 1 GURU AL QURAN METODE TILAWATI";
         }
@@ -308,13 +313,26 @@ class NilaiCont extends Controller
             
         } else {
             # code...
-            $total      = $peserta->nilai->where("kategori","al-qur'an")->sum('nominal');
-            $total2     = $peserta->nilai->where("kategori","skill")->sum('nominal');
-            $total3     = $peserta->nilai->where("kategori","skill")->count();
-            $rata2      = ($total + $total2)/($total3+1);
-            $rata1      = $total;
-            $kriteria   = Kriteria::where('program_id', $peserta->program_id)->get();
-            return view('tilawatipusat.nilai.edit',compact('peserta','total','rata2','kriteria','rata1'));
+            if ($peserta->program->name == 'Diklat Munaqisy Cabang') {
+                # code...
+                $total      = $peserta->nilai->where("kategori","al-qur'an")->sum('nominal');
+                $total2     = $peserta->nilai->where("kategori","skill")->sum('nominal');
+                $total3     = $peserta->nilai->where("kategori","skill")->count();
+                $x          = round($total2 / $total3);
+                $y          = $total;
+                $rata2      = round(($x + $y) / 2);
+                $rata1      = $total;
+                $kriteria   = Kriteria::where('program_id', $peserta->program_id)->get();
+                return view('tilawatipusat.nilai.edit',compact('peserta','total','rata2','kriteria','rata1'));
+            }else{
+                $total      = $peserta->nilai->where("kategori","al-qur'an")->sum('nominal');
+                $total2     = $peserta->nilai->where("kategori","skill")->sum('nominal');
+                $total3     = $peserta->nilai->where("kategori","skill")->count();
+                $rata2      = ($total + $total2)/($total3+1);
+                $rata1      = $total;
+                $kriteria   = Kriteria::where('program_id', $peserta->program_id)->get();
+                return view('tilawatipusat.nilai.edit',compact('peserta','total','rata2','kriteria','rata1'));
+            }
         }
     }
 }

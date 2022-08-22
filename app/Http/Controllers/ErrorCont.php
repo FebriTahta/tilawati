@@ -25,4 +25,16 @@ class ErrorCont extends Controller
 
         return redirect()->back();
     }
+
+    public function fixing()
+    {
+        $data = Peserta::where('program_id',5)->update(
+            [
+                'program_id'=>18
+            ]
+        );
+
+        $datax = Peserta::where('program_id',5)->count();
+        return  $datax;
+    }
 }
