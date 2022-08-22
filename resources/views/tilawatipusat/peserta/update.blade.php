@@ -54,6 +54,12 @@
                             <option value="{{ $peserta->tmptlahir }}">{{ $peserta->tmptlahir }}</option>
                         </select>
                     </div>
+                    @if ($peserta->program->name == "Training Of Trainer Guru Al-Qur'an")
+                    <div class="form-group col-12 col-xl-6">
+                        <label for="asal_cabang"><i class="text-danger">*</i> Asal Cabang</label>
+                        <input type="text" class="form-control" value="{{ $peserta->asal_cabang }}" id="asal_cabang" name="asal_cabang">
+                    </div>
+                    @endif
                     <div class="form-group  col-12 col-xl-6">
                         <label for=""><i class="text-danger"></i> Tempat Lahir (Alternatif Wajib Diisi Apabilda Diupdate)</label>
                         <input type="text" class="form-control text-uppercase" name="tmptlahir2"
