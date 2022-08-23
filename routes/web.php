@@ -427,6 +427,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
 
     Route::get('/export-peserta-acara/{acara_id}',[AcaraCont::class,'export_peserta_acara'])->name('export.peserta.acara');
     Route::get('/export-seluruh-peserta',[ExportCont::class,'export_seluruh_peserta'])->name('export.seluruh.peserta');
+    Route::get('/export-broadcast-peserta',[ExportCont::Class,'export_broadcast_peserta'])->name('export.broadcast.peserta');
     Route::post('/export-peserta-pendaftaran',[ExportCont::class,'export_peserta_pendaftaran'])->name('export.peserta.pendaftaran');
     Route::get('/export-data-cabang',[ExportCont::class,'export_data_cabang'])->name('export.data.cabang');
     Route::get('/export-kpa-cabang',[ExportCont::class,'export_kpa_cabang'])->name('export.kpa.cabang');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Exports\SeluruhPesertaExport;
+use App\Exports\ExportDataBroadcast;
 use App\Exports\UserExport;
 use App\Exports\ExportDataPeserta;
 use App\Exports\ExportDataPesertaFull;
@@ -42,6 +43,18 @@ class ExportCont extends Controller
             return Excel::download(new SeluruhPesertaExport($from,$till),'peserta-dari_'.$from.'_sampai_'.$till.'.xlsx');
         }
         
+    }
+
+    public function export_broadcast_peserta(Request $request)
+    {
+        $from = $request->from;
+        $till = $request->till;
+        if ($from != '' && $till == '' || $from == '' && $till != '') {
+            # code...
+            return Redirect::back()->withFail('Pastikan kedua parameter pencarian diisi jika ingin mensortir');
+        }else{
+            return Excel::download(new ExportDataBroadcast($from,$till),'peserta-dari_'.$from.'_sampai_'.$till.'.xlsx');
+        }
     }
 
     public function export_peserta_pendaftaran(Request $request)

@@ -10,7 +10,7 @@ use Maatwebsite\Excel\Concerns\FromCollection;
 
 // class SeluruhPesertaExport implements FromCollection
 class SeluruhPesertaExport implements FromView,ShouldAutoSize
-{
+{ 
 
     public function __construct($from,$till)
     {

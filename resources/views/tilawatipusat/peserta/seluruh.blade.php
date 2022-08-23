@@ -106,20 +106,28 @@
                             <div class="card">
                                 <div class="row p-3">
                                     <div class="form-group col-6 col-xl-6">
-                                        <button class="text-right btn btn-sm mr-1 btn-outline-info" id="depan_all"><i class="fa fa-print"></i> SYAHADAH DEPAN</button>
-                                        <button class="text-right btn btn-sm mr-1 btn-outline-info" id="belakang_all"><i class="fa fa-print"></i> SYAHADAH BELAKANG</button>
+                                        <button class="text-right btn btn-sm mr-1 btn-outline-info" style="margin-bottom:10px" id="depan_all"><i class="fa fa-print"></i> SYAHADAH DEPAN</button>
+                                        <button class="text-right btn btn-sm mr-1 btn-outline-info" style="margin-bottom:10px" id="belakang_all"><i class="fa fa-print"></i> SYAHADAH BELAKANG</button>
                                         {{-- <form action="#">
                                             <button class="btn btn-sm btn-info"><i class="fa fa-download"></i> Info Peserta</button>
                                         </form> --}}
                                         {{-- <button class="btn btn-sm btn-info"><i class="fa fa-search"></i> Cari Detail Peserta</button> --}}
                                     </div> 
                                     <div class="form-group col-6 col-xl-6 text-right">
-                                        <form action="{{route('export.seluruh.peserta')}}" method="GET" enctype="multipart/form-data" id="export_data_peserta">@csrf
+                                        <form action="{{route('export.seluruh.peserta')}}" style="margin-bottom: 10px" method="GET" enctype="multipart/form-data" id="export_data_peserta">@csrf
                                             <input type="hidden" name="from" id="from">
                                             <input type="hidden" name="till" id="till">
-                                            <button type="submit" class="btn btn-sm btn-info"><i class="fa fa-download"></i> Data Peserta</button>
+                                            <button type="submit" class="btn btn-sm btn-info"><i class="fa fa-download"></i> DOWNLOAD DATA PESERTA </button>
+                                        </form>
+
+                                        <form action="{{route('export.broadcast.peserta')}}" method="GET" enctype="multipart/form-data" id="export_data_peserta">@csrf
+                                            <input type="hidden" name="from" id="from1">
+                                            <input type="hidden" name="till" id="till1">
+                                            <button type="submit" class="btn btn-sm btn-success"><i class="mdi mdi-whatsapp"></i> DOWNLOAD DATA BROADCAST </button>
                                         </form>
                                     </div>
+
+
                                 </div>
                                 <div class="card-body table-responsive">
                                     <h4 class="card-title">Data Peserta Diklat</h4>
@@ -271,7 +279,8 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
+                                    <code>Sementara Menu Ini Dinonaktifkan</code>
+                                    {{-- <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
                                         <table id="datatable-buttons4" class="table table-diklat-program table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
                                             <thead class="text-bold text-primary" style="font-size: 12px; text-transform: uppercase">
                                                 <tr>
@@ -295,7 +304,7 @@
                                             </tfoot>
                                         </table>
                                         <footer class="blockquote-footer">Updated at  <cite title="Source Title">2021</cite></footer>
-                                    </blockquote>
+                                    </blockquote> --}}
                                 </div>
                             </div>
                             <!-- /.modal-content -->
@@ -736,39 +745,39 @@
                         ]
                     });
 
-                    $('#datatable-buttons4').DataTable({
-                        //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
-                        destroy: true,
-                        processing: true,
-                        serverSide: true,
-                        ajax: {
-                            url:'{{ route("diklat.peserta_program_pilih") }}',
-                            data:{dari:dari, sampai:sampai}
-                        },
-                        columns: [
-                            {
-                            data:'program',
-                            name:'program.name'
-                            },
-                            {
-                            data:'total_semua',
-                            name:'total_semua'
-                            },
-                            {
-                            data:'total_lulus',
-                            name:'total_lulus'
-                            },
-                            {
-                            data:'total_belum',
-                            name:'total_belum'
-                            },
-                            // {
-                            // data:'action',
-                            // name:'action'
-                            // },
+                    // $('#datatable-buttons4').DataTable({
+                    //     //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
+                    //     destroy: true,
+                    //     processing: true,
+                    //     serverSide: true,
+                    //     ajax: {
+                    //         url:'{{ route("diklat.peserta_program_pilih") }}',
+                    //         data:{dari:dari, sampai:sampai}
+                    //     },
+                    //     columns: [
+                    //         {
+                    //         data:'program',
+                    //         name:'program.name'
+                    //         },
+                    //         {
+                    //         data:'total_semua',
+                    //         name:'total_semua'
+                    //         },
+                    //         {
+                    //         data:'total_lulus',
+                    //         name:'total_lulus'
+                    //         },
+                    //         {
+                    //         data:'total_belum',
+                    //         name:'total_belum'
+                    //         },
+                    //         // {
+                    //         // data:'action',
+                    //         // name:'action'
+                    //         // },
                             
-                        ]
-                    });
+                    //     ]
+                    // });
                 }
 
                 $('#dari').on('change', function() {
@@ -796,6 +805,8 @@
                     $('#sampai').val('');
                     $('#from').val('');
                     $('#till').val('');
+                    $('#from1').val('');
+                    $('#till1').val('');
                     $('#dari_download').val('');
                     $('#sampai_download').val('');
                     load_data();
@@ -805,11 +816,13 @@
             function myfunction() {
                 var x = document.getElementById("dari").value;
                 document.getElementById("from").value = x;
+                document.getElementById("from1").value = x;
             }
 
             function myfunction2() {
                 var y = document.getElementById("sampai").value;
                 document.getElementById("till").value = y;
+                document.getElementById("till1").value = y;
             }
 
             $('#master').on('click', function(e) {

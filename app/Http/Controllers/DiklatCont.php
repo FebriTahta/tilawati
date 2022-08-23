@@ -80,13 +80,6 @@ class DiklatCont extends Controller
                         })
                         ->addColumn('tanggal', function($data){
                             return Carbon::parse($data->tanggal)->isoFormat('D MMMM Y');
-                            // if ($data->sampai_tanggal !== null) {
-                            //     # code...
-                            //     return Carbon::parse($data->tanggal)->isoFormat('dddd, D MMMM Y').' - '.
-                            //     Carbon::parse($data->sampai_tanggal)->isoFormat('dddd, D MMMM Y');
-                            // }else{
-                            //     return Carbon::parse($data->tanggal)->isoFormat('dddd, D MMMM Y');
-                            // }
                         })
                         ->addColumn('action', function($data){
                             $actionBtn  = ' <a href="#" data-toggle="modal" data-target=".bs-example-modal-diklat-hapus" data-id="'.$data->id.'" class="btn btn-sm btn-outline btn-danger"><i class="fa fa-trash"></i></a> ';
@@ -95,6 +88,7 @@ class DiklatCont extends Controller
                             $actionBtn .= ' <button data-id="'.$data->id.'" class="btn btn-sm btn-info" data-toggle="modal" data-target="#modal-download"><i class="fa fa-download"></i></button>';
                             $actionBtn .= ' <button data-id="'.$data->id.'" class="btn btn-sm btn-success" data-toggle="modal" data-target="#modal-download2"><i class="fa fa-download"></i></button>';
                             $actionBtn .= ' <a href="#" class="btn btn-sm btn-outline btn-info" data-slug="'.$data->slug.'" data-nama_diklat="'.$data->program->name.'" data-id="'.asset('images/'.$data->slug.'.png').'" data-toggle="modal" data-target=".modal-scan"><i class="mdi mdi-barcode-scan"></i></a>';
+                            // $actionBtn .= ' <a href="#" class="btn btn-sm btn-outline btn-success" data-slug="'.$data->slug.'" data-nama_diklat="'.$data->program->name.'" data-id="'.asset('images/'.$data->slug.'.png').'" data-toggle="modal" data-target=".modal-scan"><i class="mdi mdi-whatsapp"></i></a>';
                             return $actionBtn;
                         })
                         ->addColumn('groupwa', function($data){
@@ -135,8 +129,6 @@ class DiklatCont extends Controller
                                 }else{
                                     return '<a href="/diklat-peserta/'.$data->id.'" class="text-danger">'.$jumlah_peserta.' - peserta <a>';
                                 }
-                                
-                                // return '<a href="/diklat-peserta/'.$data->id.'" class="text-danger">'.$data->peserta_count.' - '.$data->keterangan.'<a>';
                             }
                         })
                         ->addColumn('cabang', function ($data) {
@@ -180,17 +172,11 @@ class DiklatCont extends Controller
                             $actionBtn .= ' <button data-id="'.$data->id.'" alt="cetak data peserta" class="btn btn-sm btn-info" data-toggle="modal" data-target="#modal-download"><i class="fa fa-download"></i></button>';
                             $actionBtn .= ' <button data-id="'.$data->id.'" alt="cetak surat jalan" class="btn btn-sm btn-success" data-toggle="modal" data-target="#modal-download2"><i class="fa fa-download"></i></button>';
                             $actionBtn .= ' <a href="#" class="btn btn-sm btn-outline btn-info" data-slug="'.$data->slug.'" data-nama_diklat="'.$data->program->name.'" data-id="'.asset('images/'.$data->slug.'.png').'" data-toggle="modal" data-target=".modal-scan"><i class="mdi mdi-barcode-scan"></i></a>';
+                            // $actionBtn .= ' <a href="#" class="btn btn-sm btn-outline btn-success" data-slug="'.$data->slug.'" data-nama_diklat="'.$data->program->name.'" data-id="'.asset('images/'.$data->slug.'.png').'" data-toggle="modal" data-target=".modal-scan"><i class="mdi mdi-whatsapp"></i></a>';
                             return $actionBtn;
                         })
                         ->addColumn('tanggal', function($data){
                             return Carbon::parse($data->tanggal)->isoFormat('D MMMM Y');
-                            // if ($data->sampai_tanggal !== null) {
-                            //     # code...
-                            //     return Carbon::parse($data->tanggal)->isoFormat('dddd, D MMMM Y').' - '.
-                            //     Carbon::parse($data->sampai_tanggal)->isoFormat('dddd, D MMMM Y');
-                            // }else{
-                            //     return Carbon::parse($data->tanggal)->isoFormat('dddd, D MMMM Y');
-                            // }
                         })
                         ->addColumn('groupwa', function($data){
                             if ($data->groupwa == null) {
