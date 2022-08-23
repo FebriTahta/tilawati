@@ -232,7 +232,7 @@
                                 <tr>
                                     <th>id</th>
                                     <th style="5%"><input type="checkbox" id="master"></th>
-                                    @if ($diklat->program->name == "Diklat Munaqisy Cabang")
+                                    @if ($diklat->program->name == "Diklat Munaqisy Cabang" || $diklat->program->name == "Training Of Trainer Guru Al-Qur'an")
                                         <th>Asal Cabang</th>
                                     @endif
                                     <th>Peserta</th>
@@ -257,7 +257,7 @@
                                 <tr>
                                     <th>id</th>
                                     <th style="5%">Pilih</th>
-                                    @if ($diklat->program->name == "Diklat Munaqisy Cabang")
+                                    @if ($diklat->program->name == "Diklat Munaqisy Cabang" || $diklat->program->name == "Training Of Trainer Guru Al-Qur'an")
                                         <th>Asal Cabang</th>
                                     @endif
                                     <th>Peserta</th>
@@ -1523,7 +1523,7 @@
 
                     ]
                 });
-            }else if (jenis_program == "Diklat Munaqisy Cabang") {
+            }else if (jenis_program == "Diklat Munaqisy Cabang" || jenis_program == "TRAINING OF TRAINER GURU AL-QUR'AN" ||jenis_program == "Training Of Trainer Guru Al-Qur'an" ) {
                 $('#datatable-buttons').DataTable({
                     //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
                     destroy: true,

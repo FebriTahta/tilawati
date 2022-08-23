@@ -32,7 +32,7 @@
                         <label for="nama">Nama Peserta</label>
                         <input type="text" class="form-control" value="{{ $peserta->name }}" id="nama" name="name">
                     </div>
-                    @if ($peserta->pelatihan->program->name == 'Diklat Munaqisy Cabang')
+                    @if ($peserta->pelatihan->program->name == 'Diklat Munaqisy Cabang' || $peserta->program->name == "Training Of Trainer Guru Al-Qur'an")
                     <div class="form-group col-xl-4">
                         <label for="asal_cabang">Asal Cabang</label>
                         <input type="text" class="form-control" value="{{ strtoupper($peserta->asal_cabang) }}" id="asal_cabang" name="asal_cabang">
@@ -54,6 +54,7 @@
                             <option value="{{ $peserta->tmptlahir }}">{{ $peserta->tmptlahir }}</option>
                         </select>
                     </div>
+                   
                     <div class="form-group  col-12 col-xl-6">
                         <label for=""><i class="text-danger"></i> Tempat Lahir (Alternatif Wajib Diisi Apabilda Diupdate)</label>
                         <input type="text" class="form-control text-uppercase" name="tmptlahir2"
