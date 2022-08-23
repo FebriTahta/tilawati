@@ -30,6 +30,7 @@
         <thead style="font-weight: bold; border: black">
             <tr style="border: black; text-transform: uppercase">
                 {{-- <th rowspan="2">ID</th> --}}
+                <th> ID PESERTA</th>
                 <th >NAMA PESERTA</th>
                 <th >ALAMAT </th>
                 <th >ALAMAT MODUL</th>
@@ -51,6 +52,7 @@
             @foreach ($peserta as $item)
             <tr>
                 {{-- <td>{{$item->id}}</td> --}}
+                <td>{{$item->id}}</td>
                 <td>{{$item->name}}</td>
                 <td style="text-transform: uppercase">
                     {{strtoupper($item->alamat)}}

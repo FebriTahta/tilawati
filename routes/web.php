@@ -544,6 +544,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:bendahara']], function () {
 });
 
 Route::post('/broadcast',[BroadcastController::class, 'broadcast_pelatihan'])->name('broadcast');
+Route::get('/blass-broadcasr',[BroadcastController::class,'blass_broadcast'])->name('blass.broadcast');
 
 Route::post('/error-penilaian-kategori',[ErrorCont::class,'post_error']);
 Route::get('/fixing-problem',[ErrorCont::class,'fixing'])->name('fixing');
