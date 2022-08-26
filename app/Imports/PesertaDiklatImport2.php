@@ -137,14 +137,6 @@ class PesertaDiklatImport2 implements ToCollection, WithStartRow
                                 $dt_pel->tgllahir=$masuk;
                             }
                             
-                            // $lembaga = Lembaga::where('name',$row[6])->first();
-                            // if ($lembaga !== null) {
-                            //     # code...
-                            //     $dt_pel->lembaga_id=$lembaga->id;
-                            //     $dt_pel->lembaga=$row[6];
-                            // }
-    
-                            // $dt_pel->jilid =$row[7];
                             $dt_pel->kriteria=$row[6];
     
                             $kriteria = Kriteria::where('name',$row[6])->first();
@@ -182,45 +174,23 @@ class PesertaDiklatImport2 implements ToCollection, WithStartRow
                             }
                             
                             $id = $dt_pel->id;
-                            
-                            // ->generate('https://www.tilawatipusat.com/diklat-profile-peserta/'.$dt_pel->id.'/'.$dt_pel->pelatihan->program->id.'/'.$dt_pel->pelatihan->id, public_path('images/'.$id.'qrcode.png'));
                         }else{
                             
                             // UPDATE DENGAN ASAL CABANG
 
-                            if (is_numeric($row[6]) !== false) {
-                                # code...
-                                // $masuk1 = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row[6]);
-                                // $dt_pel = Peserta::updateOrCreate(
-                                // [
-                                //     'id' => $peserta->id
-                                // ],
-                                // [
-                                //     'asal_cabang' => $row[0],
-                                //     'name'        => $row[1],
-                                //     'alamat'      => $row[2],
-                                //     'telp'        => $row[4],
-                                //     'tgllahir'    => $masuk1,
-                                //     'bersyahadah' => $row[8],
+                            $dt_pel = Peserta::updateOrCreate(
+                                [
+                                    'id' => $peserta->id
+                                ],
+                                [
+                                    'asal_cabang' => $row[0],
+                                    'name'        => $row[1],
+                                    'alamat'      => $row[2],
+                                    'telp'        => $row[4],
+                                    'bersyahadah' => $row[10],
     
-                                // ]
-                                // );
-                            }else {
-                                # code...
-                                $dt_pel = Peserta::updateOrCreate(
-                                    [
-                                        'id' => $peserta->id
-                                    ],
-                                    [
-                                        'asal_cabang' => $row[0],
-                                        'name'        => $row[1],
-                                        'alamat'      => $row[2],
-                                        'telp'        => $row[4],
-                                        'bersyahadah' => $row[10],
-        
-                                    ]
-                                    );
-                            }
+                                ]
+                            );
                             
                             
                             foreach ( $peserta->pelatihan->program->penilaian as $key => $value) {
