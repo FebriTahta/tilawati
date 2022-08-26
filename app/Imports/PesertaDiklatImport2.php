@@ -224,7 +224,7 @@ class PesertaDiklatImport2 implements ToCollection, WithStartRow
                             
                             foreach ( $peserta->pelatihan->program->penilaian as $key => $value) {
                                 # code...
-                                if ($row[$key+8] !== null) {
+                                if ($row[$key+10] !== null) {
                                     # code...
                                     Nilai::updateOrCreate(
                                         [
@@ -232,7 +232,7 @@ class PesertaDiklatImport2 implements ToCollection, WithStartRow
                                             'penilaian_id'  => $value->id,
                                         ],
                                         [
-                                            'nominal'       => $row[$key+8],
+                                            'nominal'       => $row[$key+10],
                                             'kategori'      => $value->kategori,
                                         ]
                                     );
