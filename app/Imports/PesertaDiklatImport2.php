@@ -232,7 +232,7 @@ class PesertaDiklatImport2 implements ToCollection, WithStartRow
                                             'penilaian_id'  => $value->id,
                                         ],
                                         [
-                                            'nominal'       => 100,
+                                            'nominal'       => $row[$key+11],
                                             'kategori'      => $value->kategori,
                                         ]
                                     );
