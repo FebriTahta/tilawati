@@ -35,7 +35,6 @@
                 @endif
                 <th >NAMA PESERTA</th>
                 <th >ALAMAT </th>
-                <th >ALAMAT MODUL</th>
                 <th >KOTA</th>
                 <th >WA / TELP</th>
                 <th >TEMPAT LAHIR</th>
@@ -106,13 +105,6 @@
                     <td>{{$item->name}}</td>
                     <td style="text-transform: uppercase">
                         {{strtoupper($item->alamat)}}
-                    </td>
-                    <td>
-                        @if ($item->alamatx !== null)
-                            {{$item->alamatx}}
-                        @else
-                            kosong
-                        @endif
                     </td>
                     <td>
                         @if ($item->kabupaten !== null)
