@@ -40,7 +40,7 @@
                 <th >TEMPAT LAHIR</th>
                 <th >TANGGAL LAHIR</th>
                 <th >LEMBAGA</th>
-                <th >JILID</th>
+                {{-- <th >JILID</th> --}}
                 <th >KRITERIA</th>
                 <th >BERSYAHADAH</th>
                 @foreach ($pelatihan->program->penilaian as $item)
@@ -82,7 +82,7 @@
                         {{Carbon\Carbon::parse($item->tgllahir)->isoFormat('D MMMM Y')}}
                     </td>
                     <td>-</td>
-                    <td>{{$item->jilid}}</td>
+                    {{-- <td>{{$item->jilid}}</td> --}}
                     <td>{{$item->kriteria}}</td>
                     <td>{{$item->bersyahadah}}</td>
                     @foreach ($item->nilai as $n)
