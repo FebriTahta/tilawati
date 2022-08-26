@@ -30,6 +30,9 @@
         <thead style="font-weight: bold; border: black">
             <tr style="border: black; text-transform: uppercase">
                 {{-- <th rowspan="2">ID</th> --}}
+                @if ($pelatihan->program->name == "Diklat Munaqisy Cabang" || $pelatihan->program->name == "Training Of Trainer Guru Al-Qur'an")
+                <th>ASAL CABANG</th>
+                @endif
                 <th >NAMA PESERTA</th>
                 <th >ALAMAT </th>
                 <th >ALAMAT MODUL</th>
@@ -48,52 +51,103 @@
             </tr>
         </thead >
         <tbody>
-            @foreach ($peserta as $item)
-            <tr>
-                {{-- <td>{{$item->id}}</td> --}}
-                <td>{{$item->name}}</td>
-                <td style="text-transform: uppercase">
-                    {{strtoupper($item->alamat)}}
-                </td>
-                <td>
-                    @if ($item->alamatx !== null)
-                        {{$item->alamatx}}
-                    @else
-                        kosong
-                    @endif
-                </td>
-                <td>
-                    @if ($item->kabupaten !== null)
-                        {{substr($item->kabupaten->nama,4)}}
-                    @else
-                    -   {{$item->kota2}}
-                    @endif
-                </td>
-                <td>{{$item->telp}}</td>
-                <td>
-                    @if ($item->tmptlahir2 !== null)
-                        {{$item->tmptlahir2}}
-                    @else
-                        @if (substr($item->tmptlahir, 0, 4) == 'KOTA' || substr($item->tmptlahir, 0, 4) == 'KAB.')
-                            {{substr($item->tmptlahir, 5)}}
+            @if ($pelatihan->program->name == "Diklat Munaqisy Cabang" || $pelatihan->program->name == "Training Of Trainer Guru Al-Qur'an")
+                @foreach ($peserta as $item)
+                <tr>
+                    <td>{{$item->asal_cabang}}</td>
+                    <td>{{$item->name}}</td>
+                    <td style="text-transform: uppercase">
+                        {{strtoupper($item->alamat)}}
+                    </td>
+                    <td>
+                        @if ($item->alamatx !== null)
+                            {{$item->alamatx}}
                         @else
-                            {{$item->tmptlahir}}    
+                            kosong
                         @endif
-                    @endif
-                </td>
-                <td>
-                    {{-- {{$item->tgllahir}} --}}
-                    {{Carbon\Carbon::parse($item->tgllahir)->isoFormat('D MMMM Y')}}
-                </td>
-                <td>-</td>
-                <td>{{$item->jilid}}</td>
-                <td>{{$item->kriteria}}</td>
-                <td>{{$item->bersyahadah}}</td>
-                @foreach ($item->nilai as $n)
-                <td>{{$n->nominal}}</td>
+                    </td>
+                    <td>
+                        @if ($item->kabupaten !== null)
+                            {{substr($item->kabupaten->nama,4)}}
+                        @else
+                        -   {{$item->kota2}}
+                        @endif
+                    </td>
+                    <td>{{$item->telp}}</td>
+                    <td>
+                        @if ($item->tmptlahir2 !== null)
+                            {{$item->tmptlahir2}}
+                        @else
+                            @if (substr($item->tmptlahir, 0, 4) == 'KOTA' || substr($item->tmptlahir, 0, 4) == 'KAB.')
+                                {{substr($item->tmptlahir, 5)}}
+                            @else
+                                {{$item->tmptlahir}}    
+                            @endif
+                        @endif
+                    </td>
+                    <td>
+                        {{-- {{$item->tgllahir}} --}}
+                        {{Carbon\Carbon::parse($item->tgllahir)->isoFormat('D MMMM Y')}}
+                    </td>
+                    <td>-</td>
+                    <td>{{$item->jilid}}</td>
+                    <td>{{$item->kriteria}}</td>
+                    <td>{{$item->bersyahadah}}</td>
+                    @foreach ($item->nilai as $n)
+                    <td>{{$n->nominal}}</td>
+                    @endforeach
+                </tr>
                 @endforeach
-            </tr>
-            @endforeach
+            
+            @else
+                @foreach ($peserta as $item)
+                <tr>
+                    {{-- <td>{{$item->id}}</td> --}}
+                    <td>{{$item->name}}</td>
+                    <td style="text-transform: uppercase">
+                        {{strtoupper($item->alamat)}}
+                    </td>
+                    <td>
+                        @if ($item->alamatx !== null)
+                            {{$item->alamatx}}
+                        @else
+                            kosong
+                        @endif
+                    </td>
+                    <td>
+                        @if ($item->kabupaten !== null)
+                            {{substr($item->kabupaten->nama,4)}}
+                        @else
+                        -   {{$item->kota2}}
+                        @endif
+                    </td>
+                    <td>{{$item->telp}}</td>
+                    <td>
+                        @if ($item->tmptlahir2 !== null)
+                            {{$item->tmptlahir2}}
+                        @else
+                            @if (substr($item->tmptlahir, 0, 4) == 'KOTA' || substr($item->tmptlahir, 0, 4) == 'KAB.')
+                                {{substr($item->tmptlahir, 5)}}
+                            @else
+                                {{$item->tmptlahir}}    
+                            @endif
+                        @endif
+                    </td>
+                    <td>
+                        {{-- {{$item->tgllahir}} --}}
+                        {{Carbon\Carbon::parse($item->tgllahir)->isoFormat('D MMMM Y')}}
+                    </td>
+                    <td>-</td>
+                    <td>{{$item->jilid}}</td>
+                    <td>{{$item->kriteria}}</td>
+                    <td>{{$item->bersyahadah}}</td>
+                    @foreach ($item->nilai as $n)
+                    <td>{{$n->nominal}}</td>
+                    @endforeach
+                </tr>
+                @endforeach
+            @endif
+            
         </tbody>
     </table>
 </body>
