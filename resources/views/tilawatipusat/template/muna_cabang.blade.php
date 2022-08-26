@@ -46,9 +46,9 @@
                 <td>SEBAGAI MUNAQISY CABANG METODE TILAWATI</td>
                 <td>1</td>
                 <td>26</td>
-                <td>38</td>
+                <td>42</td>
                 <td>10</td>
-                <td>5</td>
+                <td>7</td>
                 <td>95</td>
                 <td>95</td>
                 <td>95</td>
