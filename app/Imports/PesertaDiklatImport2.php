@@ -112,40 +112,40 @@ class PesertaDiklatImport2 implements ToCollection, WithStartRow
     
                             $phone = $row[4];
     
-                            if (substr($phone,0,1) == '0') {
-                                # jika awalan angkanya 0 dari export maka langsung simpan
-                                # code...
-                                $telephone = $phone;
-                                $dt_pel->telp = $telephone;
+                            // if (substr($phone,0,1) == '0') {
+                            //     # jika awalan angkanya 0 dari export maka langsung simpan
+                            //     # code...
+                            //     $telephone = $phone;
+                            //     $dt_pel->telp = $telephone;
                                 
-                            }else{
-                                # baca jika awalan tidak 0 melainkan 62 
-                                if (substr($phone,0,2) == '62'){
-                                    # code...
-                                    $telephone = $phone;
-                                    $dt_pel->telp = $telephone;
-                                }else{
-                                    // $potong = substr($phone,1,15);
-                                    $telephone = '0'.$phone;
-                                    $dt_pel->telp = $telephone;   
-                                }
-                            }
-                            $dt_pel->tmptlahir = $row[5];
+                            // }else{
+                            //     # baca jika awalan tidak 0 melainkan 62 
+                            //     if (substr($phone,0,2) == '62'){
+                            //         # code...
+                            //         $telephone = $phone;
+                            //         $dt_pel->telp = $telephone;
+                            //     }else{
+                            //         // $potong = substr($phone,1,15);
+                            //         $telephone = '0'.$phone;
+                            //         $dt_pel->telp = $telephone;   
+                            //     }
+                            // }
+                            // $dt_pel->tmptlahir = $row[5];
     
-                            if (is_numeric($row[6]) !== false) {
-                                # code...
-                                $masuk = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row[6]);
-                                $dt_pel->tgllahir=$masuk;
-                            }
+                            // if (is_numeric($row[6]) !== false) {
+                            //     # code...
+                            //     $masuk = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row[6]);
+                            //     $dt_pel->tgllahir=$masuk;
+                            // }
                             
-                            $dt_pel->kriteria=$row[7];
+                            // $dt_pel->kriteria=$row[7];
     
-                            $kriteria = Kriteria::where('name',$row[7])->first();
-                            if ($kriteria !== null) {
-                                # code...
-                                $dt_pel->kriteria_id = $kriteria->id;
-                            }
-                            $dt_pel->bersyahadah = $row[8];
+                            // $kriteria = Kriteria::where('name',$row[7])->first();
+                            // if ($kriteria !== null) {
+                            //     # code...
+                            //     $dt_pel->kriteria_id = $kriteria->id;
+                            // }
+                            // $dt_pel->bersyahadah = $row[8];
     
                             $dt_pel->created_at = new \DateTime;
     
