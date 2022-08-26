@@ -120,7 +120,7 @@
                                 <?php $salah_tanggal = App\Models\Peserta::where('tgllahir', null)->where('pelatihan_id', $diklat->id)->get(); ?>
                                 <ul>
                                     @foreach ($salah_tanggal as $item)
-                                        <li>{{ $item->id.' - '.$item->name}}</li>
+                                        <li>{{ $item->id.' - '.$item->name}} {{$item->tgllahir}}</li>
                                     @endforeach
                                 </ul>
                         </div>
