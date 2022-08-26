@@ -59,13 +59,6 @@
                         {{strtoupper($item->alamat)}}
                     </td>
                     <td>
-                        @if ($item->alamatx !== null)
-                            {{$item->alamatx}}
-                        @else
-                            kosong
-                        @endif
-                    </td>
-                    <td>
                         @if ($item->kabupaten !== null)
                             {{substr($item->kabupaten->nama,4)}}
                         @else
@@ -105,6 +98,13 @@
                     <td>{{$item->name}}</td>
                     <td style="text-transform: uppercase">
                         {{strtoupper($item->alamat)}}
+                    </td>
+                    <td>
+                        @if ($item->alamatx !== null)
+                            {{$item->alamatx}}
+                        @else
+                            kosong
+                        @endif
                     </td>
                     <td>
                         @if ($item->kabupaten !== null)
