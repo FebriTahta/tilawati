@@ -146,7 +146,6 @@
                         @endforeach
                         
                     @endif
-                    {{App\Models\Peserta::where('id', 266707)->first()}}
                 </div>
                 <div class="card-body">
                     <input type="hidden" id="jenis_program" value="{{ $diklat->program->name }}">

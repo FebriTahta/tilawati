@@ -69,7 +69,7 @@ class PesertaDiklatImport2 implements ToCollection, WithStartRow
                             $tgllahir="";
                         }
     
-                        $peserta= Peserta::where('name',$row[0])->where('pelatihan_id', $this->id)->first();
+                        $peserta= Peserta::where('name',$row[1])->where('pelatihan_id', $this->id)->first();
                         //TANPA ASAL CABANG
                         if ($peserta == null) {
                             
