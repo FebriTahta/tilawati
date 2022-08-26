@@ -187,71 +187,71 @@ class PesertaDiklatImport2 implements ToCollection, WithStartRow
                         }else{
                             
                             // UPDATE DENGAN ASAL CABANG
-                            if (is_numeric($row[6]) !== false) {
-                                # code...
-                                $masuk1 = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row[6]);
-                                $dt_pel = Peserta::updateOrCreate(
-                                [
-                                    'id' => $peserta->id
-                                ],
-                                [
-                                    'asal_cabang' => $row[0],
-                                    'name'        => $row[1],
-                                    'alamat'      => $row[2],
-                                    'telp'        => $row[4],
-                                    'tgllahir'    => $masuk1,
-                                    'bersyahadah' => $row[8],
+                            // if (is_numeric($row[6]) !== false) {
+                            //     # code...
+                            //     $masuk1 = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row[6]);
+                            //     $dt_pel = Peserta::updateOrCreate(
+                            //     [
+                            //         'id' => $peserta->id
+                            //     ],
+                            //     [
+                            //         'asal_cabang' => $row[0],
+                            //         'name'        => $row[1],
+                            //         'alamat'      => $row[2],
+                            //         'telp'        => $row[4],
+                            //         'tgllahir'    => $masuk1,
+                            //         'bersyahadah' => $row[8],
     
-                                ]
-                                );
-                            }else {
-                                # code...
-                                $dt_pel = Peserta::updateOrCreate(
-                                    [
-                                        'id' => $peserta->id
-                                    ],
-                                    [
-                                        'asal_cabang' => $row[0],
-                                        'name'        => $row[1],
-                                        'alamat'      => $row[2],
-                                        'telp'        => $row[4],
-                                        'bersyahadah' => $row[8],
+                            //     ]
+                            //     );
+                            // }else {
+                            //     # code...
+                            //     $dt_pel = Peserta::updateOrCreate(
+                            //         [
+                            //             'id' => $peserta->id
+                            //         ],
+                            //         [
+                            //             'asal_cabang' => $row[0],
+                            //             'name'        => $row[1],
+                            //             'alamat'      => $row[2],
+                            //             'telp'        => $row[4],
+                            //             'bersyahadah' => $row[8],
         
-                                    ]
-                                    );
-                            }
+                            //         ]
+                            //         );
+                            // }
                             
                             
-                            foreach ( $peserta->pelatihan->program->penilaian as $key => $value) {
-                                # code...
-                                if ($row[$key+11] !== null) {
-                                    # code...
-                                    Nilai::updateOrCreate(
-                                        [
-                                            'peserta_id'    => $peserta->id,
-                                            'penilaian_id'  => $value->id,
-                                        ],
-                                        [
-                                            'nominal'       => $row[$key+11],
-                                            'kategori'      => $value->kategori,
-                                        ]
-                                    );
-                                } else {
-                                    # code...
-                                    Nilai::updateOrCreate(
-                                        [
-                                            'peserta_id'    => $peserta->id,
-                                            'penilaian_id'  => $value->id,
-                                        ],
-                                        [
-                                            'nominal'       => 0,
-                                            'kategori'      => $value->kategori,
-                                        ]
-                                    );
-                                }
+                            // foreach ( $peserta->pelatihan->program->penilaian as $key => $value) {
+                            //     # code...
+                            //     if ($row[$key+11] !== null) {
+                            //         # code...
+                            //         Nilai::updateOrCreate(
+                            //             [
+                            //                 'peserta_id'    => $peserta->id,
+                            //                 'penilaian_id'  => $value->id,
+                            //             ],
+                            //             [
+                            //                 'nominal'       => $row[$key+11],
+                            //                 'kategori'      => $value->kategori,
+                            //             ]
+                            //         );
+                            //     } else {
+                            //         # code...
+                            //         Nilai::updateOrCreate(
+                            //             [
+                            //                 'peserta_id'    => $peserta->id,
+                            //                 'penilaian_id'  => $value->id,
+                            //             ],
+                            //             [
+                            //                 'nominal'       => 0,
+                            //                 'kategori'      => $value->kategori,
+                            //             ]
+                            //         );
+                            //     }
                                 
                                 
-                            }
+                            // }
                             
                         }
                 
