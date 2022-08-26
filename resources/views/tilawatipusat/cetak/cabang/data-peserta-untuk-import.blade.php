@@ -84,7 +84,7 @@
                         {{-- {{$item->tgllahir}} --}}
                         {{Carbon\Carbon::parse($item->tgllahir)->isoFormat('D MMMM Y')}}
                     </td>
-                    <td>-</td>
+                    {{-- <td>-</td> --}}
                     {{-- <td>{{$item->jilid}}</td> --}}
                     <td>{{$item->kriteria}}</td>
                     <td>{{$item->bersyahadah}}</td>
