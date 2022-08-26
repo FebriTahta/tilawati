@@ -75,17 +75,17 @@ class PesertaDiklatImport2 implements ToCollection, WithStartRow
                             
                             # code...
     
-                            // $dt_pel = new Peserta;
-                            // $dt_pel->phonegara_id = 175;
-                            // $dt_pel->pelatihan_id = $this->id;
-                            // $dt_pel->program_id = $diklat->program_id;
-                            // $dt_pel->cabang_id = $this->cabang_id;
-                            // $dt_pel->tanggal = $this->tanggal;
-                            // $dt_pel->asal_cabang = [0];
-                            // $dt_pel->name = $row[1];
-                            // $dt_pel->alamat = $row[2];
-                            // $dt_pel->kota = $row[3];
-                            // $dt_pel->status =1;
+                            $dt_pel = new Peserta;
+                            $dt_pel->phonegara_id = 175;
+                            $dt_pel->pelatihan_id = $this->id;
+                            $dt_pel->program_id = $diklat->program_id;
+                            $dt_pel->cabang_id = $this->cabang_id;
+                            $dt_pel->tanggal = $this->tanggal;
+                            $dt_pel->asal_cabang = [0];
+                            $dt_pel->name = $row[1];
+                            $dt_pel->alamat = $row[2];
+                            $dt_pel->kota = $row[3];
+                            $dt_pel->status =1;
                             // //slug
                             // $slug = Str::slug($row[1].'-'.$diklat->program->name.'-'.Carbon::parse($this->tanggal)->isoFormat('MMMM-D-Y').'-'.$diklat->cabang->name.'-'.$diklat->cabang->kabupaten->nama);
                             // $dt_pel->slug = $slug;
@@ -150,29 +150,29 @@ class PesertaDiklatImport2 implements ToCollection, WithStartRow
                             // $dt_pel->created_at = new \DateTime;
     
     
-                            // $dt_pel->save();
+                            $dt_pel->save();
     
-                            // foreach ( $dt_pel->pelatihan->program->penilaian as $key => $value) {
-                            //     # code...
-                            //     if ($row[$key+9] !== null) {
-                            //         # code...
-                            //         $dt_n = new Nilai;
-                            //         $dt_n->peserta_id = $dt_pel->id;
-                            //         $dt_n->penilaian_id=$value->id;
-                            //         $dt_n->nominal=$row[$key+9];
-                            //         $dt_n->kategori=$value->kategori;
-                            //         $dt_n->save();
-                            //     }else {
-                            //         # code...
-                            //         $dt_n = new Nilai;
-                            //         $dt_n->peserta_id = $dt_pel->id;
-                            //         $dt_n->penilaian_id=$value->id;
-                            //         $dt_n->nominal='0';
-                            //         $dt_n->kategori=$value->kategori;
-                            //         $dt_n->save();
-                            //     }
+                            foreach ( $dt_pel->pelatihan->program->penilaian as $key => $value) {
+                                # code...
+                                if ($row[$key+9] !== null) {
+                                    # code...
+                                    $dt_n = new Nilai;
+                                    $dt_n->peserta_id = $dt_pel->id;
+                                    $dt_n->penilaian_id=$value->id;
+                                    $dt_n->nominal=$row[$key+9];
+                                    $dt_n->kategori=$value->kategori;
+                                    $dt_n->save();
+                                }else {
+                                    # code...
+                                    $dt_n = new Nilai;
+                                    $dt_n->peserta_id = $dt_pel->id;
+                                    $dt_n->penilaian_id=$value->id;
+                                    $dt_n->nominal='0';
+                                    $dt_n->kategori=$value->kategori;
+                                    $dt_n->save();
+                                }
                                     
-                            // }
+                            }
                             
                             // $id = $dt_pel->id;
                         }else{
