@@ -138,7 +138,7 @@
                             </p>
                                 <ul>
                                     @foreach ($salah_kota as $item)
-                                        <li>{{ $item->id.' - '.$item->name}}</li>
+                                        <li>{{ $item->id.' - '.$item->name}} {{$item->kabupaten->nama}}</li>
                                     @endforeach
                                 </ul>
                             @endif
