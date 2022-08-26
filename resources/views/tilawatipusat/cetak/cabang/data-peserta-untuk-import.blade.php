@@ -39,8 +39,11 @@
                 <th >WA / TELP</th>
                 <th >TEMPAT LAHIR</th>
                 <th >TANGGAL LAHIR</th>
+                @if ($pelatihan->program->name == "Diklat Munaqisy Cabang" || $pelatihan->program->name == "Training Of Trainer Guru Al-Qur'an")
+                @else
                 <th >LEMBAGA</th>
-                {{-- <th >JILID</th> --}}
+                <th >JILID</th>
+                @endif
                 <th >KRITERIA</th>
                 <th >BERSYAHADAH</th>
                 @foreach ($pelatihan->program->penilaian as $item)

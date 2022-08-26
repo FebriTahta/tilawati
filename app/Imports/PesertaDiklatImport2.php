@@ -188,8 +188,8 @@ class PesertaDiklatImport2 implements ToCollection, WithStartRow
                                     'name'        => $row[1],
                                     'alamat'      => $row[2],
                                     'telp'        => $row[4],
-                                    'kriteria'    => $row[9],
-                                    'bersyahadah' => $row[10],
+                                    'kriteria'    => $row[7],
+                                    'bersyahadah' => $row[8],
     
                                 ]
                             );
@@ -197,7 +197,7 @@ class PesertaDiklatImport2 implements ToCollection, WithStartRow
                             
                             foreach ( $peserta->pelatihan->program->penilaian as $key => $value) {
                                 # code...
-                                if ($row[$key+11] !== null) {
+                                if ($row[$key+9] !== null) {
                                     # code...
                                     Nilai::updateOrCreate(
                                         [
@@ -205,7 +205,7 @@ class PesertaDiklatImport2 implements ToCollection, WithStartRow
                                             'penilaian_id'  => $value->id,
                                         ],
                                         [
-                                            'nominal'       => $row[$key+11],
+                                            'nominal'       => $row[$key+9],
                                             'kategori'      => $value->kategori,
                                         ]
                                     );
