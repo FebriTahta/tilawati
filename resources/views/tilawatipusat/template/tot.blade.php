@@ -29,7 +29,7 @@
             <td>SERUYAN</td>
             <td>(FORMAT DATE EXCEL YANG BENAR)</td>
             <td>LULUS SEBAGAI ... </td>
-            <td>1</td>
+            <td>1dd</td>
             <td>26</td>
             <td>38</td>
             <td>10</td>
