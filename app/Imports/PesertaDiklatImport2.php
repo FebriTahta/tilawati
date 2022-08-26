@@ -187,9 +187,9 @@ class PesertaDiklatImport2 implements ToCollection, WithStartRow
                         }else{
                             
                             // UPDATE DENGAN ASAL CABANG
-                            if (is_numeric($row[7]) !== false) {
+                            if (is_numeric($row[6]) !== false) {
                                 # code...
-                                $masuk1 = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row[7]);
+                                $masuk1 = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row[6]);
                                 $dt_pel = Peserta::updateOrCreate(
                                 [
                                     'id' => $peserta->id
