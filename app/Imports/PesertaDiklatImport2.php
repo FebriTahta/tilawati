@@ -50,25 +50,6 @@ class PesertaDiklatImport2 implements ToCollection, WithStartRow
     */
     public function collection(Collection $collection)
     {
-
-        // foreach ($collection as $key => $row) {
-        //     // Validator::make($row->toArray(), [
-        //     //     '*.jilid' => 'string',
-        //     //     '*.tgllahir' => 'date_format:m/d/Y|date',
-        //     // ])->validate();
-        //     $peserta= Peserta::where('name',$row[0])->where('pelatihan_id', $this->id)->first();
-        //     if ($peserta == null) {
-        //         # code...
-        //         $dt_pel = new Peserta;
-        //         $dt_pel->name = $row[0];
-        //         $dt_pel->pelatihan_id = $this->id;
-        //         $dt_pel->cabang_id = $this->cabang_id;
-        //         $dt_pel->created_at = new \DateTime;
-        //         $dt_pel->save();
-                
-        //     }
-        // }
-
         Validator::make($collection->toArray(), [
             'name' => 'string',
             'tgllahir' => 'date_format:m/d/Y|date',
@@ -76,7 +57,7 @@ class PesertaDiklatImport2 implements ToCollection, WithStartRow
         ])->validate();
 
         $diklat = Pelatihan::where('id',$this->id)->first();
-        if ($diklat->program->name == 'Diklat Munaqisy Cabang') {
+        if ($diklat->program->name == 'Diklat Munaqisy Cabang' || $diklat->program->name == "Training Of Trainer Guru Al-Qur'an") {
             # code...
             foreach ($collection as $key => $row) {
                 # code...
@@ -89,6 +70,7 @@ class PesertaDiklatImport2 implements ToCollection, WithStartRow
                         }
     
                         $peserta= Peserta::where('name',$row[0])->where('pelatihan_id', $this->id)->first();
+                        //TANPA ASAL CABANG
                         if ($peserta == null) {
                             
                             # code...
@@ -203,7 +185,8 @@ class PesertaDiklatImport2 implements ToCollection, WithStartRow
                             
                             // ->generate('https://www.tilawatipusat.com/diklat-profile-peserta/'.$dt_pel->id.'/'.$dt_pel->pelatihan->program->id.'/'.$dt_pel->pelatihan->id, public_path('images/'.$id.'qrcode.png'));
                         }else{
-    
+                            
+                            // UPDATE DENGAN ASAL CABANG
                             if (is_numeric($row[5]) !== false) {
                                 # code...
                                 $masuk1 = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row[5]);
@@ -212,11 +195,12 @@ class PesertaDiklatImport2 implements ToCollection, WithStartRow
                                     'id' => $peserta->id
                                 ],
                                 [
-                                    'name'        => $row[0],
-                                    'alamat'      => $row[1],
-                                    'telp'        => $row[3],
+                                    'asal_cabang' => $row[0],
+                                    'name'        => $row[1],
+                                    'alamat'      => $row[2],
+                                    'telp'        => $row[4],
                                     'tgllahir'    => $masuk1,
-                                    'bersyahadah' => $row[7],
+                                    'bersyahadah' => $row[8],
     
                                 ]
                                 );
@@ -227,10 +211,11 @@ class PesertaDiklatImport2 implements ToCollection, WithStartRow
                                         'id' => $peserta->id
                                     ],
                                     [
-                                        'name'        => $row[0],
-                                        'alamat'      => $row[1],
-                                        'telp'        => $row[3],
-                                        'bersyahadah' => $row[7],
+                                        'asal_cabang' => $row[0],
+                                        'name'        => $row[1],
+                                        'alamat'      => $row[2],
+                                        'telp'        => $row[4],
+                                        'bersyahadah' => $row[8],
         
                                     ]
                                     );
@@ -247,7 +232,7 @@ class PesertaDiklatImport2 implements ToCollection, WithStartRow
                                             'penilaian_id'  => $value->id,
                                         ],
                                         [
-                                            'nominal'       => $row[$key+8],
+                                            'nominal'       => $row[$key+9],
                                             'kategori'      => $value->kategori,
                                         ]
                                     );
