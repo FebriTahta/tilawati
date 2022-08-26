@@ -16,6 +16,7 @@
     <table>
         <thead style="text-transform: uppercase">
             <tr>
+                <th>Asal Cabang</th>
                 <th>Nama Peserta</th>
                 <th>Alamat</th>
                 <th>Kota</th>
@@ -35,24 +36,7 @@
         </thead>
         <tbody>
             <tr>
-                <td>NAMA "KAPITAL", Gelar ("Format Gelar")</td>
-                <td>ALAMAT TANPA KOTA</td>
-                <td>TIDAK DISINGKAT</td>
-                <td>083xxxxxxxxx</td>
-                <td>TIDAK DISINGKAT</td>
-                <td>(FORMAT DATE EXCEl YANG BENAR)</td>
-                <td>DIISI APABILA LULUS</td>
-                <td>1 (UNTUK BERSYAHADAH) 0 / Kosong (UNTUK BELUM BERSYAHADAH)</td>
-                <td>26 (0 untuk nilai yang tidak ada)</td>
-                <td>38 (0 untuk nilai yang tidak ada)</td>
-                <td>10 (0 untuk nilai yang tidak ada)</td>
-                <td>5  (0 untuk nilai yang tidak ada)</td>
-                <td>65 (0 untuk nilai yang tidak ada)</td>
-                <td>65 (0 untuk nilai yang tidak ada)</td>
-                <td>65 (0 untuk nilai yang tidak ada)</td>
-                
-            </tr>
-            <tr>
+                <th>Cabang Konoha</th>
                 <td>FEBRI RIZQI TAHTA, S.Kom</td>
                 <td>SIMO JAWAR III / KEC.SUKOMANUNGGAL</td>
                 <td>SURABAYA</td>
