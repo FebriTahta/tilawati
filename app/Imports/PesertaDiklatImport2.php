@@ -188,6 +188,7 @@ class PesertaDiklatImport2 implements ToCollection, WithStartRow
                                     'name'        => $row[1],
                                     'alamat'      => $row[2],
                                     'telp'        => $row[4],
+                                    'kriteria'    => $row[9],
                                     'bersyahadah' => $row[10],
     
                                 ]
