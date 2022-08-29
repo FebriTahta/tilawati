@@ -524,7 +524,7 @@
 							<th rowspan="2" style="text-align: center">Jumlah</th>
 					</tr>
 					<tr>     
-						<th style="border-right: none; border-top:none;"></th>
+						<th style="border-left: none; border-top:none;"></th>
 						<th class="pe">MAX</th>
 						<th class="pe">MIN</th>
 						
