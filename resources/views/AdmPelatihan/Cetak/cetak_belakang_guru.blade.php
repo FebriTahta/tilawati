@@ -524,7 +524,7 @@
 							<th rowspan="2" style="text-align: center">Jumlah</th>
 					</tr>
 					<tr>     
-						<th ></th>
+						<th style="border-right: none; border-top:none;"></th>
 						<th class="pe">MAX</th>
 						<th class="pe">MIN</th>
 						
@@ -533,7 +533,7 @@
 						<th>1</th>
 						<td style="border-right: none">&nbsp; &nbsp;<b> Al-Qur'an</b></td>
 						<th colspan="3" class="pe3" style="border-left: none"></th>
-						<th ></th>
+						<th class=nilai2x></th>
 					</tr>
 					@foreach ($p->nilai as $key=> $item)
 						@if ($item !== null)
