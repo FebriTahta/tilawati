@@ -534,7 +534,7 @@
 						<th>1</th>
 						<td style="border-right: none">&nbsp; &nbsp;<b> Al-Qur'an</b></td>
 						<th colspan="3" class="pe3" style="border-left: none"></th>
-						<th class=nilai2>{{ $jumlah = $p->nilai->where("kategori","al-qur'an")->sum('nominal') }}</th>
+						<th class=nilai2></th>
 					</tr>
 					@foreach ($p->nilai as $key=> $item)
 						@if ($item !== null)
@@ -554,7 +554,7 @@
 						<th>2</th>
 						<td style="border-right: none">&nbsp; &nbsp;<b> Praktek Munaqisy </b></td>
 						<th colspan="3" style="border-left: none"></th>
-						<th >{{ $jumlah = $p->nilai->where("kategori","skill")->sum('nominal') / 3 }}</th>
+						<th > {{ $jumlah = $p->nilai->where("kategori","al-qur'an")->sum('nominal') }}</th>
 					</tr>
 					@foreach ($p->nilai as $key=> $item)
 						@if ($item !== null)
@@ -590,7 +590,8 @@
 								@endphp
 								{{$rata2}}
 							@else
-								{{ $rata2 = ($jumlah+ $item->nominal)/2 }}
+								{{-- {{ $rata2 = ($jumlah+ $item->nominal)/2 }} --}}
+								{{ $jumlah = $p->nilai->where("kategori","skill")->sum('nominal') / 3 }}
 							@endif
 								</th>
 						</tr>
@@ -601,9 +602,10 @@
 					@endif
 					<tr>
 						<th></th>
-						<td class="nilai6" style="border-right: none">&nbsp; &nbsp;<b> PRESTASI</b></th>
+						{{-- <td class="nilai6" style="border-right: none">&nbsp; &nbsp;<b> PRESTASI</b></th> --}}
+							<td class="nilai6" style="border-right: none">&nbsp; &nbsp;<b> RATA - RATA NILAI</b></th>
 						<th colspan="3" style="border-left: none" class="nilai5"></th> 
-						<th >
+						<th > {{ $rata2 = ($jumlah+ $item->nominal)/2 }}
 							@if ($rata2 >= 85)
 								Istimewa
 							@elseif($rata2 > 74 && $rata2 < 85)
