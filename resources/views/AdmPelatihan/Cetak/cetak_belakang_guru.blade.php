@@ -527,7 +527,7 @@
 								<tr>
 									<td class="pop"></td>
 									<td class="pop2" style="border-right: none">&nbsp; &nbsp;&nbsp;<span style="text-transform: capitalize; ">{{ $item->penilaian->name }}</span></td>
-									<td class="nilai" style="text-align: center; border-left: none" >&nbsp; &nbsp;</td>
+									<td class="nilai" style="text-align: center;" >&nbsp; &nbsp;</td>
 									<td class="nilai2" style="text-align: center">{{$item->penilaian->max}}</td>
 									<td class="nilai3" style="text-align: center">{{$item->penilaian->min}}</td>
 									<th style="border-top: 0;border-bottom: 0;">{{ $item->nominal }}</th>
@@ -547,7 +547,7 @@
 								<tr>
 									<td class="pop"></td>
 									<td class="pop2" style="border-right: none">&nbsp; &nbsp;&nbsp;<span style="text-transform: capitalize; ">{{ $item->penilaian->name }}</span></td>
-									<td class="nilai" style="text-align: center; border-left: none" >&nbsp; &nbsp;</td>
+									<td class="nilai" style="text-align: center; " >&nbsp; &nbsp;</td>
 									<td class="nilai2" style="text-align: center">{{$item->penilaian->max}}</td>
 									<td class="nilai3" style="text-align: center">{{$item->penilaian->min}}</td>
 									<th style="border-top: 0;border-bottom: 0;">{{$item->nominal}}</th>
