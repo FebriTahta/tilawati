@@ -554,7 +554,7 @@
 						<th>2</th>
 						<td style="border-right: none">&nbsp; &nbsp;<b> Praktek Munaqisy </b></td>
 						<th colspan="3" style="border-left: none"></th>
-						<th >{{ $jumlah = $p->nilai->where("kategori","skill")->sum('nominal') / 3 }}</th>
+						<th >{{ $jumlah = round($p->nilai->where("kategori","skill")->sum('nominal') / 3) }}</th>
 					</tr>
 					@foreach ($p->nilai as $key=> $item)
 						@if ($item !== null)
