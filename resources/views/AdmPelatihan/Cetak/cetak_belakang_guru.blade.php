@@ -520,7 +520,7 @@
 					<tr>
 							<th rowspan="2">No.</th>
 							<th rowspan="2" style="border-right: none; text-align: right">Bidang Penilaian</th>
-							<th colspan="3" class="penilaian" style="border-bottom: none; border-left: none;"></th>
+							<th colspan="3" class="penilaian" style="border-bottom: none; "></th>
 							<th rowspan="2" style="text-align: center">Jumlah</th>
 					</tr>
 					<tr>     
@@ -532,7 +532,7 @@
 					<tr>
 						<th>1</th>
 						<td style="border-right: none">&nbsp; &nbsp;<b> Al-Qur'an</b></td>
-						<th colspan="3" class="pe3" style="border-left: none"></th>
+						<th colspan="3" class="pe3" ></th>
 						<th ></th>
 					</tr>
 					@foreach ($p->nilai as $key=> $item)
