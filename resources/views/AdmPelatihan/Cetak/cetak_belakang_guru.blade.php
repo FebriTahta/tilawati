@@ -519,7 +519,7 @@
 				class="table1">
 					<tr>
 							<th rowspan="2">No.</th>
-							<th rowspan="2" style="text-align: right; border-righr:none">Bidang Penilaian</th>
+							<th rowspan="2" style="text-align: right; border-right:none">Bidang Penilaian</th>
 							<th  style="border-left:none; border-bottom:none"></th>
 							<th colspan="2" style="border-bottom:none"></th>
 							<th rowspan="2" style="text-align: center">Jumlah</th>
