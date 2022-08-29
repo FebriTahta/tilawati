@@ -519,8 +519,8 @@
 				class="table1">
 					<tr>
 							<th rowspan="2">No.</th>
-							<th rowspan="2" style="text-align: right">Bidang Penilaian</th>
-							<th colspan="3" ></th>
+							<th rowspan="3" style="border-right: none; text-align: right">Bidang Penilaian</th>
+							<th colspan="2" ></th>
 							<th rowspan="2" style="text-align: center">Jumlah</th>
 					</tr>
 					<tr>     
