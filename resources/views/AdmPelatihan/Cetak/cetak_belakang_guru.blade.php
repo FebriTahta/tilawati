@@ -510,9 +510,9 @@
 			@elseif($p->program->name == 'Diklat Munaqisy Cabang')
 
 			{{-- munaqisy cabang --}}
-			<div style="page-break-inside: avoid; font-size: 11px">
+			<div style="page-break-inside: avoid; font-size: 10px">
 				<div>
-					<p style="margin-top: 160px;margin-left: 358px" class="syahadah">No. Syahadah : {{ $p->pelatihan->id }}/2022/{{ $p->id }}</p>
+					<p style="margin-top: 140px;margin-left: 358px" class="syahadah">No. Syahadah : {{ $p->pelatihan->id }}/2022/{{ $p->id }}</p>
 				</div>
 				<table 
 				style="width: 782px; margin-left:154px"
@@ -616,7 +616,7 @@
 				</table>
 				<div id="textbox" style="margin-top: 20px">
 					<div class="alignleft" style="margin-left: 180px"><b> Istimewa : 85 - 95</b></div>
-					<div class="alignleft" style="margin-left: 150px"><b>Baik : 75 - 84</b></div>
+					<div class="alignleft" style="margin-left: 150px"><b style="display-none">Baik : 75 - 84</b></div>
 					<div class="alignright" style="margin-right: 210px"><b>Cukup : 65 - 74</b></div>
 				</div>
 			</div>
