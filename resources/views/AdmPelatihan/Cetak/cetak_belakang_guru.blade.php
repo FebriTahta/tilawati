@@ -533,8 +533,8 @@
 					<tr>
 						<th>1</th>
 						<td style="border-right: none">&nbsp; &nbsp;<b> Al-Qur'an</b></td>
-						<th colspan="3" class="pe3" style="border-left: none">{{ $jumlah = $p->nilai->where("kategori","al-qur'an")->sum('nominal') }}</th>
-						<th class=nilai2></th>
+						<th colspan="3" class="pe3" style="border-left: none"></th>
+						<th class=nilai2>{{ $jumlah = $p->nilai->where("kategori","al-qur'an")->sum('nominal') }}</th>
 					</tr>
 					@foreach ($p->nilai as $key=> $item)
 						@if ($item !== null)
@@ -554,7 +554,7 @@
 						<th>2</th>
 						<td style="border-right: none">&nbsp; &nbsp;<b> Praktek Munaqisy </b></td>
 						<th colspan="3" style="border-left: none"></th>
-						<th ></th>
+						<th >{{ $jumlah = $p->nilai->where("kategori","skill")->sum('nominal') / 3 }}</th>
 					</tr>
 					@foreach ($p->nilai as $key=> $item)
 						@if ($item !== null)
