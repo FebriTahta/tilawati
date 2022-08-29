@@ -520,7 +520,7 @@
 					<tr>
 							<th rowspan="2">No.</th>
 							<th rowspan="2" style="text-align: center;">Bidang Penilaian</th>
-							<th style="border-bottom:none"></th>
+							<th style="border-bottom:none; border-right:none"></th>
 							<th colspan="2" style="border-bottom:none"></th>
 							<th rowspan="2" style="text-align: center">Jumlah</th>
 					</tr>
