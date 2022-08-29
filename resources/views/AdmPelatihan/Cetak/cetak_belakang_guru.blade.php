@@ -510,8 +510,8 @@
 							<th rowspan="2" style="text-align: center">Jumlah</th>
 					</tr>
 					<tr>     
+						<th class="pe"></th>
 						<th class="pe">MAX</th>
-						{{-- <th class="pe"></th> --}}
 						<th class="pe">MIN</th>
 						
 					</tr>
