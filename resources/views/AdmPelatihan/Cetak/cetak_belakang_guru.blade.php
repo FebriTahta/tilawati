@@ -574,7 +574,7 @@
 					@if ($p->pelatihan->keterangan == 'guru')
 						<tr>
 							<th></th>
-							<td class="nilai6" style="border-right: none">&nbsp; &nbsp;<b> RATA - RATA NILAI</b></th>
+							<td class="nilai6" style="border-right: none">&nbsp; &nbsp;<b> </b></th>
 							<th style="border-left: none" colspan="3" class="nilai5"></th>
 							<th >
 							@if ($p->pelatihan->program->name=='munaqosyah santri')
