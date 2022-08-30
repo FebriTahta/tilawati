@@ -34,6 +34,18 @@ class PesertaCont extends Controller
         return view('tilawatipusat.peserta.index',compact('penilaian','pelatihan_id','diklat','kriteria','kab_kosong','lulus','belum_lulus'));
     }
 
+    public function remove_kecamatan_kelurahan($id)
+    {
+        $peserta = Peserta::findOrFail($id)->update(
+            [
+                'kecamatan_id'=>'',
+                'kelurahan_id'=>'',
+            ]
+        );
+
+        return redirect()->back();
+    }
+
     public function index2($id)
     {
         $pelatihan_id = $id;
