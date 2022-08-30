@@ -168,6 +168,7 @@
                         {{-- <button class="btn btn-info" type="submit">UPDATE DATA</button> --}}
                         <input type="submit" class="btn btn-info" value="UPDATE DATA" id="daftar">
                         <a href="/diklat-peserta/{{ $peserta->pelatihan_id }}" class="btn btn-secondary">Kembali</a>
+                        <a href="/remove-kecamatan-kelurahan/{{$peserta->id}}" class="btn btn-warning">Hapus Kecamatan & Kelurahan</a>
                     </div>
                 </div>
             </form>

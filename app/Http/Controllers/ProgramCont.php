@@ -17,6 +17,18 @@ class ProgramCont extends Controller
         return view('tilawatipusat.program.index');
     }
 
+    public function remove_kecamatan_kelurahan($id)
+    {
+        $peserta = Peserta::findOrFail($id)->update(
+            [
+                'kecamatan_id'=>'',
+                'kelurahan_id'=>'',
+            ]
+        );
+
+        return redirect()->back();
+    }
+
     public function program_data(Request $request)
     {
         if(request()->ajax())
