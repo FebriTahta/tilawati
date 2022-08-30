@@ -38,8 +38,8 @@ class PesertaCont extends Controller
     {
         $peserta = Peserta::findOrFail($id)->update(
             [
-                'kecamatan_id'=>'',
-                'kelurahan_id'=>'',
+                'kecamatan_id'=>null,
+                'kelurahan_id'=>null,
             ]
         );
 
