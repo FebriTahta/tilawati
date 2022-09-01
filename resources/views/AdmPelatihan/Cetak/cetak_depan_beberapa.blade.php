@@ -253,7 +253,7 @@
                                         @if ($item->pelatihan->cabang->name == 'Tilawati Gresik Al Hikmah')
                                             Kacab. Al Hikmah Gresik	
                                         @else
-                                            {{ 'Kacab. ' . ucfirst($item->pelatihan->cabang->name) . ' ' . ucfirst($kab) }}
+                                            {{ 'Kacab. ' . ucfirst($item->pelatihan->cabang->name) }}
                                         @endif
                                     @endif
                                 @else
