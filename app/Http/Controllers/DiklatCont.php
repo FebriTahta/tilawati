@@ -863,17 +863,17 @@ class DiklatCont extends Controller
 
     public function generate_qr(Request $request)
     {
-        // \QrCode::size(150)
-        // ->format('png') 
-        // // ->merge('assets/images/images.png', 0.3, true)
-        // ->generate('https://www.registrasi.nurulfalah.org/'.$request->slug, public_path('images/'.$request->slug.'.png'));
+        \QrCode::size(150)
+        ->format('png') 
+        // ->merge('assets/images/images.png', 0.3, true)
+        ->generate('https://registrasi.nurulfalah.org/'.$request->slug, public_path('images/'.$request->slug.'.png'));
             
-        //     return response()->json(
-        //         [
-        //           'success' => 'QR Dibuat',
-        //           'message' => 'QR Dibuat'
-        //         ]
-        //     );
+            return response()->json(
+                [
+                  'success' => 'QR Dibuat',
+                  'message' => 'QR Dibuat'
+                ]
+            );
     }
 
     public function download_qr(Request $request)
