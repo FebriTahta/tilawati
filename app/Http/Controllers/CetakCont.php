@@ -73,7 +73,11 @@ class CetakCont extends Controller
                     if ($pelatihan->cabang->name == 'Tilawati Gresik Al Hikmah') {
                         # code...
                         $jabatan     = 'Kacab. Al Hikmah '.strtolower($kabupaten);
-                    }else {
+                    }elseif ($pelatihan->cabang->name == 'Tilawati Citra Anak Sholeh') {
+                        # code...
+                        $jabatan     = 'Kacab. CAS Surabaya Jawa Timur';
+                    }
+                    else {
                         # code...
                         $jabatan     = 'Kacab. '.ucwords($pelatihan->cabang->name).' '.strtolower($pelatihan->cabang->kabupaten->provinsi->nama);
                     }
@@ -87,6 +91,9 @@ class CetakCont extends Controller
                     # code...
                     if ($pelatihan->cabang->name == 'Tilawati Gresik Al Hikmah') {
                         $jabatan     = 'Kacab. Al Hikmah '.strtolower($kabupaten);
+                    }elseif ($pelatihan->cabang->name == 'Tilawati Citra Anak Sholeh') {
+                        # code...
+                        $jabatan     = 'Kacab. CAS Surabaya Jawa Timur';
                     }else{
                         $jabatan     = 'Kacab. '.strtolower($kabupaten).' '.strtolower($pelatihan->cabang->kabupaten->provinsi->nama);
                     }
