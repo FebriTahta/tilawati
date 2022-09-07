@@ -238,6 +238,8 @@
 								@else
 									@if ($item->pelatihan->cabang->name == 'Tilawati Gresik Al Hikmah')
 										Kacab. Al Hikmah Gresik	
+									@elseif($item->pelatihan->cabang->name == 'Tilawati Citra Anak Sholeh')
+										Kacab. CAS Surabaya Jawa Timur
 									@else
 										{{ 'Kacab. '.ucfirst($item->pelatihan->cabang->name).' '.ucfirst($provinsi) }}
 									@endif
@@ -248,6 +250,8 @@
 								@else
 									@if ($item->pelatihan->cabang->name == 'Tilawati Gresik Al Hikmah')
 										Kacab. Al Hikmah Gresik	
+									@elseif($item->pelatihan->cabang->name == 'Tilawati Citra Anak Sholeh')
+										Kacab. CAS Surabaya Jawa Timur
 									@else
 										{{ 'Kacab. '.ucfirst($kab).' '.ucfirst($provinsi)}}
 									@endif
