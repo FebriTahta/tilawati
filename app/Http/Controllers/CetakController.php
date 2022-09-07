@@ -83,7 +83,7 @@ class CetakController extends Controller
         }else{
             if ($pelatihan->cabang->name == 'Tilawati Citra Anak Sholeh') {
                 # code...
-                $jabatan    = "Kacab. ".ucwords($pelatihan->cabang->name).' '.strtolower($kabupaten);
+                $jabatan    = "Kacab. CAS Surabaya Jawa Timur";
             }else {
                 # code...
                 $jabatan    = "Kacab. ".ucwords($pelatihan->cabang->name).' '.strtolower($kabupaten);
