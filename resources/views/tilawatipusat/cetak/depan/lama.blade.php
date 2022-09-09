@@ -81,33 +81,37 @@
 						<?php
                         if ($item->kabupaten !== null) {
                                 # code...
-                                if (substr($item->kabupaten->nama, 5, 3) == 'ADM') {
-                                    # code...
-                                    if ($item->kelurahan !== null && $item->kecamatan !== null) {
-                                        # code...
-                                        $text = $item->alamat . ' ' . substr($item->kelurahan->nama, 0) . ' ' . substr($item->kecamatan->nama, 0) . ' ' . substr($item->kabupaten->nama, 10);
+                                // if (substr($item->kabupaten->nama, 5, 3) == 'ADM') {
+                                //     # code...
+                                //     if ($item->kelurahan !== null && $item->kecamatan !== null) {
+                                //         # code...
+                                //         $text = $item->alamat . ' ' . substr($item->kelurahan->nama, 0) . ' ' . substr($item->kecamatan->nama, 0) . ' ' . substr($item->kabupaten->nama, 10);
 										
-                                    } else {
-                                        # code...
-                                        $text = $item->alamat . ' ' . substr($item->kabupaten->nama, 10);
-                                    }
-                                } else {
-                                    # code...
-                                    if ($item->kelurahan !== null && $item->kecamatan !== null) {
-                                        # code...
-										if ($item->kelurahan->nama == $item->kecamatan->nama) {
-											# code...
-											$text = $item->alamat . ' ' . substr($item->kecamatan->nama, 0) . ' ' . substr($item->kabupaten->nama, 5);
-										} else {
-											# code...
-											$text = $item->alamat . ' ' . substr($item->kelurahan->nama, 0) . ' ' . substr($item->kecamatan->nama, 0) . ' ' . substr($item->kabupaten->nama, 5);
-										}
+                                //     } else {
+                                //         # code...
+                                //         $text = $item->alamat . ' ' . substr($item->kabupaten->nama, 10);
+                                //     }
+                                // } else {
+                                //     # code...
+                                //     if ($item->kelurahan !== null && $item->kecamatan !== null) {
+                                //         # code...
+								// 		if ($item->kelurahan->nama == $item->kecamatan->nama) {
+								// 			# code...
+								// 			$text = $item->alamat . ' ' . substr($item->kecamatan->nama, 0) . ' ' . substr($item->kabupaten->nama, 5);
+								// 		} else {
+								// 			# code...
+								// 			$text = $item->alamat . ' ' . substr($item->kelurahan->nama, 0) . ' ' . substr($item->kecamatan->nama, 0) . ' ' . substr($item->kabupaten->nama, 5);
+								// 		}
 										
-                                    } else {
-                                        # code...
-                                        $text = $item->alamat . ' ' . substr($item->kabupaten->nama, 5);
-                                    }
-                                }
+                                //     } else {
+                                //         # code...
+                                //         $text = $item->alamat . ' ' . substr($item->kabupaten->nama, 5);
+                                //     }
+                                // }
+
+								$text = $item->alamat." ".substr($item->kabupaten->nama,5);
+
+								
                             } else {
                                 # code...
                                 $text = $item->alamat;
