@@ -396,7 +396,7 @@
 						<th></th>
 						<td class="nilai6">&nbsp; &nbsp;<b> RATA - RATA NILAI</b></th>
 						<th colspan="3" class="nilai5"></th>
-						<th >{{ $rata2 = round(($jumlah+$total)/3, 2) }}</th>
+						<th >{{ $rata2 = round(($jumlah+$total)/3) }}</th>
 					</tr>
 					<tr>
 						<th></th>
