@@ -296,14 +296,14 @@
 					@endforeach
 					
 					<?php 
-						$rata2 = $jumlah;
+						$rata2 = ($jumlah+$total)/4;
 
 					?>
 					<tr>
 						<th></th>
 						<td class="nilai6">&nbsp; &nbsp;<b> RATA - RATA NILAI</b></th>
 						<th colspan="3" class="nilai5"></th>
-						<th >{{ $rata2 = round(($jumlah+$total)/4) }}</th>
+						<th >{{ $rata2 = round($rata2) }}</th>
 					</tr>
 					<tr>
 						<th></th>
