@@ -10,6 +10,8 @@ use App\Models\Kpa;
 use DB;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use App\Models\Munaqisy;
+use App\Models\Supervisor;
 use Response;
 use Illuminate\Http\Request;
 
@@ -30,9 +32,11 @@ class DashboardCont extends Controller
         })->count();
         $trainer = Trainer::count();
         $kpa     = Kpa::count();
+        $munaqisy= Munaqisy::count();
+        $supervisor = Supervisor::count();
         $diklat = Pelatihan::orderBy('tanggal','desc')->limit(5)->get();
         $diklat_ini = $diklat->count();
-        return view('tilawatipusat.dashboard.index',compact('diklat','diklat_ini','cabang','santri','guru','lembaga','trainer','kpa','instruktur'));
+        return view('tilawatipusat.dashboard.index',compact('diklat','diklat_ini','cabang','santri','guru','lembaga','trainer','kpa','instruktur','supervisor','munaqisy'));
     }
 
     public function generate(Request $request){
