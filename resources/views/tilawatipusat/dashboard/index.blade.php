@@ -98,7 +98,7 @@
         .keterangan {
             /* font-family: 'BooBooKitty', sans-serif; */
             font-family: 'Poppins', sans-serif;
-            font-size: 18px !important;
+            font-size: 16px !important;
         }
     </style>
 
