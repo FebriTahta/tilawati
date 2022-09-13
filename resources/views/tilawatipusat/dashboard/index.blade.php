@@ -125,9 +125,9 @@
 
                     <div class="row">
                         <div class="col-sm-6">
-                            <div class="form-group">
+                            {{-- <div class="form-group">
                                 <span class="keterangan" style="font-size: 20px;"> MELATIH</span>
-                            </div>
+                            </div> --}}
                             <div class="form-group">
                                 <h5 class="number" style="font-size: 30px; font-weight: 700">{{number_format($santri,0,',','.')}} <span class="keterangan" style="font-size: 20px;"> SANTRI</span> </h5>
                             </div>
@@ -140,9 +140,9 @@
                         </div>
 
                         <div class="col-sm-6">
-                            <div class="form-group">
+                            {{-- <div class="form-group">
                                 <span class="keterangan" style="font-size: 20px;"> MEMILIKI</span>
-                            </div>
+                            </div> --}}
                             <div class="form-group">
                                 <h5 class="number" style="font-size: 30px; font-weight: 700">{{number_format(($cabang-1),0,',','.')}} <span class="keterangan" style="font-size: 20px;"> CABANG</span> </h5>
                             </div>
