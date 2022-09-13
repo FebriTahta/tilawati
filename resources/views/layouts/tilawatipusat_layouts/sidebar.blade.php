@@ -112,7 +112,7 @@
                         <span style="font-size: 12px">E Syahadah</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a style="font-size: 12px" href="{{ route('diklat.depan_guru') }}">Unduh E Syahadah</a>
+                        <li><a style="font-size: 12px" href="#">Unduh E Syahadah</a>
                         </li>
                     </ul>
                 </li>

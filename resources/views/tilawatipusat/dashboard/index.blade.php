@@ -118,6 +118,9 @@
         @endslot
     @endcomponent
     <div class="row">
+        <div class="col-xl-12" style="margin-bottom: 20px">
+            <button class="btn btn-primary" data-toggle="modal" data-target="#mod_cabang2" style="width: 100%">LAPORAN PERKEMBANGAN</button>
+        </div>
         <div class="col-xl-6">
             <div class="card" style="min-height: 470px">
                 <div class="card-body">
@@ -374,6 +377,58 @@
         </div>
         <!-- /.modal-dialog -->
     </div>
+
+    <div class="modal fade bs-example-modal-xl-2" id="mod_cabang2" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">DAFTAR CABANG YANG MENGADAKAN DIKLAT</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
+                        <div style="text-align: center">
+                            <form action="/export-laporan-data-cabang" method="POST">@csrf
+                                <input type="text" id="dari_download" name="dari" class="form-control mb-2" readonly>
+                                <input type="text" id="sampai_download" name="sampai" class="form-control mb-2" readonly>
+                                <button type="submit" class="btn btn-sm btn-primary">DOWNLOAD DATA</button>
+                            </form>
+                        </div>
+                        
+                        <table id="datatable-buttons2" class="table table-diklat-cabang table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
+                            <thead class="text-bold text-primary">
+                                <tr>
+                                    <th>CABANG</th>
+                                    <th>TOTAL DIKLAT</th>
+                                    <th>PROGRAM DIKLAT</th>
+                                    <th>GURU</th>
+                                    <th>SANTRI</th>
+                                </tr>
+                            </thead>
+    
+                            <tbody style="text-transform: uppercase; font-size: 12px">
+                            </tbody>
+    
+                            <tfoot class="text-bold text-primary">
+                                <tr>
+                                    <th>CABANG</th>
+                                    <th>TOTAL</th>
+                                    <th>PROGRAM DIKLAT</th>
+                                    <th>GURU</th>
+                                    <th>SANTRI</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                        <footer class="blockquote-footer">Updated at  <cite title="Source Title">2021</cite></footer>
+                    </blockquote>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
 @endsection
 
 @section('script')
@@ -416,6 +471,43 @@
 
             function load_data(dari = '', sampai = '') {
 
+                $('.table-diklat-cabang').DataTable({
+                        //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
+                        "columnDefs": [
+                            { "type": "numeric-comma", targets: "_all" }
+                        ],
+                        destroy: true,
+                        processing: true,
+                        serverSide: true,
+                        ajax: {
+                            url:'{{ route("diklat.peserta_cabang_pilih") }}',
+                            data:{dari:dari, sampai:sampai}
+                        },
+                        columns: [
+                            {
+                            data:'cabang',
+                            name:'name'
+                            },
+                            {
+                            data:'jumlahdiklat',
+                            name:'jumlahdiklat'
+                            },
+                            {
+                            data:'namadiklat',
+                            name:'namadiklat'
+                            },
+                            {
+                            data:'total_guru',
+                            name:'total_guru'
+                            },
+                            {
+                            data:'total_santri',
+                            name:'total_santri'
+                            },
+                            
+                        ]
+                    });
+                    
                 // $.ajax({
                 //     url: '{{ route('diklat.cabang_tot') }}',
                 //     data: {
@@ -494,6 +586,8 @@
                     }
                 });
             }
+
+            
 
             $('#filter').click(function() {
                 var dari = $('#dari').val();
