@@ -92,12 +92,13 @@
         
         .number {
             font-family: 'Poppins', sans-serif;
-            font-size: 30px !important;
+            font-size: 25px !important;
         }
 
         .keterangan {
             /* font-family: 'BooBooKitty', sans-serif; */
             font-family: 'Poppins', sans-serif;
+            font-size: 18px !important;
         }
     </style>
 
