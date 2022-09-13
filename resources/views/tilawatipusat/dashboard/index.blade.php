@@ -92,7 +92,7 @@
         
         .number {
             font-family: 'Poppins', sans-serif;
-            font-size: 25px !important;
+            font-size: 30px !important;
         }
 
         .keterangan {
