@@ -135,7 +135,7 @@
                                 <h5 class="number" style="font-size: 30px; font-weight: 700">{{number_format($guru,0,',','.')}} <span class="keterangan" style="font-size: 20px;"> GURU </span> </h5>
                             </div>
                             <div class="form-group">
-                                <h5 class="number" style="font-size: 30px; font-weight: 700">{{number_format($trainer_diklat,0,',','.')}} <span class="keterangan" style="font-size: 20px;"> TRAINER</span> </h5>
+                                <h5 class="number" style="font-size: 30px; font-weight: 700">{{number_format($instruktur,0,',','.')}} <span class="keterangan" style="font-size: 20px;"> INSTRUKTUR</span> </h5>
                             </div>
                         </div>
 
