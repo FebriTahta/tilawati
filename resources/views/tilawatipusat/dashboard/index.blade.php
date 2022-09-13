@@ -30,7 +30,7 @@
 
     <link href="https://fonts.cdnfonts.com/css/sannisa" rel="stylesheet">
 
-    <link href="http://fonts.cdnfonts.com/css/poppins" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/poppins" rel="stylesheet">
 
      <!-- Make sure you put this AFTER Leaflet's CSS -->
     <style>
