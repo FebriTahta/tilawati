@@ -26,7 +26,7 @@ class DashboardCont extends Controller
             $query->where('keterangan','guru');
         })->count();
         $trainer_diklat = Peserta::whereHas('pelatihan',function($query){
-            $query->where('keterangan','trainer');
+            $query->where('keterangan','instruktur');
         })->count();
         $trainer = Trainer::count();
         $kpa     = Kpa::count();
