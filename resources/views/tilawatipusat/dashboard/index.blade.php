@@ -155,6 +155,12 @@
                             <div class="form-group">
                                 <h5 class="number" style="font-size: 30px; font-weight: 700">{{number_format($trainer,0,',','.')}} <span class="keterangan" style="font-size: 20px;"> TRAINER</span> </h5>
                             </div>
+                            <div class="form-group">
+                                <h5 class="number" style="font-size: 30px; font-weight: 700">{{number_format($munaqisy,0,',','.')}} <span class="keterangan" style="font-size: 20px;"> MUNAQISY</span> </h5>
+                            </div>
+                            <div class="form-group">
+                                <h5 class="number" style="font-size: 30px; font-weight: 700">{{number_format($supervisor,0,',','.')}} <span class="keterangan" style="font-size: 20px;"> SUPERVISOR</span> </h5>
+                            </div>
                         </div>
 
 
