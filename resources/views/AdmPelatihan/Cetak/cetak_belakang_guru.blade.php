@@ -236,487 +236,487 @@
 		<?php $total = 0;?>
 		{{-- @if ($p->pelatihan->keterangan == 'instruktur') --}}
 			@if ($p->kriteria == 'SEBAGAI INSTRUKTUR LAGU DAN STRATEGI MENGAJAR METODE TILAWATI')
-			<div style="page-break-inside: avoid">
-				<div>
-					<p @if ($p->pelatihan->keterangan == 'instruktur') style="margin-top: 160px;margin-left: 358px" @else style="margin-top: 160px;margin-left: 358px" @endif class="syahadah">No. Syahadah : {{ $p->pelatihan->id }}/2022/{{ $p->id }}</p>
-				</div>
-				<table 
-				@if ($p->pelatihan->keterangan == 'instruktur')
-				style="width: 850px; margin-left:85px"
-				@else
-				style="width: 782px; margin-left:154px"
-				@endif  class="table1">
-					<tr>
-							<th rowspan="2">No.</th>
-							<th rowspan="2">Bidang Penilaian</th>
-							<th colspan="3" class="penilaian">Penilaian</th>
-							<th rowspan="2" style="text-align: center">Jumlah</th>
-					</tr>
-					<tr>     
-						<th class="pe">Max</th>
-						<th class="pe">Min</th>
-						<th class="pe">Nilai</th>
-						
-					</tr>
-					<tr>
-						<th>1</th>
-						<td>&nbsp; &nbsp;<b> Al-Qur'an</b></td>
-						<th colspan="3" class="pe3"></th>
-						<th >{{ $jumlah = $p->nilai->where("kategori","al-qur'an")->sum('nominal') }}</th>
-					</tr>
-					<?php $i = 2; $x = 1; $z = 5?>
-					@foreach ($p->nilai as $key=> $item)
-						@if ($item !== null)
-							@if ($item->kategori !== 'skill')
-								<tr>
-									<td class="pop"></td>
-									<td class="pop2" >&nbsp; &nbsp;&nbsp;<span style="text-transform: capitalize">{{ $item->penilaian->name }}</span></td>
-									<td class="nilai" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->max }}</td>
-									<td class="nilai2" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->min}}</td>
-									<td class="nilai3" style="text-align: center">&nbsp; &nbsp;{{ $item->nominal }}</td>
-									<td style="border-top: 0;border-bottom: 0;"></td>
-								</tr>
-								<?php $z--; ?>
-							@else
-								<tr>
-									<th>{{ $i++ }}</th>
-									<td class="nilai6" style="text-transform: uppercase">&nbsp; &nbsp;<b> {{ $item->penilaian->name }}</b></th>
-									{{-- <th colspan="3" class="nilai5"></th> --}}
-									<td class="nilaibawahtot" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->max }}</td>
-									<td class="nilaibawahtot" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->min }}</td>
-									<td class="nilaibawahtot"></td>
-									<th >{{ $item->nominal }}</th>
-									<?php $total += $item->nominal?>
-								</tr>
-								<?$x++?>
-							@endif
-						@else
-							{{--  --}}
-						@endif
-					@endforeach
-					
-					<?php 
-						$rata2 = ($jumlah+$total)/4;
-
-					?>
-					<tr>
-						<th></th>
-						<td class="nilai6">&nbsp; &nbsp;<b> RATA - RATA NILAI</b></th>
-						<th colspan="3" class="nilai5"></th>
-						<th >{{ $rata2 = round($rata2) }}</th>
-					</tr>
-					<tr>
-						<th></th>
-						<td class="nilai6">&nbsp; &nbsp;<b> PRESTASI</b></th>
-						<th colspan="3" class="nilai5"></th> 
-						<th >
-							@if ($rata2 >= 85)
-								Baik
-							@else
-								Cukup
-							@endif
-						</th>
-					</tr>
-				</table>
-				<div id="textbox" style="margin-top: 20px">
-					<div class="alignleft" style="margin-left: 180px">Baik : 85 - 95</div>
-					<div class="alignright" style="margin-right: 210px">Cukup : 75 - 84</div>
-				</div>
-			</div>
-			@elseif ($p->kriteria == 'SEBAGAI INSTRUKTUR STRATEGI MENGAJAR METODE TILAWATI')
-			<div style="page-break-inside: avoid">
-				<div>
-					<p @if ($p->pelatihan->keterangan == 'instruktur') style="margin-top: 160px;margin-left: 358px" @else style="margin-top: 160px;margin-left: 358px" @endif class="syahadah">No. Syahadah : {{ $p->pelatihan->id }}/2022/{{ $p->id }}</p>
-				</div>
-				<table 
-				@if ($p->pelatihan->keterangan == 'instruktur')
-				style="width: 850px; margin-left:85px"
-				@else
-				style="width: 782px; margin-left:154px"
-				@endif  class="table1">
-					<tr>
-							<th rowspan="2">No.</th>
-							<th rowspan="2">Bidang Penilaian</th>
-							<th colspan="3" class="penilaian">Penilaian</th>
-							<th rowspan="2" style="text-align: center">Jumlah</th>
-					</tr>
-					<tr>     
-						<th class="pe">Max</th>
-						<th class="pe">Min</th>
-						<th class="pe">Nilai</th>
-						
-					</tr>
-					<tr>
-						<th>1</th>
-						<td>&nbsp; &nbsp;<b> Al-Qur'an</b></td>
-						<th colspan="3" class="pe3"></th>
-						<th >{{ $jumlah = $p->nilai->where("kategori","al-qur'an")->sum('nominal') }}</th>
-					</tr>
-					<?php $i = 2; $x = 1; $z = 5?>
-					@foreach ($p->nilai as $key=> $item)
-						@if ($item !== null)
-							@if ($item->kategori !== 'skill')
-								<tr>
-									<td class="pop"></td>
-									<td class="pop2" >&nbsp; &nbsp;&nbsp;<span style="text-transform: capitalize">{{ $item->penilaian->name }}</span></td>
-									<td class="nilai" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->max }}</td>
-									@if ($key < 1)
-									<td class="nilai2" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->min - 1}}</td>
-									@else
-									<td class="nilai2" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->min - $z}}</td>
-									@endif
-									<td class="nilai3" style="text-align: center">&nbsp; &nbsp;{{ $item->nominal }}</td>
-									<td style="border-top: 0;border-bottom: 0;"></td>
-								</tr>
-								<?php $z--; ?>
-							@else
-								<tr>
-									<th>{{ $i++ }}</th>
-									<td class="nilai6" style="text-transform: uppercase">&nbsp; &nbsp;<b> {{ $item->penilaian->name }}</b></th>
-									{{-- <th colspan="3" class="nilai5"></th> --}}
-									<td class="nilaibawahtot" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->max }}</td>
-									<td class="nilaibawahtot" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->min }}</td>
-									<td class="nilaibawahtot"></td>
-									<th >{{ $item->nominal }}</th>
-									<?php $total += $item->nominal?>
-								</tr>
-								<?$x++?>
-							@endif
-						@else
-							{{--  --}}
-						@endif
-					@endforeach
-					
-					<?php 
-						$nilaia = $p->nilai->where('penilaian_id', 37)->sum('nominal');
-						$nilaib = $p->nilai->where('penilaian_id', 39)->sum('nominal');
-						$total 	= $nilaia + $nilaib;
-					?>
-					<tr>
-						<th></th>
-						<td class="nilai6">&nbsp; &nbsp;<b> RATA - RATA NILAI</b></th>
-						<th colspan="3" class="nilai5"></th>
-						<th >{{ $rata2 = round(($jumlah+$total)/3) }}</th>
-					</tr>
-					<tr>
-						<th></th>
-						<td class="nilai6">&nbsp; &nbsp;<b> PRESTASI</b></th>
-						<th colspan="3" class="nilai5"></th> 
-						<th >
-							@if ($rata2 >= 85)
-								Baik
-							@else
-								Cukup
-							@endif
-						</th>
-					</tr>
-				</table>
-				<div id="textbox" style="margin-top: 20px">
-					<div class="alignleft" style="margin-left: 180px">Baik : 85 - 95</div>
-					<div class="alignright" style="margin-right: 210px">Cukup : 75 - 84</div>
-				</div>
-			</div>
-			@elseif($p->kriteria == 'SEBAGAI INSTRUKTUR LAGU METODE TILAWATI')
-			<div style="page-break-inside: avoid">
-				<div>
-					<p @if ($p->pelatihan->keterangan == 'instruktur') style="margin-top: 160px;margin-left: 358px" @else style="margin-top: 160px;margin-left: 358px" @endif class="syahadah">No. Syahadah : {{ $p->pelatihan->id }}/2022/{{ $p->id }}</p>
-				</div>
-				<table 
-				@if ($p->pelatihan->keterangan == 'instruktur')
-				style="width: 850px; margin-left:85px"
-				@else
-				style="width: 782px; margin-left:154px"
-				@endif  class="table1">
-					<tr>
-							<th rowspan="2">No.</th>
-							<th rowspan="2">Bidang Penilaian</th>
-							<th colspan="3" class="penilaian">Penilaian</th>
-							<th rowspan="2" style="text-align: center">Jumlah</th>
-					</tr>
-					<tr>     
-						<th class="pe">Max</th>
-						<th class="pe">Min</th>
-						<th class="pe">Nilai</th>
-						
-					</tr>
-					<tr>
-						<th>1</th>
-						<td>&nbsp; &nbsp;<b> Al-Qur'an</b></td>
-						<th colspan="3" class="pe3"></th>
-						<th >{{ $jumlah = $p->nilai->where("kategori","al-qur'an")->sum('nominal') }}</th>
-					</tr>
-					<?php $i = 2; $x = 1; $z = 5?>
-					@foreach ($p->nilai as $key=> $item)
-						@if ($item !== null)
-							@if ($item->kategori !== 'skill')
-								<tr>
-									<td class="pop"></td>
-									<td class="pop2" >&nbsp; &nbsp;&nbsp;<span style="text-transform: capitalize">{{ $item->penilaian->name }}</span></td>
-									<td class="nilai" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->max }}</td>
-									<td class="nilai2" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->min}}</td>
-									<td class="nilai3" style="text-align: center">&nbsp; &nbsp;{{ $item->nominal }}</td>
-									<td style="border-top: 0;border-bottom: 0;"></td>
-								</tr>
-								<?php $z--; ?>
-							@else
-								<tr>
-									<?php $tot[$key] = $item->nominal?>
-									
-									<th>{{ $i++ }}</th>
-									<td class="nilai6" style="text-transform: uppercase">&nbsp; &nbsp;<b> {{ $item->penilaian->name }}</b></th>
-									{{-- <th colspan="3" class="nilai5"></th> --}}
-									<td class="nilaibawahtot" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->max }}</td>
-									<td class="nilaibawahtot" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->min }}</td>
-									<td class="nilaibawahtot"></td>
-									<th >{{ $item->nominal }}</th>
-									
-								</tr>
-								<?$x++?>
-							@endif
-						@else
-							{{--  --}}
-						@endif
-					@endforeach
-					<?php 
-						$nilaia = $p->nilai->where('penilaian_id', 38)->sum('nominal');
-						$nilaib = $p->nilai->where('penilaian_id', 39)->sum('nominal');
-						$total 	= $nilaia + $nilaib;
-					?>
-					<tr>
-						<th></th>
-						<td class="nilai6">&nbsp; &nbsp;<b> RATA - RATA NILAI</b></th>
-						<th colspan="3" class="nilai5"></th>
-						<th >{{ $rata2 = round(($jumlah+$total)/3) }}</th>
-					</tr>
-					
-					<tr>
-						<th></th>
-						<td class="nilai6">&nbsp; &nbsp;<b> PRESTASI</b></th>
-						<th colspan="3" class="nilai5"></th> 
-						<th >
-							@if ($rata2 >= 85)
-								Baik
-							@else
-								Cukup
-							@endif
-						</th>
-					</tr>
-				</table>
-				<div id="textbox" style="margin-top: 20px">
-					<div class="alignleft" style="margin-left: 180px">Baik : 85 - 95</div>
-					<div class="alignright" style="margin-right: 210px">Cukup : 75 - 84</div>
-				</div>
-			</div>
-			@elseif($p->program->name == 'Diklat Munaqisy Cabang')
-
-			{{-- munaqisy cabang --}}
-			<div style="page-break-inside: avoid; font-size: 10px">
-				<div>
-					<p style="margin-top: 140px;margin-left: 358px" class="syahadah">No. Syahadah : {{ $p->pelatihan->id }}/2022/{{ $p->id }}</p>
-				</div>
-				<table 
-				style="width: 782px; margin-left:154px"
-				class="table1">
-					<tr>
-							<th rowspan="2">No.</th>
-							<th rowspan="2" style="text-align: center;">Bidang Penilaian</th>
-							{{-- <th style="border:none"></th> --}}
-							<th colspan="3" style="border-bottom:none"></th>
-							<th rowspan="2" style="text-align: center">Jumlah</th>
-					</tr>
-					<tr>     
-						<th class="pe">MIN</th>
-						<th class="pe">MAX</th>
-						<th class="pe">NILAI</th>
-						
-					</tr>
-					<tr>
-						<th>1</th>
-						<td style="border-right: none">&nbsp; &nbsp;<b> Al-Qur'an</b></td>
-						<th colspan="3" class="pe3" style="border-left: none"></th>
-						<th class=nilai2>{{ $jumlah = $p->nilai->where("kategori","al-qur'an")->sum('nominal') }}</th>
-					</tr>
-					@foreach ($p->nilai as $key=> $item)
-						@if ($item !== null)
-							@if ($item->kategori !== 'skill')
-								<tr>
-									<td class="pop"></td>
-									<td class="pop2" style="border-right: none">&nbsp; &nbsp;&nbsp;<span style="text-transform: capitalize; ">{{ $item->penilaian->name }}</span></td>
-									<td class="nilai" style="text-align: center; " >{{$item->penilaian->min}}</td>
-									<td class="nilai2" style="text-align: center">{{$item->penilaian->max}}</td>
-									<td class="nilai3" style="text-align: center">{{ $item->nominal }}</td>
-									<th style="border-top: 0;border-bottom: 0;"></th>
-								</tr>
-							@endif
-						@endif
-					@endforeach
-					<tr>
-						<th>2</th>
-						<td style="border-right: none">&nbsp; &nbsp;<b> Praktek Munaqisy </b></td>
-						<th colspan="3" style="border-left: none"></th>
-						<th >{{ $jumlah = round($p->nilai->where("kategori","skill")->sum('nominal') / 3) }}</th>
-					</tr>
-					@foreach ($p->nilai as $key=> $item)
-						@if ($item !== null)
-							@if ($item->kategori == 'skill')
-								<tr>
-									<td class="pop"></td>
-									<td class="pop2" style="border-right: none">&nbsp; &nbsp;&nbsp;<span style="text-transform: capitalize; ">{{ $item->penilaian->name }}</span></td>
-									<td class="nilai" style="text-align: center; " >{{$item->penilaian->min}}</td>
-									<td class="nilai2" style="text-align: center">{{$item->penilaian->max}}</td>
-									<td class="nilai3" style="text-align: center">{{$item->nominal}}</td>
-									<th style="border-top: 0;border-bottom: 0;"></th>
-								</tr>
-							@endif
-						@endif
-					@endforeach
-
-					@if ($p->pelatihan->keterangan == 'guru')
-						<tr>
-							<th></th>
-							<td class="nilai6" style="border-right: none">&nbsp; &nbsp;<b> RATA - RATA NILAI</b></th>
-							<th style="border-left: none" colspan="3" class="nilai5"></th>
-							<th >
-							@if ($p->pelatihan->program->name=='munaqosyah santri')
-								{{ $rata2 = $jumlah }}
-							@elseif($p->program->name == 'Diklat Munaqisy Cabang')
-								@php
-									$x = $p->nilai->where("kategori","al-qur'an")->sum('nominal');
-									$y = $p->nilai->where("kategori","skill")->sum('nominal');
-									$z = $p->nilai->where("kategori","skill")->count();
-									$satu  = $x;
-									$dua   = round($y / $z);
-									$rata2 = round(($satu+$dua)/2);
-								@endphp
-								{{$rata2}}
-							@else
-								{{ $rata2 = ($jumlah+ $item->nominal)/2 }}
-							@endif
-								</th>
-						</tr>
+				<div style="page-break-inside: avoid">
+					<div>
+						<p @if ($p->pelatihan->keterangan == 'instruktur') style="margin-top: 160px;margin-left: 358px" @else style="margin-top: 160px;margin-left: 358px" @endif class="syahadah">No. Syahadah : {{ $p->pelatihan->id }}/2022/{{ $p->id }}</p>
+					</div>
+					<table 
+					@if ($p->pelatihan->keterangan == 'instruktur')
+					style="width: 850px; margin-left:85px"
 					@else
-					<?php 
-						$rata2 = $jumlah
-					?>
-					@endif
-					<tr>
-						<th></th>
-						<td class="nilai6" style="border-right: none">&nbsp; &nbsp;<b> PRESTASI</b></th>
-						<th colspan="3" style="border-left: none" class="nilai5"></th> 
-						<th >
-							@if ($rata2 >= 85)
-								Istimewa
-							@elseif($rata2 > 74 && $rata2 < 85)
-								Baik
+					style="width: 782px; margin-left:154px"
+					@endif  class="table1">
+						<tr>
+								<th rowspan="2">No.</th>
+								<th rowspan="2">Bidang Penilaian</th>
+								<th colspan="3" class="penilaian">Penilaian</th>
+								<th rowspan="2" style="text-align: center">Jumlah</th>
+						</tr>
+						<tr>     
+							<th class="pe">Max</th>
+							<th class="pe">Min</th>
+							<th class="pe">Nilai</th>
+							
+						</tr>
+						<tr>
+							<th>1</th>
+							<td>&nbsp; &nbsp;<b> Al-Qur'an</b></td>
+							<th colspan="3" class="pe3"></th>
+							<th >{{ $jumlah = $p->nilai->where("kategori","al-qur'an")->sum('nominal') }}</th>
+						</tr>
+						<?php $i = 2; $x = 1; $z = 5?>
+						@foreach ($p->nilai as $key=> $item)
+							@if ($item !== null)
+								@if ($item->kategori !== 'skill')
+									<tr>
+										<td class="pop"></td>
+										<td class="pop2" >&nbsp; &nbsp;&nbsp;<span style="text-transform: capitalize">{{ $item->penilaian->name }}</span></td>
+										<td class="nilai" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->max }}</td>
+										<td class="nilai2" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->min}}</td>
+										<td class="nilai3" style="text-align: center">&nbsp; &nbsp;{{ $item->nominal }}</td>
+										<td style="border-top: 0;border-bottom: 0;"></td>
+									</tr>
+									<?php $z--; ?>
+								@else
+									<tr>
+										<th>{{ $i++ }}</th>
+										<td class="nilai6" style="text-transform: uppercase">&nbsp; &nbsp;<b> {{ $item->penilaian->name }}</b></th>
+										{{-- <th colspan="3" class="nilai5"></th> --}}
+										<td class="nilaibawahtot" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->max }}</td>
+										<td class="nilaibawahtot" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->min }}</td>
+										<td class="nilaibawahtot"></td>
+										<th >{{ $item->nominal }}</th>
+										<?php $total += $item->nominal?>
+									</tr>
+									<?$x++?>
+								@endif
 							@else
-								Cukup
+								{{--  --}}
 							@endif
-						</th>
-					</tr>
-				</table>
-				<div id="textbox" style="margin-top: 20px">
-					<div class="alignleft" style="margin-left: 180px"><b> Istimewa : 85 - 95</b></div>
-					<div class="alignleft" style="margin-left: 150px"><b style="display-none">Baik : 75 - 84</b></div>
-					<div class="alignright" style="margin-right: 210px"><b>Cukup : 65 - 74</b></div>
-				</div>
-			</div>
-			@else
-			<div style="page-break-inside: avoid">
-				<div>
-					<p style="margin-top: 160px;margin-left: 358px" class="syahadah">No. Syahadah : {{ $p->pelatihan->id }}/2022/{{ $p->id }}</p>
-				</div>
-				<table 
-				style="width: 782px; margin-left:154px"
-				class="table1">
-					<tr>
-							<th rowspan="2">No.</th>
-							<th rowspan="2">Bidang Penilaian</th>
-							<th colspan="3" class="penilaian">Penilaian</th>
-							<th rowspan="2" style="text-align: center">Jumlah</th>
-					</tr>
-					<tr>     
-						<th class="pe">Max</th>
-						<th class="pe">Min</th>
-						<th class="pe">Nilai</th>
+						@endforeach
 						
-					</tr>
-					<tr>
-						<th>1</th>
-						<td>&nbsp; &nbsp;<b> Al-Qur'an</b></td>
-						<th colspan="3" class="pe3"></th>
-						<th >{{ $jumlah = $p->nilai->where("kategori","al-qur'an")->sum('nominal') }}</th>
-					</tr>
-					<?php $i = 2; $x = 1?>
-					@foreach ($p->nilai as $key=> $item)
-						@if ($item !== null)
-							@if ($item->kategori !== 'skill')
-								<tr>
-									<td class="pop"></td>
-									<td class="pop2" >&nbsp; &nbsp;&nbsp;<span style="text-transform: capitalize">{{ $item->penilaian->name }}</span></td>
-									<td class="nilai" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->max }}</td>
-									<td class="nilai2" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->min }}</td>
-									<td class="nilai3" style="text-align: center">&nbsp; &nbsp;{{ $item->nominal }}</td>
-									<td style="border-top: 0;border-bottom: 0;"></td>
-								</tr>
-							@else
-								<tr>
-									<th>{{ $i++ }}</th>
-									<td class="nilai6" style="text-transform: uppercase">&nbsp; &nbsp;<b> {{ $item->penilaian->name }}</b></th>
-									<th colspan="3" class="nilai5"></th>
-									<th >{{ $item->nominal }}</th>
-								</tr>
-								<?$x++?>
-							@endif
-						@else
-							{{--  --}}
-						@endif
-					@endforeach
-					@if ($p->pelatihan->keterangan == 'guru')
+						<?php 
+							$rata2 = ($jumlah+$total)/4;
+
+						?>
 						<tr>
 							<th></th>
 							<td class="nilai6">&nbsp; &nbsp;<b> RATA - RATA NILAI</b></th>
 							<th colspan="3" class="nilai5"></th>
-							<th >
-							@if ($p->pelatihan->program->name=='munaqosyah santri')
-								{{ $rata2 = $jumlah }}
-							@elseif($p->program->name == 'Diklat Munaqisy Cabang')
-								@php
-									$x = $p->nilai->where("kategori","al-qur'an")->sum('nominal');
-									$y = $p->nilai->where("kategori","skill")->sum('nominal');
-									$z = $p->nilai->where("kategori","skill")->count();
-									$satu  = $x;
-									$dua   = round($y / $z);
-									$rata2 = round(($satu+$dua)/2);
-								@endphp
-								{{$rata2}}
-							@else
-								{{ $rata2 = ($jumlah+ $item->nominal)/2 }}
-							@endif
-								</th>
+							<th >{{ $rata2 = round($rata2) }}</th>
 						</tr>
-					@else
-					<?php 
-						$rata2 = $jumlah
-					?>
-					@endif
-					<tr>
-						<th></th>
-						<td class="nilai6">&nbsp; &nbsp;<b> PRESTASI</b></th>
-						<th colspan="3" class="nilai5"></th> 
-						<th >
-							@if ($rata2 >= 85)
-								Baik
-							@else
-								Cukup
-							@endif
-						</th>
-					</tr>
-				</table>
-				<div id="textbox" style="margin-top: 20px">
-					<div class="alignleft" style="margin-left: 180px">Baik : 85 - 95</div>
-					<div class="alignright" style="margin-right: 210px">Cukup : 75 - 84</div>
+						<tr>
+							<th></th>
+							<td class="nilai6">&nbsp; &nbsp;<b> PRESTASI</b></th>
+							<th colspan="3" class="nilai5"></th> 
+							<th >
+								@if ($rata2 >= 85)
+									Baik
+								@else
+									Cukup
+								@endif
+							</th>
+						</tr>
+					</table>
+					<div id="textbox" style="margin-top: 20px">
+						<div class="alignleft" style="margin-left: 180px">Baik : 85 - 95</div>
+						<div class="alignright" style="margin-right: 210px">Cukup : 75 - 84</div>
+					</div>
 				</div>
-			</div>
+			@elseif ($p->kriteria == 'SEBAGAI INSTRUKTUR STRATEGI MENGAJAR METODE TILAWATI')
+				<div style="page-break-inside: avoid">
+					<div>
+						<p @if ($p->pelatihan->keterangan == 'instruktur') style="margin-top: 160px;margin-left: 358px" @else style="margin-top: 160px;margin-left: 358px" @endif class="syahadah">No. Syahadah : {{ $p->pelatihan->id }}/2022/{{ $p->id }}</p>
+					</div>
+					<table 
+					@if ($p->pelatihan->keterangan == 'instruktur')
+					style="width: 850px; margin-left:85px"
+					@else
+					style="width: 782px; margin-left:154px"
+					@endif  class="table1">
+						<tr>
+								<th rowspan="2">No.</th>
+								<th rowspan="2">Bidang Penilaian</th>
+								<th colspan="3" class="penilaian">Penilaian</th>
+								<th rowspan="2" style="text-align: center">Jumlah</th>
+						</tr>
+						<tr>     
+							<th class="pe">Max</th>
+							<th class="pe">Min</th>
+							<th class="pe">Nilai</th>
+							
+						</tr>
+						<tr>
+							<th>1</th>
+							<td>&nbsp; &nbsp;<b> Al-Qur'an</b></td>
+							<th colspan="3" class="pe3"></th>
+							<th >{{ $jumlah = $p->nilai->where("kategori","al-qur'an")->sum('nominal') }}</th>
+						</tr>
+						<?php $i = 2; $x = 1; $z = 5?>
+						@foreach ($p->nilai as $key=> $item)
+							@if ($item !== null)
+								@if ($item->kategori !== 'skill')
+									<tr>
+										<td class="pop"></td>
+										<td class="pop2" >&nbsp; &nbsp;&nbsp;<span style="text-transform: capitalize">{{ $item->penilaian->name }}</span></td>
+										<td class="nilai" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->max }}</td>
+										@if ($key < 1)
+										<td class="nilai2" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->min - 1}}</td>
+										@else
+										<td class="nilai2" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->min - $z}}</td>
+										@endif
+										<td class="nilai3" style="text-align: center">&nbsp; &nbsp;{{ $item->nominal }}</td>
+										<td style="border-top: 0;border-bottom: 0;"></td>
+									</tr>
+									<?php $z--; ?>
+								@else
+									<tr>
+										<th>{{ $i++ }}</th>
+										<td class="nilai6" style="text-transform: uppercase">&nbsp; &nbsp;<b> {{ $item->penilaian->name }}</b></th>
+										{{-- <th colspan="3" class="nilai5"></th> --}}
+										<td class="nilaibawahtot" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->max }}</td>
+										<td class="nilaibawahtot" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->min }}</td>
+										<td class="nilaibawahtot"></td>
+										<th >{{ $item->nominal }}</th>
+										<?php $total += $item->nominal?>
+									</tr>
+									<?$x++?>
+								@endif
+							@else
+								{{--  --}}
+							@endif
+						@endforeach
+						
+						<?php 
+							$nilaia = $p->nilai->where('penilaian_id', 37)->sum('nominal');
+							$nilaib = $p->nilai->where('penilaian_id', 39)->sum('nominal');
+							$total 	= $nilaia + $nilaib;
+						?>
+						<tr>
+							<th></th>
+							<td class="nilai6">&nbsp; &nbsp;<b> RATA - RATA NILAI</b></th>
+							<th colspan="3" class="nilai5"></th>
+							<th >{{ $rata2 = round(($jumlah+$total)/3) }}</th>
+						</tr>
+						<tr>
+							<th></th>
+							<td class="nilai6">&nbsp; &nbsp;<b> PRESTASI</b></th>
+							<th colspan="3" class="nilai5"></th> 
+							<th >
+								@if ($rata2 >= 85)
+									Baik
+								@else
+									Cukup
+								@endif
+							</th>
+						</tr>
+					</table>
+					<div id="textbox" style="margin-top: 20px">
+						<div class="alignleft" style="margin-left: 180px">Baik : 85 - 95</div>
+						<div class="alignright" style="margin-right: 210px">Cukup : 75 - 84</div>
+					</div>
+				</div>
+			@elseif($p->kriteria == 'SEBAGAI INSTRUKTUR LAGU METODE TILAWATI')
+				<div style="page-break-inside: avoid">
+					<div>
+						<p @if ($p->pelatihan->keterangan == 'instruktur') style="margin-top: 160px;margin-left: 358px" @else style="margin-top: 160px;margin-left: 358px" @endif class="syahadah">No. Syahadah : {{ $p->pelatihan->id }}/2022/{{ $p->id }}</p>
+					</div>
+					<table 
+					@if ($p->pelatihan->keterangan == 'instruktur')
+					style="width: 850px; margin-left:85px"
+					@else
+					style="width: 782px; margin-left:154px"
+					@endif  class="table1">
+						<tr>
+								<th rowspan="2">No.</th>
+								<th rowspan="2">Bidang Penilaian</th>
+								<th colspan="3" class="penilaian">Penilaian</th>
+								<th rowspan="2" style="text-align: center">Jumlah</th>
+						</tr>
+						<tr>     
+							<th class="pe">Max</th>
+							<th class="pe">Min</th>
+							<th class="pe">Nilai</th>
+							
+						</tr>
+						<tr>
+							<th>1</th>
+							<td>&nbsp; &nbsp;<b> Al-Qur'an</b></td>
+							<th colspan="3" class="pe3"></th>
+							<th >{{ $jumlah = $p->nilai->where("kategori","al-qur'an")->sum('nominal') }}</th>
+						</tr>
+						<?php $i = 2; $x = 1; $z = 5?>
+						@foreach ($p->nilai as $key=> $item)
+							@if ($item !== null)
+								@if ($item->kategori !== 'skill')
+									<tr>
+										<td class="pop"></td>
+										<td class="pop2" >&nbsp; &nbsp;&nbsp;<span style="text-transform: capitalize">{{ $item->penilaian->name }}</span></td>
+										<td class="nilai" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->max }}</td>
+										<td class="nilai2" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->min}}</td>
+										<td class="nilai3" style="text-align: center">&nbsp; &nbsp;{{ $item->nominal }}</td>
+										<td style="border-top: 0;border-bottom: 0;"></td>
+									</tr>
+									<?php $z--; ?>
+								@else
+									<tr>
+										<?php $tot[$key] = $item->nominal?>
+										
+										<th>{{ $i++ }}</th>
+										<td class="nilai6" style="text-transform: uppercase">&nbsp; &nbsp;<b> {{ $item->penilaian->name }}</b></th>
+										{{-- <th colspan="3" class="nilai5"></th> --}}
+										<td class="nilaibawahtot" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->max }}</td>
+										<td class="nilaibawahtot" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->min }}</td>
+										<td class="nilaibawahtot"></td>
+										<th >{{ $item->nominal }}</th>
+										
+									</tr>
+									<?$x++?>
+								@endif
+							@else
+								{{--  --}}
+							@endif
+						@endforeach
+						<?php 
+							$nilaia = $p->nilai->where('penilaian_id', 38)->sum('nominal');
+							$nilaib = $p->nilai->where('penilaian_id', 39)->sum('nominal');
+							$total 	= $nilaia + $nilaib;
+						?>
+						<tr>
+							<th></th>
+							<td class="nilai6">&nbsp; &nbsp;<b> RATA - RATA NILAI</b></th>
+							<th colspan="3" class="nilai5"></th>
+							<th >{{ $rata2 = round(($jumlah+$total)/3) }}</th>
+						</tr>
+						
+						<tr>
+							<th></th>
+							<td class="nilai6">&nbsp; &nbsp;<b> PRESTASI</b></th>
+							<th colspan="3" class="nilai5"></th> 
+							<th >
+								@if ($rata2 >= 85)
+									Baik
+								@else
+									Cukup
+								@endif
+							</th>
+						</tr>
+					</table>
+					<div id="textbox" style="margin-top: 20px">
+						<div class="alignleft" style="margin-left: 180px">Baik : 85 - 95</div>
+						<div class="alignright" style="margin-right: 210px">Cukup : 75 - 84</div>
+					</div>
+				</div>
+			@elseif($p->program->name == 'Diklat Munaqisy Cabang')
+
+			{{-- munaqisy cabang --}}
+				<div style="page-break-inside: avoid; font-size: 10px">
+					<div>
+						<p style="margin-top: 140px;margin-left: 358px" class="syahadah">No. Syahadah : {{ $p->pelatihan->id }}/2022/{{ $p->id }}</p>
+					</div>
+					<table 
+					style="width: 782px; margin-left:154px"
+					class="table1">
+						<tr>
+								<th rowspan="2">No.</th>
+								<th rowspan="2" style="text-align: center;">Bidang Penilaian</th>
+								{{-- <th style="border:none"></th> --}}
+								<th colspan="3" style="border-bottom:none"></th>
+								<th rowspan="2" style="text-align: center">Jumlah</th>
+						</tr>
+						<tr>     
+							<th class="pe">MIN</th>
+							<th class="pe">MAX</th>
+							<th class="pe">NILAI</th>
+							
+						</tr>
+						<tr>
+							<th>1</th>
+							<td style="border-right: none">&nbsp; &nbsp;<b> Al-Qur'an</b></td>
+							<th colspan="3" class="pe3" style="border-left: none"></th>
+							<th class=nilai2>{{ $jumlah = $p->nilai->where("kategori","al-qur'an")->sum('nominal') }}</th>
+						</tr>
+						@foreach ($p->nilai as $key=> $item)
+							@if ($item !== null)
+								@if ($item->kategori !== 'skill')
+									<tr>
+										<td class="pop"></td>
+										<td class="pop2" style="border-right: none">&nbsp; &nbsp;&nbsp;<span style="text-transform: capitalize; ">{{ $item->penilaian->name }}</span></td>
+										<td class="nilai" style="text-align: center; " >{{$item->penilaian->min}}</td>
+										<td class="nilai2" style="text-align: center">{{$item->penilaian->max}}</td>
+										<td class="nilai3" style="text-align: center">{{ $item->nominal }}</td>
+										<th style="border-top: 0;border-bottom: 0;"></th>
+									</tr>
+								@endif
+							@endif
+						@endforeach
+						<tr>
+							<th>2</th>
+							<td style="border-right: none">&nbsp; &nbsp;<b> Praktek Munaqisy </b></td>
+							<th colspan="3" style="border-left: none"></th>
+							<th >{{ $jumlah = round($p->nilai->where("kategori","skill")->sum('nominal') / 3) }}</th>
+						</tr>
+						@foreach ($p->nilai as $key=> $item)
+							@if ($item !== null)
+								@if ($item->kategori == 'skill')
+									<tr>
+										<td class="pop"></td>
+										<td class="pop2" style="border-right: none">&nbsp; &nbsp;&nbsp;<span style="text-transform: capitalize; ">{{ $item->penilaian->name }}</span></td>
+										<td class="nilai" style="text-align: center; " >{{$item->penilaian->min}}</td>
+										<td class="nilai2" style="text-align: center">{{$item->penilaian->max}}</td>
+										<td class="nilai3" style="text-align: center">{{$item->nominal}}</td>
+										<th style="border-top: 0;border-bottom: 0;"></th>
+									</tr>
+								@endif
+							@endif
+						@endforeach
+
+						@if ($p->pelatihan->keterangan == 'guru')
+							<tr>
+								<th></th>
+								<td class="nilai6" style="border-right: none">&nbsp; &nbsp;<b> RATA - RATA NILAI</b></th>
+								<th style="border-left: none" colspan="3" class="nilai5"></th>
+								<th >
+								@if ($p->pelatihan->program->name=='munaqosyah santri')
+									{{ $rata2 = $jumlah }}
+								@elseif($p->program->name == 'Diklat Munaqisy Cabang')
+									@php
+										$x = $p->nilai->where("kategori","al-qur'an")->sum('nominal');
+										$y = $p->nilai->where("kategori","skill")->sum('nominal');
+										$z = $p->nilai->where("kategori","skill")->count();
+										$satu  = $x;
+										$dua   = round($y / $z);
+										$rata2 = round(($satu+$dua)/2);
+									@endphp
+									{{round($rata2)}}
+								@else
+									{{ $rata2 = round(($jumlah+ $item->nominal)/2) }}
+								@endif
+									</th>
+							</tr>
+						@else
+						<?php 
+							$rata2 = $jumlah
+						?>
+						@endif
+						<tr>
+							<th></th>
+							<td class="nilai6" style="border-right: none">&nbsp; &nbsp;<b> PRESTASI</b></th>
+							<th colspan="3" style="border-left: none" class="nilai5"></th> 
+							<th >
+								@if ($rata2 >= 85)
+									Istimewa
+								@elseif($rata2 > 74 && $rata2 < 85)
+									Baik
+								@else
+									Cukup
+								@endif
+							</th>
+						</tr>
+					</table>
+					<div id="textbox" style="margin-top: 20px">
+						<div class="alignleft" style="margin-left: 180px"><b> Istimewa : 85 - 95</b></div>
+						<div class="alignleft" style="margin-left: 150px"><b style="display-none">Baik : 75 - 84</b></div>
+						<div class="alignright" style="margin-right: 210px"><b>Cukup : 65 - 74</b></div>
+					</div>
+				</div>
+			@else
+				<div style="page-break-inside: avoid">
+					<div>
+						<p style="margin-top: 160px;margin-left: 358px" class="syahadah">No. Syahadah : {{ $p->pelatihan->id }}/2022/{{ $p->id }}</p>
+					</div>
+					<table 
+					style="width: 782px; margin-left:154px"
+					class="table1">
+						<tr>
+								<th rowspan="2">No.</th>
+								<th rowspan="2">Bidang Penilaian</th>
+								<th colspan="3" class="penilaian">Penilaian</th>
+								<th rowspan="2" style="text-align: center">Jumlah</th>
+						</tr>
+						<tr>     
+							<th class="pe">Max</th>
+							<th class="pe">Min</th>
+							<th class="pe">Nilai</th>
+							
+						</tr>
+						<tr>
+							<th>1</th>
+							<td>&nbsp; &nbsp;<b> Al-Qur'an</b></td>
+							<th colspan="3" class="pe3"></th>
+							<th >{{ $jumlah = $p->nilai->where("kategori","al-qur'an")->sum('nominal') }}</th>
+						</tr>
+						<?php $i = 2; $x = 1?>
+						@foreach ($p->nilai as $key=> $item)
+							@if ($item !== null)
+								@if ($item->kategori !== 'skill')
+									<tr>
+										<td class="pop"></td>
+										<td class="pop2" >&nbsp; &nbsp;&nbsp;<span style="text-transform: capitalize">{{ $item->penilaian->name }}</span></td>
+										<td class="nilai" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->max }}</td>
+										<td class="nilai2" style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->min }}</td>
+										<td class="nilai3" style="text-align: center">&nbsp; &nbsp;{{ $item->nominal }}</td>
+										<td style="border-top: 0;border-bottom: 0;"></td>
+									</tr>
+								@else
+									<tr>
+										<th>{{ $i++ }}</th>
+										<td class="nilai6" style="text-transform: uppercase">&nbsp; &nbsp;<b> {{ $item->penilaian->name }}</b></th>
+										<th colspan="3" class="nilai5"></th>
+										<th >{{ $item->nominal }}</th>
+									</tr>
+									<?$x++?>
+								@endif
+							@else
+								{{--  --}}
+							@endif
+						@endforeach
+						@if ($p->pelatihan->keterangan == 'guru')
+							<tr>
+								<th></th>
+								<td class="nilai6">&nbsp; &nbsp;<b> RATA - RATA NILAI</b></th>
+								<th colspan="3" class="nilai5"></th>
+								<th >
+								@if ($p->pelatihan->program->name=='munaqosyah santri')
+									{{ $rata2 = $jumlah }}
+								@elseif($p->program->name == 'Diklat Munaqisy Cabang')
+									@php
+										$x = $p->nilai->where("kategori","al-qur'an")->sum('nominal');
+										$y = $p->nilai->where("kategori","skill")->sum('nominal');
+										$z = $p->nilai->where("kategori","skill")->count();
+										$satu  = $x;
+										$dua   = round($y / $z);
+										$rata2 = round(($satu+$dua)/2);
+									@endphp
+									{{round($rata2)}}
+								@else
+									{{ $rata2 = round(($jumlah+ $item->nominal)/2) }}
+								@endif
+									</th>
+							</tr>
+						@else
+						<?php 
+							$rata2 = $jumlah
+						?>
+						@endif
+						<tr>
+							<th></th>
+							<td class="nilai6">&nbsp; &nbsp;<b> PRESTASI</b></th>
+							<th colspan="3" class="nilai5"></th> 
+							<th >
+								@if ($rata2 >= 85)
+									Baik
+								@else
+									Cukup
+								@endif
+							</th>
+						</tr>
+					</table>
+					<div id="textbox" style="margin-top: 20px">
+						<div class="alignleft" style="margin-left: 180px">Baik : 85 - 95</div>
+						<div class="alignright" style="margin-right: 210px">Cukup : 75 - 84</div>
+					</div>
+				</div>
 			@endif
 		{{-- @else --}}
 		{{-- Selain TOT --}}

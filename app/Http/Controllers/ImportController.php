@@ -18,6 +18,7 @@ use App\Imports\LembagaImport;
 use App\Imports\RpqImport;
 use App\Imports\PesertaDiklatImport;
 use App\Imports\PesertaDiklatImport2;
+use App\Imports\MunaqisyImport;
 use Illuminate\Http\Request;
 use Excel;
 
@@ -157,6 +158,16 @@ class ImportController extends Controller
         return Response()->json([
             $data,
             'success'=>'Data Lembaga Berhasil Ditambahkan Melalui file Excel'
+        ]);
+    }
+
+    public function importMunaqisy(Request $request)
+    {
+        $cabang_id = auth()->user()->cabang->id;
+        $data = Excel::import(new MunaqisyImport($cabang_id), $request->file('file'));
+        return Response()->json([
+            $data,
+            'success'=>'Data Munaqisy Berhasil Ditambahkan Melalui file Excel'
         ]);
     }
 

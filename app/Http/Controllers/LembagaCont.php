@@ -29,7 +29,8 @@ class lembagaCont extends Controller
             return DataTables::of($data)
                 
                 ->addColumn('statuss', function ($data) {
-                    if ($data->status == 'Aktif' || $data->status == 'aktif') {
+                    if ($data->status == 'Aktif' || $data->status == 'aktif' || $data->status == ' aktif' || $data->status == 'aktif ' || $data->status == ' Aktif' || $data->status == ' aktif ' || $data->status == ' Aktif ' || $data->status == 'Aktif ' ||
+                    $data->status == 'AKTIF' || $data->status == ' AKTIF' || $data->status == 'AKTIF ' || $data->status == ' AKTIF ') {
                         # code...
                         $btn = '<span class="badge badge-success btn text-white">Aktif</span>';
                         return $btn;
@@ -73,7 +74,8 @@ class lembagaCont extends Controller
                         }
                     })
                     ->addColumn('statuss', function ($data) {
-                        if ($data->status == 'Aktif' || $data->status == 'aktif' || $data->status == 'aktif '|| $data->status == 'Aktif ' || $data->status == ' aktif' || $data->status == ' Aktif') {
+                        if ($data->status == 'Aktif' || $data->status == 'aktif' || $data->status == ' aktif' || $data->status == 'aktif ' || $data->status == ' Aktif' || $data->status == ' aktif ' || $data->status == ' Aktif ' || $data->status == 'Aktif ' ||
+                    $data->status == 'AKTIF' || $data->status == ' AKTIF' || $data->status == 'AKTIF ' || $data->status == ' AKTIF ') {
                             # code...
                             $btn = '<span class="badge badge-success btn text-white">Aktif</span>';
                             return $btn;
@@ -118,7 +120,8 @@ class lembagaCont extends Controller
                             }
                         })
                         ->addColumn('statuss', function ($data) {
-                            if ($data->status == 'Aktif' || $data->status == 'aktif') {
+                            if ($data->status == 'Aktif' || $data->status == 'aktif' || $data->status == ' aktif' || $data->status == 'aktif ' || $data->status == ' Aktif' || $data->status == ' aktif ' || $data->status == ' Aktif ' || $data->status == 'Aktif ' ||
+                    $data->status == 'AKTIF' || $data->status == ' AKTIF' || $data->status == 'AKTIF ' || $data->status == ' AKTIF ') {
                                 # code...
                                 $btn = '<span class="badge badge-success btn text-white">Aktif</span>';
                                 return $btn;
@@ -162,7 +165,8 @@ class lembagaCont extends Controller
                             }
                         })
                         ->addColumn('statuss', function ($data) {
-                            if ($data->status == 'Aktif' || $data->status == 'aktif') {
+                            if ($data->status == 'Aktif' || $data->status == 'aktif' || $data->status == ' aktif' || $data->status == 'aktif ' || $data->status == ' Aktif' || $data->status == ' aktif ' || $data->status == ' Aktif ' || $data->status == 'Aktif ' ||
+                    $data->status == 'AKTIF' || $data->status == ' AKTIF' || $data->status == 'AKTIF ' || $data->status == ' AKTIF ') {
                                 # code...
                                 $btn = '<span class="badge badge-success btn text-white">Aktif</span>';
                                 return $btn;
@@ -193,14 +197,18 @@ class lembagaCont extends Controller
             # code...
             if(!empty($request->dari))
             {
-                $data = DB::table('lembagas')->where('status', 'Aktif')
+                $data = DB::table('lembagas')->where('status', 'Aktif')->orwhere('status', ' Aktif')->orwhere('status', 'Aktif ')->orwhere('status', ' Aktif ')
+                ->orwhere('status', 'aktif')->orwhere('status', ' aktif')->orwhere('status', 'aktif ')->orwhere('status', ' aktif ')
+                ->orwhere('status', 'AKTIF')->orwhere('status', ' AKTIF')->orwhere('status', 'AKTIF ')->orwhere('status', ' AKTIF ')
                 ->whereBetween('created_at', array($request->dari, $request->sampai))
                 ->get()->count();
                 return response()->json($data,200);
             }
             else
             {
-                $data = DB::table('lembagas')->where('status', 'Aktif')
+                $data = DB::table('lembagas')->where('status', 'Aktif')->orwhere('status', ' Aktif')->orwhere('status', 'Aktif ')->orwhere('status', ' Aktif ')
+                ->orwhere('status', 'aktif')->orwhere('status', ' aktif')->orwhere('status', 'aktif ')->orwhere('status', ' aktif ')
+                ->orwhere('status', 'AKTIF')->orwhere('status', ' AKTIF')->orwhere('status', 'AKTIF ')->orwhere('status', ' AKTIF ')
                 ->get()->count();
                 return response()->json($data,200);
             }
@@ -213,7 +221,9 @@ class lembagaCont extends Controller
             # code...
             if(!empty($request->dari))
             {
-                $data = DB::table('lembagas')->where('status', '!=', 'aktif')->orwhere('status', '!=', 'Aktif')
+                $data = DB::table('lembagas')->where('status', 'Aktif')->orwhere('status', ' Aktif')->orwhere('status', 'Aktif ')->orwhere('status', ' Aktif ')
+                ->orwhere('status', 'aktif')->orwhere('status', ' aktif')->orwhere('status', 'aktif ')->orwhere('status', ' aktif ')
+                ->orwhere('status', 'AKTIF')->orwhere('status', ' AKTIF')->orwhere('status', 'AKTIF ')->orwhere('status', ' AKTIF ')
                 ->whereBetween('created_at', array($request->dari, $request->sampai))
                 ->get()->count();
                 return response()->json($data,200);
@@ -221,7 +231,9 @@ class lembagaCont extends Controller
             else
             {
                 $tot = DB::table('lembagas')->count();
-                $akt = DB::table('lembagas')->where('status', 'Aktif')->count();
+                $akt = DB::table('lembagas')->where('status', 'Aktif')->orwhere('status', ' Aktif')->orwhere('status', 'Aktif ')->orwhere('status', ' Aktif ')
+                ->orwhere('status', 'aktif')->orwhere('status', ' aktif')->orwhere('status', 'aktif ')->orwhere('status', ' aktif ')
+                ->orwhere('status', 'AKTIF')->orwhere('status', ' AKTIF')->orwhere('status', 'AKTIF ')->orwhere('status', ' AKTIF ')->count();
                 $data = $tot - $akt;
                 return response()->json($data,200);                
             }

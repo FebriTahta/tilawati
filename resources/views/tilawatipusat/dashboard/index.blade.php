@@ -30,6 +30,8 @@
 
     <link href="https://fonts.cdnfonts.com/css/sannisa" rel="stylesheet">
 
+    <link href="http://fonts.cdnfonts.com/css/poppins" rel="stylesheet">
+
      <!-- Make sure you put this AFTER Leaflet's CSS -->
     <style>
         #map {
@@ -47,8 +49,8 @@
     <style>
         .highcharts-figure,
         .highcharts-data-table table {
-            min-width: 320px;
-            max-width: 660px;
+            /* min-width: 320px; */
+            max-width: 100%;
             margin: 1em auto;
         }
 
@@ -89,12 +91,13 @@
         }
         
         .number {
-            font-family: 'Ringo', sans-serif;
+            font-family: 'Poppins', sans-serif;
+            font-size: 35px !important;
         }
 
         .keterangan {
             /* font-family: 'BooBooKitty', sans-serif; */
-            font-family: 'Sannisa', sans-serif;
+            font-family: 'Poppins', sans-serif;
         }
     </style>
 
@@ -137,32 +140,33 @@
                             <h5 class="number" style="font-size: 30px; font-weight: 700">{{number_format($guru,0,',','.')}} <span class="keterangan" style="font-size: 20px;"> GURU AL-QUR'AN</span> </h5>
                         </div>
                         <div class="col-sm-12">
-                            <h5 class="number" style="font-size: 30px; font-weight: 700">{{number_format($trainer,0,',','.')}} <span class="keterangan" style="font-size: 20px;"> TRAINER METODE TILAWATI</span> </h5>
+                            <h5 class="number" style="font-size: 30px; font-weight: 700">{{number_format($trainer,0,',','.')}} <span class="keterangan" style="font-size: 20px;"> TRAINER</span> </h5>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="col-md-6">
+        {{-- <div class="col-md-6">
             <div class="row">
-                <div class="col-md-6">
-                    <div class="card" style="min-height: 250px">
-                        <div class="card-body">
-                            <figure class="highcharts-figure">
-                                <div id="container"></div>
-                            </figure>
-                        </div>
-                    </div>
+               
+            </div>
+        </div> --}}
+        <div class="col-xl-3 col-md-6">
+            <div class="card" style="min-height: 250px">
+                <div class="card-body">
+                    <figure class="highcharts-figure" style="max-width: 100%">
+                        <div id="container" style="max-width: 100%"></div>
+                    </figure>
                 </div>
-                <div class="col-md-6">
-                    <div class="card" style="min-height: 250px">
-                        <div class="card-body">
-                            <figure class="highcharts-figure">
-                                <div id="container2"></div>
-                            </figure>
-                        </div>
-                    </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+            <div class="card" style="min-height: 250px">
+                <div class="card-body">
+                    <figure class="highcharts-figure">
+                        <div id="container2"></div>
+                    </figure>
                 </div>
             </div>
         </div>

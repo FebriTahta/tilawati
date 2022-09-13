@@ -21,6 +21,7 @@ use App\Exports\CabangExport;
 use App\Exports\CabangKpaExport;
 use App\Exports\PesertaPendaftaranExport;
 use App\Exports\ExportLaporanDataCabang;
+use App\Exports\TemplateMunaqisyExport;
 use App\Exports\ExportLaporanDataCabangPeriode;
 use App\Exports\LembagaDataExportSearchProvinsi;
 use App\Models\Pelatihan;
@@ -118,6 +119,11 @@ class ExportCont extends Controller
     public function export_template_lembaga_cabang()
     {
         return Excel::download(new TemplateLembagaExport, 'template-import-lembaga-cabang.xlsx');
+    }
+
+    public function export_template_munaqisy_cabang()
+    {
+        return Excel::download(new TemplateMunaqisyExport, 'template-import-munaqisy-cabang.xlsx');
     }
 
     public function export_template_lembaga_cabang_data($cabang_id)

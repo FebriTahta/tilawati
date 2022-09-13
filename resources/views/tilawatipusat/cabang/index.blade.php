@@ -100,9 +100,9 @@
                                     <th>STATUS</th>
                                     <th>KADIVRE</th>
                                     <th>WILAYAH</th>
-                                    <th>TOTAL KPA</th>
+                                    <th>KPA</th>
                                     <th>TRAINER</th>
-                                    <th>LEMBAGA</th>
+                                    <th>LEMBAGA VERSI LAMA</th>
                                     <th>LOCATION</th>
                                     <th>OPSI</th>
                                 </tr>
@@ -123,9 +123,9 @@
                                     <th>STATUS</th>
                                     <th>KADIVRE</th>
                                     <th>WILAYAH</th>
-                                    <th>TOTAL KPA</th>
+                                    <th>KPA</th>
                                     <th>TRAINER</th>
-                                    <th>LEMBAGA</th>
+                                    <th>LEMBAGA VERSI LAMA</th>
                                     <th>LOCATION</th>
                                     <th>OPSI</th>
                                 </tr>

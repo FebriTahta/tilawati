@@ -95,15 +95,27 @@
                         @else
                             <li><a style="font-size: 12px" href="{{ route('diklat.lembaga') }}">Data Lembaga
                                     Cabang</a></li>
-                            <li><a style="font-size: 12px" href="{{ route('data.trainer.cabang') }}">Data Trainer
-                                    Cabang</a>
-                            </li>
                             <li><a style="font-size: 12px" href="{{ route('data.kpa.cabang') }}">Data KPA Cabang</a>
+                            </li>
+                            <li><a style="font-size: 12px" href="{{ route('data.trainer.cabang') }}">Data Trainer Cabang</a>
+                            </li>
+                            <li><a style="font-size: 12px" href="{{ route('data.munaqisy.cabang') }}">Data Munaqisy Cabang</a>
+                            </li>
+                            <li><a style="font-size: 12px" href="#">Data Supervisor Cabang</a>
                             </li>
                         @endif
                     </ul>
                 </li>
-
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="mdi mdi-clipboard-list-outline"></i>
+                        <span style="font-size: 12px">E Syahadah</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a style="font-size: 12px" href="{{ route('diklat.depan_guru') }}">Unduh E Syahadah</a>
+                        </li>
+                    </ul>
+                </li>
                 @if (auth()->user()->role == 'pusat')
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
@@ -118,21 +130,11 @@
                 @endif
 
                 @if (auth()->user()->role == 'cabang')
-                    <li class="menu-title">Cetak</li>
+                    {{-- <li class="menu-title">Cetak E Syahadah</li> --}}
 
-                    <li>
-                        <a href="javascript: void(0);" class="has-arrow waves-effect">
-                            <i class="mdi mdi-clipboard-list-outline"></i>
-                            <span style="font-size: 12px">Depan</span>
-                        </a>
-                        <ul class="sub-menu" aria-expanded="false">
-                            <li><a style="font-size: 12px" href="{{ route('diklat.depan_guru') }}">CETAK SYAHADAH</a>
-                            </li>
-                            {{-- <li><a href="{{ route('diklat.depan_santri') }}">Santri</a></li> --}}
-                        </ul>
-                    </li>
+                    
 
-                    <li>
+                    {{-- <li>
                         <a href="javascript: void(0);" class="has-arrow waves-effect">
                             <i class="mdi mdi-clipboard-list-outline"></i>
                             <span style="font-size: 12px">Belakang</span>
@@ -141,24 +143,10 @@
                             <li><a style="font-size: 12px" href="{{ route('diklat.belakang') }}">CETAK SYAHADAH</a>
                             </li>
                         </ul>
-                    </li>
+                    </li> --}}
                 @endif
 
                 @if (auth()->user()->role == 'pusat')
-                    {{-- <li class="menu-title">Pusat Data Administrasi & Daerah</li>
-
-                <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="mdi mdi-checkbox-multiple-blank-outline"></i>
-                        <span style="font-size: 12px">Dinas Administrasi</span>
-                    </a>
-                    <ul class="sub-menu" aria-expanded="true">
-                        <li style="display: none"><a href="{{route('negara')}}">Kode Negara</a></li>
-                        <li><a href="{{route('phone')}}" style="font-size: 12px">Kode Telephone</a></li>
-                        <li><a href="/kode-kabupaten" style="font-size: 12px">Kota - Kabupaten</a></li>
-                    </ul>
-                </li> --}}
-
                     <li class="menu-title">Cetak</li>
 
                     <li>
@@ -169,9 +157,6 @@
                         <ul class="sub-menu" aria-expanded="false">
                             <li><a style="font-size: 12px" href="{{ route('diklat.depan_guru') }}">CETAK IJAZAH</a>
                             </li>
-                            {{-- <li><a style="font-size: 12px" href="{{ route('diklat.depan_guru_lama') }}">CETAK IJAZAH VERSI LAMA</a>
-                            </li> --}}
-                            {{-- <li><a href="{{ route('diklat.depan_santri') }}">Santri</a></li> --}}
                         </ul>
                     </li>
 
@@ -185,16 +170,6 @@
                             </li>
                         </ul>
                     </li>
-
-                    {{-- <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="mdi mdi-clipboard-list-outline"></i>
-                        <span style="font-size: 12px">Laporan Peserta</span>
-                    </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a style="font-size: 12px" href="{{ route('diklat.seluruh_peserta') }}">Cetak Laporan Peserta</a></li>
-                    </ul>
-                </li> --}}
 
                     <li style="display: none">
                         <a href="javascript: void(0);" class="has-arrow waves-effect">
@@ -253,7 +228,7 @@
                             </a>
                         </li>
                     @endif
-                    <li class="menu-title text-danger">BATAS AKSES - - - - - - - - - - - -<i class="fa fa-arrow-right"></i></li>
+                    {{-- <li class="menu-title text-danger">BATAS AKSES - - - - - - - - - - - -<i class="fa fa-arrow-right"></i></li> --}}
                 @endif
             </ul>
         </div>
