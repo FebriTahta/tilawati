@@ -13,6 +13,7 @@ use App\Models\Trainer;
 use App\Models\Macamtrainer;
 use App\Models\macamtrainer_trainer;
 use App\Models\Kpa;
+use App\Models\Supervisor;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -504,6 +505,19 @@ class CabangCont extends Controller
                     ->make(true);
     }
 
+    public function list_supervisor_cabang(Request $request)
+    {
+        $cabang_id  = auth()->user()->cabang->id;
+            $data   = Supervisor::where('cabang_id',$cabang_id)->with('cabang')->orderBy('id','asc');
+                    return DataTables::of($data)
+                    ->addColumn('action', function ($data) {
+                        $stats = '<a href="#" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modal_hapus" data-id="'.$data->id.'"><i class="fa fa-trash"></i></a>';
+                        $stats .= ' <a href="/edit-trainer/cabang/'.$data->id.'" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></a>';
+                        return $stats;
+                    })
+                    ->make(true);
+    }
+
     public function show_list_trainer_cabang(Request $request, $cabang_id)
     {
         if(request()->ajax())
@@ -858,6 +872,13 @@ class CabangCont extends Controller
         $cabang_id  = auth()->user()->cabang->id;
         $cabang = Cabang::where('id',$cabang_id)->select('id','name','kabupaten_id')->with('kabupaten')->first();
         return view('tilawatipusat.cabang.munaqisy',compact('cabang'));
+    }
+
+    public function data_supervisor(Request $request)
+    {
+        $cabang_id  = auth()->user()->cabang->id;
+        $cabang = Cabang::where('id',$cabang_id)->select('id','name','kabupaten_id')->with('kabupaten')->first();
+        return view('tilawatipusat.cabang.supervisor',compact('cabang'));
     }
     
 }

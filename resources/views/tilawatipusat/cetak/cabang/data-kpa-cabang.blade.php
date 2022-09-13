@@ -15,7 +15,7 @@
     <table>
         <thead style="font-weight: bold; text-transform: uppercase">
             <tr>
-                <th rowspan="3" colspan="10">DATA KPA CABANG <br> <span>{{$cabang->name}}</span> <br> <small> Per - 2022</small></th>
+                <th rowspan="3" colspan="10">DATA KPA CABANG <br> <span>{{$cabang->name}}</span> <br> <small> Per - {{date('Y')}}</small></th>
             </tr>
         </thead>
     </table>

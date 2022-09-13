@@ -124,23 +124,54 @@
                     <p>Berdasarkan data yang telah dihimpun atau dilaporkan <br><small style="color: red">(kemungkinan ada beberapa data yang belum dilaporkan)</small></p>
 
                     <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <span class="keterangan" style="font-size: 20px;"> MELATIH</span>
+                            </div>
+                            <div class="form-group">
+                                <h5 class="number" style="font-size: 30px; font-weight: 700">{{number_format($santri,0,',','.')}} <span class="keterangan" style="font-size: 20px;"> SANTRI</span> </h5>
+                            </div>
+                            <div class="form-group">
+                                <h5 class="number" style="font-size: 30px; font-weight: 700">{{number_format($guru,0,',','.')}} <span class="keterangan" style="font-size: 20px;"> GURU </span> </h5>
+                            </div>
+                            <div class="form-group">
+                                <h5 class="number" style="font-size: 30px; font-weight: 700">{{number_format($trainer_diklat,0,',','.')}} <span class="keterangan" style="font-size: 20px;"> TRAINER</span> </h5>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <span class="keterangan" style="font-size: 20px;"> MEMILIKI</span>
+                            </div>
+                            <div class="form-group">
+                                <h5 class="number" style="font-size: 30px; font-weight: 700">{{number_format(($cabang-1),0,',','.')}} <span class="keterangan" style="font-size: 20px;"> CABANG</span> </h5>
+                            </div>
+                            <div class="form-group">
+                                <h5 class="number" style="font-size: 30px; font-weight: 700">{{number_format($lembaga,0,',','.')}} <span class="keterangan" style="font-size: 20px;"> LEMBAGA</span> </h5>
+                            </div>
+                            <div class="form-group">
+                                <h5 class="number" style="font-size: 30px; font-weight: 700">{{number_format($kpa,0,',','.')}} <span class="keterangan" style="font-size: 20px;"> KPA</span> </h5>
+                            </div>
+                        </div>
+
+
                         <div class="col-sm-12">
-                            <h5 class="number" style="font-size: 30px; font-weight: 700">{{number_format(($cabang-1),0,',','.')}} <span class="keterangan" style="font-size: 20px;"> CABANG</span> </h5>
+                            {{-- <h5 class="number" style="font-size: 30px; font-weight: 700">{{number_format(($cabang-1),0,',','.')}} <span class="keterangan" style="font-size: 20px;"> CABANG</span> </h5> --}}
                         </div>
                         <div class="col-sm-12">
-                            <h5 class="number" style="font-size: 30px; font-weight: 700">{{number_format($lembaga,0,',','.')}} <span class="keterangan" style="font-size: 20px;"> LEMBAGA</span> </h5>
+                            {{-- <h5 class="number" style="font-size: 30px; font-weight: 700">{{number_format($lembaga,0,',','.')}} <span class="keterangan" style="font-size: 20px;"> LEMBAGA</span> </h5> --}}
                         </div>
                         <div class="col-sm-12">
-                            <h5 class="number" style="font-size: 30px; font-weight: 700">{{number_format($kpa,0,',','.')}} <span class="keterangan" style="font-size: 20px;"> KPA</span> </h5>
+                            {{-- <h5 class="number" style="font-size: 30px; font-weight: 700">{{number_format($kpa,0,',','.')}} <span class="keterangan" style="font-size: 20px;"> KPA</span> </h5> --}}
                         </div>
                         <div class="col-sm-12">
-                            <h5 class="number" style="font-size: 30px; font-weight: 700">{{number_format($santri,0,',','.')}} <span class="keterangan" style="font-size: 20px;"> SANTRI</span> </h5>
+                            {{-- <h5 class="number" style="font-size: 30px; font-weight: 700">{{number_format($santri,0,',','.')}} <span class="keterangan" style="font-size: 20px;"> SANTRI</span> </h5> --}}
                         </div>
                         <div class="col-sm-12">
-                            <h5 class="number" style="font-size: 30px; font-weight: 700">{{number_format($guru,0,',','.')}} <span class="keterangan" style="font-size: 20px;"> GURU AL-QUR'AN</span> </h5>
+                            {{-- <h5 class="number" style="font-size: 30px; font-weight: 700">{{number_format($guru,0,',','.')}} <span class="keterangan" style="font-size: 20px;"> GURU </span> </h5> --}}
                         </div>
-                        <div class="col-sm-12">
-                            <h5 class="number" style="font-size: 30px; font-weight: 700">{{number_format($trainer,0,',','.')}} <span class="keterangan" style="font-size: 20px;"> TRAINER</span> </h5>
+                        <div class="col-sm-6">
+                            {{-- <h5 class="number" style="font-size: 30px; font-weight: 700">{{number_format($trainer,0,',','.')}} <span class="keterangan" style="font-size: 20px;"> TRAINER</span> </h5> --}}
                         </div>
                     </div>
                 </div>
@@ -181,7 +212,7 @@
             </div>
         </div>
 
-        <div class="col-xl-12">
+        {{-- <div class="col-xl-12">
             <div class="card">
                 <div class="row card-body">
                     <div class="col-12 col-xl-3 form-group">
@@ -206,7 +237,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         <div class="col-xl-6">
             <div class="card" style="min-height: 250px">

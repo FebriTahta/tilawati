@@ -15,7 +15,7 @@
     <table>
         <thead style="font-weight: bold; text-transform: uppercase">
             <tr>
-                <th rowspan="3" colspan="10">DATA LEMBAGA CABANG <br> <small>Seluruh Indonesia Per - 2022</small></th>
+                <th rowspan="3" colspan="10">DATA LEMBAGA CABANG <br> <small>Seluruh Indonesia Per - {{date('Y')}}</small></th>
             </tr>
         </thead>
     </table>

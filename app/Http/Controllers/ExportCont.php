@@ -14,6 +14,7 @@ use App\Exports\ApicabangnfExport;
 use App\Exports\ExportDataKPA;
 use App\Exports\LembagaDataExport;
 use App\Exports\ExportDataTrainer;
+use App\Exports\ExportDataMunaqisy;
 use App\Exports\TemplateLembagaExport;
 use App\Exports\TemplateDiklatExport;
 use App\Exports\ExportDataPesertaUntukImport;
@@ -24,6 +25,7 @@ use App\Exports\ExportLaporanDataCabang;
 use App\Exports\TemplateMunaqisyExport;
 use App\Exports\ExportLaporanDataCabangPeriode;
 use App\Exports\LembagaDataExportSearchProvinsi;
+use App\Exports\ExportDataSupervisor;
 use App\Models\Pelatihan;
 use App\Models\Macamtrainer;
 use App\Models\Provinsi;
@@ -91,6 +93,16 @@ class ExportCont extends Controller
         return Excel::download(new ExportDataTrainer($cabang_id,$macam),'tainer-cabang-data.xlsx');
     }
 
+    public function export_template_munaqisy_cabang_data($cabang_id)
+    {
+        return Excel::download(new ExportDataMunaqisy($cabang_id),'munaqisy-cabang-data.xlsx');
+    }
+
+    public function export_template_supervisor_cabang_data($cabang_id)
+    {
+        return Excel::download(new ExportDataSupervisor($cabang_id), 'supervisor-cabang-data.xlsx');
+    }
+
     public function export_data_peserta($pelatihan_id)
     {
         return Excel::download(new ExportDataPeserta($pelatihan_id), 'data-peserta.xlsx');
@@ -123,7 +135,7 @@ class ExportCont extends Controller
 
     public function export_template_munaqisy_cabang()
     {
-        return Excel::download(new TemplateMunaqisyExport, 'template-import-munaqisy-cabang.xlsx');
+        return Excel::download(new TemplateMunaqisyExport, 'template-import-munaqisy-&-supervisor-cabang.xlsx');
     }
 
     public function export_template_lembaga_cabang_data($cabang_id)

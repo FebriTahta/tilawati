@@ -15,7 +15,7 @@
     <table>
         <thead style="font-weight: bold; text-transform: uppercase">
             <tr>
-                <th rowspan="3" colspan="10">DATA PESERTA DIKLAT CABANG {{strtoupper($pelatihan->cabang->name)}}<br> <small>Seluruh Indonesia Per - 2022 | {{$pelatihan->program->name}} | {{$pelatihan->id}}</small></th>
+                <th rowspan="3" colspan="10">DATA PESERTA DIKLAT CABANG {{strtoupper($pelatihan->cabang->name)}}<br> <small>Seluruh Indonesia Per - {{date('Y')}} | {{$pelatihan->program->name}} | {{$pelatihan->id}}</small></th>
             </tr>
         </thead>
     </table>

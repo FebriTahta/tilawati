@@ -15,7 +15,7 @@
     <table>
         <thead style="font-weight: bold; text-transform: uppercase">
             <tr>
-                <th rowspan="3" colspan="8">DATA INSTRUKTUR CABANG <br> <span style="text-transform: uppercase">{{ $cabang->name }}</span> <br> <small> Per - {{date('Y')}}</small></th>
+                <th rowspan="3" colspan="8">DATA MUNAQISY CABANG <br> <span style="text-transform: uppercase">{{ $cabang->name }}</span> <br> <small> Per - {{date('Y')}}</small></th>
             </tr>
         </thead>
     </table>
@@ -33,26 +33,18 @@
                 <th rowspan="2">NAMA TRAINER</th>
                 <th rowspan="2">WA / TELP</th>
                 <th rowspan="2">ALAMAT</th>
-                <th rowspan="2">INSTRUKTUR</th>
-                {{-- @foreach ($macam as $item)
-                <th rowspan="2">{{$item->jenis}}</th>
-                @endforeach --}}
+                
                 <th></th>
             </tr>
         </thead >
         <tbody>
             <tr></tr>
-            @foreach ($trainer as $key=> $item)
+            @foreach ($munaqisy as $key=> $item)
             <tr>
                 <td>{{$key+1}}</td>
                 <td>{{$item->name}}</td>
                 <td>{{$item->telp}}</td>
                 <td>{{$item->alamat}}</td>
-                <td>
-                @foreach ($item->macamtrainer as $x)
-                    <br>{{$x->jenis}}
-                @endforeach
-                </td>
             </tr>
             @endforeach
         </tbody>

@@ -101,7 +101,7 @@
                             </li>
                             <li><a style="font-size: 12px" href="{{ route('data.munaqisy.cabang') }}">Data Munaqisy Cabang</a>
                             </li>
-                            <li><a style="font-size: 12px" href="#">Data Supervisor Cabang</a>
+                            <li><a style="font-size: 12px" href="{{ route('data.supervisor.cabang') }}">Data Supervisor Cabang</a>
                             </li>
                         @endif
                     </ul>

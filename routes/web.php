@@ -232,6 +232,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     Route::post('/importTrainer',[ImportController::class, 'importTrainer'])->name('import.trainer');
     Route::post('/importMunaqisy',[ImportController::class, 'importMunaqisy'])->name('import.munaqisy');
     Route::post('/importKpa',[ImportController::class,'importKpa'])->name('import.kpa');
+    Route::post('/importSupervisor',[ImportController::class,'importSupervisor'])->name('import.supervisor');
 });
 
 //new route tilawati
@@ -443,6 +444,8 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     Route::get('/export-template-lembaga/{cabang_id}',[ExportCont::class,'export_template_lembaga_cabang_data'])->name('export.template.lembaga.cabang.data');
     Route::get('/export-download-data-cabang',[ExportCont::class,'download_data_cabang']);
     Route::get('/export-template-munaqisy',[ExportCont::class,'export_template_munaqisy_cabang']);
+    Route::get('/export-template-munaqisy-data/{cabang_id}',[ExportCont::class,'export_template_munaqisy_cabang_data']);
+    Route::get('/export-template-supervisor-data/{cabang_id}',[ExportCont::class,'export_template_supervisor_cabang_data']);
 
     Route::get('/kode-negara',[KodeAdminCont::class,'page_negara'])->name('negara');
     Route::get('/data-kode-negara',[KodeAdminCont::class,'data_negara'])->name('data_negara');
@@ -483,7 +486,9 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
 
     Route::get('/export-data-peserta/{cabang_id}/{pelatihan_id}',[ExportCont::class,'export_data_peserta']);
 
-
+    // NEW DATA SUPERVISOR RAKERNAS
+    Route::get('/data-supervisor/cabang',[CabangCont::class,'data_supervisor'])->name('data.supervisor.cabang');
+    Route::get('/list-supervisor/cabang',[CabangCont::class,'list_supervisor_cabang'])->name('list.supervisor.cabang');
     // NEW DATA MUNAQISY RAKERNAS
     Route::get('/data-munaqisy/cabang',[CabangCont::class,'data_munaqisy'])->name('data.munaqisy.cabang');
     Route::get('/list-munaqisy/cabang',[CabangCont::class,'list_munaqisy_cabang'])->name('list.munaqisy.cabang');

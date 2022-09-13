@@ -25,11 +25,14 @@ class DashboardCont extends Controller
         $guru    = Peserta::whereHas('pelatihan',function($query){
             $query->where('keterangan','guru');
         })->count();
+        $trainer_diklat = Peserta::whereHas('pelatihan',function($query){
+            $query->where('keterangan','trainer');
+        })->count();
         $trainer = Trainer::count();
         $kpa     = Kpa::count();
         $diklat = Pelatihan::orderBy('tanggal','desc')->limit(5)->get();
         $diklat_ini = $diklat->count();
-        return view('tilawatipusat.dashboard.index',compact('diklat','diklat_ini','cabang','santri','guru','lembaga','trainer','kpa'));
+        return view('tilawatipusat.dashboard.index',compact('diklat','diklat_ini','cabang','santri','guru','lembaga','trainer','kpa','trainer_diklat'));
     }
 
     public function generate(Request $request){

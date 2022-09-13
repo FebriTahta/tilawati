@@ -23,20 +23,20 @@
             <div class="card">
                 <div class="card-body">
 
-                    <h4 class="card-title text-uppercase">Data Munaqisy Cabang {{ substr($cabang->kabupaten->nama, 5) }}
+                    <h4 class="card-title text-uppercase">Data Supervisor Cabang {{ substr($cabang->kabupaten->nama, 5) }}
                     </h4>
                     <p class="card-title-desc">Ter-update berdasarkan Tahun {{date('Y')}} </br></p>
 
                     <a href="/export-template-munaqisy" class="btn btn-sm btn-outline-primary mb-2 mr-1 text-uppercase"
-                        style="font-size: 12px "><i class="mdi mdi-download"></i> Template Munaqisy</a>
+                        style="font-size: 12px "><i class="mdi mdi-download"></i> Template Supervisor</a>
 
                     <button class="btn btn-sm btn-outline-success mb-2 mr-1 text-uppercase" style="font-size: 12px "
                         data-toggle="modal" data-target="#modal_import"><i class="mdi mdi-import"></i> Import
-                        Munaqisy</button>
+                        Supervisor</button>
 
-                    <a href="/export-template-munaqisy-data/{{ $cabang->id }}"
+                    <a href="/export-template-supervisor-data/{{ $cabang->id }}"
                         class="btn btn-sm btn-outline-warning mb-2 mr-1 text-uppercase" style="font-size: 12px "><i
-                            class="mdi mdi-download"></i> Unduh Data Munaqisy</a>
+                            class="mdi mdi-download"></i> Unduh Data Supervisor</a>
                     <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
                         <table id="tabel-trainer" class="table table-cabang table-bordered dt-responsive nowrap"
                             style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
@@ -75,7 +75,7 @@
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title mt-0">IMPORT DATA MUNAQISY </h5>
+                    <h5 class="modal-title mt-0">IMPORT DATA SUPERVISOR </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -88,9 +88,9 @@
                                     <form id="importtrainer" method="POST" enctype="multipart/form-data">@csrf
                                         <input type="hidden" id="import_tipe" value="munaqisy">
                                         <div class="form-group">
-                                            <label for="">Import Data "Munaqisy" (hanya Format Excel sesuai Template
+                                            <label for="">Import Data "Supervisor" (hanya Format Excel sesuai Template
                                                 .xlsx)</label><br>
-                                            <code>nama Munaqisy yang sama akan tertimpa oleh data paling baru</code>
+                                            <code>nama Supervisor yang sama akan tertimpa oleh data paling baru</code>
                                             <input type="file" class="form-control" name="file"
                                                 accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
                                                 required>
@@ -114,7 +114,7 @@
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">Data Munaqisy</h5>
+                    <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">Data Supervisor</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -141,24 +141,10 @@
                                             <textarea name="alamat" id="alamat" class="form-control" id="" cols="3"
                                                 rows="3"></textarea>
                                         </div>
-                                        {{-- <div class="col-md-12 col-12 form-group " style="margin-bottom: 10px"
-                                            id="dynamic_field">
-                                            <label for=""><button type="button" class="btn btn-outline-primary btn-sm"
-                                                    name="add" id="add"><i class="fa fa-plus"></i></button>
-                                                Trainer</label>
-                                            <select name="trainer" id="trainer" class="form-control" required>
-                                                <option value="Instruktur Strategi">Instruktur Strategi</option>
-                                                <option value="Instruktur Lagu">Instruktur Lagu</option>
-                                                <option value="Instruktur Strategi & Lagu">Instruktur Strategi & Lagu
-                                                </option>
-                                                <option value="Munaqisy">Munaqisy</option>
-                                                <option value="Supervisor">Supervisor</option>
-                                            </select>
-                                        </div> --}}
                                     </div>
                                     <hr>
                                     <?php $macam = App\Models\Macamtrainer::all();?>
-                                        <h5 class="border-bottom">ISI "Ok" SESUAI STATUS MUNAQISY</h5>
+                                        <h5 class="border-bottom">ISI "Ok" SESUAI STATUS SUPERVISOR</h5>
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="row">
@@ -196,7 +182,7 @@
                                 <div class="container-fluid">
                                     <form id="hapustrainer" method="POST" enctype="multipart/form-data">@csrf
                                         <div class="form-group text-center">
-                                            <h5>Anda yakin akan menghapus Munaqisy tersebut ?</h5>
+                                            <h5>Anda yakin akan menghapus Supervisor tersebut ?</h5>
                                             <input type="hidden" class="form-control text-capitalize" id="id" name="id"
                                                 required>
                                         </div>
@@ -343,7 +329,7 @@
             var formData = new FormData(this);
             $.ajax({
                 type: 'POST',
-                url: "{{ route('import.munaqisy') }}",
+                url: "{{ route('import.supervisor') }}",
                 data: formData,
                 cache: false,
                 contentType: false,
@@ -406,7 +392,7 @@
                 processing: true,
                 serverSide: true,
                 ajax: {
-                    url: '{{ route('list.munaqisy.cabang') }}',
+                    url: '{{ route('list.supervisor.cabang') }}',
                 },
                 columns: [{
                         data: 'name',

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMunaqisiesTable extends Migration
+class CreateSupervisorsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateMunaqisiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('munaqisies', function (Blueprint $table) {
+        Schema::create('supervisors', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('cabang_id');
             $table->string('name')->nullable();
@@ -30,6 +30,6 @@ class CreateMunaqisiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('munaqisies');
+        Schema::dropIfExists('supervisors');
     }
 }

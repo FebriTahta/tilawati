@@ -92,4 +92,14 @@ class Cabang extends Model
     {
         return $this->hasMany(Kpa::class);
     }
+
+    public function munaqisy()
+    {
+        return $this->hasMany(Munaqisy::class);
+    }
+
+    public function supervisor()
+    {
+        return $this->hasMany(Supervisor::class);
+    }
 }
