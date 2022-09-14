@@ -118,7 +118,7 @@
                     </ul>
                 </li>
 
-                {{-- @if (auth()->user()->role == 'cabang') --}}
+                @if (auth()->user()->role == 'cabang')
                 <li class="menu-title">Konfirmasi Peserta Registrasi Online</li>
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
@@ -129,7 +129,7 @@
                         <li><a style="font-size: 12px" href="/konfirmasi-data-calon-peserta/{{auth()->user()->cabang->id}}">Data Peserta</a></li>
                     </ul>
                 </li>
-                {{-- @endif --}}
+                @endif
 
                 @if (auth()->user()->role == 'pusat')
                 <li>
