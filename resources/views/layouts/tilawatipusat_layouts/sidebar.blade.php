@@ -106,6 +106,7 @@
                         @endif
                     </ul>
                 </li>
+
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="mdi mdi-clipboard-list-outline"></i>
@@ -116,6 +117,20 @@
                         </li>
                     </ul>
                 </li>
+
+                {{-- @if (auth()->user()->role == 'cabang') --}}
+                <li class="menu-title">Konfirmasi Peserta Registrasi Online</li>
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="mdi mdi-clipboard-list"></i>
+                        <span style="font-size: 12px">Konfirmasi</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="true">
+                        <li><a style="font-size: 12px" href="/konfirmasi-data-calon-peserta/{{auth()->user()->cabang->id}}">Data Peserta</a></li>
+                    </ul>
+                </li>
+                {{-- @endif --}}
+
                 @if (auth()->user()->role == 'pusat')
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
@@ -127,23 +142,6 @@
                         <li><a style="font-size: 12px" href="/tampilan-api-cabang-nurul-falah">Api Cabang Nurul Falah</a></li>
                     </ul>
                 </li>
-                @endif
-
-                @if (auth()->user()->role == 'cabang')
-                    {{-- <li class="menu-title">Cetak E Syahadah</li> --}}
-
-                    
-
-                    {{-- <li>
-                        <a href="javascript: void(0);" class="has-arrow waves-effect">
-                            <i class="mdi mdi-clipboard-list-outline"></i>
-                            <span style="font-size: 12px">Belakang</span>
-                        </a>
-                        <ul class="sub-menu" aria-expanded="false">
-                            <li><a style="font-size: 12px" href="{{ route('diklat.belakang') }}">CETAK SYAHADAH</a>
-                            </li>
-                        </ul>
-                    </li> --}}
                 @endif
 
                 @if (auth()->user()->role == 'pusat')

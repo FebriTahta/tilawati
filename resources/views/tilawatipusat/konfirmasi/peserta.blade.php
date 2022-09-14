@@ -27,15 +27,15 @@
 @section('content')
 
     @component('common-tilawatipusat.breadcrumb')
-         @slot('title'){{ $diklat->program->name }}   @endslot
+         @slot('title') -   @endslot
          @slot('title_li') @endslot
     @endcomponent
-    <input type="hidden" id="pelatihan_id" value="{{ $diklat->id }}">
+    <input type="hidden" id="pelatihan_id" value="-">
                     <div class="row">
                         <div class="col-xl-8">
                             @component('common-tilawatipusat.dashboard-widget')
                             
-                                @slot('title') <b id=""> Cabang {{ $diklat->cabang->name }} - {{ $diklat->cabang->kabupaten->nama }} - <span class="text-info">{{ Carbon\Carbon::parse($diklat->tanggal)->isoFormat('D MMMM Y') }}</span></b>  @endslot
+                                @slot('title') <b id=""> Cabang {{ $cabang->name }} - {{ $cabang->kabupaten->nama }} - <span class="text-info"> - </span></b>  @endslot
                                 @slot('iconClass')mdi mdi-account-group  @endslot
                                 @slot('price')   @endslot
                                 
@@ -57,25 +57,19 @@
                         <div class="col-lg-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <input type="hidden" id="jenis_program" value="{{ $diklat->program->name }}">
-                                    <h4 class="card-title text-capitalize">Data Pendaftaran Peserta Pelatihan </h4>
-                                    @if ($diklat->program->penilaian->count() == 0)
-                                        <code>Diklat ini belum memiliki kategori penilaian -> <a href="/diklat-program">tentukan kategori penilaian </a></code><br>
-                                    @endif
-                                    @if ($diklat->program->registrasi->count() == 0)
-                                        <code>Diklat ini belum memiliki syarat pendaftaran -> <a href="/diklat-persyaratan"> tentukan syarat pendaftaran </a></code>
-                                    @endif
-                                    <p class="card-title-desc">Ter-update berdasarkan Tahun 2021 </br></p>
+                                    <input type="hidden" id="cabang_id" value="{{auth()->user()->cabang->id}}">
+                                    
+                                    <p class="card-title-desc">Ter-update berdasarkan Tahun {{date('Y')}} </br></p>
                                     
                                     
-                                    <input type="hidden" id="pelatihan_id" value="{{ $diklat->id }}">
+                                    
                                     <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
                                         <div id="message"></div>
                                         <table id="datatable-buttons" class="table table-peserta table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
                                             <thead class="text-bold text-primary" style="text-transform: capitalize">
                                                 <tr> 
                                                     <th>peserta</th>
-                                                    <th>kab / kota</th>
+                                                    <th>Program Diklat</th>
                                                     <th>phone</th>
                                                     <th>dokumen</th>
                                                     <th>status</th>
@@ -87,7 +81,7 @@
                                             <tfoot class="text-primary">
                                                 <tr>
                                                     <th>peserta</th>
-                                                    <th>kab / kota</th>
+                                                    <th>Program Diklat</th>
                                                     <th>phone</th>
                                                     <th>dokumen</th>
                                                     <th>status</th>
@@ -95,7 +89,7 @@
                                                 </tr>
                                             </tfoot>
                                         </table>
-                                        <footer class="blockquote-footer">Updated at  <cite title="Source Title">2021</cite></footer>
+                                        <footer class="blockquote-footer">Updated at  <cite title="Source Title">{{date('Y')}}</cite></footer>
                                     </blockquote>
                                 </div>
                             </div>
@@ -314,6 +308,7 @@
                 console.log(jenis_program);
                 var k = $('#kriteria_id').text();
                 var pel_id = $('#pelatihan_id').val();
+                var cabang_id = $('#cabang_id').val();
                 var pelatihan_id = $('#pelatihan_id').val();
                 $.ajax({
                     url:'/diklat-total-peserta-pelatihan/'+pelatihan_id,
@@ -330,7 +325,7 @@
                     processing: true,
                     serverSide: true,
                     ajax: {
-                        url:'/konfirmasi-data-peserta/'+pel_id,
+                        url:'/konfirmasi-data-calon-peserta/'+cabang_id,
                     },
                     columns: [
                         {
@@ -338,8 +333,8 @@
                         name:'name'
                         },
                         {
-                        data:'kabupaten',
-                        name:'kabupaten.nama'
+                        data:'program',
+                        name:'program.name'
                         },
                         {
                         data:'telp',

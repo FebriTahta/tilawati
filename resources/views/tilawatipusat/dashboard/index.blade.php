@@ -378,7 +378,7 @@
         <!-- /.modal-dialog -->
     </div>
 
-    <div class="modal fade bs-example-modal-xl-2" id="mod_cabang2" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+    <div class="modal fade bs-example-modal-xl-1" id="mod_cabang2" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
@@ -388,7 +388,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
+                    {{-- <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive"> --}}
                         <div style="text-align: center">
                             <form action="/export-laporan-data-cabang" method="POST">@csrf
                                 <input type="text" id="dari_download" name="dari" class="form-control mb-2" readonly>
@@ -422,7 +422,7 @@
                             </tfoot>
                         </table>
                         <footer class="blockquote-footer">Updated at  <cite title="Source Title">2021</cite></footer>
-                    </blockquote>
+                    {{-- </blockquote> --}}
                 </div>
             </div>
             <!-- /.modal-content -->
@@ -507,7 +507,7 @@
                             
                         ]
                     });
-                    
+
                 // $.ajax({
                 //     url: '{{ route('diklat.cabang_tot') }}',
                 //     data: {
