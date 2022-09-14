@@ -217,7 +217,7 @@ class DiklatCont extends Controller
                 $remove = '<a href="/remove-share-forward'.$data->id.'" class="btn btn-sm btn-outline btn-warning" ><i class="mdi mdi-trash"></i></a>';
                 return $remove;
             })
-            ->rawColumns(['cabang'])
+            ->rawColumns(['cabang','action'])
             ->make(true);
         }
     }
