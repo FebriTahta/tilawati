@@ -731,8 +731,8 @@
                                 name:'cabang.name'
                                 },
                                 {
-                                data:'pelatihan_id',
-                                name:'pelatihan_id'
+                                data:'action',
+                                name:'action'
                                 },
                                 
                             ]
