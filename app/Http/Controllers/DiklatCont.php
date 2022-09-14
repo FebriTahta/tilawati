@@ -214,7 +214,8 @@ class DiklatCont extends Controller
                 return $data->cabang->name;
             })
             ->addColumn('action', function($data){
-                return' <a href="/remove-share-forward'.$data->id.'" class="btn btn-sm btn-outline btn-warning" ><i class="mdi mdi-trash"></i></a>';
+                $remove = '<a href="/remove-share-forward'.$data->id.'" class="btn btn-sm btn-outline btn-warning" ><i class="mdi mdi-trash"></i></a>';
+                return $remove;
             })
             ->rawColumns(['cabang'])
             ->make(true);
