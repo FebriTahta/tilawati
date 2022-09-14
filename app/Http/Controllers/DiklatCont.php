@@ -214,15 +214,16 @@ class DiklatCont extends Controller
                 return $data->cabang->name;
             })
             ->addColumn('action', function($data){
-                return' <a href="#" class="btn btn-sm btn-outline btn-warning" data-id="/remove-forward'.$data->id.'"><i class="mdi mdi-forward"></i></a>';
+                return' <a href="/remove-share-forward'.$data->id.'" class="btn btn-sm btn-outline btn-warning" ><i class="mdi mdi-trash"></i></a>';
             })
             ->rawColumns(['cabang'])
             ->make(true);
         }
     }
 
-    public function remove_share($forward_id){
-        
+    public function remove_share_forward($forward_id){
+        Forwardconfirm::findOrFail($forward_id)->delete();
+        return redirect()->back();
     }
 
     public function submit_forward_cabang(Request $request)
