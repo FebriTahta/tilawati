@@ -107,7 +107,7 @@ Route::get('/fetchnampro/{namaprogram}',[SubController::class, 'fetchnampro']);
 //fetch program dan pelatihan untuk print
 Route::get('/fetchpp/{id}',[SubController::class, 'fetchpp']);
 //submit registrasi pendaftaran online
-Route::post('/pendaftaran-peserta-diklat',[RegistrasiCont::class,'registrasi'])->name('diklat.registrasi');
+Route::post('/pendaftaran-peserta-diklat',[RegistrasiCont::class,'registrasi'])->name('diklat.registrasi1');
 Route::get('/pendaftaran-data-calon-peserta-diklat-sukses/{program_id}/{diklat_id}/{peserta_id}', [RegistrasiCont::class,'sukses'])->name('diklat.registrasi.sukses');
 Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara']], function () {
     //syarat regis
@@ -219,7 +219,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     Route::post('/pelatihan-cetak-belakang-munaqisy-print',[CetakController::class, 'cetak_belakang_munaqisy'])->name('belakang.cetakmunaqisy');
     
     //hapus data
-    Route::post('/hapus-pelatihan-cabang', [SubController::class, 'hapuscabang'])->name('cabang.hapus');
+    Route::post('/hapus-pelatihan-cabang', [SubController::class, 'hapuscabang'])->name('cabang.pelatihan.hapus');
     //import
     Route::post('/importPeserta',[ImportController::class,'importPeserta'])->name('import.peserta');
     Route::post('/importPesertaGuru',[ImportController::class,'importPesertaGuru'])->name('import.pesertaG');
@@ -468,6 +468,9 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     // NEW KONFIRMASI PESERTA DIKLAT DARI CABANG
     Route::get('/konfirmasi-data-calon-peserta/{cabang_id}',[KonfirmasiCont::class,'new_konfirmasi_index'])->name('new.konfirmasi.index');
     Route::get('/total_peserta_menunggu_konfirmasi/{cabang_id}',[KonfirmasiCont::class,'total_peserta_menunggu_konfirmasi']);
+    Route::get('/data_forward_konfirm_cabang/{pelatihan_id}',[DiklatCont::class,'data_forward_konfirm_cabang']);
+    Route::post('/submit-forward-cabang',[DiklatCont::class,'submit_forward_cabang'])->name('submit.forward.cabang');
+
 
     Route::post('/peserta-pindah-pelatihan',[DiklatCont::class,'peserta_pindah_pelatihan'])->name('peserta_pindah_pelatihan');
     Route::post('/generate_qr',[DiklatCont::class,'generate_qr'])->name('generate_qr');

@@ -27,6 +27,11 @@ class Pelatihan extends Model
     {
         return 'slug';
     }
+
+    public function forwardconfirm()
+    {
+        return $this->hasMany(Forwardconfirm::class);
+    }
     
     public function cabang()
     {

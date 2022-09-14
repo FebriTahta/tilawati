@@ -102,4 +102,9 @@ class Cabang extends Model
     {
         return $this->hasMany(Supervisor::class);
     }
+
+    public function forwardconfirm()
+    {
+        return $this->hasMany(Forwardconfirm::class);
+    }
 }

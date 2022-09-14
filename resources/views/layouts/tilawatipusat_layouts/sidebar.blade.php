@@ -144,7 +144,7 @@
                 </li>
                 @endif
 
-                @if (auth()->user()->role == 'pusat')
+                @if (auth()->user()->role == 'pusat' || auth()->user()->role == 'cabang')
                     <li class="menu-title">Cetak</li>
 
                     <li>

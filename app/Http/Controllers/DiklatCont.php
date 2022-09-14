@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Pelatihan;
 use App\Models\Program;
+use App\Models\Forwardconfirm;
 use App\Models\Peserta;
 use DB;
 use App\Models\Cabang;
@@ -89,6 +90,7 @@ class DiklatCont extends Controller
                             $actionBtn .= ' <button data-id="'.$data->id.'" class="btn btn-sm btn-success" data-toggle="modal" data-target="#modal-download2"><i class="fa fa-download"></i></button>';
                             $actionBtn .= ' <a href="#" class="btn btn-sm btn-outline btn-info" data-slug="'.$data->slug.'" data-nama_diklat="'.$data->program->name.'" data-id="'.asset('images/'.$data->slug.'.png').'" data-toggle="modal" data-target=".modal-scan"><i class="mdi mdi-barcode-scan"></i></a>';
                             // $actionBtn .= ' <a href="#" class="btn btn-sm btn-outline btn-success" data-slug="'.$data->slug.'" data-nama_diklat="'.$data->program->name.'" data-id="'.asset('images/'.$data->slug.'.png').'" data-toggle="modal" data-target=".modal-scan"><i class="mdi mdi-whatsapp"></i></a>';
+                            $actionBtn .= ' <a href="#" class="btn btn-sm btn-outline btn-warning" data-toggle="modal" data-target="#modal_share_cabang"><i class="mdi mdi-forward"></i></a>';
                             return $actionBtn;
                         })
                         ->addColumn('groupwa', function($data){
@@ -173,6 +175,7 @@ class DiklatCont extends Controller
                             $actionBtn .= ' <button data-id="'.$data->id.'" alt="cetak surat jalan" class="btn btn-sm btn-success" data-toggle="modal" data-target="#modal-download2"><i class="fa fa-download"></i></button>';
                             $actionBtn .= ' <a href="#" class="btn btn-sm btn-outline btn-info" data-slug="'.$data->slug.'" data-nama_diklat="'.$data->program->name.'" data-id="'.asset('images/'.$data->slug.'.png').'" data-toggle="modal" data-target=".modal-scan"><i class="mdi mdi-barcode-scan"></i></a>';
                             // $actionBtn .= ' <a href="#" class="btn btn-sm btn-outline btn-success" data-slug="'.$data->slug.'" data-nama_diklat="'.$data->program->name.'" data-id="'.asset('images/'.$data->slug.'.png').'" data-toggle="modal" data-target=".modal-scan"><i class="mdi mdi-whatsapp"></i></a>';
+                            $actionBtn .= ' <a href="#" class="btn btn-sm btn-outline btn-warning" data-toggle="modal" data-target="#modal_share_cabang" data-id="'.$data->id.'"><i class="mdi mdi-forward"></i></a>';
                             return $actionBtn;
                         })
                         ->addColumn('tanggal', function($data){
@@ -198,6 +201,45 @@ class DiklatCont extends Controller
                 ->rawColumns(['pelatihan_id','cabang','tempat_diklat','groupwa','flyer','program','action','peserta','linkpendaftaran','tanggal'])
                 ->make(true);
             }
+        }
+    }
+
+    public function data_forward_konfirm_cabang(Request $request, $pelatihan_id)
+    {
+        if(request()->ajax())
+        {
+            $data = Forwardconfirm::where('pelatihan_id', $pelatihan_id)->get();
+            return DataTables::of($data)
+            ->addColumn('cabang', function($data){
+                return $data->cabang->name;
+            })
+            ->addColumn('action', function($data){
+                return' <a href="#" class="btn btn-sm btn-outline btn-warning" data-id="/remove-forward'.$data->id.'"><i class="mdi mdi-forward"></i></a>';
+            })
+            ->rawColumns(['cabang'])
+            ->make(true);
+        }
+    }
+
+    public function remove_share($forward_id){
+        
+    }
+
+    public function submit_forward_cabang(Request $request)
+    {
+        foreach ($request->cabang_id as $key => $value) {
+            # code...
+            Forwardconfirm::updateOrCreate(
+                [
+                    'id'=> 'xxx',
+                ],
+                [
+                    'cabang_id' => $value,
+                    'pelatihan_id' => $request->pelatihan_id
+                ]
+            );
+
+            return redirect()->back();
         }
     }
 

@@ -572,6 +572,50 @@
                         </div>
                         <!-- /.modal-dialog -->
                     </div>
+
+                    <div class="modal fade bs-example-modal-xl-2" id="modal_share_cabang" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-md modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">BAGIKAN KONFIRMASI DIKLAT INI UNTUK CABANG</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                
+                                
+                                <div class="modal-body">
+                                    <form action="{{route('submit.forward.cabang')}}" method="post"> @csrf 
+                                        <div class="form-group">
+                                            <input type="hidden" id="pelatihan_id" name="pelatihan_id">
+                                            <select name="cabang_id[]" id="sel_cabang" style="width: 100%" class="form-control select2 multiple" required>
+                                                <option value=""> PILIH CABANG</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="submit" value="submit" id="btnshare" class="btn btn-primary">
+                                        </div>
+                                    </form>
+
+
+                                    <table id="tabel_share" class="table tabel_share table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
+                                        <thead class="text-bold text-primary" style="text-transform: uppercase; font-size: 10px">
+                                            <tr>
+                                                <th>Cabang</th>
+                                                <th>...</th>
+                                            </tr>
+                                        </thead>
+                
+                                        <tbody style="text-transform: uppercase; font-size: 10px">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <!-- /.modal-content -->
+                        </div>
+                        <!-- /.modal-dialog -->
+                    </div>
+                    
 <input type="text" value="{{auth()->user()->role}}" style="display: none">
 @endsection
 
@@ -601,6 +645,58 @@
         <!-- Datatable init js -->
         <script src="{{ URL::asset('tilawatipusat/js/pages/datatables.init.js')}}"></script>
         <script>
+            $('#formshare').submit(function(e) {
+                e.preventDefault();
+                var formData = new FormData(this);
+                $.ajax({
+                type:'POST',
+                url: "submit-forward-cabang",
+                data: formData,
+                cache:false,
+                contentType: false,
+                processData: false,
+                beforeSend:function(){
+                    $('#btnshare').attr('disabled','disabled');
+                    $('#btnshare').val('Proses Menyimpan Data');
+                },
+                success: function(data){
+                    //sweetalert and redirect
+                    $("#formshare")[0].reset();
+                        toastr.success(data.success);
+                        $('#btnshare').val('Buat Baru');
+                        $('#btnshare').attr('disabled',false);
+                        swal({ title: "Success!",
+                            text: "Diklat Baru Berhasil Dibuat!",
+                            type: "success"});
+                },
+                error: function(data)
+                {
+                    console.log(data);
+                    }
+                });
+            });
+
+            $('#sel_cabang').select2('destroy').select2({
+                    placeholder: 'Select an item',
+                    ajax: {
+                        url: "{{route('diklat.diklat_cabang_select')}}",
+                        dataType: 'json',
+                        delay: 250,
+                        processResults: function (data) {
+                        return {
+                            results:  $.map(data, function (item) {
+                                return {
+                                    text: item.kode,
+                                    text: item.name,
+                                    id: item.id   
+                                }
+                            })
+                        };
+                        },
+                        cache: true
+                    }
+                });
+
             $('.modal-scan').on('show.bs.modal', function(event) {
                 var button = $(event.relatedTarget)
                 var id = button.data('id')
@@ -612,6 +708,35 @@
                 $('#qr_slug2').val(slug);
                 console.log(slug);
                 document.getElementById("qr-code").src = id;
+            })
+
+            $('#modal_share_cabang').on('show.bs.modal', function(event) {
+                var button = $(event.relatedTarget)
+                var pelatihan_id = button.data('id')
+                var modal = $(this)
+                $('#pelatihan_id').val(pelatihan_id);
+                console.log(pelatihan_id);
+                $('.tabel_share').DataTable({
+                            //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
+                            searching:false,info:false,
+                            destroy: true,
+                            processing: true,
+                            serverSide: true,
+                            ajax: {
+                                url:'/data_forward_konfirm_cabang/'+pelatihan_id,
+                            },
+                            columns: [
+                                {
+                                data:'cabang',
+                                name:'cabang.name'
+                                },
+                                {
+                                data:'pelatihan_id',
+                                name:'pelatihan_id'
+                                },
+                                
+                            ]
+                        });
             })
 
             $('#inputGroupFile02').on('change',function(){
