@@ -144,7 +144,7 @@
                 </li>
                 @endif
 
-                @if (auth()->user()->role == 'pusat' || auth()->user()->role == 'cabang')
+                @if (auth()->user()->role == 'pusat')
                     <li class="menu-title">Cetak</li>
 
                     <li>
@@ -216,6 +216,31 @@
                     </div>
 
                 @else
+                    @if (auth()->user()->id == '21')
+                        <li class="menu-title">Cetak</li>
+
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                <i class="mdi mdi-clipboard-list-outline"></i>
+                                <span style="font-size: 12px">Depan</span>
+                            </a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a style="font-size: 12px" href="{{ route('diklat.depan_guru') }}">CETAK IJAZAH</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                <i class="mdi mdi-clipboard-list-outline"></i>
+                                <span style="font-size: 12px">Belakang</span>
+                            </a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a style="font-size: 12px" href="{{ route('diklat.belakang') }}">CETAK IJAZAH</a>
+                                </li>
+                            </ul>
+                        </li>
+                    @endif
                     @if (auth()->user()->id == '21' || auth()->user()->role == 'pusat')
                         <li class="menu-title">LAPORAN DATA KERJA</li>
                         <li>
