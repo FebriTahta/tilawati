@@ -119,32 +119,38 @@ class KonfirmasiCont extends Controller
             if ($request->acc == 1) {
                 # code...
                 # send wa
+
                 $curl = curl_init();
-                $token = "qI5hdmGFCSs67lLEnEy10MAqCc8zuMYh8QPhfw1ye8OeIogn4UdUDNLs6hLzsNtP";
-                $datas = [
-                    'phone' => $data->telp,
-                    'message' => '*TILAWATI PUSAT - '.strtoupper($data2->program->name).'*. 
-                    *Yth. '.strtoupper($data->name).'*. Pendaftaran anda telah kami terima, silahkan bergabung pada group whatsapp berikut ( '.$data2->groupwa.' )
-
-                    *CATATAN*
-                    Simpan nomor ini untuk mengaktifkan link group Whatsapp diatas.
-                    *PESAN INI TIDAK UNTUK DISEBAR LUASKAN*
-                    ',
-                    'secret' => false, // or true
-                    'priority' => false, // or true
+                $token = "ErPMCdWGNfhhYPrrGsTdTb1vLwUbIt35CQ2KlhffDobwUw8pgYX4TN5rDT4smiIc";
+                $payload = [
+                    "data" => [
+                        [
+                            'phone' => $data->telp,
+                            'message' => '*TILAWATI PUSAT - '.strtoupper($data2->program->name).'*. 
+                            *Yth. '.strtoupper($data->name).'*. Pendaftaran anda telah kami terima, silahkan bergabung pada group whatsapp berikut ( '.$data2->groupwa.' )
+            
+                            *CATATAN*
+                            Simpan nomor ini untuk mengaktifkan link group Whatsapp diatas.
+                            *PESAN INI TIDAK UNTUK DISEBAR LUASKAN*',
+                            'secret' => false, // or true
+                            'retry' => false, // or true
+                            'isGroup' => false, // or true
+                        ]
+                    ]
                 ];
-
                 curl_setopt($curl, CURLOPT_HTTPHEADER,
                     array(
                         "Authorization: $token",
+                        "Content-Type: application/json"
                     )
                 );
                 curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
                 curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-                curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($datas));
-                curl_setopt($curl, CURLOPT_URL, "https://simo.wablas.com");
+                curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($payload) );
+                curl_setopt($curl, CURLOPT_URL, "https://solo.wablas.com/api/v2/send-message");
                 curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
                 curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+
                 $result = curl_exec($curl);
                 curl_close($curl);
                 //
@@ -156,36 +162,48 @@ class KonfirmasiCont extends Controller
                 );
             }else{
                 # send wa
+                //hapus file di subdomain registrasi bagi yang datanya ditolak
+                // foreach ($data->filepeserta as $key => $value) {
+                //     # code...
+                //     File::delete('https://registrasi.nurulfalah.org/file_peserta/'.$value->file.'');
+                // }
+                //hapus peserta bagi yang datanya ditolak agar bisa registrasi lagi
                 $curl = curl_init();
-                $token = "qI5hdmGFCSs67lLEnEy10MAqCc8zuMYh8QPhfw1ye8OeIogn4UdUDNLs6hLzsNtP";
-                $datas = [
-                    'phone' => $data->telp,
-                    'message' => ' *TILAWATI PUSAT - '.strtoupper($data2->program->name).'*
-                    *Yth. '.strtoupper($data->name).'*. Maaf, Pendaftaran anda belum dapat kami terima karena :  
-                    *'.$alasan.'*.
-
-                    Untuk melanjutkan pendaftaran bisa klik link dibawah ini.
-                    https://registrasi.tilawatipusat.com/'.$data2->slug.'
-                    ',
-                    'secret' => false, // or true
-                    'priority' => false, // or true
+                $token = "ErPMCdWGNfhhYPrrGsTdTb1vLwUbIt35CQ2KlhffDobwUw8pgYX4TN5rDT4smiIc";
+                $payload = [
+                    "data" => [
+                        [
+                            'phone' => $data->telp,
+                            'message' => '*TILAWATI PUSAT - '.strtoupper($data2->program->name).'*
+                            *Yth. '.strtoupper($data->name).'*. Maaf, Pendaftaran anda belum dapat kami terima karena :  
+                            *'.$alasan.'*.
+            
+                            Untuk melanjutkan pendaftaran bisa klik link dibawah ini.
+                            https://registrasi.nurulfalah.org/'.$data2->slug.'.',
+                            'secret' => false, // or true
+                            'retry' => false, // or true
+                            'isGroup' => false, // or true
+                        ]
+                    ]
                 ];
-
                 curl_setopt($curl, CURLOPT_HTTPHEADER,
                     array(
                         "Authorization: $token",
+                        "Content-Type: application/json"
                     )
                 );
                 curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
                 curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-                curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($datas));
-                curl_setopt($curl, CURLOPT_URL, "https://simo.wablas.com");
+                curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($payload) );
+                curl_setopt($curl, CURLOPT_URL, "https://solo.wablas.com/api/v2/send-message");
                 curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
                 curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+
                 $result = curl_exec($curl);
                 curl_close($curl);
-                //hapus data peserta yang ditolak
+
                 $data->delete();
+
                 return response()->json(
                     [
                       'success' => 'Pendaftaran Peserta Telah Ditolak!',
@@ -374,5 +392,22 @@ class KonfirmasiCont extends Controller
                 ->make(true);
         }
         return view('tilawatipusat.konfirmasi.peserta',compact('cabang'));
+    }
+
+    public function total_peserta_menunggu_konfirmasi(Request $request, $cabang_id)
+    {
+        if(request()->ajax())
+        {
+            $data   = Peserta::with('kabupaten')->with('pelatihan')->with('filepeserta')->with('program')->with('cabang')
+            ->where('status', 0)->where('cabang_id', $cabang_id)->count();
+
+            return response()->json(
+                [
+                  
+                    'data'    => $data,
+                    'message' => 'Total peserta diklat yang menunggu konfirmasi'
+                ]
+            );
+        }
     }
 }

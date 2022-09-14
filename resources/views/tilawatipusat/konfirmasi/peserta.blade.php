@@ -311,7 +311,7 @@
                 var cabang_id = $('#cabang_id').val();
                 var pelatihan_id = $('#pelatihan_id').val();
                 $.ajax({
-                    url:'/diklat-total-peserta-pelatihan/'+pelatihan_id,
+                    url:'/total_peserta_menunggu_konfirmasi/'+cabang_id,
                     type: 'get',
                     dataType: 'json',
                     success:function(data) {
