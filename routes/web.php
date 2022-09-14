@@ -470,7 +470,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     Route::get('/total_peserta_menunggu_konfirmasi/{cabang_id}',[KonfirmasiCont::class,'total_peserta_menunggu_konfirmasi']);
     Route::get('/data_forward_konfirm_cabang/{pelatihan_id}',[DiklatCont::class,'data_forward_konfirm_cabang']);
     Route::post('/submit-forward-cabang',[DiklatCont::class,'submit_forward_cabang'])->name('submit.forward.cabang');
-    Route::get('/remove-share-forward',[DiklatCont::class,'remove_share_forward']);
+    Route::get('/remove-share-forward/{forward_id}',[DiklatCont::class,'remove_share_forward']);
 
     Route::post('/peserta-pindah-pelatihan',[DiklatCont::class,'peserta_pindah_pelatihan'])->name('peserta_pindah_pelatihan');
     Route::post('/generate_qr',[DiklatCont::class,'generate_qr'])->name('generate_qr');
