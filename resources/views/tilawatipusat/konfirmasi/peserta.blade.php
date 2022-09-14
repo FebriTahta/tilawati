@@ -45,7 +45,7 @@
                         <div class="col-xl-4">
                             @component('common-tilawatipusat.dashboard-widget')
                             
-                                @slot('title') <b id="cb"> ??? </b> Peserta  @endslot
+                                @slot('title') <b id="cb"> ??? </b> Peserta Menunggu Konfirmasi @endslot
                                 @slot('iconClass')mdi mdi-account-group  @endslot
                                 @slot('price')   @endslot
                                 
