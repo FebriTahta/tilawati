@@ -315,8 +315,8 @@
                     type: 'get',
                     dataType: 'json',
                     success:function(data) {
-                        document.getElementById('cb').innerHTML = data;
-                        console.log(data);
+                        document.getElementById('cb').innerHTML = data.data;
+                        console.log(data.data);
                     }
                 });
                     $('#datatable-buttons').DataTable({
