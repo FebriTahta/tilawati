@@ -118,6 +118,13 @@
         @endslot
     @endcomponent
     <div class="row">
+        <div class="col-xl-12">
+            <div class="card">
+                <div class="card-body">
+                    GENERAL DATA REPORT PEMBELAJARAN AL-QUR'AN METODE TILAWATI
+                </div>
+            </div>
+        </div>
         <div class="col-xl-12" style="margin-bottom: 20px">
             <button class="btn btn-primary" data-toggle="modal" id="btnlaporan" data-target="#mod_cabang2" style="width: 100%">LAPORAN PERKEMBANGAN</button>
         </div>
