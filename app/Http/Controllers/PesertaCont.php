@@ -11,7 +11,11 @@ use App\Models\Nilai;
 use App\Models\Lembaga;
 use App\Models\Cabang;
 use App\Models\Kabupaten;
+use App\Models\KPA;
+use App\Models\Munaqisy;
+use App\Models\Supervisor;
 use App\Models\Kriteria;
+use App\Models\Trainer;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
 use File;
@@ -1555,6 +1559,46 @@ class PesertaCont extends Controller
 
                     return '<pre>Guru : '.$guru.'</pre>';
                 })
+                ->addColumn('kpa', function($data){
+                    $kpa = $data->kpa->count();
+                    $update = KPA::orderBy('updated_at','desc')->where('cabang_id', $data->id)->first();
+                    if ($update !== null) {
+                        # code...
+                        return '<pre>'.$kpa.' (KPA) - '.\Carbon\Carbon::parse($update->updated_at)->format('M Y').'</pre>';
+                    }else {
+                        return '-';
+                    }
+                })
+                ->addColumn('munaqisy', function($data){
+                    $munaqisy = $data->munaqisy->count();
+                    $update = Munaqisy::orderBy('updated_at','desc')->where('cabang_id', $data->id)->first();
+                    if ($update !== null) {
+                        # code...
+                        return '<pre>'.$munaqisy.' (Munaqisy) - '.\Carbon\Carbon::parse($update->updated_at)->format('M Y').'</pre>';
+                    }else{
+                        return '-';
+                    }
+                })
+                ->addColumn('trainer', function($data){
+                    $trainer = $data->trainer->count();
+                    $update = Trainer::orderBy('updated_at','desc')->where('cabang_id', $data->id)->first();
+                    if ($update !== null) {
+                        # code...
+                        return '<pre>'.$trainer.' (Trainer) - '.\Carbon\Carbon::parse($update->updated_at)->format('M Y').'</pre>';
+                    }else{
+                        return '-';
+                    }
+                })
+                ->addColumn('supervisor', function($data){
+                    $supervisor = $data->supervisor->count();
+                    $update = Supervisor::orderBy('updated_at','desc')->where('cabang_id', $data->id)->first();
+                    if ($update !== null) {
+                        # code...
+                        return '<pre>'.$supervisor.' (Supervisor) - '.\Carbon\Carbon::parse($update->updated_at)->format('M Y').'</pre>';
+                    }else{
+                        return '-';
+                    }
+                })
                 ->addColumn('total_santri', function($data){
                     $dataz = [];
                     $datax = [];
@@ -1574,7 +1618,7 @@ class PesertaCont extends Controller
 
                     return '<pre>Santri : '.$santri.'</pre>';
                 })
-                ->rawColumns(['cabang','jumlahdiklat','namadiklat','total_guru','total_santri'])->make(true);
+                ->rawColumns(['cabang','jumlahdiklat','namadiklat','total_guru','total_santri','kpa','munaqisy','trainer','supervisor'])->make(true);
                 
             }
         }

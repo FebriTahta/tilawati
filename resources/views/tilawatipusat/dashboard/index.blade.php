@@ -119,7 +119,7 @@
     @endcomponent
     <div class="row">
         <div class="col-xl-12" style="margin-bottom: 20px">
-            <button class="btn btn-primary" data-toggle="modal" data-target="#mod_cabang2" style="width: 100%">LAPORAN PERKEMBANGAN</button>
+            <button class="btn btn-primary" data-toggle="modal" id="btnlaporan" data-target="#mod_cabang2" style="width: 100%">LAPORAN PERKEMBANGAN</button>
         </div>
         <div class="col-xl-6">
             <div class="card" style="min-height: 470px">
@@ -391,8 +391,8 @@
                     {{-- <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive"> --}}
                         <div style="text-align: center">
                             <form action="/export-laporan-data-cabang" method="POST">@csrf
-                                <input type="text" id="dari_download" name="dari" class="form-control mb-2" readonly>
-                                <input type="text" id="sampai_download" name="sampai" class="form-control mb-2" readonly>
+                                {{-- <input type="text" id="dari_download" name="dari" class="form-control mb-2" readonly>
+                                <input type="text" id="sampai_download" name="sampai" class="form-control mb-2" readonly> --}}
                                 <button type="submit" class="btn btn-sm btn-primary">DOWNLOAD DATA</button>
                             </form>
                         </div>
@@ -402,9 +402,13 @@
                                 <tr>
                                     <th>CABANG</th>
                                     <th>TOTAL DIKLAT</th>
-                                    <th>PROGRAM DIKLAT</th>
+                                    {{-- <th>PROGRAM DIKLAT</th>
                                     <th>GURU</th>
-                                    <th>SANTRI</th>
+                                    <th>SANTRI</th> --}}
+                                    <th>KPA</th>
+                                    <th>TRAINER</th>
+                                    <th>MUNAQISY</th>
+                                    <th>SUPERVISIOR</th>
                                 </tr>
                             </thead>
     
@@ -415,9 +419,13 @@
                                 <tr>
                                     <th>CABANG</th>
                                     <th>TOTAL</th>
-                                    <th>PROGRAM DIKLAT</th>
+                                    {{-- <th>PROGRAM DIKLAT</th>
                                     <th>GURU</th>
-                                    <th>SANTRI</th>
+                                    <th>SANTRI</th> --}}
+                                    <th>KPA</th>
+                                    <th>TRAINER</th>
+                                    <th>MUNAQISY</th>
+                                    <th>SUPERVISIOR</th>
                                 </tr>
                             </tfoot>
                         </table>
@@ -458,6 +466,63 @@
     crossorigin=""></script>
     <script>
         var id_prov;
+
+        $('#btnlaporan').on('click', function () {
+            $('.table-diklat-cabang').DataTable({
+                        //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
+                        "columnDefs": [
+                            { "type": "numeric-comma", targets: "_all" }
+                        ],
+                        destroy: true,
+                        processing: true,
+                        serverSide: true,
+                        ajax: {
+                            url:'{{ route("diklat.peserta_cabang_pilih") }}',
+                            // data:{dari:dari, sampai:sampai}
+                        },
+                        columns: [
+                            {
+                            data:'cabang',
+                            name:'name'
+                            },
+                            {
+                            data:'jumlahdiklat',
+                            name:'jumlahdiklat'
+                            },
+                            // {
+                            // data:'namadiklat',
+                            // name:'namadiklat'
+                            // },
+                            // {
+                            // data:'total_guru',
+                            // name:'total_guru'
+                            // },
+                            // {
+                            // data:'total_santri',
+                            // name:'total_santri'
+                            // },
+                            {
+                            data:'kpa',
+                            name:'kpa'
+                            },
+                            {
+                            data:'trainer',
+                            name:'trainer'
+                            },
+                            {
+                            data:'munaqisy',
+                            name:'munaqisy'
+                            },
+                            {
+                            data:'supervisor',
+                            name:'supervisor'
+                            },
+                            
+                            
+                        ]
+                    });
+        })
+
         $('#mod_cabang3').on('show.bs.modal', function(event) {
             var button = $(event.relatedTarget)
             id_prov = button.data('id')
@@ -471,42 +536,7 @@
 
             function load_data(dari = '', sampai = '') {
 
-                $('.table-diklat-cabang').DataTable({
-                        //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
-                        "columnDefs": [
-                            { "type": "numeric-comma", targets: "_all" }
-                        ],
-                        destroy: true,
-                        processing: true,
-                        serverSide: true,
-                        ajax: {
-                            url:'{{ route("diklat.peserta_cabang_pilih") }}',
-                            data:{dari:dari, sampai:sampai}
-                        },
-                        columns: [
-                            {
-                            data:'cabang',
-                            name:'name'
-                            },
-                            {
-                            data:'jumlahdiklat',
-                            name:'jumlahdiklat'
-                            },
-                            {
-                            data:'namadiklat',
-                            name:'namadiklat'
-                            },
-                            {
-                            data:'total_guru',
-                            name:'total_guru'
-                            },
-                            {
-                            data:'total_santri',
-                            name:'total_santri'
-                            },
-                            
-                        ]
-                    });
+                
 
                 // $.ajax({
                 //     url: '{{ route('diklat.cabang_tot') }}',
