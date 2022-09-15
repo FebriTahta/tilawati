@@ -18,6 +18,11 @@ use Illuminate\Http\Request;
 class SubController extends Controller
 {
 //1-3 daerah    
+    public function hapus_data_munaqisy($cabang_id)
+    {
+        return 'ok';
+    }
+
     public function fetch($id){
         $city = Kabupaten::where('provinsi_id',$id)->pluck('nama','id');
         return json_encode($city);

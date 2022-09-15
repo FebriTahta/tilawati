@@ -44,6 +44,7 @@ use App\Http\Controllers\CekController;
 use App\Http\Controllers\TemplateDownloadCont;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\KodeAdminCont;
+use App\Http\Controllers\DashboardCabang;
 use App\Mail\MyTestMail;
 /*
 |--------------------------------------------------------------------------
@@ -120,7 +121,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     Route::post('/dashboard-chart-2',[DashboardController::class,'dataForChart2'])->name('dashboard.chart2');// data untuk chart pie di dashboar
     Route::get('/dashboard',[DashboardController::class, 'index'])->name('dashboard');
     Route::get('/dashboard/diklat-total',[DashboardController::class,'daterangediklat'])->name('diklat.filter');//get data diklat range ajax dashboard
-    Route::get('/dashboard/cabang-total',[DashboardCabang::class,'daterangecabang'])->name('cabang.filter');//get data cabang range ajax dashboard
+    Route::get('/dashboard/cabang-total',[DashboardController::class,'daterangecabang'])->name('cabang.filter');//get data cabang range ajax dashboard
     Route::get('/dashboard/lembaga-total',[DashboardController::class,'daterangelembaga'])->name('lembaga.filter');//get data lembaga range ajax dashboard
     Route::get('/dashboard/peserta-total', [DashboardController::class, 'daterangepeserta'])->name('peserta.filter');//get data peserta range ajax dashboard
     Route::get('/dashboard/user',[DashboardController::class, 'getuser'])->name('dashboard.user');//get total user ajax dashboard
@@ -156,7 +157,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
 
     //teritorial
     Route::get('/pelatihan-teritorial',[TeritorialController::class, 'index'])->name('teritorial.index');
-    Route::post('/pelatihan-teritorial-post',[TeritorialControllerito::class, 'store'])->name('teritorial.store');
+    Route::post('/pelatihan-teritorial-post',[TeritorialController::class, 'store'])->name('teritorial.store');
     Route::get('/pelatihan-teritorial-get',[TeritorialController::class, 'get'])->name('teritorial.get');
 
     //import
@@ -496,9 +497,15 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     // NEW DATA SUPERVISOR RAKERNAS
     Route::get('/data-supervisor/cabang',[CabangCont::class,'data_supervisor'])->name('data.supervisor.cabang');
     Route::get('/list-supervisor/cabang',[CabangCont::class,'list_supervisor_cabang'])->name('list.supervisor.cabang');
+    Route::get('/hapus/data/supervisor/{cabang_id}',[CabangCont::class,'remove_supervisor']);
     // NEW DATA MUNAQISY RAKERNAS
     Route::get('/data-munaqisy/cabang',[CabangCont::class,'data_munaqisy'])->name('data.munaqisy.cabang');
     Route::get('/list-munaqisy/cabang',[CabangCont::class,'list_munaqisy_cabang'])->name('list.munaqisy.cabang');
+    Route::get('/hapus/data/munaqisy/{cabang_id}',[CabangCont::class,'remove_munaqisy']);
+    // Route::get('/data-munaqisy',[SubController::class,'hapus_data_munaqisy'])->name();
+
+    
+
     // NEW DATA CABANG RAKERNAS
     Route::get('/data-trainer/cabang',[CabangCont::class,'data_trainer'])->name('data.trainer.cabang');
     Route::get('/edit-trainer/cabang/{trainer_id}',[CabangCont::class,'edit_trainer'])->name('edit.trainer');

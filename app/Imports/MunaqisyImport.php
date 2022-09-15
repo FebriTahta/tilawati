@@ -18,13 +18,13 @@ class MunaqisyImport implements ToCollection
 
         if ($munaqisy->count() > 0) {
             # code...
-            $munaqisy->delete();
+            Munaqisy::where('cabang_id', $this->cabang_id)->delete();
         }
 
         foreach ($collection as $key => $row) {
-                $data= Munaqisy::where('name',$row[1])->where('cabang_id', $this->cabang_id)->first();
+                // $data= Munaqisy::where('name',$row[1])->where('cabang_id', $this->cabang_id)->first();
                 if ($key >= 6) {
-                    if ($data == null) {
+                    // if ($data == null) {
                         # code...
                         $muna = new Munaqisy;
                         $muna->cabang_id = $this->cabang_id;
@@ -33,9 +33,7 @@ class MunaqisyImport implements ToCollection
                         $muna->alamat = $row[3];
                         $muna->created_at = new \DateTime;
                         $muna->save();
-                        
-                        
-                    }
+                    // }
                 }
                 
         }

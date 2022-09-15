@@ -37,6 +37,14 @@
                     <a href="/export-template-munaqisy-data/{{ $cabang->id }}"
                         class="btn btn-sm btn-outline-warning mb-2 mr-1 text-uppercase" style="font-size: 12px "><i
                             class="mdi mdi-download"></i> Unduh Data Munaqisy</a>
+
+                            <a href="/hapus/data/munaqisy/{{$cabang->id}}"
+                                class="btn btn-sm btn-outline-danger mb-2 mr-1 text-uppercase" style="font-size: 12px "><i
+                                    class="fa fa-trash"></i> Bersihkan Data Munaqisy</a>
+                    
+                    {{-- <a href="/hapus/data/munaqisy/{{$cabang->id}}" type="button">lol</a> --}}
+
+
                     <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
                         <table id="tabel-trainer" class="table table-cabang table-bordered dt-responsive nowrap"
                             style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
@@ -45,7 +53,7 @@
                                     <th>Nama</th>
                                     <th>Wa / Telp</th>
                                     <th>Alamat</th>
-                                    <th>...</th>
+                                    {{-- <th>...</th> --}}
                                 </tr>
                             </thead>
 
@@ -57,7 +65,7 @@
                                     <th>Nama</th>
                                     <th>Wa / Telp</th>
                                     <th>Alamat</th>
-                                    <th>...</th>
+                                    {{-- <th>...</th> --}}
                                 </tr>
                             </tfoot>
                         </table>
@@ -90,7 +98,7 @@
                                         <div class="form-group">
                                             <label for="">Import Data "Munaqisy" (hanya Format Excel sesuai Template
                                                 .xlsx)</label><br>
-                                            <code>nama Munaqisy yang sama akan tertimpa oleh data paling baru</code>
+                                            <code>Import ulang akan menghapus data lama dan menggantinya dengan data yang baru.</code>
                                             <input type="file" class="form-control" name="file"
                                                 accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
                                                 required>
@@ -302,41 +310,41 @@
             });
         });
 
-        $('#hapustrainer').submit(function(e) {
-            e.preventDefault();
-            var formData = new FormData(this);
-            $.ajax({
-                type: 'POST',
-                url: "{{ route('delete.trainer.cabang') }}",
-                data: formData,
-                cache: false,
-                contentType: false,
-                processData: false,
-                beforeSend: function() {
-                    $('#btnhapus').attr('disabled', 'disabled');
-                    $('#btnhapus').val('Proses Hapus Data');
-                },
-                success: function(data) {
-                    if (data.success) {
-                        //sweetalert and redirect
-                        var oTable = $('#tabel-trainer').dataTable();
-                        oTable.fnDraw(false);
-                        $('#btnhapus').val('Ya, Hapus!');
-                        $('#modal_hapus').modal('hide');
-                        $('#btnhapus').attr('disabled', false);
-                        toastr.success(data.success);
-                        // swal({
-                        //     title: "Success!",
-                        //     text: "Diklat Berhasil Di Dihapus!",
-                        //     type: "success"
-                        // })
-                    }
-                },
-                error: function(data) {
-                    console.log(data);
-                }
-            });
-        });
+        // $('#hapustrainer').submit(function(e) {
+        //     e.preventDefault();
+        //     var formData = new FormData(this);
+        //     $.ajax({
+        //         type: 'POST',
+        //         url: "/remove-data-munaqisy",
+        //         data: formData,
+        //         cache: false,
+        //         contentType: false,
+        //         processData: false,
+        //         beforeSend: function() {
+        //             $('#btnhapus').attr('disabled', 'disabled');
+        //             $('#btnhapus').val('Proses Hapus Data');
+        //         },
+        //         success: function(data) {
+        //             if (data.success) {
+        //                 //sweetalert and redirect
+        //                 var oTable = $('#tabel-trainer').dataTable();
+        //                 oTable.fnDraw(false);
+        //                 $('#btnhapus').val('Ya, Hapus!');
+        //                 $('#modal_hapus').modal('hide');
+        //                 $('#btnhapus').attr('disabled', false);
+        //                 toastr.success(data.success);
+        //                 // swal({
+        //                 //     title: "Success!",
+        //                 //     text: "Diklat Berhasil Di Dihapus!",
+        //                 //     type: "success"
+        //                 // })
+        //             }
+        //         },
+        //         error: function(data) {
+        //             console.log(data);
+        //         }
+        //     });
+        // });
 
         $('#importtrainer').submit(function(e) {
             e.preventDefault();
@@ -421,10 +429,10 @@
                         data: 'alamat',
                         name: 'alamat'
                     },
-                    {
-                        data: 'action',
-                        name: 'action'
-                    },
+                    // {
+                    //     data: 'action',
+                    //     name: 'action'
+                    // },
 
                 ]
             });

@@ -37,6 +37,9 @@
                     <a href="/export-template-supervisor-data/{{ $cabang->id }}"
                         class="btn btn-sm btn-outline-warning mb-2 mr-1 text-uppercase" style="font-size: 12px "><i
                             class="mdi mdi-download"></i> Unduh Data Supervisor</a>
+                            <a href="/hapus/data/supervisor/{{$cabang->id}}"
+                                class="btn btn-sm btn-outline-danger mb-2 mr-1 text-uppercase" style="font-size: 12px "><i
+                                    class="fa fa-trash"></i> Bersihkan Data Supervisior</a>
                     <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
                         <table id="tabel-trainer" class="table table-cabang table-bordered dt-responsive nowrap"
                             style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
@@ -45,7 +48,7 @@
                                     <th>Nama</th>
                                     <th>Wa / Telp</th>
                                     <th>Alamat</th>
-                                    <th>...</th>
+                                    {{-- <th>...</th> --}}
                                 </tr>
                             </thead>
 
@@ -57,7 +60,7 @@
                                     <th>Nama</th>
                                     <th>Wa / Telp</th>
                                     <th>Alamat</th>
-                                    <th>...</th>
+                                    {{-- <th>...</th> --}}
                                 </tr>
                             </tfoot>
                         </table>
@@ -407,10 +410,10 @@
                         data: 'alamat',
                         name: 'alamat'
                     },
-                    {
-                        data: 'action',
-                        name: 'action'
-                    },
+                    // {
+                    //     data: 'action',
+                    //     name: 'action'
+                    // },
 
                 ]
             });
