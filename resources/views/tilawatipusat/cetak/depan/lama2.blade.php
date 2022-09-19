@@ -227,7 +227,7 @@
 					{{-- kosong --}}
 					<td  style="width: 156px; height: 4px;  ">&nbsp;</td>
 					{{-- kepala cabang mana --}}
-					<td style="width: 241px; height: 2px; text-transform: capitalize"> 
+					<td style="width: 241px; height: 2px; text-transform: capitalize; font-size: 12px"> 
 						@if ($item->pelatihan->cabang->name == 'Cahaya Amanah' || $item->pelatihan->cabang->name == 'Tilawati Pusat' || $item->pelatihan->cabang->status == "RPQ")
 						Direktur Eksekutif
 						@else
@@ -245,7 +245,7 @@
 									@elseif($item->pelatihan->cabang->name == 'Tilawati Citra Anak Sholeh')
 										Kacab. CAS Surabaya Jawa Timur
 									@elseif($item->pelatihan->cabang->name == 'Al Kautsar')
-										<span style="font-size: 12px !important">{{ 'Kacab. '.ucfirst($item->pelatihan->cabang->name).' '.ucfirst($provinsi) }}</span>
+										<span style="font-size: 12px ">{{ 'Kacab. '.ucfirst($item->pelatihan->cabang->name).' '.ucfirst($provinsi) }}</span>
 									@else
 										{{ 'Kacab. '.ucfirst($item->pelatihan->cabang->name).' '.ucfirst($provinsi) }}
 									@endif
@@ -259,7 +259,7 @@
 									@elseif($item->pelatihan->cabang->name == 'Tilawati Citra Anak Sholeh')
 										Kacab. CAS Surabaya Jawa Timur
 									@elseif($item->pelatihan->cabang->name == 'Al Kautsar')
-										<span style="font-size: 12px !important">{{ 'Kacab. '.ucfirst($item->pelatihan->cabang->name).' '.ucfirst($provinsi) }}</span>
+										<span style="font-size: 12px ">{{ 'Kacab. '.ucfirst($item->pelatihan->cabang->name).' '.ucfirst($provinsi) }}</span>
 									@else
 										{{ 'Kacab. '.ucfirst($kab).' '.ucfirst($provinsi)}}
 									@endif
