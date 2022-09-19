@@ -30,7 +30,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="card-title">Data Ijazah Belakang</h4>
-                                    <p class="card-title-desc">Ter-update berdasarkan Tahun 2021 </br></p>
+                                    <p class="card-title-desc">Ter-update berdasarkan Tahun {{date('Y')}} </br></p>
                                     <blockquote class="blockquote font-size-16 mb-0 mt-2">
                                         <form target="_blank" action="{{ route('diklat.belakang_cetak') }}" method="POST">@csrf
                                             <div class="form-group">
@@ -57,6 +57,10 @@
                                 </div>
                             </div>
                         </div>
+
+                        {{--   --}}
+
+
                     </div>
                     <!-- end row -->
 

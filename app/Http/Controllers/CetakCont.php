@@ -143,6 +143,16 @@ class CetakCont extends Controller
     	return $pdf->download('ijazah-belakang-peserta-_'.$pelatihan->name.'.pdf','I');
     }
 
+    public function cetak_belakang2(Request $request)
+    {
+        $id = $request->pelatihan_id;
+        $pelatihan = Pelatihan::find($id);        
+        $peserta    = Peserta::where('pelatihan_id', $id)->where('kriteria','<>','')->where('bersyahadah', 1)->get();
+        $customPaper = array(0,0,792,612);
+    	$pdf = PDF::loadview('AdmPelatihan.Cetak.cetak_belakang_tot2',compact('peserta','pelatihan'))->setPaper($customPaper, 'portrait');
+    	return $pdf->download('ijazah-belakang-peserta-_'.$pelatihan->name.'.pdf','I');
+    }
+
     public function cetak_detail_peserta(Request $request)
     {
         $id = $request->pelatihan_id;
