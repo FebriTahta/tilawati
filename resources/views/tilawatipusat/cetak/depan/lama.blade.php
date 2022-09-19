@@ -223,11 +223,11 @@
 				</tr>
 				<tr style="height: 4px;">
 					{{-- kosong --}}
-					<td class="bawah" style="width: 210px; height: 4px;  ">&nbsp;</td>
+					<td  style="width: 210px; height: 4px;  ">&nbsp;</td>
 					{{-- kosong --}}
-					<td class="bawah" style="width: 156px; height: 4px;  ">&nbsp;</td>
+					<td  style="width: 156px; height: 4px;  ">&nbsp;</td>
 					{{-- kepala cabang mana --}}
-					<td class="bawah" style="width: 241px; height: 2px; text-transform: capitalize"> 
+					<td  style="width: 241px; height: 2px; text-transform: capitalize"> 
 						@if ($item->pelatihan->cabang->name == 'Cahaya Amanah' || $item->pelatihan->cabang->name == 'Tilawati Pusat' || $item->pelatihan->cabang->status == "RPQ")
 						Direktur Eksekutif
 						@else
