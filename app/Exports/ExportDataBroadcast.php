@@ -37,10 +37,18 @@ class ExportDataBroadcast implements FromQuery, WithHeadings, ShouldAutoSize,  W
 
     public function map($row): array{
     
+        if($row->kabupaten !== null)
+        {
+            $kota = $row->kabupaten->nama;
+            
+        }else {
+            $kota = '';
+        }
+
         return [
             $row->name,
             $row->telp,
-            $row->kabupaten->nama
+            $kota
         ];
     }
 
