@@ -226,7 +226,7 @@
 		.alignright {
 			float: right;
 		}.paksatengah{
-			margin-right: 19px;
+			margin-right: 19px; 
 		}
 	</style>
 	@endif
