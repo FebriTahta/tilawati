@@ -31,7 +31,7 @@ class ExportDataBroadcast implements FromQuery, WithHeadings, ShouldAutoSize,  W
         if ($this->from == '' && $this->till =='') {
             return Peserta::select('name','telp','kabupaten_id');
         }else {
-            return Peserta::with('kabupaten')->whereBetween('tanggal', array($this->from, $this->till))->select('name','telp','kabupaten_id');
+            return Peserta::with('kabupaten')->whereBetween('tanggal', array($this->from, $this->till));
         }
     }
 
