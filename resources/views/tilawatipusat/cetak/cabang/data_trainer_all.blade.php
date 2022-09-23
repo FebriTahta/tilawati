@@ -47,9 +47,39 @@
                 <td>{{$item->name}}</td>
                 <td>{{$item->telp}}</td>
                 <td>{{$item->alamat}}</td>
-                @foreach ($item->macamtrainer as $val)
-                    <td>{{$val->jenis}}</td>
-                @endforeach
+                
+                    <td>
+                        @foreach ($item->macamtrainer as $val)
+                        @if ($val->jenis == 'Instruktur Strategi')
+                            ok
+                        @endif
+                        @endforeach
+                    </td>
+
+                    <td>
+                        @foreach ($item->macamtrainer as $val)
+                        @if ($val->jenis == 'Instruktur Lagu')
+                            ok
+                        @endif
+                        @endforeach
+                    </td>
+
+                    <td>
+                        @foreach ($item->macamtrainer as $val)
+                        @if ($val->jenis == 'Munaqisy')
+                            ok
+                        @endif
+                        @endforeach
+                    </td>
+
+                    <td>
+                        @foreach ($item->macamtrainer as $val)
+                        @if ($val->jenis == 'Supervisor')
+                            ok
+                        @endif
+                        @endforeach
+                    </td>
+               
             </tr>
             @endforeach
         </tbody>
