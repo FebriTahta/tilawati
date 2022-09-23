@@ -439,6 +439,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     Route::get('/export-data-cabang',[ExportCont::class,'export_data_cabang'])->name('export.data.cabang');
     Route::get('/export-kpa-cabang',[ExportCont::class,'export_kpa_cabang'])->name('export.kpa.cabang');
     Route::get('/export-template-trainer',[ExportCont::class,'export_template_trainer_cabang'])->name('export.template.trainer.cabang');
+    Route::get('/export-data-trainer-seluruhnya',[ExportCont::class,'export_data_trainer_all']);
     Route::get('/export-template-trainer-data/{cabang_id}',[ExportCont::class,'export_template_trainer_cabang_data'])->name('export.template.trainer.cabang.data');
     Route::get('/export-template-kpa',[ExportCont::class,'export_template_kpa_cabang'])->name('exmport.template.kpa.cabang');
     Route::get('/export-template-kpa-data/{cabang_id}',[ExportCont::class,'export_template_kpa_cabang_data'])->name('exmport.template.kpa.cabang.data');

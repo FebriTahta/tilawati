@@ -164,7 +164,11 @@
                                 <h5 class="number" style="font-size: 30px; font-weight: 700">{{number_format($kpa,0,',','.')}} <span class="keterangan" style="font-size: 20px;"> KPA</span> </h5>
                             </div>
                             <div class="form-group">
+                                @if (auth()->user()->role == 'pusat')
+                                <a href="#" data-toggle="modal" data-target="#modaltrainer"><h5 class="number" style="font-size: 30px; font-weight: 700">{{number_format($trainer,0,',','.')}} <span class="keterangan" style="font-size: 20px;"> TRAINER</span> </h5></a>
+                                @else
                                 <h5 class="number" style="font-size: 30px; font-weight: 700">{{number_format($trainer,0,',','.')}} <span class="keterangan" style="font-size: 20px;"> TRAINER</span> </h5>
+                                @endif
                             </div>
                             <div class="form-group">
                                 <h5 class="number" style="font-size: 30px; font-weight: 700">{{number_format($munaqisy,0,',','.')}} <span class="keterangan" style="font-size: 20px;"> MUNAQISY</span> </h5>
@@ -416,6 +420,27 @@
         </div>
         <!-- /.modal-dialog -->
     </div> --}}
+
+    <div class="modal fade bs-example-modal-xl-3" id="modaltrainer" tabindex="-1" role="dialog"
+        aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">DATA TRAINER</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="font-weight: bold">
+                    <div class="form-group">
+                        <a href="#" class="btn btn-sm btn-primary" style="width:100%">UNDUH DATA TRAINER</a>
+                    </div>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
 
     <div class="modal fade bs-example-modal-xl-3" id="modalsantri" tabindex="-1" role="dialog"
         aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">

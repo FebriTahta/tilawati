@@ -23,6 +23,7 @@ use App\Exports\CabangKpaExport;
 use App\Exports\PesertaPendaftaranExport;
 use App\Exports\ExportLaporanDataCabang;
 use App\Exports\TemplateMunaqisyExport;
+use App\Exports\ExportDataTrainerAll;
 use App\Exports\ExportLaporanDataCabangPeriode;
 use App\Exports\LembagaDataExportSearchProvinsi;
 use App\Exports\ExportDataSupervisor;
@@ -85,6 +86,11 @@ class ExportCont extends Controller
     public function export_template_trainer_cabang()
     {
         return Excel::download(new TemplateTrainerCabangExport,'template-import-tainer-cabang.xlsx');
+    }
+
+    public function export_data_trainer_all()
+    {
+        return Excel::download(new ExportDataTrainerAll, 'data-trainer-all.xlsx');
     }
 
     public function export_template_trainer_cabang_data($cabang_id)
