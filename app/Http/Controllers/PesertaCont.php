@@ -1517,30 +1517,43 @@ class PesertaCont extends Controller
                 })
                 ->addColumn('munaqisy', function($data){
                     $munaqisy = $data->munaqisy->count();
+                    $trainer_munaqisy = Trainer::where('cabang_id', $data->id)->whereHas('macamtrainer', function($q){
+                        $q->where('jenis','Munaqisy');
+                    })->count();
                     $update = Munaqisy::orderBy('updated_at','desc')->where('cabang_id', $data->id)->first();
-                    if ($update !== null) {
+                    $total = $munaqisy + $trainer_munaqisy;
+                    if ($total > 0) {
                         # code...
-                        return '<pre>'.$munaqisy.' (Munaqisy) - '.\Carbon\Carbon::parse($update->updated_at)->format('M Y').'</pre>';
+                        // return '<pre>'.$total.' (Munaqisy) - '.\Carbon\Carbon::parse($update->updated_at)->format('M Y').'</pre>';
+                        return '<pre>'.$total.' (Munaqisy)</pre>';
                     }else{
                         return '-';
                     }
                 })
                 ->addColumn('trainer', function($data){
-                    $trainer = $data->trainer->count();
+                    $trainer = Trainer::where('cabang_id', $data->id)->whereHas('macamtrainer', function($q){
+                        $q->where('jenis','Instruktur Strategi')->orWhere('jenis','Instruktur Lagu');
+                    })->count();
                     $update = Trainer::orderBy('updated_at','desc')->where('cabang_id', $data->id)->first();
-                    if ($update !== null) {
+                    if ($trainer > 0) {
                         # code...
-                        return '<pre>'.$trainer.' (Trainer) - '.\Carbon\Carbon::parse($update->updated_at)->format('M Y').'</pre>';
+                        // return '<pre>'.$trainer.' (Trainer) - '.\Carbon\Carbon::parse($update->updated_at)->format('M Y').'</pre>';
+                        return '<pre>'.$trainer.' (Trainer) </pre>';
                     }else{
                         return '-';
                     }
                 })
                 ->addColumn('supervisor', function($data){
                     $supervisor = $data->supervisor->count();
+                    $trainer_supervisor = Trainer::where('cabang_id', $data->id)->whereHas('macamtrainer', function($q){
+                        $q->where('jenis','Supervisor');
+                    })->count();
+                    $total = $supervisor + $trainer_supervisor;
                     $update = Supervisor::orderBy('updated_at','desc')->where('cabang_id', $data->id)->first();
-                    if ($update !== null) {
+                    if ($total > 0) {
                         # code...
-                        return '<pre>'.$supervisor.' (Supervisor) - '.\Carbon\Carbon::parse($update->updated_at)->format('M Y').'</pre>';
+                        // return '<pre>'.$supervisor.' (Supervisor) - '.\Carbon\Carbon::parse($update->updated_at)->format('M Y').'</pre>';
+                        return '<pre>'.$total.' (Supervisor)</pre>';
                     }else{
                         return '-';
                     }
@@ -1611,30 +1624,43 @@ class PesertaCont extends Controller
                 })
                 ->addColumn('munaqisy', function($data){
                     $munaqisy = $data->munaqisy->count();
+                    $trainer_munaqisy = Trainer::where('cabang_id', $data->id)->whereHas('macamtrainer', function($q){
+                        $q->where('jenis','Munaqisy');
+                    })->count();
                     $update = Munaqisy::orderBy('updated_at','desc')->where('cabang_id', $data->id)->first();
-                    if ($update !== null) {
+                    $total = $munaqisy + $trainer_munaqisy;
+                    if ($total > 0) {
                         # code...
-                        return '<pre>'.$munaqisy.' (Munaqisy) - '.\Carbon\Carbon::parse($update->updated_at)->format('M Y').'</pre>';
+                        // return '<pre>'.$total.' (Munaqisy) - '.\Carbon\Carbon::parse($update->updated_at)->format('M Y').'</pre>';
+                        return '<pre>'.$total.' (Munaqisy)</pre>';
                     }else{
                         return '-';
                     }
                 })
                 ->addColumn('trainer', function($data){
-                    $trainer = $data->trainer->count();
+                    $trainer = Trainer::where('cabang_id', $data->id)->whereHas('macamtrainer', function($q){
+                        $q->where('jenis','Instruktur Strategi')->orWhere('jenis','Instruktur Lagu');
+                    })->count();
                     $update = Trainer::orderBy('updated_at','desc')->where('cabang_id', $data->id)->first();
-                    if ($update !== null) {
+                    if ($trainer > 0) {
                         # code...
-                        return '<pre>'.$trainer.' (Trainer) - '.\Carbon\Carbon::parse($update->updated_at)->format('M Y').'</pre>';
+                        // return '<pre>'.$trainer.' (Trainer) - '.\Carbon\Carbon::parse($update->updated_at)->format('M Y').'</pre>';
+                        return '<pre>'.$trainer.' (Trainer) </pre>';
                     }else{
                         return '-';
                     }
                 })
                 ->addColumn('supervisor', function($data){
                     $supervisor = $data->supervisor->count();
+                    $trainer_supervisor = Trainer::where('cabang_id', $data->id)->whereHas('macamtrainer', function($q){
+                        $q->where('jenis','Supervisor');
+                    })->count();
+                    $total = $supervisor + $trainer_supervisor;
                     $update = Supervisor::orderBy('updated_at','desc')->where('cabang_id', $data->id)->first();
-                    if ($update !== null) {
+                    if ($total > 0) {
                         # code...
-                        return '<pre>'.$supervisor.' (Supervisor) - '.\Carbon\Carbon::parse($update->updated_at)->format('M Y').'</pre>';
+                        // return '<pre>'.$supervisor.' (Supervisor) - '.\Carbon\Carbon::parse($update->updated_at)->format('M Y').'</pre>';
+                        return '<pre>'.$total.' (Supervisor)</pre>';
                     }else{
                         return '-';
                     }
