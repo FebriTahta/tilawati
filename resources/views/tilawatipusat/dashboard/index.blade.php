@@ -441,7 +441,7 @@
                                 <tr>
                                     <th>CABANG</th>
                                     <th>TOTAL DIKLAT</th>
-                                    <th>PROGRAM DIKLAT</th>
+                                    {{-- <th>PROGRAM DIKLAT</th> --}}
                                     <th>GURU</th>
                                     <th>SANTRI</th>
                                     <th>KPA</th>
@@ -541,10 +541,10 @@
                             data:'jumlahdiklat',
                             name:'jumlahdiklat'
                             },
-                            {
-                            data:'namadiklat',
-                            name:'namadiklat'
-                            },
+                            // {
+                            // data:'namadiklat',
+                            // name:'namadiklat'
+                            // },
                             {
                             data:'total_guru',
                             name:'total_guru'
