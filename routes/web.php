@@ -481,6 +481,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     Route::post('/generate_qr_tilawati',[DashboardCont::class,'generate_qr_tilawati'])->name('generate_qr_tilawati');
     Route::post('/download_qr_tilawati',[DashboardCont::class,'download_qr_tilawati'])->name('download_qr_tilawati');
     Route::post('/generate-user',[DashboardCont::class, 'generate'])->name('generate_user');
+    Route::get('/search-infografis-data',[DashboardCont::class,'total_infografis_data']);
     
     // NEW INFO GRAFIS
 

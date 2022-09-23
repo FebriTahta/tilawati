@@ -140,13 +140,13 @@
                                 <span class="keterangan" style="font-size: 20px;"> MELATIH</span>
                             </div> --}}
                             <div class="form-group">
-                                <h5 class="number" style="font-size: 30px; font-weight: 700">{{number_format($santri,0,',','.')}} <span class="keterangan" style="font-size: 20px;"> SANTRI</span> </h5>
+                                <h5 class="number" id="total_santri" style="font-size: 30px; font-weight: 700">{{number_format($santri,0,',','.')}} <span class="keterangan" style="font-size: 20px;"> SANTRI</span> </h5>
                             </div>
                             <div class="form-group">
-                                <h5 class="number" style="font-size: 30px; font-weight: 700">{{number_format($guru,0,',','.')}} <span class="keterangan" style="font-size: 20px;"> GURU </span> </h5>
+                                <h5 class="number" id="total_guru" style="font-size: 30px; font-weight: 700">{{number_format($guru,0,',','.')}} <span class="keterangan" style="font-size: 20px;"> GURU </span> </h5>
                             </div>
                             <div class="form-group">
-                                <h5 class="number" style="font-size: 30px; font-weight: 700">{{number_format($instruktur,0,',','.')}} <span class="keterangan" style="font-size: 20px;"> INSTRUKTUR</span> </h5>
+                                <h5 class="number" id="total_instruktur" style="font-size: 30px; font-weight: 700">{{number_format($instruktur,0,',','.')}} <span class="keterangan" style="font-size: 20px;"> INSTRUKTUR</span> </h5>
                             </div>
                         </div>
 
@@ -222,7 +222,39 @@
             </div>
         </div>
 
-        
+        <div class="col-xl-12 col-md-12">
+            {{-- tes --}}
+            {{--  --}}
+            <div class="card">
+                @if(Session::has('fail'))
+                    <div class="col-lg-12 alert alert-danger">
+                    {{Session::get('fail')}}
+                    </div>
+                @endif
+                <div class="row p-3">
+                    <div class="col-6 col-xl-4 form-group">
+                        <label>Dari :</label>
+                        <input type="date" name="dari" id="dari" class="form-control">
+                        <span class="red dari" style="color: red"></span>
+                    </div>
+                    <div class="col-6 col-xl-4 form-group">
+                        <label>Sampai :</label>
+                        <input type="date" name="sampai" id="sampai" class="form-control">
+                        <span class="red sampai" style="color: red"></span>
+                    </div>
+                    <div class="form-group col-6 col-xl-2">
+                        <label for="">Cari :</label>
+                        <button class="btn btn-rounded form-control text-white" style="background-color: rgb(137, 137, 253)" name="filter" id="filter"> <i
+                                class="fa fa-search"></i></button>
+                    </div>
+                    <div class="form-group col-6 col-xl-2">
+                        <label for="">Reset :</label>
+                        <button class="btn btn-rounded btn-danger form-control" name="refresh" id="refresh"> <i
+                                class="fa fa-stop"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
         
         <div class="col-xl-12">
             <div class="card">
@@ -409,9 +441,9 @@
                                 <tr>
                                     <th>CABANG</th>
                                     <th>TOTAL DIKLAT</th>
-                                    {{-- <th>PROGRAM DIKLAT</th>
+                                    <th>PROGRAM DIKLAT</th>
                                     <th>GURU</th>
-                                    <th>SANTRI</th> --}}
+                                    <th>SANTRI</th>
                                     <th>KPA</th>
                                     <th>TRAINER</th>
                                     <th>MUNAQISY</th>
@@ -426,9 +458,9 @@
                                 <tr>
                                     <th>CABANG</th>
                                     <th>TOTAL</th>
-                                    {{-- <th>PROGRAM DIKLAT</th>
+                                    <th>PROGRAM DIKLAT</th>
                                     <th>GURU</th>
-                                    <th>SANTRI</th> --}}
+                                    <th>SANTRI</th>
                                     <th>KPA</th>
                                     <th>TRAINER</th>
                                     <th>MUNAQISY</th>
@@ -474,8 +506,21 @@
     <script>
         var id_prov;
 
-        $('#btnlaporan').on('click', function () {
-            $('.table-diklat-cabang').DataTable({
+        
+
+        $('#mod_cabang3').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget)
+            id_prov = button.data('id')
+            var modal = $(this)
+            modal.find('.modal-body #id').val(id_prov);
+        })
+
+        $(document).ready(function() {
+            load_data();
+            // data_cabang();
+            function load_data(dari = '', sampai = '') {
+                $('#btnlaporan').on('click', function () {
+                    $('.table-diklat-cabang').DataTable({
                         //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
                         "columnDefs": [
                             { "type": "numeric-comma", targets: "_all" }
@@ -485,7 +530,7 @@
                         serverSide: true,
                         ajax: {
                             url:'{{ route("diklat.peserta_cabang_pilih") }}',
-                            // data:{dari:dari, sampai:sampai}
+                            data:{dari:dari, sampai:sampai}
                         },
                         columns: [
                             {
@@ -496,18 +541,18 @@
                             data:'jumlahdiklat',
                             name:'jumlahdiklat'
                             },
-                            // {
-                            // data:'namadiklat',
-                            // name:'namadiklat'
-                            // },
-                            // {
-                            // data:'total_guru',
-                            // name:'total_guru'
-                            // },
-                            // {
-                            // data:'total_santri',
-                            // name:'total_santri'
-                            // },
+                            {
+                            data:'namadiklat',
+                            name:'namadiklat'
+                            },
+                            {
+                            data:'total_guru',
+                            name:'total_guru'
+                            },
+                            {
+                            data:'total_santri',
+                            name:'total_santri'
+                            },
                             {
                             data:'kpa',
                             name:'kpa'
@@ -528,36 +573,24 @@
                             
                         ]
                     });
-        })
+                });
 
-        $('#mod_cabang3').on('show.bs.modal', function(event) {
-            var button = $(event.relatedTarget)
-            id_prov = button.data('id')
-            var modal = $(this)
-            modal.find('.modal-body #id').val(id_prov);
-        })
+                $.ajax({
+                    url: '/search-infografis-data',
+                    data: {
+                        dari: dari,
+                        sampai: sampai
+                    },
+                    type: 'get',
+                    dataType: 'json',
+                    success: function(data) {
+                        console.log(data);
+                        $('#total_santri').html(data.santri + ' ' + '<span class="keterangan" style="font-size: 20px;"> SANTRI</span>');
+                        $('#total_guru').html(data.guru + '' + '<span class="keterangan" style="font-size: 20px;"> GURU</span>');
+                        $('#total_instruktur').html(data.instruktur + + '' + '<span class="keterangan" style="font-size: 20px;"> INSTRUKTUR</span>');
+                    }
+                });
 
-        $(document).ready(function() {
-            load_data();
-            // data_cabang();
-
-            function load_data(dari = '', sampai = '') {
-
-                
-
-                // $.ajax({
-                //     url: '{{ route('diklat.cabang_tot') }}',
-                //     data: {
-                //         dari: dari,
-                //         sampai: sampai
-                //     },
-                //     type: 'get',
-                //     dataType: 'json',
-                //     success: function(data) {
-                //         document.getElementById('cb').innerHTML = data;
-                //         console.log(data);
-                //     }
-                // });
                 $.ajax({
                     url: '{{ route("chart.perkembangan.bulanan") }}',
                     data: {
@@ -624,6 +657,18 @@
                 });
             }
 
+            function myfunction() {
+                var x = document.getElementById("dari").value;
+                // document.getElementById("from").value = x;
+                // document.getElementById("from1").value = x;
+            }
+
+            function myfunction2() {
+                var y = document.getElementById("sampai").value;
+                // document.getElementById("till").value = y;
+                // document.getElementById("till1").value = y;
+            }
+
             
 
             $('#filter').click(function() {
@@ -642,7 +687,7 @@
                 $('#sampai').val('');
                 // $('#datatable').DataTable().destroy();
                 load_data();
-                data_cabang();
+                // data_cabang();
                 getDataForChart();
                 getDataForChart2();
             });

@@ -400,4 +400,54 @@ class DashboardCont extends Controller
             }
         }
     }
+
+
+    public function total_infografis_data(Request $request)
+    {
+        if(request()->ajax())
+        {
+            if(!empty($request->dari))
+            {
+                # code...
+                $santri  = Peserta::whereHas('pelatihan',function($query){
+                    $query->where('keterangan','santri');
+                })->whereBetween('tanggal', array($request->dari, $request->sampai))->count();
+                $guru    = Peserta::whereHas('pelatihan',function($query){
+                    $query->where('keterangan','guru');
+                })->whereBetween('tanggal', array($request->dari, $request->sampai))->count();
+                $instruktur = Peserta::whereHas('pelatihan',function($query){
+                    $query->where('keterangan','instruktur');
+                })->whereBetween('tanggal', array($request->dari, $request->sampai))->count();
+
+                return response()->json(
+                    [
+                        'santri' => $santri,
+                        'guru' => $guru,
+                        'instruktur' => $instruktur,
+                    ]
+                );
+
+            }else {
+                # code...
+                $santri  = Peserta::whereHas('pelatihan',function($query){
+                    $query->where('keterangan','santri');
+                })->count();
+                $guru    = Peserta::whereHas('pelatihan',function($query){
+                    $query->where('keterangan','guru');
+                })->count();
+                $instruktur = Peserta::whereHas('pelatihan',function($query){
+                    $query->where('keterangan','instruktur');
+                })->count();
+
+                return response()->json(
+                    [
+                        'santri' => $santri,
+                        'guru' => $guru,
+                        'instruktur' => $instruktur,
+                    ]
+                );
+            }
+        }
+        
+    }
 }

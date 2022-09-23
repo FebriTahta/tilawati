@@ -1505,7 +1505,47 @@ class PesertaCont extends Controller
 
                     return '<pre>Santri : '.$santri.'</pre>';
                 })
-                ->rawColumns(['cabang','jumlahdiklat','namadiklat','total_guru','total_santri'])->make(true);
+                ->addColumn('kpa', function($data){
+                    $kpa = $data->kpa->count();
+                    $update = KPA::orderBy('updated_at','desc')->where('cabang_id', $data->id)->first();
+                    if ($update !== null) {
+                        # code...
+                        return '<pre>'.$kpa.' (KPA) - '.\Carbon\Carbon::parse($update->updated_at)->format('M Y').'</pre>';
+                    }else {
+                        return '-';
+                    }
+                })
+                ->addColumn('munaqisy', function($data){
+                    $munaqisy = $data->munaqisy->count();
+                    $update = Munaqisy::orderBy('updated_at','desc')->where('cabang_id', $data->id)->first();
+                    if ($update !== null) {
+                        # code...
+                        return '<pre>'.$munaqisy.' (Munaqisy) - '.\Carbon\Carbon::parse($update->updated_at)->format('M Y').'</pre>';
+                    }else{
+                        return '-';
+                    }
+                })
+                ->addColumn('trainer', function($data){
+                    $trainer = $data->trainer->count();
+                    $update = Trainer::orderBy('updated_at','desc')->where('cabang_id', $data->id)->first();
+                    if ($update !== null) {
+                        # code...
+                        return '<pre>'.$trainer.' (Trainer) - '.\Carbon\Carbon::parse($update->updated_at)->format('M Y').'</pre>';
+                    }else{
+                        return '-';
+                    }
+                })
+                ->addColumn('supervisor', function($data){
+                    $supervisor = $data->supervisor->count();
+                    $update = Supervisor::orderBy('updated_at','desc')->where('cabang_id', $data->id)->first();
+                    if ($update !== null) {
+                        # code...
+                        return '<pre>'.$supervisor.' (Supervisor) - '.\Carbon\Carbon::parse($update->updated_at)->format('M Y').'</pre>';
+                    }else{
+                        return '-';
+                    }
+                })
+                ->rawColumns(['cabang','jumlahdiklat','namadiklat','total_guru','total_santri','kpa','munaqisy','trainer','supervisor'])->make(true);
 
             }else{
 
