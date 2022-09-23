@@ -419,11 +419,31 @@ class DashboardCont extends Controller
                     $query->where('keterangan','instruktur');
                 })->whereBetween('tanggal', array($request->dari, $request->sampai))->count();
 
+                $santri_lulus  = Peserta::whereHas('pelatihan',function($query){
+                    $query->where('keterangan','santri')->where('bersyahadah', '1');
+                })->whereBetween('tanggal', array($request->dari, $request->sampai))->count();
+                $guru_lulus    = Peserta::whereHas('pelatihan',function($query){
+                    $query->where('keterangan','guru')->where('bersyahadah', '1');
+                })->whereBetween('tanggal', array($request->dari, $request->sampai))->count();
+                $instruktur_lulus = Peserta::whereHas('pelatihan',function($query){
+                    $query->where('keterangan','instruktur')->where('bersyahadah', '1');
+                })->whereBetween('tanggal', array($request->dari, $request->sampai))->count();
+
+                $santri_tak_lulus = $santri - $santri_lulus;
+                $guru_tak_lulus = $guru - $guru_lulus;
+                $instruktur_tak_lulus = $instruktur - $instruktur_lulus;
+                
                 return response()->json(
                     [
-                        'santri' => $santri,
-                        'guru' => $guru,
-                        'instruktur' => $instruktur,
+                        'santri' => number_format($santri,0,',','.'),
+                        'guru' => number_format($guru,0,',','.'),
+                        'instruktur' => number_format($instruktur,0,',','.'),
+                        'santri_lulus' => number_format($santri_lulus,0,',','.'),
+                        'guru_lulus' => number_format($guru_lulus,0,',','.'),
+                        'instruktur_lulus' => number_format($instruktur_lulus,0,',','.'),
+                        'santri_tak_lulus' => number_format($santri_tak_lulus,0,',','.'),
+                        'guru_tak_lulus'   => number_format($guru_tak_lulus,0,',','.'),
+                        'instruktur_tak_lulus' => number_format($instruktur_tak_lulus,0,',','.'),
                     ]
                 );
 
@@ -439,11 +459,31 @@ class DashboardCont extends Controller
                     $query->where('keterangan','instruktur');
                 })->count();
 
+                $santri_lulus  = Peserta::whereHas('pelatihan',function($query){
+                    $query->where('keterangan','santri')->where('bersyahadah', '1');
+                })->count();
+                $guru_lulus    = Peserta::whereHas('pelatihan',function($query){
+                    $query->where('keterangan','guru')->where('bersyahadah', '1');
+                })->count();
+                $instruktur_lulus = Peserta::whereHas('pelatihan',function($query){
+                    $query->where('keterangan','instruktur')->where('bersyahadah', '1');
+                })->count();
+
+                $santri_tak_lulus = $santri - $santri_lulus;
+                $guru_tak_lulus = $guru - $guru_lulus;
+                $instruktur_tak_lulus = $instruktur - $instruktur_lulus;
+
                 return response()->json(
                     [
-                        'santri' => $santri,
-                        'guru' => $guru,
-                        'instruktur' => $instruktur,
+                        'santri' => number_format($santri,0,',','.'),
+                        'guru' => number_format($guru,0,',','.'),
+                        'instruktur' => number_format($instruktur,0,',','.'),
+                        'santri_lulus' => number_format($santri_lulus,0,',','.'),
+                        'guru_lulus' => number_format($guru_lulus,0,',','.'),
+                        'instruktur_lulus' => number_format($instruktur_lulus,0,',','.'),
+                        'santri_tak_lulus' => number_format($santri_tak_lulus,0,',','.'),
+                        'guru_tak_lulus'   => number_format($guru_tak_lulus,0,',','.'),
+                        'instruktur_tak_lulus' => number_format($instruktur_tak_lulus,0,',','.'),
                     ]
                 );
             }

@@ -132,7 +132,7 @@
             <div class="card" style="min-height: 470px">
                 <div class="card-body">
                     <h4 style="text-transform: uppercase; font-weight: 500; font-size: 25px">Data Perkembangan Metode Tilawati Di Indonesia</h4>
-                    <p>Berdasarkan data yang telah dihimpun atau dilaporkan <br><small style="color: red">(kemungkinan ada beberapa data yang belum dilaporkan)</small></p>
+                    <p>Berdasarkan data yang telah dihimpun atau dilaporkan </p>
 
                     <div class="row">
                         <div class="col-sm-6">
@@ -140,13 +140,13 @@
                                 <span class="keterangan" style="font-size: 20px;"> MELATIH</span>
                             </div> --}}
                             <div class="form-group">
-                                <h5 class="number" id="total_santri" style="font-size: 30px; font-weight: 700">{{number_format($santri,0,',','.')}} <span class="keterangan" style="font-size: 20px;"> SANTRI</span> </h5>
+                                <a href="#" data-toggle="modal" data-target="#modalsantri"><h5 class="number" id="total_santri" style="font-size: 30px; font-weight: 700">{{number_format($santri,0,',','.')}} <span class="keterangan" style="font-size: 20px;"> SANTRI</span> </h5></a>
                             </div>
                             <div class="form-group">
-                                <h5 class="number" id="total_guru" style="font-size: 30px; font-weight: 700">{{number_format($guru,0,',','.')}} <span class="keterangan" style="font-size: 20px;"> GURU </span> </h5>
+                                <a href="#" data-toggle="modal" data-target="#modalguru"><h5 class="number"  id="total_guru" style="font-size: 30px; font-weight: 700">{{number_format($guru,0,',','.')}} <span class="keterangan" style="font-size: 20px;"> GURU </span> </h5></a>
                             </div>
                             <div class="form-group">
-                                <h5 class="number" id="total_instruktur" style="font-size: 30px; font-weight: 700">{{number_format($instruktur,0,',','.')}} <span class="keterangan" style="font-size: 20px;"> INSTRUKTUR</span> </h5>
+                                <a href="#" data-toggle="modal" data-target="#modalinstruktur"><h5 class="number" data-toggle="modal" data-target="#modalinstruktur" id="total_instruktur" style="font-size: 30px; font-weight: 700">{{number_format($instruktur,0,',','.')}} <span class="keterangan" style="font-size: 20px;"> INSTRUKTUR</span> </h5></a>
                             </div>
                         </div>
 
@@ -395,7 +395,7 @@
         <!-- /.modal-dialog -->
     </div>
 
-    <div class="modal fade bs-example-modal-xl-3" id="mod_cabang3" tabindex="-1" role="dialog"
+    {{-- <div class="modal fade bs-example-modal-xl-3" id="mod_cabang3" tabindex="-1" role="dialog"
         aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-md">
             <div class="modal-content">
@@ -410,6 +410,114 @@
                     <input type="text" id="id" class="form-control">
                     <footer class="blockquote-footer">Updated at <cite title="Source Title">2021</cite></footer>
 
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div> --}}
+
+    <div class="modal fade bs-example-modal-xl-3" id="modalsantri" tabindex="-1" role="dialog"
+        aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">KETERANGAN SANTRI</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="font-weight: bold">
+                    <div class="form-group">
+                        LULUS : <span id="santri_lulus"></span>
+                    </div>
+                    <div class="form-group">
+                        BELUM LULUS : <span id="santri_belum_lulus"></span>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-sm btn-primary" style="width:100%">UNDUH DATA</button>
+                    </div>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+    <div class="modal fade bs-example-modal-xl-3" id="modalguru" tabindex="-1" role="dialog"
+        aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">KETERANGAN GURU</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="font-weight: bold">
+                    <div class="form-group">
+                        LULUS : <span id="guru_lulus"></span>
+                    </div>
+                    <div class="form-group">
+                        BELUM LULUS : <span id="guru_belum_lulus"></span>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-sm btn-primary" style="width:100%">UNDUH DATA</button>
+                    </div>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+    <div class="modal fade bs-example-modal-xl-3" id="modalinstruktur" tabindex="-1" role="dialog"
+        aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">KETERANGAN INSTRUKTUR</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="font-weight: bold">
+                    <div class="form-group">
+                        LULUS : <span id="instruktur_lulus"></span>
+                    </div>
+                    <div class="form-group">
+                        BELUM LULUS : <span id="instruktur_belum_lulus"></span>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-sm btn-primary" style="width:100%">UNDUH DATA</button>
+                    </div>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+    <div class="modal fade bs-example-modal-xl-3" id="modalsantri" tabindex="-1" role="dialog"
+        aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">KETERANGAN SANTRI</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="font-weight: bold">
+                    <div class="form-group">
+                        LULUS : <span id="santri_lulus"></span>
+                    </div>
+                    <div class="form-group">
+                        BELUM LULUS : <span id="santri_belum_lulus"></span>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-sm btn-primary" style="width:100%">UNDUH DATA</button>
+                    </div>
                 </div>
             </div>
             <!-- /.modal-content -->
@@ -587,7 +695,13 @@
                         console.log(data);
                         $('#total_santri').html(data.santri + ' ' + '<span class="keterangan" style="font-size: 20px;"> SANTRI</span>');
                         $('#total_guru').html(data.guru + '' + '<span class="keterangan" style="font-size: 20px;"> GURU</span>');
-                        $('#total_instruktur').html(data.instruktur + + '' + '<span class="keterangan" style="font-size: 20px;"> INSTRUKTUR</span>');
+                        $('#total_instruktur').html(data.instruktur + '' + '<span class="keterangan" style="font-size: 20px;"> INSTRUKTUR</span>');
+                        $('#santri_lulus').html(data.santri_lulus + '' + '<span class="keterangan" style="font-size: 20px;"> SANTRI</span>');
+                        $('#santri_belum_lulus').html(data.santri_tak_lulus + '' + '<span class="keterangan" style="font-size: 20px;"> SANTRI</span>');
+                        $('#guru_lulus').html(data.guru_lulus + '' + '<span class="keterangan" style="font-size: 20px;"> GURU</span>');
+                        $('#guru_belum_lulus').html(data.guru_tak_lulus + '' + '<span class="keterangan" style="font-size: 20px;"> GURU</span>');
+                        $('#instruktur_lulus').html(data.instruktur_lulus + '' + '<span class="keterangan" style="font-size: 20px;"> INSTRUKTUR</span>');
+                        $('#instruktur_belum_lulus').html(data.instruktur_tak_lulus + '' + '<span class="keterangan" style="font-size: 20px;"> INSTRUKTUR</span>');
                     }
                 });
 
