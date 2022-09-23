@@ -436,7 +436,7 @@
                             </form>
                         </div> --}}
                         
-                        <table id="datatable-buttons2" class="table table-diklat-cabang table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
+                        <table id="datatable-buttons2" class="table table-diklat-cabang table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; max-width:100%">
                             <thead class="text-bold text-primary">
                                 <tr>
                                     <th>CABANG</th>
