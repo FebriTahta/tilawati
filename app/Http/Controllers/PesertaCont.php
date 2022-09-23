@@ -1435,7 +1435,7 @@ class PesertaCont extends Controller
         {
             if(!empty($request->dari))
             {
-                $data = Cabang::has('pelatihan')->with(['pelatihan' => function ($query) use($request) {
+                $data = Cabang::withCount('pelatihan')->orderBy('pelatihan_count','desc')->has('pelatihan')->with(['pelatihan' => function ($query) use($request) {
                     $query->where('jenis','diklat')->whereBetween('tanggal', array($request->dari, $request->sampai));
                 }]);
 
