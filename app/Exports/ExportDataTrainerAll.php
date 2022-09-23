@@ -23,7 +23,7 @@ class ExportDataTrainerAll implements ShouldAutoSize,FromView,WithColumnFormatti
     {
         $macam = Macamtrainer::all();
         $trainer = Trainer::all();
-        return view('tilawatipusat.cetak.cabang.template_import_trainer',compact('macam','trainer'));
+        return view('tilawatipusat.cetak.cabang.data_trainer_all',compact('macam','trainer'));
     }
 
     public function columnFormats(): array
