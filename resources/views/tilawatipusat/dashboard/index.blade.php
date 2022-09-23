@@ -433,7 +433,7 @@
                 </div>
                 <div class="modal-body" style="font-weight: bold">
                     <div class="form-group">
-                        <a href="#" class="btn btn-sm btn-primary" style="width:100%">UNDUH DATA TRAINER</a>
+                        <a href="/export-data-trainer-seluruhnya" class="btn btn-sm btn-primary" style="width:100%">UNDUH DATA TRAINER</a>
                     </div>
                 </div>
             </div>
