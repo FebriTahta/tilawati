@@ -36,7 +36,24 @@ class DashboardCont extends Controller
         $supervisor = Supervisor::count();
         $diklat = Pelatihan::orderBy('tanggal','desc')->limit(5)->get();
         $diklat_ini = $diklat->count();
-        return view('tilawatipusat.dashboard.index',compact('diklat','diklat_ini','cabang','santri','guru','lembaga','trainer','kpa','instruktur','supervisor','munaqisy'));
+
+
+        $trainer_munaqisy = Trainer::whereHas('macamtrainer', function($q){
+            $q->where('jenis','Munaqisy');
+        })->count();
+
+        $trainer_supervisor = Trainer::whereHas('macamtrainer', function($q){
+            $q->where('jenis','Supervisor');
+        })->count();
+
+        $trainer_instruktur = Trainer::whereHas('macamtrainer', function($q){
+            $q->where('jenis','Instruktur Strategi')->orWhere('jenis','Instruktur Lagu');
+        })->count();
+
+        $total_munaqisy = $munaqisy + $trainer_munaqisy;
+        $total_supervisor = $supervisor + $trainer_supervisor;
+
+        return view('tilawatipusat.dashboard.index',compact('diklat','diklat_ini','cabang','santri','guru','lembaga','trainer','kpa','instruktur','supervisor','munaqisy','trainer_munaqisy','total_munaqisy','total_supervisor','trainer_instruktur'));
     }
 
     public function generate(Request $request){
