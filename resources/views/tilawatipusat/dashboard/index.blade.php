@@ -458,7 +458,7 @@
                                 <tr>
                                     <th>CABANG</th>
                                     <th>TOTAL</th>
-                                    <th>PROGRAM DIKLAT</th>
+                                    {{-- <th>PROGRAM DIKLAT</th> --}}
                                     <th>GURU</th>
                                     <th>SANTRI</th>
                                     <th>KPA</th>
