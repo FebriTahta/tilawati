@@ -21,7 +21,7 @@ class ExportLaporanDataPerkembangan implements FromView, ShouldAutoSize
 
     public function view(): View
     {
-        $data = Cabang::withCount('pelatihan')->orderBy('pelatihan_count','desc')->has('pelatihan')->with(['pelatihan' => function ($query) {
+        $data = Cabang::withCount('pelatihan')->orderBy('pelatihan_count','desc')->with(['pelatihan' => function ($query) {
             $query->where('jenis','diklat');
         }])->get();
         
