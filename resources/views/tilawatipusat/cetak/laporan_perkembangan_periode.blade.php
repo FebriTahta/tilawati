@@ -56,7 +56,7 @@
                 <td>
                     @php
                         $dataz = [];
-                        $pelatihan_guru     = App\Models\Pelatihan::where('cabang_id', $item->id)->where('keterangan', 'guru')->whereBetween('tanggal', array($dari, $sampai))->get();
+                        $pelatihan_guru     = App\Models\Pelatihan::where('cabang_id', $item->id)->where('keterangan', 'guru')->get();
 
                         foreach ($pelatihan_guru as $key => $value) {
                             # code...
@@ -71,7 +71,7 @@
                 <td>
                     @php
                         $datax = [];
-                        $pelatihan_santri   = App\Models\Pelatihan::where('cabang_id', $item->id)->where('keterangan', 'santri')->whereBetween('tanggal', array($dari, $sampai))->get();
+                        $pelatihan_santri   = App\Models\Pelatihan::where('cabang_id', $item->id)->where('keterangan', 'santri')->get();
                         foreach ($pelatihan_santri as $key => $value) {
                             # code...
                             $datax[] = $value->peserta->count();
