@@ -229,6 +229,7 @@ class DiklatCont extends Controller
 
     public function submit_forward_cabang(Request $request)
     {
+        $p = Pelatihan::findOrFail($request->pelatihan_id);
         foreach ($request->cabang_id as $key => $value) {
             # code...
             Forwardconfirm::updateOrCreate(
@@ -236,8 +237,9 @@ class DiklatCont extends Controller
                     'id'=> 'xxx',
                 ],
                 [
-                    'cabang_id' => $value,
-                    'pelatihan_id' => $request->pelatihan_id
+                    'cabang_id'     => $p->cabang_id,
+                    'pelatihan_id'  => $request->pelatihan_id,
+                    'untuk'         => $value,
                 ]
             );
 
