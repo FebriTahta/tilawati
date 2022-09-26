@@ -131,7 +131,7 @@
                 <td>TOTAL KESELURUHAN</td>
                 <td>{{number_format(($tot_diklat),0,',','.')}}</td>
                 <td>{{number_format(($tot_guru),0,',','.')}}</td>
-                <td>{{number_format(($tot_santri),0,',','.')}}</td>
+                <td>{{$tot_santri}}</td>
                 <td>{{number_format(($tot_kpa),0,',','.')}}</td>
                 <td>{{number_format(($tot_trainer),0,',','.')}}</td>
                 <td>{{number_format(($tot_munaqisy),0,',','.')}}</td>
