@@ -238,12 +238,12 @@
                 <div class="row p-3">
                     <div class="col-6 col-xl-4 form-group">
                         <label>Dari :</label>
-                        <input type="date" name="dari" id="dari" class="form-control">
+                        <input type="date" name="dari" id="dari"  class="form-control">
                         <span class="red dari" style="color: red"></span>
                     </div>
                     <div class="col-6 col-xl-4 form-group">
                         <label>Sampai :</label>
-                        <input type="date" name="sampai" id="sampai" class="form-control">
+                        <input type="date" name="sampai" id="sampai"  class="form-control">
                         <span class="red sampai" style="color: red"></span>
                     </div>
                     <div class="form-group col-6 col-xl-2">
@@ -561,6 +561,8 @@
                 </div>
 
                 <form action="/export-laporan-data-perkembangan" method="POST"> @csrf
+                    <input type="hidden" id="dari1" name="dari" class="form-control">
+                    <input type="hidden" id="sampai1" name="sampai" class="form-control">
                     <button class="btn btn-sm btn-info" style="width: 100%">DOWNLOAD DATA</button>
                 </form>
                 
@@ -798,19 +800,15 @@
                 });
             }
 
-            function myfunction() {
+            $('#dari').on('change', function () {
                 var x = document.getElementById("dari").value;
-                // document.getElementById("from").value = x;
-                // document.getElementById("from1").value = x;
-            }
+                document.getElementById("dari1").value = x;
+            })
 
-            function myfunction2() {
+            $('#sampai').on('change',function(){
                 var y = document.getElementById("sampai").value;
-                // document.getElementById("till").value = y;
-                // document.getElementById("till1").value = y;
-            }
-
-            
+                document.getElementById("sampai1").value = y;
+            })
 
             $('#filter').click(function() {
                 var dari = $('#dari').val();
@@ -826,6 +824,8 @@
             $('#refresh').click(function() {
                 $('#dari').val('');
                 $('#sampai').val('');
+                $('#dari1').val('');
+                $('#sampai1').val('');
                 // $('#datatable').DataTable().destroy();
                 load_data();
                 // data_cabang();

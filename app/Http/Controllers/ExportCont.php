@@ -23,6 +23,7 @@ use App\Exports\CabangKpaExport;
 use App\Exports\PesertaPendaftaranExport;
 use App\Exports\ExportLaporanDataCabang;
 use App\Exports\ExportLaporanDataPerkembangan;
+use App\Exports\ExportLaporanPerkembanganPeriode;
 use App\Exports\TemplateMunaqisyExport;
 use App\Exports\ExportDataTrainerAll;
 use App\Exports\ExportLaporanDataCabangPeriode;
@@ -201,6 +202,7 @@ class ExportCont extends Controller
             return Excel::download(new ExportLaporanDataPerkembangan(),'Laporan_Data_Perkembangan_Periode_'.date('d_m_Y').'.xlsx');
         }else {
             # code...
+            return Excel::download(new ExportLaporanPerkembanganPeriode($dari,$sampai),'Laporan_Data_Perkembangan_Periode_'.$dari.'_sampai_'.$sampai.'.xlsx');
         }
     }
 }
