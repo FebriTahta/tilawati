@@ -425,13 +425,27 @@ class DashboardCont extends Controller
         {
             if(!empty($request->dari))
             {
+                $dari = $request->dari;
+                $sampai = $request->sampai;
+                $dataz = [];
+                $datax = [];
                 # code...
+
+                $pel = Pelatihan::where('keterangan', 'guru')->whereBetween('tanggal', array($dari, $sampai))->get();
+                foreach ($pel as $key => $value) {
+                    # code...
+                    $dataz[] = $value->peserta->count();
+                };
+                $guru = array_sum($dataz);
+                
+
+
                 $santri  = Peserta::whereHas('pelatihan',function($query){
                     $query->where('keterangan','santri');
                 })->whereBetween('tanggal', array($request->dari, $request->sampai))->count();
-                $guru    = Peserta::whereHas('pelatihan',function($query){
-                    $query->where('keterangan','guru');
-                })->whereBetween('tanggal', array($request->dari, $request->sampai))->count();
+                // $guru    = Peserta::whereHas('pelatihan',function($query){
+                //     $query->where('keterangan','guru');
+                // })->whereBetween('tanggal', array($request->dari, $request->sampai))->count();
                 $instruktur = Peserta::whereHas('pelatihan',function($query){
                     $query->where('keterangan','instruktur');
                 })->whereBetween('tanggal', array($request->dari, $request->sampai))->count();
