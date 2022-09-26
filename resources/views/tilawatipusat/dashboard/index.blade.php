@@ -731,6 +731,7 @@
                         $('#guru_belum_lulus').html(data.guru_tak_lulus + '' + '<span class="keterangan" style="font-size: 20px;"> GURU</span>');
                         $('#instruktur_lulus').html(data.instruktur_lulus + '' + '<span class="keterangan" style="font-size: 20px;"> INSTRUKTUR</span>');
                         $('#instruktur_belum_lulus').html(data.instruktur_tak_lulus + '' + '<span class="keterangan" style="font-size: 20px;"> INSTRUKTUR</span>');
+                        toastr.success('Menampilkan Data');
                     }
                 });
 
@@ -831,6 +832,7 @@
                 // data_cabang();
                 getDataForChart();
                 getDataForChart2();
+                toastr.warning('Mereset Data');
             });
         });
     </script>
