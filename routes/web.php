@@ -544,6 +544,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
 
     // EXPORT LAPORAN CABANG BERKALA
     Route::post('/export-laporan-data-cabang',[ExportCont::class,'export_laporan_data_cabang']);
+    Route::post('/export-laporan-data-perkembangan',[ExportCont::class,'export_laporan_data_perkembangan']);
 
     //IMPORT WITHOUT QUEUE & QR
     Route::post('/import-peserta-diklat2',[ImportController::class,'import_peserta_diklat2'])->name('import-peserta-diklat2');

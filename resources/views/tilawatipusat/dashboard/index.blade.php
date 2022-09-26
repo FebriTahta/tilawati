@@ -559,6 +559,11 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+
+                <form action="/export-laporan-data-perkembangan" method="POST"> @csrf
+                    <button class="btn btn-sm btn-info" style="width: 100%">DOWNLOAD DATA</button>
+                </form>
+                
                 <div class="modal-body">
                     {{-- <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive"> --}}
                         {{-- <div style="text-align: center">
@@ -568,7 +573,6 @@
                                 <button type="submit" class="btn btn-sm btn-primary">DOWNLOAD DATA</button>
                             </form>
                         </div> --}}
-                        
                         <table id="datatable-buttons2" class="table table-diklat-cabang table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; max-width:100%">
                             <thead class="text-bold text-primary">
                                 <tr>
@@ -702,8 +706,6 @@
                             data:'supervisor',
                             name:'supervisor'
                             },
-                            
-                            
                         ]
                     });
                 });
