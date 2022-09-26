@@ -470,6 +470,9 @@ class DashboardCont extends Controller
                 $santri_tak_lulus = $santri - $santri_lulus;
                 $guru_tak_lulus = $guru - $guru_lulus;
                 $instruktur_tak_lulus = $instruktur - $instruktur_lulus;
+
+                $jml_santri = Lembaga::sum('jml_santri');
+                $jml_guru   = Lembaga::sum('jml_guru');
                 
                 return response()->json(
                     [
@@ -482,6 +485,8 @@ class DashboardCont extends Controller
                         'santri_tak_lulus' => number_format($santri_tak_lulus,0,',','.'),
                         'guru_tak_lulus'   => number_format($guru_tak_lulus,0,',','.'),
                         'instruktur_tak_lulus' => number_format($instruktur_tak_lulus,0,',','.'),
+                        'jml_santri' => number_format($jml_santri,0,',','.'),
+                        'jml_guru'   => number_format($jml_guru,0,',','.'),
                     ]
                 );
 
@@ -511,6 +516,9 @@ class DashboardCont extends Controller
                 $guru_tak_lulus = $guru - $guru_lulus;
                 $instruktur_tak_lulus = $instruktur - $instruktur_lulus;
 
+                $jml_santri = Lembaga::sum('jml_santri');
+                $jml_guru   = Lembaga::sum('jml_guru');
+
                 return response()->json(
                     [
                         'santri' => number_format($santri,0,',','.'),
@@ -522,6 +530,8 @@ class DashboardCont extends Controller
                         'santri_tak_lulus' => number_format($santri_tak_lulus,0,',','.'),
                         'guru_tak_lulus'   => number_format($guru_tak_lulus,0,',','.'),
                         'instruktur_tak_lulus' => number_format($instruktur_tak_lulus,0,',','.'),
+                        'jml_santri' => number_format($jml_santri,0,',','.'),
+                        'jml_guru'   => number_format($jml_guru,0,',','.'),
                     ]
                 );
             }

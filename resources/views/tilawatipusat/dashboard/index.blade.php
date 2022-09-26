@@ -158,14 +158,14 @@
                                 <h5 class="number" style="font-size: 30px; font-weight: 700">{{number_format(($cabang-1),0,',','.')}} <span class="keterangan" style="font-size: 20px;"> CABANG</span> </h5>
                             </div>
                             <div class="form-group">
-                                <h5 class="number" style="font-size: 30px; font-weight: 700">{{number_format($lembaga,0,',','.')}} <span class="keterangan" style="font-size: 20px;"> LEMBAGA</span> </h5>
+                                <a href="#" data-toggle="modal" data-target="#modallembaga"><h5 class="number" style="font-size: 30px; font-weight: 700">{{number_format($lembaga,0,',','.')}} <span class="keterangan" style="font-size: 20px;"> LEMBAGA</span> </h5></a>
                             </div>
                             <div class="form-group">
                                 <h5 class="number" style="font-size: 30px; font-weight: 700">{{number_format($kpa,0,',','.')}} <span class="keterangan" style="font-size: 20px;"> KPA</span> </h5>
                             </div>
                             <div class="form-group">
                                 @if (auth()->user()->role == 'pusat')
-                                <a href="#" data-toggle="modal" data-target="#modaltrainer"><h5 class="number" style="font-size: 30px; font-weight: 700">{{number_format($trainer_instruktur,0,',','.')}} <span class="keterangan" style="font-size: 20px;"> TRAINER</span> </h5></a>
+                                <a href="#"><h5 class="number" style="font-size: 30px; font-weight: 700">{{number_format($trainer_instruktur,0,',','.')}} <span class="keterangan" style="font-size: 20px;"> TRAINER</span> </h5></a>
                                 @else
                                 <h5 class="number" style="font-size: 30px; font-weight: 700">{{number_format($trainer_instruktur,0,',','.')}} <span class="keterangan" style="font-size: 20px;"> TRAINER</span> </h5>
                                 @endif
@@ -421,19 +421,24 @@
         <!-- /.modal-dialog -->
     </div> --}}
 
-    <div class="modal fade bs-example-modal-xl-3" id="modaltrainer" tabindex="-1" role="dialog"
+    <div class="modal fade bs-example-modal-xl-3" id="modallembaga" tabindex="-1" role="dialog"
         aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-md">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">DATA TRAINER</h5>
+                    <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">DATA SANTRI & GURU LEMBAGA</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body" style="font-weight: bold">
-                    <div class="form-group">
-                        <a href="/export-data-trainer-seluruhnya" class="btn btn-sm btn-primary" style="width:100%">UNDUH DATA TRAINER</a>
+                    <div class="modal-body" style="font-weight: bold">
+                        <div class="form-group">
+                            SANTRI LEMBAGA : <span id="santri_lembaga"></span>
+                        </div>
+                        <div class="form-group">
+                            GURU LEMBAGA : <span id="guru_lembaga"></span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -459,9 +464,9 @@
                     <div class="form-group">
                         BELUM LULUS : <span id="santri_belum_lulus"></span>
                     </div>
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                         <button class="btn btn-sm btn-primary" style="width:100%">UNDUH DATA</button>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
             <!-- /.modal-content -->
@@ -486,9 +491,9 @@
                     <div class="form-group">
                         BELUM LULUS : <span id="guru_belum_lulus"></span>
                     </div>
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                         <button class="btn btn-sm btn-primary" style="width:100%">UNDUH DATA</button>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
             <!-- /.modal-content -->
@@ -513,9 +518,9 @@
                     <div class="form-group">
                         BELUM LULUS : <span id="instruktur_belum_lulus"></span>
                     </div>
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                         <button class="btn btn-sm btn-primary" style="width:100%">UNDUH DATA</button>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
             <!-- /.modal-content -->
@@ -731,6 +736,8 @@
                         $('#guru_belum_lulus').html(data.guru_tak_lulus + '' + '<span class="keterangan" style="font-size: 20px;"> GURU</span>');
                         $('#instruktur_lulus').html(data.instruktur_lulus + '' + '<span class="keterangan" style="font-size: 20px;"> INSTRUKTUR</span>');
                         $('#instruktur_belum_lulus').html(data.instruktur_tak_lulus + '' + '<span class="keterangan" style="font-size: 20px;"> INSTRUKTUR</span>');
+                        $('#santri_lembaga').html(data.jml_santri + '' + '<span class="keterangan" style="font-size: 20px;"> SANTRI</span>');
+                        $('#guru_lembaga').html(data.jml_guru + '' + '<span class="keterangan" style="font-size: 20px;"> GURU</span>');
                         toastr.success('Menampilkan Data');
                     }
                 });
