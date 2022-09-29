@@ -261,17 +261,17 @@
 									@elseif($item->pelatihan->cabang->name == 'Tilawati Citra Anak Sholeh')
 										Kacab. CAS Surabaya Jawa Timur
 									@elseif($item->pelatihan->cabang->name == 'Al Kautsar')
-										@if (ucfirst($provinsi) == 'Kalimantan Timur')
-											{{-- <span style="font-size: 12px ">{{ 'Kacab. '.ucfirst($item->pelatihan->cabang->name).' Kaltim' }}</span> --}}
+										@if ($provinsi == 'Kalimantan Timur')
+											<span style="font-size: 12px ">{{ 'Kacab. '.ucfirst($item->pelatihan->cabang->name).' Kaltim' }}</span>
 										@else
 											<span style="font-size: 12px ">{{ 'Kacab. '.ucfirst($item->pelatihan->cabang->name).' '.ucfirst($provinsi) }}</span>	
 										@endif
 										
 									@else
-										@if (ucfirst($provinsi) == 'Kalimantan Timur')
+										@if ($provinsi == 'Kalimantan Timur')
 										{{ 'Kacab. '.ucfirst($kab).' Kaltim'}}
 										@else
-										{{ 'Kacab. '.ucfirst($kab).' '.ucfirst($provinsi)}} {{$provinsi}}
+										{{ 'Kacab. '.ucfirst($kab).' '.ucfirst($provinsi)}}
 										@endif
 										
 									@endif
