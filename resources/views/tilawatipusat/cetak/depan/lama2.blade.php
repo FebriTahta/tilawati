@@ -269,9 +269,9 @@
 										
 									@else
 										@if (ucfirst($provinsi) == 'Kalimantan Timur')
-										{{-- {{ 'Kacab. '.ucfirst($kab).' Kaltim'}} --}}
+										{{ 'Kacab. '.ucfirst($kab).' Kaltim'}}
 										@else
-										{{-- {{ 'Kacab. '.ucfirst($kab).' '.ucfirst($provinsi)}} --}}
+										{{ 'Kacab. '.ucfirst($kab).' '.ucfirst($provinsi)}} {{$provinsi}}
 										@endif
 										
 									@endif
