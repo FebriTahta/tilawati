@@ -239,7 +239,7 @@
 							}else {
 								# code...
 								$prov = strtolower($item->pelatihan->cabang->kabupaten->provinsi->nama); 
-							};
+							}
 						$data_kabupaten = App\Models\Kabupaten::where('id', $item->pelatihan->cabang->kabupaten->id)->first();
 						$jum_cabang		= $data_kabupaten->cabang->count();
 						?>
