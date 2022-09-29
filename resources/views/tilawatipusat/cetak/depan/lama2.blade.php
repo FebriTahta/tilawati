@@ -230,13 +230,6 @@
 						@else
 						<?	$kabupaten 	= substr($item->pelatihan->cabang->kabupaten->nama, 5); $kab = strtolower($kabupaten);
 							$provinsi 	= strtolower($item->pelatihan->cabang->kabupaten->provinsi->nama); 
-							if ($provinsi == 'KALIMANTAN TIMUR') {
-								# code...
-								$prov = 'Kaltim';
-							}else {
-								# code...
-								$prov = strtolower($item->pelatihan->cabang->kabupaten->provinsi->nama); 
-							}
 						$data_kabupaten = App\Models\Kabupaten::where('id', $item->pelatihan->cabang->kabupaten->id)->first();
 						$jum_cabang		= $data_kabupaten->cabang->count();
 						?>
@@ -249,23 +242,38 @@
 									@elseif($item->pelatihan->cabang->name == 'Tilawati Citra Anak Sholeh')
 										Kacab. CAS Surabaya Jawa Timur
 									@elseif($item->pelatihan->cabang->name == 'Al Kautsar')
-										<span style="font-size: 12px ">{{ 'Kacab. '.ucfirst($item->pelatihan->cabang->name).' '.ucfirst($prov) }}</span>
+										@if (ucfirst($provinsi) == 'Kalimantan Timur')
+										<span style="font-size: 12px ">{{ 'Kacab. '.ucfirst($item->pelatihan->cabang->name).' Kaltim' }}</span>
+										@else
+										<span style="font-size: 12px ">{{ 'Kacab. '.ucfirst($item->pelatihan->cabang->name).' '.ucfirst($provinsi) }}</span>	
+										@endif
+										
 									@else
-										{{ 'Kacab. '.ucfirst($item->pelatihan->cabang->name).' '.ucfirst($prov) }}
+										{{ 'Kacab. '.ucfirst($item->pelatihan->cabang->name).' '.ucfirst($provinsi) }}
 									@endif
 								@endif
 							@else
 								@if (substr($item->pelatihan->cabang->kabupaten->nama,5,3)=='ADM')
-								{{ 'Kacab. ' .strtoupper(substr($prov,0,3)).' '.ucfirst(substr($prov,4))}}	
+								{{ 'Kacab. ' .strtoupper(substr($provinsi,0,3)).' '.ucfirst(substr($provinsi,4))}}	
 								@else
 									@if ($item->pelatihan->cabang->name == 'Tilawati Gresik Al Hikmah')
 										Kacab. Al Hikmah Gresik	
 									@elseif($item->pelatihan->cabang->name == 'Tilawati Citra Anak Sholeh')
 										Kacab. CAS Surabaya Jawa Timur
 									@elseif($item->pelatihan->cabang->name == 'Al Kautsar')
-										<span style="font-size: 12px ">{{ 'Kacab. '.ucfirst($item->pelatihan->cabang->name).' '.ucfirst($prov) }}</span>
+										@if (ucfirst($provinsi) == 'Kalimantan Timur')
+											<span style="font-size: 12px ">{{ 'Kacab. '.ucfirst($item->pelatihan->cabang->name).' Kaltim' }}</span>
+										@else
+											<span style="font-size: 12px ">{{ 'Kacab. '.ucfirst($item->pelatihan->cabang->name).' '.ucfirst($provinsi) }}</span>	
+										@endif
+										<span style="font-size: 12px ">{{ 'Kacab. '.ucfirst($item->pelatihan->cabang->name).' '.ucfirst($provinsi) }}</span>
 									@else
-										{{ 'Kacab. '.ucfirst($kab).' '.ucfirst($prov)}}
+										@if (ucfirst($provinsi) == 'Kalimantan Timur')
+										{{ 'Kacab. '.ucfirst($kab).' Kaltim'}}
+										@else
+										{{ 'Kacab. '.ucfirst($kab).' '.ucfirst($provinsi)}}
+										@endif
+										
 									@endif
 								@endif
 							@endif
