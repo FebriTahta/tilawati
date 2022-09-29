@@ -233,7 +233,7 @@
 						@else
 						<?	$kabupaten 	= substr($item->pelatihan->cabang->kabupaten->nama, 5); $kab = strtolower($kabupaten);
 							$provinsi 	= strtolower($item->pelatihan->cabang->kabupaten->provinsi->nama); 
-							if ($provinsi == 'Kalimantan Timur') {
+							if ($provinsi == 'KALIMANTAN TIMUR') {
 								# code...
 								$prov = 'Kaltim';
 							}else {
