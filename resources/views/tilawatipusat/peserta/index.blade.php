@@ -202,7 +202,7 @@
                         {{-- <a href="/export-peserta-diklat/{{ $diklat->id }}"
                             class="text-right btn btn-sm mr-1 mb-1 btn-outline-success"><i class="fa fa-download"></i>
                             download data peserta</a> --}}
-                            @if (auth()->user()->role == 'pusat' || auth()->user()->cabang->name == 'Cahaya Amanah')
+                            @if (auth()->user()->role == 'pusat' || auth()->user()->cabang->name == 'Cahaya Amanah' || auth()->user()->role == 'cabang')
                             <a href="/export-peserta-diklat-full/{{ $diklat->id }}"
                                 class="text-right btn btn-sm mr-1 mb-1 btn-outline-primary"><i class="fa fa-download"></i>
                                 download data peserta full</a> 
@@ -211,7 +211,7 @@
 
                         <a href="/export-peserta-diklat-untuk-import/{{ $diklat->id }}"
                                 class="text-right btn btn-sm mr-1 mb-1 btn-outline-success"><i class="fa fa-download"></i>
-                                download data peserta untuk import</a>
+                                download data peserta (ready import)</a>
                         {{-- <a href="/reset-status-qr/{{ $diklat->id }}"
                             class="text-right btn btn-sm mr-1 mb-1 btn-outline-warning"><i class="fa fa-cross"></i>
                             Reset QR</a> --}}
