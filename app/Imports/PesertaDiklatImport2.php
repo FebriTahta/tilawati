@@ -217,7 +217,7 @@ class PesertaDiklatImport2 implements ToCollection, WithStartRow
                                             'penilaian_id'  => $value->id,
                                         ],
                                         [
-                                            'nominal'       => 0,
+                                            'nominal'       => '0',
                                             'kategori'      => $value->kategori,
                                         ]
                                     );
@@ -414,7 +414,7 @@ class PesertaDiklatImport2 implements ToCollection, WithStartRow
                                             'penilaian_id'  => $value->id,
                                         ],
                                         [
-                                            'nominal'       => 0,
+                                            'nominal'       => '0',
                                             'kategori'      => $value->kategori,
                                         ]
                                     );
