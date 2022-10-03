@@ -154,7 +154,7 @@ class PesertaDiklatImport2 implements ToCollection, WithStartRow
     
                             foreach ( $dt_pel->pelatihan->program->penilaian as $key => $value) {
                                 # code...
-                                if ($row[$key+9] !== null) {
+                                if ($row[$key+9] !== null && $row[$key+9] !== '') {
                                     # code...
                                     $dt_n = new Nilai;
                                     $dt_n->peserta_id = $dt_pel->id;
@@ -197,7 +197,7 @@ class PesertaDiklatImport2 implements ToCollection, WithStartRow
                             
                             foreach ( $peserta->pelatihan->program->penilaian as $key => $value) {
                                 # code...
-                                if ($row[$key+9] !== null) {
+                                if ($row[$key+9] !== null && $row[$key+9] !== '') {
                                     # code...
                                     Nilai::updateOrCreate(
                                         [
@@ -330,7 +330,7 @@ class PesertaDiklatImport2 implements ToCollection, WithStartRow
     
                             foreach ( $dt_pel->pelatihan->program->penilaian as $key => $value) {
                                 # code...
-                                if ($row[$key+10] !== null) {
+                                if ($row[$key+10] !== null && $row[$key+10] !== '') {
                                     # code...
                                     $dt_n = new Nilai;
                                     $dt_n->peserta_id = $dt_pel->id;
@@ -394,7 +394,7 @@ class PesertaDiklatImport2 implements ToCollection, WithStartRow
                             
                             foreach ( $peserta->pelatihan->program->penilaian as $key => $value) {
                                 # code...
-                                if ($row[$key+10] !== null) {
+                                if ($row[$key+10] !== null && $row[$key+10] !== '') {
                                     # code...
                                     Nilai::updateOrCreate(
                                         [
