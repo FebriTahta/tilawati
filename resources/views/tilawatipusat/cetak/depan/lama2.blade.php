@@ -200,7 +200,7 @@
 					{{-- kosong --}}
 					<td class="bawah" style="width: 241px; height: 70px; ">
 						@if ($item->pelatihan->cabang->name == 'Cahaya Amanah')
-							<img src="assets/images/pu2.png" alt="" width="140px" height="70px">
+							<img src="assets/images/umrss.png" alt="" width="140px" height="70px">
 						@endif
 					</td>
 				</tr>
