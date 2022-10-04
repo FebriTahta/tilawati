@@ -224,9 +224,9 @@ $date = $item->tgllahir; ?>
                         </td>
                         <td class="bawah" style="width: 210px; height: 70px;">&nbsp;</td>
                         <td class="bawah" style="width: 241px; height: 70px;">
-                            {{-- @if ($cabang == 'KOTA SURABAYA')
-					<img src="assets/images/pu2.png" alt="" width="140px" height="70px">
-					@endif --}}
+                            @if ($pelatihan->cabang->name == 'Cahaya Amanah')
+                                <img src="assets/images/pu2.png" alt="" width="140px" height="70px">
+                            @endif
                         </td>
                     </tr>
                     <tr style="height: 5px;">
