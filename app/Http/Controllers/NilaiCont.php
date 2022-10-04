@@ -245,6 +245,9 @@ class NilaiCont extends Controller
         }elseif ($pro == "Diklat Munaqisy Cabang") {
             # code...
             $krits = "SEBAGAI MUNAQISY CABANG METODE TILAWATI";
+        }elseif ($pro == "Diklat Guru Terjemah Lafdziyah") {
+            # code...
+            $krits = "LULUS DIKLAT STRATEGI MENGAJAR TERJEMAH LAFDHIYAH MODEL TILAWATI";
         }
         else {
             # code...
