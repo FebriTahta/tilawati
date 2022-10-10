@@ -41,7 +41,7 @@ class SyahadahCont extends Controller
                         })
                         ->addColumn('linkpendaftaran', function ($data) {
                             return '<a href="#" data-id="'.$data->id.'" data-toggle="modal" data-target=".bs-example-modal-diklat-link" 
-                            data-slug="https://syahadah.nurulfalah.org/daftar-syahadah/'.\Crypt::encrypt($data->id).'" >Link Pendaftaran!</a>';
+                            data-slug="https://syahadah.nurulfalah.org/daftar-syahadah/'.\Crypt::encrypt($data->id).'" >Syahadah!</a>';
                         })
                 ->rawColumns(['tanggals','program','peserta','linkpendaftaran'])
                 ->make(true);
@@ -61,7 +61,7 @@ class SyahadahCont extends Controller
                        
                         ->addColumn('linkpendaftaran', function ($data) {
                             return '<a href="#" data-id="'.$data->id.'" data-toggle="modal" data-target=".bs-example-modal-diklat-link" 
-                            data-slug="https://syahadah.nurulfalah.org/daftar-syahadah/'.\Crypt::encrypt($data->id).'" >Link Pendaftaran!</a>';
+                            data-slug="https://syahadah.nurulfalah.org/daftar-syahadah/'.\Crypt::encrypt($data->id).'" >Syahadah!</a>';
                         })
                         ->addColumn('tanggals', function($data){
                             if ($data->sampai_tanggal !== null) {
