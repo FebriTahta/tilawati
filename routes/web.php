@@ -27,6 +27,7 @@ use App\Http\Controllers\PesertaCont;
 use App\Http\Controllers\AcaraCont;
 use App\Http\Controllers\DashboardCont;
 use App\Http\Controllers\PenilaianCont;
+use App\Http\Controllers\SyahadahCont;
 use App\Http\Controllers\ProfileCont;
 use App\Http\Controllers\NilaiCont;
 use App\Http\Controllers\TeritoriCont;
@@ -569,6 +570,10 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     Route::post('/import-cabang-api-nf',[ImportController::class,'importapicabangnf'])->name('import.cabangapinf');
     Route::post('/update-api-cabang-nf',[ApicabangCont::class,'update_api_cabang_nf'])->name('update.apicabangnf');
     Route::get('/export-api-data-cabang-nf',[ExportCont::class,'download_api_cabang_nf']);
+
+    // E SYAHADAH ADMIN
+    Route::get('/daftar-syahadah-elektronik',[SyahadahCont::class,'index_admin']);
+    Route::get('/daftar-syahadah-cabang/{cabang_id}',[SyahadahCont::class,'data_syahadah_cabang']);
     
 });
 
