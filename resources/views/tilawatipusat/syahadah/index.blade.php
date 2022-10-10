@@ -68,7 +68,7 @@
                                                     <th>Jenis Program</th>
                                                     <th>Peserta</th>
                                                     <th>Tempat</th>
-                                                    <th>Registeasi</th>
+                                                    <th>Syahadah</th>
                                                 </tr>
                                             </thead>
     
@@ -82,7 +82,7 @@
                                                     <th>Jenis Program</th>
                                                     <th>Peserta</th>
                                                     <th>Tempat</th>
-                                                    <th>Registeasi</th>
+                                                    <th>Syahadah</th>
                                                 </tr>
                                             </tfoot>
                                         </table>
