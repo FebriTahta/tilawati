@@ -28,7 +28,7 @@
                                 </div>
                             @endif
                             <div class="card">
-                                <div class="card-body">
+                                <div class="card-body table-responsive">
                                     {{-- <h4 class="card-title">Data Sertifikat</h4> --}}
                                     <button class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#modal-sertifikat"><i class="fa fa-plus"></i> sertifikat baru</button>
                                     <blockquote class="blockquote font-size-16 mb-0 mt-2">
