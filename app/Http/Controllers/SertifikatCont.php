@@ -131,53 +131,53 @@ class SertifikatCont extends Controller
 
     public function data_induksertifikat()
     {
-        if(request()->ajax())
-        {
-            if(!empty($request->dari))
-            {
-                $data   = Induksertifikat::with('cabang')->orderBy('tgl_awal','desc')
-                ->whereBetween('tgl_awal', array($request->dari, $request->sampai));
-                return DataTables::of($data)
-                    ->addColumn('cabang', function ($data) {
-                        return $data->cabang->name;
-                    })
-                ->rawColumns(['cabang'])
-                ->make(true);
-            }else{
-                $data   = Induksertifikat::with('cabang','certificate')->orderBy('tgl_awal','desc');
-                return DataTables::of($data)
-                    ->addColumn('cabang', function ($data) {
-                        return $data->cabang->name;
-                    })
-                    ->addColumn('tanggal', function ($data) {
-                        if ($data->tgl_akhir == null) {
-                            # code...
-                            return Carbon::parse($data->tgl_awal)->isoFormat('dddd, D MMMM Y');
-                        }else{
-                            $tanggal = Carbon::parse($data->tgl_awal)->isoFormat('dddd, D MMMM Y').
-                            ' - '.Carbon::parse($data->tgl_akhir)->isoFormat('dddd, D MMMM Y');
-                            return $tanggal;
-                        }
-                    })
-                    ->addColumn('certificate', function ($data) {
-                        $total = $data->certificate->count().' Sertifikat';
-                        if ($total == 0) {
-                            # code...
-                            return '<a href="https://sertifikat.nurulfalah.org/'.$data->slug.'/'.$data->id.'" target="_blank" class="text-danger">'.$total.' - sertifikat'.'</a>';
-                        } else {
-                            # code...
-                            return '<a href="https://sertifikat.nurulfalah.org/'.$data->slug.'/'.$data->id.'" target="_blank" class="text-success">'.$total.' - sertifikat'.'</a>';
-                        }
-                    })
-                    ->addColumn('action', function($data){
-                        $actionBtn  = ' <button type="button" data-id="'.$data->id.'" data-toggle="modal" data-target="#modal-import" class="btn btn-success btn-sm"> <i class="fa fa-upload"></i> Import</button>';
-                        $actionBtn .= ' <button type="button" data-id="'.$data->id.'" data-toggle="modal" data-target="#modal-hapus" class="btn btn-danger btn-sm"> <i class="fa fa-trash"></i> Hapus!</button>';
-                        return $actionBtn;
-                    })
-                ->rawColumns(['cabang','certificate','tanggal','action'])
-                ->make(true);
-            }
-        }
+        // if(request()->ajax())
+        // {
+        //     if(!empty($request->dari))
+        //     {
+        //         $data   = Induksertifikat::with('cabang')->orderBy('tgl_awal','desc')
+        //         ->whereBetween('tgl_awal', array($request->dari, $request->sampai));
+        //         return DataTables::of($data)
+        //             ->addColumn('cabang', function ($data) {
+        //                 return $data->cabang->name;
+        //             })
+        //         ->rawColumns(['cabang'])
+        //         ->make(true);
+        //     }else{
+        //         $data   = Induksertifikat::with('cabang','certificate')->orderBy('tgl_awal','desc');
+        //         return DataTables::of($data)
+        //             ->addColumn('cabang', function ($data) {
+        //                 return $data->cabang->name;
+        //             })
+        //             ->addColumn('tanggal', function ($data) {
+        //                 if ($data->tgl_akhir == null) {
+        //                     # code...
+        //                     return Carbon::parse($data->tgl_awal)->isoFormat('dddd, D MMMM Y');
+        //                 }else{
+        //                     $tanggal = Carbon::parse($data->tgl_awal)->isoFormat('dddd, D MMMM Y').
+        //                     ' - '.Carbon::parse($data->tgl_akhir)->isoFormat('dddd, D MMMM Y');
+        //                     return $tanggal;
+        //                 }
+        //             })
+        //             ->addColumn('certificate', function ($data) {
+        //                 $total = $data->certificate->count().' Sertifikat';
+        //                 if ($total == 0) {
+        //                     # code...
+        //                     return '<a href="https://sertifikat.nurulfalah.org/'.$data->slug.'/'.$data->id.'" target="_blank" class="text-danger">'.$total.' - sertifikat'.'</a>';
+        //                 } else {
+        //                     # code...
+        //                     return '<a href="https://sertifikat.nurulfalah.org/'.$data->slug.'/'.$data->id.'" target="_blank" class="text-success">'.$total.' - sertifikat'.'</a>';
+        //                 }
+        //             })
+        //             ->addColumn('action', function($data){
+        //                 $actionBtn  = ' <button type="button" data-id="'.$data->id.'" data-toggle="modal" data-target="#modal-import" class="btn btn-success btn-sm"> <i class="fa fa-upload"></i> Import</button>';
+        //                 $actionBtn .= ' <button type="button" data-id="'.$data->id.'" data-toggle="modal" data-target="#modal-hapus" class="btn btn-danger btn-sm"> <i class="fa fa-trash"></i> Hapus!</button>';
+        //                 return $actionBtn;
+        //             })
+        //         ->rawColumns(['cabang','certificate','tanggal','action'])
+        //         ->make(true);
+        //     }
+        // }
     }
 
     public function generate_program_id(Request $request)
