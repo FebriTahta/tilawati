@@ -107,7 +107,7 @@
                     </ul>
                 </li>
 
-                <li>
+                {{-- <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="mdi mdi-clipboard-list-outline"></i>
                         <span style="font-size: 12px">E Syahadah</span>
@@ -116,7 +116,7 @@
                         <li><a style="font-size: 12px" href="/daftar-syahadah-elektronik">Unduh E Syahadah</a>
                         </li>
                     </ul>
-                </li>
+                </li> --}}
 
                 @if (auth()->user()->role == 'cabang')
                 <li class="menu-title">Konfirmasi Peserta Registrasi Online</li>
