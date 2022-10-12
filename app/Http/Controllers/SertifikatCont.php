@@ -144,7 +144,7 @@ class SertifikatCont extends Controller
                 ->rawColumns(['cabang'])
                 ->make(true);
             }else{
-                $data   = Induksertifikat::with('cabang','certificate');
+                $data   = Induksertifikat::with('cabang','certificate')->orderBy('tgl_awal','desc')->get();
                 return DataTables::of($data)
                     ->addColumn('cabang', function ($data) {
                         return $data->cabang->name;
