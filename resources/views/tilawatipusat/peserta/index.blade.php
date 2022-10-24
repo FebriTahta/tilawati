@@ -1523,7 +1523,7 @@
 
                     ]
                 });
-            }else if (jenis_program == "Diklat Munaqisy Cabang" || jenis_program == "TRAINING OF TRAINER GURU AL-QUR'AN" ||jenis_program == "Training Of Trainer Guru Al-Qur'an" ) {
+            }else if (jenis_program == "Diklat Munaqisy Cabang" || jenis_program == "TRAINING OF TRAINER GURU AL-QUR'AN" ||jenis_program == "Training Of Trainer Guru Al-Qur'an" || jenis_program == "TRAINING OF TRAINER GURU AL-QUR'AN METODE TILAWATI PUSAT") {
                 $('#datatable-buttons').DataTable({
                     //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
                     destroy: true,
