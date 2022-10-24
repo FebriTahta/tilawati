@@ -176,6 +176,7 @@ class DiklatCont extends Controller
                             $actionBtn .= ' <a href="#" class="btn btn-sm btn-outline btn-info" data-slug="'.$data->slug.'" data-nama_diklat="'.$data->program->name.'" data-id="'.asset('images/'.$data->slug.'.png').'" data-toggle="modal" data-target=".modal-scan"><i class="mdi mdi-barcode-scan"></i></a>';
                             // $actionBtn .= ' <a href="#" class="btn btn-sm btn-outline btn-success" data-slug="'.$data->slug.'" data-nama_diklat="'.$data->program->name.'" data-id="'.asset('images/'.$data->slug.'.png').'" data-toggle="modal" data-target=".modal-scan"><i class="mdi mdi-whatsapp"></i></a>';
                             $actionBtn .= ' <a href="#" class="btn btn-sm btn-outline btn-warning" data-toggle="modal" data-target="#modal_share_cabang" data-id="'.$data->id.'"><i class="mdi mdi-forward"></i></a>';
+                            $actionBtn .= ' <a href="#" class="btn btn-sm btn-outline btn-danger" data-toggle="modal" data-target="#modal_share_cabang" data-id="'.$data->id.'"><i class="mdi mdi-doccument"></i></a>';
                             return $actionBtn;
                         })
                         ->addColumn('tanggal', function($data){
