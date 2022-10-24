@@ -25,6 +25,7 @@ class CreatePelatihansTable extends Migration
             $table->text('keterangan');
             $table->string('jenis')->nullable();
             $table->string('status')->nullable();
+            $table->string('syahadah')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

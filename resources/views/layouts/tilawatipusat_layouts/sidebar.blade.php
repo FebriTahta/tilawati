@@ -118,6 +118,21 @@
                     </ul>
                 </li> --}}
 
+                @auth
+                    @if (auth()->user()->role == 'pusat')
+                    <li>
+                        <a href="javascript: void(0);" class="has-arrow waves-effect">
+                            <i class="mdi mdi-clipboard-list-outline"></i>
+                            <span style="font-size: 12px">E Syahadah</span>
+                        </a>
+                        <ul class="sub-menu" aria-expanded="false">
+                            <li><a style="font-size: 12px" href="/daftar-syahadah-elektronik">Daftar E Syahadah</a>
+                            </li>
+                        </ul>
+                    </li>
+                    @endif
+                @endauth
+
                 @if (auth()->user()->role == 'cabang')
                 <li class="menu-title">Konfirmasi Peserta Registrasi Online</li>
                 <li>

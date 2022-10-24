@@ -615,6 +615,92 @@
                         </div>
                         <!-- /.modal-dialog -->
                     </div>
+
+                    <div class="modal fade bs-example-modal-xl-2" id="modalsyahadah_aktif" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-md modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">TERBITKAN SYAHADAH</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                
+                                <div class="modal-body">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th style="width: 30%"><span>CABANG </span></th>
+                                                <th style="width: 5%"><span>:</span></th>
+                                                <th style="width: 65%"><span id="nama_cabang_syahadah"></span></th>
+                                            </tr>
+                                            <tr>
+                                                <th style="width: 30%"><span>PROGRAM </span></th>
+                                                <th style="width: 5%"><span>:</span></th>
+                                                <th style="width: 65%"><span id="nama_program_syahadah"></span></th>
+                                            </tr>
+                                            <tr>
+                                                <th style="width: 30%"><span>LULUS </span></th>
+                                                <th style="width: 5%"><span>:</span></th>
+                                                <th style="width: 65%"><u><span id="peserta_lulus_syahadah"></span> </u> <span> PESERTA</span></th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                                <div class="modal-footer">
+                                    <form id="formterbit">@csrf
+                                        <input type="hidden" class="form-control" id="id" name="id" required>
+                                        <input type="submit" id="btnterbit" class="btn btn-sm btn-primary" value="TERBITKAN SYAHADAH">
+                                    </form>
+                                </div>
+                            </div>
+                            <!-- /.modal-content -->
+                        </div>
+                        <!-- /.modal-dialog -->
+                    </div>
+
+                    <div class="modal fade bs-example-modal-xl-2" id="modalsyahadah_tarik" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-md modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">TERBITKAN SYAHADAH</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                
+                                <div class="modal-body">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th style="width: 30%"><span>CABANG </span></th>
+                                                <th style="width: 5%"><span>:</span></th>
+                                                <th style="width: 65%"><span id="nama_cabang_syahadah"></span></th>
+                                            </tr>
+                                            <tr>
+                                                <th style="width: 30%"><span>PROGRAM </span></th>
+                                                <th style="width: 5%"><span>:</span></th>
+                                                <th style="width: 65%"><span id="nama_program_syahadah"></span></th>
+                                            </tr>
+                                            <tr>
+                                                <th style="width: 30%"><span>LULUS </span></th>
+                                                <th style="width: 5%"><span>:</span></th>
+                                                <th style="width: 65%"><u><span id="peserta_lulus_syahadah"></span> </u> <span> PESERTA</span></th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                                <div class="modal-footer">
+                                    <form id="formtarik">@csrf
+                                        <input type="hidden" class="form-control" id="id" name="id" required>
+                                        <input type="submit" id="btntarik" class="btn btn-sm btn-danger" value="TARIK SYAHADAH">
+                                    </form>
+                                </div>
+                            </div>
+                            <!-- /.modal-content -->
+                        </div>
+                        <!-- /.modal-dialog -->
+                    </div>
                     
 <input type="text" value="{{auth()->user()->role}}" style="display: none">
 @endsection
@@ -668,6 +754,74 @@
                         swal({ title: "Success!",
                             text: "Diklat Baru Berhasil Dibuat!",
                             type: "success"});
+                },
+                error: function(data)
+                {
+                    console.log(data);
+                    }
+                });
+            });
+
+            $('#formterbit').submit(function(e) {
+                e.preventDefault();
+                var formData = new FormData(this);
+                $.ajax({
+                type:'POST',
+                url: "/terbitkan-syahadah",
+                data: formData,
+                cache:false,
+                contentType: false,
+                processData: false,
+                beforeSend:function(){
+                    $('#btnterbit').attr('disabled','disabled');
+                    $('#btnterbit').val('Proses Menerbitkan Syahadah');
+                },
+                success: function(data){
+                    //sweetalert and redirect
+                        toastr.success(data.message);
+                        $('#btnterbit').val('TERBITKAN SYAHADAH');
+                        $('#btnterbit').attr('disabled',false);
+                        $('#modalsyahadah_aktif').modal('hide');
+                        swal({ title: "Success!",
+                            text: data.message,
+                            type: "success"
+                        });
+                        var oTable = $('#datatable-buttons').dataTable();
+                        oTable.fnDraw(false);
+                },
+                error: function(data)
+                {
+                    console.log(data);
+                    }
+                });
+            });
+
+            $('#formtarik').submit(function(e) {
+                e.preventDefault();
+                var formData = new FormData(this);
+                $.ajax({
+                type:'POST',
+                url: "/tarik-syahadah",
+                data: formData,
+                cache:false,
+                contentType: false,
+                processData: false,
+                beforeSend:function(){
+                    $('#btntarik').attr('disabled','disabled');
+                    $('#btntarik').val('Proses Menerbitkan Syahadah');
+                },
+                success: function(data){
+                    //sweetalert and redirect
+                        toastr.success(data.message);
+                        $('#btntarik').val('TERBITKAN SYAHADAH');
+                        $('#btntarik').attr('disabled',false);
+                        $('#modalsyahadah_tarik').modal('hide');
+                        swal({ title: "Success!",
+                            text: data.message,
+                            type: "warning"
+                        });
+                        var oTable = $('#datatable-buttons').dataTable();
+                        oTable.fnDraw(false);
                 },
                 error: function(data)
                 {
@@ -940,6 +1094,32 @@
                 modal.find('.modal-body #groupwa').val(linkwa);
                 modal.find('.modal-body #id').val(id);
                 console.log(linkwa);
+            })
+
+            $('#modalsyahadah_aktif').on('show.bs.modal', function(event) {
+                var button = $(event.relatedTarget)
+                var nama_cabang_syahadah = button.data('nama_cabang_syahadah')
+                var nama_program_syahadah = button.data('nama_program_syahadah')
+                var peserta_lulus_syahadah = button.data('peserta_lulus_syahadah')
+                var id = button.data('id')
+                var modal = $(this)
+                modal.find('.modal-body #nama_cabang_syahadah').html(nama_cabang_syahadah);
+                modal.find('.modal-body #nama_program_syahadah').html(nama_program_syahadah);
+                modal.find('.modal-body #peserta_lulus_syahadah').html(peserta_lulus_syahadah);
+                modal.find('.modal-footer #id').val(id);
+            })
+
+            $('#modalsyahadah_tarik').on('show.bs.modal', function(event) {
+                var button = $(event.relatedTarget)
+                var nama_cabang_syahadah = button.data('nama_cabang_syahadah')
+                var nama_program_syahadah = button.data('nama_program_syahadah')
+                var peserta_lulus_syahadah = button.data('peserta_lulus_syahadah')
+                var id = button.data('id')
+                var modal = $(this)
+                modal.find('.modal-body #nama_cabang_syahadah').html(nama_cabang_syahadah);
+                modal.find('.modal-body #nama_program_syahadah').html(nama_program_syahadah);
+                modal.find('.modal-body #peserta_lulus_syahadah').html(peserta_lulus_syahadah);
+                modal.find('.modal-footer #id').val(id);
             })
 
             $('#modal-flyer').on('show.bs.modal', function(event) {

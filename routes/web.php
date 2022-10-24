@@ -574,6 +574,9 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     // E SYAHADAH ADMIN
     Route::get('/daftar-syahadah-elektronik',[SyahadahCont::class,'index_admin']);
     Route::get('/daftar-syahadah-cabang/{cabang_id}',[SyahadahCont::class,'data_syahadah_cabang']);
+    Route::post('/terbitkan-syahadah',[SyahadahCont::class,'terbitkan_syahadah']);
+    Route::post('/tarik-syahadah',[SyahadahCont::class,'tarik_syahadah']);
+    Route::get('/data-syahadah-pusat',[SyahadahCont::class,'syahadah_pusat']);
     
 });
 

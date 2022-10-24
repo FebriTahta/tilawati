@@ -91,6 +91,15 @@ class DiklatCont extends Controller
                             $actionBtn .= ' <a href="#" class="btn btn-sm btn-outline btn-info" data-slug="'.$data->slug.'" data-nama_diklat="'.$data->program->name.'" data-id="'.asset('images/'.$data->slug.'.png').'" data-toggle="modal" data-target=".modal-scan"><i class="mdi mdi-barcode-scan"></i></a>';
                             // $actionBtn .= ' <a href="#" class="btn btn-sm btn-outline btn-success" data-slug="'.$data->slug.'" data-nama_diklat="'.$data->program->name.'" data-id="'.asset('images/'.$data->slug.'.png').'" data-toggle="modal" data-target=".modal-scan"><i class="mdi mdi-whatsapp"></i></a>';
                             $actionBtn .= ' <a href="#" class="btn btn-sm btn-outline btn-warning" data-toggle="modal" data-target="#modal_share_cabang"><i class="mdi mdi-forward"></i></a>';
+                            if ($data->syahadah == null) {
+                                # code...
+                                $actionBtn .= ' <a href="#" class="btn btn-sm btn-outline btn-primary" data-toggle="modal" data-target="#modalsyahadah_aktif"
+                                data-nama_program_syahadah="'.strtoupper($data->program->name).'" data-peserta_lulus_syahadah="'.$data->peserta->where('bersyahadah','1')->count().'" data-nama_cabang_syahadah="'.strtoupper($data->cabang->name).'" data-id="'.$data->id.'"><i class="mdi mdi-book"></i></a>';
+                            }else {
+                                # code...
+                                $actionBtn .= ' <a href="#" class="btn btn-sm btn-outline btn-success" data-toggle="modal" data-target="#modalsyahadah_tarik"
+                                data-nama_program_syahadah="'.strtoupper($data->program->name).'" data-peserta_lulus_syahadah="'.$data->peserta->where('bersyahadah','1')->count().'" data-nama_cabang_syahadah="'.strtoupper($data->cabang->name).'" data-id="'.$data->id.'"><i class="mdi mdi-book"></i></a>';
+                            }
                             return $actionBtn;
                         })
                         ->addColumn('groupwa', function($data){
@@ -176,7 +185,15 @@ class DiklatCont extends Controller
                             $actionBtn .= ' <a href="#" class="btn btn-sm btn-outline btn-info" data-slug="'.$data->slug.'" data-nama_diklat="'.$data->program->name.'" data-id="'.asset('images/'.$data->slug.'.png').'" data-toggle="modal" data-target=".modal-scan"><i class="mdi mdi-barcode-scan"></i></a>';
                             // $actionBtn .= ' <a href="#" class="btn btn-sm btn-outline btn-success" data-slug="'.$data->slug.'" data-nama_diklat="'.$data->program->name.'" data-id="'.asset('images/'.$data->slug.'.png').'" data-toggle="modal" data-target=".modal-scan"><i class="mdi mdi-whatsapp"></i></a>';
                             $actionBtn .= ' <a href="#" class="btn btn-sm btn-outline btn-warning" data-toggle="modal" data-target="#modal_share_cabang" data-id="'.$data->id.'"><i class="mdi mdi-forward"></i></a>';
-                            $actionBtn .= ' <a href="#" class="btn btn-sm btn-outline btn-danger" data-toggle="modal" data-target="#modal_share_cabang" data-id="'.$data->id.'"><i class="mdi mdi-doccument"></i></a>';
+                            if ($data->syahadah == null) {
+                                # code...
+                                $actionBtn .= ' <a href="#" class="btn btn-sm btn-outline btn-primary" data-toggle="modal" data-target="#modalsyahadah_aktif"
+                                data-nama_program_syahadah="'.strtoupper($data->program->name).'" data-peserta_lulus_syahadah="'.$data->peserta->where('bersyahadah','1')->count().'" data-nama_cabang_syahadah="'.strtoupper($data->cabang->name).'" data-id="'.$data->id.'"><i class="mdi mdi-book"></i></a>';
+                            }else {
+                                # code...
+                                $actionBtn .= ' <a href="#" class="btn btn-sm btn-outline btn-success" data-toggle="modal" data-target="#modalsyahadah_tarik"
+                                data-nama_program_syahadah="'.strtoupper($data->program->name).'" data-peserta_lulus_syahadah="'.$data->peserta->where('bersyahadah','1')->count().'" data-nama_cabang_syahadah="'.strtoupper($data->cabang->name).'" data-id="'.$data->id.'"><i class="mdi mdi-book"></i></a>';
+                            }
                             return $actionBtn;
                         })
                         ->addColumn('tanggal', function($data){
