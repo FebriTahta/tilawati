@@ -57,7 +57,7 @@ class PesertaDiklatImport2 implements ToCollection, WithStartRow
         ])->validate();
 
         $diklat = Pelatihan::where('id',$this->id)->first();
-        if ($diklat->program->name == "Diklat Munaqisy Cabang" || $diklat->program->name == "Training Of Trainer Guru Al-Qur'an") {
+        if ($diklat->program->name == "Diklat Munaqisy Cabang" || $diklat->program->name == "Training Of Trainer Guru Al-Qur'an" || $diklat->program->name == "TRAINING OF TRAINER GURU AL-QUR'AN METODE TILAWATI PUSAT") {
             # code...
             foreach ($collection as $key => $row) {
                 # code...
@@ -188,6 +188,7 @@ class PesertaDiklatImport2 implements ToCollection, WithStartRow
                                     'name'        => $row[1],
                                     'alamat'      => $row[2],
                                     'telp'        => $row[4],
+                                    'tmptlahir2'  => $row[5],
                                     'kriteria'    => $row[7],
                                     'bersyahadah' => $row[8],
     
