@@ -67,8 +67,8 @@
                             </span>
                         </div>
                         <div class="media-body">
-                            <div class="font-size-16 mt-2">Total Syahadah Yang Diterbitkan <br> <b id="cb" style="color: blue">2959</b>
-                                Cabang <b style="color: blue" id="sy_lulus">2810</b> Syahadah Peserta </div>
+                            <div class="font-size-16 mt-2">Total Syahadah Yang Diterbitkan <br> <b id="cb" style="color: blue">?</b>
+                                Penerbitan Syahadah & <b style="color: blue" id="cb2">?</b> Syahadah Peserta </div>
                         </div>
                     </div>
                     <h4 class="mt-4"></h4>
@@ -210,6 +210,7 @@
 
         $(document).ready(function() {
             load_data();
+            count_data();
 
             function load_data(dari = '', sampai = '') {
                 $('#datatable-buttons').DataTable({
@@ -258,6 +259,21 @@
                         },
                     ]
                 });
+
+               
+            }
+
+            function count_data(dari = '', sampai = '') {
+                $.ajax({
+                    url:'/total-syahadah-terbit-pusat',
+                    type: 'get',
+                    dataType: 'json',
+                    data:{dari:dari, sampai:sampai},
+                    success:function(data) {
+                        document.getElementById('cb').innerHTML = data.terbit;
+                        document.getElementById('cb2').innerHTML = data.peserta_terbit;
+                    }
+                });
             }
 
             $('#filter').click(function() {
@@ -265,6 +281,7 @@
                 var sampai = $('#sampai').val();
                 if (dari != '' && sampai != '') {
                     load_data(dari, sampai);
+                    count_data(dari, sampai);
                 } else {
                     alert('Both Date is required');
                 }

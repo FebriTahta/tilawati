@@ -577,6 +577,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     Route::post('/terbitkan-syahadah',[SyahadahCont::class,'terbitkan_syahadah']);
     Route::post('/tarik-syahadah',[SyahadahCont::class,'tarik_syahadah']);
     Route::get('/data-syahadah-pusat',[SyahadahCont::class,'syahadah_pusat']);
+    Route::get('/total-syahadah-terbit-pusat',[SyahadahCont::class,'syahadah_terbit_pusat']);
     
 });
 

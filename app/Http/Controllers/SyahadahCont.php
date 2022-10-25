@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Pelatihan;
+use App\Models\Peserta;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use DataTables;
@@ -196,6 +197,38 @@ class SyahadahCont extends Controller
                         })
                 ->rawColumns(['tanggals','program','peserta','linksyahadah','cabang','cetak','tanggal_terbit'])
                 ->make(true);
+            }
+        }
+    }
+
+    public function syahadah_terbit_pusat(Request $request)
+    {
+     
+        if ($request->ajax()) {
+            # code...
+            if(!empty($request->dari))
+            {
+                # code...
+                $terbit = Pelatihan::where('syahadah','1')->whereBetween('updated_at', array($request->dari, $request->sampai))->count();
+                $peserta_terbit = Peserta::where('bersyahadah','1')->whereHas('pelatihan', function($q){
+                    $q->where('syahadah','1')->whereBetween('updated_at', array($request->dari, $request->sampai));;
+                })->count();
+                return response()->json(
+                    [
+                        'terbit'=>$terbit,
+                        'peserta_terbit'=>$peserta_terbit,
+                    ]
+                );
+            }else {
+                # code...
+                $terbit = Pelatihan::where('syahadah','1')->count();
+                $peserta_terbit = Peserta::where('bersyahadah','1')->whereHas('pelatihan', function($q){$q->where('syahadah','1');})->count();
+                return response()->json(
+                    [
+                        'terbit'=>$terbit,
+                        'peserta_terbit'=>$peserta_terbit,
+                    ]
+                );
             }
         }
     }
