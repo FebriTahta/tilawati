@@ -213,6 +213,7 @@
             count_data();
 
             function load_data(dari = '', sampai = '') {
+                toastr.success('menampilkan daftar syahadah');
                 $('#datatable-buttons').DataTable({
                     //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
                     destroy: true,
@@ -270,6 +271,7 @@
                     dataType: 'json',
                     data:{dari:dari, sampai:sampai},
                     success:function(data) {
+                        toastr.success('menampilkan data perhitungan syahadah');
                         document.getElementById('cb').innerHTML = data.terbit;
                         document.getElementById('cb2').innerHTML = data.peserta_terbit;
                     }

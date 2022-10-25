@@ -210,8 +210,8 @@ class SyahadahCont extends Controller
             {
                 # code...
                 $terbit = Pelatihan::where('syahadah','1')->whereBetween('updated_at', array($request->dari, $request->sampai))->count();
-                $peserta_terbit = Peserta::where('bersyahadah','1')->whereHas('pelatihan', function($q){
-                    $q->where('syahadah','1')->whereBetween('updated_at', array($request->dari, $request->sampai));;
+                $peserta_terbit = Peserta::where('bersyahadah','1')->whereHas('pelatihan', function($q) use ($request){
+                    $q->where('syahadah','1')->whereBetween('updated_at', array($request->dari, $request->sampai));
                 })->count();
                 return response()->json(
                     [
