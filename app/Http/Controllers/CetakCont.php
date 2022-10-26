@@ -45,6 +45,19 @@ class CetakCont extends Controller
         return view('tilawatipusat.cetak.proses.cek_qr',compact('peserta','pelatihan_id'));
     }
 
+    public function cetak_syahadah_depan_b5(Request $request)
+    {
+        $customPaper = array(0,0,865,612);
+    	$pdf = PDF::loadView('tilawatipusat.cetak.syahadah_b5.depan')->setPaper($customPaper, 'portrait');
+    	return $pdf->stream('syahadah.pdf','I');
+        
+    }
+
+    public function tampilan()
+    {
+        return view('tilawatipusat.cetak.syahadah_b5.depan');
+    }
+
     public function cetak_depan_syahadah(Request $request)
     {
         $id         = $request->pelatihan_id;

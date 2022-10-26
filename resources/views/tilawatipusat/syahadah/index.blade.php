@@ -128,6 +128,7 @@
     </div>
     <!-- end row -->
 
+    
 
     <div class="modal fade bs-example-modal-diklat-link" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
         aria-hidden="true">
@@ -145,6 +146,34 @@
                                         class="btn btn-sm btn-outline-primary">
                                     <a id="bukalink" target="_blank"
                                         class="btn btn-sm btn-outline-primary text-primary"> buka link!</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- end col -->
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <div class="modal fade" id="modalb5" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-md">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="col-xl-12">
+                        <div class="card m-b-30">
+                            <div class="card-body">
+                                <div class="header" style="text-align: center; margin-bottom: 20px">
+                                    <h5>PILIH CETAK DEPAN / BELAKANG</h5>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 col-6">
+                                        {{-- <a href="" id="linkdepan" class="btn btn-success" style="width: 100%">CETAK DEPAN</a> --}}
+                                        <button id="linkdepans" class="btn btn-success" style="width: 100%">CETAK DEPAN</button>
+                                    </div>
+                                    <div class="col-md-6 col-6">
+                                        <button class="btn btn-info" style="width: 100%">CETAK BELAKANG</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -192,6 +221,14 @@
             var a = document.getElementById("bukalink");
             a.href = slug;
         })
+
+        // $('#modalb5').on('show.bs.modal', function(event) {
+        //     var button = $(event.relatedTarget)
+        //     var link = button.data('link')
+        //     var modal = $(this)
+        //     var a = document.getElementById("linkdepan");
+        //     a.href = link;
+        // })
 
         function myFunction() {
             /* Get the text field */
@@ -294,7 +331,18 @@
                 $('#sampai').val('');
                 load_data();
             });
-
         })
+
+            $('#linkdepans').on('click', function() {
+                swal({
+                    title: "OK",
+                    text: 'Tekan OK untuk mengunduh Syahadah',
+                    type: "success"
+                }).then(okay => {
+                    if (okay) {
+                        window.location.href = "/cetak-syahadah-depan-b5";
+                    }
+                });
+            })
     </script>
 @endsection

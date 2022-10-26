@@ -190,7 +190,7 @@ class SyahadahCont extends Controller
                             return Carbon::parse($data->updated_at)->isoFormat('dddd, D MMMM Y');
                         })
                         ->addColumn('cetak', function ($data) {
-                            $btn    = '<a href="#" class="btn btn-sm btn-primary">B5</a>';
+                            $btn    = '<a href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modalb5" data-link="/cetak-syahadah-depan-b5/'.$data->id.'">B5</a>';
                             $btn   .= ' <a href="#" class="btn btn-sm btn-info">A4</a>';
                             $btn   .= ' <a href="#" class="btn btn-sm btn-success">A4</a>';
                             return $btn;
@@ -213,6 +213,7 @@ class SyahadahCont extends Controller
                 $peserta_terbit = Peserta::where('bersyahadah','1')->whereHas('pelatihan', function($q) use ($request){
                     $q->where('syahadah','1')->whereBetween('updated_at', array($request->dari, $request->sampai));
                 })->count();
+
                 return response()->json(
                     [
                         'terbit'=>$terbit,
@@ -223,6 +224,7 @@ class SyahadahCont extends Controller
                 # code...
                 $terbit = Pelatihan::where('syahadah','1')->count();
                 $peserta_terbit = Peserta::where('bersyahadah','1')->whereHas('pelatihan', function($q){$q->where('syahadah','1');})->count();
+                
                 return response()->json(
                     [
                         'terbit'=>$terbit,
