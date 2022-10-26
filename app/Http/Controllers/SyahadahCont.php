@@ -190,9 +190,8 @@ class SyahadahCont extends Controller
                             return Carbon::parse($data->updated_at)->isoFormat('dddd, D MMMM Y');
                         })
                         ->addColumn('cetak', function ($data) {
-                            $btn    = '<a href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modalb5" data-id="'.$data->id.'" data-link="/cetak-syahadah-depan-b5/'.$data->id.'">B5</a>';
-                            $btn   .= ' <a href="#" class="btn btn-sm btn-info">A4</a>';
-                            $btn   .= ' <a href="#" class="btn btn-sm btn-success">A4</a>';
+                            $btn    = '<a href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modalb5" data-id="'.$data->id.'">V.1</a>';
+                            $btn   .= ' <a href="#" class="btn btn-sm btn-info" data-toggle="modal" data-target="#modalb52" data-id="'.$data->id.'">V.2</a>';
                             return $btn;
                         })
                 ->rawColumns(['tanggals','program','peserta','linksyahadah','cabang','cetak','tanggal_terbit'])

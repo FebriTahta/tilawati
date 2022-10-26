@@ -168,11 +168,34 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6 col-6">
-                                        {{-- <a href="" id="linkdepan" class="btn btn-success" style="width: 100%">CETAK DEPAN</a> --}}
                                         <button id="linkdepans" class="btn btn-success" style="width: 100%">CETAK DEPAN</button>
                                     </div>
                                     <div class="col-md-6 col-6">
-                                        <button class="btn btn-info" style="width: 100%">CETAK BELAKANG</button>
+                                        <button id="linkbelakang" class="btn btn-info" style="width: 100%">CETAK BELAKANG</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- end col -->
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <div class="modal fade" id="modalb52" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-md">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="col-xl-12">
+                        <div class="card m-b-30">
+                            <div class="card-body">
+                                <div class="header" style="text-align: center; margin-bottom: 20px">
+                                    <h5>CETAK SYAHADAH VERSI 0.2</h5>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 col-12">
+                                        <button id="linkdepanbelakang" class="btn btn-info" style="width: 100%">CETAK VERSI 0.2</button>
                                     </div>
                                 </div>
                             </div>
@@ -216,20 +239,51 @@
 
         $('#modalb5').on('show.bs.modal', function(event) {
             var button = $(event.relatedTarget)
-            var link = button.data('link')
             var id = button.data('id')
             var modal = $(this)
             pelatihan_id = id;
         })
 
+        $('#modalb52').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget)
+            var id = button.data('id')
+            var modal = $(this)
+            pelatihan_id = id;
+        })
+        
+
         $('#linkdepans').on('click', function() {
             swal({
                 title: "SYAHADAH B5",
-                text: 'Tekan "OK" untuk mengunduh syahadah',
+                text: 'Tekan "OK" untuk mengunduh syahadah depan V.1',
                 type: "success"
             }).then(okay => {                    
                 if (okay) {
                     window.location.href = "/cetak-syahadah-depan-b5/"+pelatihan_id;
+                }
+            });
+        })
+
+        $('#linkbelakang').on('click', function() {
+            swal({
+                title: "SYAHADAH B5",
+                text: 'Tekan "OK" untuk mengunduh syahadah belakang V.1',
+                type: "success"
+            }).then(okay => {                    
+                if (okay) {
+                    window.location.href = "/cetak-syahadah-belakang-b5/"+pelatihan_id;
+                }
+            });
+        })
+
+        $('#linkdepanbelakang').on('click', function() {
+            swal({
+                title: "SYAHADAH B5",
+                text: 'Tekan "OK" untuk mengunduh syahadah V.2',
+                type: "success"
+            }).then(okay => {                    
+                if (okay) {
+                    window.location.href = "/cetak-syahadah-depan-belakang-b5/"+pelatihan_id;
                 }
             });
         })

@@ -64,7 +64,7 @@ class CetakCont extends Controller
             // return $pdf->download('ijazah-depan-peserta-pdf_'.$pelatihan->name.'.pdf','I');
 
             $pdf = PDF::loadView('tilawatipusat.cetak.syahadah_b5.depan',compact('peserta','direktur','kepala','kabupaten','cabang','pelatihan'))->setPaper($customPaper, 'portrait');
-    	    return $pdf->stream('syahadah.pdf','I');
+    	    return $pdf->stream('syahadah_v1_depan.pdf','I');
         }else {
             # code...
             $jumlah_cabang = $pelatihan->cabang->kabupaten->cabang->count();
@@ -115,15 +115,33 @@ class CetakCont extends Controller
                 // $pdf        = PDF::loadview('AdmPelatihan.Cetak.cetak_depan',compact('peserta','direktur','kepala','kabupaten','cabang','pelatihan'))->setPaper($customPaper, 'portrait');
                 // return $pdf->download('ijazah-depan-peserta-_'.$pelatihan->name.'.pdf','I');
                 $pdf = PDF::loadView('tilawatipusat.cetak.syahadah_b5.depan',compact('peserta','direktur','kepala','kabupaten','cabang','pelatihan'))->setPaper($customPaper, 'portrait');
-    	        return $pdf->stream('syahadah.pdf','I');
+    	        return $pdf->stream('syahadah_v1_depan.pdf','I');
             }
         }
         
     }
 
-    public function tampilan()
+    public function cetak_syahadah_belakang_b5($pelatihan_id,Request $request)
     {
-        return view('tilawatipusat.cetak.syahadah_b5.depan');
+        $id             = $pelatihan_id;
+        $pelatihan      = Pelatihan::find($id);
+        $peserta        = Peserta::where('pelatihan_id', $id)->where('bersyahadah','1')->get();
+        $customPaper    = array(0,0,792,612);
+        $pdf = PDF::loadView('tilawatipusat.cetak.syahadah_b5.belakang',compact('peserta','pelatihan'))->setPaper($customPaper, 'portrait');
+    	return $pdf->stream('syahadah_b5_belakang.pdf','I');
+
+    }
+
+    public function cetak_syahadah_depan_belakang_b5($pelatihan_id,Request $request)
+    {
+        $id         = $request->pelatihan_id;
+        $pelatihan  = Pelatihan::find($id);
+        $cabang     = $pelatihan->cabang->kabupaten->nama;
+        $kabupaten  = substr($cabang, 5);
+        $peserta    = Peserta::where('pelatihan_id', $id)->where('bersyahadah','1')->get();
+
+        $pdf        = PDF::loadView('tilawatipusat.cetak.syahadah_b5.depan_belakang',compact('peserta','pelatihan'))->setPaper('a4', 'portrait');
+        return $pdf->stream('syahadah_v2.pdf');
     }
 
     public function cetak_depan_syahadah(Request $request)

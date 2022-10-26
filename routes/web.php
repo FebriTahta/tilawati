@@ -581,7 +581,8 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     
     // CETAK SYAHADAH BARU
     Route::get('/cetak-syahadah-depan-b5/{pelatihan_id}',[CetakCont::class,'cetak_syahadah_depan_b5']);
-    Route::get('/tampilan-syahadah',[CetakCont::class,'tampilan']);
+    Route::get('/cetak-syahadah-belakang-b5/{pelatihan_id}',[CetakCont::class,'cetak_syahadah_belakang_b5']);
+    Route::get('/cetak-syahadah-depan-belakang-b5/{pelatihan_id}',[CetakCont::class,'cetak_syahadah_depan_belakang_b5']);
 });
 
 Route::group(['middleware' => ['auth', 'CheckRole:bendahara']], function () {
