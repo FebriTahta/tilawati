@@ -28,6 +28,8 @@
                     <div class="col-12 col-xl-12 form-group" style="text-transform: uppercase">
                         Cari data <b>syahadah</b> berdasarkan <b>tanggal diterbitkannya syahadah</b>
                         <hr>
+                        <input type="hidden" id="stat" value="{{ auth()->user()->role }}">
+                        <input type="hidden" id="stat_id" value="{{ auth()->user()->cabang->id }}">
                     </div>
                     <div class="col-6 col-xl-4 form-group">
                         <label>Dari :</label>
@@ -94,7 +96,9 @@
                             <thead class="text-bold text-primary" style="text-transform: uppercase; font-size: 12px">
                                 <tr>
                                     <th style="width: 5%">Id</th>
-                                    <th style="width: 17%">Cabang</th>
+                                    @if (auth()->user()->role == 'pusat')
+                                        <th style="width: 17%">Cabang</th>
+                                    @endif
                                     <th>Tanggal Pelatihan</th>
                                     <th>Tanggal Terbit</th>
                                     <th style="width: 30%">Program</th>
@@ -110,7 +114,9 @@
                             <tfoot class="text-bold text-primary" style="text-transform: uppercase; font-size: 12px">
                                 <tr>
                                     <th style="width: 5%">Id</th>
-                                    <th style="width: 17%">Cabang</th>
+                                    @if (auth()->user()->role == 'pusat')
+                                        <th style="width: 17%">Cabang</th>
+                                    @endif
                                     <th>Tanggal Pelatihan</th>
                                     <th>Tanggal Terbit</th>
                                     <th style="width: 30%">Program</th>
@@ -319,70 +325,132 @@
             load_data();
             count_data();
 
-            function load_data(dari = '', sampai = '') {
-                toastr.success('menampilkan daftar syahadah');
-                $('#datatable-buttons').DataTable({
-                    //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
-                    destroy: true,
-                    processing: true,
-                    serverSide: true,
-                    ajax: {
-                        url: '/data-syahadah-pusat',
-                        data: {
-                            dari: dari,
-                            sampai: sampai
+            var stat = $('#stat').val();
+            if (stat == 'pusat') {
+                function load_data(dari = '', sampai = '') {
+                    toastr.success('menampilkan daftar syahadah');
+                    $('#datatable-buttons').DataTable({
+                        //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
+                        destroy: true,
+                        processing: true,
+                        serverSide: true,
+                        ajax: {
+                            url: '/data-syahadah-pusat',
+                            data: {
+                                dari: dari,
+                                sampai: sampai
+                            }
+                        },
+                        columns: [{
+                                data: 'id',
+                                name: 'id'
+                            },
+                            {
+                                data: 'cabang',
+                                name: 'cabang.name'
+                            },
+                            {
+                                data: 'tanggals',
+                                name: 'tanggal'
+                            },
+                            {
+                                data: 'tanggal_terbit',
+                                name: 'updated_at'
+                            },
+                            {
+                                data: 'program',
+                                name: 'program.name'
+                            },
+                            {
+                                data: 'peserta',
+                                name: 'peserta'
+                            },
+                            {
+                                data: 'linksyahadah',
+                                name: 'linksyahadah'
+                            },
+                            {
+                                data: 'cetak',
+                                name: 'cetak'
+                            },
+                        ]
+                    });
+                }
+
+                function count_data(dari = '', sampai = '') {
+                    $.ajax({
+                        url:'/total-syahadah-terbit-pusat',
+                        type: 'get',
+                        dataType: 'json',
+                        data:{dari:dari, sampai:sampai},
+                        success:function(data) {
+                            toastr.success('menampilkan data perhitungan syahadah');
+                            document.getElementById('cb').innerHTML = data.terbit;
+                            document.getElementById('cb2').innerHTML = data.peserta_terbit;
                         }
-                    },
-                    columns: [{
-                            data: 'id',
-                            name: 'id'
+                    });
+                }
+            }else{
+                var stat_id = $('#stat_id').val();
+                function load_data(dari = '', sampai = '') {
+                    toastr.success('menampilkan daftar syahadah');
+                    $('#datatable-buttons').DataTable({
+                        //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
+                        destroy: true,
+                        processing: true,
+                        serverSide: true,
+                        ajax: {
+                            url: '/data-syahadah-cabang/'+stat_id,
+                            data: {
+                                dari: dari,
+                                sampai: sampai
+                            }
                         },
-                        {
-                            data: 'cabang',
-                            name: 'cabang.name'
-                        },
-                        {
-                            data: 'tanggals',
-                            name: 'tanggal'
-                        },
-                        {
-                            data: 'tanggal_terbit',
-                            name: 'updated_at'
-                        },
-                        {
-                            data: 'program',
-                            name: 'program.name'
-                        },
-                        {
-                            data: 'peserta',
-                            name: 'peserta'
-                        },
-                        {
-                            data: 'linksyahadah',
-                            name: 'linksyahadah'
-                        },
-                        {
-                            data: 'cetak',
-                            name: 'cetak'
-                        },
-                    ]
-                });
+                        columns: [{
+                                data: 'id',
+                                name: 'id'
+                            },
+                            {
+                                data: 'tanggals',
+                                name: 'tanggal'
+                            },
+                            {
+                                data: 'tanggal_terbit',
+                                name: 'updated_at'
+                            },
+                            {
+                                data: 'program',
+                                name: 'program.name'
+                            },
+                            {
+                                data: 'peserta',
+                                name: 'peserta'
+                            },
+                            {
+                                data: 'linksyahadah',
+                                name: 'linksyahadah'
+                            },
+                            {
+                                data: 'cetak',
+                                name: 'cetak'
+                            },
+                        ]
+                    });
+                }
 
-               
-            }
-
-            function count_data(dari = '', sampai = '') {
-                $.ajax({
-                    url:'/total-syahadah-terbit-pusat',
-                    type: 'get',
-                    dataType: 'json',
-                    data:{dari:dari, sampai:sampai},
-                    success:function(data) {
-                        toastr.success('menampilkan data perhitungan syahadah');
-                        document.getElementById('cb').innerHTML = data.terbit;
-                        document.getElementById('cb2').innerHTML = data.peserta_terbit;
-                    }
-                });
+                function count_data(dari = '', sampai = '') {
+                    $.ajax({
+                        url:'/total-syahadah-terbit-cabang/'+stat_id,
+                        type: 'get',
+                        dataType: 'json',
+                        data:{dari:dari, sampai:sampai},
+                        success:function(data) {
+                            toastr.success('menampilkan data perhitungan syahadah');
+                            document.getElementById('cb').innerHTML = data.terbit;
+                            document.getElementById('cb2').innerHTML = data.peserta_terbit;
+                        }
+                    });
+                }
             }
 
             $('#filter').click(function() {
