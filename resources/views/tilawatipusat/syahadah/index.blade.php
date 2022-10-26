@@ -322,11 +322,12 @@
         }
 
         $(document).ready(function() {
-            load_data();
-            count_data();
-
             var stat = $('#stat').val();
             if (stat == 'pusat') {
+                
+                load_data();
+                count_data();
+
                 function load_data(dari = '', sampai = '') {
                     toastr.success('menampilkan daftar syahadah');
                     $('#datatable-buttons').DataTable({
@@ -390,8 +391,31 @@
                         }
                     });
                 }
+
+                $('#filter').click(function() {
+                    var dari = $('#dari').val();
+                    var sampai = $('#sampai').val();
+                    if (dari != '' && sampai != '') {
+                        load_data(dari, sampai);
+                        count_data(dari, sampai);
+                    } else {
+                        alert('Both Date is required');
+                    }
+                });
+
+                $('#refresh').click(function() {
+                    $('#dari').val('');
+                    $('#sampai').val('');
+                    load_data();
+                });
+
             }else{
+
                 var stat_id = $('#stat_id').val();
+                
+                load_data();    
+                count_data();
+                
                 function load_data(dari = '', sampai = '') {
                     toastr.success('menampilkan daftar syahadah');
                     $('#datatable-buttons').DataTable({
@@ -451,24 +475,24 @@
                         }
                     });
                 }
+
+                $('#filter').click(function() {
+                    var dari = $('#dari').val();
+                    var sampai = $('#sampai').val();
+                    if (dari != '' && sampai != '') {
+                        load_data(dari, sampai);
+                        count_data(dari, sampai);
+                    } else {
+                        alert('Both Date is required');
+                    }
+                });
+
+                $('#refresh').click(function() {
+                    $('#dari').val('');
+                    $('#sampai').val('');
+                    load_data();
+                });
             }
-
-            $('#filter').click(function() {
-                var dari = $('#dari').val();
-                var sampai = $('#sampai').val();
-                if (dari != '' && sampai != '') {
-                    load_data(dari, sampai);
-                    count_data(dari, sampai);
-                } else {
-                    alert('Both Date is required');
-                }
-            });
-
-            $('#refresh').click(function() {
-                $('#dari').val('');
-                $('#sampai').val('');
-                load_data();
-            });
         })
     </script>
 @endsection
