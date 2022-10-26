@@ -12,15 +12,6 @@
           margin: 0;
           font-family: Arial, Helvetica, sans-serif;
         }
-        
-        .bg {
-          background-image: url("s_guru.jpg");
-          height: 100%; 
-          z-index: 1;
-          background-position: center;
-          background-repeat: no-repeat;
-          background-size: cover;
-        }
 
         .centered {
         position: absolute;
@@ -38,19 +29,7 @@
             font-size: 21px;
             width: 70%;
         }
-        table {
-            top: 38%;
-            margin-top: 5px;
-            left: 11%;
-            z-index: 9999;
-            font-size: 16px;
-            width: 70%;
-            position: absolute;
-        }
-
-        table td, table td * {
-            vertical-align: top;
-        }
+        
 
         .akhiran {
             position: absolute;
@@ -110,7 +89,59 @@
 			page-break-after: always;
 			page-break-inside: avoid;
 		}
+    </style>
+
+    @if ($pelatihan->keterangan == 'guru' || $pelatihan->keterangan == 'instruktur')
+        <style>
+            .bg {
+            background-image: url("s_guru.jpg");
+            height: 100%; 
+            z-index: 1;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        table {
+            top: 38%;
+            margin-top: 5px;
+            left: 11%;
+            z-index: 9999;
+            font-size: 16px;
+            width: 70%;
+            position: absolute;
+        }
+
+        table td, table td * {
+            vertical-align: top;
+        }
         </style>
+    @else
+        <style>
+            .bg {
+            background-image: url("s_santri.jpg");
+            height: 100%; 
+            z-index: 1;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        table {
+            top: 40%;
+            margin-top: 5px;
+            left: 11%;
+            z-index: 9999;
+            font-size: 16px;
+            width: 70%;
+            position: absolute;
+        }
+
+        table td, table td * {
+            vertical-align: top;
+        }
+        </style>
+    @endif
         
 </head>
     @foreach ($peserta as $item)
@@ -176,10 +207,14 @@
                 <img src="{!! 'data:image/png;base64,'.$qrcode !!}" alt="" style="max-width: 110px;">
             </div>
             <div class="no_sertifikat" style="font-weight: bold"><u>{{$item->pelatihan_id.'/'.date('Y').'/'.$item->id}}</u></div>
-            <div class="tanggalan" style="margin-left: 10px">Surabaya, {{Carbon\Carbon::parse($item->pelatihan->updated_at)->isoFormat('D MMMM Y')}}</div>
+            <div class="tanggalan" style="margin-left: 10px">Surabaya, {{Carbon\Carbon::parse($pelatihan->updated_at)->isoFormat('D MMMM Y')}}</div>
             <div class="nama_kepala" style="margin-left: 10px"><u>{{$direktur}}</u></div>
             <div class="kepala" style="margin-left: 10px">{{$kepala}}</div>
+            @if ($pelatihan->keterangan == 'guru' || $pelatihan->keterangan == 'instruktur')
             <img src="s_guru.jpg" style="height: 100%; z-index: 1" alt="">
+            @else
+            <img src="s_santri.jpg" style="height: 100%; z-index: 1" alt="">
+            @endif
         </body>
     @endforeach
 </html>
