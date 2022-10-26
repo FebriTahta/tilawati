@@ -162,7 +162,13 @@
                 <tr style="margin-bottom: 20px; line-height: 25px">
                     <td style="width: 25%">Alamat</td>
                     <td style="width: 2%">:</td>
-                    <td style="width: 90%">{{$item->alamat}}</td>
+                    <td style="width: 90%">
+                        @if ($item->kabupaten !== null)
+                            {{$item->alamat." ".substr($item->kabupaten->nama,5);}}
+                        @else
+                            {{$item->alamat}}        
+                        @endif
+                    </td>
                 </tr>
                 <tr style="margin-bottom: 20px; line-height: 25px">
                     <td style="width: 25%">Tempat Tanggal Lahir</td>
