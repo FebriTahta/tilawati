@@ -212,6 +212,28 @@
     <!-- Datatable init js -->
     <script src="{{ URL::asset('tilawatipusat/js/pages/datatables.init.js') }}"></script>
     <script>
+        var pelatihan_id;
+
+        $('#modalb5').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget)
+            var link = button.data('link')
+            var id = button.data('id')
+            var modal = $(this)
+            pelatihan_id = id;
+        })
+
+        $('#linkdepans').on('click', function() {
+            swal({
+                title: "SYAHADAH B5",
+                text: 'Tekan "OK" untuk mengunduh syahadah',
+                type: "success"
+            }).then(okay => {                    
+                if (okay) {
+                    window.location.href = "/cetak-syahadah-depan-b5/"+pelatihan_id;
+                }
+            });
+        })
+
         $('.bs-example-modal-diklat-link').on('show.bs.modal', function(event) {
             var button = $(event.relatedTarget)
             var slug = button.data('slug')
@@ -222,13 +244,7 @@
             a.href = slug;
         })
 
-        // $('#modalb5').on('show.bs.modal', function(event) {
-        //     var button = $(event.relatedTarget)
-        //     var link = button.data('link')
-        //     var modal = $(this)
-        //     var a = document.getElementById("linkdepan");
-        //     a.href = link;
-        // })
+        
 
         function myFunction() {
             /* Get the text field */
@@ -332,17 +348,5 @@
                 load_data();
             });
         })
-
-            $('#linkdepans').on('click', function() {
-                swal({
-                    title: "OK",
-                    text: 'Tekan OK untuk mengunduh Syahadah',
-                    type: "success"
-                }).then(okay => {
-                    if (okay) {
-                        window.location.href = "/cetak-syahadah-depan-b5";
-                    }
-                });
-            })
     </script>
 @endsection
