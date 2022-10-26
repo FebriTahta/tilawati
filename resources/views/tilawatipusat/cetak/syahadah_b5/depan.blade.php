@@ -162,7 +162,7 @@
                 <tr style="margin-bottom: 20px; line-height: 25px">
                     <td style="width: 25%">Alamat</td>
                     <td style="width: 2%">:</td>
-                    <td style="width: 90%">
+                    <td style="width: 95%">
                         @if ($item->kabupaten !== null)
                             @if (substr($item->kabupaten->nama, 0, 8) == "KOTA ADM")
                                 {{$item->alamat." ".substr($item->kabupaten->nama,10)}}
@@ -177,7 +177,7 @@
                 <tr style="margin-bottom: 20px; line-height: 25px">
                     <td style="width: 25%">Tempat Tanggal Lahir</td>
                     <td style="width: 2%">:</td>
-                    <td style="width: 90%; text-transform: uppercase">
+                    <td style="width: 95%; text-transform: uppercase">
                         @if ($item->tmptlahir2 == null)
 							@if (substr($item->tmptlahir, 0, 4) == 'KOTA')
 								{{substr($item->tmptlahir, 5)}}
@@ -208,7 +208,7 @@
                 <tr style="margin-bottom: 20px; line-height: 25px">
                     <td style="width: 25%">Dinyatakan</td>
                     <td style="width: 2%">:</td>
-                    <td style="width: 90%">{{$item->kriteria}}</td>
+                    <td style="width: 95%">{{$item->kriteria}}</td>
                 </tr>
             </table>
 
