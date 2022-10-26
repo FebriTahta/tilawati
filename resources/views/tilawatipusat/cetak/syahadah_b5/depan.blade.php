@@ -116,7 +116,7 @@
         @php
             date_default_timezone_set('Asia/Jakarta'); $date=$item->tgllahir;
             $peserta_id = Crypt::encrypt($item->id);
-            $qrcode = base64_encode(QrCode::size(300)->generate('https://syahadah.nurulfalah.org/syahadah-peserta/'.$item->peserta_id));
+            $qrcode = base64_encode(QrCode::size(300)->generate('https://syahadah.nurulfalah.org/syahadah-peserta/'.$peserta_id));
         @endphp
         
         <body class="bg">
@@ -130,12 +130,12 @@
                 <tr style="margin-bottom: 20px; line-height: 25px">
                     <td style="width: 25%">Alamat</td>
                     <td style="width: 2%">:</td>
-                    <td style="width: 73%">{{$item->alamat}}</td>
+                    <td style="width: 90%">{{$item->alamat}}</td>
                 </tr>
                 <tr style="margin-bottom: 20px; line-height: 25px">
                     <td style="width: 25%">Tempat Tanggal Lahir</td>
                     <td style="width: 2%">:</td>
-                    <td style="width: 73%">
+                    <td style="width: 90%">
                         @if ($item->tmptlahir2 == null)
 							@if (substr($item->tmptlahir, 0, 4) == 'KOTA')
 								{{substr($item->tmptlahir, 5)}}
@@ -166,7 +166,7 @@
                 <tr style="margin-bottom: 20px; line-height: 25px">
                     <td style="width: 25%">Dinyatakan</td>
                     <td style="width: 2%">:</td>
-                    <td style="width: 73%">{{$item->kriteria}}</td>
+                    <td style="width: 90%">{{$item->kriteria}}</td>
                 </tr>
             </table>
 
