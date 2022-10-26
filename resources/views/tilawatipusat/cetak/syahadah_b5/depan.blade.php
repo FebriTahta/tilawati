@@ -164,7 +164,11 @@
                     <td style="width: 2%">:</td>
                     <td style="width: 90%">
                         @if ($item->kabupaten !== null)
-                            {{$item->alamat." ".substr($item->kabupaten->nama,5)}}
+                            @if (substr($item->kabupaten->nama, 0, 8) == "KOTA ADM")
+                                {{$item->alamat." ".substr($item->kabupaten->nama,10)}}
+                            @else
+                                {{$item->alamat." ".substr($item->kabupaten->nama,5)}}
+                            @endif
                         @else
                             {{$item->alamat}}        
                         @endif
