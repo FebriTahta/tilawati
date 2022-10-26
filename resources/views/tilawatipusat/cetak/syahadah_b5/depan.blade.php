@@ -39,10 +39,11 @@
             width: 70%;
         }
         table {
-            top: 39%;
+            top: 38%;
+            margin-top: 5px;
             left: 11%;
             z-index: 9999;
-            font-size: 18px;
+            font-size: 16px;
             width: 70%;
             position: absolute;
         }
@@ -135,7 +136,7 @@
                 <tr style="margin-bottom: 20px; line-height: 25px">
                     <td style="width: 25%">Tempat Tanggal Lahir</td>
                     <td style="width: 2%">:</td>
-                    <td style="width: 90%">
+                    <td style="width: 90%; text-transform: uppercase">
                         @if ($item->tmptlahir2 == null)
 							@if (substr($item->tmptlahir, 0, 4) == 'KOTA')
 								{{substr($item->tmptlahir, 5)}}
