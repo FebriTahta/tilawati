@@ -254,7 +254,7 @@
 
         $('#linkdepans').on('click', function() {
             swal({
-                title: "SYAHADAH B5",
+                title: "SYAHADAH V.1",
                 text: 'Tekan "OK" untuk mengunduh syahadah depan V.1',
                 type: "success"
             }).then(okay => {                    
@@ -266,7 +266,7 @@
 
         $('#linkbelakang').on('click', function() {
             swal({
-                title: "SYAHADAH B5",
+                title: "SYAHADAH V.1",
                 text: 'Tekan "OK" untuk mengunduh syahadah belakang V.1',
                 type: "success"
             }).then(okay => {                    
@@ -278,7 +278,7 @@
 
         $('#linkdepanbelakang').on('click', function() {
             swal({
-                title: "SYAHADAH B5",
+                title: "SYAHADAH V.2",
                 text: 'Tekan "OK" untuk mengunduh syahadah V.2',
                 type: "success"
             }).then(okay => {                    

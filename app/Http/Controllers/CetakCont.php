@@ -128,7 +128,7 @@ class CetakCont extends Controller
         $peserta        = Peserta::where('pelatihan_id', $id)->where('bersyahadah','1')->get();
         $customPaper    = array(0,0,792,612);
         $pdf = PDF::loadView('tilawatipusat.cetak.syahadah_b5.belakang',compact('peserta','pelatihan'))->setPaper($customPaper, 'portrait');
-    	return $pdf->stream('syahadah_b5_belakang.pdf','I');
+    	return $pdf->stream('syahadah_v1_penilaian.pdf','I');
 
     }
 
@@ -140,8 +140,66 @@ class CetakCont extends Controller
         $kabupaten  = substr($cabang, 5);
         $peserta    = Peserta::where('pelatihan_id', $id)->where('bersyahadah','1')->get();
 
-        $pdf        = PDF::loadView('tilawatipusat.cetak.syahadah_b5.depan_belakang',compact('peserta','pelatihan'))->setPaper('a4', 'portrait');
-        return $pdf->stream('syahadah_v2.pdf');
+        if ($pelatihan->cabang->name == 'Cahaya Amanah' || $pelatihan->cabang->name == 'Tilawati Pusat' || substr($pelatihan->cabang->name,0,3) == 'RPQ') {
+            # code...
+            $direktur   = "Dr. KH. Umar Jaeni, M.Pd";
+            $jabatan    = "Direktur Eksekutif";
+            $kepala     = $jabatan;
+            
+            $pdf        = PDF::loadView('tilawatipusat.cetak.syahadah_b5.depan_belakang',compact('peserta','direktur','kepala','kabupaten','cabang','pelatihan'))->setPaper('a4', 'portrait');
+            return $pdf->stream('syahadah_v2.pdf');
+        }else {
+            # code...
+            $jumlah_cabang = $pelatihan->cabang->kabupaten->cabang->count();
+            if ($jumlah_cabang > 1) {
+                # code...
+                if (substr($pelatihan->cabang->kabupaten->nama,5,3)=='ADM') {
+                    # code...
+                    $jabatan     = 'Kacab. '.strtoupper(substr($pelatihan->cabang->kabupaten->provinsi->nama,0,3)).' '.ucfirst(substr($pelatihan->cabang->kabupaten->provinsi->nama,4));
+                } else {
+                    # code...
+                    if ($pelatihan->cabang->name == 'Tilawati Gresik Al Hikmah') {
+                        # code...
+                        $jabatan     = 'Kacab. Al Hikmah '.strtolower($kabupaten);
+                    }elseif ($pelatihan->cabang->name == 'Tilawati Citra Anak Sholeh') {
+                        # code...
+                        $jabatan     = 'Kacab. CAS Surabaya Jawa Timur';
+                    }
+                    else {
+                        # code...
+                        $jabatan     = 'Kacab. '.ucwords($pelatihan->cabang->name).' '.strtolower($pelatihan->cabang->kabupaten->provinsi->nama);
+                    }
+                }
+            }else {
+                # code...
+                if (substr($pelatihan->cabang->kabupaten->nama,5,3)=='ADM') {
+                    # code...
+                    $jabatan     = 'Kacab. '.strtoupper(substr($pelatihan->cabang->kabupaten->provinsi->nama,0,3)).' '.ucfirst(substr($pelatihan->cabang->kabupaten->provinsi->nama,4));
+                }else {
+                    # code...
+                    if ($pelatihan->cabang->name == 'Tilawati Gresik Al Hikmah') {
+                        $jabatan     = 'Kacab. Al Hikmah '.strtolower($kabupaten);
+                    }elseif ($pelatihan->cabang->name == 'Tilawati Citra Anak Sholeh') {
+                        # code...
+                        $jabatan     = 'Kacab. CAS Surabaya Jawa Timur';
+                    }else{
+                        $jabatan     = 'Kacab. '.strtolower($kabupaten).' '.strtolower($pelatihan->cabang->kabupaten->provinsi->nama);
+                    }
+                }
+            }
+  
+            $kepala     = ucwords($jabatan);
+            if ($pelatihan->cabang->kepala == null) {
+                # code...
+                return Redirect::back()->withFail('Tidak ada Kepala Cabang yang terdaftar pada Cabang - '.$pelatihan->cabang->name.'');
+            } else {
+                # code...
+                $direktur   = $pelatihan->cabang->kepalacabang;
+                $pdf        = PDF::loadView('tilawatipusat.cetak.syahadah_b5.depan_belakang',compact('peserta','direktur','kepala','kabupaten','cabang','pelatihan'))->setPaper('a4', 'portrait');
+                return $pdf->stream('syahadah_v2.pdf');
+            }
+        }
+        
     }
 
     public function cetak_depan_syahadah(Request $request)

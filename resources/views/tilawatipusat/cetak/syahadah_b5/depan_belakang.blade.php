@@ -7,6 +7,40 @@
     <title>Document</title>
 
     @if ($pelatihan->keterangan == 'santri')
+        {{-- PROFILE PESERTA --}}
+        <style>
+            table .tb_profile {
+                border: none !important;
+            }
+
+            .tanggalan {
+                position: absolute;
+                left: 65%;
+                bottom: 64%;
+                z-index: 9999;
+                font-size: 12px;
+                width: 70%;
+            }
+
+            .kepala {
+                position: absolute;
+                left: 65%;
+                bottom: 56%;
+                z-index: 9999;
+                font-size: 10px;
+                width: 70%;
+            }
+
+            .nama_kepala {
+                position: absolute;
+                left: 65%;
+                bottom: 57%;
+                margin-bottom: 5px;
+                z-index: 9999;
+                font-size: 12px;
+                width: 70%;
+            }
+        </style>
         <style>
             .bg {
                 background-image: url("bf_santri.jpg");
@@ -18,8 +52,58 @@
                 margin: 0;
                 padding: 0;
             }
+
+            table .table1 tr {
+                line-height: 12px;
+            }
+            
+            .table1{   
+                border: 1px solid black;
+                border-collapse: collapse;
+        
+            }
+
+            .table1 th,td{
+                border: 1px solid black;
+                padding: 3px;
+            }
+
         </style>
     @elseif($pelatihan->keterangan == 'instruktur')
+        {{-- PROFILE PESERTA --}}
+        <style>
+            table .tb_profile {
+                border: none !important;
+            }
+
+            .tanggalan {
+                position: absolute;
+                left: 65%;
+                bottom: 63%;
+                z-index: 9999;
+                font-size: 12px;
+                width: 70%;
+            }
+
+            .kepala {
+                position: absolute;
+                left: 65%;
+                bottom: 55%;
+                z-index: 9999;
+                font-size: 10px;
+                width: 70%;
+            }
+
+            .nama_kepala {
+                position: absolute;
+                left: 65%;
+                bottom: 56%;
+                margin-bottom: 5px;
+                z-index: 9999;
+                font-size: 12px;
+                width: 70%;
+            }
+        </style>
         <style>
             .bg {
                 background-image: url("bf_guru.jpg");
@@ -37,18 +121,52 @@
                 line-height: 12px;
             }
             
-            table.table1{   
+            .table1{   
                 border: 1px solid black;
                 border-collapse: collapse;
         
             }
 
-            table th,td{
+            .table1 th,td{
                 border: 1px solid black;
                 padding: 3px;
             }
         </style>
     @else
+        {{-- PROFILE PESERTA --}}
+        <style>
+            table .tb_profile {
+                border: none !important;
+            }
+
+            .tanggalan {
+                position: absolute;
+                left: 65%;
+                bottom: 63%;
+                z-index: 9999;
+                font-size: 12px;
+                width: 70%;
+            }
+
+            .kepala {
+                position: absolute;
+                left: 65%;
+                bottom: 55%;
+                z-index: 9999;
+                font-size: 10px;
+                width: 70%;
+            }
+
+            .nama_kepala {
+                position: absolute;
+                left: 65%;
+                bottom: 56%;
+                margin-bottom: 5px;
+                z-index: 9999;
+                font-size: 12px;
+                width: 70%;
+            }
+        </style>
         <style>
             .bg {
                 background-image: url("bf_guru.jpg");
@@ -66,13 +184,13 @@
                 line-height: 14px;
             }
             
-            table.table1{   
+            .table1{   
                 border: 1px solid black;
                 border-collapse: collapse;
         
             }
 
-            table th,td{
+            .table1 th,td{
                 border: 1px solid black;
                 padding: 5px;
             }
@@ -310,17 +428,118 @@
             border-top: 0;
         }
     </style>
+
 @endif
+
 </head>
 
 @foreach ($peserta as $p)
-<?php $total = 0;?>
+    
+    @php
+        date_default_timezone_set('Asia/Jakarta'); $date=$p->tgllahir;
+        $peserta_id = Crypt::encrypt($p->id);
+        $qrcode = base64_encode(QrCode::size(300)->generate('https://syahadah.nurulfalah.org/syahadah-peserta/'.$peserta_id));
+
+        $total = 0;
+    @endphp
+
 <body class="bg">
+    {{-- PROFILE PESERTA --}}
+    <table class="tb_profile" 
+    @if ($pelatihan->keterangan == 'santri')
+        style="margin-top: 220px; margin-left: 85px; border: none"
+    @else
+        style="margin-top: 210px; margin-left: 70px; border: none"
+    @endif
+    >
+        <tr >
+            <td style="width: 25%; border: none; padding: 0;">Nama< /td>
+            <td style="width: 5%; border: none; padding: 0;"> : </td>
+            <td style="border: none; padding: 0; font-size: 12px"> {{$p->name}}</td>
+        </tr>
+        <tr>
+            <td style="width: 25%; border: none; padding: 0;">Alamat </td>
+            <td style="width: 5%; border: none; padding: 0;"> : </td>
+            <td style="width: 70%; border: none; padding: 0;">
+                @if ($p->kabupaten !== null)
+                    @if (substr($p->kabupaten->nama, 0, 8) == "KOTA ADM")
+                        {{$p->alamat." ".substr($p->kabupaten->nama,10)}}
+                    @else
+                        {{$p->alamat." ".substr($p->kabupaten->nama,5)}}
+                    @endif
+                @else
+                    {{$p->alamat}}        
+                @endif
+            </td>
+        </tr>
+        <tr >
+            <td style="width: 25%; border: none; padding: 0;">Tempat Tanggal Lahir </td>
+            <td style="width: 5%; border: none; padding: 0;"> : </td>
+            <td style="width: 70%; text-transform: uppercase; border: none; padding: 0;">
+                @if ($p->tmptlahir2 == null)
+                    @if (substr($p->tmptlahir, 0, 4) == 'KOTA')
+                        {{substr($p->tmptlahir, 5)}}
+                    @elseif(substr($p->tmptlahir, 4, 4) == "ADM")
+                        {{substr($p->tmptlahir, 10)}}
+                    @elseif(substr($p->tmptlahir, 0, 4) == 'KAB.')
+                        {{substr($p->tmptlahir, 5)}}
+                    @else
+                        {{$p->tmptlahir}}
+                    @endif
+                @endif
+
+                @if ($p->tmptlahir2 !== null)
+                    @if (substr($p->tmptlahir2, 0, 4) == 'KOTA')
+                        {{substr($p->tmptlahir2, 5)}}
+                    @elseif(substr($p->tmptlahir2, 4, 4) == "ADM")
+                        {{substr($p->tmptlahir2, 10)}}
+                    @elseif(substr($p->tmptlahir2, 0, 4) == 'KAB.')
+                        {{substr($p->tmptlahir2, 5)}}
+                    @else
+                        {{$p->tmptlahir2}}
+                    @endif
+                @endif
+                
+                , {{ Carbon\Carbon::parse($date)->isoFormat('D MMMM Y') }}
+            </td>
+        </tr>
+        <tr >
+            <td style="width: 25%; border: none; padding: 0;">Dinyatakan </td>
+            <td style="width: 5%; border: none; padding: 0;"> : </td>
+            <td style="width: 70%; border: none; padding: 0;"> {{$p->kriteria}}</td>
+        </tr>
+        
+    </table>
+
+    <div class="qrcode" 
+    @if ($pelatihan->keterangan == 'santri')
+        style="margin-left: 85px; margin-top: 80px; margin-bottom:5px"
+    @else
+        style="margin-left: 70px; margin-top: 100px; margin-bottom:5px"
+    @endif
+    >
+        <img src="{!! 'data:image/png;base64,'.$qrcode !!}" alt="" style="max-width: 70px;">
+    </div>
+    <div class="no_sertifikat"
+    @if ($pelatihan->keterangan == 'santri')
+        style="font-weight: bold;margin-left: 85px;"
+    @else
+        style="font-weight: bold;margin-left: 70px;"
+    @endif
+    ><u>{{$p->pelatihan_id.'/'.date('Y').'/'.$p->id}}</u></div>
+
+    <div class="tanggalan" style="margin-left: 10px">Surabaya, {{Carbon\Carbon::parse($pelatihan->updated_at)->isoFormat('D MMMM Y')}}</div>
+    <div class="nama_kepala" style="margin-left: 10px"><u>{{$direktur}}</u></div>
+    <div class="kepala" style="margin-left: 10px">{{$kepala}}</div>
+    {{-- PENILAIAN --}}
+
+
+
     <center>
         @if ($p->kriteria == 'SEBAGAI INSTRUKTUR LAGU DAN STRATEGI MENGAJAR METODE TILAWATI')
             <div class="cover" style="align-content: center; align-items: center">
                 <div>
-                    <p style="margin-top: 620px; " class="syahadah">No. Syahadah : {{ $p->pelatihan->id }}/2022/{{ $p->id }}</p>
+                    <p style="margin-top: 150px; " class="syahadah">No. Syahadah : {{ $p->pelatihan->id }}/2022/{{ $p->id }}</p>
                 </div>
                 <table style="width: 675px;margin-left: 28px" class="table1">
                     <tr> 
@@ -370,7 +589,7 @@
                         @if ($item->kategori == 'skill')
                             <tr>
                                 <th>{{ $i++ }}</th>
-                                    <td class="nilai6" style="text-transform: uppercase; font-size:9px !important">&nbsp; &nbsp;<b> {{ $item->penilaian->name }}</b></th>
+                                    <td  class="nilai6" style="text-transform: uppercase; font-size:8px !important">&nbsp; &nbsp;<b> {{ $item->penilaian->name }}</b></th>
                                     <td  style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->max }}</td>
                                     <td  style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->min }}</td>
                                     <td  style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->min }}</td>
@@ -413,7 +632,7 @@
         @elseif ($p->kriteria == 'SEBAGAI INSTRUKTUR STRATEGI MENGAJAR METODE TILAWATI')
             <div class="cover" style="align-content: center; align-items: center">
                 <div>
-                    <p style="margin-top: 620px; " class="syahadah">No. Syahadah : {{ $p->pelatihan->id }}/2022/{{ $p->id }}</p>
+                    <p style="margin-top: 150px; " class="syahadah">No. Syahadah : {{ $p->pelatihan->id }}/2022/{{ $p->id }}</p>
                 </div>
                 <table style="width: 675px;margin-left: 28px" class="table1">
                     <tr> 
@@ -463,7 +682,7 @@
                         @if ($item->kategori == 'skill')
                             <tr>
                                 <th>{{ $i++ }}</th>
-                                    <td class="nilai6" style="text-transform: uppercase; font-size:9px !important">&nbsp; &nbsp;<b> {{ $item->penilaian->name }}</b></th>
+                                    <td class="nilai6" style="text-transform: uppercase; font-size:8px !important">&nbsp; &nbsp;<b> {{ $item->penilaian->name }}</b></th>
                                     <td  style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->max }}</td>
                                     <td  style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->min }}</td>
                                     <td  style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->min }}</td>
@@ -507,7 +726,7 @@
         @elseif($p->kriteria == 'SEBAGAI INSTRUKTUR LAGU METODE TILAWATI')
             <div class="cover" style="align-content: center; align-items: center">
                 <div>
-                    <p style="margin-top: 620px; " class="syahadah">No. Syahadah : {{ $p->pelatihan->id }}/2022/{{ $p->id }}</p>
+                    <p style="margin-top: 150px; " class="syahadah">No. Syahadah : {{ $p->pelatihan->id }}/2022/{{ $p->id }}</p>
                 </div>
                 <table style="width: 675px;margin-left: 28px" class="table1">
                 <tr> 
@@ -557,7 +776,7 @@
                     @if ($item->kategori == 'skill')
                         <tr>
                             <th>{{ $i++ }}</th>
-                                <td class="nilai6" style="text-transform: uppercase; font-size:9px !important">&nbsp; &nbsp;<b> {{ $item->penilaian->name }}</b></th>
+                                <td class="nilai6" style="text-transform: uppercase; font-size:8px !important">&nbsp; &nbsp;<b> {{ $item->penilaian->name }}</b></th>
                                 <td  style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->max }}</td>
                                 <td  style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->min }}</td>
                                 <td  style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->min }}</td>
@@ -601,7 +820,7 @@
         @elseif($p->program->name == 'Diklat Munaqisy Cabang')
             <div class="cover" style="align-content: center; align-items: center">
                 <div>
-                    <p style="margin-top: 620px; " class="syahadah">No. Syahadah : {{ $p->pelatihan->id }}/2022/{{ $p->id }}</p>
+                    <p style="margin-top: 150px; " class="syahadah">No. Syahadah : {{ $p->pelatihan->id }}/2022/{{ $p->id }}</p>
                 </div>
                 <table style="width: 600px;margin-left: 100px" class="table1">
                     <tr>
@@ -709,7 +928,12 @@
         @else
             <div class="cover" style="align-content: center; align-items: center">
                 <div>
-                    <p style="margin-top: 620px; " class="syahadah">No. Syahadah : {{ $p->pelatihan->id }}/2022/{{ $p->id }}</p>
+                    <p 
+                    @if ($pelatihan->keterangan == 'santri')
+                        style="margin-top: 200px;"
+                    @else
+                        style="margin-top: 150px;"
+                    @endif class="syahadah">No. Syahadah : {{ $p->pelatihan->id }}/2022/{{ $p->id }}</p>
                 </div>
                 <table style="width: 600px;margin-left: 100px" class="table1">
                     <tr>
