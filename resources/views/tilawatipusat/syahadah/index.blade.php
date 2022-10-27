@@ -29,7 +29,7 @@
                         Cari data <b>syahadah</b> berdasarkan <b>tanggal diterbitkannya syahadah</b>
                         <hr>
                         <input type="hidden" id="stat" value="{{ auth()->user()->role }}">
-                        <input type="hidden" id="stat_id" value="{{ auth()->user()->cabang->id }}">
+                        <input type="hidden" id="stat_id" value="{{ auth()->user()->cabang }}">
                     </div>
                     <div class="col-6 col-xl-4 form-group">
                         <label>Dari :</label>
