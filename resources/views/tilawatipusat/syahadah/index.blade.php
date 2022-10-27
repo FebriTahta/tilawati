@@ -28,8 +28,12 @@
                     <div class="col-12 col-xl-12 form-group" style="text-transform: uppercase">
                         Cari data <b>syahadah</b> berdasarkan <b>tanggal diterbitkannya syahadah</b>
                         <hr>
-                        <input type="hidden" id="stat" value="{{ auth()->user()->role }}">
-                        <input type="text" id="stat_id" value="{{ auth()->user()->cabang }}">
+                        @if (auth()->user()->role == 'cabang')
+                            <input type="hidden" id="stat" value="{{ auth()->user()->role }}">
+                            <input type="hidden" id="stat_id" value="{{ auth()->user()->cabang->id }}">
+                        @else
+                            <input type="hidden" id="stat" value="pusat">
+                        @endif
                     </div>
                     <div class="col-6 col-xl-4 form-group">
                         <label>Dari :</label>
