@@ -224,8 +224,7 @@ class NilaiCont extends Controller
             }
         }
 
-        $krit = $request->mykriteria;
-        
+        $krits = $request->mykriteria;
 
         // if ($pro == "standarisasi guru al qur'an level 1") {
         //     # code...
