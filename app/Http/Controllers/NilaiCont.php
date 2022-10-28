@@ -225,36 +225,6 @@ class NilaiCont extends Controller
         }
 
         $krits = $request->mykriteria;
-
-        // if ($pro == "standarisasi guru al qur'an level 1") {
-        //     # code...
-        //     $krits = "LULUS DIKLAT LEVEL 1 GURU AL QURAN METODE TILAWATI";
-        // } elseif ($pro == "standarisasi guru al qur'an level 2") {
-        //     # code...
-        //     $krits = "LULUS DIKLAT LEVEL 2 GURU AL QURAN METODE TILAWATI";
-        // } elseif ( $pro =="munaqosyah santri"){
-        //     # code...
-        //     $krits = "SEBAGAI SANTRI KHATAM AL QURAN 30 JUZ";
-        // } elseif ( $pro =="diklat guru tahfidz"){
-        //     # code...
-        //     $krits = "SEBAGAI GURU TAHFIDZ AL QURAN METODE TILAWATI";
-        // } elseif ( $pro =="diklat guru tahfidz"){
-        //     # code...
-        //     $krits = "LULUS DIKLAT LEVEL 1 GURU AL QURAN METODE TILAWATI";
-        // }elseif ($pro == "pembinaan & munaqosyah ulang") {
-        //     # code...
-        //     $krits = "LULUS DIKLAT LEVEL 1 GURU AL QURAN METODE TILAWATI";
-        // }elseif ($pro == "Diklat Munaqisy Cabang") {
-        //     # code...
-        //     $krits = "SEBAGAI MUNAQISY CABANG METODE TILAWATI";
-        // }elseif ($pro == "Diklat Guru Terjemah Lafdziyah") {
-        //     # code...
-        //     $krits = "LULUS DIKLAT STRATEGI MENGAJAR TERJEMAH LAFDHIYAH MODEL TILAWATI";
-        // }
-        // else {
-        //     # code...
-        //     $krits = "LULUS DIKLAT LEVEL 1 GURU AL QURAN METODE TILAWATI";
-        // }
         
         if ($syahadah == 1) {
             # code...
