@@ -167,7 +167,7 @@
                                 </div>
                                 <hr>
                                 <div class="form-group">
-                                    <input type="text" name="mykriteria" value="{{ $peserta->kriteria }}" required>
+                                    <input type="text" name="mykriteria" class="form-control" value="{{ $peserta->kriteria }}" required>
                                 </div>
                                 <button type="submit" class="btn btn-sm btn-primary">UPDATE PENILAIAN</button>
                                 <br>
