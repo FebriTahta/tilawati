@@ -46,7 +46,7 @@ class CetakCont extends Controller
     }
 
     public function cetak_syahadah_depan_b5($pelatihan_id,Request $request)
-    {
+    {   
         $id         = $request->pelatihan_id;
         $pelatihan  = Pelatihan::find($id);
         $cabang     = $pelatihan->cabang->kabupaten->nama;
@@ -145,7 +145,6 @@ class CetakCont extends Controller
             $direktur   = "Dr. KH. Umar Jaeni, M.Pd";
             $jabatan    = "Direktur Eksekutif";
             $kepala     = $jabatan;
-            
             $pdf        = PDF::loadView('tilawatipusat.cetak.syahadah_b5.depan_belakang',compact('peserta','direktur','kepala','kabupaten','cabang','pelatihan'))->setPaper('a4', 'portrait');
             return $pdf->stream('syahadah_v2.pdf');
         }else {

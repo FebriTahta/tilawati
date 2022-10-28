@@ -94,13 +94,22 @@
     @if ($pelatihan->keterangan == 'guru' || $pelatihan->keterangan == 'instruktur')
         <style>
             .bg {
-            background-image: url("s_guru.jpg");
+                background-image: url("s_guru.jpg");
+                height: 100%; 
+                z-index: 1;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+
+        .image {
             height: 100%; 
             z-index: 1;
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
         }
+        
 
         table {
             top: 38%;
@@ -144,6 +153,7 @@
     @endif
         
 </head>
+    
     @foreach ($peserta as $item)
         @php
             date_default_timezone_set('Asia/Jakarta'); $date=$item->tgllahir;
@@ -153,6 +163,7 @@
         
         <body class="bg">
             <div class="awalan" style="margin-top:25px"></div>
+            
             <table style="margin-left: 9px">
                 <tr style="margin-bottom: 20px; line-height: 25px">
                     <td style="width: 25%">Nama</td>

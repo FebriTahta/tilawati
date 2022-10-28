@@ -165,6 +165,10 @@
                                         </div>
                                     @endforeach
                                 </div>
+                                <hr>
+                                <div class="form-group">
+                                    <input type="text" name="mykriteria" value="{{ $peserta->kriteria }}" required>
+                                </div>
                                 <button type="submit" class="btn btn-sm btn-primary">UPDATE PENILAIAN</button>
                                 <br>
                                 <a style="margin-top: 10px" href="/diklat-peserta/{{ $peserta->pelatihan_id }}"
