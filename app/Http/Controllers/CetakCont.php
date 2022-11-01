@@ -126,7 +126,7 @@ class CetakCont extends Controller
         $id             = $pelatihan_id;
         $pelatihan      = Pelatihan::find($id);
         $peserta        = Peserta::where('pelatihan_id', $id)->where('bersyahadah','1')->get();
-        $customPaper    = array(0,0,792,612);
+        $customPaper    = array(0,0,2480,3508);
         $pdf = PDF::loadView('tilawatipusat.cetak.syahadah_b5.belakang',compact('peserta','pelatihan'))->setPaper($customPaper, 'portrait');
     	return $pdf->stream('syahadah_v1_penilaian.pdf','I');
 

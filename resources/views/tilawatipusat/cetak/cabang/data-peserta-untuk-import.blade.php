@@ -30,7 +30,7 @@
         <thead style="font-weight: bold; border: black">
             <tr style="border: black; text-transform: uppercase">
                 {{-- <th rowspan="2">ID</th> --}}
-                @if ($pelatihan->program->name == "Diklat Munaqisy Cabang" || $pelatihan->program->name == "Training Of Trainer Guru Al-Qur'an")
+                @if ($pelatihan->program->name == "Diklat Munaqisy Cabang" || $pelatihan->program->name == "Training Of Trainer Guru Al-Qur'an" || $pelatihan->program->name == "TRAINING OF TRAINER GURU AL-QUR'AN METODE TILAWATI PUSAT")
                 <th>ASAL CABANG</th>
                 @endif
                 <th >NAMA PESERTA</th>
@@ -39,7 +39,7 @@
                 <th >WA / TELP</th>
                 <th >TEMPAT LAHIR</th>
                 <th >TANGGAL LAHIR</th>
-                @if ($pelatihan->program->name == "Diklat Munaqisy Cabang" || $pelatihan->program->name == "Training Of Trainer Guru Al-Qur'an")
+                @if ($pelatihan->program->name == "Diklat Munaqisy Cabang" || $pelatihan->program->name == "Training Of Trainer Guru Al-Qur'an" || $pelatihan->program->name == "TRAINING OF TRAINER GURU AL-QUR'AN METODE TILAWATI PUSAT")
                 @else
                 <th >LEMBAGA</th>
                 <th >JILID</th>
@@ -53,7 +53,7 @@
             </tr>
         </thead >
         <tbody>
-            @if ($pelatihan->program->name == "Diklat Munaqisy Cabang" || $pelatihan->program->name == "Training Of Trainer Guru Al-Qur'an")
+            @if ($pelatihan->program->name == "Diklat Munaqisy Cabang" || $pelatihan->program->name == "Training Of Trainer Guru Al-Qur'an" || $pelatihan->program->name == "TRAINING OF TRAINER GURU AL-QUR'AN METODE TILAWATI PUSAT")
                 @foreach ($peserta as $item)
                 <tr>
                     <td>{{$item->asal_cabang}}</td>

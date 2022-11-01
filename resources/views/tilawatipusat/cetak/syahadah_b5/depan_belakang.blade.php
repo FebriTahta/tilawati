@@ -25,7 +25,7 @@
             .kepala {
                 position: absolute;
                 left: 65%;
-                bottom: 56%;
+                bottom: 58%;
                 z-index: 9999;
                 font-size: 10px;
                 width: 70%;
@@ -34,16 +34,16 @@
             .nama_kepala {
                 position: absolute;
                 left: 65%;
-                bottom: 57%;
+                bottom: 59%;
                 margin-bottom: 5px;
                 z-index: 9999;
-                font-size: 12px;
+                font-size: 10px;
                 width: 70%;
             }
         </style>
         <style>
             .bg {
-                background-image: url("bf_santri.jpg");
+                /* background-image: url("bf_santri.jpg"); */
                 height: 100%; 
                 z-index: 1;
                 background-position: center;
@@ -79,7 +79,7 @@
             .tanggalan {
                 position: absolute;
                 left: 65%;
-                bottom: 63%;
+                bottom: 64%;
                 z-index: 9999;
                 font-size: 12px;
                 width: 70%;
@@ -88,7 +88,7 @@
             .kepala {
                 position: absolute;
                 left: 65%;
-                bottom: 55%;
+                bottom: 58%;
                 z-index: 9999;
                 font-size: 10px;
                 width: 70%;
@@ -97,16 +97,16 @@
             .nama_kepala {
                 position: absolute;
                 left: 65%;
-                bottom: 56%;
+                bottom: 59%;
                 margin-bottom: 5px;
                 z-index: 9999;
-                font-size: 12px;
+                font-size: 10px;
                 width: 70%;
             }
         </style>
         <style>
             .bg {
-                background-image: url("bf_guru.jpg");
+                /* background-image: url("bf_guru.jpg"); */
                 height: 100%; 
                 z-index: 1;
                 background-position: center;
@@ -129,7 +129,7 @@
 
             .table1 th,td{
                 border: 1px solid black;
-                padding: 3px;
+                padding: 2px;
             }
         </style>
     @else
@@ -142,7 +142,7 @@
             .tanggalan {
                 position: absolute;
                 left: 65%;
-                bottom: 63%;
+                bottom: 64%;
                 z-index: 9999;
                 font-size: 12px;
                 width: 70%;
@@ -151,7 +151,7 @@
             .kepala {
                 position: absolute;
                 left: 65%;
-                bottom: 55%;
+                bottom: 58%;
                 z-index: 9999;
                 font-size: 10px;
                 width: 70%;
@@ -160,16 +160,16 @@
             .nama_kepala {
                 position: absolute;
                 left: 65%;
-                bottom: 56%;
+                bottom: 59%;
                 margin-bottom: 5px;
                 z-index: 9999;
-                font-size: 12px;
+                font-size: 10px;
                 width: 70%;
             }
         </style>
         <style>
             .bg {
-                background-image: url("bf_guru.jpg");
+                /* background-image: url("bf_guru.jpg"); */
                 height: 100%; 
                 z-index: 1;
                 background-position: center;
@@ -181,7 +181,7 @@
 
             
             table .table1 tr {
-                line-height: 14px;
+                line-height: 11px;
             }
             
             .table1{   
@@ -192,7 +192,7 @@
 
             .table1 th,td{
                 border: 1px solid black;
-                padding: 5px;
+                padding: 3px;
             }
         </style>
     @endif
@@ -444,18 +444,15 @@
     @endphp
 
 <body class="bg">
+    <div style="position: relative; margin: auto;z-index: -1000;">
+        <img src="opsi5.jpg" style="position: absolute; width: 100%; z-index: -1000;" />
+    </div>
     {{-- PROFILE PESERTA --}}
-    <table class="tb_profile" 
-    @if ($pelatihan->keterangan == 'santri')
-        style="margin-top: 220px; margin-left: 85px; border: none"
-    @else
-        style="margin-top: 210px; margin-left: 70px; border: none"
-    @endif
-    >
+    <table class="tb_profile" style="padding-top: 225px; margin-left: 83px; border: none; font-size: 9pt">
         <tr >
-            <td style="width: 25%; border: none; padding: 0;">Nama< /td>
+            <td style="width: 25%; border: none; padding: 0;">Nama </td>
             <td style="width: 5%; border: none; padding: 0;"> : </td>
-            <td style="border: none; padding: 0; font-size: 12px"> {{$p->name}}</td>
+            <td style="border: none; padding: 0;"> {{$p->name}}</td>
         </tr>
         <tr>
             <td style="width: 25%; border: none; padding: 0;">Alamat </td>
@@ -511,37 +508,15 @@
         
     </table>
 
-    <div class="qrcode" 
-    @if ($pelatihan->keterangan == 'santri')
-        style="margin-left: 85px; margin-top: 80px; margin-bottom:5px"
-    @else
-        style="margin-left: 70px; margin-top: 100px; margin-bottom:5px"
-    @endif
-    >
-        <img src="{!! 'data:image/png;base64,'.$qrcode !!}" alt="" style="max-width: 70px;">
-    </div>
-    <div class="no_sertifikat"
-    @if ($pelatihan->keterangan == 'santri')
-        style="font-weight: bold;margin-left: 85px;"
-    @else
-        style="font-weight: bold;margin-left: 70px;"
-    @endif
-    ><u>{{$p->pelatihan_id.'/'.date('Y').'/'.$p->id}}</u></div>
-
-    <div class="tanggalan" style="margin-left: 10px">Surabaya, {{Carbon\Carbon::parse($pelatihan->updated_at)->isoFormat('D MMMM Y')}}</div>
-    <div class="nama_kepala" style="margin-left: 10px"><u>{{$direktur}}</u></div>
-    <div class="kepala" style="margin-left: 10px">{{$kepala}}</div>
-    {{-- PENILAIAN --}}
-
 
 
     <center>
         @if ($p->kriteria == 'SEBAGAI INSTRUKTUR LAGU DAN STRATEGI MENGAJAR METODE TILAWATI')
             <div class="cover" style="align-content: center; align-items: center">
                 <div>
-                    <p style="margin-top: 150px; " class="syahadah">No. Syahadah : {{ $p->pelatihan->id }}/2022/{{ $p->id }}</p>
+                    <p style="margin-top: 155px; font-size: 12px; font-weight: bold" class="syahadah">No. Syahadah : {{ $p->pelatihan->id }}/2022/{{ $p->id }}</p>
                 </div>
-                <table style="width: 675px;margin-left: 28px" class="table1">
+                <table style="width: 615px;margin-left: 85px; font-size: 11px" class="table1">
                     <tr> 
                             <th rowspan="2">No.</th>
                             <th rowspan="2">Bidang Penilaian</th>
@@ -589,7 +564,14 @@
                         @if ($item->kategori == 'skill')
                             <tr>
                                 <th>{{ $i++ }}</th>
-                                    <td  class="nilai6" style="text-transform: uppercase; font-size:8px !important">&nbsp; &nbsp;<b> {{ $item->penilaian->name }}</b></th>
+                                    <td  class="nilai6" style="text-transform: uppercase; font-size:9px !important">
+                                        @if ($item->penilaian->name == 'praktek menatar strategi mengajar')
+                                            &nbsp; &nbsp; <b>PRAKTEK MENATAR STRATEGI &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                                                &nbsp; &nbsp; &nbsp; MENGAJAR</b>
+                                        @else
+                                            &nbsp; &nbsp; <b>{{$item->penilaian->name}}</b>
+                                        @endif 
+                                    </th>
                                     <td  style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->max }}</td>
                                     <td  style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->min }}</td>
                                     <td  style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->min }}</td>
@@ -624,17 +606,20 @@
                         </th>
                     </tr>
                 </table>
-                <div id="textbox" style="margin-top: 20px">
-                    <div class="alignleft" style="margin-left: 180px">Baik : 85 - 95</div>
-                    <div class="alignright" style="margin-right: 210px">Cukup : 75 - 84</div>
+                <div class="keterangan" style="margin-left: -465px;font-size: 12px; margin-top: 5px">Keterangan :</div>
+                <div style="font-size: 12px;margin-left: -370px; margin-top: 5px">Baik = 85 - 95, Cukup = 75 -84 </div>
+                <div class="qrcode" style="margin-left: -430pxpx; margin-top: 5px;" >
+                    <img src="{!! 'data:image/png;base64,'.$qrcode !!}" alt="" style="max-width: 100px;">
                 </div>
+                <div style="margin-left: 400px; margin-top: -550px">Surabaya, {{Carbon\Carbon::parse($pelatihan->updated_at)->isoFormat('D MMMM Y')}}</div>
+                <div style="margin-left: 400px; margin-top: 55px; line-height: 15px"><u>{{$direktur}}</u> <br> <span style="font-size: 10px">{{$kepala}}</span></div>
             </div>
         @elseif ($p->kriteria == 'SEBAGAI INSTRUKTUR STRATEGI MENGAJAR METODE TILAWATI')
             <div class="cover" style="align-content: center; align-items: center">
                 <div>
-                    <p style="margin-top: 150px; " class="syahadah">No. Syahadah : {{ $p->pelatihan->id }}/2022/{{ $p->id }}</p>
+                    <p style="margin-top: 155px; font-size: 12px; font-weight: bold" class="syahadah">No. Syahadah : {{ $p->pelatihan->id }}/2022/{{ $p->id }}</p>
                 </div>
-                <table style="width: 675px;margin-left: 28px" class="table1">
+                <table style="width: 615px;margin-left: 85px; font-size: 11px" class="table1">
                     <tr> 
                         <th rowspan="2">No.</th>
                         <th rowspan="2">Bidang Penilaian</th>
@@ -682,7 +667,14 @@
                         @if ($item->kategori == 'skill')
                             <tr>
                                 <th>{{ $i++ }}</th>
-                                    <td class="nilai6" style="text-transform: uppercase; font-size:8px !important">&nbsp; &nbsp;<b> {{ $item->penilaian->name }}</b></th>
+                                    <td  class="nilai6" style="text-transform: uppercase; font-size:9px !important">
+                                        @if ($item->penilaian->name == 'praktek menatar strategi mengajar')
+                                            &nbsp; &nbsp; <b>PRAKTEK MENATAR STRATEGI &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                                                &nbsp; &nbsp; &nbsp; MENGAJAR</b>
+                                        @else
+                                            &nbsp; &nbsp; <b>{{$item->penilaian->name}}</b>
+                                        @endif 
+                                    </th>
                                     <td  style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->max }}</td>
                                     <td  style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->min }}</td>
                                     <td  style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->min }}</td>
@@ -718,17 +710,14 @@
                         </th>
                     </tr>
                 </table>
-                <div id="textbox" style="margin-top: 20px">
-                    <div class="alignleft" style="margin-left: 180px">Baik : 85 - 95</div>
-                    <div class="alignright" style="margin-right: 210px">Cukup : 75 - 84</div>
-                </div>
+               
             </div>
         @elseif($p->kriteria == 'SEBAGAI INSTRUKTUR LAGU METODE TILAWATI')
             <div class="cover" style="align-content: center; align-items: center">
                 <div>
-                    <p style="margin-top: 150px; " class="syahadah">No. Syahadah : {{ $p->pelatihan->id }}/2022/{{ $p->id }}</p>
+                    <p style="margin-top: 155px; font-size: 12px; font-weight: bold" class="syahadah">No. Syahadah : {{ $p->pelatihan->id }}/2022/{{ $p->id }}</p>
                 </div>
-                <table style="width: 675px;margin-left: 28px" class="table1">
+                <table style="width: 615px;margin-left: 85px; font-size: 11px" class="table1">
                 <tr> 
                     <th rowspan="2">No.</th>
                     <th rowspan="2">Bidang Penilaian</th>
@@ -776,7 +765,14 @@
                     @if ($item->kategori == 'skill')
                         <tr>
                             <th>{{ $i++ }}</th>
-                                <td class="nilai6" style="text-transform: uppercase; font-size:8px !important">&nbsp; &nbsp;<b> {{ $item->penilaian->name }}</b></th>
+                                <td  class="nilai6" style="text-transform: uppercase; font-size:9px !important">
+                                    @if ($item->penilaian->name == 'praktek menatar strategi mengajar')
+                                        &nbsp; &nbsp; <b>PRAKTEK MENATAR STRATEGI &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                                            &nbsp; &nbsp; &nbsp; MENGAJAR</b>
+                                    @else
+                                        &nbsp; &nbsp; <b>{{$item->penilaian->name}}</b>
+                                    @endif 
+                                </th>
                                 <td  style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->max }}</td>
                                 <td  style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->min }}</td>
                                 <td  style="text-align: center">&nbsp; &nbsp;{{ $item->penilaian->min }}</td>
@@ -812,17 +808,14 @@
                         </th>
                     </tr>
                 </table>
-                <div id="textbox" style="margin-top: 20px">
-                    <div class="alignleft" style="margin-left: 180px">Baik : 85 - 95</div>
-                    <div class="alignright" style="margin-right: 210px">Cukup : 75 - 84</div>
-                </div>
+               
             </div>
         @elseif($p->program->name == 'Diklat Munaqisy Cabang')
             <div class="cover" style="align-content: center; align-items: center">
                 <div>
-                    <p style="margin-top: 150px; " class="syahadah">No. Syahadah : {{ $p->pelatihan->id }}/2022/{{ $p->id }}</p>
+                    <p style="margin-top: 155px; font-size: 12px; font-weight: bold" class="syahadah">No. Syahadah : {{ $p->pelatihan->id }}/2022/{{ $p->id }}</p>
                 </div>
-                <table style="width: 600px;margin-left: 100px" class="table1">
+                <table style="width: 615px;margin-left: 85px; font-size: 11px" class="table1">
                     <tr>
                             <th rowspan="2">No.</th>
                             <th rowspan="2" style="text-align: center;">Bidang Penilaian</th>
@@ -919,23 +912,14 @@
                         </th>
                     </tr>
                 </table>
-                <div id="textbox" style="margin-top: 20px">
-                    <div class="alignleft" style="margin-left: 180px"><b> Istimewa : 85 - 95</b></div>
-                    <div class="alignleft" style="margin-left: 150px"><b style="display-none">Baik : 75 - 84</b></div>
-                    <div class="alignright" style="margin-right: 210px"><b>Cukup : 65 - 74</b></div>
-                </div>
+               
             </div>
         @else
             <div class="cover" style="align-content: center; align-items: center">
                 <div>
-                    <p 
-                    @if ($pelatihan->keterangan == 'santri')
-                        style="margin-top: 200px;"
-                    @else
-                        style="margin-top: 150px;"
-                    @endif class="syahadah">No. Syahadah : {{ $p->pelatihan->id }}/2022/{{ $p->id }}</p>
+                    <p style="margin-top: 155px; font-size: 12px; font-weight: bold" class="syahadah">No. Syahadah : {{ $p->pelatihan->id }}/2022/{{ $p->id }}</p>
                 </div>
-                <table style="width: 600px;margin-left: 100px" class="table1">
+                <table style="width: 615px;margin-left: 85px; font-size: 11px" class="table1">
                     <tr>
                             <th rowspan="2">No.</th>
                             <th rowspan="2">Bidang Penilaian</th>
@@ -1020,11 +1004,14 @@
                         </th>
                     </tr>
                 </table>
-                <div id="textbox" style="margin-top: 20px">
-                    <div class="alignleft" style="margin-left: 180px">Baik : 85 - 95</div>
-                    <div class="alignright" style="margin-right: 210px">Cukup : 75 - 84</div>
-                </div>
             </div>
+            <div class="keterangan" style="margin-left: -465px;font-size: 12px; margin-top: 5px">Keterangan :</div>
+            <div style="font-size: 12px;margin-left: -370px; margin-top: 5px">Baik = 85 - 95, Cukup = 75 -84 </div>
+            <div class="qrcode" style="margin-left: -430pxpx; margin-top: 31px;" >
+                <img src="{!! 'data:image/png;base64,'.$qrcode !!}" alt="" style="max-width: 100px;">
+            </div>
+            <div style="margin-left: 400px; margin-top: -555px">Surabaya, {{Carbon\Carbon::parse($pelatihan->updated_at)->isoFormat('D MMMM Y')}}</div>
+            <div style="margin-left: 400px; margin-top: 60px; line-height: 15px"><u>{{$direktur}}</u> <br> <span style="font-size: 10px">{{$kepala}}</span></div>
         @endif
     </center>
 </body>
