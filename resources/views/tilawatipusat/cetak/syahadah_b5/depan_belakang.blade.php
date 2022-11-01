@@ -476,7 +476,7 @@
             <img src="opsi5.jpg" style="position: absolute; width: 100%; z-index: -1000;" />
         </div>
         {{-- PROFILE PESERTA --}}
-        <table class="tb_profile" style="padding-top: 225px; margin-left: 83px; border: none; font-size: 9pt">
+        <table class="tb_profile" style="padding-top: 215px; margin-left: 83px; border: none; font-size: 9pt">
             <tr>
                 <td style="width: 25%; border: none; padding: 0;">Nama </td>
                 <td style="width: 5%; border: none; padding: 0;"> : </td>
