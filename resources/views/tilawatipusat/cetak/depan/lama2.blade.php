@@ -166,7 +166,7 @@
 				<tr class="atas">
                     <td class="atas" style="width: 170px; height: 23px;"></td>
                     <td class="atas" style="width: 11px; height: 23px;"></td>
-                    <td class="atas" style="width: 750px; height: 23px; text-transform: uppercase" >{{ $item }}</td>
+                    <td class="atas" style="width: 750px; height: 23px; text-transform: uppercase" >{{ $item->kriteria }}</td>
                     <td class="atas" style="width: 52px; height: 23px;">&nbsp;</td>
 				</tr>
 				<tr class="atas">
