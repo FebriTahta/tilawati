@@ -11,6 +11,7 @@ use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\CetakController;
 use App\Http\Controllers\PesertaController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\TTDController;
 use App\Http\Controllers\SubController;
 use App\Http\Controllers\ImportController;
 use App\Http\Controllers\DashboardController;
@@ -585,6 +586,9 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     Route::get('/cetak-syahadah-depan-b5/{pelatihan_id}',[CetakCont::class,'cetak_syahadah_depan_b5']);
     Route::get('/cetak-syahadah-belakang-b5/{pelatihan_id}',[CetakCont::class,'cetak_syahadah_belakang_b5']);
     Route::get('/cetak-syahadah-depan-belakang-b5/{pelatihan_id}',[CetakCont::class,'cetak_syahadah_depan_belakang_b5']);
+
+    Route::post('/upload-ttd-kepala-cabang',[CabangCont::class,'upload_ttd']);
+    Route::get('/daftar-ttd-cabang', [TTDController::class,'data_ttd']);
 });
 
 Route::group(['middleware' => ['auth', 'CheckRole:bendahara']], function () {

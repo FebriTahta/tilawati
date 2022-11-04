@@ -28,12 +28,6 @@
                     <div class="col-12 col-xl-12 form-group" style="text-transform: uppercase">
                         Cari data <b>syahadah</b> berdasarkan <b>tanggal diterbitkannya syahadah</b>
                         <hr>
-                        @if (auth()->user()->role == 'cabang')
-                            <input type="hidden" id="stat" value="{{ auth()->user()->role }}">
-                            <input type="hidden" id="stat_id" value="{{ auth()->user()->cabang->id }}">
-                        @else
-                            <input type="hidden" id="stat" value="pusat">
-                        @endif
                     </div>
                     <div class="col-6 col-xl-4 form-group">
                         <label>Dari :</label>
@@ -61,6 +55,39 @@
     </div>
 
     <div class="row">
+        @if (auth()->user()->role == 'cabang')
+            <input type="hidden" id="stat" value="{{ auth()->user()->role }}">
+            <input type="hidden" id="stat_id" value="{{ auth()->user()->cabang->id }}">
+            @if (auth()->user()->cabang->ttd == null)
+                <div class="col-xl-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="media">
+                                <div class="avatar-sm font-size-20 mr-3">
+                                    <span class="avatar-title bg-soft-primary text-primary rounded">
+                                        <i
+                                            class="mdi mdi-mdi mdi-contact-mail-outline
+                                            tag-plus-outline"></i>
+                                    </span>
+                                </div>
+                                <div class="media-body">
+                                    <div class="font-size-16 mt-2" style="color: rgb(255, 145, 145)">UPLOAD tanda tangan
+                                        "Kepala Cabang" untuk memproses syahadah<br>
+                                        <u><a href="#" data-toggle="modal" data-target="#modalupload"
+                                                style="color: darkcyan">Klik disini untuk upload file TTD Kepala
+                                                Cabang</a></u>
+                                    </div>
+                                </div>
+                            </div>
+                            <h4 class="mt-4"></h4>
+                        </div>
+                    </div>
+                </div>
+            @else
+            @endif
+        @else
+            <input type="hidden" id="stat" value="pusat">
+        @endif
         <div class="col-xl-6">
             <div class="card">
                 <div class="card-body">
@@ -73,7 +100,8 @@
                             </span>
                         </div>
                         <div class="media-body">
-                            <div class="font-size-16 mt-2">Total Syahadah Yang Diterbitkan <br> <b id="cb" style="color: blue">?</b>
+                            <div class="font-size-16 mt-2">Total Syahadah Yang Diterbitkan <br> <b id="cb"
+                                    style="color: blue">?</b>
                                 Penerbitan Syahadah & <b style="color: blue" id="cb2">?</b> Syahadah Peserta </div>
                         </div>
                     </div>
@@ -138,10 +166,10 @@
     </div>
     <!-- end row -->
 
-    
 
-    <div class="modal fade bs-example-modal-diklat-link" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
-        aria-hidden="true">
+
+    <div class="modal fade bs-example-modal-diklat-link" tabindex="-1" role="dialog"
+        aria-labelledby="mySmallModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <div class="modal-body">
@@ -178,10 +206,12 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6 col-6">
-                                        <button id="linkdepans" class="btn btn-success" style="width: 100%">CETAK DEPAN</button>
+                                        <button id="linkdepans" class="btn btn-success" style="width: 100%">CETAK
+                                            DEPAN</button>
                                     </div>
                                     <div class="col-md-6 col-6">
-                                        <button id="linkbelakang" class="btn btn-info" style="width: 100%">CETAK BELAKANG</button>
+                                        <button id="linkbelakang" class="btn btn-info" style="width: 100%">CETAK
+                                            BELAKANG</button>
                                     </div>
                                 </div>
                             </div>
@@ -205,7 +235,8 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12 col-12">
-                                        <button id="linkdepanbelakang" class="btn btn-info" style="width: 100%">CETAK VERSI 0.2</button>
+                                        <button id="linkdepanbelakang" class="btn btn-info" style="width: 100%">CETAK
+                                            VERSI 0.2</button>
                                     </div>
                                 </div>
                             </div>
@@ -215,6 +246,40 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
+
+    @if (auth()->user()->role == 'cabang')
+        <div class="modal fade" id="modalupload" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-md">
+                <div class="modal-content">
+                    <form id="formupload"> @csrf
+                        <div class="modal-body">
+                            <div class="col-xl-12">
+                                <div class="card m-b-30">
+                                    <div class="card-body">
+                                        <div class="header" style="text-align: center; margin-bottom: 20px">
+                                            <h5>UPLOAD TTD KEPALA CABANG
+                                                <br>
+                                                <u>{{ auth()->user()->cabang->kepalacabang }}</u>
+                                            </h5>
+                                        </div>
+                                        <div class="body">
+                                            <input type="file" class="form-control" name="ttd" accept="image/*"
+                                                required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> <!-- end col -->
+                        </div>
+                        <div class="modal-footer">
+                            <input type="submit" id="btnupload" class="btn btn-sm btn-info" value="UPLOAD">
+                        </div>
+                    </form>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+    @endif
+
 
 
     <input type="text" value="{{ auth()->user()->role }}" style="display: none">
@@ -260,16 +325,16 @@
             var modal = $(this)
             pelatihan_id = id;
         })
-        
+
 
         $('#linkdepans').on('click', function() {
             swal({
                 title: "SYAHADAH V.1",
                 text: 'Tekan "OK" untuk mengunduh syahadah depan V.1',
                 type: "success"
-            }).then(okay => {                    
+            }).then(okay => {
                 if (okay) {
-                    window.location.href = "/cetak-syahadah-depan-b5/"+pelatihan_id;
+                    window.location.href = "/cetak-syahadah-depan-b5/" + pelatihan_id;
                 }
             });
         })
@@ -279,9 +344,9 @@
                 title: "SYAHADAH V.1",
                 text: 'Tekan "OK" untuk mengunduh syahadah belakang V.1',
                 type: "success"
-            }).then(okay => {                    
+            }).then(okay => {
                 if (okay) {
-                    window.location.href = "/cetak-syahadah-belakang-b5/"+pelatihan_id;
+                    window.location.href = "/cetak-syahadah-belakang-b5/" + pelatihan_id;
                 }
             });
         })
@@ -291,9 +356,9 @@
                 title: "SYAHADAH V.2",
                 text: 'Tekan "OK" untuk mengunduh syahadah V.2',
                 type: "success"
-            }).then(okay => {                    
+            }).then(okay => {
                 if (okay) {
-                    window.location.href = "/cetak-syahadah-depan-belakang-b5/"+pelatihan_id;
+                    window.location.href = "/cetak-syahadah-depan-belakang-b5/" + pelatihan_id;
                 }
             });
         })
@@ -308,7 +373,7 @@
             a.href = slug;
         })
 
-        
+
 
         function myFunction() {
             /* Get the text field */
@@ -328,7 +393,7 @@
         $(document).ready(function() {
             var stat = $('#stat').val();
             if (stat == 'pusat') {
-                
+
                 load_data();
                 count_data();
 
@@ -384,11 +449,14 @@
 
                 function count_data(dari = '', sampai = '') {
                     $.ajax({
-                        url:'/total-syahadah-terbit-pusat',
+                        url: '/total-syahadah-terbit-pusat',
                         type: 'get',
                         dataType: 'json',
-                        data:{dari:dari, sampai:sampai},
-                        success:function(data) {
+                        data: {
+                            dari: dari,
+                            sampai: sampai
+                        },
+                        success: function(data) {
                             toastr.success('menampilkan data perhitungan syahadah');
                             document.getElementById('cb').innerHTML = data.terbit;
                             document.getElementById('cb2').innerHTML = data.peserta_terbit;
@@ -413,13 +481,13 @@
                     load_data();
                 });
 
-            }else{
+            } else {
 
                 var stat_id = $('#stat_id').val();
-                
-                load_data();    
+
+                load_data();
                 count_data();
-                
+
                 function load_data(dari = '', sampai = '') {
                     toastr.success('menampilkan daftar syahadah');
                     $('#datatable-buttons').DataTable({
@@ -428,7 +496,7 @@
                         processing: true,
                         serverSide: true,
                         ajax: {
-                            url: '/data-syahadah-cabang/'+stat_id,
+                            url: '/data-syahadah-cabang/' + stat_id,
                             data: {
                                 dari: dari,
                                 sampai: sampai
@@ -468,11 +536,14 @@
 
                 function count_data(dari = '', sampai = '') {
                     $.ajax({
-                        url:'/total-syahadah-terbit-cabang/'+stat_id,
+                        url: '/total-syahadah-terbit-cabang/' + stat_id,
                         type: 'get',
                         dataType: 'json',
-                        data:{dari:dari, sampai:sampai},
-                        success:function(data) {
+                        data: {
+                            dari: dari,
+                            sampai: sampai
+                        },
+                        success: function(data) {
                             toastr.success('menampilkan data perhitungan syahadah');
                             document.getElementById('cb').innerHTML = data.terbit;
                             document.getElementById('cb2').innerHTML = data.peserta_terbit;
@@ -497,6 +568,56 @@
                     load_data();
                 });
             }
+
+            $('#formupload').submit(function(e) {
+                e.preventDefault();
+                var formData = new FormData(this);
+                $.ajax({
+                    type: 'POST',
+                    url: "/upload-ttd-kepala-cabang",
+                    data: formData,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    beforeSend: function() {
+                        $('#btnupload').attr('disabled', 'disabled');
+                        $('#btnupload').val('Proses upload...');
+                    },
+                    success: function(data) {
+                        if (data.status == 200) {
+                            $('#modalupload').modal('hide');
+                            $("#formupload")[0].reset();
+                            $('#btnupload').val('UPLOAD');
+                            $('#btnupload').attr('disabled', false);
+                            toastr.success(data.message);
+                            swal({
+                                title: "SUCCESS!",
+                                text: data.message,
+                                type: "success"
+                            }).then(okay => {
+                                if (okay) {
+                                    window.location.href =
+                                    "/daftar-syahadah-elektronik";
+                                }
+                            });
+                        } else {
+                            $("#formupload")[0].reset();
+                            $('#btnupload').val('UPLOAD');
+                            $('#btnupload').attr('disabled', false);
+                            toastr.error(data.message);
+                            swal({
+                                title: "SUCCESS!",
+                                text: data.message,
+                                type: "error"
+                            });
+                            $('#modalupload').modal('hide');
+                        }
+                    },
+                    error: function(data) {
+                        // console.log(data);
+                    }
+                });
+            });
         })
     </script>
 @endsection

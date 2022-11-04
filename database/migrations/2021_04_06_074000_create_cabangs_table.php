@@ -32,6 +32,10 @@ class CreateCabangsTable extends Migration
             $table->string('pos')->nullable();
             $table->string('telp')->nullable();
             $table->string('ekspedisi')->nullable();
+            $table->string('lng')->nullable();
+            $table->string('lat')->nullable();
+            $table->string('ttd')->nullable();
+            $table->string('status_ttd')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

@@ -14,6 +14,7 @@ use App\Models\Macamtrainer;
 use App\Models\macamtrainer_trainer;
 use App\Models\Kpa;
 use App\Models\Supervisor;
+use Validator;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -895,6 +896,58 @@ class CabangCont extends Controller
         $cabang_id  = auth()->user()->cabang->id;
         $cabang = Cabang::where('id',$cabang_id)->select('id','name','kabupaten_id')->with('kabupaten')->first();
         return view('tilawatipusat.cabang.supervisor',compact('cabang'));
+    }
+
+    public function upload_ttd(Request $request)
+    {
+        if ($request->ajax()) {
+            # code...
+            $validator = Validator::make($request->all(), [
+                'imageposting.*'    => 'image|mimes:png|max:4096'
+            ]);
+
+            if ($validator->fails()) {
+
+                return response()->json([
+                    'status' => 400,
+                    'message'  => 'Response Gagal'.$validator->messages(),
+                ]);
+    
+            }else {
+                if($request->hasFile('ttd') && auth()->user()->role == 'cabang' || auth()->user()->role == 'pusat'){ 
+
+                    # code...
+                    $filename   = time().'.'.$request->ttd->getClientOriginalExtension();
+                    $request->file('ttd')->move('img_ttd/',$filename);
+                    $data       = Cabang::where('id', auth()->user()->cabang->id)->update(
+                        [
+                            'ttd' => $filename,
+                            'status_ttd' => 'menunggu'
+                        ]
+                    );
+
+                    return response()->json(
+                        [
+                          'status'  => 200,
+                          'message' => 'Upload File Berhasil'
+                        ]
+                    );
+
+                     
+
+                }else {
+                    # code...
+                    return response()->json(
+                        [
+                          'status'  => 400,
+                          'message' => 'undefined file upload'
+                        ]
+                    );
+
+                }
+            }
+
+        }
     }
     
 }

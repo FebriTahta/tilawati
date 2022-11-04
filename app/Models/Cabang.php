@@ -29,7 +29,9 @@ class Cabang extends Model
         'teritorial',
         'email',
         'lng',
-        'lat'
+        'lat',
+        'ttd',
+        'status_ttd'
     ];
     protected $dates = ['deleted_at'];
 
