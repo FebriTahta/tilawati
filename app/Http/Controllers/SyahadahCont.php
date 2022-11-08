@@ -17,8 +17,8 @@ class SyahadahCont extends Controller
             $peserta = Peserta::where('pelatihan_id', $pelatihan_id)->where('bersyahadah', '1')->get();
             return  DataTables::of($peserta)
                     ->addColumn('download', function($peserta){
-                        $btn    = '<a href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modalb5" data-id="'.$peserta->id.'">V.1</a>';
-                        $btn   .= ' <a href="#" class="btn btn-sm btn-info" data-toggle="modal" data-target="#modalb52" data-id="'.$peserta->id.'">V.2</a>';
+                        // $btn    = '<a href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modalb5" data-id="'.$peserta->id.'">V.1</a>';
+                        $btn   = ' <a href="#" class="btn btn-sm btn-info" data-toggle="modal" data-target="#modalb52" data-id="'.$peserta->id.'">V.2</a>';
                         return $btn;
                     })
                     ->rawColumns(['download'])
