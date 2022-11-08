@@ -83,7 +83,50 @@
                         </div>
                     </div>
                 </div>
-            @else
+            @elseif(auth()->user()->cabang->ttd !== null && auth()->user()->cabang->status_ttd == 'menunggu')
+                <div class="col-xl-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="media">
+                                <div class="avatar-sm font-size-20 mr-3">
+                                    <span class="avatar-title bg-soft-primary text-primary rounded">
+                                        <i
+                                            class="mdi mdi-mdi mdi-contact-mail-outline
+                                        tag-plus-outline"></i>
+                                    </span>
+                                </div>
+                                <div class="media-body">
+                                    <div class="font-size-16 mt-2" style="color: rgb(255, 145, 145)">Pengajuan File TTD Sukses<br>
+                                        <span>Menunggu proses penyesuaian max (2x24 jam)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <h4 class="mt-4"></h4>
+                        </div>
+                    </div>
+                </div>
+            @elseif(auth()->user()->cabang->ttd !== null && auth()->user()->cabang->status_ttd == 'fix')
+                <div class="col-xl-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="media">
+                                <div class="avatar-sm font-size-20 mr-3">
+                                    <span class="avatar-title bg-soft-primary text-primary rounded">
+                                        <i
+                                            class="mdi mdi-mdi mdi-contact-mail-outline
+                                        tag-plus-outline"></i>
+                                    </span>
+                                </div>
+                                <div class="media-body">
+                                    <div class="font-size-16 mt-2" style="color: blue">File TTD Sudah Sesuai<br>
+                                        <span>File syahadah baru sudah dapat di unduh / gunakan</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <h4 class="mt-4"></h4>
+                        </div>
+                    </div>
+                </div>
             @endif
         @else
             <input type="hidden" id="stat" value="pusat">
@@ -110,6 +153,30 @@
             </div>
         </div>
     </div>
+
+    {{-- display image ttd --}}
+    @if (auth()->user()->role == 'cabang')
+        @if (auth()->user()->cabang->ttd !== null && auth()->user()->cabang->status_ttd == 'menunggu' || auth()->user()->cabang->status_ttd == 'fix')
+            <div class="row">
+                <div class="col-lg-2">
+                    <div class="card">
+                        <div class="card-body">
+                            <img src="img_ttd/{{ auth()->user()->cabang->ttd }}" style="max-width: 100%" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <p>anda bisa meemperbarui file ttd yang sudah anda upload dengan klik tombol dibawah ini</p>
+                            <a href="#" data-toggle="modal" data-target="#modaluploadulang">UPDATE FILE TTD KEPALA CABANG</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endif
+    @endif
+
 
     <div class="row">
         <div class="col-lg-12">
@@ -273,6 +340,37 @@
                         </div>
                         <div class="modal-footer">
                             <input type="submit" id="btnupload" class="btn btn-sm btn-info" value="UPLOAD">
+                        </div>
+                    </form>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+        <div class="modal fade" id="modaluploadulang" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-md">
+                <div class="modal-content">
+                    <form id="formuploadulang"> @csrf
+                        <div class="modal-body">
+                            <div class="col-xl-12">
+                                <div class="card m-b-30">
+                                    <div class="card-body">
+                                        <div class="header" style="text-align: center; margin-bottom: 20px">
+                                            <h5>UPLOAD ULANG TTD KEPALA CABANG
+                                                <br>
+                                                <u>{{ auth()->user()->cabang->kepalacabang }}</u>
+                                            </h5>
+                                        </div>
+                                        <div class="body">
+                                            <input type="file" class="form-control" name="ttd" accept="image/*"
+                                                required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> <!-- end col -->
+                        </div>
+                        <div class="modal-footer">
+                            <input type="submit" id="btnuploadulang" class="btn btn-sm btn-info" value="UPLOAD ULANG">
                         </div>
                     </form>
                 </div><!-- /.modal-content -->
@@ -597,7 +695,7 @@
                             }).then(okay => {
                                 if (okay) {
                                     window.location.href =
-                                    "/daftar-syahadah-elektronik";
+                                        "/daftar-syahadah-elektronik";
                                 }
                             });
                         } else {
@@ -611,6 +709,56 @@
                                 type: "error"
                             });
                             $('#modalupload').modal('hide');
+                        }
+                    },
+                    error: function(data) {
+                        // console.log(data);
+                    }
+                });
+            });
+
+            $('#formuploadulang').submit(function(e) {
+                e.preventDefault();
+                var formData = new FormData(this);
+                $.ajax({
+                    type: 'POST',
+                    url: "/upload-ttd-ulang-kepala-cabang",
+                    data: formData,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    beforeSend: function() {
+                        $('#btnuploadulang').attr('disabled', 'disabled');
+                        $('#btnuploadulang').val('Proses upload...');
+                    },
+                    success: function(data) {
+                        if (data.status == 200) {
+                            $('#modaluploadulang').modal('hide');
+                            $("#formuploadulang")[0].reset();
+                            $('#btnuploadulang').val('UPLOAD ULANG');
+                            $('#btnuploadulang').attr('disabled', false);
+                            toastr.success(data.message);
+                            swal({
+                                title: "SUCCESS!",
+                                text: data.message,
+                                type: "success"
+                            }).then(okay => {
+                                if (okay) {
+                                    window.location.href =
+                                        "/daftar-syahadah-elektronik";
+                                }
+                            });
+                        } else {
+                            $("#formuploadulang")[0].reset();
+                            $('#btnuploadulang').val('UPLOAD');
+                            $('#btnuploadulang').attr('disabled', false);
+                            toastr.error(data.message);
+                            swal({
+                                title: "SUCCESS!",
+                                text: data.message,
+                                type: "error"
+                            });
+                            $('#modaluploadulang').modal('hide');
                         }
                     },
                     error: function(data) {

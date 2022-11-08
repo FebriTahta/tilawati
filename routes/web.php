@@ -588,7 +588,12 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     Route::get('/cetak-syahadah-depan-belakang-b5/{pelatihan_id}',[CetakCont::class,'cetak_syahadah_depan_belakang_b5']);
 
     Route::post('/upload-ttd-kepala-cabang',[CabangCont::class,'upload_ttd']);
+    Route::post('/upload-ttd-ulang-kepala-cabang',[CabangCont::class,'upload_ttd_ulang']);
     Route::get('/daftar-ttd-cabang', [TTDController::class,'data_ttd']);
+    Route::get('/total-ttd-cabang', [TTDController::class,'total_ttd']);
+    Route::get('/download-ttd-cabang/{cabang_id}',[TTDController::class,'download_ttd']);
+    Route::post('/remove-ttd-cabang',[TTDController::class,'remove_ttd']);
+    Route::post('/audit-ttd-cabang',[TTDController::class,'audit_ttd']);
 });
 
 Route::group(['middleware' => ['auth', 'CheckRole:bendahara']], function () {

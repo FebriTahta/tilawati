@@ -16,6 +16,7 @@ use App\Models\Kpa;
 use App\Models\Supervisor;
 use Validator;
 use Auth;
+use File;
 use Illuminate\Http\Request;
 
 class CabangCont extends Controller
@@ -917,6 +918,8 @@ class CabangCont extends Controller
                 if($request->hasFile('ttd') && auth()->user()->role == 'cabang' || auth()->user()->role == 'pusat'){ 
 
                     # code...
+                    $ekstensi   = $request->ttd->extension();
+
                     $filename   = time().'.'.$request->ttd->getClientOriginalExtension();
                     $request->file('ttd')->move('img_ttd/',$filename);
                     $data       = Cabang::where('id', auth()->user()->cabang->id)->update(
@@ -934,6 +937,62 @@ class CabangCont extends Controller
                     );
 
                      
+
+                }else {
+                    # code...
+                    return response()->json(
+                        [
+                          'status'  => 400,
+                          'message' => 'undefined file upload'
+                        ]
+                    );
+
+                }
+            }
+
+        }
+    }
+
+    public function upload_ttd_ulang(Request $request){
+
+        if ($request->ajax()) {
+            # code...
+            $validator = Validator::make($request->all(), [
+                'imageposting.*'    => 'image|mimes:png|max:4096'
+            ]);
+
+            if ($validator->fails()) {
+
+                return response()->json([
+                    'status' => 400,
+                    'message'  => 'Response Gagal'.$validator->messages(),
+                ]);
+    
+            }else {
+                if($request->hasFile('ttd') && auth()->user()->role == 'cabang' || auth()->user()->role == 'pusat'){ 
+
+                    $cabang = Cabang::where('id', auth()->user()->cabang->id)->first();
+                    if(File::exists(public_path("img_ttd/".$cabang->ttd))){
+                       File::delete(public_path("img_ttd/".$cabang->ttd));
+                    }
+                    # code...
+                    $ekstensi   = $request->ttd->extension();
+
+                    $filename   = time().'.'.$request->ttd->getClientOriginalExtension();
+                    $request->file('ttd')->move('img_ttd/',$filename);
+                    $data       = Cabang::where('id', auth()->user()->cabang->id)->update(
+                        [
+                            'ttd' => $filename,
+                            'status_ttd' => 'menunggu'
+                        ]
+                    );
+
+                    return response()->json(
+                        [
+                          'status'  => 200,
+                          'message' => 'Upload File Berhasil'
+                        ]
+                    );
 
                 }else {
                     # code...
