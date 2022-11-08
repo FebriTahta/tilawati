@@ -10,6 +10,25 @@ use Carbon\Carbon;
 
 class SyahadahCont extends Controller
 {
+    public function index_peserta(Request $request, $pelatihan_id)
+    {
+        if ($request->ajax()) {
+            # code...
+            $peserta = Peserta::where('pelatihan_id', $pelatihan_id)->where('bersyahadah', '1')->get();
+            return  DataTables::of($peserta)
+                    ->addColumn('download', function($peserta){
+                        $btn    = '<a href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modalb5" data-id="'.$peserta->id.'">V.1</a>';
+                        $btn   .= ' <a href="#" class="btn btn-sm btn-info" data-toggle="modal" data-target="#modalb52" data-id="'.$peserta->id.'">V.2</a>';
+                        return $btn;
+                    })
+                    ->rawColumns(['download'])
+                    ->make(true);
+                    
+        }
+        $data = Pelatihan::findOrFail($pelatihan_id);
+        return view('tilawatipusat.syahadah.peserta', compact('data'));
+    }
+
     public function index_admin(Request $request)
     {
         return view('tilawatipusat.syahadah.index');
@@ -158,8 +177,10 @@ class SyahadahCont extends Controller
                             return Carbon::parse($data->updated_at)->isoFormat('dddd, D MMMM Y');
                         })
                         ->addColumn('cetak', function ($data) {
-                            $btn    = '<a href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modalb5" data-id="'.$data->id.'">V.1</a>';
-                            $btn   .= ' <a href="#" class="btn btn-sm btn-info" data-toggle="modal" data-target="#modalb52" data-id="'.$data->id.'">V.2</a>';
+                            // $btn    = '<a href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modalb5" data-id="'.$data->id.'">V.1</a>';
+                            // $btn   .= ' <a href="#" class="btn btn-sm btn-info" data-toggle="modal" data-target="#modalb52" data-id="'.$data->id.'">V.2</a>';
+                            // return $btn;
+                            $btn = '<a href="/daftar-syahadah-elektronik-peserta/'.$data->id.'">MASUK</a>';
                             return $btn;
                         })
                 ->rawColumns(['tanggals','program','peserta','linksyahadah','cabang','cetak','tanggal_terbit'])
@@ -193,8 +214,10 @@ class SyahadahCont extends Controller
                             return Carbon::parse($data->updated_at)->isoFormat('dddd, D MMMM Y');
                         })
                         ->addColumn('cetak', function ($data) {
-                            $btn    = '<a href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modalb5" data-id="'.$data->id.'">V.1</a>';
-                            $btn   .= ' <a href="#" class="btn btn-sm btn-info" data-toggle="modal" data-target="#modalb52" data-id="'.$data->id.'">V.2</a>';
+                            // $btn    = '<a href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modalb5" data-id="'.$data->id.'">V.1</a>';
+                            // $btn   .= ' <a href="#" class="btn btn-sm btn-info" data-toggle="modal" data-target="#modalb52" data-id="'.$data->id.'">V.2</a>';
+                            // return $btn;
+                            $btn = '<a href="/daftar-syahadah-elektronik-peserta/'.$data->id.'">MASUK</a>';
                             return $btn;
                         })
                 ->rawColumns(['tanggals','program','peserta','linksyahadah','cabang','cetak','tanggal_terbit'])
@@ -240,8 +263,10 @@ class SyahadahCont extends Controller
                             return Carbon::parse($data->updated_at)->isoFormat('dddd, D MMMM Y');
                         })
                         ->addColumn('cetak', function ($data) {
-                            $btn    = '<a href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modalb5" data-id="'.$data->id.'">V.1</a>';
-                            $btn   .= ' <a href="#" class="btn btn-sm btn-info" data-toggle="modal" data-target="#modalb52" data-id="'.$data->id.'">V.2</a>';
+                            // $btn    = '<a href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modalb5" data-id="'.$data->id.'">V.1</a>';
+                            // $btn   .= ' <a href="#" class="btn btn-sm btn-info" data-toggle="modal" data-target="#modalb52" data-id="'.$data->id.'">V.2</a>';
+                            // return $btn;
+                            $btn = '<a href="/daftar-syahadah-elektronik-peserta/'.$data->id.'">MASUK</a>';
                             return $btn;
                         })
                 ->rawColumns(['tanggals','program','peserta','linksyahadah','cabang','cetak','tanggal_terbit'])
@@ -275,8 +300,10 @@ class SyahadahCont extends Controller
                             return Carbon::parse($data->updated_at)->isoFormat('dddd, D MMMM Y');
                         })
                         ->addColumn('cetak', function ($data) {
-                            $btn    = '<a href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modalb5" data-id="'.$data->id.'">V.1</a>';
-                            $btn   .= ' <a href="#" class="btn btn-sm btn-info" data-toggle="modal" data-target="#modalb52" data-id="'.$data->id.'">V.2</a>';
+                            // $btn    = '<a href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modalb5" data-id="'.$data->id.'">V.1</a>';
+                            // $btn   .= ' <a href="#" class="btn btn-sm btn-info" data-toggle="modal" data-target="#modalb52" data-id="'.$data->id.'">V.2</a>';
+                            // return $btn;
+                            $btn = '<a href="/daftar-syahadah-elektronik-peserta/'.$data->id.'">MASUK</a>';
                             return $btn;
                         })
                 ->rawColumns(['tanggals','program','peserta','linksyahadah','cabang','cetak','tanggal_terbit'])

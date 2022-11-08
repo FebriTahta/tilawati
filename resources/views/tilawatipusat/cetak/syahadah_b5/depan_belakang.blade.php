@@ -476,16 +476,16 @@
             <img src="opsi5.jpg" style="position: absolute; width: 100%; z-index: -1000;" />
         </div>
         {{-- PROFILE PESERTA --}}
-        <table class="tb_profile" style="padding-top: 220px; margin-left: 83px; border: none; font-size: 9pt">
+        <table class="tb_profile" style="padding-top: 225px; margin-left: 83px; border: none; font-size: 8pt">
             <tr>
                 <td style="width: 25%; border: none; padding: 0;">Nama </td>
                 <td style="width: 5%; border: none; padding: 0;"> : </td>
-                <td style="border: none; padding: 0;"> {{ $p->name }}</td>
+                <td style="border: none; padding: 0; font-size: 8pt"> {{ $p->name }}</td>
             </tr>
             <tr>
                 <td style="width: 25%; border: none; padding: 0;">Alamat </td>
                 <td style="width: 5%; border: none; padding: 0;"> : </td>
-                <td style="width: 70%; border: none; padding: 0;">
+                <td style="width: 70%; border: none; padding: 0;font-size: 8pt">
                     @if ($p->kabupaten !== null)
                         @if (substr($p->kabupaten->nama, 0, 8) == 'KOTA ADM')
                             {{ $p->alamat . ' ' . substr($p->kabupaten->nama, 10) }}
@@ -500,7 +500,7 @@
             <tr>
                 <td style="width: 25%; border: none; padding: 0;">Tempat Tanggal Lahir </td>
                 <td style="width: 5%; border: none; padding: 0;"> : </td>
-                <td style="width: 70%; text-transform: uppercase; border: none; padding: 0;">
+                <td style="width: 70%; text-transform: uppercase; border: none; padding: 0;font-size: 8pt">
                     @if ($p->tmptlahir2 == null)
                         @if (substr($p->tmptlahir, 0, 4) == 'KOTA')
                             {{ substr($p->tmptlahir, 5) }}
@@ -531,7 +531,7 @@
             <tr>
                 <td style="width: 25%; border: none; padding: 0;">Dinyatakan </td>
                 <td style="width: 5%; border: none; padding: 0;"> : </td>
-                <td style="width: 70%; border: none; padding: 0;"> {{ $p->kriteria }}</td>
+                <td style="width: 70%; border: none; padding: 0;font-size: 8pt"> {{ $p->kriteria }}</td>
             </tr>
 
         </table>
@@ -651,7 +651,7 @@
                     </div>
                     <div style="font-size: 12px;margin-left: -370px; margin-top: 5px">Baik = 85 - 95, Cukup = 75 -84
                     </div>
-                    <div class="qrcode" style="margin-left: -430pxpx; margin-top: 5px;">
+                    <div class="qrcode" style="margin-left: -430pxpx; margin-top: 10px;">
                         <img src="{!! 'data:image/png;base64,' . $qrcode !!}" alt="" style="max-width: 100px;">
                     </div>
                     <div style="margin-left: 400px; margin-top: -550px">Surabaya,
@@ -769,7 +769,17 @@
                             </th>
                         </tr>
                     </table>
-
+                    <div class="keterangan" style="margin-left: -465px;font-size: 12px; margin-top: 5px">Keterangan :
+                    </div>
+                    <div style="font-size: 12px;margin-left: -370px; margin-top: 5px">Baik = 85 - 95, Cukup = 75 -84
+                    </div>
+                    <div class="qrcode" style="margin-left: -430pxpx; margin-top: 10px;">
+                        <img src="{!! 'data:image/png;base64,' . $qrcode !!}" alt="" style="max-width: 100px;">
+                    </div>
+                    <div style="margin-left: 400px; margin-top: -550px">Surabaya,
+                        {{ Carbon\Carbon::parse($pelatihan->updated_at)->isoFormat('D MMMM Y') }}</div>
+                    <div style="margin-left: 400px; margin-top: 55px; line-height: 15px"><u>{{ $direktur }}</u>
+                        <br> <span style="font-size: 10px">{{ $kepala }}</span></div>
                 </div>
             @elseif($p->kriteria == 'SEBAGAI INSTRUKTUR LAGU METODE TILAWATI')
                 <div class="cover" style="align-content: center; align-items: center">
@@ -881,7 +891,17 @@
                             </th>
                         </tr>
                     </table>
-
+                    <div class="keterangan" style="margin-left: -465px;font-size: 12px; margin-top: 5px">Keterangan :
+                    </div>
+                    <div style="font-size: 12px;margin-left: -370px; margin-top: 10px">Baik = 85 - 95, Cukup = 75 -84
+                    </div>
+                    <div class="qrcode" style="margin-left: -430pxpx; margin-top: 5px;">
+                        <img src="{!! 'data:image/png;base64,' . $qrcode !!}" alt="" style="max-width: 100px;">
+                    </div>
+                    <div style="margin-left: 400px; margin-top: -550px">Surabaya,
+                        {{ Carbon\Carbon::parse($pelatihan->updated_at)->isoFormat('D MMMM Y') }}</div>
+                    <div style="margin-left: 400px; margin-top: 55px; line-height: 15px"><u>{{ $direktur }}</u>
+                        <br> <span style="font-size: 10px">{{ $kepala }}</span></div>
                 </div>
             @elseif($p->kriteria == 'SEBAGAI SANTRI KHATAM AL QURAN 30 JUZ')
                 <div class="cover" style="align-content: center; align-items: center">
@@ -985,7 +1005,7 @@
                 <div class="keterangan" style="margin-left: -465px;font-size: 12px; margin-top: 5px">Keterangan :
                 </div>
                 <div style="font-size: 12px;margin-left: -370px; margin-top: 5px">Baik = 85 - 95, Cukup = 75 -84 </div>
-                <div class="qrcode" style="margin-left: -430pxpx; margin-top: 73px;">
+                <div class="qrcode" style="margin-left: -430pxpx; margin-top: 80px;">
                     <img src="{!! 'data:image/png;base64,' . $qrcode !!}" alt="" style="max-width: 100px;">
                 </div>
                 <div style="margin-left: 400px; margin-top: -555px">Surabaya,
@@ -1110,7 +1130,7 @@
                 <div class="keterangan" style="margin-left: -465px;font-size: 12px; margin-top: 5px">Keterangan :
                 </div>
                 <div style="font-size: 12px;margin-left: -370px; margin-top: 5px">Baik = 85 - 95, Cukup = 75 -84 </div>
-                <div class="qrcode" style="margin-left: -430pxpx; margin-top: 73px;">
+                <div class="qrcode" style="margin-left: -430pxpx; margin-top: 80px;">
                     <img src="{!! 'data:image/png;base64,' . $qrcode !!}" alt="" style="max-width: 100px;">
                 </div>
                 <div style="margin-left: 400px; margin-top: -555px">Surabaya,
@@ -1220,7 +1240,7 @@
                 <div class="keterangan" style="margin-left: -465px;font-size: 12px; margin-top: 5px">Keterangan :
                 </div>
                 <div style="font-size: 12px;margin-left: -370px; margin-top: 5px">Baik = 85 - 95, Cukup = 75 -84 </div>
-                <div class="qrcode" style="margin-left: -430pxpx; margin-top: 31px;">
+                <div class="qrcode" style="margin-left: -430pxpx; margin-top: 37px;">
                     <img src="{!! 'data:image/png;base64,' . $qrcode !!}" alt="" style="max-width: 100px;">
                 </div>
                 <div style="margin-left: 400px; margin-top: -555px">Surabaya,

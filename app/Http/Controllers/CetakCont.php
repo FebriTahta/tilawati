@@ -134,11 +134,14 @@ class CetakCont extends Controller
 
     public function cetak_syahadah_depan_belakang_b5($pelatihan_id,Request $request)
     {
+        $data = Peserta::find($pelatihan_id);
         $id         = $request->pelatihan_id;
-        $pelatihan  = Pelatihan::find($id);
+        // $pelatihan  = Pelatihan::find($id);
+        $pelatihan  = $data->pelatihan;
         $cabang     = $pelatihan->cabang->kabupaten->nama;
         $kabupaten  = substr($cabang, 5);
-        $peserta    = Peserta::where('pelatihan_id', $id)->where('bersyahadah','1')->get();
+        // $peserta    = Peserta::where('pelatihan_id', $id)->where('bersyahadah','1')->get();
+        $peserta = Peserta::where('id', $pelatihan_id)->get();
 
         if ($pelatihan->cabang->name == 'Cahaya Amanah' || $pelatihan->cabang->name == 'Tilawati Pusat' || substr($pelatihan->cabang->name,0,3) == 'RPQ') {
             # code...
