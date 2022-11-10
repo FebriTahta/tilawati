@@ -49,7 +49,7 @@ class WebinarCont extends Controller
                         })
                         ->addColumn('linkpendaftaran', function ($data) {
                             return '<a href="#" data-id="'.$data->id.'" data-toggle="modal" data-target=".bs-example-modal-diklat-link" 
-                            data-slug="https://registrasi.tilawatipusat.com/'.$data->slug.'" >Link Pendaftaran!</a>';
+                            data-slug="https://registrasi.nurulfalah.org/'.$data->slug.'" >Link Pendaftaran!</a>';
                         })
                         ->addColumn('tanggal', function($data){
                             if ($data->sampai_tanggal !== null) {
@@ -126,7 +126,7 @@ class WebinarCont extends Controller
                         })
                         ->addColumn('linkpendaftaran', function ($data) {
                             return '<a href="#" data-id="'.$data->id.'" data-toggle="modal" data-target=".bs-example-modal-diklat-link" 
-                            data-slug="https://registrasi.tilawatipusat.com/'.$data->slug.'" >Pendaftaran!</a>';
+                            data-slug="https://registrasi.nurulfalah.org/'.$data->slug.'" >Pendaftaran!</a>';
                         })
                         ->addColumn('action', function($data){
                             $actionBtn = ' <a href="#" data-toggle="modal" data-target=".bs-example-modal-diklat-hapus" data-id="'.$data->id.'" class="btn btn-sm btn-outline btn-danger"><i class="fa fa-trash"></i></a> ';
@@ -235,7 +235,7 @@ class WebinarCont extends Controller
                         })
                         ->addColumn('linkpendaftaran', function ($data) {
                             return '<a href="#" data-id="'.$data->id.'" data-toggle="modal" data-target=".bs-example-modal-webinar-link" 
-                            data-slug="https://registrasi.tilawatipusat.com/'.$data->slug.'" >Link Pendaftaran!</a>';
+                            data-slug="https://registrasi.nurulfalah.org/'.$data->slug.'" >Link Pendaftaran!</a>';
                         })
                 ->rawColumns(['cabang','tanggal','program','action','peserta','groupwa','flyer','linkpendaftaran'])
                 ->make(true);
@@ -281,7 +281,7 @@ class WebinarCont extends Controller
                         })
                         ->addColumn('linkpendaftaran', function ($data) {
                             return '<a href="#" data-id="'.$data->id.'" data-toggle="modal" data-target=".bs-example-modal-webinar-link" 
-                            data-slug="https://registrasi.tilawatipusat.com/'.$data->slug.'" >Link Pendaftaran!</a>';
+                            data-slug="https://registrasi.nurulfalah.org/'.$data->slug.'" >Link Pendaftaran!</a>';
                         })
                         ->addColumn('tanggal', function($data){
                             if ($data->sampai_tanggal !== null) {
