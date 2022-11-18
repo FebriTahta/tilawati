@@ -1469,7 +1469,7 @@ class PesertaCont extends Controller
                 })
                 ->addColumn('total_guru', function($data) use($request) {
                     $dataz = [];
-                    $pelatihan_guru     = Pelatihan::where('cabang_id', $data->id)->where('jenis','diklat')->where('keterangan', 'guru')->whereBetween('tanggal', array($request->dari, $request->sampai))
+                    $pelatihan_guru     = Pelatihan::where('cabang_id', $data->id)->whereBetween('tanggal', array($request->dari, $request->sampai))
                                         ->whereHas('program',function($q){
                                             $q->where('jenisprogram','guru');
                                         })->get();
