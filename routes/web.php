@@ -373,6 +373,9 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     Route::post('/ubah-alamat-modul',[PesertaCont::class,'ubah_alamat_modul'])->name('diklat.peserta_alamatx');
     Route::get('/remove-kecamatan-kelurahan/{id}',[PesertaCont::class,'remove_kecamatan_kelurahan']);
 
+// memecah peserta diklat
+    Route::post('/memecah-peserta-diklat',[DiklatCont::class,'pindahkan_peserta']);
+
 
 //  Percabangan Laporan Peserta
     Route::get('/halaman-data-peserta-berdasarkan-cabang-dan-program/{cabang_id}/{program_id}',[PesertaCont::class, 'halaman_peserta_cabang_program']);

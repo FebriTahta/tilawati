@@ -2755,25 +2755,17 @@ class PesertaCont extends Controller
                     $q->whereBetween('tanggal', array($dari, $sampai));
                 })->distinct()->get();
                 return DataTables::of($data)
+                
                 ->addColumn('total', function ($data) use ($dari, $sampai)  {
-                    $pelatihan = Pelatihan::whereHas('program', function($q) use ($data) {
+                    $pelatihan = Pelatihan::whereBetween('tanggal', array($dari, $sampai))->whereHas('program', function($q) use ($data) {
                         $q->where('name', $data->name);
-                    })
-                    ->whereYear('tanggal','2022')
-                    ->whereMonth('tanggal','>=','01')
-                    ->whereMonth('tanggal','<=','11')
-                    ->whereDate('tanggal','>=','01')
-                    ->whereDate('tanggal','<=', '30')
-                    ->count();
+                    })->count();
 
-                    return $pelatihan.' - '.$dari. '-'. $sampai;
+                    return $pelatihan;
                 })
                 ->addColumn('totalpeserta', function ($data) use ($dari, $sampai){
                     $total = [];
-                    $pelatihan = Pelatihan::where('program_id',$data->id)
-                    ->where('tanggal','>=', $dari)
-                    ->where('tanggal','<=', $sampai)
-                    ->get();
+                    $pelatihan = Pelatihan::where('program_id',$data->id)->whereBetween('tanggal', array($dari, $sampai))->get();
                     foreach ($pelatihan as $key => $value) {
                         # code...
                         $total[] = $value->peserta->count();

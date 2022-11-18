@@ -102,49 +102,56 @@
                     $salah3 = 0; ?>
                     @if ($peserta_salah->where('tmptlahir', null)->where('tmptlahir2', null)->count() > 0)
                         <div class="col-lg-12 alert alert-danger">
-                            <p>{{ $salah1 = $peserta_salah->where('tmptlahir', null)->where('tmptlahir2', null)->count() }} Peserta dengan kesalahan
+                            <p>{{ $salah1 = $peserta_salah->where('tmptlahir', null)->where('tmptlahir2', null)->count() }}
+                                Peserta dengan kesalahan
                                 penulisan
                                 tempat lahir</p>
-                                <?php $salah_tempat_lahir = App\Models\Peserta::where('tmptlahir', null)->where('tmptlahir2', null)->where('pelatihan_id', $diklat->id)->get(); ?>
-                                <ul>
-                                    @foreach ($salah_tempat_lahir as $item)
-                                        <li>{{ $item->id.' - '.$item->name}}</li>
-                                    @endforeach
-                                </ul>
+                            <?php $salah_tempat_lahir = App\Models\Peserta::where('tmptlahir', null)
+                                ->where('tmptlahir2', null)
+                                ->where('pelatihan_id', $diklat->id)
+                                ->get(); ?>
+                            <ul>
+                                @foreach ($salah_tempat_lahir as $item)
+                                    <li>{{ $item->id . ' - ' . $item->name }}</li>
+                                @endforeach
+                            </ul>
                         </div>
                     @endif
                     @if ($peserta_salah->where('tgllahir', '-')->count() > 0 || $peserta_salah->where('tgllahir', null)->count() > 0)
                         <div class="col-lg-12 alert alert-danger">
                             <p>{{ $salah2 = $peserta_salah->where('tgllahir', null)->count() + $peserta_salah->where('tgllahir', '-')->count() }}
                                 Peserta dengan kesalahan penulisan tanggal lahir</p>
-                                <?php $salah_tanggal = App\Models\Peserta::where('tgllahir', null)->where('pelatihan_id', $diklat->id)->get(); ?>
-                                <ul>
-                                    @foreach ($salah_tanggal as $item)
-                                        <li>{{ $item->id.' - '.$item->name}} {{$item->tgllahir}}</li>
-                                    @endforeach
-                                </ul>
+                            <?php $salah_tanggal = App\Models\Peserta::where('tgllahir', null)
+                                ->where('pelatihan_id', $diklat->id)
+                                ->get(); ?>
+                            <ul>
+                                @foreach ($salah_tanggal as $item)
+                                    <li>{{ $item->id . ' - ' . $item->name }} {{ $item->tgllahir }}</li>
+                                @endforeach
+                            </ul>
                         </div>
                     @endif
                     @if ($peserta_salah->where('kabupaten_id', null)->count() > 0)
-                    {{-- <div class="col-lg-12 alert alert-danger"> --}}
-                        <?php $salah_kota = App\Models\Peserta::where('kabupaten_id', null)->where('pelatihan_id', $diklat->id)->get(); ?>
-                        
+                        {{-- <div class="col-lg-12 alert alert-danger"> --}}
+                        <?php $salah_kota = App\Models\Peserta::where('kabupaten_id', null)
+                            ->where('pelatihan_id', $diklat->id)
+                            ->get(); ?>
+
                         @foreach ($salah_kota as $salah_kabeh)
-                        <div class="col-lg-12 alert alert-danger">
-                            @if ($salah_kabeh->kota2 == null)
-                            <p>{{ $salah3 = $peserta_salah->where('kabupaten_id', null)->count() }} Peserta dengan
-                                kesalahan
-                                penulisan asal kabupaten / kota 
-                            </p>
-                                <ul>
-                                    @foreach ($salah_kota as $item)
-                                        <li>{{ $item->id.' - '.$item->name}} {{$item->kabupaten}}</li>
-                                    @endforeach
-                                </ul>
-                            @endif
-                        </div>
+                            <div class="col-lg-12 alert alert-danger">
+                                @if ($salah_kabeh->kota2 == null)
+                                    <p>{{ $salah3 = $peserta_salah->where('kabupaten_id', null)->count() }} Peserta dengan
+                                        kesalahan
+                                        penulisan asal kabupaten / kota
+                                    </p>
+                                    <ul>
+                                        @foreach ($salah_kota as $item)
+                                            <li>{{ $item->id . ' - ' . $item->name }} {{ $item->kabupaten }}</li>
+                                        @endforeach
+                                    </ul>
+                                @endif
+                            </div>
                         @endforeach
-                        
                     @endif
                 </div>
                 <div class="card-body">
@@ -162,8 +169,7 @@
                         <div class="row">
                             <div class="col-md-8 col-md-offset-1">
                                 <div class="alert alert-danger alert-dismissible">
-                                    <button type="button" class="close" data-dismiss="alert"
-                                        aria-hidden="true">×</button>
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                                     <h4><i class="icon fa fa-ban"></i> Error!</h4>
                                     @foreach ($errors->all() as $error)
                                         {{ $error }} <br>
@@ -173,13 +179,12 @@
                         </div>
                     @endif
                     {{-- <p class="card-title-desc">Ter-update berdasarkan Tahun 2021 </br></p> --}}
-                    <form method="POST" class="mb-1 mr-1" action="{{ route('download.template') }}"
-                        class="sign-in-form">
+                    <form method="POST" class="mb-1 mr-1" action="{{ route('download.template') }}" class="sign-in-form">
                         @csrf
                         <input type="hidden" name="jenis" value="{{ $diklat->program->name }}">
 
-                        <button type="submit" class="btn btn-sm btn-outline-primary" style="width: 200px"
-                            class="btn" value="Download Template"> <i class="fas fa-download"></i> Unduh
+                        <button type="submit" class="btn btn-sm btn-outline-primary" style="width: 200px" class="btn"
+                            value="Download Template"> <i class="fas fa-download"></i> Unduh
                             Template</button>
                     </form>
                     {{-- <a href="/export-template-diklat/{{$diklat->program->name}}" class="btn btn-sm btn-outline-primary" style="width: 200px" class="btn" value="Download Template" > <i class="fas fa-download"></i> Unduh Template</a> --}}
@@ -202,12 +207,14 @@
                         {{-- <a href="/export-peserta-diklat/{{ $diklat->id }}"
                             class="text-right btn btn-sm mr-1 mb-1 btn-outline-success"><i class="fa fa-download"></i>
                             download data peserta</a> --}}
-                            @if (auth()->user()->role == 'pusat' || auth()->user()->cabang->name == 'Cahaya Amanah' || auth()->user()->role == 'cabang')
+                        @if (auth()->user()->role == 'pusat' ||
+                            auth()->user()->cabang->name == 'Cahaya Amanah' ||
+                            auth()->user()->role == 'cabang')
                             <a href="/export-peserta-diklat-full/{{ $diklat->id }}"
                                 class="text-right btn btn-sm mr-1 mb-1 btn-outline-primary"><i class="fa fa-download"></i>
-                                download data peserta full</a> 
-                            @endif
-                        
+                                download data peserta full</a>
+                        @endif
+
 
                         {{-- <a href="/reset-status-qr/{{ $diklat->id }}"
                             class="text-right btn btn-sm mr-1 mb-1 btn-outline-warning"><i class="fa fa-cross"></i>
@@ -216,6 +223,10 @@
                     <a href="/export-peserta-diklat-untuk-import/{{ $diklat->id }}"
                         class="text-right btn btn-sm mr-1 mb-1 btn-outline-success"><i class="fa fa-download"></i>
                         download data peserta (ready import)</a>
+
+                    <a href="#" data-toggle="modal" data-target="#modalpecah" data-id="{{$diklat->id}}"
+                        class="text-right btn btn-sm mr-1 mb-1 btn btn-sm btn-outline-danger"><i class="fa fa-cut"></i>
+                        Pecah Data</a>
 
                     <button class="text-right btn btn-sm mr-1 mb-1 btn-outline-danger" id="hapus_all"><i
                             class="fa fa-trash"></i> hapus data </button>
@@ -232,7 +243,9 @@
                                 <tr>
                                     <th>id</th>
                                     <th style="5%"><input type="checkbox" id="master"></th>
-                                    @if ($diklat->program->name == "Diklat Munaqisy Cabang" || $diklat->program->name == "Training Of Trainer Guru Al-Qur'an" || $diklat->program->name == "TRAINING OF TRAINER GURU AL-QUR'AN METODE TILAWATI PUSAT")
+                                    @if ($diklat->program->name == 'Diklat Munaqisy Cabang' ||
+                                        $diklat->program->name == "Training Of Trainer Guru Al-Qur'an" ||
+                                        $diklat->program->name == "TRAINING OF TRAINER GURU AL-QUR'AN METODE TILAWATI PUSAT")
                                         <th>Asal Cabang</th>
                                     @endif
                                     <th>Peserta</th>
@@ -257,7 +270,9 @@
                                 <tr>
                                     <th>id</th>
                                     <th style="5%">Pilih</th>
-                                    @if ($diklat->program->name == "Diklat Munaqisy Cabang" || $diklat->program->name == "Training Of Trainer Guru Al-Qur'an" || $diklat->program->name == "TRAINING OF TRAINER GURU AL-QUR'AN METODE TILAWATI PUSAT")
+                                    @if ($diklat->program->name == 'Diklat Munaqisy Cabang' ||
+                                        $diklat->program->name == "Training Of Trainer Guru Al-Qur'an" ||
+                                        $diklat->program->name == "TRAINING OF TRAINER GURU AL-QUR'AN METODE TILAWATI PUSAT")
                                         <th>Asal Cabang</th>
                                     @endif
                                     <th>Peserta</th>
@@ -286,8 +301,44 @@
     </div>
     <!-- end row -->
 
+    <div class="modal fade bs-example-modal-kriteria-hapus" id="hapusData" tabindex="-1" role="dialog"
+        aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-md">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="col-xl-12">
+                        <div class="card m-b-30">
+                            <div class="card-body">
+                                <div class="container-fluid">
+                                    <form id="hapusPeserta" method="POST" enctype="multipart/form-data">@csrf
+                                        <div class="form-group text-center">
+                                            <h5>Anda yakin akan menghapus Kriteria tersebut ?</h5>
+                                            <input type="hidden" class="form-control text-capitalize" id="id"
+                                                name="id" required>
+                                        </div>
+                                        <div class="row" style="text-align: center">
+                                            <div class="form-group col-6 col-xl-6">
+                                                <input type="submit" name="hapus" id="btnhapus"
+                                                    class="btn btn-danger" value="Ya, Hapus!" />
+                                            </div>
+                                            <div class="form-group col-6 col-xl-6">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                                    No, Cancel!
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div><!-- container fluid -->
+                            </div>
+                        </div>
+                    </div> <!-- end col -->
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
     <div class="col-sm-6 col-md-3 m-t-30">
-        <div class="modal fade bs-example-modal-lembaga" id="nilaiPeserta" tabindex="-1" role="dialog"
+        <div class="modal fade bs-example-modal-lembaga" id="modalpecah" tabindex="-1" role="dialog"
             aria-labelledby="mySmallModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-md">
                 <div class="modal-content">
@@ -298,77 +349,30 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form id="menilai" method="POST" enctype="multipart/form-data">@csrf
+                        <form id="formpecah" enctype="multipart/form-data">@csrf
                             <div class="form-group">
-                                <input type="hidden" id="id" name="peserta_id">
+                                <input type="text" id="id" name="id" class="form-control" readonly>
                             </div>
-                            <div class="row">
-                                <div class="form-group col-12">
-                                    <code>Pastikan kategori penilaian pada tiap program sudah fix sebelum anda melakukan
-                                        penilaian</code>
-                                    <hr>
-                                </div>
-                                @if ($diklat->program->penilaian->count() == 0)
-                                    <div class="form-group col-12 text-center">
-                                        <p class="text-danger text-uppercase">Belum ada kategori penilaian pada program <a
-                                                href="/diklat-program">{{ $diklat->program->name }}</a></p>
-                                    </div>
-                                @else
-                                    @foreach ($diklat->program->penilaian as $item)
-                                        @if ($item->kategori !== 'skill')
-                                            <div class="form-group col-xl-6 col-6">
-                                                <label for="" class="text-capitalize">{{ $item->name }}
-                                                    @if ($item->max !== null || $item->min !== null)
-                                                        <br><i class="text-danger">Min:{{ $item->min }}</i> & <i
-                                                            class="text-danger">Max:{{ $item->max }}</i>
-                                                    @endif
-                                                </label>
-                                                <input type="hidden" name="kategori[]" value="{{ $item->kategori }}">
-                                                <input type="hidden" name="penilaian_id[]" value="{{ $item->id }}">
-                                                <input type="number" id="nominal[]" name="nominal[]"
-                                                    max="{{ $item->max }}" class="form-control">
-                                            </div>
-                                        @else
-                                            <div class="form-group col-xl-6 col-6">
-                                                <label for="" class="text-capitalize">{{ $item->name }}
-                                                    @if ($item->max !== null || $item->min !== null)
-                                                        <br><i class="text-danger">Min:{{ $item->min }}</i> & <i
-                                                            class="text-danger">Max:{{ $item->max }}</i>
-                                                    @else
-                                                        <br><br>
-                                                    @endif
-                                                </label>
-                                                <input type="hidden" name="kategori[]" value="{{ $item->kategori }}">
-                                                <input type="hidden" name="penilaian_id[]" value="{{ $item->id }}">
-                                                <input type="number" id="nominal[]" name="nominal[]"
-                                                    max="{{ $item->max }}" class="form-control">
-                                            </div>
-                                        @endif
+                            <div class="form-group">
+                                <select name="persentase" id="persentase" class="form-control">
+                                    <option value="50">50%</option>
+                                    <option value="100">semua</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <select name="tujuan_id" id="tujuan_id" class="form-control">
+                                    @php
+                                        $latih = App\Models\Pelatihan::findOrFail($diklat->id);
+                                        $cabss = App\Models\Cabang::where('id', $latih->cabang_id)->first();
+                                    @endphp
+                                    @foreach ($cabss->pelatihan as $item)
+                                        <option value="{{$item->id}}">{{$item->id}} | {{$item->program->name}} | {{$item->tanggal}}</option>
                                     @endforeach
-                                @endif
+                                </select>
                             </div>
-                            @if($diklat->program->name !== 'Diklat Munaqisy Cabang')
-                                <div class="form-group">
-                                    {{-- <label for="">Sebagai</label>
-                                                    <select name="kriteria_id" onchange="pilihKriteria()" id="kriteria_id" class="form-control">
-                                                        @foreach ($diklat->program->kriteria as $item)
-                                                            <option value="{{ $item->id }}">{{ $item->name }}</option>
-                                                        @endforeach
-                                                    </select> --}}
-
-                                    {{-- <input type="text" class="form-control" id="kriterias" name="kriteria"> --}}
-                                    
-                                    <label for="program">JILID BAGI PESERTA YANG BELUM BERSYAHADAH</label>
-                                    <input type="number" name="jilid" class="form-control">
-                                    
-                                </div>
-                            @endif
-
-                            @if ($diklat->program->penilaian->count() !== 0)
-                                <div class="form-group text-right">
-                                    <input type="submit" class="btn btn-sm btn-info" value="Submit Nilai" id="btnsubmit">
-                                </div>
-                            @endif
+                            <div class="form-group">
+                                <input type="submit" id="btnpecah" class="btn btn-danger btn-sm" value="memecah">
+                            </div>
                         </form>
                     </div>
                 </div><!-- /.modal-content -->
@@ -389,16 +393,17 @@
                                         <form id="hapusPeserta" method="POST" enctype="multipart/form-data">@csrf
                                             <div class="form-group text-center">
                                                 <h5>Anda yakin akan menghapus Kriteria tersebut ?</h5>
-                                                <input type="hidden" class="form-control text-capitalize" id="id" name="id"
-                                                    required>
+                                                <input type="hidden" class="form-control text-capitalize" id="id"
+                                                    name="id" required>
                                             </div>
                                             <div class="row" style="text-align: center">
                                                 <div class="form-group col-6 col-xl-6">
-                                                    <input type="submit" name="hapus" id="btnhapus" class="btn btn-danger"
-                                                        value="Ya, Hapus!" />
+                                                    <input type="submit" name="hapus" id="btnhapus"
+                                                        class="btn btn-danger" value="Ya, Hapus!" />
                                                 </div>
                                                 <div class="form-group col-6 col-xl-6">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-dismiss="modal">
                                                         No, Cancel!
                                                     </button>
                                                 </div>
@@ -415,8 +420,8 @@
     </div>
 
     <div class="col-sm-6 col-md-3 m-t-30">
-        <div class="modal fade" id="modal_cetak_surat" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
-            aria-hidden="true">
+        <div class="modal fade" id="modal_cetak_surat" tabindex="-1" role="dialog"
+            aria-labelledby="mySmallModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-md">
                 <div class="modal-content">
                     <div class="modal-body">
@@ -429,8 +434,8 @@
                                             enctype="multipart/form-data">@csrf
                                             <div class="form-group text-center">
                                                 <h5>CETAK SURAT PENGIRIMAN MODUL ?</h5>
-                                                <input type="hidden" class="form-control text-capitalize" id="id" name="id"
-                                                    required>
+                                                <input type="hidden" class="form-control text-capitalize" id="id"
+                                                    name="id" required>
                                             </div>
                                             <div class="row" style="text-align: center">
                                                 <div class="form-group col-6 col-xl-6">
@@ -438,7 +443,8 @@
                                                         class="btn btn-outline-primary" value="Ya, Cetak!" />
                                                 </div>
                                                 <div class="form-group col-6 col-xl-6">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-dismiss="modal">
                                                         No, Cancel!
                                                     </button>
                                                 </div>
@@ -455,8 +461,8 @@
     </div>
 
     <div class="col-sm-6 col-md-3 m-t-30">
-        <div class="modal fade" id="modal_cetak_surat2" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
-            aria-hidden="true">
+        <div class="modal fade" id="modal_cetak_surat2" tabindex="-1" role="dialog"
+            aria-labelledby="mySmallModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-md">
                 <div class="modal-content">
                     <div class="modal-body">
@@ -469,8 +475,8 @@
                                             enctype="multipart/form-data">@csrf
                                             <div class="form-group text-center">
                                                 <h5>CETAK SURAT PENGIRIMAN MODUL ?</h5>
-                                                <input type="hidden" class="form-control text-capitalize" id="idcetaksurat"
-                                                    name="idcetaksurats" required>
+                                                <input type="hidden" class="form-control text-capitalize"
+                                                    id="idcetaksurat" name="idcetaksurats" required>
                                             </div>
                                             <div class="row" style="text-align: center">
                                                 <div class="form-group col-6 col-xl-6">
@@ -478,7 +484,8 @@
                                                         class="btn btn-outline-primary" value="Ya, Cetak!" />
                                                 </div>
                                                 <div class="form-group col-6 col-xl-6">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-dismiss="modal">
                                                         No, Cancel!
                                                     </button>
                                                 </div>
@@ -504,12 +511,12 @@
                             <div class="card m-b-30">
                                 <div class="card-body">
                                     <div class="container-fluid">
-                                        <form id="" action="/pelatihan-cetak-depan-print-beberapa" method="POST"
-                                            enctype="multipart/form-data">@csrf
+                                        <form id="" action="/pelatihan-cetak-depan-print-beberapa"
+                                            method="POST" enctype="multipart/form-data">@csrf
                                             <div class="form-group text-center">
                                                 <h5>CETAK SYAHADAH DEPAN ?</h5>
-                                                <input type="text" class="form-control text-capitalize" id="idcetakdepan"
-                                                    name="id" required>
+                                                <input type="text" class="form-control text-capitalize"
+                                                    id="idcetakdepan" name="id" required>
                                             </div>
                                             <div class="row" style="text-align: center">
                                                 <div class="form-group col-6 col-xl-6">
@@ -517,7 +524,8 @@
                                                         value="Ya, Cetak!" />
                                                 </div>
                                                 <div class="form-group col-6 col-xl-6">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-dismiss="modal">
                                                         No, Cancel!
                                                     </button>
                                                 </div>
@@ -557,7 +565,8 @@
                                                         value="Ya, Cetak!" />
                                                 </div>
                                                 <div class="form-group col-6 col-xl-6">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-dismiss="modal">
                                                         No, Cancel!
                                                     </button>
                                                 </div>
@@ -587,8 +596,8 @@
                                             enctype="multipart/form-data">@csrf
                                             <div class="form-group text-center">
                                                 <h5>HAPUS DATA ?</h5>
-                                                <input type="text" class="form-control text-capitalize" id="idhapusdata"
-                                                    name="id" required>
+                                                <input type="text" class="form-control text-capitalize"
+                                                    id="idhapusdata" name="id" required>
                                             </div>
                                             <div class="row" style="text-align: center">
                                                 <div class="form-group col-6 col-xl-6">
@@ -596,7 +605,8 @@
                                                         value="Ya, Hapus!" />
                                                 </div>
                                                 <div class="form-group col-6 col-xl-6">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-dismiss="modal">
                                                         No, Cancel!
                                                     </button>
                                                 </div>
@@ -622,8 +632,8 @@
                             <div class="card m-b-30">
                                 <div class="card-body">
                                     <div class="container-fluid">
-                                        <form id="" action="/pelatihan-cetak-belakang-print-beberapa" method="POST"
-                                            enctype="multipart/form-data">@csrf
+                                        <form id="" action="/pelatihan-cetak-belakang-print-beberapa"
+                                            method="POST" enctype="multipart/form-data">@csrf
                                             <div class="form-group text-center">
                                                 <h5>CETAK SYAHADAH BELAKANG ?</h5>
                                                 <input type="text" class="form-control text-capitalize"
@@ -635,7 +645,8 @@
                                                         value="Ya, Unduh!" />
                                                 </div>
                                                 <div class="form-group col-6 col-xl-6">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-dismiss="modal">
                                                         No, Cancel!
                                                     </button>
                                                 </div>
@@ -664,18 +675,18 @@
                                         <form id="ubahalamatmodul" method="POST" enctype="multipart/form-data">@csrf
                                             <div class="form-group text-center">
                                                 <h5>Ubah Alamat Pengiriman Modul</h5>
-                                                <input type="hidden" class="form-control text-capitalize" id="id" name="id"
-                                                    required>
-                                                <textarea name="alamatx" class="form-control" id="alamatx" cols="30"
-                                                    rows="3"></textarea>
+                                                <input type="hidden" class="form-control text-capitalize" id="id"
+                                                    name="id" required>
+                                                <textarea name="alamatx" class="form-control" id="alamatx" cols="30" rows="3"></textarea>
                                             </div>
                                             <div class="row" style="text-align: center">
                                                 <div class="form-group col-6 col-xl-6">
-                                                    <input type="submit" name="ubah" id="btnubah" class="btn btn-danger"
-                                                        value="Ya, Ubah!" />
+                                                    <input type="submit" name="ubah" id="btnubah"
+                                                        class="btn btn-danger" value="Ya, Ubah!" />
                                                 </div>
                                                 <div class="form-group col-6 col-xl-6">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-dismiss="modal">
                                                         No, Cancel!
                                                     </button>
                                                 </div>
@@ -789,8 +800,8 @@
     </div>
 
     <div class="col-sm-6 col-md-3 m-t-30">
-        <div class="modal fade bs-example-modal-peserta" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
-            aria-hidden="true">
+        <div class="modal fade bs-example-modal-peserta" tabindex="-1" role="dialog"
+            aria-labelledby="mySmallModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -847,7 +858,8 @@
                             <div class="card m-b-30">
                                 <div class="card-body">
                                     <div class="container-fluid text-center">
-                                        <img src="" alt="qr-code" id="qr-code" width="150px" height="150px">
+                                        <img src="" alt="qr-code" id="qr-code" width="150px"
+                                            height="150px">
                                         <div class="text-center text-uppercase" style="margin-top: 10px">
                                             <p class="text-info" id="nama_peserta"></p>
                                         </div>
@@ -879,7 +891,7 @@
                                     <div class="card-body">
                                         <div class="container-fluid text-center">
                                             <input type="text" id="id" name="id" required>
-                                            <input type="text" name="pelatihan_id" value="{{$pelatihan_id}}">
+                                            <input type="text" name="pelatihan_id" value="{{ $pelatihan_id }}">
                                             <div class="text-center text-uppercase" style="margin-top: 10px">
                                                 <p class="text-danger">UBAH QR / GENERATE QR BARu</p>
                                             </div>
@@ -994,6 +1006,14 @@
             var modal = $(this)
             $('#nama_peserta').html(nama_peserta);
             document.getElementById("qr-code").src = id;
+        })
+
+        $('#modalpecah').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget)
+            var id = button.data('id')
+            var modal = $(this)
+            $('.modal-body #id').val(id);
+            console.log(id);
         })
 
         $('#importpeserta').submit(function(e) {
@@ -1244,6 +1264,45 @@
                         $('#tambah3').val('Tambah!');
                         $('#tambah3').attr('disabled', false);
                         $('#addkota3').modal('hide');
+                        // swal("Done!", data.message, "success");
+                    } else {
+                        $("#tambahkota3")[0].reset();
+                        swal("Error!", data.message, "error");
+                        $('#tambah3').val('Tambah!');
+                        $('#tambah3').attr('disabled', false);
+                        $('#addkota3').modal('hide');
+                    }
+                },
+                error: function(data) {
+                    console.log(data);
+                }
+            });
+        });
+
+        $('#formpecah').submit(function(e) {
+            e.preventDefault();
+            var formData = new FormData(this);
+            $.ajax({
+                type: 'POST',
+                url: "/memecah-peserta-diklat",
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                beforeSend: function() {
+                    $('#btnpecah').attr('disabled', 'disabled');
+                    $('#btnpecah').val('Proses Memecah Peserta');
+                },
+                success: function(data) {
+                    if (data.success) {
+                        
+                        toastr.success(data.success);
+                        var oTable = $('#datatable-buttons').dataTable();
+                        oTable.fnDraw(false);
+                        $('#btnpecah').val('memecah!');
+                        $('#btnpecah').attr('disabled', false);
+                        $('#modalpecah').modal('hide');
+                        console.log(data);
                         // swal("Done!", data.message, "success");
                     } else {
                         $("#tambahkota3")[0].reset();
@@ -1523,7 +1582,9 @@
 
                     ]
                 });
-            }else if (jenis_program == "Diklat Munaqisy Cabang" || jenis_program == "TRAINING OF TRAINER GURU AL-QUR'AN" ||jenis_program == "Training Of Trainer Guru Al-Qur'an" || jenis_program == "TRAINING OF TRAINER GURU AL-QUR'AN METODE TILAWATI PUSAT") {
+            } else if (jenis_program == "Diklat Munaqisy Cabang" || jenis_program ==
+                "TRAINING OF TRAINER GURU AL-QUR'AN" || jenis_program == "Training Of Trainer Guru Al-Qur'an" ||
+                jenis_program == "TRAINING OF TRAINER GURU AL-QUR'AN METODE TILAWATI PUSAT") {
                 $('#datatable-buttons').DataTable({
                     //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
                     destroy: true,
@@ -1586,8 +1647,7 @@
 
                     ]
                 });
-            }
-            else {
+            } else {
                 $('#datatable-buttons').DataTable({
                     //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
                     destroy: true,

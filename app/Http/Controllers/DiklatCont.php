@@ -945,5 +945,72 @@ class DiklatCont extends Controller
         $filepath = public_path('images/').$request->slug2.'.png';
         return Response::download($filepath);
     }
+
+
+    public function pindahkan_peserta(Request $request)
+    {
+        if ($request->ajax()) {
+            # code...
+            
+            $pelatihan  = Pelatihan::where('id', $request->id)->first();
+            $tujuan     = $request->tujuan_id;
+            $persentase = $request->persentase;
+
+            if ($persentase == '50') {
+                # code...
+                $memecah    = round($pelatihan->peserta->count() / 2);
+                $peserta_dipecah = [];
+                foreach ($pelatihan->peserta as $key => $value) {
+                    # code...
+                    if ($key > $memecah || $key == $memecah) {
+                        # code...
+                        $peserta_dipecah[] = $value;
+                        
+                        Peserta::where('id', $value->id)->update(
+                            [
+                                'pelatihan_id'=>$tujuan
+                            ]
+                        );
+                    }
+                }
+
+                return response()->json([
+
+                    'status'  => 200,
+                    'pecahan' => implode(',',$peserta_dipecah),
+                    'success' => 'sukses memecah : '. $memecah,
+                    'dari' => $pelatihan->peserta->count(),
+                    'tujuan'  => $tujuan
+                ]);
+
+            }else {
+                # code...
+                $peserta_dipecah = [];
+                foreach ($pelatihan->peserta as $key => $value) {
+                    # code...
+                    $peserta_dipecah[] = $value;
+                        
+                    Peserta::where('id', $value->id)->update(
+                        [
+                            'pelatihan_id'=>$tujuan
+                        ]
+                    );
+                }
+
+                return response()->json([
+
+                    'status'  => 200,
+                    'pecahan' => implode(',',$peserta_dipecah),
+                    'success' => 'sukses memecah : '. $memecah,
+                    'dari' => $pelatihan->peserta->count(),
+                    'tujuan'  => $tujuan
+                ]);
+
+            }
+            
+            
+        }
+        
+    }
     
 }
