@@ -1469,7 +1469,10 @@ class PesertaCont extends Controller
                 })
                 ->addColumn('total_guru', function($data) use($request) {
                     $dataz = [];
-                    $pelatihan_guru     = Pelatihan::where('cabang_id', $data->id)->where('jenis','diklat')->where('keterangan', 'guru')->whereBetween('tanggal', array($request->dari, $request->sampai))->get();
+                    $pelatihan_guru     = Pelatihan::where('cabang_id', $data->id)->where('jenis','diklat')->where('keterangan', 'guru')->whereBetween('tanggal', array($request->dari, $request->sampai))
+                                        ->whereHas('program',function($q){
+                                            $q->where('jenisprogram','guru');
+                                        })->get();
 
                     foreach ($pelatihan_guru as $key => $value) {
                         # code...
@@ -1482,7 +1485,9 @@ class PesertaCont extends Controller
                 ->addColumn('total_santri', function($data) use($request) {
                    
                     $datax = [];
-                    $pelatihan_santri   = Pelatihan::where('cabang_id', $data->id)->where('jenis','diklat')->where('keterangan', 'santri')->whereBetween('tanggal', array($request->dari, $request->sampai))->get();
+                    $pelatihan_santri   = Pelatihan::where('cabang_id', $data->id)->whereBetween('tanggal', array($request->dari, $request->sampai))->whereHas('program',function($q){
+                        $q->where('jenisprogram','santri');
+                    })->get();
 
                     foreach ($pelatihan_santri as $key => $value) {
                         # code...
