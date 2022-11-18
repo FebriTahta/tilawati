@@ -2769,7 +2769,13 @@ class PesertaCont extends Controller
                         $total[] = $value->peserta->count();
                     }
 
-                    return array_sum($total).' - '.$data->jenisprogram;
+                    if ($data->jenisprogram == null) {
+                        # code...
+                        return array_sum($total).' - peserta';
+                    }else {
+                        # code...
+                        return array_sum($total).' - '.$data->jenisprogram;
+                    }
                 })
                 ->rawColumns(['total','totalpeserta'])
                 ->make(true);
@@ -2779,10 +2785,24 @@ class PesertaCont extends Controller
                 $data = Program::whereHas('pelatihan')->distinct()->get();
                 return DataTables::of($data)
                 ->addColumn('total', function ($data) {
-                    return $data->pelatihan->count().' - Diklat';
+                    $pelatihan = Pelatihan::where('program_id',$data->id)->count();
+                    return $pelatihan.' - diklat';
                 })
                 ->addColumn('totalpeserta', function ($data){
-                    return $data->peserta->count().' - '.$data->jenisprogram;
+                    $total = [];
+                    $pelatihan = Pelatihan::where('program_id',$data->id)->get();
+                    foreach ($pelatihan as $key => $value) {
+                        # code...
+                        $total[] = $value->peserta->count();
+                    }
+
+                    if ($data->jenisprogram == null) {
+                        # code...
+                        return array_sum($total).' - peserta';
+                    }else {
+                        # code...
+                        return array_sum($total).' - '.$data->jenisprogram;
+                    }
                 })
                 ->rawColumns(['total','totalpeserta'])
                 ->make(true);
