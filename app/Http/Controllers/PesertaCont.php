@@ -2758,8 +2758,13 @@ class PesertaCont extends Controller
                 ->addColumn('total', function ($data) use ($dari, $sampai)  {
                     $pelatihan = Pelatihan::whereHas('program', function($q) use ($data) {
                         $q->where('name', $data->name);
-                    })->where('tanggal','>=', $dari)
-                    ->where('tanggal','<=', $sampai)->count();
+                    })
+                    ->whereYear('tanggal','2022')
+                    ->whereMonth('tanggal','>=','01')
+                    ->whereMonth('tanggal','<=','11')
+                    ->whereDate('tanggal','>=','01')
+                    ->whereDate('tanggal','<=', '30')
+                    ->count();
 
                     return $pelatihan.' - '.$dari. '-'. $sampai;
                 })
