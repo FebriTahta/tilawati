@@ -533,6 +533,9 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     //LEMBAGA DELETE
     Route::post('/lembaga-hapus',[LembagaCont::class,'lembaga_hapus'])->name('lembaga.hapus');
     Route::get('/halaman-update-lembaga/{lembaga_kode}',[LembagaCont::class,'halaman_edit']);
+
+    //LAPORAN RECAP TOTAL CABANG 
+    Route::get('/program-cabang-pilih',[PesertaCont::class,'program_cabang_pilih']);
     
     // EXPORT TEMPLATE DIKLAT NEW 
     Route::get('/export-template-diklat/{jenis}',[ExportCont::class,'export_template_diklat']);
@@ -571,6 +574,8 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     Route::post('/import-cabang-api-nf',[ImportController::class,'importapicabangnf'])->name('import.cabangapinf');
     Route::post('/update-api-cabang-nf',[ApicabangCont::class,'update_api_cabang_nf'])->name('update.apicabangnf');
     Route::get('/export-api-data-cabang-nf',[ExportCont::class,'download_api_cabang_nf']);
+
+
 
     // E SYAHADAH ADMIN
     Route::get('/daftar-syahadah-elektronik',[SyahadahCont::class,'index_admin']);

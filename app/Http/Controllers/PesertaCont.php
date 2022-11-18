@@ -1233,19 +1233,18 @@ class PesertaCont extends Controller
             # code...
             if(!empty($request->dari))
             {
-                $data = DB::table('pesertas')
-                ->whereBetween('tanggal', array($request->dari, $request->sampai))
-                ->select('program_id', DB::raw('count(*) as total'))
-                ->groupBy('program_id')
-                ->get()->count();
+                $dari = $request->dari;
+                $sampai = $request->sampai;
+                $data = Program::whereHas('pelatihan', function($q) use ($dari, $sampai) {
+                    $q->where('jenis','diklat')->whereBetween('tanggal', array($dari, $sampai));
+                })->count();
                 return response()->json($data,200);
             }
             else
             {
-                $data = DB::table('pesertas')
-                ->select('program_id', DB::raw('count(*) as total'))
-                ->groupBy('program_id')
-                ->get()->count();
+                $data = Program::whereHas('pelatihan', function($q)  {
+                    $q->where('jenis','diklat');
+                })->count();
                 return response()->json($data,200);
             }
         }
@@ -2759,6 +2758,39 @@ class PesertaCont extends Controller
         }
 
         return $data;
+    }
+
+    public function program_cabang_pilih(Request $request)
+    {
+        if ($request->ajax()) {
+            # code...
+            if(!empty($request->dari))
+            {
+                # code...
+                $dari = $request->dari;
+                $sampai = $request->sampai;
+                $data = Program::whereHas('pelatihan',function($q) use ($dari, $sampai){
+                    $q->where('jenis','diklat')->whereBetween('tanggal', array($dari, $sampai));
+                })->distinct()->get();
+                return DataTables::of($data)
+                ->addColumn('total', function ($data) {
+                    return $data->pelatihan->count();
+                })
+                ->rawColumns(['total'])
+                ->make(true);
+            }else {
+                # code...
+                $data = Program::whereHas('pelatihan',function($q){
+                    $q->where('jenis','diklat');
+                })->distinct()->get();
+                return DataTables::of($data)
+                ->addColumn('total', function ($data) {
+                    return $data->pelatihan->count();
+                })
+                ->rawColumns(['total'])
+                ->make(true);
+            }
+        }
     }
 
 }

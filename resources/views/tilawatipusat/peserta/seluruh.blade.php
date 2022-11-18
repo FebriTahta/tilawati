@@ -273,38 +273,33 @@
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">DAFTAR PROGRAM DIKLAT</h5>
+                                    <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">RECAP PROGRAM DIKLAT</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <code>Sementara Menu Ini Dinonaktifkan</code>
-                                    {{-- <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
-                                        <table id="datatable-buttons4" class="table table-diklat-program table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
-                                            <thead class="text-bold text-primary" style="font-size: 12px; text-transform: uppercase">
+                                    <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
+                                        <table id="datatable-buttons-program" class="table table-diklat-kabupaten table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
+                                            <thead class="text-bold text-primary">
                                                 <tr>
                                                     <th>Program</th>
-                                                    <th>Peserta</th>
-                                                    <th>Lulus</th>
-                                                    <th>Belum</th>
+                                                    <th>Total</th>
                                                 </tr>
                                             </thead>
                     
-                                            <tbody style="text-transform: uppercase; font-size: 10px">
+                                            <tbody style="text-transform: uppercase; font-size: 12px">
                                             </tbody>
                     
-                                            <tfoot class="text-bold text-primary" style="font-size: 12px; text-transform: uppercase">
+                                            <tfoot class="text-bold text-primary">
                                                 <tr>
-                                                    <th>Program</th>
-                                                    <th>Peserta</th>
-                                                    <th>Lulus</th>
-                                                    <th>Belum</th>
+                                                   <th>Program</th>
+                                                   <th>Total</th>
                                                 </tr>
                                             </tfoot>
                                         </table>
                                         <footer class="blockquote-footer">Updated at  <cite title="Source Title">2021</cite></footer>
-                                    </blockquote> --}}
+                                    </blockquote>
                                 </div>
                             </div>
                             <!-- /.modal-content -->
@@ -707,6 +702,27 @@
                             
                         ]
                     });
+
+                    $('#datatable-buttons-program').DataTable({
+                        destroy: true,
+                        processing: true,
+                        serverSide: true,
+                        ajax: {
+                            url:'/program-cabang-pilih',
+                            data:{dari:dari, sampai:sampai}
+                        },
+                        columns: [
+                            {
+                            data:'name',
+                            name:'name'
+                            },
+                            {
+                            data:'total',
+                            name:'total'
+                            },
+                            
+                        ]
+                    })
 
                     $('.table-diklat-cabang').DataTable({
                         //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
