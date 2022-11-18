@@ -2762,7 +2762,7 @@ class PesertaCont extends Controller
                     $program = Program::where('name',$data->name)->get();
                     foreach ($program as $key => $value) {
                         # code...
-                        $total_pelatihan[] = $value->pelatihan->count();
+                        $total_pelatihan[] = $value->pelatihan->whereBetween('tanggal', array($dari, $sampai))->count();
                     }
                     return array_sum($total_pelatihan);
                 })
