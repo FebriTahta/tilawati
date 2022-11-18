@@ -2762,7 +2762,14 @@ class PesertaCont extends Controller
                     return $pelatihan = Pelatihan::where('program_id',$data->id)->where('jenis','diklat')->whereBetween('tanggal', array($dari, $sampai))->count();
                 })
                 ->addColumn('totalpeserta', function ($data) use ($dari, $sampai){
-                    return $data->peserta->whereBetween('tanggal', array($dari, $sampai))->count().' - '.$data->jenisprogram;
+                    $total = [];
+                    $pelatihan = Pelatihan::where('program_id',$data->id)->where('jenis','diklat')->whereBetween('tanggal', array($dari, $sampai))->get();
+                    foreach ($pelatihan as $key => $value) {
+                        # code...
+                        $total[] = $value->peserta->count();
+                    }
+
+                    return array_sum($total);
                 })
                 ->rawColumns(['total','totalpeserta'])
                 ->make(true);
