@@ -2776,7 +2776,10 @@ class PesertaCont extends Controller
                 ->addColumn('total', function ($data) {
                     return $data->pelatihan->count();
                 })
-                ->rawColumns(['total'])
+                ->addColumn('totalpeserta', function ($data){
+                    return $data->peserta->count();
+                })
+                ->rawColumns(['total','totalpeserta'])
                 ->make(true);
             }else {
                 # code...
@@ -2787,7 +2790,10 @@ class PesertaCont extends Controller
                 ->addColumn('total', function ($data) {
                     return $data->pelatihan->count();
                 })
-                ->rawColumns(['total'])
+                ->addColumn('totalpeserta', function ($data){
+                    return $data->peserta->count();
+                })
+                ->rawColumns(['total','totalpeserta'])
                 ->make(true);
             }
         }

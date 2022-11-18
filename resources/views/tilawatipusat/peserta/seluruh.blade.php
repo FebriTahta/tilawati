@@ -284,7 +284,8 @@
                                             <thead class="text-bold text-primary">
                                                 <tr>
                                                     <th>Program</th>
-                                                    <th>Total</th>
+                                                    <th>Diklat</th>
+                                                    <th>Peserta</th>
                                                 </tr>
                                             </thead>
                     
@@ -294,7 +295,8 @@
                                             <tfoot class="text-bold text-primary">
                                                 <tr>
                                                    <th>Program</th>
-                                                   <th>Total</th>
+                                                   <th>Diklat</th>
+                                                    <th>Peserta</th>
                                                 </tr>
                                             </tfoot>
                                         </table>
@@ -719,6 +721,10 @@
                             {
                             data:'total',
                             name:'total'
+                            },
+                            {
+                            data:'totalpeserta',
+                            name:'totalpeserta'
                             },
                             
                         ]
