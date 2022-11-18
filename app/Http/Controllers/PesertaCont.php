@@ -1457,6 +1457,7 @@ class PesertaCont extends Controller
                     $programs = Program::whereIn('id',$dataz)->distinct()->get();
                     
                     $hasil = [];
+                    $totals= [];
                     foreach ($programs as $key => $value) {
                         # code...
                         $total      = $data->pelatihan->where('program_id',$value->id)->count();
@@ -1464,42 +1465,29 @@ class PesertaCont extends Controller
                         $keterangan = Pelatihan::where('program_id',$value->id)->select('keterangan')->first();
                         $hasil[]    = "<pre>$total diklat   $value->name  ($peserta $keterangan->keterangan)</pre>";
                     }
-                    return $string=implode("<br>",$hasil);                    
+                    return $string=implode("<br>",$hasil);               
                 })
                 ->addColumn('total_guru', function($data) use($request) {
                     $dataz = [];
-                    $datax = [];
-                    $pelatihan_guru     = Pelatihan::where('cabang_id', $data->id)->where('keterangan', 'guru')->whereBetween('tanggal', array($request->dari, $request->sampai))->get();
-                    $pelatihan_santri   = Pelatihan::where('cabang_id', $data->id)->where('keterangan', 'santri')->whereBetween('tanggal', array($request->dari, $request->sampai))->get();
+                    $pelatihan_guru     = Pelatihan::where('cabang_id', $data->id)->where('jenis','diklat')->where('keterangan', 'guru')->whereBetween('tanggal', array($request->dari, $request->sampai))->get();
 
                     foreach ($pelatihan_guru as $key => $value) {
                         # code...
                         $dataz[] = $value->peserta->count();
                     }
-                    foreach ($pelatihan_santri as $key => $value) {
-                        # code...
-                        $datax[] = $value->peserta->count();
-                    }
                     $guru = array_sum($dataz);
-                    $santri = array_sum($datax);
 
                     return '<pre>Guru : '.$guru.'</pre>';
                 })
                 ->addColumn('total_santri', function($data) use($request) {
-                    $dataz = [];
+                   
                     $datax = [];
-                    $pelatihan_guru     = Pelatihan::where('cabang_id', $data->id)->where('keterangan', 'guru')->whereBetween('tanggal', array($request->dari, $request->sampai))->get();
-                    $pelatihan_santri   = Pelatihan::where('cabang_id', $data->id)->where('keterangan', 'santri')->whereBetween('tanggal', array($request->dari, $request->sampai))->get();
+                    $pelatihan_santri   = Pelatihan::where('cabang_id', $data->id)->where('jenis','diklat')->where('keterangan', 'santri')->whereBetween('tanggal', array($request->dari, $request->sampai))->get();
 
-                    foreach ($pelatihan_guru as $key => $value) {
-                        # code...
-                        $dataz[] = $value->peserta->count();
-                    }
                     foreach ($pelatihan_santri as $key => $value) {
                         # code...
                         $datax[] = $value->peserta->count();
                     }
-                    $guru = array_sum($dataz);
                     $santri = array_sum($datax);
 
                     return '<pre>Santri : '.$santri.'</pre>';
@@ -1595,8 +1583,8 @@ class PesertaCont extends Controller
                 ->addColumn('total_guru', function($data){
                     $dataz = [];
                     $datax = [];
-                    $pelatihan_guru     = Pelatihan::where('cabang_id', $data->id)->where('keterangan', 'guru')->get();
-                    $pelatihan_santri   = Pelatihan::where('cabang_id', $data->id)->where('keterangan', 'santri')->get();
+                    $pelatihan_guru     = Pelatihan::where('cabang_id', $data->id)->where('jenis','diklat')->where('keterangan', 'guru')->get();
+                    $pelatihan_santri   = Pelatihan::where('cabang_id', $data->id)->where('jenis','diklat')->where('keterangan', 'santri')->get();
 
                     foreach ($pelatihan_guru as $key => $value) {
                         # code...
@@ -1667,8 +1655,8 @@ class PesertaCont extends Controller
                 ->addColumn('total_santri', function($data){
                     $dataz = [];
                     $datax = [];
-                    $pelatihan_guru     = Pelatihan::where('cabang_id', $data->id)->where('keterangan', 'guru')->get();
-                    $pelatihan_santri   = Pelatihan::where('cabang_id', $data->id)->where('keterangan', 'santri')->get();
+                    $pelatihan_guru     = Pelatihan::where('cabang_id', $data->id)->where('jenis','diklat')->where('keterangan', 'guru')->get();
+                    $pelatihan_santri   = Pelatihan::where('cabang_id', $data->id)->where('jenis','diklat')->where('keterangan', 'santri')->get();
 
                     foreach ($pelatihan_guru as $key => $value) {
                         # code...
