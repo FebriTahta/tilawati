@@ -2758,8 +2758,13 @@ class PesertaCont extends Controller
                 ->addColumn('total', function ($data) use ($dari, $sampai)  {
                     // $pelatihan = Pelatihan::where('program_id',$data->id)->whereBetween('tanggal', array($dari, $sampai))->count();
                     // return $pelatihan.' - diklat';
-                    $program = Program::where('name',$data->name)->count();
-                    return $program;
+                    $total_pelatihan = [];
+                    $program = Program::where('name',$data->name)->get();
+                    foreach ($program as $key => $value) {
+                        # code...
+                        $total_pelatihan[] = $value->pelatihan->count();
+                    }
+                    return array_sum($total_pelatihan);
                 })
                 ->addColumn('totalpeserta', function ($data) use ($dari, $sampai){
                     $total = [];
