@@ -2757,10 +2757,10 @@ class PesertaCont extends Controller
                 })->distinct()->get();
                 return DataTables::of($data)
                 ->addColumn('total', function ($data) use ($dari, $sampai)  {
-                    return $data->pelatihan->whereBetween('tanggal', array($dari, $sampai))->count().' - '.$data->jenisprogram;
+                    return "<pre>$data->pelatihan->whereBetween('tanggal', array($dari, $sampai))->count().' - Diklat'</pre>";
                 })
                 ->addColumn('totalpeserta', function ($data) use ($dari, $sampai){
-                    return $data->peserta->whereBetween('tanggal', array($dari, $sampai))->count().' - '.$data->jenisprogram;
+                    return "<pre>$data->peserta->whereBetween('tanggal', array($dari, $sampai))->count().' - '.$data->jenisprogram</pre>";
                 })
                 ->rawColumns(['total','totalpeserta'])
                 ->make(true);
@@ -2772,10 +2772,10 @@ class PesertaCont extends Controller
                 })->distinct()->get();
                 return DataTables::of($data)
                 ->addColumn('total', function ($data) {
-                    return $data->pelatihan->count().' - '.$data->jenisprogram;
+                    return "<pre>$data->pelatihan->count().' - Diklat'</pre>";
                 })
                 ->addColumn('totalpeserta', function ($data){
-                    return $data->peserta->count().' - '.$data->jenisprogram;
+                    return "<pre>$data->peserta->count().' - '.$data->jenisprogram</pre>";
                 })
                 ->rawColumns(['total','totalpeserta'])
                 ->make(true);
