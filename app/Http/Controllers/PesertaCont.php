@@ -1582,23 +1582,17 @@ class PesertaCont extends Controller
                 })
                 ->addColumn('total_guru', function($data){
                     $dataz = [];
-                    $datax = [];
-                    $pelatihan_guru     = Pelatihan::where('cabang_id', $data->id)->where('jenis','diklat')->where('keterangan', 'guru')->get();
-                    $pelatihan_santri   = Pelatihan::where('cabang_id', $data->id)->where('jenis','diklat')->where('keterangan', 'santri')->get();
+                    $pelatihan_guru     = Pelatihan::where('cabang_id', $data->id)->whereHas('program', function($q){
+                        $q->where('jenisprogram','guru');
+                    })->get();
 
                     foreach ($pelatihan_guru as $key => $value) {
                         # code...
                         $dataz[] = $value->peserta->count();
                     }
-                    foreach ($pelatihan_santri as $key => $value) {
-                        # code...
-                        $datax[] = $value->peserta->count();
-                    }
                     $guru = array_sum($dataz);
-                    $santri = array_sum($datax);
 
-                    // return '<pre>Guru : '.$guru.'</pre>';
-                    return $pelatihan_guru->count();
+                    return '<pre>Guru : '.$guru.'</pre>';
                 })
                 ->addColumn('kpa', function($data){
                     $kpa = $data->kpa->count();
@@ -1654,20 +1648,15 @@ class PesertaCont extends Controller
                     }
                 })
                 ->addColumn('total_santri', function($data){
-                    $dataz = [];
                     $datax = [];
-                    $pelatihan_guru     = Pelatihan::where('cabang_id', $data->id)->where('jenis','diklat')->where('keterangan', 'guru')->get();
-                    $pelatihan_santri   = Pelatihan::where('cabang_id', $data->id)->where('jenis','diklat')->where('keterangan', 'santri')->get();
+                    $pelatihan_santri   = Pelatihan::where('cabang_id', $data->id)->whereHas('program',function($q){
+                        $q->where('jenisprogram','santri');
+                    })->get();
 
-                    foreach ($pelatihan_guru as $key => $value) {
-                        # code...
-                        $dataz[] = $value->peserta->count();
-                    }
                     foreach ($pelatihan_santri as $key => $value) {
                         # code...
                         $datax[] = $value->peserta->count();
                     }
-                    $guru = array_sum($dataz);
                     $santri = array_sum($datax);
 
                     return '<pre>Santri : '.$santri.'</pre>';

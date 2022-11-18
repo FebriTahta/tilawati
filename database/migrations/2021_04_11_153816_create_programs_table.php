@@ -18,6 +18,7 @@ class CreateProgramsTable extends Migration
             $table->string('name');
             $table->string('slug');
             $table->string('status')->nullable();
+            $table->string('jenisprogram')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
