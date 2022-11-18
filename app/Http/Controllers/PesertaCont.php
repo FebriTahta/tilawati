@@ -2759,10 +2759,12 @@ class PesertaCont extends Controller
                     // $pelatihan = Pelatihan::where('program_id',$data->id)->whereBetween('tanggal', array($dari, $sampai))->count();
                     // return $pelatihan.' - diklat';
                     $total_pelatihan = [];
-                    $program = Program::where('name',$data->name)->get();
+                    $program = Program::whereHas('pelatihan',function($q){
+                        $q->whereBetween('tanggal', array($dari, $sampai));
+                    })->where('name',$data->name)->get();
                     foreach ($program as $key => $value) {
                         # code...
-                        $total_pelatihan[] = $value->pelatihan->whereBetween('tanggal', array($dari, $sampai))->count();
+                        $total_pelatihan[] = $value->pelatihan->count();
                     }
                     return array_sum($total_pelatihan);
                 })
