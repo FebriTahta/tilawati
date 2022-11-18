@@ -2753,7 +2753,7 @@ class PesertaCont extends Controller
                 # code...
                 $dari = $request->dari;
                 $sampai = $request->sampai;
-                $data = Program::whereHas('pelatihan',function($q) use ($dari, $sampai){
+                $data = Program::where('status','1')->whereHas('pelatihan',function($q) use ($dari, $sampai){
                     $q->whereBetween('tanggal', array($dari, $sampai));
                 })->distinct()->get();
                 return DataTables::of($data)
@@ -2776,9 +2776,7 @@ class PesertaCont extends Controller
 
             }else {
                 # code...
-                $data = Program::whereHas('pelatihan',function($q){
-                    $q->where('jenis','diklat');
-                })->distinct()->get();
+                $data = Program::where('status','1')->whereHas('pelatihan')->distinct()->get();
                 return DataTables::of($data)
                 ->addColumn('total', function ($data) {
                     return $data->pelatihan->count().' - Diklat';
