@@ -2758,8 +2758,8 @@ class PesertaCont extends Controller
                 })->distinct()->get();
                 return DataTables::of($data)
                 ->addColumn('total', function ($data) use ($dari, $sampai)  {
-                    // return $data->pelatihan->whereBetween('tanggal', array($dari, $sampai))->count().' - Diklat';
-                    return $pelatihan = Pelatihan::where('program_id',$data->id)->where('jenis','diklat')->whereBetween('tanggal', array($dari, $sampai))->count();
+                    $pelatihan = Pelatihan::where('program_id',$data->id)->where('jenis','diklat')->whereBetween('tanggal', array($dari, $sampai))->count();
+                    return $pelatihan.' - diklat';
                 })
                 ->addColumn('totalpeserta', function ($data) use ($dari, $sampai){
                     $total = [];
@@ -2769,7 +2769,7 @@ class PesertaCont extends Controller
                         $total[] = $value->peserta->count();
                     }
 
-                    return array_sum($total);
+                    return array_sum($total).' - '.$data->jenisprogram;
                 })
                 ->rawColumns(['total','totalpeserta'])
                 ->make(true);
