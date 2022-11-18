@@ -2773,14 +2773,15 @@ class PesertaCont extends Controller
                     $q->where('jenis','diklat')->whereBetween('tanggal', array($dari, $sampai));
                 })->distinct()->get();
                 return DataTables::of($data)
-                ->addColumn('total', function ($data) {
-                    return $data->pelatihan->count();
+                ->addColumn('total', function ($data) use ($dari, $sampai)  {
+                    return $data->pelatihan->whereBetween('tanggal', array($dari, $sampai))->count();
                 })
-                ->addColumn('totalpeserta', function ($data){
-                    return $data->peserta->count();
+                ->addColumn('totalpeserta', function ($data) use ($dari, $sampai){
+                    return $data->peserta->whereBetween('tanggal', array($dari, $sampai))->count();
                 })
                 ->rawColumns(['total','totalpeserta'])
                 ->make(true);
+
             }else {
                 # code...
                 $data = Program::whereHas('pelatihan',function($q){
