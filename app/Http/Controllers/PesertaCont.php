@@ -2753,17 +2753,17 @@ class PesertaCont extends Controller
                 # code...
                 $dari = $request->dari;
                 $sampai = $request->sampai;
-                $data = Program::where('status','1')->whereHas('pelatihan',function($q) use ($dari, $sampai){
+                $data = Program::whereHas('pelatihan',function($q) use ($dari, $sampai){
                     $q->whereBetween('tanggal', array($dari, $sampai));
                 })->distinct()->get();
                 return DataTables::of($data)
                 ->addColumn('total', function ($data) use ($dari, $sampai)  {
-                    $pelatihan = Pelatihan::where('program_id',$data->id)->where('jenis','diklat')->whereBetween('tanggal', array($dari, $sampai))->count();
+                    $pelatihan = Pelatihan::where('program_id',$data->id)->whereBetween('tanggal', array($dari, $sampai))->count();
                     return $pelatihan.' - diklat';
                 })
                 ->addColumn('totalpeserta', function ($data) use ($dari, $sampai){
                     $total = [];
-                    $pelatihan = Pelatihan::where('program_id',$data->id)->where('jenis','diklat')->whereBetween('tanggal', array($dari, $sampai))->get();
+                    $pelatihan = Pelatihan::where('program_id',$data->id)->whereBetween('tanggal', array($dari, $sampai))->get();
                     foreach ($pelatihan as $key => $value) {
                         # code...
                         $total[] = $value->peserta->count();
@@ -2776,7 +2776,7 @@ class PesertaCont extends Controller
 
             }else {
                 # code...
-                $data = Program::where('status','1')->whereHas('pelatihan')->distinct()->get();
+                $data = Program::whereHas('pelatihan')->distinct()->get();
                 return DataTables::of($data)
                 ->addColumn('total', function ($data) {
                     return $data->pelatihan->count().' - Diklat';
