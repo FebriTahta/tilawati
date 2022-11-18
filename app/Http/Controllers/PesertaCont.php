@@ -1583,7 +1583,7 @@ class PesertaCont extends Controller
                 ->addColumn('total_guru', function($data){
                     $dataz = [];
                     $datax = [];
-                    $pelatihan_guru     = Pelatihan::where('cabang_id', $data->id)->where('jenis','diklat')->where('keterangan', 'guru')->get();
+                    $pelatihan_guru     = Pelatihan::where('cabang_id', $data->id)->where('keterangan', 'guru')->get();
                     $pelatihan_santri   = Pelatihan::where('cabang_id', $data->id)->where('jenis','diklat')->where('keterangan', 'santri')->get();
 
                     foreach ($pelatihan_guru as $key => $value) {
@@ -1597,7 +1597,8 @@ class PesertaCont extends Controller
                     $guru = array_sum($dataz);
                     $santri = array_sum($datax);
 
-                    return '<pre>Guru : '.$guru.'</pre>';
+                    // return '<pre>Guru : '.$guru.'</pre>';
+                    return $pelatihan_guru->count();
                 })
                 ->addColumn('kpa', function($data){
                     $kpa = $data->kpa->count();
