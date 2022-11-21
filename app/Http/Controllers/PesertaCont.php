@@ -2789,8 +2789,8 @@ class PesertaCont extends Controller
                 ->addColumn('total', function ($data) {
                     $program = Program::where('name', $data->name)->whereHas('pelatihan')
                                      ->first();
-                    $total = $program->pelatihan->where('jenis','diklat')->count();
-                    $total2 = $program->pelatihan->where('jenis','webinar')->count();
+                    $total = $program->pelatihan->where('jenis','diklat')->count().' - diklat';
+                    $total2 = $program->pelatihan->where('jenis','webinar')->count().' - webinar';
                     $keseluruhan = [$total , $total2];
                     return implode('<br>', $keseluruhan);
                    
