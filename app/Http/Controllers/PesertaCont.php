@@ -2808,7 +2808,7 @@ class PesertaCont extends Controller
 
                     foreach ($program->pelatihan->where('jenis','webinar') as $key => $value) {
                         # code...
-                        $total_diklat[] =  $value->peserta->count();
+                        $total_webinar[] =  $value->peserta->count();
                         
                     }
                     $diklat = array_sum($total_diklat);
