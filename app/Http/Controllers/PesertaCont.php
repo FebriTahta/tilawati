@@ -2787,30 +2787,33 @@ class PesertaCont extends Controller
                 $data = Program::whereHas('pelatihan')->where('status','1')->distinct()->get();
                 return DataTables::of($data)
                 ->addColumn('total', function ($data) {
-                   $program = Program::where('name', $data->name)
-                                     ->get();
-                    $total = [];
-                    foreach ($program->pelatihan as $key => $value) {
-                        # code...
-                        $total[] = $value->count();
-                    }
-                    return array_sum($total);
+                //    $program = Program::where('name', $data->name)
+                //                      ->get();
+                //     $total = [];
+                //     foreach ($program->pelatihan as $key => $value) {
+                //         # code...
+                //         $total[] = $value->count();
+                //     }
+                //     return array_sum($total);
+                return 'demo';
                 })
                 ->addColumn('totalpeserta', function ($data){
-                    $total = [];
-                    $pelatihan = Pelatihan::where('program_id',$data->id)->get();
-                    foreach ($pelatihan as $key => $value) {
-                        # code...
-                        $total[] = $value->peserta->count();
-                    }
+                    // $total = [];
+                    // $pelatihan = Pelatihan::where('program_id',$data->id)->get();
+                    // foreach ($pelatihan as $key => $value) {
+                    //     # code...
+                    //     $total[] = $value->peserta->count();
+                    // }
 
-                    if ($data->jenisprogram == null) {
-                        # code...
-                        return array_sum($total).' - peserta';
-                    }else {
-                        # code...
-                        return array_sum($total).' - '.$data->jenisprogram;
-                    }
+                    // if ($data->jenisprogram == null) {
+                    //     # code...
+                    //     return array_sum($total).' - peserta';
+                    // }else {
+                    //     # code...
+                    //     return array_sum($total).' - '.$data->jenisprogram;
+                    // }
+
+                    return 'demo';
                 })
                 ->rawColumns(['total','totalpeserta'])
                 ->make(true);
