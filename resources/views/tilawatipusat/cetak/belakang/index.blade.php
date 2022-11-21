@@ -65,7 +65,7 @@
                                         <div class="row">
                                             <div class="col-md-2">
                                                 <form target="_blank" action="{{ route('diklat.belakang_cetak_bagian_1') }}" method="POST">@csrf
-                                                    <input type="text" class="form-control" name="pelatihan_id" id="pelatihan_id_bagian_1">
+                                                    <input type="hidden" class="form-control" name="pelatihan_id" id="pelatihan_id_bagian_1">
                                                     <div class="form-group">
                                                         <button type="submit" class="btn btn-primary"> <i class="fa fa-print"></i> Cetak Bagian 1</button>
                                                     </div>
@@ -73,7 +73,7 @@
                                             </div>
                                             <div class="col-md-2">
                                                 <form target="_blank" action="{{ route('diklat.belakang_cetak_bagian_2') }}" method="POST">@csrf
-                                                    <input type="text" class="form-control" name="pelatihan_id" id="pelatihan_id_bagian_2">
+                                                    <input type="hidden" class="form-control" name="pelatihan_id" id="pelatihan_id_bagian_2">
                                                     <div class="form-group">
                                                         <button type="submit" class="btn btn-primary"> <i class="fa fa-print"></i> Cetak Bagian 2</button>
                                                     </div>
@@ -125,10 +125,15 @@
                                     $('select[name="pelatihan_id"]').empty();
                                     $.each(data, function(key, value) {
                                         $('select[name="pelatihan_id"]').append('<option value="'+ value.id +'">'+ value.id +" | "+ value.cabang.name + " | " + value.program.name + " | " + value.tanggal + " | " + value.tempat + '</option>');
-                                        $('#pelatihan_id_bagian_1').val(value.id[0]);
-                                        $('#pelatihan_id_bagian_2').val(value.id[0]);
+                                        if (key == '0') {
+                                            console.log(key);
+                                            $('#pelatihan_id_bagian_1').val(value.id);
+                                            $('#pelatihan_id_bagian_2').val(value.id);
+                                        }
                                     });
-                                    console.log(data);
+
+                                   
+                                    
                                 }
                             });
                         }else{
