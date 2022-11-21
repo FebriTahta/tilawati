@@ -2789,13 +2789,13 @@ class PesertaCont extends Controller
                 ->addColumn('total', function ($data) {
                     $program = Program::where('name', $data->name)->whereHas('pelatihan')
                                      ->get();
-                    $tanggal = [];
-                    foreach ($program->where('status','1') as $key => $value) {
+                    $total = [];
+                    foreach ($program as $key => $value) {
                         # code...
-                        $tanggal[] = $value->pelatihan->count();
+                        $total[] = $value->pelatihan->where('jenis','diklat')->count();
                     }
 
-                    return implode('<br>',$tanggal);
+                    return implode('<br>',$total);
                    
                 })
                 ->addColumn('totalpeserta', function ($data){
