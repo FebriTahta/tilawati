@@ -2784,7 +2784,7 @@ class PesertaCont extends Controller
 
             }else {
                 # code...
-                $data = Program::whereHas('pelatihan')->where('status','1')->distinct()->get();
+                $data = Program::where('status','1')->whereHas('pelatihan')->distinct()->get();
                 return DataTables::of($data)
                 ->addColumn('total', function ($data) {
                     $program = Program::where('name', $data->name)
