@@ -306,7 +306,7 @@ class CetakCont extends Controller
     {
         $id = $request->pelatihan_id;
         $pelatihan = Pelatihan::find($id);
-        $peserta_x   = Peserta::where('pelatihan_id', $request->pelatihan_id)->where('kriteria','<>','')->where('bersyahadah', 1)->get();
+        $peserta_x   = Peserta::where('pelatihan_id', $id)->where('kriteria','<>','')->where('bersyahadah', 1)->get();
         $bagian_1  = round($peserta_x->count() / 2);
 
         $peserta_id = [];
@@ -322,7 +322,7 @@ class CetakCont extends Controller
         // $customPaper = array(0,0,792,612);
     	// $pdf = PDF::loadview('AdmPelatihan.Cetak.cetak_belakang_guru',compact('peserta','pelatihan'))->setPaper($customPaper, 'portrait');
     	// return $pdf->download('ijazah-belakang-peserta-_'.$pelatihan->name.'.pdf','I');
-        return $peserta_x->count().' & '.$peserta->count().' & bagian '.$bagian_1.' - '.$reqeust->pelatihan_id;
+        return $peserta_x->count().' & '.$peserta->count().' & bagian '.$bagian_1;
     }
 
     public function cetak_belakang_bagian_2(Request $request)
