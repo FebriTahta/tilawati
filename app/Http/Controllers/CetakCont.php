@@ -306,7 +306,7 @@ class CetakCont extends Controller
     {
         $id = $request->pelatihan_id;
         $pelatihan = Pelatihan::find($id);
-        $peserta_x   = Peserta::where('pelatihan_id', '6020')->where('kriteria','<>','')->where('bersyahadah', 1)->get();
+        $peserta_x   = Peserta::where('pelatihan_id', $request->pelatihan_id)->where('kriteria','<>','')->where('bersyahadah', 1)->get();
         $bagian_1  = round($peserta_x->count() / 2);
 
         $peserta_id = [];
