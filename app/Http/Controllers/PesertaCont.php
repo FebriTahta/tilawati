@@ -2792,9 +2792,9 @@ class PesertaCont extends Controller
                     $total = [];
                     foreach ($program as $key => $value) {
                         # code...
-                        $total[] = $value->pelatihan->count();
+                        $total[] = $value->name;
                     }
-                    return array_sum($total);
+                    return implode('<br>',$total);
                    
                 })
                 ->addColumn('totalpeserta', function ($data){
