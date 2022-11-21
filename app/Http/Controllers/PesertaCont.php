@@ -2800,6 +2800,7 @@ class PesertaCont extends Controller
                                      ->first();
                     $total_diklat = [];
                     $total_webinar = [];
+                    $jenis = '';
                     foreach ($program->pelatihan->where('jenis','diklat') as $key => $value) {
                         # code...
                         $total_diklat[] =  $value->peserta->count();
@@ -2811,8 +2812,17 @@ class PesertaCont extends Controller
                         $total_webinar[] =  $value->peserta->count();
                         
                     }
-                    $diklat = array_sum($total_diklat);
-                    $webinar = array_sum($total_webinar);
+
+                    if ($program->jenisprogram !== null) {
+                        # code...
+                        $jenis = $program->jenisprogram;
+                    }else {
+                        # code...
+                        $jenis = 'peserta';
+                    }
+
+                    $diklat = array_sum($total_diklat).' -'.$jenis;
+                    $webinar = array_sum($total_webinar).' -'.$jenis;
                     $keseluruhan = [$diklat, $webinar];
                     return implode('<br>', $keseluruhan);
                 })
