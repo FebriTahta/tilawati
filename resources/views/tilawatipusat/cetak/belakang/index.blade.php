@@ -44,7 +44,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="">Program Pelatihan</label>
-                                                <select name="pelatihan_id" id="" class="form-control text-capitalize" required>
+                                                <select name="pelatihan_id" id="pelatihan_id" class="form-control text-capitalize" required>
                                                     <option class="text-capitalize" value="">= Pilih Program Pelatihan =</option>
                                                 </select>
                                             </div>
@@ -52,7 +52,35 @@
                                                 <button type="submit" class="btn btn-primary btn-sm"> <i class="fa fa-print"></i> Cetak</button>
                                             </div>
                                         </form>
-                                        <footer class="blockquote-footer">Updated at  <cite title="Source Title">2021</cite></footer>
+                                        <footer class="blockquote-footer">Updated at  <cite title="Source Title">{{date('Y')}}</cite></footer>
+                                    </blockquote>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title">Alternatif Cetak Berkala</h4>
+                                    <p class="card-title-desc">Gunakan tombol berikut ini apabila file yang akan dicetak terlalu banyak dan tidak dapat di handle oleh server </br></p>
+                                    <blockquote class="blockquote font-size-16 mb-0 mt-2">
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <form target="_blank" action="{{ route('diklat.belakang_cetak_bagian_1') }}" method="POST">@csrf
+                                                    <input type="hidden" name="pelatihan_id" id="pelatihan_id_bagian_1">
+                                                    <div class="form-group">
+                                                        <button type="submit" class="btn btn-primary"> <i class="fa fa-print"></i> Cetak Bagian 1</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <form target="_blank" action="{{ route('diklat.belakang_cetak_bagian_2') }}" method="POST">@csrf
+                                                    <input type="hidden"  name="pelatihan_id" id="pelatihan_id_bagian_2">
+                                                    <div class="form-group">
+                                                        <button type="submit" class="btn btn-primary"> <i class="fa fa-print"></i> Cetak Bagian 2</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <footer class="blockquote-footer">Updated at  <cite title="Source Title">{{date('Y')}}</cite></footer>
                                     </blockquote>
                                 </div>
                             </div>
@@ -96,7 +124,9 @@
                                     var tmp = data.toString().split(',');                  
                                     $('select[name="pelatihan_id"]').empty();
                                     $.each(data, function(key, value) {
-                                    $('select[name="pelatihan_id"]').append('<option value="'+ value.id +'">'+ value.id +" | "+ value.cabang.name + " | " + value.program.name + " | " + value.tanggal + " | " + value.tempat + '</option>');
+                                        $('select[name="pelatihan_id"]').append('<option value="'+ value.id +'">'+ value.id +" | "+ value.cabang.name + " | " + value.program.name + " | " + value.tanggal + " | " + value.tempat + '</option>');
+                                        $('#pelatihan_id_bagian_1').val(value.id);
+                                        $('#pelatihan_id_bagian_2').val(value.id);
                                     });
                                     console.log(data);
                                 }
@@ -105,6 +135,17 @@
                             $('select[name="pelatihan_id"]').empty().disabled();
                         }
                     });
+
+                    $('#pelatihan_id').on('change', function () {
+                        var pelatihan_id = $(this).val();
+                        if (pelatihan_id) {
+                            $('#pelatihan_id_bagian_1').val(pelatihan_id);
+                            $('#pelatihan_id_bagian_2').val(pelatihan_id);
+                        }else{
+                            alert("Pilih Pelatihan Terlebih Dahulu");
+                        }
+                        
+                    })
                 });
             </script>
 @endsection

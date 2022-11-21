@@ -302,6 +302,52 @@ class CetakCont extends Controller
     	return $pdf->download('ijazah-belakang-peserta-_'.$pelatihan->name.'.pdf','I');
     }
 
+    public function cetak_belakang_bagian_1(Request $request)
+    {
+        $id = $request->pelatihan_id;
+        $pelatihan = Pelatihan::find($id);
+        $peserta_x   = Peserta::where('pelatihan_id', $id)->where('kriteria','<>','')->where('bersyahadah', 1)->get();
+        $bagian_1  = round($peserta_x->count() / 2);
+
+        $peserta_id = [];
+        foreach ($peserta_x as $key => $value) {
+            # code...
+            if ($key < $bagian_1) {
+                # code...
+                $peserta_id[] = $value->id;
+            }
+        }
+        
+        $peserta = Peserta::whereIn('id',$peserta_id)->get();
+        $customPaper = array(0,0,792,612);
+    	$pdf = PDF::loadview('AdmPelatihan.Cetak.cetak_belakang_guru',compact('peserta','pelatihan'))->setPaper($customPaper, 'portrait');
+    	return $pdf->download('ijazah-belakang-peserta-_'.$pelatihan->name.'.pdf','I');
+        // return $peserta_x->count().' & '.$peserta->count().' & bagian '.$bagian_1;
+    }
+
+    public function cetak_belakang_bagian_2(Request $request)
+    {
+        $id = $request->pelatihan_id;
+        $pelatihan = Pelatihan::find($id);
+        $peserta_x   = Peserta::where('pelatihan_id', $id)->where('kriteria','<>','')->where('bersyahadah', 1)->get();
+        $bagian_1  = round($peserta_x->count() / 2);
+        $bagian_2  = $peserta_x->count() - $bagian_1;
+        $peserta_id = [];
+        foreach ($peserta_x as $key => $value) {
+            # code...
+            if ($key > $bagian_2) {
+                # code...
+                $peserta_id[] = $value->id;
+            }
+        }
+        
+        $peserta = Peserta::whereIn('id',$peserta_id)->get();
+        $customPaper = array(0,0,792,612);
+    	$pdf = PDF::loadview('AdmPelatihan.Cetak.cetak_belakang_guru',compact('peserta','pelatihan'))->setPaper($customPaper, 'portrait');
+    	return $pdf->download('ijazah-belakang-peserta-_'.$pelatihan->name.'.pdf','I');
+        // return $peserta_x->count().' & '.$peserta->count().' & bagian '.$bagian_2;
+    }
+
     public function cetak_belakang2(Request $request)
     {
         $id = $request->pelatihan_id;
