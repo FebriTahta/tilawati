@@ -2805,11 +2805,16 @@ class PesertaCont extends Controller
                         $total_diklat[] =  $value->peserta->count();
                         
                     }
-                    // $diklat = array_sum($total_diklat);
-                    // $webinar = array_sum($total_webinar);
-                    // $total_keseluruhan = [$diklat, $webinar];
-                    // return implode('<br>', $total_keseluruhan);
-                    return array_sum($total_diklat);
+
+                    foreach ($program->pelatihan->where('jenis','webinar') as $key => $value) {
+                        # code...
+                        $total_diklat[] =  $value->peserta->count();
+                        
+                    }
+                    $diklat = array_sum($total_diklat);
+                    $webinar = array_sum($total_webinar);
+                    $keseluruhan = [$diklat, $webinar];
+                    return implode('<br>', $keseluruhan);
                 })
                 ->rawColumns(['total','totalpeserta'])
                 ->make(true);
