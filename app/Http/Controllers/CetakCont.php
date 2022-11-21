@@ -322,7 +322,7 @@ class CetakCont extends Controller
         // $customPaper = array(0,0,792,612);
     	// $pdf = PDF::loadview('AdmPelatihan.Cetak.cetak_belakang_guru',compact('peserta','pelatihan'))->setPaper($customPaper, 'portrait');
     	// return $pdf->download('ijazah-belakang-peserta-_'.$pelatihan->name.'.pdf','I');
-        return $peserta_x->count().' & '.$peserta->count().' & bagian '.$bagian_1;
+        return $peserta_x->count().' & '.$peserta->count().' & bagian '.$bagian_1.' - '.$reqeust->pelatihan_id;
     }
 
     public function cetak_belakang_bagian_2(Request $request)
