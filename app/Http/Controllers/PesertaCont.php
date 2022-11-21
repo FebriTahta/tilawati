@@ -2793,7 +2793,7 @@ class PesertaCont extends Controller
                     $tanggal = [];
                     foreach ($program as $key => $value) {
                         # code...
-                        $tanggal[] = $value->pelatihan->tanggal;
+                        $tanggal[] = $value->pelatihan->count();
                     }
 
                     return implode('<br>',$tanggal);
