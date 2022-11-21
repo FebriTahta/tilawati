@@ -2757,27 +2757,43 @@ class PesertaCont extends Controller
                 return DataTables::of($data)
                 
                 ->addColumn('total', function ($data) use ($dari, $sampai)  {
-                    $pelatihan = Pelatihan::whereBetween('tanggal', array($dari, $sampai))->whereHas('program', function($q) use ($data) {
-                        $q->where('name', $data->name);
-                    })->count();
-
-                    return $pelatihan;
+                    $program = Program::where('name', $data->name)->whereHas('pelatihan')
+                    ->first();
+                    $total = $program->pelatihan->where('jenis','diklat')->whereBetween('tanggal', array($dari, $sampai))->count().' - diklat';
+                    $total2 = $program->pelatihan->where('jenis','webinar')->whereBetween('tanggal', array($dari, $sampai))->count().' - webinar';
+                    $keseluruhan = [$total , $total2];
+                    return implode('<br>', $keseluruhan);
                 })
                 ->addColumn('totalpeserta', function ($data) use ($dari, $sampai){
-                    $total = [];
-                    $pelatihan = Pelatihan::where('program_id',$data->id)->whereBetween('tanggal', array($dari, $sampai))->get();
-                    foreach ($pelatihan as $key => $value) {
+                    $program = Program::where('name', $data->name)->whereHas('pelatihan')
+                                     ->first();
+                    $total_diklat = [];
+                    $total_webinar = [];
+                    $jenis = '';
+                    foreach ($program->pelatihan->where('jenis','diklat')->whereBetween('tanggal', array($dari, $sampai)) as $key => $value) {
                         # code...
-                        $total[] = $value->peserta->count();
+                        $total_diklat[] =  $value->peserta->count();
+                        
                     }
 
-                    if ($data->jenisprogram == null) {
+                    foreach ($program->pelatihan->where('jenis','webinar')->whereBetween('tanggal', array($dari, $sampai)) as $key => $value) {
                         # code...
-                        return array_sum($total).' - peserta';
+                        $total_webinar[] =  $value->peserta->count();
+                        
+                    }
+
+                    if ($program->jenisprogram !== null) {
+                        # code...
+                        $jenis = $program->jenisprogram;
                     }else {
                         # code...
-                        return array_sum($total).' - '.$data->jenisprogram;
+                        $jenis = 'peserta';
                     }
+
+                    $diklat = array_sum($total_diklat).' -'.$jenis;
+                    $webinar = array_sum($total_webinar).' -'.$jenis;
+                    $keseluruhan = [$diklat, $webinar];
+                    return implode('<br>', $keseluruhan);
                 })
                 ->rawColumns(['total','totalpeserta'])
                 ->make(true);
