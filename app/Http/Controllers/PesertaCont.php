@@ -2792,7 +2792,7 @@ class PesertaCont extends Controller
                     $total = [];
                     foreach ($program as $key => $value) {
                         # code...
-                        $total[] = $value->name;
+                        $total[] = $value.' - '.$value->program->count();
                     }
                     return implode('<br>',$total);
                    
