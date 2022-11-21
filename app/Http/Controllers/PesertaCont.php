@@ -2795,7 +2795,7 @@ class PesertaCont extends Controller
                         # code...
                         $total[] = $value->count();
                     }
-                    return implode('<br>',$total);
+                    return array_sum($total);
                 })
                 ->addColumn('totalpeserta', function ($data){
                     $total = [];
