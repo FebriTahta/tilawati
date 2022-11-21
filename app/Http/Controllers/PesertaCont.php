@@ -2787,8 +2787,13 @@ class PesertaCont extends Controller
                 $data = Program::whereHas('pelatihan')->distinct()->get();
                 return DataTables::of($data)
                 ->addColumn('total', function ($data) {
-                    $pelatihan = Pelatihan::where('program_id',$data->id)->count();
-                    return $pelatihan.' - diklat';
+                    $program    = Program::where('name', $data->name)->get();
+                    $total      = [];
+                    foreach ($program as $key => $value) {
+                        # code...
+                        $total[] = $value->pelatihan->count();
+                    }
+                    return array_sum($total);
                 })
                 ->addColumn('totalpeserta', function ($data){
                     $total = [];
