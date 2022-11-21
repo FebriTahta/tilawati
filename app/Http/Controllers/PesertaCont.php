@@ -2789,13 +2789,8 @@ class PesertaCont extends Controller
                 ->addColumn('total', function ($data) {
                     $program = Program::where('name', $data->name)
                                      ->where('status','1')
-                                     ->get();
-                    $total = [];
-                    foreach ($program as $key => $value) {
-                        # code...
-                        $total[] = $value->name.' - '.$value->pelatihan->count();
-                    }
-                    return implode('<br>',$total);
+                                     ->first();
+                  return $program->pelatihan->count();
                    
                 })
                 ->addColumn('totalpeserta', function ($data){
