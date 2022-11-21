@@ -2800,16 +2800,16 @@ class PesertaCont extends Controller
                                      ->first();
                     $total_diklat = [];
                     $total_webinar = [];
-                    foreach ($program->pelatihan as $key => $value) {
+                    foreach ($program->pelatihan->where('jenis','diklat') as $key => $value) {
                         # code...
-                        $total_diklat[] =  $value->where('jenis','diklat')->peserta->count();
-                        $total_webinar[] = $value->where('jenis','webinar')->peserta->count();
+                        $total_diklat[] =  $value->peserta->count();
+                        
                     }
-                    $diklat = array_sum($total_diklat);
-                    $webinar = array_sum($total_webinar);
-                    $total_keseluruhan = [$diklat, $webinar];
-                    return implode('<br>', $total_keseluruhan);
-                    
+                    // $diklat = array_sum($total_diklat);
+                    // $webinar = array_sum($total_webinar);
+                    // $total_keseluruhan = [$diklat, $webinar];
+                    // return implode('<br>', $total_keseluruhan);
+                    return array_sum($total_diklat);
                 })
                 ->rawColumns(['total','totalpeserta'])
                 ->make(true);
