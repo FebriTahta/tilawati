@@ -2795,7 +2795,7 @@ class PesertaCont extends Controller
                         $total[] = $value->pelatihan->where('jenis','diklat')->count();
                     }
 
-                    return implode('<br>',$total);
+                    return array_sum($total);
                    
                 })
                 ->addColumn('totalpeserta', function ($data){
