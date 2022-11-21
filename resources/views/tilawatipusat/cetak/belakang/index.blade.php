@@ -125,8 +125,8 @@
                                     $('select[name="pelatihan_id"]').empty();
                                     $.each(data, function(key, value) {
                                         $('select[name="pelatihan_id"]').append('<option value="'+ value.id +'">'+ value.id +" | "+ value.cabang.name + " | " + value.program.name + " | " + value.tanggal + " | " + value.tempat + '</option>');
-                                        $('#pelatihan_id_bagian_1').val(value[0].id);
-                                        $('#pelatihan_id_bagian_2').val(value[0].id);
+                                        $('#pelatihan_id_bagian_1').val(value.id[0]);
+                                        $('#pelatihan_id_bagian_2').val(value.id[0]);
                                     });
                                     console.log(data);
                                 }
