@@ -2791,7 +2791,7 @@ class PesertaCont extends Controller
                                      ->where('status','1')
                                      ->get();
                     $total = [];
-                    foreach ($program as $key => $value) {
+                    foreach ($program->pelatihan as $key => $value) {
                         # code...
                         $total[] = $value->count();
                     }
