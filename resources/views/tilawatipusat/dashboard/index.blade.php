@@ -337,7 +337,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form id="formqr">@csrf
+                <form action="{{ route('generate_qr_tilawati') }}" method="POST">@csrf
                     <div class="modal-body" style="font-weight: bold">
                         <div class="form-group">
                            <label >Buat QR Code anda sendiri..</label>
