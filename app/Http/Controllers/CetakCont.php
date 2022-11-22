@@ -335,7 +335,7 @@ class CetakCont extends Controller
         $peserta_id = [];
         foreach ($peserta_x as $key => $value) {
             # code...
-            if ($key > $bagian_2) {
+            if ($key >= $bagian_2) {
                 # code...
                 $peserta_id[] = $value->id;
             }
