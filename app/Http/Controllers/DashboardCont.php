@@ -79,14 +79,14 @@ class DashboardCont extends Controller
         ->generate($url, public_path('images/tilawati_qr.png'));
 
         $filepath = public_path('images/tilawati_qr.png');
-        Response::download($filepath);
+        return Response::download($filepath);
         
-        return response()->json(
-            [
-                'success' => 'QR Dibuat',
-                'message' => 'QR Dibuat'
-            ]
-        );
+        // return response()->json(
+        //     [
+        //         'success' => 'QR Dibuat',
+        //         'message' => 'QR Dibuat'
+        //     ]
+        // );
     }
 
     public function download_qr_tilawati(Request $request)
