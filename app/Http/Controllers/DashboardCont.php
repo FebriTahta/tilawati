@@ -76,9 +76,9 @@ class DashboardCont extends Controller
         $url = $request->url;
         \QrCode::size(150)
         ->format('png') 
-        ->generate($url, public_path('images/'.$url.'.png'));
+        ->generate($url, public_path('images/qr.png'));
 
-        $filepath = public_path('images/'.$url.'.png');
+        $filepath = public_path('images/qr.png');
         return response()->download($filepath);
         // return response()->json(
         //     [
