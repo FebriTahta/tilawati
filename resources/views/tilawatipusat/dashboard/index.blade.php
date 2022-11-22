@@ -235,6 +235,14 @@
                     {{Session::get('fail')}}
                     </div>
                 @endif
+
+                <div class="row p-3">
+                    <div class="col-12 col-xl-12 form-group">
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#modalqr">Buat QR Code</button>
+                    </div>
+                </div>
+
+
                 <div class="row p-3">
                     <div class="col-6 col-xl-4 form-group">
                         <label>Dari :</label>
@@ -319,7 +327,35 @@
     </div>
 
 
-
+    <div class="modal fade bs-example-modal-xl-3" id="modalqr" tabindex="-1" role="dialog"
+        aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title mt-0" id="myExtraLargeModalLabel">Fitur Premium</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form id="formqr">@csrf
+                    <div class="modal-body" style="font-weight: bold">
+                        <div class="form-group">
+                           <label >Buat QR Code anda sendiri..</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="url" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" id="btnqr" class="btn btn-primary btn sm" value="Generate">
+                        </div>
+                    </div>
+                </form>
+               
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
     {{-- <div class="row">
         
         
@@ -990,7 +1026,7 @@
         //     });
         // }
 
-        $('#generate').submit(function(e) {
+        $('#formqr').submit(function(e) {
             e.preventDefault();
             var formData = new FormData(this);
             $.ajax({
@@ -1001,14 +1037,14 @@
                 contentType: false,
                 processData: false,
                 beforeSend: function() {
-                    $('#btngenerate').attr('disabled', 'disabled');
-                    $('#btngenerate').val('Proses Generate QR');
+                    $('#btnqr').attr('disabled', 'disabled');
+                    $('#btnqr').val('Proses Generate QR');
                 },
                 success: function(data) {
                     if (data.success) {
                         toastr.success(data.success);
-                        $('#btngenerate').val('Generate');
-                        $('#btngenerate').attr('disabled', false);
+                        $('#btnqr').val('Generate');
+                        $('#btnqr').attr('disabled', false);
                         var oTable = $('#datatable-buttons').dataTable();
                         oTable.fnDraw(false);
                         swal({
@@ -1353,6 +1389,8 @@
                 });
             }
         });
+
+        
 
         // var marker = L.marker([-7.2754438,112.6426438],{
         //     // icon: myIcon
