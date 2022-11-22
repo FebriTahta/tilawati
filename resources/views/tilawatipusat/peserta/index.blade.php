@@ -337,6 +337,94 @@
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 
+    <div class="modal fade bs-example-modal-lembaga" id="nilaiPeserta" tabindex="-1" role="dialog"
+            aria-labelledby="mySmallModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title mt-0">Penilaian Peserta </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="menilai" method="POST" enctype="multipart/form-data">@csrf
+                            <div class="form-group">
+                                <input type="hidden" id="id" name="peserta_id">
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-12">
+                                    <code>Pastikan kategori penilaian pada tiap program sudah fix sebelum anda melakukan
+                                        penilaian</code>
+                                    <hr>
+                                </div>
+                                @if ($diklat->program->penilaian->count() == 0)
+                                    <div class="form-group col-12 text-center">
+                                        <p class="text-danger text-uppercase">Belum ada kategori penilaian pada program <a
+                                                href="/diklat-program">{{ $diklat->program->name }}</a></p>
+                                    </div>
+                                @else
+                                    @foreach ($diklat->program->penilaian as $item)
+                                        @if ($item->kategori !== 'skill')
+                                            <div class="form-group col-xl-6 col-6">
+                                                <label for="" class="text-capitalize">{{ $item->name }}
+                                                    @if ($item->max !== null || $item->min !== null)
+                                                        <br><i class="text-danger">Min:{{ $item->min }}</i> & <i
+                                                            class="text-danger">Max:{{ $item->max }}</i>
+                                                    @endif
+                                                </label>
+                                                <input type="hidden" name="kategori[]" value="{{ $item->kategori }}">
+                                                <input type="hidden" name="penilaian_id[]" value="{{ $item->id }}">
+                                                <input type="number" id="nominal[]" name="nominal[]"
+                                                    max="{{ $item->max }}" class="form-control">
+                                            </div>
+                                        @else
+                                            <div class="form-group col-xl-6 col-6">
+                                                <label for="" class="text-capitalize">{{ $item->name }}
+                                                    @if ($item->max !== null || $item->min !== null)
+                                                        <br><i class="text-danger">Min:{{ $item->min }}</i> & <i
+                                                            class="text-danger">Max:{{ $item->max }}</i>
+                                                    @else
+                                                        <br><br>
+                                                    @endif
+                                                </label>
+                                                <input type="hidden" name="kategori[]" value="{{ $item->kategori }}">
+                                                <input type="hidden" name="penilaian_id[]" value="{{ $item->id }}">
+                                                <input type="number" id="nominal[]" name="nominal[]"
+                                                    max="{{ $item->max }}" class="form-control">
+                                            </div>
+                                        @endif
+                                    @endforeach
+                                @endif
+                            </div>
+                            @if($diklat->program->name !== 'Diklat Munaqisy Cabang')
+                                <div class="form-group">
+                                    {{-- <label for="">Sebagai</label>
+                                                    <select name="kriteria_id" onchange="pilihKriteria()" id="kriteria_id" class="form-control">
+                                                        @foreach ($diklat->program->kriteria as $item)
+                                                            <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                                        @endforeach
+                                                    </select> --}}
+
+                                    {{-- <input type="text" class="form-control" id="kriterias" name="kriteria"> --}}
+                                    
+                                    <label for="program">JILID BAGI PESERTA YANG BELUM BERSYAHADAH</label>
+                                    <input type="number" name="jilid" class="form-control">
+                                    
+                                </div>
+                            @endif
+
+                            @if ($diklat->program->penilaian->count() !== 0)
+                                <div class="form-group text-right">
+                                    <input type="submit" class="btn btn-sm btn-info" value="Submit Nilai" id="btnsubmit">
+                                </div>
+                            @endif
+                        </form>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+        
     <div class="col-sm-6 col-md-3 m-t-30">
         <div class="modal fade bs-example-modal-lembaga" id="modalpecah" tabindex="-1" role="dialog"
             aria-labelledby="mySmallModalLabel" aria-hidden="true">
