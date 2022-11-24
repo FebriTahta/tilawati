@@ -315,16 +315,30 @@
 						@endif
 						@endforeach
 
-						<?php 
+						{{-- @php
 							$rata2 = ($jumlah+$total)/4;
+						@endphp
+							
 
-						?>
+						
 						<tr>
 							<th></th>
 							<td class="nilai6">&nbsp; &nbsp;<b> RATA - RATA NILAI</b></th>
 							<th colspan="4" class="nilai5"></th>
 							<th >{{ $rata2 = round($rata2) }}</th>
+						</tr> --}}
+
+						@php
+							$rata2 = $jumlah;
+						@endphp
+							
+						<tr>
+							<th></th>
+							<td class="nilai6">&nbsp; &nbsp;<b> RATA - RATA NILAI</b></th>
+							<th colspan="4" class="nilai5"></th>
+							<th >{{ $rata2 = round(($jumlah+$total)/4) }}</th>
 						</tr>
+
 						<tr>
 							<th></th>
 							<td class="nilai6">&nbsp; &nbsp;<b> PRESTASI</b></th>
@@ -413,17 +427,32 @@
 						@endif
 						@endforeach
 						
-						<?php 
+						{{-- @php
 							$nilaia = $p->nilai->where('penilaian_id', 37)->sum('nominal');
 							$nilaib = $p->nilai->where('penilaian_id', 39)->sum('nominal');
 							$total 	= $nilaia + $nilaib;
-						?>
+						@endphp
+						
+						<tr>
+							<th></th>
+							<td class="nilai6">&nbsp; &nbsp;<b> RATA - RATA NILAI</b></th>
+							<th colspan="4" class="nilai5"></th>
+							<th >{{ $rata2 = round(($jumlah+$total)/3) }}</th>
+						</tr> --}}
+
+						@php
+							$nilaia = $p->nilai->where('penilaian_id', 37)->sum('nominal');
+							$nilaib = $p->nilai->where('penilaian_id', 39)->sum('nominal');
+							$total 	= $nilaia + $nilaib;
+						@endphp
+
 						<tr>
 							<th></th>
 							<td class="nilai6">&nbsp; &nbsp;<b> RATA - RATA NILAI</b></th>
 							<th colspan="4" class="nilai5"></th>
 							<th >{{ $rata2 = round(($jumlah+$total)/3) }}</th>
 						</tr>
+						
 						<tr>
 							<th></th>
 							<td class="nilai6">&nbsp; &nbsp;<b> PRESTASI</b></th>
@@ -511,11 +540,26 @@
 						@endif
 					@endif
 					@endforeach
-						<?php 
+						{{-- @php
 							$nilaia = $p->nilai->where('penilaian_id', 38)->sum('nominal');
 							$nilaib = $p->nilai->where('penilaian_id', 39)->sum('nominal');
 							$total 	= $nilaia + $nilaib;
-						?>
+						@endphp
+							
+						<tr>
+							<th></th>
+							<td class="nilai6">&nbsp; &nbsp;<b> RATA - RATA NILAI</b></th>
+							<th colspan="4" class="nilai5"></th>
+							<th >{{ $rata2 = round(($jumlah+$total)/3) }}</th>
+						</tr> --}}
+
+
+						@php
+							$nilaia = $p->nilai->where('penilaian_id', 38)->sum('nominal');
+							$nilaib = $p->nilai->where('penilaian_id', 39)->sum('nominal');
+							$total 	= $nilaia + $nilaib;
+						@endphp
+							
 						<tr>
 							<th></th>
 							<td class="nilai6">&nbsp; &nbsp;<b> RATA - RATA NILAI</b></th>
