@@ -442,7 +442,7 @@
 
 						@php
 							$total = 0;
-							if ($p->nilai->where('penilaian_id', 37) == null && $p->nilai->where('penilaian_id', 39) == null) {
+							if ($p->nilai->where('penilaian_id', 37) !== null && $p->nilai->where('penilaian_id', 39) !== null) {
 								# code...
 								$nilaia = $p->nilai->where('penilaian_id', 37)->sum('nominal');
 								$nilaib = $p->nilai->where('penilaian_id', 39)->sum('nominal');
@@ -567,9 +567,19 @@
 
 
 						@php
+						$total = 0;
+						if ($p->nilai->where('penilaian_id', 38) == null && $p->nilai->where('penilaian_id', 39) == null) {
+							# code...
 							$nilaia = $p->nilai->where('penilaian_id', 38)->sum('nominal');
 							$nilaib = $p->nilai->where('penilaian_id', 39)->sum('nominal');
 							$total 	= $nilaia + $nilaib;
+						}else {
+							# code...
+							$nilaia = $p->nilai->where('penilaian_id', 64)->sum('nominal');
+							$nilaib = $p->nilai->where('penilaian_id', 65)->sum('nominal');
+							$total 	= $nilaia + $nilaib;
+						}
+							
 						@endphp
 							
 						<tr>
