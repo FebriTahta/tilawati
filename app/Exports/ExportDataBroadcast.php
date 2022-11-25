@@ -29,9 +29,9 @@ class ExportDataBroadcast implements FromQuery, WithHeadings, ShouldAutoSize,  W
     public function query(){
         
         if ($this->from == '' && $this->till =='') {
-            return Peserta::with('kabupaten','program','pelatihan')->select('name','telp','kabupaten_id','program_id');
+            return Peserta::whereHas('pelatihan')->with('kabupaten','program','pelatihan')->select('name','telp','kabupaten_id','program_id');
         }else {
-            return Peserta::with('kabupaten','program','pelatihan')->whereBetween('tanggal', array($this->from, $this->till));
+            return Peserta::whereHas('pelatihan')->with('kabupaten','program','pelatihan')->whereBetween('tanggal', array($this->from, $this->till));
         }
     }
 
@@ -43,6 +43,14 @@ class ExportDataBroadcast implements FromQuery, WithHeadings, ShouldAutoSize,  W
             
         }else {
             $kota = '';
+        }
+
+        if ($row->program !== null) {
+            # code...
+            $program = $row->program->name;
+        }else {
+            # code...
+            $program = '';
         }
 
         return [
