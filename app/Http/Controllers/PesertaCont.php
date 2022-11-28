@@ -1460,8 +1460,9 @@ class PesertaCont extends Controller
                         # code...
                         $total      = $data->pelatihan->where('program_id',$value->id)->count();
                         $peserta    = Peserta::where('cabang_id', $data->id)->where('program_id',$value->id)->whereBetween('tanggal', array($request->dari, $request->sampai))->count();
-                        $keterangan = Pelatihan::where('program_id',$value->id)->select('keterangan')->first();
-                        $hasil[]    = "<pre>$total diklat   $value->name  ($peserta $keterangan->keterangan)</pre>";
+                        // $keterangan = Pelatihan::where('program_id',$value->id)->select('keterangan')->first();
+                        $keterangan = $value->jenisprogram;
+                        $hasil[]    = "<pre>$total diklat   $value->name  ($peserta $keterangan)</pre>";
                     }
                     return $string=implode("<br>",$hasil);               
                 })
