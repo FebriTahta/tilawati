@@ -1560,9 +1560,7 @@ class PesertaCont extends Controller
 
             }else{
 
-                $data = Cabang::withCount('pelatihan')->orderBy('pelatihan_count','desc')->with(['pelatihan' => function ($query) use($request) {
-                    $query->where('jenis','diklat');
-                }]);
+                $data = Cabang::withCount('pelatihan')->orderBy('pelatihan_count','desc')->get();
 
                 return DataTables::of($data)
                 ->addColumn('cabang', function($data){
