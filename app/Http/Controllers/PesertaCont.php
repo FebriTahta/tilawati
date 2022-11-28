@@ -1560,7 +1560,9 @@ class PesertaCont extends Controller
 
             }else{
 
-                $data = Cabang::withCount('pelatihan')->orderBy('pelatihan_count','desc')->with(['pelatihan'])->get();
+                $data = Cabang::withCount('pelatihan')->orderBy('pelatihan_count','desc')->with(['pelatihan' => function ($query){
+                    $query->where('jenis','diklat')->orWhere('jenis','webinar');
+                }]);
 
                 return DataTables::of($data)
                 ->addColumn('cabang', function($data){
@@ -1578,7 +1580,7 @@ class PesertaCont extends Controller
                         $datax  = Program::where('id',$value->program_id)->first();                        
                         $dataz[$key] = $datax->id;
                     }
-                    $programs = Program::whereIn('id',$dataz)->get();
+                    $programs = Program::whereIn('id',$dataz)->distinct()->get();
                     
                     foreach ($programs as $key => $value) {
                         # code...
