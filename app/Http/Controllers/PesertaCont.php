@@ -1580,7 +1580,7 @@ class PesertaCont extends Controller
                         $datax  = Program::where('id',$value->program_id)->first();                        
                         $dataz[$key] = $datax->id;
                     }
-                    $programs = Program::whereIn('id',$dataz)->distinct()->get();
+                    $programs = Program::whereIn('id',$dataz)->get();
                     
                     foreach ($programs as $key => $value) {
                         # code...
