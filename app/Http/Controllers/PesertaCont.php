@@ -1478,7 +1478,7 @@ class PesertaCont extends Controller
                     // }
                     // $guru = array_sum($dataz);
 
-                    $guru = Peserta::where('cabang_id', $data->id)->whereBetween('tanggal', array($request->dari, $request->sampai))->whereHas('program',function($data){
+                    $guru = Peserta::where('cabang_id', $data->id)->whereHas('pelatihan')->whereBetween('tanggal', array($request->dari, $request->sampai))->whereHas('program',function($data){
                         $data->where('jenisprogram','guru');
                     })->count();
 
