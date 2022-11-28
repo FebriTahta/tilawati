@@ -1466,32 +1466,39 @@ class PesertaCont extends Controller
                     return $string=implode("<br>",$hasil);               
                 })
                 ->addColumn('total_guru', function($data) use($request) {
-                    $dataz = [];
-                    $pelatihan_guru     = Pelatihan::where('cabang_id', $data->id)->whereBetween('tanggal', array($request->dari, $request->sampai))
-                                        ->whereHas('program',function($q){
-                                            $q->where('jenisprogram','guru');
-                                        })->get();
+                    // $dataz = [];
+                    // $pelatihan_guru     = Pelatihan::where('cabang_id', $data->id)->whereBetween('tanggal', array($request->dari, $request->sampai))
+                    //                     ->whereHas('program',function($q){
+                    //                         $q->where('jenisprogram','guru');
+                    //                     })->get();
 
-                    foreach ($pelatihan_guru as $key => $value) {
-                        # code...
-                        $dataz[] = $value->peserta->count();
-                    }
-                    $guru = array_sum($dataz);
+                    // foreach ($pelatihan_guru as $key => $value) {
+                    //     # code...
+                    //     $dataz[] = $value->peserta->count();
+                    // }
+                    // $guru = array_sum($dataz);
+
+                    $guru = Peserta::where('cabang_id', $data->id)->whereBetween('tanggal', array($request->dari, $request->sampai))->whereHas('program',function($data){
+                        $data->where('jenisprogram','guru');
+                    })->count();
 
                     return '<pre>Guru : '.$guru.'</pre>';
                 })
                 ->addColumn('total_santri', function($data) use($request) {
                    
-                    $datax = [];
-                    $pelatihan_santri   = Pelatihan::where('cabang_id', $data->id)->whereBetween('tanggal', array($request->dari, $request->sampai))->whereHas('program',function($q){
-                        $q->where('jenisprogram','santri');
-                    })->get();
+                    // $datax = [];
+                    // $pelatihan_santri   = Pelatihan::where('cabang_id', $data->id)->whereBetween('tanggal', array($request->dari, $request->sampai))->whereHas('program',function($q){
+                    //     $q->where('jenisprogram','santri');
+                    // })->get();
 
-                    foreach ($pelatihan_santri as $key => $value) {
-                        # code...
-                        $datax[] = $value->peserta->count();
-                    }
-                    $santri = array_sum($datax);
+                    // foreach ($pelatihan_santri as $key => $value) {
+                    //     # code...
+                    //     $datax[] = $value->peserta->count();
+                    // }
+                    // $santri = array_sum($datax);
+                    $santri = Peserta::where('cabang_id', $data->id)->whereBetween('tanggal', array($request->dari, $request->sampai))->whereHas('program',function($data){
+                        $data->where('jenisprogram','santri');
+                    })->count();
 
                     return '<pre>Santri : '.$santri.'</pre>';
                 })

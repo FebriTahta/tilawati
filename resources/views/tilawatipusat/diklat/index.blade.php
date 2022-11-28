@@ -47,54 +47,63 @@
                             </div>
                         </div>
                         @if (auth()->user()->role == 'pusat')
-                        <div class="col-xl-4">
-                            @component('common-tilawatipusat.dashboard-widget')
-                            
-                                @slot('title') <b id="cb"> ??? </b><br><small> Total Diklat  </small>@endslot
-                                @slot('iconClass') mdi mdi-home-analytics  @endslot
-                                @slot('price')   @endslot
+                            <div class="col-xl-4">
+                                @component('common-tilawatipusat.dashboard-widget')
                                 
-                            @endcomponent
-                        </div>
-                        
-                        <div class="col-xl-4">
-                            @component('common-tilawatipusat.dashboard-widget')
+                                    @slot('title') <b id="cb"> ??? </b><br><small> Total Diklat  </small>@endslot
+                                    @slot('iconClass') mdi mdi-home-analytics  @endslot
+                                    @slot('price')   @endslot
+                                    
+                                @endcomponent
+                            </div>
                             
-                                @slot('title') <a href="#" data-toggle="modal" data-target="#mod_cabang2"> <b id="cb2"> ??? </b><br><small> Cabang Pelaksana</small></a>@endslot
-                                @slot('iconClass') mdi mdi-bank-outline  @endslot
-                                @slot('price')   @endslot
+                            <div class="col-xl-4">
+                                @component('common-tilawatipusat.dashboard-widget')
                                 
-                            @endcomponent
-                        </div>
+                                    @slot('title') <a href="#" data-toggle="modal" data-target="#mod_cabang2"> <b id="cb2"> ??? </b><br><small> Cabang Pelaksana</small></a>@endslot
+                                    @slot('iconClass') mdi mdi-bank-outline  @endslot
+                                    @slot('price')   @endslot
+                                    
+                                @endcomponent
+                            </div>
 
-                        <div class="col-xl-4">
-                            @component('common-tilawatipusat.dashboard-widget')
-                            
-                                @slot('title') <a href="#" data-toggle="modal" data-target="#mod_program"> <b id="cb3"> ??? </b><br><small> Program Diklat</small></a>@endslot
-                                @slot('iconClass') fa fa-book  @endslot
-                                @slot('price')   @endslot
+                            <div class="col-xl-4">
+                                @component('common-tilawatipusat.dashboard-widget')
                                 
-                            @endcomponent
-                        </div>
+                                    @slot('title') <a href="#" data-toggle="modal" data-target="#mod_program"> <b id="cb3"> ??? </b><br><small> Program Diklat</small></a>@endslot
+                                    @slot('iconClass') fa fa-book  @endslot
+                                    @slot('price')   @endslot
+                                    
+                                @endcomponent
+                            </div>
                         @else
-                        <div class="col-xl-6">
-                            @component('common-tilawatipusat.dashboard-widget')
-                            
-                                @slot('title') <b id="cb"> ??? </b><br><small> Total Diklat  </small>@endslot
-                                @slot('iconClass') mdi mdi-home-analytics  @endslot
-                                @slot('price')   @endslot
+                            <div class="col-xl-4">
+                                @component('common-tilawatipusat.dashboard-widget')
                                 
-                            @endcomponent
-                        </div>
-                        <div class="col-xl-6">
-                            @component('common-tilawatipusat.dashboard-widget')
-                            
-                                @slot('title') <a href="#" data-toggle="modal" data-target="#mod_program"> <b id="cb3"> ??? </b><br><small> Program Diklat</small></a>@endslot
-                                @slot('iconClass') fa fa-book  @endslot
-                                @slot('price')   @endslot
+                                    @slot('title') <b id="cb"> ??? </b><br><small> Total Diklat  </small>@endslot
+                                    @slot('iconClass') mdi mdi-home-analytics  @endslot
+                                    @slot('price')   @endslot
+                                    
+                                @endcomponent
+                            </div>
+                            <div class="col-xl-4">
+                                @component('common-tilawatipusat.dashboard-widget')
                                 
-                            @endcomponent
-                        </div>
+                                    @slot('title') <a href="#" data-toggle="modal" data-target="#mod_program"> <b id="cb3"> ??? </b><br><small> Program Diklat</small></a>@endslot
+                                    @slot('iconClass') fa fa-book  @endslot
+                                    @slot('price')   @endslot
+                                    
+                                @endcomponent
+                            </div>
+                            <div class="col-xl-4">
+                                @component('common-tilawatipusat.dashboard-widget')
+                                
+                                    @slot('title')  <b id="cb4"> ??? </b> <br><small> Peserta</small>@endslot
+                                    @slot('iconClass') fa fa-user  @endslot
+                                    @slot('price')   @endslot
+                                    
+                                @endcomponent
+                            </div>
                         @endif
                     </div>
 
@@ -1467,6 +1476,17 @@
                                 data:{dari:dari, sampai:sampai},
                                 success:function(data) {
                                     document.getElementById('cb3').innerHTML = data;
+                                    console.log(data);
+                                }
+                            });
+
+                            $.ajax({
+                                url:'/diklat-diklat-total-peserta-cabang/'+cabang,
+                                type: 'get',
+                                dataType: 'json',
+                                data:{dari:dari, sampai:sampai},
+                                success:function(data) {
+                                    document.getElementById('cb4').innerHTML = data;
                                     console.log(data);
                                 }
                             });
