@@ -1459,7 +1459,7 @@ class PesertaCont extends Controller
                     foreach ($programs as $key => $value) {
                         # code...
                         $total      = $data->pelatihan->where('program_id',$value->id)->count();
-                        $peserta    = Peserta::where('cabang_id', $data->id)->where('program_id',$value->id)->whereBetween('tanggal', array($request->dari, $request->sampai))->count();
+                        $peserta    = Peserta::where('cabang_id', $data->id)->whereHas('pelatihan')->where('program_id',$value->id)->whereBetween('tanggal', array($request->dari, $request->sampai))->count();
                         // $keterangan = Pelatihan::where('program_id',$value->id)->select('keterangan')->first();
                         $keterangan = $value->jenisprogram;
                         $hasil[]    = "<pre>$total diklat   $value->name  ($peserta $keterangan)</pre>";
