@@ -1574,23 +1574,6 @@ class PesertaCont extends Controller
                     return "<pre>$total_diklat diklat</pre>";
                 })
                 ->addColumn('namadiklat', function($data){
-                    // $dataz = [];
-                    // foreach ($data->pelatihan as $key => $value) {
-                    //     # code...
-                    //     $datax  = Program::where('status','1')->where('id',$value->program_id)->first();                        
-                    //     $dataz[$key] = $datax->id;
-                    // }
-                    // $programs = Program::where('status','1')->whereIn('id',$dataz)->distinct()->get();
-                    
-                    // foreach ($programs as $key => $value) {
-                    //     # code...
-                    //     $total      = $data->pelatihan->where('program_id',$value->id)->count();
-                    //     $peserta    = Peserta::where('cabang_id', $data->id)->where('program_id',$value->id)->count();
-                    //     // $keterangan = Pelatihan::where('program_id',$value->id)->select('keterangan')->first();
-                    //     $keterangan = Program::where('id', $value->id)->first();
-                    //     $hasil[]    = "<pre>$total diklat   $value->name  ($peserta $keterangan->jenisprogram)</pre>";
-                    // }
-                    // return $string=implode("<br>",$hasil);
                     $dataz = [];
                     foreach ($data->pelatihan as $key => $value) {
                         # code...
@@ -1599,17 +1582,15 @@ class PesertaCont extends Controller
                     }
                     $programs = Program::whereIn('id',$dataz)->distinct()->get();
                     
-                    $hasil = [];
-                    $totals= [];
                     foreach ($programs as $key => $value) {
                         # code...
                         $total      = $data->pelatihan->where('program_id',$value->id)->count();
-                        $peserta    = Peserta::where('cabang_id', $data->id)->whereHas('pelatihan')->count();
+                        $peserta    = Peserta::where('cabang_id', $data->id)->where('program_id',$value->id)->count();
                         // $keterangan = Pelatihan::where('program_id',$value->id)->select('keterangan')->first();
                         $keterangan = $value->jenisprogram;
                         $hasil[]    = "<pre>$total diklat   $value->name  ($peserta $keterangan)</pre>";
                     }
-                    return $string=implode("<br>",$hasil);                         
+                    return $string=implode("<br>",$hasil);                    
                 })
                 ->addColumn('total_guru', function($data){
                     $dataz = [];
