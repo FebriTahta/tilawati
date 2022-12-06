@@ -21,6 +21,7 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
+                    @if (auth()->user()->role == 'cabang')
                     <h4 class="card-title text-uppercase">Struktur Tata Kelola Tilawati {{auth()->user()->cabang->status}}</h4>
                     <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
                         {{-- <form action="/post-pengurus-cabang" method="POST"> @csrf  --}}
@@ -107,6 +108,8 @@
                         </form>
                         
                     </blockquote>
+                    @endif
+                    
                 </div>
             </div>
         </div>
