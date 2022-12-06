@@ -14,6 +14,7 @@ use App\Models\Macamtrainer;
 use App\Models\macamtrainer_trainer;
 use App\Models\Kpa;
 use App\Models\Supervisor;
+use App\Models\Penguruscabang;
 use Validator;
 use Auth;
 use File;
@@ -1007,6 +1008,23 @@ class CabangCont extends Controller
             }
 
         }
+    }
+
+    public function pengurus_cabang_post(Request $request) 
+    {
+        $cabang_id = auth()->user()->cabang->id;
+        $data_nama = $request->namapengurus;
+        $data_telp = $request->telppengurus;
+
+        for ($i=0; $i < count($data_nama); $i++) { 
+            # code...
+            // $datas = new Penguruscabang();
+            // $datas->nama_pengurus = $data_nama[$i];
+            // $datas->telp_pengurus = $data_telp[$i];
+            // $datas->save();
+        }
+
+        return 'ok';
     }
     
 }

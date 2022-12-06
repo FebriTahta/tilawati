@@ -16,6 +16,102 @@
             Tilawati
         @endslot
     @endcomponent
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title text-uppercase">Struktur Tata Kelola Tilawati {{auth()->user()->cabang->status}}</h4>
+                    <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
+                        {{-- <form action="/post-pengurus-cabang" method="POST"> @csrf  --}}
+                        <form action="#" method="POST"> @csrf 
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-6" style="margin-bottom: 20px">
+                                        <label>Kepala Cabang</label>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <input type="hidden" name="id[]" id="idkepala">
+                                                <input type="text" class="form-control" name="namapengurus[]" placeholder="Nama lengkap...">
+                                                <input type="hidden" name="bagian[]" value="kepala_cabang" class="form-control">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="text" class="form-control" name="telppengurus[]" placeholder="Nomor Telepon...">
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="col-md-6" style="margin-bottom: 20px">
+                                        <label>Kabid Administrasi, Keuangan & Disardik</label>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <input type="hidden" name="id[]" id="idkabidadmin">
+                                                <input type="text" class="form-control" name="namapengurus[]" placeholder="Nama lengkap...">
+                                                <input type="hidden" name="bagian[]" value="Kabid Administrasi, Keuangan & Disardik"  class="form-control">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="text" class="form-control" name="telppengurus[]" placeholder="Nomor Telepon...">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6" style="margin-bottom: 20px">
+                                        <label>Kabid Diklat & Munaqosyah</label>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <input type="hidden" name="id[]" id="idkabiddiklat">
+                                                <input type="text" class="form-control" name="namapengurus[]" placeholder="Nama lengkap...">
+                                                <input type="hidden" name="bagian[]" value="Kabid Diklat & Munaqosyah" class="form-control">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="text" class="form-control" name="telppengurus[]" placeholder="Nomor Telepon...">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6" style="margin-bottom: 20px">
+                                        <label>Kabid Pengembangan Kelembagaan</label>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <input type="hidden" name="id[]" id="idkabidpengembangan">
+                                                <input type="text" class="form-control" name="namapengurus[]" placeholder="Nama lengkap...">
+                                                <input type="hidden" name="bagian[]" value="Kabid Pengembangan Kelembagaan" class="form-control">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="text" class="form-control" name="telppengurus[]" placeholder="Nomor Telepon...">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6" style="margin-bottom: 20px">
+                                        <label>Kabid Supervisor</label>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <input type="hidden" name="id[]" id="idkabidsupervisor">
+                                                <input type="text" class="form-control" name="namapengurus[]" placeholder="Nama lengkap...">
+                                                <input type="hidden" name="bagian[]" class="Kabid Supervisor" class="form-control">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="text" class="form-control" name="telppengurus[]" placeholder="Nomor Telepon...">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <button class="btn btn-primary" type="button">UPDATE</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="row">
         <div class="col-xl-4">
             @component('common-tilawatipusat.dashboard-widget')

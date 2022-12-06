@@ -31,7 +31,8 @@ class Cabang extends Model
         'lng',
         'lat',
         'ttd',
-        'status_ttd'
+        'status_ttd',
+        
     ];
     protected $dates = ['deleted_at'];
 
