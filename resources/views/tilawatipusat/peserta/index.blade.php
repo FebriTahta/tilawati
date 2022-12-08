@@ -101,6 +101,7 @@
                     $salah2 = 0;
                     $salah3 = 0; ?>
                     @if ($peserta_salah->where('tmptlahir', null)->where('tmptlahir2', null)->count() > 0)
+                    {{-- tempat lahir kosong --}}
                         <div class="col-lg-12 alert alert-danger">
                             <p>{{ $salah1 = $peserta_salah->where('tmptlahir', null)->where('tmptlahir2', null)->count() }}
                                 Peserta dengan kesalahan
@@ -133,14 +134,14 @@
                     @endif
                     @if ($peserta_salah->where('kabupaten_id', null)->count() > 0)
                         {{-- <div class="col-lg-12 alert alert-danger"> --}}
-                        <?php $salah_kota = App\Models\Peserta::where('kabupaten_id', null)
+                        <?php $salah_kota = App\Models\Peserta::where('kabupaten_id', null)->where('kota2',null)
                             ->where('pelatihan_id', $diklat->id)
                             ->get(); ?>
 
                         @foreach ($salah_kota as $salah_kabeh)
                             <div class="col-lg-12 alert alert-danger">
                                 @if ($salah_kabeh->kota2 == null)
-                                    <p>{{ $salah3 = $peserta_salah->where('kabupaten_id', null)->count() }} Peserta dengan
+                                    <p>{{ $salah3 = $peserta_salah->where('kabupaten_id', null)->where('kota2',null)->count() }} Peserta dengan
                                         kesalahan
                                         penulisan asal kabupaten / kota
                                     </p>
@@ -157,6 +158,7 @@
                 <div class="card-body">
                     <input type="hidden" id="jenis_program" value="{{ $diklat->program->name }}">
                     <h4 class="card-title text-capitalize">Data Peserta Pelatihan </h4>
+                    <small>Download data anda apabila data anda tidak tampil pada tabel (error) atau data terdapat kolom merah pada tabel dan evaluasi pengisian data anda</small><br>
                     @if ($diklat->program->penilaian->count() == 0)
                         <code>Tambahkan kategori penilaian pada program diklat terlebih dahulu pada menu program</code>
                     @endif
@@ -190,10 +192,10 @@
                     {{-- <a href="/export-template-diklat/{{$diklat->program->name}}" class="btn btn-sm btn-outline-primary" style="width: 200px" class="btn" value="Download Template" > <i class="fas fa-download"></i> Unduh Template</a> --}}
                     <a class="btn btn-sm btn-outline-success  mb-1 mr-1" style="width:130px"
                         @if ($diklat->program->penilaian->count() == 0) disabled @else href="{{ route('diklat.peserta_create', $pelatihan_id) }}" @endif><i
-                            class="mdi mdi-plus"></i> tambah peserta</a>
+                            class="mdi mdi-plus"></i> Peserta Manual</a>
                     <button class="btn btn-sm btn-outline-success  mb-1 mr-1" style="width:130px " data-toggle="modal"
                         @if ($diklat->program->penilaian->count() == 0) disabled @else data-target=".bs-example-modal-peserta" @endif><i
-                            class="mdi mdi-cloud-upload"></i> import peserta</button>
+                            class="mdi mdi-cloud-upload"></i> Import Peserta</button>
                     @if (auth()->user()->role == 'pusat' || auth()->user()->username == 'tilawati cahaya amanah')
                         <button class="text-right btn btn-sm mr-1 mb-1 btn-outline-primary" id="cetak_all"><i
                                 class="fa fa-download"></i> pengiriman modul</button>
@@ -222,11 +224,11 @@
                     @endif
                     <a href="/export-peserta-diklat-untuk-import/{{ $diklat->id }}"
                         class="text-right btn btn-sm mr-1 mb-1 btn-outline-success"><i class="fa fa-download"></i>
-                        download data peserta (ready import)</a>
+                        Download Data Pesertaku (Dapat Diimport Ulang)</a>
 
-                    <a href="#" data-toggle="modal" data-target="#modalpecah" data-id="{{$diklat->id}}"
+                    {{-- <a href="#" data-toggle="modal" data-target="#modalpecah" data-id="{{$diklat->id}}"
                         class="text-right btn btn-sm mr-1 mb-1 btn btn-sm btn-outline-danger"><i class="fa fa-cut"></i>
-                        Pecah Data</a>
+                        Pecah Data</a> --}}
 
                     <button class="text-right btn btn-sm mr-1 mb-1 btn-outline-danger" id="hapus_all"><i
                             class="fa fa-trash"></i> hapus data </button>
@@ -1625,16 +1627,6 @@
                             name: 'kabupaten.nama',
                             orderable: false,
                         },
-                        // {
-                        // data:'kecamatan',
-                        // name:'kecamatan.nama',
-                        // orderable:false,
-                        // },
-                        // {
-                        // data:'kelurahan',
-                        // name:'kelurahan.nama',
-                        // orderable:false,
-                        // },
                         {
                             data: 'ttl',
                             name: 'ttl'
@@ -1763,16 +1755,6 @@
                             name: 'kabupaten.nama',
                             orderable: false,
                         },
-                        // {
-                        // data:'kecamatan',
-                        // name:'kecamatan.nama',
-                        // orderable:false,
-                        // },
-                        // {
-                        // data:'kelurahan',
-                        // name:'kelurahan.nama',
-                        // orderable:false,
-                        // },
                         {
                             data: 'ttl',
                             name: 'ttl'

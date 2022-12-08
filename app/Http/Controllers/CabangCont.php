@@ -1013,18 +1013,56 @@ class CabangCont extends Controller
     public function pengurus_cabang_post(Request $request) 
     {
         $cabang_id = auth()->user()->cabang->id;
-        $data_nama = $request->namapengurus;
-        $data_telp = $request->telppengurus;
-
-        for ($i=0; $i < count($data_nama); $i++) { 
+        $cabang = Cabang::where('id', $cabang_id)->first();
+        // update kepala cabang & telp cabang
+        if ($request->kepalacabang !== null || $request->kepalacabang !== '') {
             # code...
-            // $datas = new Penguruscabang();
-            // $datas->nama_pengurus = $data_nama[$i];
-            // $datas->telp_pengurus = $data_telp[$i];
-            // $datas->save();
+            $cabang->update(['kepalacabang'=> $request->kepalacabang]);
         }
 
-        return 'ok';
+        if ($request->telp !== null || $request0->telp !== '') {
+            # code...
+            $cabang->update(['telp' => $request->telp]);
+        }
+
+        // // update data penguruscabang
+        // $data_nama = $request->namapengurus;
+        // $data_telp = $request->telppengurus;
+        // $bagian    = $request->bagian;
+        $pengurusId  = $request->id;
+
+        $pengurus  = Penguruscabang::where('cabang_id' , $cabang_id)->first();
+        if ($pengurus !== null) {
+            # code...
+        }else {
+            # code... create new
+            for ($i=0; $i < count($data_nama); $i++) { 
+                # code...
+                // $datas = new Penguruscabang();
+                // $datas->nama_pengurus = $data_nama[$i];
+                // $datas->bagian = $bagian[$i];
+                // $datas->telp_pengurus = $data_telp[$i];
+                // $datas->save();
+                $datas = Penguruscabang::where('cabang_id', auth()->user()->cabang->id)
+                ->updateOrCreate(
+                    [
+                        'id'=> $pengurusId[$i]
+                    ],
+                    [
+                        'bagian' => $bagian[$i],
+                        'nama_pengurus' => $data_nama[$i],
+                        'telp_pengurus' => $data_telp[$i],
+                        
+                    ]
+                );
+                
+            }
+        }
+
+        return response()->json([
+            'status' => 200,
+            'message' => $request->namapengurus
+        ]);
     }
     
 }

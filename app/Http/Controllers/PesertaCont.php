@@ -383,7 +383,6 @@ class PesertaCont extends Controller
                                         # code...
                                         return  '<a href="" style="color:red" data-id ="'.$data->id.'"  data-toggle="modal" data-target="#addkota3"> Kosong / Salah Penulisan</a>' .' - '.'<a style="color:red" href="#" data-toggle="modal" data-target="#addtgl" data-id ="'.$data->id.'">Tgl Salah Format</a>';
                                     }
-                                    
                                 }
                         })
                         ->addColumn('alamatmodul', function($data){
@@ -1582,6 +1581,7 @@ class PesertaCont extends Controller
                     }
                     $programs = Program::whereIn('id',$dataz)->distinct()->get();
                     
+                    $hasil = [];
                     foreach ($programs as $key => $value) {
                         # code...
                         $total      = $data->pelatihan->where('program_id',$value->id)->count();

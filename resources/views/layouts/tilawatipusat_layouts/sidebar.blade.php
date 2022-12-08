@@ -42,46 +42,14 @@
                     </a>
                 </li>
 
-                <li class="menu-title">Input Data Diklat</li>
-                <li style="display: none">
-                    <a href="{{ route('acara') }}" class="waves-effect">
-                        <i class="mdi mdi-city-variant-outline"></i>
-                        <span class="badge badge-pill badge-danger float-right"></span>
-                        <span style="font-size: 12px">Acara</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('diklat.diklat') }}" class="waves-effect">
-                        <i class="mdi mdi-pencil-box-multiple-outline"></i>
-                        <span class="badge badge-pill badge-danger float-right"></span>
-                        <span style="font-size: 12px">Data Diklat</span>
-                    </a>
-                </li>
-                @if (auth()->user()->role == 'pusat')
-                    <li>
-                        <a href="{{ route('diklat.webinar') }}" class="waves-effect">
-                            <i class="mdi mdi-city-variant-outline"></i>
-                            <span class="badge badge-pill badge-danger float-right"></span>
-                            <span style="font-size: 12px">Data Webinar</span>
-                        </a>
-                    </li>
-                @endif
-                {{-- <li>
-                    <a href="{{ route('diklat.seluruh_peserta') }}" class="waves-effect">
-                        <i class="fa fa-book"></i>
-                        <span class="badge badge-pill badge-danger float-right"></span>
-                        <span>Seluruh Peserta Diklat</span>
-                    </a>
-                </li> --}}
-
-                <li class="menu-title">Menu</li>
+                <li class="menu-title">Menu Utama</li>
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="mdi mdi-checkbox-multiple-blank-outline"></i>
                         <span style="font-size: 12px">Data Master</span>
                     </a>
-                    <ul class="sub-menu" aria-expanded="true">
+                    <ul class="sub-menu mm-collapse mm-show" aria-expanded="true">
                         <li><a style="font-size: 12px" href="{{ route('diklat.cabang') }}">Data Cabang
                                 Se-Indonesia</a></li>
                         @if (auth()->user()->role == 'pusat')
@@ -107,6 +75,58 @@
                         @endif
                     </ul>
                 </li>
+
+                @if (auth()->user()->role == 'pusat')
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="mdi mdi-checkbox-multiple-blank-outline"></i>
+                        <span style="font-size: 12px">Data Api Cabang</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="true">
+                        <li><a style="font-size: 12px" href="/tampilan-api-cabang-tilawati">Api Perwakilan Cabang Tilawati</a></li>
+                        <li><a style="font-size: 12px" href="/tampilan-api-cabang-nurul-falah">Api Cabang Nurul Falah</a></li>
+                    </ul>
+                </li>
+                @endif
+
+                
+
+
+                <li class="menu-title">Input Data Diklat</li>
+                <li style="display: none">
+                    <a href="{{ route('acara') }}" class="waves-effect">
+                        <i class="mdi mdi-city-variant-outline"></i>
+                        <span class="badge badge-pill badge-danger float-right"></span>
+                        <span style="font-size: 12px">Acara</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('diklat.diklat') }}" class="waves-effect">
+                        <i class="mdi mdi-pencil-box-multiple-outline"></i>
+                        <span class="badge badge-pill badge-danger float-right"></span>
+                        <span style="font-size: 12px">Data Diklat</span>
+                    </a>
+                </li>
+                @if (auth()->user()->role == 'pusat')
+                    <li>
+                        <a href="{{ route('diklat.webinar') }}" class="waves-effect">
+                            <i class="mdi mdi-city-variant-outline"></i>
+                            <span class="badge badge-pill badge-danger float-right"></span>
+                            <span style="font-size: 12px">Data Webinar</span>
+                        </a>
+                    </li>
+                @endif
+
+                
+                {{-- <li>
+                    <a href="{{ route('diklat.seluruh_peserta') }}" class="waves-effect">
+                        <i class="fa fa-book"></i>
+                        <span class="badge badge-pill badge-danger float-right"></span>
+                        <span>Seluruh Peserta Diklat</span>
+                    </a>
+                </li> --}}
+
+                
 
                 {{-- <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
@@ -158,18 +178,7 @@
                 </li>
                 @endif --}}
 
-                @if (auth()->user()->role == 'pusat')
-                <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="mdi mdi-checkbox-multiple-blank-outline"></i>
-                        <span style="font-size: 12px">Data Api Cabang</span>
-                    </a>
-                    <ul class="sub-menu" aria-expanded="true">
-                        <li><a style="font-size: 12px" href="/tampilan-api-cabang-tilawati">Api Perwakilan Cabang Tilawati</a></li>
-                        <li><a style="font-size: 12px" href="/tampilan-api-cabang-nurul-falah">Api Cabang Nurul Falah</a></li>
-                    </ul>
-                </li>
-                @endif
+                
 
                 @if (auth()->user()->role == 'pusat')
                     <li class="menu-title">Cetak</li>

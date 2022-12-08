@@ -355,6 +355,25 @@ class PesertaDiklatImport2 implements ToCollection, WithStartRow
                             
                             // ->generate('https://www.tilawatipusat.com/diklat-profile-peserta/'.$dt_pel->id.'/'.$dt_pel->pelatihan->program->id.'/'.$dt_pel->pelatihan->id, public_path('images/'.$id.'qrcode.png'));
                         }else{
+
+                            $kab     = strtoupper($row[2]);
+                            $kab_kab = 'KAB. '.$kab;
+                            $kab_kot = 'KOTA '.$kab;
+                            $tes_kab = Kabupaten::select('*')->whereIn('nama',[$kab_kab])->first();
+                            $tes_kot = Kabupaten::select('*')->whereIn('nama',[$kab_kot])->first();
+                            //proses logika untuk mendapatkan kabupaten id & menginput provinsi id otomatis dari kabupaten
+                            $kabupaten_id = null;
+                            $provinsi_id = null;
+                            if ($tes_kab !== null) {
+                                # code...
+                                $kabupaten_id = $tes_kab->id;
+                                // $provinsi_id = $tes_kab->provinsi->id;
+                            } 
+                            if ($tes_kot !== null) {
+                                # code...
+                                $kabupaten_id = $tes_kot->id;
+                                // $provinsi_id = $tes_kot->provinsi->id;
+                            }
     
                             if (is_numeric($row[5]) !== false) {
                                 # code...
@@ -366,13 +385,15 @@ class PesertaDiklatImport2 implements ToCollection, WithStartRow
                                 [
                                     'name'        => $row[0],
                                     'alamat'      => $row[1],
+                                    'kota2'        => $row[2],
                                     'telp'        => $row[3],
                                     'tgllahir'    => $masuk1,
-                                    'tmptlahir2'  => $row[4],
+                                    'tmptlahir2'  => $row[2],
                                     'jilid'       => $row[7],
                                     'kriteria'    => $row[8],
                                     'bersyahadah' => $row[9],
-    
+                                    'kabupaten_id'=> $kabupaten_id,
+                                    // 'provinsi_id' => $provinsi_id,
                                 ]
                                 );
                             }else {
@@ -384,12 +405,14 @@ class PesertaDiklatImport2 implements ToCollection, WithStartRow
                                     [
                                         'name'        => $row[0],
                                         'alamat'      => $row[1],
+                                        'kota2'        => $row[2],
                                         'telp'        => $row[3],
                                         'tmptlahir2'  => $row[4],
                                         'jilid'       => $row[7],
                                         'kriteria'    => $row[8],
                                         'bersyahadah' => $row[9],
-        
+                                        'kabupaten_id'=> $kabupaten_id,
+                                        // 'provinsi_id' => $provinsi_id,
                                     ]
                                     );
                             }

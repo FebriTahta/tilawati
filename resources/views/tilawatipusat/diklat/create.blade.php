@@ -32,14 +32,14 @@
                                             <div class="form-group">
                                                  <div class="row">
                                                      <input type="hidden" name="jenis" value="diklat" required>
-                                                    <div class="form-group col-12 col-xl-12 border-bottom">
+                                                    {{-- <div class="form-group col-12 col-xl-12 border-bottom">
                                                         <input type="radio" id="1" name="waktu" value="1" onclick="myFunction2()" checked >
                                                         <label for="1">satu hari</label><br>
                                                         <input type="radio" id="2" name="waktu" value="2"  onclick="myFunction()">
                                                         <label for="2">lebih dari satu hari</label>
-                                                    </div>
+                                                    </div> --}}
                                                      <div class="form-group col-xl-6">
-                                                         <label for="">Tanggal</label>
+                                                         <label for="">Tanggal Pelaksanaan</label>
                                                          <input type="date" name="tanggal" class="form-control " required>
                                                      </div>
                                                      <div class="form-group col-12 col-xl-6" id="tgl" style="display: none">
@@ -80,7 +80,10 @@
                                                          <option value="">= Untuk Guru / Santri =</option>
                                                          <option value="guru">GURU</option>
                                                          <option value="santri">SANTRI</option>
+                                                         @if (auth()->user()->role == 'pusat')
                                                          <option value="instruktur">INSTRUKTUR</option>
+                                                         @endif
+                                                         
                                                      </select>
                                                  </div>
                                                  <input type="hidden" name="jenis" value="diklat" id="" required>

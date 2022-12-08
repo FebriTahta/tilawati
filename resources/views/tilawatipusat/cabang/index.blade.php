@@ -25,19 +25,18 @@
                     <h4 class="card-title text-uppercase">Struktur Tata Kelola Tilawati {{auth()->user()->cabang->status}}</h4>
                     <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
                         {{-- <form action="/post-pengurus-cabang" method="POST"> @csrf  --}}
-                        <form action="#" method="POST"> @csrf 
+                        <form id="addpenguruscabang" method="POST"> @csrf 
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-md-6" style="margin-bottom: 20px">
                                         <label>Kepala Cabang</label>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <input type="hidden" name="id[]" id="idkepala">
-                                                <input type="text" class="form-control" name="namapengurus[]" placeholder="Nama lengkap...">
+                                                <input type="text" class="form-control" name="kepalacabang" placeholder="Nama lengkap..." value="{{auth()->user()->cabang->kepalacabang}}">
                                                 <input type="hidden" name="bagian[]" value="kepala_cabang" class="form-control">
                                             </div>
                                             <div class="col-md-6">
-                                                <input type="text" class="form-control" name="telppengurus[]" placeholder="Nomor Telepon...">
+                                                <input type="text" class="form-control" name="telp" placeholder="Nomor Telepon..." value="{{auth()->user()->cabang->telp}}">
                                             </div>
                                         </div>
                                         
@@ -101,7 +100,8 @@
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <button class="btn btn-primary" type="button">UPDATE</button>
+                                        <input type="submit" class="btn btn-primary" id="btnpengurus" type="button" value="Update">
+                                        {{-- <button class="btn btn-primary" type="button">UPDATE</button> --}}
                                     </div>
                                 </div>
                             </div>
@@ -1105,6 +1105,40 @@
                         swal({
                             title: "Success!",
                             text: "Lokasi Berhasil Diperbarui",
+                            type: "success"
+                        })
+                    }
+                },
+                error: function(data) {
+                    console.log(data);
+                }
+            });
+        });
+
+        $('#addpenguruscabang').submit(function(e) {
+            e.preventDefault();
+            var formData = new FormData(this);
+            $.ajax({
+                type: 'POST',
+                url: "/post-pengurus-cabang",
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                beforeSend: function() {
+                    $('#btnpengurus').attr('disabled', 'disabled');
+                    $('#btnpengurus').val('Proses Mengupdate Data');
+
+                },
+                success: function(data) {
+                    if (data.status == 200) {
+                        var oTable = $('#datatable-buttons').dataTable();
+                        oTable.fnDraw(false);
+                        $('#btnpengurus').val('Update');
+                        $('#btnpengurus').attr('disabled', false);
+                        swal({
+                            title: "Success!",
+                            text: data.message,
                             type: "success"
                         })
                     }

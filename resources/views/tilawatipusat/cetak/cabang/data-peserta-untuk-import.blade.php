@@ -65,7 +65,7 @@
                         @if ($item->kabupaten !== null)
                             {{substr($item->kabupaten->nama,4)}}
                         @else
-                        -   {{$item->kota2}}
+                        {{$item->kota2}}
                         @endif
                     </td>
                     <td>{{$item->telp}}</td>
@@ -106,7 +106,7 @@
                         @if ($item->kabupaten !== null)
                             {{substr($item->kabupaten->nama,4)}}
                         @else
-                        -   {{$item->kota2}}
+                        {{$item->kota2}}
                         @endif
                     </td>
                     <td>{{$item->telp}}</td>
