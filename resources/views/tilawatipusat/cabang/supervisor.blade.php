@@ -27,6 +27,10 @@
                     </h4>
                     <p class="card-title-desc">Ter-update berdasarkan Tahun {{date('Y')}} </br></p>
 
+                    <button class="btn btn-sm btn-outline-info mb-2 mr-1 text-uppercase" style="font-size: 12px "
+                    data-toggle="modal" data-target="#modal-add"><i class="mdi mdi-plus"></i> Tambah
+                    Supervisor</button>
+
                     <a href="/export-template-munaqisy" class="btn btn-sm btn-outline-primary mb-2 mr-1 text-uppercase"
                         style="font-size: 12px "><i class="mdi mdi-download"></i> Template Supervisor</a>
 
@@ -43,24 +47,24 @@
                     <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
                         <table id="tabel-trainer" class="table table-cabang table-bordered dt-responsive nowrap"
                             style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
-                            <thead class="text-bold text-primary" style="text-transform: uppercase; font-size: 10px">
+                            <thead class="text-bold text-primary" style="text-transform: uppercase; font-size: 12px">
                                 <tr>
                                     <th>Nama</th>
                                     <th>Wa / Telp</th>
                                     <th>Alamat</th>
-                                    {{-- <th>...</th> --}}
+                                    <th>...</th>
                                 </tr>
                             </thead>
 
-                            <tbody style="font-size: 10px">
+                            <tbody style="font-size: 12px">
                             </tbody>
 
-                            <tfoot class="text-bold text-primary" style="text-transform: uppercase; font-size: 10px">
+                            <tfoot class="text-bold text-primary" style="text-transform: uppercase; font-size: 12px">
                                 <tr>
                                     <th>Nama</th>
                                     <th>Wa / Telp</th>
                                     <th>Alamat</th>
-                                    {{-- <th>...</th> --}}
+                                    <th>...</th>
                                 </tr>
                             </tfoot>
                         </table>
@@ -126,13 +130,13 @@
                     <div class="col-xl-12">
                         <div class="card m-b-30">
                             <div class="card-body">
-                                <form id="trainer_store" class="text-capitalize" method="POST"
+                                <form id="trainer_store" class=" " method="POST"
                                     enctype="multipart/form-data">@csrf
                                     <div class="row">
                                         <input type="hidden" name="id" id="id">
                                         <div class="col-md-6 col-12 form-group">
                                             <label for="">Nama</label>
-                                            <input type="text" id="name" name="name" class="form-control text-capitalize"
+                                            <input type="text" id="name" name="name" class="form-control"
                                                 required>
                                         </div>
                                         <div class="col-md-6 col-12 form-group">
@@ -146,7 +150,9 @@
                                         </div>
                                     </div>
                                     <hr>
-                                    <?php $macam = App\Models\Macamtrainer::all();?>
+                                    {{-- @php
+                                         $macam = App\Models\Macamtrainer::all();
+                                    @endphp
                                         <h5 class="border-bottom">ISI "Ok" SESUAI STATUS SUPERVISOR</h5>
                                         <div class="row">
                                             <div class="col-md-12">
@@ -161,7 +167,7 @@
                                                     @endforeach
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                     <div class="form-group text-right">
                                         <input type="submit" id="z" class="btn btn-outline-primary" value="Submit!">
                                     </div>
@@ -186,7 +192,7 @@
                                     <form id="hapustrainer" method="POST" enctype="multipart/form-data">@csrf
                                         <div class="form-group text-center">
                                             <h5>Anda yakin akan menghapus Supervisor tersebut ?</h5>
-                                            <input type="hidden" class="form-control text-capitalize" id="id" name="id"
+                                            <input type="hidden" class="form-control  " id="id" name="id"
                                                 required>
                                         </div>
                                         <div class="row" style="text-align: center">
@@ -249,12 +255,55 @@
             $('#row' + button_id + '').remove();
             console.log(button_id);
         });
+        $('#hapustrainer').submit(function(e) {
+            e.preventDefault();
+            var formData = new FormData(this);
+            $.ajax({
+                type: 'POST',
+                url: "/remove-supervisor-cabang",
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                beforeSend: function() {
+                    $('#btnhapus').attr('disabled', 'disabled');
+                    $('#btnhapus').val('Proses Hapus Data');
+                },
+                success: function(data) {
+                    if (data.status == 200) {
+                        //sweetalert and redirect
+                        var oTable = $('#tabel-trainer').dataTable();
+                        oTable.fnDraw(false);
+                        $('#btnhapus').val('Ya, Hapus!');
+                        $('#modal_hapus').modal('hide');
+                        $('#btnhapus').attr('disabled', false);
+                        toastr.success(data.message);
+                        swal({
+                            title: "Success!",
+                            text: data.message,
+                            type: "success"
+                        })
+                    }else{
+                        toastr.danger(data.success);
+                        swal({
+                            title: "Maaf",
+                            text: "Your data is " + data.message,
+                            type: "error"
+                        })
+                    }
+                },
+                error: function(data) {
+                    console.log(data);
+                }
+            });
+        });
+
         $('#trainer_store').submit(function(e) {
             e.preventDefault();
             var formData = new FormData(this);
             $.ajax({
                 type: 'POST',
-                url: "{{ route('store.trainer.cabang') }}",
+                url: "/store-supervisor-cabang",
                 data: formData,
                 cache: false,
                 contentType: false,
@@ -264,20 +313,29 @@
                     $('#z').val('Proses Menyimpan Data');
                 },
                 success: function(data) {
-                    if (data.success) {
+                    if (data.status == 200) {
                         //sweetalert and redirect
                         $("#trainer_store")[0].reset();
-                        toastr.success(data.success);
+                        toastr.success(data.message);
                         $('#modal-add').modal('hide');
                         $('#z').val('Submit');
                         $('#z').attr('disabled', false);
                         var oTable = $('#tabel-trainer').dataTable();
                         oTable.fnDraw(false);
-                        // swal({
-                        //     title: "Success!",
-                        //     text: "Trainer Baru Berhasil Ditambahkan!",
-                        //     type: "success"
-                        // })
+                        swal({
+                            title: "Success!",
+                            text: data.message,
+                            type: "success"
+                        })
+                    }else{
+                        $('#z').val('Submit');
+                        $('#z').attr('disabled', false);
+                        toastr.success(data.message);
+                        swal({
+                            title: "Maaf!",
+                            text: data.message,
+                            type: "error"
+                        })
                     }
                     if (data.error) {
                         $('#message').html('<div class="alert alert-danger">' + data.error + '</div>');
@@ -377,13 +435,13 @@
             var name = button.data('name')
             var telp = button.data('telp')
             var alamat = button.data('alamat')
-            var trainer = button.data('trainer')
+            // var trainer = button.data('trainer')
             var modal = $(this)
             modal.find('.modal-body #id').val(id);
             modal.find('.modal-body #name').val(name);
             modal.find('.modal-body #alamat').val(alamat);
             modal.find('.modal-body #telp').val(telp);
-            modal.find('.modal-body #trainer').val(trainer);
+            // modal.find('.modal-body #trainer').val(trainer);
         })
     </script>
 
@@ -410,10 +468,10 @@
                         data: 'alamat',
                         name: 'alamat'
                     },
-                    // {
-                    //     data: 'action',
-                    //     name: 'action'
-                    // },
+                    {
+                        data: 'action',
+                        name: 'action'
+                    },
 
                 ]
             });

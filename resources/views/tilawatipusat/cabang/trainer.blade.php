@@ -133,13 +133,13 @@
                     <div class="col-xl-12">
                         <div class="card m-b-30">
                             <div class="card-body">
-                                <form id="trainer_store" class="text-capitalize" method="POST"
+                                <form id="trainer_store" class=" " method="POST"
                                     enctype="multipart/form-data">@csrf
                                     <div class="row">
                                         <input type="hidden" name="id" id="id">
                                         <div class="col-md-6 col-12 form-group">
                                             <label for="">Nama</label>
-                                            <input type="text" id="name" name="name" class="form-control text-capitalize"
+                                            <input type="text" id="name" name="name" class="form-control  "
                                                 required>
                                         </div>
                                         <div class="col-md-6 col-12 form-group">
@@ -174,10 +174,13 @@
                                                 <div class="row">
                                                     @foreach ($macam as $key => $items)
                                                         <div class="col-md-6 col-12 form-group">
-                                                            <label for="">{{ $items->jenis }}</label>
-                                                            <input type="text" id=""
-                                                                name="macamtrainer_id[{{ $key + 1 }}]"
-                                                                class="form-control">
+                                                            @if ($items->jenis !== 'Munaqisy' && $items->jenis !== 'Supervisor')
+                                                                <label for="">{{ $items->jenis }}</label>
+                                                                <input type="text" id=""
+                                                                    name="macamtrainer_id[{{ $key + 1 }}]"
+                                                                    class="form-control">
+                                                            @endif
+                                                            
                                                         </div>
                                                     @endforeach
                                                 </div>
@@ -207,7 +210,7 @@
                                     <form id="hapustrainer" method="POST" enctype="multipart/form-data">@csrf
                                         <div class="form-group text-center">
                                             <h5>Anda yakin akan menghapus Trainer tersebut ?</h5>
-                                            <input type="hidden" class="form-control text-capitalize" id="id" name="id"
+                                            <input type="hidden" class="form-control  " id="id" name="id"
                                                 required>
                                         </div>
                                         <div class="row" style="text-align: center">

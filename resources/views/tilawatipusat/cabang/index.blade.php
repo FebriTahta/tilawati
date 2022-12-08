@@ -22,94 +22,132 @@
             <div class="card">
                 <div class="card-body">
                     @if (auth()->user()->role == 'cabang')
-                    <h4 class="card-title text-uppercase">Struktur Tata Kelola Tilawati {{auth()->user()->cabang->status}}</h4>
-                    <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
-                        {{-- <form action="/post-pengurus-cabang" method="POST"> @csrf  --}}
-                        <form id="addpenguruscabang" method="POST"> @csrf 
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-md-6" style="margin-bottom: 20px">
-                                        <label>Kepala Cabang</label>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <input type="text" class="form-control" name="kepalacabang" placeholder="Nama lengkap..." value="{{auth()->user()->cabang->kepalacabang}}">
-                                                <input type="hidden" name="bagian[]" value="kepala_cabang" class="form-control">
+                        <h4 class="card-title text-uppercase">Struktur Tata Kelola Tilawati
+                            {{ auth()->user()->cabang->status }}</h4>
+                        <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
+                            {{-- <form action="/post-pengurus-cabang" method="POST"> @csrf  --}}
+                            <form id="addpenguruscabang" method="POST"> @csrf
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-6" style="margin-bottom: 20px">
+                                            <label>Kepala Cabang </label>
+                                            <div class="row">
+                                                @if ($pengurus_kepala !== null)
+                                                    <div class="col-md-6">
+                                                        <input type="hidden" name="id[]" id="idkepalacabang" value="{{$pengurus_kepala->id}}">
+                                                        <input type="text" class="form-control" name="namapengurus[]"
+                                                            placeholder="Nama lengkap..."
+                                                            value="{{$pengurus_kepala->nama_pengurus}}">
+                                                        <input type="hidden" name="bagian[]" value="Kepala Cabang"
+                                                            class="form-control">
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <input type="text" class="form-control" name="telppengurus[]"
+                                                            placeholder="Nomor Telepon..."
+                                                            value="{{$pengurus_kepala->telp_pengurus}}">
+                                                    </div>
+                                                @else
+                                                    <div class="col-md-6">
+                                                        <input type="hidden" name="id[]" id="idkepalacabang" >
+                                                        <input type="text" class="form-control" name="namapengurus[]"
+                                                            placeholder="Nama lengkap..."
+                                                            value="{{ auth()->user()->cabang->kepalacabang }}">
+                                                        <input type="hidden" name="bagian[]" value="Kepala Cabang"
+                                                            class="form-control">
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <input type="text" class="form-control" name="telppengurus[]"
+                                                            placeholder="Nomor Telepon..."
+                                                            value="{{ auth()->user()->cabang->telp }}">
+                                                    </div>
+                                                @endif
                                             </div>
-                                            <div class="col-md-6">
-                                                <input type="text" class="form-control" name="telp" placeholder="Nomor Telepon..." value="{{auth()->user()->cabang->telp}}">
+
+                                        </div>
+                                        <div class="col-md-6" style="margin-bottom: 20px">
+                                            <label>Kabid Administrasi, Keuangan & Disardik</label>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    
+                                                    <input type="hidden" name="id[]" id="idkabidadmin" @if ($kabid_admin !== null)  value="{{$kabid_admin->id}}" @endif>
+                                                    <input type="text" class="form-control" name="namapengurus[]"
+                                                        placeholder="Nama lengkap..." @if ($kabid_admin !== null)  value="{{$kabid_admin->nama_pengurus}}" @endif>
+                                                    <input type="hidden" name="bagian[]"
+                                                        value="Kabid Administrasi, Keuangan & Disardik"
+                                                        class="form-control">
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input type="text" class="form-control" name="telppengurus[]"
+                                                        placeholder="Nomor Telepon..." @if ($kabid_admin !== null)  value="{{$kabid_admin->telp_pengurus}}" @endif>
+                                                </div>
                                             </div>
                                         </div>
-                                        
-                                    </div>
-                                    <div class="col-md-6" style="margin-bottom: 20px">
-                                        <label>Kabid Administrasi, Keuangan & Disardik</label>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <input type="hidden" name="id[]" id="idkabidadmin">
-                                                <input type="text" class="form-control" name="namapengurus[]" placeholder="Nama lengkap...">
-                                                <input type="hidden" name="bagian[]" value="Kabid Administrasi, Keuangan & Disardik"  class="form-control">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <input type="text" class="form-control" name="telppengurus[]" placeholder="Nomor Telepon...">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6" style="margin-bottom: 20px">
-                                        <label>Kabid Diklat & Munaqosyah</label>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <input type="hidden" name="id[]" id="idkabiddiklat">
-                                                <input type="text" class="form-control" name="namapengurus[]" placeholder="Nama lengkap...">
-                                                <input type="hidden" name="bagian[]" value="Kabid Diklat & Munaqosyah" class="form-control">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <input type="text" class="form-control" name="telppengurus[]" placeholder="Nomor Telepon...">
+                                        <div class="col-md-6" style="margin-bottom: 20px">
+                                            <label>Kabid Diklat & Munaqosyah</label>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <input type="hidden" name="id[]" id="idkabiddiklat"@if ($kabid_diklat !== null)  value="{{$kabid_diklat->id}}" @endif>
+                                                    <input type="text" class="form-control" name="namapengurus[]"
+                                                        placeholder="Nama lengkap..." @if ($kabid_diklat !== null)  value="{{$kabid_diklat->nama_pengurus}}" @endif>
+                                                    <input type="hidden" name="bagian[]" value="Kabid Diklat & Munaqosyah"
+                                                        class="form-control">
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input type="text" class="form-control" name="telppengurus[]"
+                                                        placeholder="Nomor Telepon..." @if ($kabid_diklat !== null)  value="{{$kabid_diklat->telp_pengurus}}" @endif>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-6" style="margin-bottom: 20px">
-                                        <label>Kabid Pengembangan Kelembagaan</label>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <input type="hidden" name="id[]" id="idkabidpengembangan">
-                                                <input type="text" class="form-control" name="namapengurus[]" placeholder="Nama lengkap...">
-                                                <input type="hidden" name="bagian[]" value="Kabid Pengembangan Kelembagaan" class="form-control">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <input type="text" class="form-control" name="telppengurus[]" placeholder="Nomor Telepon...">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6" style="margin-bottom: 20px">
-                                        <label>Kabid Supervisor</label>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <input type="hidden" name="id[]" id="idkabidsupervisor">
-                                                <input type="text" class="form-control" name="namapengurus[]" placeholder="Nama lengkap...">
-                                                <input type="hidden" name="bagian[]" class="Kabid Supervisor" class="form-control">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <input type="text" class="form-control" name="telppengurus[]" placeholder="Nomor Telepon...">
+                                        <div class="col-md-6" style="margin-bottom: 20px">
+                                            <label>Kabid Pengembangan Kelembagaan</label>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <input type="hidden" name="id[]" id="idkabidpengembangan" @if ($kabid_lembaga !== null)  value="{{$kabid_lembaga->id}}" @endif>
+                                                    <input type="text" class="form-control" name="namapengurus[]"
+                                                        placeholder="Nama lengkap..."  @if ($kabid_lembaga !== null)  value="{{$kabid_lembaga->nama_pengurus}}" @endif>
+                                                    <input type="hidden" name="bagian[]"
+                                                        value="Kabid Pengembangan Kelembagaan" class="form-control">
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input type="text" class="form-control" name="telppengurus[]"
+                                                        placeholder="Nomor Telepon..."  @if ($kabid_lembaga !== null)  value="{{$kabid_lembaga->telp_pengurus}}" @endif>
+                                                </div>
                                             </div>
                                         </div>
+                                        <div class="col-md-6" style="margin-bottom: 20px">
+                                            <label>Kabid Supervisor</label>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <input type="hidden" name="id[]" id="idkabidsupervisor" @if ($kabid_super !== null)  value="{{$kabid_super->id}}" @endif>
+                                                    <input type="text" class="form-control" name="namapengurus[]"
+                                                        placeholder="Nama lengkap..." @if ($kabid_super !== null)  value="{{$kabid_super->nama_pengurus}}" @endif>
+                                                    <input type="hidden" name="bagian[]" value="Kabid Supervisor"
+                                                        class="form-control">
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input type="text" class="form-control" name="telppengurus[]"
+                                                        placeholder="Nomor Telepon..." @if ($kabid_super !== null)  value="{{$kabid_super->telp_pengurus}}" @endif>
+                                                </div>
+                                            </div>
+                                        </div>
+
                                     </div>
-                                    
                                 </div>
-                            </div>
-                            
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <input type="submit" class="btn btn-primary" id="btnpengurus" type="button" value="Update">
-                                        {{-- <button class="btn btn-primary" type="button">UPDATE</button> --}}
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <input type="submit" class="btn btn-primary" id="btnpengurus"
+                                                type="button" value="Update">
+                                            {{-- <button class="btn btn-primary" type="button">UPDATE</button> --}}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </form>
-                        
-                    </blockquote>
+                            </form>
+
+                        </blockquote>
                     @endif
-                    
+
                 </div>
             </div>
         </div>
@@ -173,9 +211,8 @@
                         rpq</button> --}}
                     <button class="btn btn-sm btn-success mb-2 mr-1" style="width:130px " data-toggle="modal"
                         data-target=".bs-example-modal-tambah-cabang"><i class="mdi mdi-plus"></i> tambah cabang</button>
-                    <a href="/export-download-data-cabang"
-                        class="btn btn-sm btn-outline-primary mb-2 mr-1 text-uppercase" style="font-size: 12px "><i
-                    class="mdi mdi-download"></i> Unduh Data Cabang</a>
+                    <a href="/export-download-data-cabang" class="btn btn-sm btn-outline-primary mb-2 mr-1 text-uppercase"
+                        style="font-size: 12px "><i class="mdi mdi-download"></i> Unduh Data Cabang</a>
                     <br>
                     @endif
                     {{-- <a href="/export-data-cabang" target="_blank" class="btn btn-sm btn-outline-primary mb-2 mr-1"
@@ -241,8 +278,8 @@
 
     <!--modal import cabang-->
     <div class="col-sm-6 col-md-3 m-t-30">
-        <div class="modal fade bs-example-modal-cabang" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
-            aria-hidden="true">
+        <div class="modal fade bs-example-modal-cabang" tabindex="-1" role="dialog"
+            aria-labelledby="mySmallModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -259,7 +296,8 @@
                                         <form id="importcabang" method="POST" enctype="multipart/form-data">@csrf
                                             <input type="hidden" id="import_tipe" value="munaqisy">
                                             <div class="form-group">
-                                                <label for="">Import Data "Cabang" (hanya Excel File format .xlsx)</label>
+                                                <label for="">Import Data "Cabang" (hanya Excel File format
+                                                    .xlsx)</label>
                                                 <input type="file" class="form-control" name="file"
                                                     accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
                                                     required>
@@ -298,14 +336,15 @@
                                         <form id="importrpq" method="POST" enctype="multipart/form-data">@csrf
                                             <input type="hidden" id="import_tipe" value="munaqisy">
                                             <div class="form-group">
-                                                <label for="">Import Data "RPQ" (hanya Excel File format .xlsx)</label>
+                                                <label for="">Import Data "RPQ" (hanya Excel File format
+                                                    .xlsx)</label>
                                                 <input type="file" class="form-control" name="file"
                                                     accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
                                                     required>
                                             </div>
                                             <div class="form-group">
-                                                <input type="submit" name="import" id="btnimportrpq" class="btn btn-info"
-                                                    value="Import" />
+                                                <input type="submit" name="import" id="btnimportrpq"
+                                                    class="btn btn-info" value="Import" />
                                             </div>
                                         </form>
                                     </div><!-- container fluid -->
@@ -332,13 +371,13 @@
                                             <h5>"User Akses Cabang Tersebut" juga akan terhapus apabila menghapus Cabang
                                             </h5>
                                             <p class="text-danger">YAKIN INGIN MENGHAPUS CABANG TERSEBUT ?</p>
-                                            <input type="hidden" class="form-control text-capitalize" id="id" name="id"
-                                                required>
+                                            <input type="hidden" class="form-control text-capitalize" id="id"
+                                                name="id" required>
                                         </div>
                                         <div class="row" style="text-align: center">
                                             <div class="form-group col-6 col-xl-6">
-                                                <input type="submit" name="hapus" id="btnhapus" class="btn btn-danger"
-                                                    value="Ya, Hapus!" />
+                                                <input type="submit" name="hapus" id="btnhapus"
+                                                    class="btn btn-danger" value="Ya, Hapus!" />
                                             </div>
                                             <div class="form-group col-6 col-xl-6">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">
@@ -370,11 +409,12 @@
                         <h5>TRAINER <br> <span class="text-uppercase" id="cabang_name"></span></h5>
                     </div>
                     <div class="col-xl-12">
-                        <table id="datatable-buttons-trainer" class="table table-cabang table-bordered dt-responsive nowrap"
+                        <table id="datatable-buttons-trainer"
+                            class="table table-cabang table-bordered dt-responsive nowrap"
                             style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
                             <thead class="text-bold text-primary" style="text-transform: uppercase; font-size: 10px">
                                 <tr>
-                                    
+
                                     <th>Nama</th>
                                     <th>Trainer</th>
                                     <th>Phone</th>
@@ -386,7 +426,7 @@
 
                             <tfoot class="text-bold text-primary" style="text-transform: uppercase; font-size: 10px">
                                 <tr>
-                                    
+
                                     <th>Nama</th>
                                     <th>Trainer</th>
                                     <th>Phone</th>
@@ -417,7 +457,7 @@
                             style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
                             <thead class="text-bold text-primary" style="text-transform: uppercase; font-size: 10px">
                                 <tr>
-                                    
+
                                     <th>KPA</th>
                                     <th>KETUA</th>
                                     <th>WILAYAH</th>
@@ -430,7 +470,7 @@
 
                             <tfoot class="text-bold text-primary" style="text-transform: uppercase; font-size: 10px">
                                 <tr>
-                                    
+
                                     <th>KPA</th>
                                     <th>KETUA</th>
                                     <th>WILAYAH</th>
@@ -608,8 +648,8 @@
                                             </div>
                                             <div class="form-group col-xl-6">
                                                 <label for=""><i class="text-danger">* </i>Kepala Cabang</label>
-                                                <input type="text" class="form-control text-capitalize" name="kepalacabang"
-                                                    id="kepalacabang" required>
+                                                <input type="text" class="form-control text-capitalize"
+                                                    name="kepalacabang" id="kepalacabang" required>
                                             </div>
                                             <div class="form-group col-xl-6">
                                                 <label for=""><i class="text-danger">* </i>Kadivre</label>
@@ -618,20 +658,21 @@
                                             </div>
                                             <div class="form-group col-xl-6">
                                                 <label for=""><i class="text-danger ">* </i>Wilayah</label>
-                                                <textarea name="teritorial" id="teritorial"
-                                                    class="text-capitalize form-control" id="" cols="5" rows="3"
-                                                    required></textarea>
+                                                <textarea name="teritorial" id="teritorial" class="text-capitalize form-control" id="" cols="5"
+                                                    rows="3" required></textarea>
                                             </div>
                                             <div class="form-group col-xl-6">
                                                 <label for=""><i class="text-danger">* </i>Status</label>
-                                                <select name="status" id="x" class="form-control text-capitalize">
+                                                <select name="status" id="x"
+                                                    class="form-control text-capitalize">
                                                     <option value="CABANG">CABANG</option>
                                                     <option value="RPQ">RPQ</option>
                                                 </select>
                                             </div>
                                             <div class="form-group col-xl-6">
                                                 <label for=""><i class="text-danger">* </i>Telp Cabang</label>
-                                                <input type="text" class="form-control" id="telp" name="telp" required>
+                                                <input type="text" class="form-control" id="telp" name="telp"
+                                                    required>
                                             </div>
                                             {{-- <div class="form-group col-xl-6">
                                                 <label for=""><i class="text-danger"> </i>Email Cabang</label>
@@ -639,8 +680,8 @@
                                             </div> --}}
                                             <div class="form-group col-xl-6">
                                                 <label for=""><i class="text-danger ">* </i>Alamat Cabang</label>
-                                                <textarea name="alamat" class="text-capitalize form-control" id="alamat"
-                                                    cols="5" rows="3" required></textarea>
+                                                <textarea name="alamat" class="text-capitalize form-control" id="alamat" cols="5" rows="3"
+                                                    required></textarea>
                                             </div>
                                             {{-- <div class="form-group col-xl-3">
                                                 <label for=""><i class="text-danger">* </i>Kode Pos</label>
@@ -693,8 +734,8 @@
                                             </div>
                                             <div class="form-group col-xl-6">
                                                 <label for=""><i class="text-danger">* </i>Kepala Cabang</label>
-                                                <input type="text" class="form-control text-capitalize" name="kepalacabang"
-                                                    id="kepalacabang" required>
+                                                <input type="text" class="form-control text-capitalize"
+                                                    name="kepalacabang" id="kepalacabang" required>
                                             </div>
                                             <div class="form-group col-xl-6">
                                                 <label for=""><i class="text-danger">* </i>Kadivre</label>
@@ -703,28 +744,29 @@
                                             </div>
                                             <div class="form-group col-xl-6">
                                                 <label for=""><i class="text-danger ">* </i>Wilayah</label>
-                                                <textarea name="teritorial" id="teritorial"
-                                                    class="text-capitalize form-control" id="" cols="5" rows="3"
-                                                    required></textarea>
+                                                <textarea name="teritorial" id="teritorial" class="text-capitalize form-control" id="" cols="5"
+                                                    rows="3" required></textarea>
                                             </div>
                                             <div class="form-group col-xl-6">
                                                 <label for=""><i class="text-danger">* </i>Status</label>
-                                                <select name="status" id="x" class="form-control text-capitalize">
+                                                <select name="status" id="x"
+                                                    class="form-control text-capitalize">
                                                     <option value="CABANG">CABANG</option>
                                                     <option value="RPQ">RPQ</option>
                                                 </select>
                                             </div>
                                             <div class="form-group col-xl-6">
                                                 <label for=""><i class="text-danger">* </i>Telp Cabang</label>
-                                                <input type="text" class="form-control" id="telp" name="telp" required>
+                                                <input type="text" class="form-control" id="telp" name="telp"
+                                                    required>
                                             </div>
-                                            
+
                                             <div class="form-group col-xl-6">
                                                 <label for=""><i class="text-danger ">* </i>Alamat Cabang</label>
-                                                <textarea name="alamat" class="text-capitalize form-control" id="alamat"
-                                                    cols="5" rows="3" required></textarea>
+                                                <textarea name="alamat" class="text-capitalize form-control" id="alamat" cols="5" rows="3"
+                                                    required></textarea>
                                             </div>
-                                            
+
                                             <div class="form-group col-xl-12 col-12">
                                                 <input type="submit" id="tambahlembaga_btn2" style="width: 100%"
                                                     class="btn btn-info" value="Submit!">
@@ -746,7 +788,9 @@
             <div class="modal-dialog modal-dialog-centered modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title mt-0">LOKASI CABANG <span id="cabangname_modallocation" class="text-primary" style="text-transform: uppercase"></span> (LONGITUDE & LATITUDE) </h5>
+                        <h5 class="modal-title mt-0">LOKASI CABANG <span id="cabangname_modallocation"
+                                class="text-primary" style="text-transform: uppercase"></span> (LONGITUDE & LATITUDE)
+                        </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -760,9 +804,10 @@
                                         <div class="row">
                                             <div class="form-group col-xl-12">
                                                 <label for=""><i class="text-danger">* </i>ID Cabang</label>
-                                                <input type="text" id="id" class="form-control" name="id" readonly required>
+                                                <input type="text" id="id" class="form-control" name="id"
+                                                    readonly required>
                                             </div>
-                                            
+
                                             <div class="form-group col-xl-6">
                                                 <label for=""><i class="text-danger">* </i>Longitude</label>
                                                 <input type="text" class="form-control text-capitalize" id="lng"
@@ -849,8 +894,7 @@
                 ajax: {
                     url: '/show-list-data-trainer/' + cabang_id,
                 },
-                columns: [
-                    {
+                columns: [{
                         data: 'name',
                         name: 'name'
                     },
@@ -883,8 +927,7 @@
                 ajax: {
                     url: '/show-data-kpa/' + cabang_id,
                 },
-                columns: [
-                    {
+                columns: [{
                         data: 'name',
                         name: 'name'
                     },
@@ -1140,7 +1183,9 @@
                             title: "Success!",
                             text: data.message,
                             type: "success"
-                        })
+                        }).then(function() {
+                            window.location = "/diklat-cabang";
+                        });
                     }
                 },
                 error: function(data) {

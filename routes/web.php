@@ -443,6 +443,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     Route::get('/export-peserta-acara/{acara_id}',[AcaraCont::class,'export_peserta_acara'])->name('export.peserta.acara');
     Route::get('/export-seluruh-peserta',[ExportCont::class,'export_seluruh_peserta'])->name('export.seluruh.peserta');
     Route::get('/export-broadcast-peserta',[ExportCont::Class,'export_broadcast_peserta'])->name('export.broadcast.peserta');
+    Route::get('/export-broadcast-peserta-webinar',[ExportCont::class,'export_broadcast_peserta_webinar'])->name('export.broadcast.peserta_webinar');
     Route::post('/export-peserta-pendaftaran',[ExportCont::class,'export_peserta_pendaftaran'])->name('export.peserta.pendaftaran');
     Route::get('/export-data-cabang',[ExportCont::class,'export_data_cabang'])->name('export.data.cabang');
     Route::get('/export-kpa-cabang',[ExportCont::class,'export_kpa_cabang'])->name('export.kpa.cabang');
@@ -509,10 +510,14 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     Route::get('/data-supervisor/cabang',[CabangCont::class,'data_supervisor'])->name('data.supervisor.cabang');
     Route::get('/list-supervisor/cabang',[CabangCont::class,'list_supervisor_cabang'])->name('list.supervisor.cabang');
     Route::get('/hapus/data/supervisor/{cabang_id}',[CabangCont::class,'remove_supervisor']);
+    Route::post('/store-supervisor-cabang',[CabangCont::class,'store_supervisor_cabang']);
+    Route::post('/remove-supervisor-cabang',[CabangCont::class,'remove_supervisor_cabang']);
     // NEW DATA MUNAQISY RAKERNAS
     Route::get('/data-munaqisy/cabang',[CabangCont::class,'data_munaqisy'])->name('data.munaqisy.cabang');
     Route::get('/list-munaqisy/cabang',[CabangCont::class,'list_munaqisy_cabang'])->name('list.munaqisy.cabang');
     Route::get('/hapus/data/munaqisy/{cabang_id}',[CabangCont::class,'remove_munaqisy']);
+    Route::post('/store-munaqisy-cabang',[CabangCont::class,'store_munaqisy_cabang']);
+    Route::post('/remove-munaqisy-cabang',[CabangCont::class,'remove_munaqisy_cabang']);
     // Route::get('/data-munaqisy',[SubController::class,'hapus_data_munaqisy'])->name();
 
     

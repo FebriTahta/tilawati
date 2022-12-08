@@ -47,7 +47,7 @@
                 <td>{{$item->name}}</td>
                 <td>{{$item->telp}}</td>
                 <td>{{$item->alamat}}</td>
-                
+                 
                     <td>
                         @foreach ($item->macamtrainer as $val)
                         @if ($val->jenis == 'Instruktur Strategi')

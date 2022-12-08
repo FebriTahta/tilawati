@@ -14,17 +14,17 @@ class MunaqisyImport implements ToCollection
     
     public function collection(Collection $collection)
     {
-        $munaqisy = Munaqisy::where('cabang_id', $this->cabang_id)->get();
+        // $munaqisy = Munaqisy::where('cabang_id', $this->cabang_id)->get();
 
-        if ($munaqisy->count() > 0) {
-            # code...
-            Munaqisy::where('cabang_id', $this->cabang_id)->delete();
-        }
+        // if ($munaqisy->count() > 0) {
+        //     # code...
+        //     Munaqisy::where('cabang_id', $this->cabang_id)->delete();
+        // }
 
         foreach ($collection as $key => $row) {
-                // $data= Munaqisy::where('name',$row[1])->where('cabang_id', $this->cabang_id)->first();
+                $data= Munaqisy::where('name',$row[1])->where('cabang_id', $this->cabang_id)->first();
                 if ($key >= 6) {
-                    // if ($data == null) {
+                     if ($data == null) {
                         # code...
                         $muna = new Munaqisy;
                         $muna->cabang_id = $this->cabang_id;
@@ -33,7 +33,23 @@ class MunaqisyImport implements ToCollection
                         $muna->alamat = $row[3];
                         $muna->created_at = new \DateTime;
                         $muna->save();
-                    // }
+                     }else {
+                        # code...
+                        if ($row[1] !== null && $row[1] !== ' ') {
+                            # code...
+                            $super = Munaqisy::updateOrCreate(
+                                [
+                                    'id' => $data->id,
+                                ],
+                                [
+                                    'cabang_id' => $this->cabang_id,
+                                    'name' => $row[1],
+                                    'telp' => $row[2],
+                                    'alamat' => $row[3],
+                                ]
+                            );
+                        }
+                    }
                 }
                 
         }

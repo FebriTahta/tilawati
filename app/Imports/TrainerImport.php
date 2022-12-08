@@ -66,7 +66,6 @@ class TrainerImport implements ToCollection
                     $i = 4;
                     foreach ($macam as $key => $value) {
                         # code...
-                        
                         if ($row[$i] !== null) {
                             # code...
                             $ok_trainer = new macamtrainer_trainer;

@@ -33,8 +33,10 @@
                 <th rowspan="2">NAMA TRAINER</th>
                 <th rowspan="2">NOMOR TELP / WA AKTIF</th>
                 <th rowspan="2">ALAMAT</th>
-                @foreach ($macam as $item)
-                <th rowspan="2">{{$item->jenis}}</th>
+                @foreach ($macam as $items)
+                    @if ($items->jenis !== 'Munaqisy' && $items->jenis !== 'Supervisor' )
+                        <th rowspan="2">{{$items->jenis}}</th>
+                    @endif
                 @endforeach
                 <th></th>
             </tr>
@@ -47,9 +49,15 @@
                 <td>UBAH COLUMN "C" INI KE FORMAT TEXT AGAR FORMAT NOMOR TELP SESUAI</td>
                 <td>Alamat Lengkap</td>
                 <?php $total = $macam->count();?>
-                @for ($i=0; $i < $total; $i++)
+                @foreach ($macam as $items)
+                    @if ($items->jenis !== 'Munaqisy' && $items->jenis !== 'Supervisor' )
+                        {{-- <th rowspan="2">{{$item->jenis}}</th> --}}
+                        <td>ok</td>
+                    @endif
+                @endforeach
+                {{-- @for ($i=0; $i < $total; $i++)
                     <td>ok</td>
-                @endfor
+                @endfor --}}
             </tr>
         </tbody>
     </table>

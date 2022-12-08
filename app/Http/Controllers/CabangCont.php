@@ -24,8 +24,22 @@ class CabangCont extends Controller
 {
     public function index(Request $request)
     {
-        $dt_props2 = Provinsi::all();
-        return view('tilawatipusat.cabang.index',compact('dt_props2'));
+        if (auth()->user()->role == 'cabang') {
+            # code...
+            $cabang_id = auth()->user()->cabang->id;
+            $dt_props2 = Provinsi::all();
+            $pengurus_kepala = Penguruscabang::where('cabang_id', $cabang_id)->where('bagian','Kepala Cabang')->first();
+            $kabid_admin = Penguruscabang::where('cabang_id', $cabang_id)->where('bagian','Kabid Administrasi, Keuangan & Disardik')->first();
+            $kabid_diklat = Penguruscabang::where('cabang_id', $cabang_id)->where('bagian','Kabid Diklat & Munaqosyah')->first();
+            $kabid_lembaga = Penguruscabang::where('cabang_id', $cabang_id)->where('bagian','Kabid Pengembangan Kelembagaan')->first();
+            $kabid_super = Penguruscabang::where('cabang_id',$cabang_id)->where('bagian','Kabid Supervisor')->first();
+            return view('tilawatipusat.cabang.index',compact('dt_props2','pengurus_kepala','kabid_admin','kabid_diklat','kabid_lembaga','kabid_super'));
+        }else {
+            # code...
+            $dt_props2 = Provinsi::all();
+            return view('tilawatipusat.cabang.index',compact('dt_props2'));
+        }
+       
     }
 
     public function store(Request $request)
@@ -502,9 +516,104 @@ class CabangCont extends Controller
                     return DataTables::of($data)
                     ->addColumn('action', function ($data) {
                         $stats = '<a href="#" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modal_hapus" data-id="'.$data->id.'"><i class="fa fa-trash"></i></a>';
+                        $stats .= ' <a href="#" data-toggle="modal" data-target="#modal-add" data-name="'.$data->name.'" data-telp="'.$data->telp.'" data-id="'.$data->id.'"
+                        data-alamat="'.$data->alamat.'" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></a>';
                         return $stats;
                     })
+                    ->rawColumns(['action'])
                     ->make(true);
+    }
+
+    public function store_munaqisy_cabang(Request $request)
+    {
+        $cabang_id = auth()->user()->cabang->id;
+        $data = Munaqisy::where('cabang_id',$cabang_id)->updateOrCreate(
+            [
+                'id' => $request->id,
+            ],
+            [
+                'cabang_id' => $cabang_id,
+                'name' => $request->name,
+                'telp' => $request->telp,
+                'alamat' => $request->alamat,
+            ]
+        );
+
+        return response()->json(
+            [
+                'status'=> 200,
+                'message' => 'Munaqisy Cabang has been Updated'
+            ]
+        );
+    }
+
+    public function remove_munaqisy_cabang(Request $request)
+    {
+        $data = Munaqisy::where('cabang_id', auth()->user()->cabang->id)->where('id', $request->id)->first();
+        if ($data !== null) {
+            # code...
+            $data->delete();
+            return response()->json(
+                [
+                    'status'=> 200,
+                    'message'=> 'Munaqisy has been deleted',
+                ]
+            );
+        }else {
+            # code...
+            return response()->json(
+                [
+                    'status'=> 400,
+                    'message'=> 'Undefined',
+                ]
+            );
+        }
+    }
+
+    public function store_supervisor_cabang(Request $request)
+    {
+        $cabang_id = auth()->user()->cabang->id;
+        $data = Supervisor::where('cabang_id',$cabang_id)->updateOrCreate(
+            [
+                'id' => $request->id,
+            ],
+            [
+                'cabang_id' => $cabang_id,
+                'name' => $request->name,
+                'telp' => $request->telp,
+                'alamat' => $request->alamat,
+            ]
+        );
+
+        return response()->json(
+            [
+                'status'=> 200,
+                'message' => 'Supervisor Cabang has been Updated'
+            ]
+        );
+    }
+
+    public function remove_supervisor_cabang(Request $request)
+    {
+        $data = Supervisor::where('cabang_id', auth()->user()->cabang->id)->where('id', $request->id)->first();
+        if ($data !== null) {
+            # code...
+            $data->delete();
+            return response()->json(
+                [
+                    'status'=> 200,
+                    'message'=> 'Supervisor has been deleted',
+                ]
+            );
+        }else {
+            # code...
+            return response()->json(
+                [
+                    'status'=> 400,
+                    'message'=> 'Undefined',
+                ]
+            );
+        }
     }
 
     public function remove_supervisor($cabang_id)
@@ -532,8 +641,11 @@ class CabangCont extends Controller
                     return DataTables::of($data)
                     ->addColumn('action', function ($data) {
                         $stats = '<a href="#" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modal_hapus" data-id="'.$data->id.'"><i class="fa fa-trash"></i></a>';
+                        $stats .= ' <a href="#" data-toggle="modal" data-target="#modal-add" data-name="'.$data->name.'" data-telp="'.$data->telp.'" data-id="'.$data->id.'"
+                        data-alamat="'.$data->alamat.'" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></a>';
                         return $stats;
                     })
+                    ->rawColumns(['action'])
                     ->make(true);
     }
 
@@ -541,7 +653,7 @@ class CabangCont extends Controller
     {
         if(request()->ajax())
         {
-            $data   = Trainer::where('cabang_id',$cabang_id)->with('cabang')->orderBy('id','asc');
+            $data   = Trainer::where('cabang_id',$cabang_id)->with('cabang')->orderBy('id','desc');
                     return DataTables::of($data)
                     ->addColumn('trains', function ($data) {
                         $x=[];
@@ -581,38 +693,61 @@ class CabangCont extends Controller
             ]
         );
 
-        if ($request->macamtrainer_id[1] !== null) {
+        if ($request->stats !== null) {
             # code...
-            $ok_trainer = new macamtrainer_trainer;
-                $ok_trainer->created_at = new \DateTime;
-                $ok_trainer->macamtrainer_id = 1;
-                $ok_trainer->trainer_id = $trainer->id;
-                $ok_trainer->save();
-        }
-        if ($request->macamtrainer_id[2] !== null) {
-            # code...
-            $ok_trainer = new macamtrainer_trainer;
-                $ok_trainer->created_at = new \DateTime;
-                $ok_trainer->macamtrainer_id = 2;
-                $ok_trainer->trainer_id = $trainer->id;
-                $ok_trainer->save();
-        }
-        if ($request->macamtrainer_id[3] !== null) {
-            # code...
-            $ok_trainer = new macamtrainer_trainer;
-                $ok_trainer->created_at = new \DateTime;
-                $ok_trainer->macamtrainer_id = 3;
-                $ok_trainer->trainer_id = $trainer->id;
-                $ok_trainer->save();
-        }
-        if ($request->macamtrainer_id[4] !== null) {
-            # code...
-            $ok_trainer = new macamtrainer_trainer;
+            if ($request->stats == 'Munaqisy') {
+                # code...
+                $ok_trainer = new macamtrainer_trainer;
+                    $ok_trainer->created_at = new \DateTime;
+                    $ok_trainer->macamtrainer_id = 3;
+                    $ok_trainer->trainer_id = $trainer->id;
+                    $ok_trainer->save();
+            }else {
+                # code...
+                $ok_trainer = new macamtrainer_trainer;
                 $ok_trainer->created_at = new \DateTime;
                 $ok_trainer->macamtrainer_id = 4;
                 $ok_trainer->trainer_id = $trainer->id;
                 $ok_trainer->save();
+            }
+            
+        }else {
+            # code...
+            if ($request->macamtrainer_id[1] !== null) {
+                # code...
+                $ok_trainer = new macamtrainer_trainer;
+                    $ok_trainer->created_at = new \DateTime;
+                    $ok_trainer->macamtrainer_id = 1;
+                    $ok_trainer->trainer_id = $trainer->id;
+                    $ok_trainer->save();
+            }
+            if ($request->macamtrainer_id[2] !== null) {
+                # code...
+                $ok_trainer = new macamtrainer_trainer;
+                    $ok_trainer->created_at = new \DateTime;
+                    $ok_trainer->macamtrainer_id = 2;
+                    $ok_trainer->trainer_id = $trainer->id;
+                    $ok_trainer->save();
+            }
         }
+
+        
+        // if ($request->macamtrainer_id[3] !== null) {
+        //     # code...
+        //     $ok_trainer = new macamtrainer_trainer;
+        //         $ok_trainer->created_at = new \DateTime;
+        //         $ok_trainer->macamtrainer_id = 3;
+        //         $ok_trainer->trainer_id = $trainer->id;
+        //         $ok_trainer->save();
+        // }
+        // if ($request->macamtrainer_id[4] !== null) {
+        //     # code...
+        //     $ok_trainer = new macamtrainer_trainer;
+        //         $ok_trainer->created_at = new \DateTime;
+        //         $ok_trainer->macamtrainer_id = 4;
+        //         $ok_trainer->trainer_id = $trainer->id;
+        //         $ok_trainer->save();
+        // }
 
         
 
@@ -1014,54 +1149,34 @@ class CabangCont extends Controller
     {
         $cabang_id = auth()->user()->cabang->id;
         $cabang = Cabang::where('id', $cabang_id)->first();
-        // update kepala cabang & telp cabang
-        if ($request->kepalacabang !== null || $request->kepalacabang !== '') {
-            # code...
-            $cabang->update(['kepalacabang'=> $request->kepalacabang]);
-        }
-
-        if ($request->telp !== null || $request0->telp !== '') {
-            # code...
-            $cabang->update(['telp' => $request->telp]);
-        }
-
-        // // update data penguruscabang
-        // $data_nama = $request->namapengurus;
-        // $data_telp = $request->telppengurus;
-        // $bagian    = $request->bagian;
+        
+        $data_nama = $request->namapengurus;
+        $data_telp = $request->telppengurus;
+        $bagian    = $request->bagian;
         $pengurusId  = $request->id;
 
-        $pengurus  = Penguruscabang::where('cabang_id' , $cabang_id)->first();
-        if ($pengurus !== null) {
+        for ($i=0; $i < count($data_nama); $i++) { 
             # code...
-        }else {
-            # code... create new
-            for ($i=0; $i < count($data_nama); $i++) { 
-                # code...
-                // $datas = new Penguruscabang();
-                // $datas->nama_pengurus = $data_nama[$i];
-                // $datas->bagian = $bagian[$i];
-                // $datas->telp_pengurus = $data_telp[$i];
-                // $datas->save();
-                $datas = Penguruscabang::where('cabang_id', auth()->user()->cabang->id)
-                ->updateOrCreate(
-                    [
-                        'id'=> $pengurusId[$i]
-                    ],
-                    [
-                        'bagian' => $bagian[$i],
-                        'nama_pengurus' => $data_nama[$i],
-                        'telp_pengurus' => $data_telp[$i],
-                        
-                    ]
-                );
-                
-            }
+            
+            $datas = Penguruscabang::where('cabang_id', auth()->user()->cabang->id)
+            ->updateOrCreate(
+                [
+                    'id' => $pengurusId[$i]
+                ],
+                [
+                    'cabang_id' => $cabang_id,
+                    'bagian' => $bagian[$i],
+                    'nama_pengurus' => $data_nama[$i],
+                    'telp_pengurus' => $data_telp[$i],
+                    
+                ]
+            );
+            
         }
 
         return response()->json([
             'status' => 200,
-            'message' => $request->namapengurus
+            'message' => 'Pengurus Cabang has been Updated'
         ]);
     }
     

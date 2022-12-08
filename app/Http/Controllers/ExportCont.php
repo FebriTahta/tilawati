@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Exports\SeluruhPesertaExport;
 use App\Exports\ExportDataBroadcast;
+use App\Exports\ExportDataBroadcastWebinar;
 use App\Exports\UserExport;
 use App\Exports\ExportDataPeserta;
 use App\Exports\ExportDataPesertaFull;
@@ -61,6 +62,11 @@ class ExportCont extends Controller
         }else{
             return Excel::download(new ExportDataBroadcast($from,$till),'peserta-dari_'.$from.'_sampai_'.$till.'.xlsx');
         }
+    }
+
+    public function export_broadcast_peserta_webinar(Request $request)
+    {
+        return Excel::download(new ExportDataBroadcastWebinar(), 'data-broadcast-webinar.xlsx');
     }
 
     public function export_peserta_pendaftaran(Request $request)
