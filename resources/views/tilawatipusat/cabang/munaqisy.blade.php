@@ -11,7 +11,7 @@
 @section('content')
     @component('common-tilawatipusat.breadcrumb')
         @slot('title')
-            Trainer
+            Munaqisy
         @endslot
         @slot('title_li')
             {{ substr($cabang->kabupaten->nama, 5) }}

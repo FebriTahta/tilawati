@@ -16,6 +16,8 @@ use App\Models\Kpa;
 use App\Models\Supervisor;
 use App\Models\Penguruscabang;
 use Validator;
+use \Carbon\Carbon;
+use App\Models\Peserta;
 use Auth;
 use File;
 use Illuminate\Http\Request;
@@ -1179,5 +1181,203 @@ class CabangCont extends Controller
             'message' => 'Pengurus Cabang has been Updated'
         ]);
     }
-    
+
+    public function daftar_peserta_cabang_keseluruhan(Request $request)
+    {
+        $cabang_id = auth()->user()->cabang->id;
+        if ($request->ajax()) {
+            # code...
+            if(!empty($request->dari))
+            {
+                # code...
+                $data = Peserta::where('cabang_id', $cabang_id)->with(['pelatihan','program'])->whereBetween('tanggal', array($request->dari, $request->sampai));
+                return DataTables::of($data)
+                ->addColumn('check', function ($data) {
+                    return '<input type="checkbox" class="sub_chk" data-id="'.$data->id.'">';
+                })
+                ->addColumn('program', function($data){
+                    $program = $data->program->name;
+                    return ucwords($program);
+                })
+                ->addColumn('pelatihan', function($data){
+                    $tanggal = Carbon::parse($data->pelatihan->tanggal)->format('d F Y');
+                    return ucwords($tanggal);
+                })
+                ->addColumn('ttl', function($data){
+                    # code...
+                    // return $data->tgllahir;
+                    if ($data->tmptlahir !== null && $data->tgllahir !== null) {
+                        # code...
+                        if ($data->tmptlahir2 !== null) {
+                            # code...
+                            return  $data->tmptlahir2.' - '.Carbon::parse($data->tgllahir)->isoFormat('D MMMM Y');
+                        }else {
+                            # code...
+                            return  $data->tmptlahir.' - '.Carbon::parse($data->tgllahir)->isoFormat('D MMMM Y');
+                        }
+                    }
+
+                    if ($data->tmptlahir == null && $data->tgllahir !== null) {
+                        # code...
+                        if ($data->tmptlahir2 !== null) {
+                            # code...
+                            return  $data->tmptlahir2.' - '.Carbon::parse($data->tgllahir)->isoFormat('D MMMM Y');
+                        }else {
+                            # code...
+                            return  '<a href="#" style="color:red" data-toggle="modal" data-target="#addkota2" data-id ="'.$data->id.'"> Kosong / Salah Penulisan</a>' .' - '.Carbon::parse($data->tgllahir)->isoFormat('D MMMM Y');
+                        }
+                    }
+
+                    if ($data->tmptlahir !== null && $data->tgllahir == null) {
+                        # code...
+                        if ($data->tmptlahir2 !== null) {
+                            # code...
+                            return  $data->tmptlahir2.' - '.'<a style="color:red" href="#" data-toggle="modal" data-target="#addtgl" data-id ="'.$data->id.'">Tgl Salah Format</a>';
+                        }else {
+                            # code...
+                            return  $data->tmptlahir.' - '.'<a style="color:red" href="#" data-toggle="modal" data-target="#addtgl" data-id ="'.$data->id.'">Tgl Salah Format</a>';
+                        }
+                        
+                    }
+
+                    if ($data->tmptlahir == null && $data->tgllahir == null) {
+                        # code...
+                        if ($data->tmptlahir2 !== null) {
+                            # code...
+                            return  $data->tmptlahir2.' - '.'<a style="color:red" href="#" data-toggle="modal" data-target="#addtgl">Tgl Salah Format</a>';
+                        }else {
+                            # code...
+                            return  '<a href="" style="color:red" data-id ="'.$data->id.'"  data-toggle="modal" data-target="#addkota3"> Kosong / Salah Penulisan</a>' .' - '.'<a style="color:red" href="#" data-toggle="modal" data-target="#addtgl" data-id ="'.$data->id.'">Tgl Salah Format</a>';
+                        }
+                    }
+                })
+                ->addColumn('opsi', function($data){
+                    return 'ok';
+                })
+                ->rawColumns(['program','pelatihan','ttl','check'])
+                ->make(true);
+
+            }else {
+                # code...
+                $data = Peserta::where('cabang_id', $cabang_id)->with(['pelatihan','program']);
+                return DataTables::of($data)
+                ->addColumn('check', function ($data) {
+                    return '<input type="checkbox" class="sub_chk" data-id="'.$data->id.'">';
+                })
+                ->addColumn('program', function($data){
+                    $program = $data->program->name;
+                    return ucwords($program);
+                })
+                ->addColumn('pelatihan', function($data){
+                    $tanggal = Carbon::parse($data->pelatihan->tanggal)->format('d F Y');
+                    return ucwords($tanggal);
+                })
+                ->addColumn('ttl', function($data){
+                    # code...
+                    // return $data->tgllahir;
+                    if ($data->tmptlahir !== null && $data->tgllahir !== null) {
+                        # code...
+                        if ($data->tmptlahir2 !== null) {
+                            # code...
+                            return  $data->tmptlahir2.' - '.Carbon::parse($data->tgllahir)->isoFormat('D MMMM Y');
+                        }else {
+                            # code...
+                            return  $data->tmptlahir.' - '.Carbon::parse($data->tgllahir)->isoFormat('D MMMM Y');
+                        }
+                    }
+
+                    if ($data->tmptlahir == null && $data->tgllahir !== null) {
+                        # code...
+                        if ($data->tmptlahir2 !== null) {
+                            # code...
+                            return  $data->tmptlahir2.' - '.Carbon::parse($data->tgllahir)->isoFormat('D MMMM Y');
+                        }else {
+                            # code...
+                            return  '<a href="#" style="color:red" data-toggle="modal" data-target="#addkota2" data-id ="'.$data->id.'"> Kosong / Salah Penulisan</a>' .' - '.Carbon::parse($data->tgllahir)->isoFormat('D MMMM Y');
+                        }
+                    }
+
+                    if ($data->tmptlahir !== null && $data->tgllahir == null) {
+                        # code...
+                        if ($data->tmptlahir2 !== null) {
+                            # code...
+                            return  $data->tmptlahir2.' - '.'<a style="color:red" href="#" data-toggle="modal" data-target="#addtgl" data-id ="'.$data->id.'">Tgl Salah Format</a>';
+                        }else {
+                            # code...
+                            return  $data->tmptlahir.' - '.'<a style="color:red" href="#" data-toggle="modal" data-target="#addtgl" data-id ="'.$data->id.'">Tgl Salah Format</a>';
+                        }
+                        
+                    }
+
+                    if ($data->tmptlahir == null && $data->tgllahir == null) {
+                        # code...
+                        if ($data->tmptlahir2 !== null) {
+                            # code...
+                            return  $data->tmptlahir2.' - '.'<a style="color:red" href="#" data-toggle="modal" data-target="#addtgl">Tgl Salah Format</a>';
+                        }else {
+                            # code...
+                            return  '<a href="" style="color:red" data-id ="'.$data->id.'"  data-toggle="modal" data-target="#addkota3"> Kosong / Salah Penulisan</a>' .' - '.'<a style="color:red" href="#" data-toggle="modal" data-target="#addtgl" data-id ="'.$data->id.'">Tgl Salah Format</a>';
+                        }
+                    }
+                })
+                ->addColumn('opsi', function($data){
+                    return 'ok';
+                })
+                ->rawColumns(['program','pelatihan','ttl','check'])
+                ->make(true);
+            }
+           
+
+        }
+        
+        return view('tilawatipusat.cabang.mypeserta');
+    }
+
+    public function status_peserta_cabang(Request $request)
+    {
+        if ($request->ajax()) {
+            # code...
+            if (!empty($request->dari)) {
+                # code...
+                $cabang_id = auth()->user()->cabang->id;
+                $semua = Peserta::where('cabang_id', $cabang_id)->whereBetween('tanggal', array($request->dari, $request->sampai))->count();
+                $lulus = Peserta::where('cabang_id', $cabang_id)->where('bersyahadah', 1)->whereBetween('tanggal', array($request->dari, $request->sampai))->count();
+                $tidak = 0;
+                if ($semua > 0) {
+                    # code...
+                    $tidak = $semua - $lulus;
+                }
+
+                return response()->json(
+                    [
+                        'status' => 200,
+                        'semua' => $semua,
+                        'lulus' => $lulus,
+                        'tidak' => $tidak,
+                    ]
+                );
+            }else {
+                # code...
+                $cabang_id = auth()->user()->cabang->id;
+                $semua = Peserta::where('cabang_id', $cabang_id)->count();
+                $lulus = Peserta::where('cabang_id', $cabang_id)->where('bersyahadah', 1)->count();
+                $tidak = 0;
+                if ($semua > 0) {
+                    # code...
+                    $tidak = $semua - $lulus;
+                }
+
+                return response()->json(
+                    [
+                        'status' => 200,
+                        'semua' => $semua,
+                        'lulus' => $lulus,
+                        'tidak' => $tidak,
+                    ]
+                );
+            }
+        }
+        
+       
+    }
 }

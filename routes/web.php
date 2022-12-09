@@ -614,6 +614,10 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
 
     //Pengurus Cabang
     Route::post('/post-pengurus-cabang',[CabangCont::class,'pengurus_cabang_post']);
+
+    //Daftar Peserta Tiap Cabang
+    Route::get('/daftar-peserta-cabang-keseluruhan',[CabangCont::class,'daftar_peserta_cabang_keseluruhan'])->name('my.peserta');
+    Route::get('/status-peserta-cabang',[CabangCont::class,'status_peserta_cabang']);
 });
 
 Route::group(['middleware' => ['auth', 'CheckRole:bendahara']], function () {
