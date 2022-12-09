@@ -1569,7 +1569,7 @@ class PesertaCont extends Controller
                                 $pengurus = [];
                                 foreach ($data->penguruscabang as $key => $value) {
                                     # code...
-                                    $pengurus[] = $value->bagian.' : '.$value->nama_pengurus;
+                                    $pengurus[] = '<pre style="margin-bottom:5px">'.$value->bagian.' : '.$value->nama_pengurus.'</pre>';
                                 }
                                 return implode('<br>',$pengurus);
 
@@ -1849,7 +1849,7 @@ class PesertaCont extends Controller
                                 $pengurus = [];
                                 foreach ($data->penguruscabang as $key => $value) {
                                     # code...
-                                    $pengurus[] = $value->bagian.' : '.$value->nama_pengurus;
+                                    $pengurus[] = '<pre style="margin-bottom:5px">'.$value->bagian.' : '.$value->nama_pengurus.'</pre>';
                                 }
                                 return implode('<br>',$pengurus);
 
@@ -1983,7 +1983,7 @@ class PesertaCont extends Controller
                                 $pengurus = [];
                                 foreach ($data->penguruscabang as $key => $value) {
                                     # code...
-                                    $pengurus[] = $value->bagian.' : '.$value->nama_pengurus;
+                                    $pengurus[] = '<pre style="margin-bottom:5px">'.$value->bagian.' : '.$value->nama_pengurus.'</pre>';
                                 }
 
                                 return implode('<br>',$pengurus);
