@@ -32,12 +32,14 @@
                 <th rowspan="2">NO</th>
                 <th rowspan="2">NAMA LEMBAGA</th>
                 <th rowspan="2">KEPALA LEMBAGA</th>
+                <th rowspan="2">JENJANG PENDIDIKAN</th>
                 <th rowspan="2">WA / TELP</th>
+                <th rowspan="2">KAB / KOTA ASAL LEMBAGA</th>
                 <th rowspan="2">JUMLAH GURU</th>
                 <th rowspan="2">JUMLAH SANTRI</th>
                 <th rowspan="2">ALAMAT</th>
                 <th rowspan="2">PENGELOLA</th>
-                <th rowspan="2">STATUS</th>
+                <th rowspan="2">KEANGGOTAAN</th>
             </tr>
         </thead >
         <tbody>
@@ -47,7 +49,13 @@
                 <td>{{$key+1}}</td>
                 <td>{{$item->name}}</td>
                 <td>{{$item->kepalalembaga}}</td>
+                <td>{{$item->jenjang}}</td>
                 <td>{{$item->telp}}</td>
+                <td>
+                    @if ($item->kabupaten !== null)
+                        {{$item->kabupaten->nama}}
+                    @endif
+                </td>
                 <td>{{$item->jml_guru}}</td>
                 <td>{{$item->jml_santri}}</td>
                 <td>{{$item->alamat}}</td>

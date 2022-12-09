@@ -180,7 +180,7 @@
             <div class="modal-dialog modal-dialog-centered modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title mt-0">IMPORT DATA lembaga </h5>
+                        <h5 class="modal-title mt-0">IMPORT DATA LEMBAGA </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -238,7 +238,7 @@
                                                     class="form-control required" style="font-size: 12px" required>
                                                     <option value=""></option>
                                                     @foreach ($kab as $item)
-                                                        <option value="{{ $item->id }}">{{ substr($item->nama,5) }} ( {{substr($item->nama,0,5)}} )</option>
+                                                        <option value="{{ $item->id }}">{{ substr($item->nama,4) }} ( {{substr($item->nama,0,4)}} )</option>
                                                     @endforeach
                                                 </select>
 

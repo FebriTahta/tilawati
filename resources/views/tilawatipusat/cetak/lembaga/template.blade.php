@@ -32,7 +32,7 @@
                 <th rowspan="2">NO</th>
                 <th rowspan="2">NAMA LEMBAGA</th>
                 <th rowspan="2">KEPALA LEMBAGA</th>
-                <th rowspan="2">STATUS LEMBAGA</th>
+                <th rowspan="2">JENJANG PENDIDIKAN</th>
                 <th rowspan="2">WA / TELP</th>
                 <th rowspan="2">KAB / KOTA ASAL LEMBAGA</th>
                 <th rowspan="2">JUMLAH GURU</th>
