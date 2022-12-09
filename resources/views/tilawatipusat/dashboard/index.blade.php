@@ -608,7 +608,7 @@
                 </form>
                 
                 <div class="modal-body table-responsive">
-                        <table id="datatable-buttons2" class="table table-diklat-cabang table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; max-width:100%">
+                        <table id="datatable-buttons2" class="table table-diklat-cabang table-bordered dt-responsive nowrap" style="border-spacing: 0; width: 100%; max-width:100%">
                             <thead class="text-bold text-primary">
                                 <tr>
                                     <th>CABANG</th>
@@ -620,6 +620,7 @@
                                     <th>TRAINER</th>
                                     <th>MUNAQISY</th>
                                     <th>SUPERVISIOR</th>
+                                    <th>PENGURUS</th>
                                 </tr>
                             </thead>
     
@@ -637,6 +638,7 @@
                                     <th>TRAINER</th>
                                     <th>MUNAQISY</th>
                                     <th>SUPERVISIOR</th>
+                                    <th>PENGURUS</th>
                                 </tr>
                             </tfoot>
                         </table>
@@ -740,6 +742,10 @@
                             {
                             data:'supervisor',
                             name:'supervisor'
+                            },
+                            {
+                            data:'pengurus',
+                            name:'pengurus'
                             },
                         ]
                     });

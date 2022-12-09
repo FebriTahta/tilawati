@@ -14,4 +14,9 @@ class Penguruscabang extends Model
         'nama_pengurus',
         'telp_pengurus',
     ];
+
+    public function cabang()
+    {
+        return $this->belongsTo(Cabang::class);
+    }
 }

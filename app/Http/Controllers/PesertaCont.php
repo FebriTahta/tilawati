@@ -15,6 +15,7 @@ use App\Models\KPA;
 use App\Models\Munaqisy;
 use App\Models\Supervisor;
 use App\Models\Kriteria;
+use App\Models\Penguruscabang;
 use App\Models\Trainer;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
@@ -1429,254 +1430,577 @@ class PesertaCont extends Controller
     {
         if(request()->ajax())
         {
-            if(!empty($request->dari))
-            {
-                $data = Cabang::withCount('pelatihan')->orderBy('pelatihan_count','desc')->with(['pelatihan' => function ($query) use($request) {
-                    $query->whereBetween('tanggal', array($request->dari, $request->sampai));
-                }]);
+            $role = auth()->user()->role;
+            if ($role == 'cabang') {
+                # code...
+                if(!empty($request->dari))
+                    {
+                        $data = Cabang::where('id', auth()->user()->cabang->id)->with(['pelatihan' => function ($query) use($request) {
+                            $query->whereBetween('tanggal', array($request->dari, $request->sampai));
+                        }]);
 
-                return DataTables::of($data)
-                ->addColumn('cabang', function($data){
-                    $kabs = $data->kabupaten->nama;
-                    return "<pre>$data->name - $kabs</pre>";
-                })
-                ->addColumn('jumlahdiklat', function($data){
-                    $total_diklat = $data->pelatihan->count();
-                    return "<pre>$total_diklat diklat</pre>";
-                })
-                ->addColumn('namadiklat', function($data) use($request) {
-                    $dataz = [];
-                    foreach ($data->pelatihan as $key => $value) {
-                        # code...
-                        $datax  = Program::where('id',$value->program_id)->first();                        
-                        $dataz[$key] = $datax->id;
-                    }
-                    $programs = Program::whereIn('id',$dataz)->distinct()->get();
-                    
-                    $hasil = [];
-                    $totals= [];
-                    foreach ($programs as $key => $value) {
-                        # code...
-                        $total      = $data->pelatihan->where('program_id',$value->id)->count();
-                        $peserta    = Peserta::where('cabang_id', $data->id)->whereHas('pelatihan')->where('program_id',$value->id)->whereBetween('tanggal', array($request->dari, $request->sampai))->count();
-                        // $keterangan = Pelatihan::where('program_id',$value->id)->select('keterangan')->first();
-                        $keterangan = $value->jenisprogram;
-                        $hasil[]    = "<pre>$total diklat   $value->name  ($peserta $keterangan)</pre>";
-                    }
-                    return $string=implode("<br>",$hasil);               
-                })
-                ->addColumn('total_guru', function($data) use($request) {
-                    // $dataz = [];
-                    // $pelatihan_guru     = Pelatihan::where('cabang_id', $data->id)->whereBetween('tanggal', array($request->dari, $request->sampai))
-                    //                     ->whereHas('program',function($q){
-                    //                         $q->where('jenisprogram','guru');
-                    //                     })->get();
+                        // $data = Cabang::withCount('pelatihan')->orderBy('pelatihan_count','desc')->with(['pelatihan' => function ($query) use($request) {
+                        //     $query->whereBetween('tanggal', array($request->dari, $request->sampai));
+                        // }]);
 
-                    // foreach ($pelatihan_guru as $key => $value) {
-                    //     # code...
-                    //     $dataz[] = $value->peserta->count();
-                    // }
-                    // $guru = array_sum($dataz);
+                        return DataTables::of($data)
+                        ->addColumn('cabang', function($data){
+                            $kabs = $data->kabupaten->nama;
+                            return "<pre>$data->name - $kabs</pre>";
+                        })
+                        ->addColumn('jumlahdiklat', function($data){
+                            $total_diklat = $data->pelatihan->count();
+                            return "<pre>$total_diklat diklat</pre>";
+                        })
+                        ->addColumn('namadiklat', function($data) use($request) {
+                            $dataz = [];
+                            foreach ($data->pelatihan as $key => $value) {
+                                # code...
+                                $datax  = Program::where('id',$value->program_id)->first();                        
+                                $dataz[$key] = $datax->id;
+                            }
+                            $programs = Program::whereIn('id',$dataz)->distinct()->get();
+                            
+                            $hasil = [];
+                            $totals= [];
+                            foreach ($programs as $key => $value) {
+                                # code...
+                                $total      = $data->pelatihan->where('program_id',$value->id)->count();
+                                $peserta    = Peserta::where('cabang_id', $data->id)->whereHas('pelatihan')->where('program_id',$value->id)->whereBetween('tanggal', array($request->dari, $request->sampai))->count();
+                                // $keterangan = Pelatihan::where('program_id',$value->id)->select('keterangan')->first();
+                                $keterangan = $value->jenisprogram;
+                                $hasil[]    = "<pre>$total diklat   $value->name  ($peserta $keterangan)</pre>";
+                            }
+                            return $string=implode("<br>",$hasil);               
+                        })
+                        ->addColumn('total_guru', function($data) use($request) {
+                            // $dataz = [];
+                            // $pelatihan_guru     = Pelatihan::where('cabang_id', $data->id)->whereBetween('tanggal', array($request->dari, $request->sampai))
+                            //                     ->whereHas('program',function($q){
+                            //                         $q->where('jenisprogram','guru');
+                            //                     })->get();
 
-                    $guru = Peserta::where('cabang_id', $data->id)->whereHas('pelatihan')->whereBetween('tanggal', array($request->dari, $request->sampai))->whereHas('program',function($data){
-                        $data->where('jenisprogram','guru');
-                    })->count();
+                            // foreach ($pelatihan_guru as $key => $value) {
+                            //     # code...
+                            //     $dataz[] = $value->peserta->count();
+                            // }
+                            // $guru = array_sum($dataz);
 
-                    return '<pre>Guru : '.$guru.'</pre>';
-                })
-                ->addColumn('total_santri', function($data) use($request) {
-                   
-                    // $datax = [];
-                    // $pelatihan_santri   = Pelatihan::where('cabang_id', $data->id)->whereBetween('tanggal', array($request->dari, $request->sampai))->whereHas('program',function($q){
-                    //     $q->where('jenisprogram','santri');
-                    // })->get();
+                            $guru = Peserta::where('cabang_id', $data->id)->whereHas('pelatihan')->whereBetween('tanggal', array($request->dari, $request->sampai))->whereHas('program',function($data){
+                                $data->where('jenisprogram','guru');
+                            })->count();
 
-                    // foreach ($pelatihan_santri as $key => $value) {
-                    //     # code...
-                    //     $datax[] = $value->peserta->count();
-                    // }
-                    // $santri = array_sum($datax);
-                    $santri = Peserta::where('cabang_id', $data->id)->whereBetween('tanggal', array($request->dari, $request->sampai))->whereHas('program',function($data){
-                        $data->where('jenisprogram','santri');
-                    })->count();
+                            return '<pre>Guru : '.$guru.'</pre>';
+                        })
+                        ->addColumn('total_santri', function($data) use($request) {
+                        
+                            // $datax = [];
+                            // $pelatihan_santri   = Pelatihan::where('cabang_id', $data->id)->whereBetween('tanggal', array($request->dari, $request->sampai))->whereHas('program',function($q){
+                            //     $q->where('jenisprogram','santri');
+                            // })->get();
 
-                    return '<pre>Santri : '.$santri.'</pre>';
-                })
-                ->addColumn('kpa', function($data){
-                    $kpa = $data->kpa->count();
-                    $update = KPA::orderBy('updated_at','desc')->where('cabang_id', $data->id)->first();
-                    if ($update !== null) {
-                        # code...
-                        return '<pre>'.$kpa.' (KPA) - '.\Carbon\Carbon::parse($update->updated_at)->format('M Y').'</pre>';
-                    }else {
-                        return '-';
-                    }
-                })
-                ->addColumn('munaqisy', function($data){
-                    $munaqisy = $data->munaqisy->count();
-                    $trainer_munaqisy = Trainer::where('cabang_id', $data->id)->whereHas('macamtrainer', function($q){
-                        $q->where('jenis','Munaqisy');
-                    })->count();
-                    $update = Munaqisy::orderBy('updated_at','desc')->where('cabang_id', $data->id)->first();
-                    $total = $munaqisy + $trainer_munaqisy;
-                    if ($total > 0) {
-                        # code...
-                        // return '<pre>'.$total.' (Munaqisy) - '.\Carbon\Carbon::parse($update->updated_at)->format('M Y').'</pre>';
-                        return '<pre>'.$total.' (Munaqisy)</pre>';
+                            // foreach ($pelatihan_santri as $key => $value) {
+                            //     # code...
+                            //     $datax[] = $value->peserta->count();
+                            // }
+                            // $santri = array_sum($datax);
+                            $santri = Peserta::where('cabang_id', $data->id)->whereBetween('tanggal', array($request->dari, $request->sampai))->whereHas('program',function($data){
+                                $data->where('jenisprogram','santri');
+                            })->count();
+
+                            return '<pre>Santri : '.$santri.'</pre>';
+                        })
+                        ->addColumn('kpa', function($data){
+                            $kpa = $data->kpa->count();
+                            $update = KPA::orderBy('updated_at','desc')->where('cabang_id', $data->id)->first();
+                            if ($update !== null) {
+                                # code...
+                                return '<pre>'.$kpa.' (KPA) - '.\Carbon\Carbon::parse($update->updated_at)->format('M Y').'</pre>';
+                            }else {
+                                return '-';
+                            }
+                        })
+                        ->addColumn('munaqisy', function($data){
+                            $munaqisy = $data->munaqisy->count();
+                            $trainer_munaqisy = Trainer::where('cabang_id', $data->id)->whereHas('macamtrainer', function($q){
+                                $q->where('jenis','Munaqisy');
+                            })->count();
+                            $update = Munaqisy::orderBy('updated_at','desc')->where('cabang_id', $data->id)->first();
+                            $total = $munaqisy + $trainer_munaqisy;
+                            if ($total > 0) {
+                                # code...
+                                // return '<pre>'.$total.' (Munaqisy) - '.\Carbon\Carbon::parse($update->updated_at)->format('M Y').'</pre>';
+                                return '<pre>'.$total.' (Munaqisy)</pre>';
+                            }else{
+                                return '-';
+                            }
+                        })
+                        ->addColumn('trainer', function($data){
+                            $trainer = Trainer::where('cabang_id', $data->id)->whereHas('macamtrainer', function($q){
+                                $q->where('jenis','Instruktur Strategi')->orWhere('jenis','Instruktur Lagu');
+                            })->count();
+                            $update = Trainer::orderBy('updated_at','desc')->where('cabang_id', $data->id)->first();
+                            if ($trainer > 0) {
+                                # code...
+                                // return '<pre>'.$trainer.' (Trainer) - '.\Carbon\Carbon::parse($update->updated_at)->format('M Y').'</pre>';
+                                return '<pre>'.$trainer.' (Trainer) </pre>';
+                            }else{
+                                return '-';
+                            }
+                        })
+                        ->addColumn('supervisor', function($data){
+                            $supervisor = $data->supervisor->count();
+                            $trainer_supervisor = Trainer::where('cabang_id', $data->id)->whereHas('macamtrainer', function($q){
+                                $q->where('jenis','Supervisor');
+                            })->count();
+                            $total = $supervisor + $trainer_supervisor;
+                            $update = Supervisor::orderBy('updated_at','desc')->where('cabang_id', $data->id)->first();
+                            if ($total > 0) {
+                                # code...
+                                // return '<pre>'.$supervisor.' (Supervisor) - '.\Carbon\Carbon::parse($update->updated_at)->format('M Y').'</pre>';
+                                return '<pre>'.$total.' (Supervisor)</pre>';
+                            }else{
+                                return '-';
+                            }
+                        })
+                        ->addColumn('pengurus', function ($data) {
+                            if ($data->penguruscabang->count() > 0) {
+                                # code...
+                                $pengurus = [];
+                                foreach ($data->penguruscabang as $key => $value) {
+                                    # code...
+                                    $pengurus[] = $value->bagian.' : '.$value->nama_pengurus;
+                                }
+                                return implode('<br>',$pengurus);
+
+                            }else {
+                                # code...
+                                return '<code>KOSONG</code>';
+                            }
+                        })
+                        ->rawColumns(['cabang','jumlahdiklat','namadiklat','total_guru','total_santri','kpa','munaqisy','trainer','supervisor','pengurus'])
+                        ->make(true);
+
                     }else{
-                        return '-';
-                    }
-                })
-                ->addColumn('trainer', function($data){
-                    $trainer = Trainer::where('cabang_id', $data->id)->whereHas('macamtrainer', function($q){
-                        $q->where('jenis','Instruktur Strategi')->orWhere('jenis','Instruktur Lagu');
-                    })->count();
-                    $update = Trainer::orderBy('updated_at','desc')->where('cabang_id', $data->id)->first();
-                    if ($trainer > 0) {
-                        # code...
-                        // return '<pre>'.$trainer.' (Trainer) - '.\Carbon\Carbon::parse($update->updated_at)->format('M Y').'</pre>';
-                        return '<pre>'.$trainer.' (Trainer) </pre>';
-                    }else{
-                        return '-';
-                    }
-                })
-                ->addColumn('supervisor', function($data){
-                    $supervisor = $data->supervisor->count();
-                    $trainer_supervisor = Trainer::where('cabang_id', $data->id)->whereHas('macamtrainer', function($q){
-                        $q->where('jenis','Supervisor');
-                    })->count();
-                    $total = $supervisor + $trainer_supervisor;
-                    $update = Supervisor::orderBy('updated_at','desc')->where('cabang_id', $data->id)->first();
-                    if ($total > 0) {
-                        # code...
-                        // return '<pre>'.$supervisor.' (Supervisor) - '.\Carbon\Carbon::parse($update->updated_at)->format('M Y').'</pre>';
-                        return '<pre>'.$total.' (Supervisor)</pre>';
-                    }else{
-                        return '-';
-                    }
-                })
-                ->rawColumns(['cabang','jumlahdiklat','namadiklat','total_guru','total_santri','kpa','munaqisy','trainer','supervisor'])->make(true);
 
-            }else{
+                        $data = Cabang::with('pelatihan')->where('id', auth()->user()->cabang->id);
 
-                $data = Cabang::withCount('pelatihan')->orderBy('pelatihan_count','desc')->with(['pelatihan' => function ($query){
-                    $query->where('jenis','diklat')->orWhere('jenis','webinar');
-                }]);
+                        return DataTables::of($data)
+                        ->addColumn('cabang', function($data){
+                            $kabs = $data->kabupaten->nama;
+                            return "<pre>$data->name - $kabs</pre>". $role = auth()->user()->role;
+                        })
+                        ->addColumn('jumlahdiklat', function($data){
+                            $total_diklat = $data->pelatihan->count();
+                            return "<pre>$total_diklat diklat</pre>";
+                        })
+                        ->addColumn('namadiklat', function($data){
+                            $dataz = [];
+                            foreach ($data->pelatihan as $key => $value) {
+                                # code...
+                                $datax  = Program::where('id',$value->program_id)->first();                        
+                                $dataz[$key] = $datax->id;
+                            }
+                            $programs = Program::whereIn('id',$dataz)->distinct()->get();
+                            
+                            $hasil = [];
+                            foreach ($programs as $key => $value) {
+                                # code...
+                                $total      = $data->pelatihan->where('program_id',$value->id)->count();
+                                $peserta    = Peserta::where('cabang_id', $data->id)->where('program_id',$value->id)->count();
+                                // $keterangan = Pelatihan::where('program_id',$value->id)->select('keterangan')->first();
+                                $keterangan = $value->jenisprogram;
+                                $hasil[]    = "<pre>$total diklat   $value->name  ($peserta $keterangan)</pre>";
+                            }
+                            return $string=implode("<br>",$hasil);                    
+                        })
+                        ->addColumn('total_guru', function($data){
+                            $dataz = [];
+                            $pelatihan_guru     = Pelatihan::where('cabang_id', $data->id)->whereHas('program', function($q){
+                                $q->where('jenisprogram','guru');
+                            })->get();
 
-                return DataTables::of($data)
-                ->addColumn('cabang', function($data){
-                    $kabs = $data->kabupaten->nama;
-                    return "<pre>$data->name - $kabs</pre>";
-                })
-                ->addColumn('jumlahdiklat', function($data){
-                    $total_diklat = $data->pelatihan->count();
-                    return "<pre>$total_diklat diklat</pre>";
-                })
-                ->addColumn('namadiklat', function($data){
-                    $dataz = [];
-                    foreach ($data->pelatihan as $key => $value) {
-                        # code...
-                        $datax  = Program::where('id',$value->program_id)->first();                        
-                        $dataz[$key] = $datax->id;
-                    }
-                    $programs = Program::whereIn('id',$dataz)->distinct()->get();
-                    
-                    $hasil = [];
-                    foreach ($programs as $key => $value) {
-                        # code...
-                        $total      = $data->pelatihan->where('program_id',$value->id)->count();
-                        $peserta    = Peserta::where('cabang_id', $data->id)->where('program_id',$value->id)->count();
-                        // $keterangan = Pelatihan::where('program_id',$value->id)->select('keterangan')->first();
-                        $keterangan = $value->jenisprogram;
-                        $hasil[]    = "<pre>$total diklat   $value->name  ($peserta $keterangan)</pre>";
-                    }
-                    return $string=implode("<br>",$hasil);                    
-                })
-                ->addColumn('total_guru', function($data){
-                    $dataz = [];
-                    $pelatihan_guru     = Pelatihan::where('cabang_id', $data->id)->whereHas('program', function($q){
-                        $q->where('jenisprogram','guru');
-                    })->get();
+                            foreach ($pelatihan_guru as $key => $value) {
+                                # code...
+                                $dataz[] = $value->peserta->count();
+                            }
+                            $guru = array_sum($dataz);
 
-                    foreach ($pelatihan_guru as $key => $value) {
-                        # code...
-                        $dataz[] = $value->peserta->count();
-                    }
-                    $guru = array_sum($dataz);
+                            return '<pre>Guru : '.$guru.'</pre>';
+                        })
+                        ->addColumn('kpa', function($data){
+                            $kpa = $data->kpa->count();
+                            $update = KPA::orderBy('updated_at','desc')->where('cabang_id', $data->id)->first();
+                            if ($update !== null) {
+                                # code...
+                                return '<pre>'.$kpa.' (KPA) - '.\Carbon\Carbon::parse($update->updated_at)->format('M Y').'</pre>';
+                            }else {
+                                return '-';
+                            }
+                        })
+                        ->addColumn('munaqisy', function($data){
+                            $munaqisy = $data->munaqisy->count();
+                            $trainer_munaqisy = Trainer::where('cabang_id', $data->id)->whereHas('macamtrainer', function($q){
+                                $q->where('jenis','Munaqisy');
+                            })->count();
+                            $update = Munaqisy::orderBy('updated_at','desc')->where('cabang_id', $data->id)->first();
+                            $total = $munaqisy + $trainer_munaqisy;
+                            if ($total > 0) {
+                                # code...
+                                // return '<pre>'.$total.' (Munaqisy) - '.\Carbon\Carbon::parse($update->updated_at)->format('M Y').'</pre>';
+                                return '<pre>'.$total.' (Munaqisy)</pre>';
+                            }else{
+                                return '-';
+                            }
+                        })
+                        ->addColumn('trainer', function($data){
+                            $trainer = Trainer::where('cabang_id', $data->id)->whereHas('macamtrainer', function($q){
+                                $q->where('jenis','Instruktur Strategi')->orWhere('jenis','Instruktur Lagu');
+                            })->count();
+                            $update = Trainer::orderBy('updated_at','desc')->where('cabang_id', $data->id)->first();
+                            if ($trainer > 0) {
+                                # code...
+                                // return '<pre>'.$trainer.' (Trainer) - '.\Carbon\Carbon::parse($update->updated_at)->format('M Y').'</pre>';
+                                return '<pre>'.$trainer.' (Trainer) </pre>';
+                            }else{
+                                return '-';
+                            }
+                        })
+                        ->addColumn('supervisor', function($data){
+                            $supervisor = $data->supervisor->count();
+                            $trainer_supervisor = Trainer::where('cabang_id', $data->id)->whereHas('macamtrainer', function($q){
+                                $q->where('jenis','Supervisor');
+                            })->count();
+                            $total = $supervisor + $trainer_supervisor;
+                            $update = Supervisor::orderBy('updated_at','desc')->where('cabang_id', $data->id)->first();
+                            if ($total > 0) {
+                                # code...
+                                // return '<pre>'.$supervisor.' (Supervisor) - '.\Carbon\Carbon::parse($update->updated_at)->format('M Y').'</pre>';
+                                return '<pre>'.$total.' (Supervisor)</pre>';
+                            }else{
+                                return '-';
+                            }
+                        })
+                        ->addColumn('total_santri', function($data){
+                            $datax = [];
+                            $pelatihan_santri   = Pelatihan::where('cabang_id', $data->id)->whereHas('program',function($q){
+                                $q->where('jenisprogram','santri');
+                            })->get();
 
-                    return '<pre>Guru : '.$guru.'</pre>';
-                })
-                ->addColumn('kpa', function($data){
-                    $kpa = $data->kpa->count();
-                    $update = KPA::orderBy('updated_at','desc')->where('cabang_id', $data->id)->first();
-                    if ($update !== null) {
-                        # code...
-                        return '<pre>'.$kpa.' (KPA) - '.\Carbon\Carbon::parse($update->updated_at)->format('M Y').'</pre>';
-                    }else {
-                        return '-';
-                    }
-                })
-                ->addColumn('munaqisy', function($data){
-                    $munaqisy = $data->munaqisy->count();
-                    $trainer_munaqisy = Trainer::where('cabang_id', $data->id)->whereHas('macamtrainer', function($q){
-                        $q->where('jenis','Munaqisy');
-                    })->count();
-                    $update = Munaqisy::orderBy('updated_at','desc')->where('cabang_id', $data->id)->first();
-                    $total = $munaqisy + $trainer_munaqisy;
-                    if ($total > 0) {
-                        # code...
-                        // return '<pre>'.$total.' (Munaqisy) - '.\Carbon\Carbon::parse($update->updated_at)->format('M Y').'</pre>';
-                        return '<pre>'.$total.' (Munaqisy)</pre>';
-                    }else{
-                        return '-';
-                    }
-                })
-                ->addColumn('trainer', function($data){
-                    $trainer = Trainer::where('cabang_id', $data->id)->whereHas('macamtrainer', function($q){
-                        $q->where('jenis','Instruktur Strategi')->orWhere('jenis','Instruktur Lagu');
-                    })->count();
-                    $update = Trainer::orderBy('updated_at','desc')->where('cabang_id', $data->id)->first();
-                    if ($trainer > 0) {
-                        # code...
-                        // return '<pre>'.$trainer.' (Trainer) - '.\Carbon\Carbon::parse($update->updated_at)->format('M Y').'</pre>';
-                        return '<pre>'.$trainer.' (Trainer) </pre>';
-                    }else{
-                        return '-';
-                    }
-                })
-                ->addColumn('supervisor', function($data){
-                    $supervisor = $data->supervisor->count();
-                    $trainer_supervisor = Trainer::where('cabang_id', $data->id)->whereHas('macamtrainer', function($q){
-                        $q->where('jenis','Supervisor');
-                    })->count();
-                    $total = $supervisor + $trainer_supervisor;
-                    $update = Supervisor::orderBy('updated_at','desc')->where('cabang_id', $data->id)->first();
-                    if ($total > 0) {
-                        # code...
-                        // return '<pre>'.$supervisor.' (Supervisor) - '.\Carbon\Carbon::parse($update->updated_at)->format('M Y').'</pre>';
-                        return '<pre>'.$total.' (Supervisor)</pre>';
-                    }else{
-                        return '-';
-                    }
-                })
-                ->addColumn('total_santri', function($data){
-                    $datax = [];
-                    $pelatihan_santri   = Pelatihan::where('cabang_id', $data->id)->whereHas('program',function($q){
-                        $q->where('jenisprogram','santri');
-                    })->get();
+                            foreach ($pelatihan_santri as $key => $value) {
+                                # code...
+                                $datax[] = $value->peserta->count();
+                            }
+                            $santri = array_sum($datax);
 
-                    foreach ($pelatihan_santri as $key => $value) {
-                        # code...
-                        $datax[] = $value->peserta->count();
-                    }
-                    $santri = array_sum($datax);
+                            return '<pre>Santri : '.$santri.'</pre>';
+                        })
+                        ->addColumn('pengurus', function ($data) {
+                            if ($data->penguruscabang->count() > 0) {
+                                # code...
+                                $pengurus = [];
+                                foreach ($data->penguruscabang as $key => $value) {
+                                    # code...
+                                    $pengurus[] = '<pre style="margin-bottom:5px">'.$value->bagian.' : '.$value->nama_pengurus.'</pre>';
+                                }
+                                return implode('<br>',$pengurus);
 
-                    return '<pre>Santri : '.$santri.'</pre>';
-                })
-                ->rawColumns(['cabang','jumlahdiklat','namadiklat','total_guru','total_santri','kpa','munaqisy','trainer','supervisor'])->make(true);
+                            }else {
+                                # code...
+                                return '<code>KOSONG</code>';
+                            }
+                        })
+                        ->rawColumns(['cabang','jumlahdiklat','namadiklat','total_guru','total_santri','kpa','munaqisy','trainer','supervisor','pengurus'])
+                        ->make(true);
+                        
+                    }
                 
+            }else {
+                # code...
+                if(!empty($request->dari))
+                    {
+                        $data = Cabang::withCount('pelatihan')->orderBy('pelatihan_count','desc')->with(['pelatihan' => function ($query) use($request) {
+                            $query->whereBetween('tanggal', array($request->dari, $request->sampai));
+                        }]);
+
+                        return DataTables::of($data)
+                        ->addColumn('cabang', function($data){
+                            $kabs = $data->kabupaten->nama;
+                            return "<pre>$data->name - $kabs</pre>";
+                        })
+                        ->addColumn('jumlahdiklat', function($data){
+                            $total_diklat = $data->pelatihan->count();
+                            return "<pre>$total_diklat diklat</pre>";
+                        })
+                        ->addColumn('namadiklat', function($data) use($request) {
+                            $dataz = [];
+                            foreach ($data->pelatihan as $key => $value) {
+                                # code...
+                                $datax  = Program::where('id',$value->program_id)->first();                        
+                                $dataz[$key] = $datax->id;
+                            }
+                            $programs = Program::whereIn('id',$dataz)->distinct()->get();
+                            
+                            $hasil = [];
+                            $totals= [];
+                            foreach ($programs as $key => $value) {
+                                # code...
+                                $total      = $data->pelatihan->where('program_id',$value->id)->count();
+                                $peserta    = Peserta::where('cabang_id', $data->id)->whereHas('pelatihan')->where('program_id',$value->id)->whereBetween('tanggal', array($request->dari, $request->sampai))->count();
+                                // $keterangan = Pelatihan::where('program_id',$value->id)->select('keterangan')->first();
+                                $keterangan = $value->jenisprogram;
+                                $hasil[]    = "<pre>$total diklat   $value->name  ($peserta $keterangan)</pre>";
+                            }
+                            return $string=implode("<br>",$hasil);               
+                        })
+                        ->addColumn('total_guru', function($data) use($request) {
+                            // $dataz = [];
+                            // $pelatihan_guru     = Pelatihan::where('cabang_id', $data->id)->whereBetween('tanggal', array($request->dari, $request->sampai))
+                            //                     ->whereHas('program',function($q){
+                            //                         $q->where('jenisprogram','guru');
+                            //                     })->get();
+
+                            // foreach ($pelatihan_guru as $key => $value) {
+                            //     # code...
+                            //     $dataz[] = $value->peserta->count();
+                            // }
+                            // $guru = array_sum($dataz);
+
+                            $guru = Peserta::where('cabang_id', $data->id)->whereHas('pelatihan')->whereBetween('tanggal', array($request->dari, $request->sampai))->whereHas('program',function($data){
+                                $data->where('jenisprogram','guru');
+                            })->count();
+
+                            return '<pre>Guru : '.$guru.'</pre>';
+                        })
+                        ->addColumn('total_santri', function($data) use($request) {
+                        
+                            // $datax = [];
+                            // $pelatihan_santri   = Pelatihan::where('cabang_id', $data->id)->whereBetween('tanggal', array($request->dari, $request->sampai))->whereHas('program',function($q){
+                            //     $q->where('jenisprogram','santri');
+                            // })->get();
+
+                            // foreach ($pelatihan_santri as $key => $value) {
+                            //     # code...
+                            //     $datax[] = $value->peserta->count();
+                            // }
+                            // $santri = array_sum($datax);
+                            $santri = Peserta::where('cabang_id', $data->id)->whereBetween('tanggal', array($request->dari, $request->sampai))->whereHas('program',function($data){
+                                $data->where('jenisprogram','santri');
+                            })->count();
+
+                            return '<pre>Santri : '.$santri.'</pre>';
+                        })
+                        ->addColumn('kpa', function($data){
+                            $kpa = $data->kpa->count();
+                            $update = KPA::orderBy('updated_at','desc')->where('cabang_id', $data->id)->first();
+                            if ($update !== null) {
+                                # code...
+                                return '<pre>'.$kpa.' (KPA) - '.\Carbon\Carbon::parse($update->updated_at)->format('M Y').'</pre>';
+                            }else {
+                                return '-';
+                            }
+                        })
+                        ->addColumn('munaqisy', function($data){
+                            $munaqisy = $data->munaqisy->count();
+                            $trainer_munaqisy = Trainer::where('cabang_id', $data->id)->whereHas('macamtrainer', function($q){
+                                $q->where('jenis','Munaqisy');
+                            })->count();
+                            $update = Munaqisy::orderBy('updated_at','desc')->where('cabang_id', $data->id)->first();
+                            $total = $munaqisy + $trainer_munaqisy;
+                            if ($total > 0) {
+                                # code...
+                                // return '<pre>'.$total.' (Munaqisy) - '.\Carbon\Carbon::parse($update->updated_at)->format('M Y').'</pre>';
+                                return '<pre>'.$total.' (Munaqisy)</pre>';
+                            }else{
+                                return '-';
+                            }
+                        })
+                        ->addColumn('trainer', function($data){
+                            $trainer = Trainer::where('cabang_id', $data->id)->whereHas('macamtrainer', function($q){
+                                $q->where('jenis','Instruktur Strategi')->orWhere('jenis','Instruktur Lagu');
+                            })->count();
+                            $update = Trainer::orderBy('updated_at','desc')->where('cabang_id', $data->id)->first();
+                            if ($trainer > 0) {
+                                # code...
+                                // return '<pre>'.$trainer.' (Trainer) - '.\Carbon\Carbon::parse($update->updated_at)->format('M Y').'</pre>';
+                                return '<pre>'.$trainer.' (Trainer) </pre>';
+                            }else{
+                                return '-';
+                            }
+                        })
+                        ->addColumn('supervisor', function($data){
+                            $supervisor = $data->supervisor->count();
+                            $trainer_supervisor = Trainer::where('cabang_id', $data->id)->whereHas('macamtrainer', function($q){
+                                $q->where('jenis','Supervisor');
+                            })->count();
+                            $total = $supervisor + $trainer_supervisor;
+                            $update = Supervisor::orderBy('updated_at','desc')->where('cabang_id', $data->id)->first();
+                            if ($total > 0) {
+                                # code...
+                                // return '<pre>'.$supervisor.' (Supervisor) - '.\Carbon\Carbon::parse($update->updated_at)->format('M Y').'</pre>';
+                                return '<pre>'.$total.' (Supervisor)</pre>';
+                            }else{
+                                return '-';
+                            }
+                        })
+                        ->addColumn('pengurus', function ($data) {
+                            if ($data->penguruscabang->count() > 0) {
+                                # code...
+                                $pengurus = [];
+                                foreach ($data->penguruscabang as $key => $value) {
+                                    # code...
+                                    $pengurus[] = $value->bagian.' : '.$value->nama_pengurus;
+                                }
+                                return implode('<br>',$pengurus);
+
+                            }else {
+                                # code...
+                                return '<code>KOSONG</code>';
+                            }
+                        })
+                        ->rawColumns(['cabang','jumlahdiklat','namadiklat','total_guru','total_santri','kpa','munaqisy','trainer','supervisor','pengurus'])
+                        ->make(true);
+
+                    }else{
+
+                        $data = Cabang::withCount('pelatihan')->orderBy('pelatihan_count','desc')->with(['pelatihan' => function ($query){
+                            $query->where('jenis','diklat')->orWhere('jenis','webinar');
+                        }]);
+
+                        return DataTables::of($data)
+                        ->addColumn('cabang', function($data){
+                            $kabs = $data->kabupaten->nama;
+                            return "<pre>$data->name - $kabs</pre>". $role = auth()->user()->role;
+                        })
+                        ->addColumn('jumlahdiklat', function($data){
+                            $total_diklat = $data->pelatihan->count();
+                            return "<pre>$total_diklat diklat</pre>";
+                        })
+                        ->addColumn('namadiklat', function($data){
+                            $dataz = [];
+                            foreach ($data->pelatihan as $key => $value) {
+                                # code...
+                                $datax  = Program::where('id',$value->program_id)->first();                        
+                                $dataz[$key] = $datax->id;
+                            }
+                            $programs = Program::whereIn('id',$dataz)->distinct()->get();
+                            
+                            $hasil = [];
+                            foreach ($programs as $key => $value) {
+                                # code...
+                                $total      = $data->pelatihan->where('program_id',$value->id)->count();
+                                $peserta    = Peserta::where('cabang_id', $data->id)->where('program_id',$value->id)->count();
+                                // $keterangan = Pelatihan::where('program_id',$value->id)->select('keterangan')->first();
+                                $keterangan = $value->jenisprogram;
+                                $hasil[]    = "<pre>$total diklat   $value->name  ($peserta $keterangan)</pre>";
+                            }
+                            return $string=implode("<br>",$hasil);                    
+                        })
+                        ->addColumn('total_guru', function($data){
+                            $dataz = [];
+                            $pelatihan_guru     = Pelatihan::where('cabang_id', $data->id)->whereHas('program', function($q){
+                                $q->where('jenisprogram','guru');
+                            })->get();
+
+                            foreach ($pelatihan_guru as $key => $value) {
+                                # code...
+                                $dataz[] = $value->peserta->count();
+                            }
+                            $guru = array_sum($dataz);
+
+                            return '<pre>Guru : '.$guru.'</pre>';
+                        })
+                        ->addColumn('kpa', function($data){
+                            $kpa = $data->kpa->count();
+                            $update = KPA::orderBy('updated_at','desc')->where('cabang_id', $data->id)->first();
+                            if ($update !== null) {
+                                # code...
+                                return '<pre>'.$kpa.' (KPA) - '.\Carbon\Carbon::parse($update->updated_at)->format('M Y').'</pre>';
+                            }else {
+                                return '-';
+                            }
+                        })
+                        ->addColumn('munaqisy', function($data){
+                            $munaqisy = $data->munaqisy->count();
+                            $trainer_munaqisy = Trainer::where('cabang_id', $data->id)->whereHas('macamtrainer', function($q){
+                                $q->where('jenis','Munaqisy');
+                            })->count();
+                            $update = Munaqisy::orderBy('updated_at','desc')->where('cabang_id', $data->id)->first();
+                            $total = $munaqisy + $trainer_munaqisy;
+                            if ($total > 0) {
+                                # code...
+                                // return '<pre>'.$total.' (Munaqisy) - '.\Carbon\Carbon::parse($update->updated_at)->format('M Y').'</pre>';
+                                return '<pre>'.$total.' (Munaqisy)</pre>';
+                            }else{
+                                return '-';
+                            }
+                        })
+                        ->addColumn('trainer', function($data){
+                            $trainer = Trainer::where('cabang_id', $data->id)->whereHas('macamtrainer', function($q){
+                                $q->where('jenis','Instruktur Strategi')->orWhere('jenis','Instruktur Lagu');
+                            })->count();
+                            $update = Trainer::orderBy('updated_at','desc')->where('cabang_id', $data->id)->first();
+                            if ($trainer > 0) {
+                                # code...
+                                // return '<pre>'.$trainer.' (Trainer) - '.\Carbon\Carbon::parse($update->updated_at)->format('M Y').'</pre>';
+                                return '<pre>'.$trainer.' (Trainer) </pre>';
+                            }else{
+                                return '-';
+                            }
+                        })
+                        ->addColumn('supervisor', function($data){
+                            $supervisor = $data->supervisor->count();
+                            $trainer_supervisor = Trainer::where('cabang_id', $data->id)->whereHas('macamtrainer', function($q){
+                                $q->where('jenis','Supervisor');
+                            })->count();
+                            $total = $supervisor + $trainer_supervisor;
+                            $update = Supervisor::orderBy('updated_at','desc')->where('cabang_id', $data->id)->first();
+                            if ($total > 0) {
+                                # code...
+                                // return '<pre>'.$supervisor.' (Supervisor) - '.\Carbon\Carbon::parse($update->updated_at)->format('M Y').'</pre>';
+                                return '<pre>'.$total.' (Supervisor)</pre>';
+                            }else{
+                                return '-';
+                            }
+                        })
+                        ->addColumn('total_santri', function($data){
+                            $datax = [];
+                            $pelatihan_santri   = Pelatihan::where('cabang_id', $data->id)->whereHas('program',function($q){
+                                $q->where('jenisprogram','santri');
+                            })->get();
+
+                            foreach ($pelatihan_santri as $key => $value) {
+                                # code...
+                                $datax[] = $value->peserta->count();
+                            }
+                            $santri = array_sum($datax);
+
+                            return '<pre>Santri : '.$santri.'</pre>';
+                        })
+                        ->addColumn('pengurus', function ($data) {
+                            if ($data->penguruscabang->count() > 0) {
+                                # code...
+                                $pengurus = [];
+                                foreach ($data->penguruscabang as $key => $value) {
+                                    # code...
+                                    $pengurus[] = $value->bagian.' : '.$value->nama_pengurus;
+                                }
+
+                                return implode('<br>',$pengurus);
+
+                            }else {
+                                # code...
+                                return '<code>KOSONG</code>';
+                            }
+                        })
+                        ->rawColumns(['cabang','jumlahdiklat','namadiklat','total_guru','total_santri','kpa','munaqisy','trainer','supervisor','pengurus'])
+                        ->make(true);
+                        
+                    }
+                }
             }
-        }
+
+            
     }
 
     public function peserta_cabang_program_pilih(Request $request,$cabang_id)

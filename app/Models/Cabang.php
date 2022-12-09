@@ -110,4 +110,9 @@ class Cabang extends Model
     {
         return $this->hasMany(Forwardconfirm::class);
     }
+
+    public function penguruscabang()
+    {
+        return $this->hasMany(Penguruscabang::class);
+    }
 }
