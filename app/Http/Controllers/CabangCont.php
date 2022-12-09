@@ -1252,10 +1252,10 @@ class CabangCont extends Controller
                     }
                 })
                 ->addColumn('opsi', function($data){
-                    $ke_data_pelatihan = '<a href="/diklat-peserta/'.$data->pelatihan->id.'"></a>';
+                    $ke_data_pelatihan = '<a href="/diklat-peserta/'.$data->pelatihan->id.'" class="btn btn-primary"><i class="fa fa-forward"></i></a>';
                     return $ke_data_pelatihan;
                 })
-                ->rawColumns(['program','pelatihan','ttl','check'])
+                ->rawColumns(['program','pelatihan','ttl','check','opsi'])
                 ->make(true);
 
             }else {
@@ -1322,10 +1322,10 @@ class CabangCont extends Controller
                     }
                 })
                 ->addColumn('opsi', function($data){
-                    $ke_data_pelatihan = '<a href="/diklat-peserta/'.$data->pelatihan->id.'"></a>';
+                    $ke_data_pelatihan = '<a href="/diklat-peserta/'.$data->pelatihan->id.'" class="btn btn-primary"><i class="fa fa-forward"></i></a>';
                     return $ke_data_pelatihan;
                 })
-                ->rawColumns(['program','pelatihan','ttl','check'])
+                ->rawColumns(['program','pelatihan','ttl','check','opsi'])
                 ->make(true);
             }
            
