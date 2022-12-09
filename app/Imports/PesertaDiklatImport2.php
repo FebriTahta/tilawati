@@ -72,10 +72,14 @@ class PesertaDiklatImport2 implements ToCollection, WithStartRow
                         $peserta= Peserta::where('name',$row[1])->where('pelatihan_id', $this->id)->first();
                         $template_nama = substr($row[1],0,4);
                         
-                        if (substr($peserta->name,0,4) == $template_nama) {
+                        if ($peserta !== null) {
                             # code...
-                            $peserta->delete();
+                            if (substr($peserta->name,0,4) == $template_nama) {
+                                # code...
+                                $peserta->delete();
+                            }
                         }
+                        
 
                         if ($template_nama !== 'NAMA') {
                             # code...
@@ -253,11 +257,15 @@ class PesertaDiklatImport2 implements ToCollection, WithStartRow
                         }
     
                         $peserta= Peserta::where('name',$row[0])->where('pelatihan_id', $this->id)->first();
-                        $template_nama = substr($row[1],0,4);
-                        if (substr($peserta->name,0,4) == $template_nama) {
+                        $template_nama = substr($row[0],0,4);
+                        if ($peserta !== null) {
                             # code...
-                            $peserta->delete();
+                            if (substr($peserta->name,0,4) == "NAMA") {
+                                # code...
+                                $peserta->delete();
+                            }
                         }
+                        
 
                         if ($template_nama !== 'NAMA') {
                             # code...
