@@ -503,6 +503,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     Route::post('/reset-password',[UserController::class,'reset_password'])->name('reset_pass');
     Route::post('/ubah-password',[UserController::class,'ganti_pass'])->name('ganti_pass');
     Route::post('/export-user',[ExportCont::class,'export_user'])->name('export.user');
+    Route::post('/buat-user-baru',[UserController::class,'buat_user_baru']);
 
     Route::get('/export-data-peserta/{cabang_id}/{pelatihan_id}',[ExportCont::class,'export_data_peserta']);
 

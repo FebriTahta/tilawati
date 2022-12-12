@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Cabang;
+use Validator;
 use DataTables;
 use Illuminate\Http\Request;
 use Auth;
@@ -13,6 +14,7 @@ class UserController extends Controller
     public function index()
     {
         $dt_usr = User::all();
+
         return view('AdmPelatihan.User.index',compact('dt_usr'));
     }
 
@@ -27,13 +29,32 @@ class UserController extends Controller
                     return $data->kabupaten->nama;
                 })
                 ->addColumn('username', function ($data) {
-                    return $data->user->username;
+                    if ($data->user !== null) {
+                        # code...
+                        return $data->user->username;
+                    }else {
+                        # code...
+                        return 'kosong';
+                    }
+                    
                 })
                 ->addColumn('pass', function ($data) {
-                    return $data->user->pass;
+                    if ($data->user !== null) {
+                        return $data->user->pass;
+                    }else {
+                        return 'kosong';
+                    }
+                    
                 })
                 ->addColumn('opsi', function ($data) {
-                    return '<a href="#" type="button" class="btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#modal-edit" data-id="'.$data->user_id.'" data-username="'.$data->user->username.'" data-pass="'.$data->user->pass.'"> Ubah Data</a>';
+                    if ($data->user !== null) {
+                        # code...
+                        return '<a href="#" type="button" class="btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#modal-edit" data-id="'.$data->user_id.'" data-username="'.$data->user->username.'" data-pass="'.$data->user->pass.'"> Ubah Data</a>';
+                    }else {
+                        # code...
+                        return 'kosong';
+                    }
+                    
                 })
                 ->rawColumns(['kota','cabang','opsi'])
                 ->make(true);
@@ -42,7 +63,60 @@ class UserController extends Controller
 
     public function daftar_pengguna(Request $request)
     {
-        return view('tilawatipusat.user.index');
+        
+        $daftar_user_yang_memiliki_cabang = User::whereHas('cabang')->select('id')->get()->toArray();
+        // Hapus semua user yang bukan bagian dari cabang dan bukan admin;
+        if ($daftar_user_yang_memiliki_cabang !== null) {
+            # code...
+            $user_tak_terpakai =  User::where('username','!=','admin')->whereNotIn('id', $daftar_user_yang_memiliki_cabang)->delete();
+        }
+        $cabang_tanpa_user = Cabang::whereNotIn('user_id', $daftar_user_yang_memiliki_cabang)->get();
+        return view('tilawatipusat.user.index',compact('cabang_tanpa_user'));
+    }
+
+    public function buat_user_baru(Request $request)
+    {
+        if ($request->cabang_id !== null) {
+            # code...
+            $validator = Validator::make($request->all(),
+            [
+                'cabang_id'=> 'required',
+                'username' => 'required',
+                'pass' => 'required',
+            ]);
+
+            if ($validator->fails()) {
+                # code...
+                return response()->json([
+                    'status'=> 400,
+                    'message' => $validator->messages(),
+                ]);
+            }else {
+                # code...
+                $user = User::create(
+                    [
+                    'username' => strtolower($request->username),
+                    'role' => 'cabang',
+                    'pass'=> strtolower($request->pass),
+                    'password'=> Hash::make($request->pass)
+                ]);
+
+                Cabang::findOrFail($request->cabang_id)->update(['user_id', $user->id]);
+
+                return response()->json([
+                    'status'=> 200,
+                    'message' => 'user baru berhasil ditambahkan',
+                ]);
+            }
+
+
+        }else {
+            # code...
+            return response()->json([
+                'status' => 400,
+                'message' => ['maaf tidak ditemukan cabang yang belum memiliki password. Tambahkan cabang terlebih dahulu']
+            ]);
+        }
     }
 
     public function ganti_pass(Request $request)
@@ -67,92 +141,52 @@ class UserController extends Controller
 
     public function reset_password(Request $request)
     {
-        $hapus = User::where('role', 'lembaga')->delete();
-        
-        $cabang = Cabang::orderBy('id','asc')->get();
+        $cabang = Cabang::get();
+        // User::where('username','!=','admin')->delete();
         foreach ($cabang as $key => $value) {
             # code...
+            $pool = '0123456789';
+            $acak = substr(str_shuffle(str_repeat($pool, 5)), 0, 3);
+
             if ($value->teritorial !== null) {
                 # code...
-                $pool = '0123456789';
-                $acak = substr(str_shuffle(str_repeat($pool, 5)), 0, 3);
                 if ($value->teritorial == 'surabaya' || $value->teritorial == 'gresik' || $value->teritorial == 'Surabaya' || $value->teritorial == 'Gresik') {
                     # code...
-                    $value->user->update([
+                    User::updateOrCreate(
+                        [
+                            'id' => $value->user_id, 
+                        ],[
                         'username' => 'tilawati '.strtolower($value->name),
+                        'role' => 'cabang',
                         'pass'=> 'cab'.$acak,
                         'password'=>Hash::make('cab'.$acak)
                     ]);
+
                 }else {
                     # code...
-                    $value->user->update([
+                    User::updateOrCreate(
+                        [
+                            'id' => $value->user_id, 
+                        ],[
                         'username' => 'tilawati '.strtolower($value->teritorial),
+                        'role' => 'cabang',
                         'pass'=> 'cab'.$acak,
                         'password'=>Hash::make('cab'.$acak)
                     ]);
                 }
+            }else {
+                # code...
+                User::updateOrCreate(
+                    [
+                        'id' => $value->user_id, 
+                    ],[
+                    'username' => 'tilawati '.strtolower($value->name),
+                    'role' => 'cabang',
+                    'pass'=> 'cab'.$acak,
+                    'password'=>Hash::make('cab'.$acak)
+                ]);
             }    
         }
-
-        
-        // foreach ($user as $key => $value) {
-        //     # code...
-        //     $pool = '0123456789';
-        //     $acak = substr(str_shuffle(str_repeat($pool, 5)), 0, 3);
-        //     $value->update([
-        //         'username' => 'tilawati '.$value->cabang->teritorial,
-        //         'pass'=> 'cab'.$acak,
-        //         'password'=>Hash::make('cab'.$acak)
-        //     ]);
-        // }
-
-
-        // foreach ($user as $key => $value) {
-        //     # code...
-        //         $pool = '0123456789';
-        //         $acak = substr(str_shuffle(str_repeat($pool, 5)), 0, 3);
-        //         // if ($value->where('pass', 'cab'.$acak)->exists()) {
-        //             # code...
-        //             $pool2 = '0123456789';
-        //             $acak2 = substr(str_shuffle(str_repeat($pool2, 5)), 0, 3);
-        //             foreach ($value->cabang as $key => $values) {
-        //                 # code...
-        //                 if ($values->teritorial == 'surabaya' || $values->teritorial == 'gresik' || $values->teritorial == null) {
-        //                     # code...
-        //                     $values->update([
-        //                         'username' => 'tilawati '.$values->name,
-        //                         'pass'=> 'cab'.$acak2,
-        //                         'password'=>Hash::make('cab'.$acak2)
-        //                     ]);
-        //                 } else {
-        //                     # code...
-        //                     $value->update([
-        //                         'username' => 'tilawati '.$values->teritorial,
-        //                         'pass'=> $values->teritorial.'cab'.$acak2,
-        //                         'password'=>Hash::make($values->teritorial.'cab'.$acak2)
-        //                     ]);
-        //                 }
-        //             }
-                    
-        //         // }else {
-        //         //     # code...
-        //         //     if ($value->cabang->teritorial == 'surabaya' || $value->cabang->teritorial == 'gresik' || $value->cabang->teritorial == null) {
-        //         //         $value->update([
-        //         //             'username' => 'tilawati '.$value->cabang->name,
-        //         //             'pass'=> 'cab'.$acak,
-        //         //             'password'=>Hash::make('cab'.$acak)
-        //         //         ]);
-        //         //     }else {
-        //         //         # code...
-        //         //         $value->update([
-        //         //             'username' => 'tilawati '.$value->cabang->teritorial,
-        //         //             'pass'=> $value->cabang->teritorial.'cab'.$acak,
-        //         //             'password'=>Hash::make($value->cabang->teritorial.'cab'.$acak)
-        //         //         ]);
-        //         //     }
-        //         // }
-            
-        // }
 
         return redirect()->back();
         

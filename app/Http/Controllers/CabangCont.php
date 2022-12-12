@@ -1152,6 +1152,11 @@ class CabangCont extends Controller
         $cabang_id = auth()->user()->cabang->id;
         $cabang = Cabang::where('id', $cabang_id)->first();
         
+        if ($request->namapengurus[0] !== null) {
+            # code...
+            $cabang->update(['kepalacabang' => $request->namapengurus[0]]);
+        }
+
         $data_nama = $request->namapengurus;
         $data_telp = $request->telppengurus;
         $bagian    = $request->bagian;

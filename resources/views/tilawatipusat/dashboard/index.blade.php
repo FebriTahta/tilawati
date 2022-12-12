@@ -155,7 +155,7 @@
                                 <span class="keterangan" style="font-size: 20px;"> MEMILIKI</span>
                             </div> --}}
                             <div class="form-group">
-                                <h5 class="number" style="font-size: 30px; font-weight: 700">{{number_format(($cabang-1),0,',','.')}} <span class="keterangan" style="font-size: 20px;"> CABANG</span> </h5>
+                                <h5 class="number" style="font-size: 30px; font-weight: 700">{{number_format(($cabang),0,',','.')}} <span class="keterangan" style="font-size: 20px;"> CABANG</span> </h5>
                             </div>
                             <div class="form-group">
                                 <a href="#" data-toggle="modal" data-target="#modallembaga"><h5 class="number" style="font-size: 30px; font-weight: 700">{{number_format($lembaga,0,',','.')}} <span class="keterangan" style="font-size: 20px;"> LEMBAGA</span> </h5></a>
