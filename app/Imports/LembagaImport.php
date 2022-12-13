@@ -90,7 +90,7 @@ class LembagaImport implements ToCollection, WithChunkReading
                         $lembaga->save();
                     }else {
                         # code...
-                        $kabupaten_id = '';
+                        $kabupaten_id = null;
                         if ($row[5] !== null) {
                             # code...
                             $kab     = strtoupper($row[5]);

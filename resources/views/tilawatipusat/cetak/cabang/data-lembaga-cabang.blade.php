@@ -53,7 +53,7 @@
                 <td>{{$item->telp}}</td>
                 <td>
                     @if ($item->kabupaten !== null)
-                        {{$item->kabupaten->nama}}
+                        {{substr($item->kabupaten->nama,4)}}
                     @endif
                 </td>
                 <td>{{$item->jml_guru}}</td>
