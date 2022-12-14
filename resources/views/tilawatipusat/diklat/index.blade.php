@@ -121,41 +121,79 @@
                                         <input type="hidden" id="cabang" value="{{auth()->user()->cabang->id}}">
                                     @endif
                                     <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
-                                        <table id="datatable-buttons" class="table table-diklat table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
-                                            <thead class="text-bold text-primary" style="text-transform: capitalize; font-size: 12px">
-                                                <tr>
-                                                    <th>Id</th>
-                                                    <th>Cabang</th>
-                                                    <th>Tanggal</th>
-                                                    <th>Jenis Program</th>
-                                                    <th>Peserta</th>
-                                                    <th>Tempat</th>
-                                                    <th>Link WA</th>
-                                                    <th>Flyer</th>
-                                                    <th>Registeasi</th>
-                                                    <th>Option</th>
-                                                </tr>
-                                            </thead>
-    
-                                            <tbody style="text-transform: uppercase; font-size: 10px">
-                                            </tbody>
+                                        @if (auth()->user()->role == 'pusat')
+                                            <table id="datatable-buttons" class="table table-diklat table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
+                                                <thead class="text-bold text-primary" style="text-transform: capitalize; font-size: 12px">
+                                                    <tr>
+                                                        <th>Id</th>
+                                                        <th>Cabang</th>
+                                                        <th>Tanggal</th>
+                                                        <th>Jenis Program</th>
+                                                        <th>Peserta</th>
+                                                        <th>Tempat</th>
+                                                        <th>Link WA</th>
+                                                        <th>Flyer</th>
+                                                        <th>Registeasi</th>
+                                                        <th>Option</th>
+                                                    </tr>
+                                                </thead>
+        
+                                                <tbody style="text-transform: uppercase; font-size: 10px">
+                                                </tbody>
 
-                                            <tfoot class="text-primary" style="text-transform: capitalize; font-size: 12px">
-                                                <tr>
-                                                    <th>Id</th>
-                                                    <th>Cabang</th>
-                                                    <th>Tanggal</th>
-                                                    <th>Jenis Program</th>                                                    
-                                                    <th>Peserta</th>
-                                                    <th>Tempat</th>
-                                                    <th>Link WA</th>
-                                                    <th>Flyer</th>
-                                                    <th>Registeasi</th>
-                                                    <th>Option</th>
-                                                </tr>
-                                            </tfoot>
-                                        </table>
-                                        <footer class="blockquote-footer">Updated at  <cite title="Source Title">2021</cite></footer>
+                                                <tfoot class="text-primary" style="text-transform: capitalize; font-size: 12px">
+                                                    <tr>
+                                                        <th>Id</th>
+                                                        <th>Cabang</th>
+                                                        <th>Tanggal</th>
+                                                        <th>Jenis Program</th>                                                    
+                                                        <th>Peserta</th>
+                                                        <th>Tempat</th>
+                                                        <th>Link WA</th>
+                                                        <th>Flyer</th>
+                                                        <th>Registeasi</th>
+                                                        <th>Option</th>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                        @else
+                                            <table id="datatable-buttons" class="table table-diklat table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; ">
+                                                <thead class="text-bold text-primary" style="text-transform: capitalize; font-size: 12px">
+                                                    <tr>
+                                                        <th>Id</th>
+                                                        <th>Cabang</th>
+                                                        <th>Tanggal</th>
+                                                        <th>Jenis Program</th>
+                                                        <th>Peserta</th>
+                                                        <th>Tempat</th>
+                                                        {{-- <th>Link WA</th>
+                                                        <th>Flyer</th>
+                                                        <th>Registeasi</th> --}}
+                                                        <th>Option</th>
+                                                    </tr>
+                                                </thead>
+        
+                                                <tbody style="text-transform: uppercase; font-size: 10px">
+                                                </tbody>
+
+                                                <tfoot class="text-primary" style="text-transform: capitalize; font-size: 12px">
+                                                    <tr>
+                                                        <th>Id</th>
+                                                        <th>Cabang</th>
+                                                        <th>Tanggal</th>
+                                                        <th>Jenis Program</th>                                                    
+                                                        <th>Peserta</th>
+                                                        <th>Tempat</th>
+                                                        {{-- <th>Link WA</th>
+                                                        <th>Flyer</th>
+                                                        <th>Registeasi</th> --}}
+                                                        <th>Option</th>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                        @endif
+                                        
+                                        <footer class="blockquote-footer">Updated at  <cite title="Source Title">{{date('Y')}}</cite></footer>
                                     </blockquote>
                                 </div>
                             </div>
@@ -1525,18 +1563,18 @@
                                 data:'tempat',
                                 name:'tempat'
                                 },
-                                {
-                                data:'groupwa',
-                                name:'groupwa'
-                                },
-                                {
-                                data:'flyer',
-                                name:'flyer'
-                                },
-                                {
-                                data:'linkpendaftaran',
-                                name:'linkpendaftaran'
-                                },
+                                // {
+                                // data:'groupwa',
+                                // name:'groupwa'
+                                // },
+                                // {
+                                // data:'flyer',
+                                // name:'flyer'
+                                // },
+                                // {
+                                // data:'linkpendaftaran',
+                                // name:'linkpendaftaran'
+                                // },
                                 {
                                 data:'action',
                                 name:'action'
