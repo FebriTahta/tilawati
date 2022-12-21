@@ -598,14 +598,12 @@
                                                     @endif
                                                 </tr>
                                             </thead>
-                    
                                             <tbody style="text-transform: uppercase; font-size: 10px">
                                             </tbody>
-                    
                                             <tfoot class="text-bold text-primary" style="text-transform: uppercase; font-size: 10px">
                                                 <tr>
-                                                   <th>Program</th>
-                                                   @if (auth()->user()->role=='pusat')
+                                                    <th>Program</th>
+                                                    @if (auth()->user()->role=='pusat')
                                                     <th>Action</th>
                                                     @endif
                                                 </tr>

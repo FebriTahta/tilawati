@@ -93,7 +93,9 @@
                                             data-placeholder="Status Trainer ..." required>
                                             <optgroup label="-">
                                                 @foreach ($macam as $key => $items)
-                                                <option value="{{ $items->id }}">{{ $items->jenis }}</option>
+                                                    @if ($items->jenis !== 'Munaqisy' && $items->jenis !== 'Supervisor')
+                                                        <option value="{{ $items->id }}">{{ $items->jenis }}</option>
+                                                    @endif
                                                 @endforeach
                                             </optgroup>
                                         </select>

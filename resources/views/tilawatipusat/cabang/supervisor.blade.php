@@ -52,6 +52,7 @@
                                     <th>Nama</th>
                                     <th>Wa / Telp</th>
                                     <th>Alamat</th>
+                                    <th>Supervisor</th>
                                     <th>...</th>
                                 </tr>
                             </thead>
@@ -64,6 +65,7 @@
                                     <th>Nama</th>
                                     <th>Wa / Telp</th>
                                     <th>Alamat</th>
+                                    <th>Supervisor</th>
                                     <th>...</th>
                                 </tr>
                             </tfoot>
@@ -467,6 +469,9 @@
                     {
                         data: 'alamat',
                         name: 'alamat'
+                    },
+                    {
+                        "defaultContent": "Supervisor",
                     },
                     {
                         data: 'action',

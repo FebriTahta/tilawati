@@ -55,6 +55,7 @@
                                     <th>Nama</th>
                                     <th>Wa / Telp</th>
                                     <th>Alamat</th>
+                                    <th>Munaqisy</th>
                                     <th>...</th>
                                 </tr>
                             </thead>
@@ -67,6 +68,7 @@
                                     <th>Nama</th>
                                     <th>Wa / Telp</th>
                                     <th>Alamat</th>
+                                    <th>Munaqisy</th>
                                     <th>...</th>
                                 </tr>
                             </tfoot>
@@ -443,6 +445,10 @@
                     {
                         data: 'alamat',
                         name: 'alamat'
+                    },
+                    
+                    {
+                        "defaultContent": "Munaqisy",
                     },
                     {
                         data: 'action',

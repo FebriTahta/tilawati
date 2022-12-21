@@ -21,60 +21,63 @@ class TrainerImport implements ToCollection
         foreach ($collection as $key => $row) {
             if ($key >= 6) {
                 $data= Trainer::where('name',$row[1])->where('cabang_id', $this->cabang_id)->first();
+                $template_nama = substr($row[1],0,4);
 
-                if ($data == null) {
-                    # code...
-                    $trainer = new Trainer;
-                    $trainer->cabang_id = $this->cabang_id;
-                    $trainer->name = $row[1];
-                    $trainer->telp = $row[2];
-                    $trainer->alamat = $row[3];
-                    $trainer->created_at = new \DateTime;
-                    $trainer->save();
-                    
-                    $macam = Macamtrainer::all();
-                    $total = $macam->count();
-                    $i = 4;
-                    foreach ($macam as $key => $value) {
+                if ($template_nama !== 'Nama') {
+                    if ($data == null) {
                         # code...
+                        $trainer = new Trainer;
+                        $trainer->cabang_id = $this->cabang_id;
+                        $trainer->name = $row[1];
+                        $trainer->telp = $row[2];
+                        $trainer->alamat = $row[3];
+                        $trainer->created_at = new \DateTime;
+                        $trainer->save();
                         
-                        if ($row[$i] !== null) {
+                        $macam = Macamtrainer::all();
+                        $total = $macam->count();
+                        $i = 4;
+                        foreach ($macam as $key => $value) {
                             # code...
-                            $ok_trainer = new macamtrainer_trainer;
-                            $ok_trainer->created_at = new \DateTime;
-                            $ok_trainer->macamtrainer_id = $value->id;
-                            $ok_trainer->trainer_id = $trainer->id;
-                            $ok_trainer->save();
+                            
+                            if ($row[$i] !== null) {
+                                # code...
+                                $ok_trainer = new macamtrainer_trainer;
+                                $ok_trainer->created_at = new \DateTime;
+                                $ok_trainer->macamtrainer_id = $value->id;
+                                $ok_trainer->trainer_id = $trainer->id;
+                                $ok_trainer->save();
+                            }
+                            $i++;
                         }
-                        $i++;
-                    }
-                }else {
-                    # code...
-                    $trainer = Trainer::updateOrCreate(
-                        [
-                            'id' => $data->id
-                        ],
-                        [
-                            'telp'        => $row[2],
-                            'alamat'      => $row[3],
-                        ]
-                    );
-
-                    $macam2 = macamtrainer_trainer::where('trainer_id', $data->id)->delete();
-                    $macam = Macamtrainer::all();
-                    $total = $macam->count();
-                    $i = 4;
-                    foreach ($macam as $key => $value) {
+                    }else {
                         # code...
-                        if ($row[$i] !== null) {
+                        $trainer = Trainer::updateOrCreate(
+                            [
+                                'id' => $data->id
+                            ],
+                            [
+                                'telp'        => $row[2],
+                                'alamat'      => $row[3],
+                            ]
+                        );
+    
+                        $macam2 = macamtrainer_trainer::where('trainer_id', $data->id)->delete();
+                        $macam = Macamtrainer::all();
+                        $total = $macam->count();
+                        $i = 4;
+                        foreach ($macam as $key => $value) {
                             # code...
-                            $ok_trainer = new macamtrainer_trainer;
-                            $ok_trainer->created_at = new \DateTime;
-                            $ok_trainer->macamtrainer_id = $value->id;
-                            $ok_trainer->trainer_id = $trainer->id;
-                            $ok_trainer->save();
+                            if ($row[$i] !== null) {
+                                # code...
+                                $ok_trainer = new macamtrainer_trainer;
+                                $ok_trainer->created_at = new \DateTime;
+                                $ok_trainer->macamtrainer_id = $value->id;
+                                $ok_trainer->trainer_id = $trainer->id;
+                                $ok_trainer->save();
+                            }
+                            $i++;
                         }
-                        $i++;
                     }
                 }
             }

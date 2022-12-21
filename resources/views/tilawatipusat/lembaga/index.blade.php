@@ -54,6 +54,7 @@
         @endif
     </div>
 
+    @if (auth()->user()->role == 'pusat')
     <div class="row">
         <div class="col-lg-12">
             <div class="card">
@@ -86,6 +87,8 @@
             </div>
         </div>
     </div>
+    @endif
+    
 
     <div class="row">
         <div class="col-lg-12">

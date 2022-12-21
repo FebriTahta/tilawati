@@ -33,7 +33,7 @@
                 <th rowspan="2">NAMA TRAINER</th>
                 <th rowspan="2">WA / TELP</th>
                 <th rowspan="2">ALAMAT</th>
-                
+                <th rowspan="2">MUNAQISY</th>
                 <th></th>
             </tr>
         </thead >
@@ -45,6 +45,7 @@
                 <td>{{$item->name}}</td>
                 <td>{{$item->telp}}</td>
                 <td>{{$item->alamat}}</td>
+                <th>Munaqisy</th>
             </tr>
             @endforeach
         </tbody>

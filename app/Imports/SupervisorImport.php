@@ -24,35 +24,41 @@ class SupervisorImport implements ToCollection
         foreach ($collection as $key => $row) {
                 $data= Supervisor::where('name',$row[1])->where('cabang_id', $this->cabang_id)->first();
                 if ($key >= 6) {
-                    if ($data == null) {
-                        # code...
-                        $muna = new Supervisor;
-                        $muna->cabang_id = $this->cabang_id;
-                        $muna->name = $row[1];
-                        $muna->telp = $row[2];
-                        $muna->alamat = $row[3];
-                        $muna->created_at = new \DateTime;
-                        $muna->save();
-                        
-                        
-                    }else {
-                        # code...
-                        if ($row[1] !== null && $row[1] !== ' ') {
+                    $template_nama = substr($row[1],0,4);
+
+                    if ($template_nama !== 'Nama') {
+                        if ($data == null) {
                             # code...
-                            $super = Supervisor::updateOrCreate(
-                                [
-                                    'id' => $data->id,
-                                ],
-                                [
-                                    'cabang_id' => $this->cabang_id,
-                                    'name' => $row[1],
-                                    'telp' => $row[2],
-                                    'alamat' => $row[3],
-                                ]
-                            );
+                            $muna = new Supervisor;
+                            $muna->cabang_id = $this->cabang_id;
+                            $muna->name = $row[1];
+                            $muna->telp = $row[2];
+                            $muna->alamat = $row[3];
+                            $muna->created_at = new \DateTime;
+                            $muna->save();
+                            
+                            
+                        }else {
+                            # code...
+                            if ($row[1] !== null && $row[1] !== ' ') {
+                                # code...
+                                $super = Supervisor::updateOrCreate(
+                                    [
+                                        'id' => $data->id,
+                                    ],
+                                    [
+                                        'cabang_id' => $this->cabang_id,
+                                        'name' => $row[1],
+                                        'telp' => $row[2],
+                                        'alamat' => $row[3],
+                                    ]
+                                );
+                            }
+                            
                         }
-                        
                     }
+
+                    
                 }
                 
         }
