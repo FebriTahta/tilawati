@@ -30,6 +30,15 @@
                                         {{-- <form action="{{ route('pelatihan.store') }}" method="POST">@csrf --}}
                                         <form id="diklat_store" method="POST" enctype="multipart/form-data">@csrf
                                             <div class="form-group">
+                                                <div class="form-group">
+                                                    <label for="">Programs</label>
+                                                     <select name="program_id" class="form-control text-capitalize" id="program_id" required>
+                                                         <option value="">= Pilih Program =</option>
+                                                         @foreach ($dt_program as $item)
+                                                             <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                                         @endforeach
+                                                     </select>
+                                                 </div>
                                                  <div class="row">
                                                      <input type="hidden" name="jenis" value="diklat" required>
                                                     {{-- <div class="form-group col-12 col-xl-12 border-bottom">
@@ -61,22 +70,14 @@
                                                         <input type="hidden" name="cabang_id" value="{{auth()->user()->cabang->id}}" required>
                                                     @endif
                                                  </div>
-                                                 <div class="form-group">
-                                                    <label for="">Program</label>
-                                                     <select name="program_id" class="form-control text-capitalize" id="" required>
-                                                         <option value="">= Pilih Program =</option>
-                                                         @foreach ($dt_program as $item)
-                                                             <option value="{{ $item->id }}">{{ $item->name }}</option>
-                                                         @endforeach
-                                                     </select>
-                                                 </div>
+                                                 
                                                  <div class="form-group">
                                                      <label for="">Tempat</label>
                                                      <textarea name="tempat" class="form-control text-capitalize" id="" cols="30" rows="" required></textarea>
                                                  </div>
                                                  <div class="form-group">
                                                      <label for="">Keterangan</label>
-                                                     <select name="keterangan" id="" class="form-control text-capitalize" required>
+                                                     <select name="keterangan" id="keterangan" class="form-control text-capitalize" required>
                                                          <option value="">= Untuk Guru / Santri =</option>
                                                          <option value="guru">GURU</option>
                                                          <option value="santri">SANTRI</option>
@@ -231,5 +232,15 @@
                 });
             });
             
+            $('#program_id').on('change', function () {
+                var val = this.value;
+                if (val == 1) {
+                    $('#keterangan').val('santri');
+                }else if(val == 2 || val == 3){
+                    $('#keterangan').val('guru');
+                }else if(val == ""){
+                    $('#keterangan').val('');
+                }
+            })
         </script>
 @endsection

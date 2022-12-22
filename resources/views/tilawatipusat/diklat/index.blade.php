@@ -458,20 +458,25 @@
                                                                 <label for="">tanggal</label>
                                                                 <input type="date" id="tanggal_edit" name="tanggal" class="form-control text-capitalize" required>
                                                             </div>
-                                                            <div class="col-md-6 col-12 form-group">
+                                                            {{-- <div class="col-md-6 col-12 form-group">
                                                                 <label for="">sampai tanggal</label>
                                                                 <small>(boleh kosong bila 1 hari)</small>
                                                                 <input type="date" id="sampai_tanggal" name="sampai" class="form-control text-capitalize" >
-                                                            </div>
-                                                            <div class="col-md-6 col-12 form-group">
-                                                                <label for="">cabang</label>
-                                                                <?php $cb = App\Models\Cabang::with('kabupaten')->get();?>
-                                                                <select name="cabang_id" id="cabang_edit" class="form-control text-capitalize" required>
-                                                                    @foreach ($cb as $item)
-                                                                    <option value="{{$item->id}}">{{$item->name}}</option>
-                                                                    @endforeach
-                                                                </select>
-                                                            </div>
+                                                            </div> --}}
+                                                            @if (auth()->user()->role == 'cabang')
+                                                                <input type="hidden" name="cabang_id" value="{{auth()->user()->cabang->id}}">
+                                                                @else
+                                                                <div class="col-md-6 col-12 form-group">
+                                                                    <label for="">cabang</label>
+                                                                    <?php $cb = App\Models\Cabang::with('kabupaten')->get();?>
+                                                                    <select name="cabang_id" id="cabang_edit" class="form-control text-capitalize" required>
+                                                                        @foreach ($cb as $item)
+                                                                        <option value="{{$item->id}}">{{$item->name}}</option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                </div>
+                                                            @endif
+                                                            
                                                             <div class="col-md-6 col-12 form-group">
                                                                 <label for="">program</label>
                                                                 <select name="program_id" id="program_edit" class="form-control text-capitalize" required>
@@ -480,25 +485,27 @@
                                                                     @endforeach
                                                                 </select>
                                                             </div>
+                                                            @if (auth()->user()->role == 'pusat')
                                                             <div class="col-md-6 col-12 form-group">
                                                                 <label for="">groupwa</label>
-                                                                <input type="hidden" name="jenis" value="diklat" >
                                                                 <textarea name="groupwa" id="groupwa1" cols="30" rows="2" class="form-control" >{{$item->groupwa}}</textarea>
-                                                            </div>
-                                                            <div class="col-md-6 col-12 form-group">
-                                                                <label for="">tempat pelaksanaan</label>
-                                                                <textarea name="tempat" class="form-control text-capitalize" id="tempat_edit" cols="30" rows="3" ></textarea>
                                                             </div>
                                                             <div class="col-md-6 col-12 form-group">
                                                                 <label for="">Kuota Peserta (Online) </label>
                                                                 <input type="number" class="form-control" name="max" id="max_peserta">
                                                             </div>
+                                                            @endif
+                                                            <input type="hidden" name="jenis" value="diklat" >
+                                                            <div class="col-md-6 col-12 form-group">
+                                                                <label for="">tempat pelaksanaan</label>
+                                                                <textarea name="tempat" class="form-control text-capitalize" id="tempat_edit" cols="30" rows="3" ></textarea>
+                                                            </div>
+                                                            
                                                             <div class="col-md-6 col-12 form-group">
                                                                 <label for="">keterangan</label>
                                                                 <select name="keterangan" id="keterangan_edit" class="form-control text-capitalize">
                                                                     <option value="guru">Guru</option>
                                                                     <option value="santri">Santri</option>
-                                                                    <option value="instruktur">Instruktur</option>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -1623,6 +1630,18 @@
                     load_data();
                 });
             });
+
+            $('#program_edit').on('change', function () {
+                var val = this.value;
+                if (val == 1) {
+                    $('#keterangan_edit').val('santri');
+                }else if(val == 2 || val == 3){
+                    $('#keterangan_edit').val('guru');
+                }else if(val == ""){
+                    $('#keterangan_edit').val('');
+                }
+                
+            })
             
         </script>
 @endsection

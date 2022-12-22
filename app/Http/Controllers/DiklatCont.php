@@ -20,7 +20,17 @@ class DiklatCont extends Controller
 {
     public function index(Request $request)
     {
-        $dt_program = Program::all();
+        $dt_program = '';
+        if (auth()->user()->role=='cabang') {
+            # code...
+            $dt_program = Program::where('status',1)
+                            ->where('name',"standarisasi guru al qur'an level 1")
+                            ->orWhere('name',"standarisasi guru al qur'an level 2")
+                            ->orWhere('name',"munaqosyah santri")
+                            ->get();
+        } else {
+            $dt_program = Program::all();
+        }
         return view('tilawatipusat.diklat.index',compact('dt_program'));
     }
 
