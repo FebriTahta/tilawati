@@ -539,25 +539,27 @@
                                                     rows="3" required></textarea>
                                             </div>
                                             <div class="form-group col-xl-6">
-                                                <select name="jenjang_id" class="form-control" id="jenjang_id" required>
+                                                {{-- <select name="jenjang_id" class="form-control" id="jenjang_id" required>
                                                     <option value=""><i class="text-danger">*</i> Kelembagaan</option>
                                                     @foreach ($jenjang as $item)
                                                         <option value="{{ $item->id }}">{{ $item->name }}</option>
                                                     @endforeach
-                                                </select>
+                                                </select> --}}
+                                                <input type="text" class="form-control" name="jenjang" id="jenjang_id">
                                             </div>
                                             <div class="form-group col-xl-6">
-                                                <select name="pengelola" class="form-control" id="pengelola" required>
+                                                {{-- <select name="pengelola" class="form-control" id="pengelola" required>
                                                     <option value=""><i class="text-danger">*</i> Pengelolaan</option>
                                                     <option value="Yayasan">1. Yayasan</option>
                                                     <option value="Masjid">2. Masjid</option>
                                                     <option value="Pribadi">3. Pribadi</option>
-                                                </select>
+                                                </select> --}}
+                                                <input type="text" class="form-control" name="pengelola" id="pengelola">
                                             </div>
 
                                             <div class="form-group col-xl-3">
-                                                <label for=""><i class="text-danger"> </i>Kode Pos</label>
-                                                <input type="number" class="form-control" id="pos" name="pos">
+                                                <label for=""><i class="text-danger"> </i>Status</label>
+                                                <input type="text" class="form-control" id="stts" name="status">
                                             </div>
                                             <div class="form-group col-xl-3">
                                                 <label for=""><i class="text-danger"> </i>Tahun Masuk</label>
@@ -572,14 +574,6 @@
                                                 <label for=""><i class="text-danger">* </i>Jumlah Santri</label>
                                                 <input type="number" class="form-control" id="santri" name="jml_santri"
                                                     required>
-                                            </div>
-
-                                            <div class="form-group col-xl-6">
-                                                <select name="status" class="form-control" required>
-                                                    <option value=""><i class="text-danger">*</i> Status</option>
-                                                    <option value="Aktif">1. Aktif</option>
-                                                    <option value="Non Aktif">2. Non Aktif</option>
-                                                </select>
                                             </div>
 
                                             <div class="form-group col-xl-12 col-12">
@@ -629,7 +623,7 @@
             console.log(id);
             modal.find('.modal-body #id').val(id);
         })
-
+ 
 
         $('#modal-edit').on('show.bs.modal', function(event) {
             var button = $(event.relatedTarget)
@@ -646,7 +640,7 @@
             var jenjang_id = button.data('jenjang')
             var email = button.data('email')
             var website = button.data('website')
-            var pos = button.data('pos')
+            var pos = button.data('pos')            
             console.log(pos);
             var modal = $(this)
             modal.find('.modal-body #id').val(id);
@@ -658,11 +652,12 @@
             modal.find('.modal-body #santri').val(santri);
             modal.find('.modal-body #alamat').val(alamat);
             modal.find('.modal-body #pengelola').val(pengelola);
-            modal.find('.modal-body #status').val(status);
-            modal.find('.modal-body #jenang_id').val(jenjang_id);
+            modal.find('.modal-body #stts').val(status);
+            modal.find('.modal-body #jenjang_id').val(jenjang_id);
             modal.find('.modal-body #email').val(email);
             modal.find('.modal-body #website').val(website);
             modal.find('.modal-body #pos').val(pos);
+            
         })
         $('#hapuslembaga').submit(function(e) {
             e.preventDefault();

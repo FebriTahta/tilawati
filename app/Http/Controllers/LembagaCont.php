@@ -88,7 +88,7 @@ class lembagaCont extends Controller
                     })
                     ->addColumn('opsi', function ($data) {
                         $btn = '<a href="#" data-toggle="modal" data-id="'.$data->id.'" data-target="#modal-hapus" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i></a>';
-                        $btn .= ' <a href="#" data-toggle="modal" data-id="'.$data->id.'" data-name="'.$data->name.'" data-kepala="'.$data->kepalalembaga.'" data-telp="'.$data->telp.'" data-kab="'.$data->kabupaten_id.'" data-guru="'.$data->jml_guru.'" data-santri="'.$data->jml_santri.'" data-alamat="'.$data->alamat.'" data-pengelola="'.$data->pengelola.'" data-status="'.$data->status.'" data-pos="'.$data->pos.'" data-email="'.$data->email.'" data-website="'.$data->website.'" data-jenjang="'.$data->jenjang_id.'" data-target="#modal-edit" class="btn btn-sm btn-outline-primary"><i class="fa fa-edit"></i></a>';
+                        $btn .= ' <a href="#" data-toggle="modal" data-status="'.$data->status.'" data-id="'.$data->id.'" data-name="'.$data->name.'" data-kepala="'.$data->kepalalembaga.'" data-telp="'.$data->telp.'" data-kab="'.$data->kabupaten_id.'" data-guru="'.$data->jml_guru.'" data-santri="'.$data->jml_santri.'" data-alamat="'.$data->alamat.'" data-pengelola="'.$data->pengelola.'" data-status="'.$data->status.'" data-pos="'.$data->pos.'" data-email="'.$data->email.'" data-website="'.$data->website.'" data-jenjang="'.$data->jenjang.'" data-target="#modal-edit" class="btn btn-sm btn-outline-primary"><i class="fa fa-edit"></i></a>';
                         return $btn;
                     })
                 ->rawColumns(['kepala','kabupaten','provinsi','statuss','opsi'])
@@ -134,7 +134,7 @@ class lembagaCont extends Controller
                         })
                         ->addColumn('opsi', function ($data) {
                             $btn = '<a href="#" data-toggle="modal" data-id="'.$data->id.'" data-target="#modal-hapus" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i></a>';
-                            $btn .= ' <a href="#" data-toggle="modal" data-id="'.$data->id.'" data-name="'.$data->name.'" data-kepala="'.$data->kepalalembaga.'" data-telp="'.$data->telp.'" data-kab="'.$data->kabupaten_id.'" data-guru="'.$data->jml_guru.'" data-santri="'.$data->jml_santri.'" data-alamat="'.$data->alamat.'" data-pengelola="'.$data->pengelola.'" data-status="'.$data->status.'" data-pos="'.$data->pos.'" data-email="'.$data->email.'" data-website="'.$data->website.'" data-jenjang="'.$data->jenjang_id.'" data-target="#modal-edit" class="btn btn-sm btn-outline-primary"><i class="fa fa-edit"></i></a>';
+                            $btn .= ' <a href="#" data-toggle="modal" data-status="'.$data->status.'" data-id="'.$data->id.'" data-name="'.$data->name.'" data-kepala="'.$data->kepalalembaga.'" data-telp="'.$data->telp.'" data-kab="'.$data->kabupaten_id.'" data-guru="'.$data->jml_guru.'" data-santri="'.$data->jml_santri.'" data-alamat="'.$data->alamat.'" data-pengelola="'.$data->pengelola.'" data-status="'.$data->status.'" data-pos="'.$data->pos.'" data-email="'.$data->email.'" data-website="'.$data->website.'" data-jenjang="'.$data->jenjang.'" data-target="#modal-edit" class="btn btn-sm btn-outline-primary"><i class="fa fa-edit"></i></a>';
                             return $btn;
                             
                         })
@@ -413,6 +413,7 @@ class lembagaCont extends Controller
                     'tahunmasuk'    => $request->tahunmasuk,
                     'email'         => $request->email,
                     'status'        => 'Aktif',
+                    'jenjang'       => $request->jenjang,
                 ]
             );
         } else {
@@ -444,6 +445,7 @@ class lembagaCont extends Controller
                     'tahunmasuk'    => $request->tahunmasuk,
                     'email'         => $request->email,
                     'status'        => 'Aktif',
+                    'jenjang'       => $request->jenjang,
                 ]
             );
         }
@@ -503,6 +505,7 @@ class lembagaCont extends Controller
                 'tahunmasuk'    => $request->tahunmasuk,
                 'status'        => $request->status,
                 'email'         => $request->email,
+                'jenjang'       => $request->jenjang,
             ]
         );
         
