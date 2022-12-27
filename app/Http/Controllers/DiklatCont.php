@@ -534,11 +534,27 @@ class DiklatCont extends Controller
     {
         if (auth()->user()->role=='cabang') {
             # code...
-            $dt_program = Program::where('status',1)
+            // jika cabang ca
+            if (auth()->user()->cabang->id == '19') {
+                # code...
+                $dt_program = Program::where('status',1)
+                            ->where('name',"standarisasi guru al qur'an level 1")
+                            ->orWhere('name',"standarisasi guru al qur'an level 2")
+                            ->orWhere('name',"munaqosyah santri")
+                            // tahfidz
+                            ->orWhere('id',"9")
+                            ->get();
+            }
+            // jika bukan cabang ca
+            else {
+                # code...
+                $dt_program = Program::where('status',1)
                             ->where('name',"standarisasi guru al qur'an level 1")
                             ->orWhere('name',"standarisasi guru al qur'an level 2")
                             ->orWhere('name',"munaqosyah santri")
                             ->get();
+            }
+            
         } else {
             # code...
             $dt_program = Program::all();
