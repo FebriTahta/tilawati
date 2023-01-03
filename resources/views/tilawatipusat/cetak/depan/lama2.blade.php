@@ -231,9 +231,10 @@
 						<?	$kabupaten 	= substr($item->pelatihan->cabang->kabupaten->nama, 5); $kab = strtolower($kabupaten);
 							$provinsi 	= strtolower($item->pelatihan->cabang->kabupaten->provinsi->nama); 
 						$data_kabupaten = App\Models\Kabupaten::where('id', $item->pelatihan->cabang->kabupaten->id)->first();
-						$jum_cabang		= $data_kabupaten->cabang->count();
+						$jum_cabang		= $data_kabupaten->cabang->count(); 
 						?>
-							@if ($jum_cabang > 1)
+						{{$data_kabupaten}}
+							{{-- @if ($jum_cabang > 1)
 								@if (substr($item->pelatihan->cabang->kabupaten->nama,5,3)=='ADM')
 								{{ 'Kacab. ' .strtoupper(substr($provinsi,0,3)).' '.ucfirst(substr($provinsi,4))}}
 								@else
@@ -275,7 +276,7 @@
 										@endif
 									@endif
 								@endif
-							@endif
+							@endif --}}
 						@endif
 					</td>
 				</tr>
