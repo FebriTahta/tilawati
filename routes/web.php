@@ -612,6 +612,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     Route::get('/download-ttd-cabang/{cabang_id}',[TTDController::class,'download_ttd']);
     Route::post('/remove-ttd-cabang',[TTDController::class,'remove_ttd']);
     Route::post('/audit-ttd-cabang',[TTDController::class,'audit_ttd']);
+    Route::get('/uji-ttd/{cabang_id}',[TTDController::class,'uji_ttd']);
 
     //Pengurus Cabang
     Route::post('/post-pengurus-cabang',[CabangCont::class,'pengurus_cabang_post']);

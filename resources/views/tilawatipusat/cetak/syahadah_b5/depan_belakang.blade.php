@@ -543,7 +543,7 @@
                 <div class="cover" style="align-content: center; align-items: center">
                     <div>
                         <p style="margin-top: 155px; font-size: 12px; font-weight: bold" class="syahadah">No. Syahadah :
-                            {{ $p->pelatihan->id }}/2022/{{ $p->id }}</p>
+                            {{ $p->pelatihan->id }}/{{date('Y')}}/{{ $p->id }}</p>
                     </div>
                     <table style="width: 615px;margin-left: 85px; font-size: 11px" class="table1">
                         <tr>
@@ -654,16 +654,34 @@
                     <div class="qrcode" style="margin-left: -430pxpx; margin-top: 10px;">
                         <img src="{!! 'data:image/png;base64,' . $qrcode !!}" alt="" style="max-width: 100px;">
                     </div>
-                    <div style="margin-left: 400px; margin-top: -550px">Surabaya,
-                        {{ Carbon\Carbon::parse($pelatihan->updated_at)->isoFormat('D MMMM Y') }}</div>
-                    <div style="margin-left: 400px; margin-top: 55px; line-height: 15px"><u>{{ $direktur }}</u>
-                        <br> <span style="font-size: 10px">{{ $kepala }}</span></div>
+                    <div style="margin-left: 400px; margin-top: -550px">
+                        @if ($p->cabang->kabupaten !== null)
+                            @if (substr($p->cabang->kabupaten->nama, 0, 8) == 'KOTA ADM')
+                                {{ substr($p->cabang->kabupaten->nama, 10) }}
+                            @else
+                                {{ substr($p->cabang->kabupaten->nama, 5) }}
+                            @endif
+                        @else
+                        Surabaya
+                        @endif
+                        ,{{ Carbon\Carbon::parse($pelatihan->updated_at)->isoFormat('D MMMM Y') }}</div>
+
+                        @if (\File::exists(public_path("img_ttd/".$p->cabang->ttd)))
+                            <img style="margin-left: 400px; width:100px; margin-top: 10px" src="img_ttd/{{$p->cabang->ttd}}" alt="">
+                            <div style="margin-left: 400px;line-height: 15px"><u>{{ $direktur }}</u> <br>
+                                <span style="font-size: 10px">{{ $kepala }}</span>
+                            </div>
+                        @else
+                            <div style="margin-left: 400px;line-height: 15px; margin-top: 60px"><u>{{ $direktur }}</u> <br>
+                                <span style="font-size: 10px">{{ $kepala }}</span>
+                            </div>
+                        @endif
                 </div>
             @elseif ($p->kriteria == 'SEBAGAI INSTRUKTUR STRATEGI MENGAJAR METODE TILAWATI')
                 <div class="cover" style="align-content: center; align-items: center">
                     <div>
                         <p style="margin-top: 155px; font-size: 12px; font-weight: bold" class="syahadah">No. Syahadah :
-                            {{ $p->pelatihan->id }}/2022/{{ $p->id }}</p>
+                            {{ $p->pelatihan->id }}/{{date('Y')}}/{{ $p->id }}</p>
                     </div>
                     <table style="width: 615px;margin-left: 85px; font-size: 11px" class="table1">
                         <tr>
@@ -776,16 +794,34 @@
                     <div class="qrcode" style="margin-left: -430pxpx; margin-top: 10px;">
                         <img src="{!! 'data:image/png;base64,' . $qrcode !!}" alt="" style="max-width: 100px;">
                     </div>
-                    <div style="margin-left: 400px; margin-top: -550px">Surabaya,
-                        {{ Carbon\Carbon::parse($pelatihan->updated_at)->isoFormat('D MMMM Y') }}</div>
-                    <div style="margin-left: 400px; margin-top: 55px; line-height: 15px"><u>{{ $direktur }}</u>
-                        <br> <span style="font-size: 10px">{{ $kepala }}</span></div>
+                    <div style="margin-left: 400px; margin-top: -550px">
+                        @if ($p->cabang->kabupaten !== null)
+                            @if (substr($p->cabang->kabupaten->nama, 0, 8) == 'KOTA ADM')
+                                {{ substr($p->cabang->kabupaten->nama, 10) }}
+                            @else
+                                {{ substr($p->cabang->kabupaten->nama, 5) }}
+                            @endif
+                        @else
+                        Surabaya
+                        @endif
+                        ,{{ Carbon\Carbon::parse($pelatihan->updated_at)->isoFormat('D MMMM Y') }}</div>
+
+                        @if (\File::exists(public_path("img_ttd/".$p->cabang->ttd)))
+                            <img style="margin-left: 400px; width:100px; margin-top: 10px" src="img_ttd/{{$p->cabang->ttd}}" alt="">
+                            <div style="margin-left: 400px;line-height: 15px"><u>{{ $direktur }}</u> <br>
+                                <span style="font-size: 10px">{{ $kepala }}</span>
+                            </div>
+                        @else
+                            <div style="margin-left: 400px;line-height: 15px; margin-top: 60px"><u>{{ $direktur }}</u> <br>
+                                <span style="font-size: 10px">{{ $kepala }}</span>
+                            </div>
+                        @endif
                 </div>
             @elseif($p->kriteria == 'SEBAGAI INSTRUKTUR LAGU METODE TILAWATI')
                 <div class="cover" style="align-content: center; align-items: center">
                     <div>
                         <p style="margin-top: 155px; font-size: 12px; font-weight: bold" class="syahadah">No. Syahadah
-                            : {{ $p->pelatihan->id }}/2022/{{ $p->id }}</p>
+                            : {{ $p->pelatihan->id }}/{{date('Y')}}/{{ $p->id }}</p>
                     </div>
                     <table style="width: 615px;margin-left: 85px; font-size: 11px" class="table1">
                         <tr>
@@ -898,16 +934,33 @@
                     <div class="qrcode" style="margin-left: -430pxpx; margin-top: 5px;">
                         <img src="{!! 'data:image/png;base64,' . $qrcode !!}" alt="" style="max-width: 100px;">
                     </div>
-                    <div style="margin-left: 400px; margin-top: -550px">Surabaya,
-                        {{ Carbon\Carbon::parse($pelatihan->updated_at)->isoFormat('D MMMM Y') }}</div>
-                    <div style="margin-left: 400px; margin-top: 55px; line-height: 15px"><u>{{ $direktur }}</u>
-                        <br> <span style="font-size: 10px">{{ $kepala }}</span></div>
+                    <div style="margin-left: 400px; margin-top: -550px">
+                        @if ($p->cabang->kabupaten !== null)
+                            @if (substr($p->cabang->kabupaten->nama, 0, 8) == 'KOTA ADM')
+                                {{ substr($p->cabang->kabupaten->nama, 10) }}
+                            @else
+                                {{ substr($p->cabang->kabupaten->nama, 5) }}
+                            @endif
+                        @else
+                        Surabaya
+                        @endif
+                        ,{{ Carbon\Carbon::parse($pelatihan->updated_at)->isoFormat('D MMMM Y') }}</div>
+                        @if (\File::exists(public_path("img_ttd/".$p->cabang->ttd)))
+                            <img style="margin-left: 400px; width:100px; margin-top: 10px" src="img_ttd/{{$p->cabang->ttd}}" alt="">
+                            <div style="margin-left: 400px;line-height: 15px"><u>{{ $direktur }}</u> <br>
+                                <span style="font-size: 10px">{{ $kepala }}</span>
+                            </div>
+                        @else
+                            <div style="margin-left: 400px;line-height: 15px; margin-top: 60px"><u>{{ $direktur }}</u> <br>
+                                <span style="font-size: 10px">{{ $kepala }}</span>
+                            </div>
+                        @endif
                 </div>
             @elseif($p->kriteria == 'SEBAGAI SANTRI KHATAM AL QURAN 30 JUZ')
                 <div class="cover" style="align-content: center; align-items: center">
                     <div>
                         <p style="margin-top: 155px; font-size: 12px; font-weight: bold" class="syahadah">No. Syahadah
-                            : {{ $p->pelatihan->id }}/2022/{{ $p->id }}</p>
+                            : {{ $p->pelatihan->id }}/{{date('Y')}}/{{ $p->id }}</p>
                     </div>
                     <table style="width: 615px;margin-left: 85px; font-size: 11px" class="table1">
                         <tr>
@@ -1008,16 +1061,33 @@
                 <div class="qrcode" style="margin-left: -430pxpx; margin-top: 80px;">
                     <img src="{!! 'data:image/png;base64,' . $qrcode !!}" alt="" style="max-width: 100px;">
                 </div>
-                <div style="margin-left: 400px; margin-top: -555px">Surabaya,
-                    {{ Carbon\Carbon::parse($pelatihan->updated_at)->isoFormat('D MMMM Y') }}</div>
-                <div style="margin-left: 400px; margin-top: 60px; line-height: 15px"><u>{{ $direktur }}</u> <br>
-                    <span style="font-size: 10px">{{ $kepala }}</span>
+                <div style="margin-left: 400px; margin-top: -555px">
+                    @if ($p->cabang->kabupaten !== null)
+                        @if (substr($p->cabang->kabupaten->nama, 0, 8) == 'KOTA ADM')
+                            {{ substr($p->cabang->kabupaten->nama, 10) }}
+                        @else
+                            {{ substr($p->cabang->kabupaten->nama, 5) }}
+                        @endif
+                    @else
+                    Surabaya
+                    @endif
+                    ,{{ Carbon\Carbon::parse($pelatihan->updated_at)->isoFormat('D MMMM Y') }}</div>
+                    @if (\File::exists(public_path("img_ttd/".$p->cabang->ttd)))
+                        <img style="margin-left: 400px; width:100px; margin-top: 10px" src="img_ttd/{{$p->cabang->ttd}}" alt="">
+                        <div style="margin-left: 400px;line-height: 15px"><u>{{ $direktur }}</u> <br>
+                            <span style="font-size: 10px">{{ $kepala }}</span>
+                        </div>
+                    @else
+                        <div style="margin-left: 400px;line-height: 15px; margin-top: 60px"><u>{{ $direktur }}</u> <br>
+                            <span style="font-size: 10px">{{ $kepala }}</span>
+                        </div>
+                    @endif
                 </div>
             @elseif($p->program->name == 'Diklat Munaqisy Cabang')
                 <div class="cover" style="align-content: center; align-items: center">
                     <div>
                         <p style="margin-top: 155px; font-size: 12px; font-weight: bold" class="syahadah">No. Syahadah
-                            : {{ $p->pelatihan->id }}/2022/{{ $p->id }}</p>
+                            : {{ $p->pelatihan->id }}/{{date('Y')}}/{{ $p->id }}</p>
                     </div>
                     <table style="width: 615px;margin-left: 85px; font-size: 11px" class="table1">
                         <tr>
@@ -1133,16 +1203,32 @@
                 <div class="qrcode" style="margin-left: -430pxpx; margin-top: 80px;">
                     <img src="{!! 'data:image/png;base64,' . $qrcode !!}" alt="" style="max-width: 100px;">
                 </div>
-                <div style="margin-left: 400px; margin-top: -555px">Surabaya,
-                    {{ Carbon\Carbon::parse($pelatihan->updated_at)->isoFormat('D MMMM Y') }}</div>
-                <div style="margin-left: 400px; margin-top: 60px; line-height: 15px"><u>{{ $direktur }}</u> <br>
-                    <span style="font-size: 10px">{{ $kepala }}</span>
-                </div>
+                <div style="margin-left: 400px; margin-top: -555px">
+                    @if ($p->cabang->kabupaten !== null)
+                        @if (substr($p->cabang->kabupaten->nama, 0, 8) == 'KOTA ADM')
+                            {{ substr($p->cabang->kabupaten->nama, 10) }}
+                        @else
+                            {{ substr($p->cabang->kabupaten->nama, 5) }}
+                        @endif
+                    @else
+                    Surabaya
+                    @endif
+                    ,{{ Carbon\Carbon::parse($pelatihan->updated_at)->isoFormat('D MMMM Y') }}</div>
+                    @if (\File::exists(public_path("img_ttd/".$p->cabang->ttd)))
+                        <img style="margin-left: 400px; width:100px; margin-top: 10px" src="img_ttd/{{$p->cabang->ttd}}" alt="">
+                        <div style="margin-left: 400px;line-height: 15px"><u>{{ $direktur }}</u> <br>
+                            <span style="font-size: 10px">{{ $kepala }}</span>
+                        </div>
+                    @else
+                        <div style="margin-left: 400px;line-height: 15px; margin-top: 60px"><u>{{ $direktur }}</u> <br>
+                            <span style="font-size: 10px">{{ $kepala }}</span>
+                        </div>
+                    @endif
             @else
                 <div class="cover" style="align-content: center; align-items: center">
                     <div>
                         <p style="margin-top: 155px; font-size: 12px; font-weight: bold" class="syahadah">No. Syahadah
-                            : {{ $p->pelatihan->id }}/2022/{{ $p->id }}</p>
+                            : {{ $p->pelatihan->id }}/{{date('Y')}}/{{ $p->id }}</p>
                     </div>
                     <table style="width: 615px;margin-left: 85px; font-size: 11px" class="table1">
                         <tr>
@@ -1243,8 +1329,17 @@
                 <div class="qrcode" style="margin-left: -430pxpx; margin-top: 37px;">
                     <img src="{!! 'data:image/png;base64,' . $qrcode !!}" alt="" style="max-width: 100px;">
                 </div>
-                <div style="margin-left: 400px; margin-top: -555px">Surabaya,
-                    {{ Carbon\Carbon::parse($pelatihan->updated_at)->isoFormat('D MMMM Y') }}</div>
+                <div style="margin-left: 400px; margin-top: -555px">
+                    @if ($p->cabang->kabupaten !== null)
+                        @if (substr($p->cabang->kabupaten->nama, 0, 8) == 'KOTA ADM')
+                            {{ substr($p->cabang->kabupaten->nama, 10) }}
+                        @else
+                            {{ substr($p->cabang->kabupaten->nama, 5) }}
+                        @endif
+                    @else
+                    Surabaya
+                    @endif
+                    ,{{ Carbon\Carbon::parse($pelatihan->updated_at)->isoFormat('D MMMM Y') }}</div>
                 @if (\File::exists(public_path("img_ttd/".$p->cabang->ttd)))
                     <img style="margin-left: 400px; width:100px; margin-top: 10px" src="img_ttd/{{$p->cabang->ttd}}" alt="">
                     <div style="margin-left: 400px;line-height: 15px"><u>{{ $direktur }}</u> <br>

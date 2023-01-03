@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use DataTables;
 use Validator;
 use File;
+use PDF;
 use ZipArchive;
 use App\Models\Cabang;
 
@@ -26,6 +27,7 @@ class TTDController extends Controller
                         $btn  = ' <a href=/download-ttd-cabang/'.$data->id.'" class="btn btn-sm btn-info" data-id="'.$data->id.'"> Download </a>';
                         $btn .= ' <button class="btn btn-sm btn-primary" data-toggle="modal" data-kepalacabang="'.$data->kepalacabang.'" data-target="#modalupload" data-id="'.$data->id.'"> Audit </button>';
                         $btn .= ' <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modaldel" data-kepalacabang="'.$data->kepalacabang.'" data-id="'.$data->id.'"> Remove </button>';
+                        $btn .= ' <a href="/uji-ttd/'.$data->id.'" class="btn btn-sm btn-success" > Uji </a>';
                         return $btn;
                     })
                     ->addColumn('status_ttd', function ($data) {
@@ -44,6 +46,13 @@ class TTDController extends Controller
         }
         
         return view('tilawatipusat.syahadah.ttd');
+    }
+
+    public function uji_ttd($cabang_id)
+    {
+        $cabang = Cabang::findOrFail($cabang_id);
+        $pdf        = PDF::loadView('tilawatipusat.cetak.syahadah_b5.uji',compact('cabang'))->setPaper('a4', 'portrait');
+        return $pdf->stream('syahadah_v2_uji.pdf');
     }
 
     public function total_ttd(Request $request)
