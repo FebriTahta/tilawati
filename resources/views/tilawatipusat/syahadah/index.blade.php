@@ -202,7 +202,7 @@
                                     <th>Tanggal Terbit</th>
                                     <th style="width: 30%">Program</th>
                                     <th style="width: 10%">Peserta Lulus</th>
-                                    <th>Link</th>
+                                    {{-- <th>Link</th> --}}
                                     <th>Cetak</th>
                                 </tr>
                             </thead>
@@ -220,7 +220,7 @@
                                     <th>Tanggal Terbit</th>
                                     <th style="width: 30%">Program</th>
                                     <th style="width: 10%">Peserta Lulus</th>
-                                    <th>Link</th>
+                                    {{-- <th>Link</th> --}}
                                     <th>Cetak</th>
                                 </tr>
                             </tfoot>
@@ -533,10 +533,10 @@
                                 data: 'peserta',
                                 name: 'peserta'
                             },
-                            {
-                                data: 'linksyahadah',
-                                name: 'linksyahadah'
-                            },
+                            // {
+                            //     data: 'linksyahadah',
+                            //     name: 'linksyahadah'
+                            // },
                             {
                                 data: 'cetak',
                                 name: 'cetak'
@@ -620,10 +620,10 @@
                                 data: 'peserta',
                                 name: 'peserta'
                             },
-                            {
-                                data: 'linksyahadah',
-                                name: 'linksyahadah'
-                            },
+                            // {
+                            //     data: 'linksyahadah',
+                            //     name: 'linksyahadah'
+                            // },
                             {
                                 data: 'cetak',
                                 name: 'cetak'

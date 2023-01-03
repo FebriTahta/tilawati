@@ -139,7 +139,7 @@
                     </ul>
                 </li> --}}
 
-                {{-- @auth
+                @auth
                     @if (auth()->user()->role == 'pusat')
                     <li>
                         <a href="javascript: void(0);" class="has-arrow waves-effect">
@@ -163,7 +163,7 @@
                         </ul>
                     </li>
                     @endif
-                @endauth --}}
+                @endauth
 
                 {{-- @if (auth()->user()->role == 'cabang')
                 <li class="menu-title">Konfirmasi Peserta Registrasi Online</li>

@@ -1245,9 +1245,17 @@
                 </div>
                 <div style="margin-left: 400px; margin-top: -555px">Surabaya,
                     {{ Carbon\Carbon::parse($pelatihan->updated_at)->isoFormat('D MMMM Y') }}</div>
-                <div style="margin-left: 400px; margin-top: 60px; line-height: 15px"><u>{{ $direktur }}</u> <br>
-                    <span style="font-size: 10px">{{ $kepala }}</span>
-                </div>
+                @if (\File::exists(public_path("img_ttd/".$p->cabang->ttd)))
+                    <img style="margin-left: 400px; width:100px; margin-top: 10px" src="img_ttd/{{$p->cabang->ttd}}" alt="">
+                    <div style="margin-left: 400px;line-height: 15px"><u>{{ $direktur }}</u> <br>
+                        <span style="font-size: 10px">{{ $kepala }}</span>
+                    </div>
+                @else
+                    <div style="margin-left: 400px;line-height: 15px; margin-top: 60px"><u>{{ $direktur }}</u> <br>
+                        <span style="font-size: 10px">{{ $kepala }}</span>
+                    </div>
+                @endif
+                
             @endif
         </center>
     </body>

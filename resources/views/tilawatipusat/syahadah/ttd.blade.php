@@ -205,9 +205,19 @@
                                         </h5>
                                     </div>
                                     <div class="body">
-                                        <input type="hidden" id="id" class="form-control" name="id">
-                                        <input type="file" class="form-control" name="ttd" accept="image/*"
-                                            required>
+                                        <div class="form-group">
+                                            <input type="hidden" id="id" class="form-control" name="id">
+                                            <select name="status_ttd" id="status_ttd" class="form-control" required>
+                                                <option value="">:: STATUS ::</option>
+                                                <option value="menunggu">:: UJI ::</option>
+                                                <option value="fix">:: FIX ::</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="file" class="form-control" name="ttd" accept="image/*"
+                                            >
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>

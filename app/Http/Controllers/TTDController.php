@@ -75,37 +75,56 @@ class TTDController extends Controller
         if ($request->ajax()) {
             # code...
             $cabang = Cabang::find($request->id);
-            if(File::exists(public_path("img_ttd/".$cabang->ttd))){
-                
-                $ekstensi   = $request->ttd->extension();
-                $filename   = time().'.'.$request->ttd->getClientOriginalExtension();
-                $request->file('ttd')->move('img_ttd/',$filename);
-                
+
+            if ($request->ttd == null) {
+                # code...
                 $data       = Cabang::where('id', $request->id)->update(
                     [
-                        'ttd' => $filename,
-                        'status_ttd' => 'fix'
+                        'status_ttd' => $request->status_ttd
                     ]
                 );  
-
-                //remove image sebelumnya
-                File::delete(public_path("img_ttd/".$cabang->ttd));
-
                 return response()->json(
                     [
                         'status'=>200,
                         'message'=>'File TTD has been updated'
                     ]
                 );
+            }else {
+                # code...
+                if(File::exists(public_path("img_ttd/".$cabang->ttd))){
                 
-            }else{
-                return response()->json(
-                    [
-                        'status'=>400,
-                        'message'=>'undefined input'
-                    ]
-                );
+                    $ekstensi   = $request->ttd->extension();
+                    $filename   = time().'.'.$request->ttd->getClientOriginalExtension();
+                    $request->file('ttd')->move('img_ttd/',$filename);
+                    // status : fix / uji / null
+                    $data       = Cabang::where('id', $request->id)->update(
+                        [
+                            'ttd' => $filename,
+                            'status_ttd' => $request->status_ttd
+                        ]
+                    );  
+    
+                    //remove image sebelumnya
+                    File::delete(public_path("img_ttd/".$cabang->ttd));
+    
+                    return response()->json(
+                        [
+                            'status'=>200,
+                            'message'=>'File TTD has been updated'
+                        ]
+                    );
+                    
+                }else{
+                    return response()->json(
+                        [
+                            'status'=>400,
+                            'message'=>'undefined input'
+                        ]
+                    );
+                }
             }
+
+            
 
         }
        
@@ -135,13 +154,25 @@ class TTDController extends Controller
                     ]
                 );
             }else{
+                Cabang::where('id', $request->id)->update(
+                    [
+                        'ttd'=>null,
+                        'status_ttd'=>null
+                    ]
+                );
 
                 return response()->json(
                     [
-                        'status'=>400,
-                        'message'=>'File Does Not Exist',
+                        'status'=>200,
+                        'message'=>'File TTD Kepala Cabang Dihapus Dari Sistem. & FILE TTD TIDAK DITEMUKAN',
                     ]
                 );
+                // return response()->json(
+                //     [
+                //         'status'=>400,
+                //         'message'=>'File Does Not Exist',
+                //     ]
+                // );
             }
         }
        
