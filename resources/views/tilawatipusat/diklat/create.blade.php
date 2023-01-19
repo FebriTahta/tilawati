@@ -166,7 +166,7 @@
                         }
                     })
                 }else{
-                    var user_id = $('#y').val();
+                    var user_id = $('#y2').val();
                     console.log(user_id);
                     if (user_id) {
                         $.ajax({
