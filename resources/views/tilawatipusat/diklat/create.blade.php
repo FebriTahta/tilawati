@@ -23,9 +23,10 @@
                         <div class="col-lg-12">
                             <div class="card">
                                 <div class="card-body">
-                    
+                                    
                                     <h4 class="card-title">BUAT DIKLAT BARU</h4>
                                     <p class="card-title-desc">Pastikan data diisi dengan benar </br></p>
+                                    <input type="hidden" id="user_role" value="{{ auth()->user()->role }}">
                                     <blockquote class="blockquote font-size-16 mb-0 mt-2">
                                         {{-- <form action="{{ route('pelatihan.store') }}" method="POST">@csrf --}}
                                         <form id="diklat_store" method="POST" enctype="multipart/form-data">@csrf
@@ -67,14 +68,21 @@
                                                        </div>
                                                     </div>
                                                     @else
-                                                        <input type="hidden" name="cabang_id" value="{{auth()->user()->cabang->id}}" required>
+                                                        <input type="hidden" name="cabang_id" id="y2" value="{{auth()->user()->cabang->id}}" required>
                                                     @endif
                                                  </div>
                                                  
-                                                 <div class="form-group">
-                                                     <label for="">Tempat</label>
-                                                     <textarea name="tempat" class="form-control text-capitalize" id="" cols="30" rows="" required></textarea>
+                                                 <div class="row">
+                                                    <div class="form-group col-xl-6">
+                                                        <label for="">Tempat</label>
+                                                        <textarea name="tempat" class="form-control text-capitalize" id="" cols="30" rows="" required></textarea>
+                                                    </div>
+                                                    <div class="form-group col-xl-6">
+                                                        <label for="">Wilayah</label>
+                                                        <input type="text" class="form-control" name="wilayah" id="wilayah" readonly required>
+                                                    </div>
                                                  </div>
+
                                                  <div class="form-group">
                                                      <label for="">Keterangan</label>
                                                      <select name="keterangan" id="keterangan" class="form-control text-capitalize" required>
@@ -84,7 +92,6 @@
                                                          @if (auth()->user()->role == 'pusat')
                                                          <option value="instruktur">INSTRUKTUR</option>
                                                          @endif
-                                                         
                                                      </select>
                                                  </div>
                                                  <input type="hidden" name="jenis" value="diklat" id="" required>
@@ -141,6 +148,40 @@
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             
             $(document).ready(function(){
+                var user_role = $('#user_role').val();
+                if (user_role == 'pusat') {
+                    $('#sel_cabang').on('change', function () {
+                        var value = this.value;
+                        if (value) {
+                            $.ajax({
+                                url: '/get-wilayah-cabang/'+value,
+                                type: 'get',
+                                dataType: 'json',
+                                success: function(response){
+                                    if (response.status == 200) {
+                                        $('#wilayah').val(response.data)
+                                    }
+                                }
+                            });   
+                        }
+                    })
+                }else{
+                    var user_id = $('#y').val();
+                    if (user_id) {
+                        $.ajax({
+                                url: '/get-wilayah-cabang/'+user_id,
+                                type: 'get',
+                                dataType: 'json',
+                                success: function(response){
+                                    if (response.status == 200) {
+                                        $('#wilayah').val(response.data)
+                                    }
+                                }
+                            });   
+                    }
+                }
+
+
                 $('.select2').on('change', function() {
                     var name = $(".select2 option:selected").text();
                     
@@ -240,7 +281,9 @@
                     $('#keterangan').val('guru');
                 }else if(val == ""){
                     $('#keterangan').val('');
-                }
+                }                
             })
+
+            
         </script>
 @endsection

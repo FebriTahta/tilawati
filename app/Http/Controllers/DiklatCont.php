@@ -26,7 +26,13 @@ class DiklatCont extends Controller
             $dt_program = Program::where('status',1)
                             ->where('name',"standarisasi guru al qur'an level 1")
                             ->orWhere('name',"standarisasi guru al qur'an level 2")
+                            ->orWhere('name',"Tahsinul Qiro'ah")
+                            ->orWhere('name',"Mahir Guru Al-Qur'an")
                             ->orWhere('name',"munaqosyah santri")
+                            ->orWhere('name',"Diklat Munaqisy Lembaga")
+                            ->orWhere('name',"Diklat Guru Tahfidz")
+                            ->orWhere('name',"Diklat Guru Terjemah Lafdziyah")
+                            ->orderBy('name',"asc")
                             ->get();
         } else {
             $dt_program = Program::all();
@@ -532,28 +538,20 @@ class DiklatCont extends Controller
 
     public function create(Request $request)
     {
+        $dt_program = '';
         if (auth()->user()->role=='cabang') {
             # code...
-            // jika cabang ca
-            if (auth()->user()->cabang->id == '19') {
-                # code...
-                $dt_program = Program::where('status',1)
+            $dt_program = Program::where('status',1)
                             ->where('name',"standarisasi guru al qur'an level 1")
                             ->orWhere('name',"standarisasi guru al qur'an level 2")
+                            ->orWhere('name',"Tahsinul Qiro'ah")
+                            ->orWhere('name',"Mahir Guru Al-Qur'an")
                             ->orWhere('name',"munaqosyah santri")
-                            // tahfidz
-                            ->orWhere('id',"9")
+                            ->orWhere('name',"Diklat Munaqisy Lembaga")
+                            ->orWhere('name',"Diklat Guru Tahfidz")
+                            ->orWhere('name',"Diklat Guru Terjemah Lafdziyah")
+                            ->orderBy('name',"asc")
                             ->get();
-            }
-            // jika bukan cabang ca
-            else {
-                # code...
-                $dt_program = Program::where('status',1)
-                            ->where('name',"standarisasi guru al qur'an level 1")
-                            ->orWhere('name',"standarisasi guru al qur'an level 2")
-                            ->orWhere('name',"munaqosyah santri")
-                            ->get();
-            }
             
         } else {
             # code...

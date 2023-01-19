@@ -1384,7 +1384,16 @@ class CabangCont extends Controller
                 );
             }
         }
-        
-       
+    }
+
+    public function get_wilayah_cabang($cabang_id)
+    {
+        $data = Cabang::where('id', $cabang_id)->first();
+        return response()->json(
+            [
+                'status'=> 200,
+                'data'  => $data->teritorial." - ".$data->kadivre,
+            ]
+        );
     }
 }
