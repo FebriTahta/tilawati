@@ -167,6 +167,7 @@
                     })
                 }else{
                     var user_id = $('#y').val();
+                    console.log(user_id);
                     if (user_id) {
                         $.ajax({
                                 url: '/get-wilayah-cabang/'+user_id,
