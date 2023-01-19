@@ -108,7 +108,7 @@
                         <span style="font-size: 12px">Data Diklat</span>
                     </a>
                 </li>
-                @if (auth()->user()->role == 'pusat')
+                {{-- @if (auth()->user()->role == 'pusat') --}}
                     <li>
                         <a href="{{ route('diklat.webinar') }}" class="waves-effect">
                             <i class="mdi mdi-city-variant-outline"></i>
@@ -116,7 +116,7 @@
                             <span style="font-size: 12px">Data Webinar</span>
                         </a>
                     </li>
-                @endif
+                {{-- @endif --}}
 
                 
                 {{-- <li>
