@@ -25,7 +25,9 @@
                                 <div class="card-body">
                                     
                                     <h4 class="card-title">BUAT DIKLAT BARU</h4>
-                                    <p class="card-title-desc">Pastikan data diisi dengan benar </br></p>
+                                    <p class="card-title-desc">Pastikan data diisi dengan benar </br>
+                                    dan pastikan tiap cabang hanya mengadakan pelatihan / webinar pada masing" wilayah
+                                    </p>
                                     <input type="hidden" id="user_role" value="{{ auth()->user()->role }}">
                                     <blockquote class="blockquote font-size-16 mb-0 mt-2">
                                         {{-- <form action="{{ route('pelatihan.store') }}" method="POST">@csrf --}}
@@ -278,10 +280,10 @@
                 var val = this.value;
                 if (val == 1) {
                     $('#keterangan').val('santri');
-                }else if(val == 2 || val == 3){
-                    $('#keterangan').val('guru');
                 }else if(val == ""){
                     $('#keterangan').val('');
+                }else{
+                    $('#keterangan').val('guru');
                 }                
             })
 
