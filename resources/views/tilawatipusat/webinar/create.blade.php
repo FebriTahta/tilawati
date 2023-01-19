@@ -64,7 +64,7 @@
                                                  <div class="form-group">
                                                     <label for="">Program</label>
                                                      <select name="program_id" class="form-control text-capitalize" id="" required>
-                                                         <option value="">= Pilih Program =</option>
+                                                         <option value="">= Pilih Program Webinar =</option>
                                                          @foreach ($dt_program as $item)
                                                              <option value="{{ $item->id }}">{{ $item->name }}</option>
                                                          @endforeach
