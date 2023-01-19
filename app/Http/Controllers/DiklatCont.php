@@ -643,7 +643,7 @@ class DiklatCont extends Controller
                 'sampai_tanggal' => $request->sampai,
                 'groupwa' => $request->groupwa,
                 'slug' => Str::slug($cabang->name.'-'.$tanggal.'-'.$program->name),
-                'tempat' => $request->tempat,
+                'tempat' => $request->tempat.'. '.$request->wilayah,
                 'keterangan' => $request->keterangan,
                 'jenis'=> $request->jenis,
                 'status' => '1',
