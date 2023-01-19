@@ -356,7 +356,21 @@ class WebinarCont extends Controller
 
     public function create(Request $request)
     {
-        $dt_program = Program::all();
+        $dt_program = '';
+        if (auth()->user()->role=='cabang') {
+            # code...
+            $dt_program = Program::where('status',2)
+                            ->where('name',"Sosialisasi Tilawati PAUD")
+                            ->orWhere('name',"Workshop Buku Pintar 2")
+                            ->orWhere('name',"EXCELLENT TAHSIN QURAN")
+                            ->orWhere('name',"Khazanah Ilmu Tajwid")
+                            ->orWhere('name',"Pengenalan 7 Lagu Tartil")
+                            ->orderBy('name',"asc")
+                            ->get();
+        }else {
+            # code...
+            $dt_program = Program::all();
+        }
         return view('tilawatipusat.webinar.create',compact('dt_program'));
     }
 
