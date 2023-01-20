@@ -32,7 +32,7 @@
                         }
                         $data_pengurus = array_sum($tot);
                         $data_pengurus2 = array_sum($tot2);
-                        $data_syirkah  = auth()->user()->cabang->syirkah;
+                        // $data_syirkah  = auth()->user()->cabang->syirkah;
                     @endphp
         @else
                 @php
@@ -47,14 +47,16 @@
        <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.all.min.js"></script>
        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
-        @if (auth()->user()->role !== 'pusat' && $data_pengurus < 5 || $data_pengurus2 < 5 || $data_syirkah == null)
+        @if (auth()->user()->role !== 'pusat' && $data_pengurus < 5 || $data_pengurus2 < 5 
+        // || $data_syirkah == null
+        )
         <script>
                 $(document).ready(function() {
                         $('.belum-lengkap').on('click', function () {
-                                toastr.error('lengkapi data pengurus cabang & upload dokumen syirkah');
+                                toastr.error('lengkapi data pengurus cabang');
                                 swal({
                                 title: "MAAF!",
-                                text: 'lengkapi data pengurus cabang & upload dokumen syirkah pada menu : Data Cabang Se-Indonesia',
+                                text: 'lengkapi data pengurus cabang : Data Cabang Se-Indonesia',
                                 type: "error"
                                 });
                         })

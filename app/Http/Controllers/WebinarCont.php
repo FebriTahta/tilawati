@@ -40,8 +40,10 @@ class WebinarCont extends Controller
             }
             $data_pengurus = array_sum($tot);
             $data_pengurus2 = array_sum($tot2);
-            $data_syirkah  = auth()->user()->cabang->syirkah;
-            if (auth()->user()->role !== 'pusat' && $data_pengurus < 5 ||$data_pengurus2 < 5 || $data_syirkah == null) {
+            // $data_syirkah  = auth()->user()->cabang->syirkah;
+            if (auth()->user()->role !== 'pusat' && $data_pengurus < 5 ||$data_pengurus2 < 5 
+            // || $data_syirkah == null
+            ) {
                 # code...
                 return redirect('/');
             }else {
