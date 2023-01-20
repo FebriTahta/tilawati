@@ -125,8 +125,11 @@
                 </div>
             </div>
         </div>
-        <div class="col-xl-12" style="margin-bottom: 20px">
+        <div class="col-xl-6" style="margin-bottom: 20px">
             <button class="btn btn-primary" data-toggle="modal" id="btnlaporan" data-target="#mod_cabang2" style="width: 100%">LAPORAN PERKEMBANGAN</button>
+        </div>
+        <div class="col-xl-6" style="margin-bottom: 20px">
+            <a class="btn btn-primary" style="width: 100%" href="https://lembaga-tilawati.nurulfalah.org" target="_blank">PENDAFTARAN LEMBAGA ONLINE</a>
         </div>
         <div class="col-xl-6">
             <div class="card" style="min-height: 470px">
