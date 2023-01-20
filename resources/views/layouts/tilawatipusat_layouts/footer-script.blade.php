@@ -46,7 +46,7 @@
                                 toastr.error('lengkapi data pengurus cabang & upload dokumen syirkah');
                                 swal({
                                 title: "MAAF!",
-                                text: 'lengkapi data pengurus cabang & upload dokumen syirkah pada menu : CABANG',
+                                text: 'lengkapi data pengurus cabang & upload dokumen syirkah pada menu : Data Cabang Se-Indonesia',
                                 type: "error"
                                 });
                         })
