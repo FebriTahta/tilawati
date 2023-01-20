@@ -6,6 +6,7 @@ use App\Models\Program;
 use App\Models\Peserta;
 use DB;
 use App\Models\Cabang;
+use App\Models\Penguruscabang;
 use DataTables;
 use Carbon\Carbon;
 use File;
@@ -19,22 +20,62 @@ class WebinarCont extends Controller
 {
     public function index(Request $request)
     {
-        $dt_program = '';
-        if (auth()->user()->role=='cabang') {
+        if (auth()->user()->role !== 'pusat') {
             # code...
-            $dt_program = Program::where('status',2)
-                            ->where('name',"Sosialisasi Tilawati PAUD")
-                            ->orWhere('name',"Workshop Buku Pintar 2")
-                            ->orWhere('name',"EXCELLENT TAHSIN QURAN")
-                            ->orWhere('name',"Khazanah Ilmu Tajwid")
-                            ->orWhere('name',"Pengenalan 7 Lagu Tartil")
-                            ->orderBy('name',"asc")
-                            ->get();
+            $pengurus = Penguruscabang::where('cabang_id', auth()->user()->cabang->id)->get();
+            $nama_pengurus = [];
+            $tot = [];
+            foreach ($pengurus as $key => $value) {
+                # code...
+                if ($value->nama_pengurus !== null) {
+                    # code...
+                    $nama_pengurus[] = $value->nama_pengurus;
+                    $tot[] = 1;
+                }
+            }
+            $data_pengurus = array_sum($tot);
+            $data_syirkah  = auth()->user()->cabang->syirkah;
+            if (auth()->user()->role !== 'pusat' && $data_pengurus < 5 || $data_syirkah == null) {
+                # code...
+                return redirect('/');
+            }else {
+                $dt_program = '';
+                if (auth()->user()->role=='cabang') {
+                    # code...
+                    $dt_program = Program::where('status',2)
+                                    ->where('name',"Sosialisasi Tilawati PAUD")
+                                    ->orWhere('name',"Workshop Buku Pintar 2")
+                                    ->orWhere('name',"EXCELLENT TAHSIN QURAN")
+                                    ->orWhere('name',"Khazanah Ilmu Tajwid")
+                                    ->orWhere('name',"Pengenalan 7 Lagu Tartil")
+                                    ->orderBy('name',"asc")
+                                    ->get();
+                }else {
+                    # code...
+                    $dt_program = Program::all();
+                }
+                return view('tilawatipusat.webinar.index',compact('dt_program'));
+            }
+
         }else {
             # code...
-            $dt_program = Program::all();
+            $dt_program = '';
+            if (auth()->user()->role=='cabang') {
+                # code...
+                $dt_program = Program::where('status',2)
+                                ->where('name',"Sosialisasi Tilawati PAUD")
+                                ->orWhere('name',"Workshop Buku Pintar 2")
+                                ->orWhere('name',"EXCELLENT TAHSIN QURAN")
+                                ->orWhere('name',"Khazanah Ilmu Tajwid")
+                                ->orWhere('name',"Pengenalan 7 Lagu Tartil")
+                                ->orderBy('name',"asc")
+                                ->get();
+            }else {
+                # code...
+                $dt_program = Program::all();
+            }
+            return view('tilawatipusat.webinar.index',compact('dt_program'));
         }
-        return view('tilawatipusat.webinar.index',compact('dt_program'));
     }
 
     public function webinar_data(Request $request)

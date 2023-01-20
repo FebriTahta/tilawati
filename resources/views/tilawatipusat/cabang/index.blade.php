@@ -22,7 +22,6 @@
             <div class="card">
                 @if (auth()->user()->role !== 'pusat')
                     <div class="card-body">
-
                         <h4 class="card-title text-uppercase">Struktur Tata Kelola Tilawati
                             {{ auth()->user()->cabang->status }}</h4>
                         <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">

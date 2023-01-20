@@ -50,6 +50,30 @@
                         <i class="mdi mdi-checkbox-multiple-blank-outline"></i>
                         <span style="font-size: 12px">Data Master</span>
                     </a>
+                    @if (auth()->user()->role !== 'pusat')
+                        @php
+                            $pengurus = App\Models\Penguruscabang::where('cabang_id', auth()->user()->cabang->id)->get();
+                            $nama_pengurus = [];
+                            $tot = [];
+                            foreach ($pengurus as $key => $value) {
+                                # code...
+                                if ($value->nama_pengurus !== null) {
+                                    # code...
+                                    $nama_pengurus[] = $value->nama_pengurus;
+                                    $tot[] = 1;
+                                }
+                            }
+                            $data_pengurus = array_sum($tot);
+                            $data_syirkah  = auth()->user()->cabang->syirkah;
+                        @endphp
+                    @else
+                            @php
+                                $data_pengurus = 5;
+                                $data_syirkah  = 1;
+                            @endphp
+                    @endif
+                    
+                    
                     <ul class="sub-menu mm-collapse mm-show" aria-expanded="true">
                         <li><a style="font-size: 12px" href="{{ route('diklat.cabang') }}">Data Cabang
                                 Se-Indonesia</a></li>
@@ -100,14 +124,29 @@
                         <span style="font-size: 12px">Acara</span>
                     </a>
                 </li>
-                <li>
-                    <a href="{{ route('diklat.diklat') }}" class="waves-effect">
-                        <i class="mdi mdi-pencil-box-multiple-outline"></i>
-                        <span class="badge badge-pill badge-danger float-right"></span>
-                        <span style="font-size: 12px">Data Diklat</span>
-                    </a>
-                </li>
-                {{-- @if (auth()->user()->role == 'pusat') --}}
+                @if (auth()->user()->role !== 'pusat' && $data_pengurus < 5 || $data_syirkah == null)
+                    <li>
+                        <a class="waves-effect belum-lengkap">
+                            <i class="mdi mdi-pencil-box-multiple-outline"></i>
+                            <span class="badge badge-pill badge-danger float-right"></span>
+                            <span style="font-size: 12px">Data Diklat</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="waves-effect belum-lengkap">
+                            <i class="mdi mdi-city-variant-outline"></i>
+                            <span class="badge badge-pill badge-danger float-right"></span>
+                            <span style="font-size: 12px">Data Webinar</span>
+                        </a>
+                    </li>
+                @else
+                    <li>
+                        <a href="{{ route('diklat.diklat') }}" class="waves-effect">
+                            <i class="mdi mdi-pencil-box-multiple-outline"></i>
+                            <span class="badge badge-pill badge-danger float-right"></span>
+                            <span style="font-size: 12px">Data Diklat</span>
+                        </a>
+                    </li>
                     <li>
                         <a href="{{ route('diklat.webinar') }}" class="waves-effect">
                             <i class="mdi mdi-city-variant-outline"></i>
@@ -115,6 +154,10 @@
                             <span style="font-size: 12px">Data Webinar</span>
                         </a>
                     </li>
+                @endif
+               
+                {{-- @if (auth()->user()->role == 'pusat') --}}
+                    
                 {{-- @endif --}}
 
                 
@@ -307,3 +350,7 @@
     </div>
 </div>
 <!-- Left Sidebar End -->
+
+{{-- @if (auth()->user()->role !== 'pusat' && $data_pengurus < 5 || $data_syirkah == null) --}}
+
+{{-- @endif --}}
