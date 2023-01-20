@@ -732,13 +732,15 @@
                                         <div class="row">
                                             <input type="hidden" id="id" name="id">
                                             <div class="form-group col-xl-6">
+                                                @if (auth()->user()->role == 'cabang')
+                                                    <label for=""><i class="text-danger">* </i>Nama Cabang <small class="text-danger">(akses pusat)</small></label>
+                                                    <input type="text" class="form-control text-capitalize" id="name"
+                                                    name="name" readonly required>  
+                                                @else
                                                 <label for=""><i class="text-danger">* </i>Nama Cabang</label>
-                                                <input type="text" class="form-control text-capitalize" id="name"
-                                                    name="name"
-                                                    @if (auth()->user()->role == 'cabang')
-                                                        readonly
-                                                    @endif
-                                                    required>
+                                                    <input type="text" class="form-control text-capitalize" id="name"
+                                                    name="name" required>  
+                                                @endif
                                             </div>
                                             <div class="form-group col-xl-6">
                                                 <label for=""><i class="text-danger">* </i>Kepala Cabang</label>
