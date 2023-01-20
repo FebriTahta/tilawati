@@ -305,7 +305,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     Route::get('/diklat-webinar-total',[WebinarCont::class, 'webinar_total'])->name('diklat.webinar_tot');
     Route::get('/diklat-webinar-cabang-total', [WebinarCont::class,'webinar_cabang_total'])->name('diklat.webinar_cabang_tot');
     Route::get('/diklat-webinar-program-total', [WebinarCont::class,'webinar_program_total'])->name('diklat.webinar_program_tot');
-    // Route::get('/diklat-webinar-cabang-data/{cabang_id}', [WebinarCont::class,'webinar_cabang_data'])->name('diklat.webinar_cabang_data');
+    Route::get('/diklat-webinar-cabang-data/{cabang_id}', [WebinarCont::class,'webinar_cabang_data'])->name('diklat.webinar_cabang_data');
     Route::get('/diklat-webinar-program-data', [WebinarCont::class,'webinar_program_data'])->name('diklat.webinar_program_data');
 
     Route::get('/diklat-diklat',[DiklatCont::class, 'index'])->name('diklat.diklat');
