@@ -971,7 +971,6 @@
                         });
                     }else{
                         // data diklat cabang
-                        alert(cabang);
                         $('.table-diklat').DataTable({
                             //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
                             destroy: true,
