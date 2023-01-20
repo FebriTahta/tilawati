@@ -87,9 +87,12 @@
                                     <p class="card-title-desc">Ter-update berdasarkan Tahun 2021 </br></p>
                                     {{-- <button class="btn btn-sm btn-success  mr-1" style="width:130px " data-toggle="modal" data-target=".bs-example-modal-diklat"><i class="mdi mdi-plus"></i> tambah diklat</button> --}}
                                     <a class="btn btn-sm btn-success  mr-1" style="width:130px " href="{{ route('webinar.create') }}"><i class="mdi mdi-plus"></i> tambah webinar</a>
+                                    @if (auth()->user()->role == 'pusat')
                                     <form action="{{route('export.broadcast.peserta_webinar')}}" method="GET" style="margin-top: 10px" enctype="multipart/form-data" id="export_data_peserta">
                                         <button type="submit" class="btn btn-sm btn-success"><i class="mdi mdi-whatsapp"></i> DOWNLOAD DATA BROADCAST </button>
                                     </form>
+                                    @endif
+                                    
                                     <input type="hidden" id="user" value="{{auth()->user()->role}}">
                                     @if (auth()->user()->role == 'cabang')
                                         <input type="hidden" id="cabang" value="{{auth()->user()->cabang->id}}">
@@ -974,7 +977,7 @@
                             processing: true,
                             serverSide: true,
                             ajax: {
-                                url:'/diklat-diklat-data-cabang/'+cabang,
+                                url:'/diklat-webinar-cabang-data'+cabang,
                                 data:{dari:dari, sampai:sampai}
                             },
                             columns: [
