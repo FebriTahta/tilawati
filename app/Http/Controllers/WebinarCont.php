@@ -25,6 +25,7 @@ class WebinarCont extends Controller
             $pengurus = Penguruscabang::where('cabang_id', auth()->user()->cabang->id)->get();
             $nama_pengurus = [];
             $tot = [];
+            $tot2 = [];
             foreach ($pengurus as $key => $value) {
                 # code...
                 if ($value->nama_pengurus !== null) {
@@ -32,10 +33,15 @@ class WebinarCont extends Controller
                     $nama_pengurus[] = $value->nama_pengurus;
                     $tot[] = 1;
                 }
+
+                if ($value->telp_pengurus !== null) {
+                    $tot2[] = 1;
+                }
             }
             $data_pengurus = array_sum($tot);
+            $data_pengurus2 = array_sum($tot2);
             $data_syirkah  = auth()->user()->cabang->syirkah;
-            if (auth()->user()->role !== 'pusat' && $data_pengurus < 5 || $data_syirkah == null) {
+            if (auth()->user()->role !== 'pusat' && $data_pengurus < 5 ||$data_pengurus2 < 5 || $data_syirkah == null) {
                 # code...
                 return redirect('/');
             }else {

@@ -16,6 +16,7 @@
                         $pengurus = App\Models\Penguruscabang::where('cabang_id', auth()->user()->cabang->id)->get();
                         $nama_pengurus = [];
                         $tot = [];
+                        $tot2 = [];
                         foreach ($pengurus as $key => $value) {
                             # code...
                             if ($value->nama_pengurus !== null) {
@@ -23,13 +24,20 @@
                                 $nama_pengurus[] = $value->nama_pengurus;
                                 $tot[] = 1;
                             }
+
+                            if ($value->telp_pengurus !== null) {
+                                # code...
+                                $tot2[] = 1;
+                            }
                         }
                         $data_pengurus = array_sum($tot);
+                        $data_pengurus2 = array_sum($tot2);
                         $data_syirkah  = auth()->user()->cabang->syirkah;
                     @endphp
         @else
                 @php
                         $data_pengurus = 5;
+                        $data_pengurus2 = 5;
                         $data_syirkah  = 1;
                 @endphp
         @endif
@@ -39,7 +47,7 @@
        <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.all.min.js"></script>
        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
-        @if (auth()->user()->role !== 'pusat' && $data_pengurus < 5 || $data_syirkah == null)
+        @if (auth()->user()->role !== 'pusat' && $data_pengurus < 5 || $data_pengurus2 < 5 || $data_syirkah == null)
         <script>
                 $(document).ready(function() {
                         $('.belum-lengkap').on('click', function () {

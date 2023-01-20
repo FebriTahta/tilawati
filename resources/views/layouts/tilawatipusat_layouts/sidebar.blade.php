@@ -55,6 +55,7 @@
                             $pengurus = App\Models\Penguruscabang::where('cabang_id', auth()->user()->cabang->id)->get();
                             $nama_pengurus = [];
                             $tot = [];
+                            $tot2= [];
                             foreach ($pengurus as $key => $value) {
                                 # code...
                                 if ($value->nama_pengurus !== null) {
@@ -62,13 +63,20 @@
                                     $nama_pengurus[] = $value->nama_pengurus;
                                     $tot[] = 1;
                                 }
+
+                                if ($value->telp_pengurus !== null) {
+                                    # code...
+                                    $tot2[] = 1;
+                                }
                             }
                             $data_pengurus = array_sum($tot);
+                            $data_pengurus2 = array_sum($tot2);
                             $data_syirkah  = auth()->user()->cabang->syirkah;
                         @endphp
                     @else
                             @php
                                 $data_pengurus = 5;
+                                $data_pengurus2 = 5;
                                 $data_syirkah  = 1;
                             @endphp
                     @endif
@@ -124,7 +132,7 @@
                         <span style="font-size: 12px">Acara</span>
                     </a>
                 </li>
-                @if (auth()->user()->role !== 'pusat' && $data_pengurus < 5 || $data_syirkah == null)
+                @if (auth()->user()->role !== 'pusat' && $data_pengurus < 5 || $data_pengurus2 < 5 || $data_syirkah == null)
                     <li>
                         <a class="waves-effect belum-lengkap">
                             <i class="mdi mdi-pencil-box-multiple-outline"></i>
