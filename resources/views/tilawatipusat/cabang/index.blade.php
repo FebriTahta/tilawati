@@ -642,7 +642,7 @@
                                                 </select>
                                             </div>
                                             <div class="form-group col-xl-6">
-                                                <label for=""><i class="text-danger">* </i>Nama Cabangs</label>
+                                                <label for=""><i class="text-danger">* </i>Nama Cabang</label>
                                                 <input type="text" class="form-control text-capitalize" id="name"
                                                     name="name" 
                                                     @if (auth()->user()->role == 'cabang')
@@ -734,7 +734,11 @@
                                             <div class="form-group col-xl-6">
                                                 <label for=""><i class="text-danger">* </i>Nama Cabang</label>
                                                 <input type="text" class="form-control text-capitalize" id="name"
-                                                    name="name" required>
+                                                    name="name"
+                                                    @if (auth()->user()->role == 'cabang')
+                                                        readonly
+                                                    @endif
+                                                    required>
                                             </div>
                                             <div class="form-group col-xl-6">
                                                 <label for=""><i class="text-danger">* </i>Kepala Cabang</label>
