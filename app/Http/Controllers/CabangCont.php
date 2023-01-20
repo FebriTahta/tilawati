@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use DB;
 use App\Models\Cabang;
 use App\Models\Munaqisy;
+use App\Models\Syirkah;
 use App\Models\Kepala;
 use App\Models\Provinsi;
 use DataTables;
@@ -20,6 +21,7 @@ use \Carbon\Carbon;
 use App\Models\Peserta;
 use Auth;
 use File;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 class CabangCont extends Controller
@@ -1395,5 +1397,103 @@ class CabangCont extends Controller
                 'data'  => $data->teritorial." - ".$data->kadivre,
             ]
         );
+    }
+
+    public function upload_dokumen_syirkah(Request $request)
+    {
+        if ($request->ajax()) {
+            if($request->hasFile('file')) {
+                # code...
+                $validator = Validator::make($request->all(), [
+                    'imageposting.*'    => 'required|mimes:pdf|max:10000'
+                ]);
+
+                if ($validator->fails()) {
+                    # code...
+                    return response()->json(
+                        [
+                            'status' => 400,
+                            'message'=> $validator->messages(),
+                        ]
+                    );
+                }else {
+                    # code...
+
+                    if ($request->id !== null) {
+                        # code...
+                        $exist = Syirkah::findOrFail($request->id);
+                        if ($exist) {
+                            # code...
+                            if(File::exists(public_path('syirkah_dc/'.$exist->syirkah_dc)))
+                            {
+                                File::delete(public_path('syirkah_dc/'.$exist->syirkah_dc));
+                            }
+                        }
+                    }
+
+
+                    $extension = $request->file('file')->extension();
+                    $filename    = time().'.'.Str::slug(strtolower(substr($request->file->getClientOriginalName(),0,-3))).'.'.$extension;
+                    $request->file('file')->move('syirkah_dc/',$filename);
+
+                    $data = Syirkah::updateOrCreate(
+                        [
+                            'id' => $request->id,
+                        ],
+                        [
+                            'cabang_id'=> $request->cabang_id,
+                            'ekstensi' => $extension,
+                            'syirkah_dc' => $filename,
+                        ]
+                    );
+
+                    return response()->json([
+                        'status' => 200,
+                        'message' => 'Dokumen Syirkah '.$extension.' berhasil disimpan'
+                    ]);
+                }
+            }else {
+                # code...
+                return response()->json(
+                    [
+                        'status' => 400,
+                        'message'=> ['Syirkah harus berupa dokumen PDF tidak boleh kosong'],
+                    ]
+                );
+            }
+        }
+    }
+
+    public function remove_dokumen_syirkah(Request $request)
+    {
+        if ($request->ajax()) {
+            $exist = Syirkah::findOrFail($request->id);
+            if ($exist) {
+                # code...
+                if(File::exists(public_path('syirkah_dc/'.$exist->syirkah_dc)))
+                {
+                    File::delete(public_path('syirkah_dc/'.$exist->syirkah_dc));
+                    $exist->delete();
+                    return response()->json([
+                        'status' => 200,
+                        'message' => 'Dokumen Syirkah telah dihapus'
+                    ]);
+                }else {
+                    # code...
+                    return response()->json([
+                        'status' => 200,
+                        'message' => 'Syirkah Telah dihapus tanpa ada dokumen didalamnya'
+                    ]);
+                }
+            }else {
+                # code...
+                return response()->json(
+                    [
+                        'status' => 400,
+                        'message'=> ['Dokumen Syirkah Tidak Ditemukan'],
+                    ]
+                );
+            }
+        }
     }
 }

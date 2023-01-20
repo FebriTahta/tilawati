@@ -623,6 +623,8 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
 
     //GET DATA WILAYAH
     Route::get('/get-wilayah-cabang/{cabang_id}',[CabangCont::class,'get_wilayah_cabang']);
+    Route::post('/upload-dokumen-syirkah',[CabangCont::class,'upload_dokumen_syirkah']);
+    Route::post('/remove-dokumen-syirkah',[CabangCont::class,'remove_dokumen_syirkah']);
 });
 
 Route::group(['middleware' => ['auth', 'CheckRole:bendahara']], function () {

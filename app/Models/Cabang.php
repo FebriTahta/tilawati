@@ -115,4 +115,9 @@ class Cabang extends Model
     {
         return $this->hasMany(Penguruscabang::class);
     }
+
+    public function syirkah()
+    {
+        return $this->hasOne(Syirkah::class);
+    }
 }

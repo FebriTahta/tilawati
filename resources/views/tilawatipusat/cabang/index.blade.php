@@ -20,8 +20,9 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="card">
-                <div class="card-body">
-                    @if (auth()->user()->role == 'cabang')
+                @if (auth()->user()->role == 'cabang')
+                    <div class="card-body">
+
                         <h4 class="card-title text-uppercase">Struktur Tata Kelola Tilawati
                             {{ auth()->user()->cabang->status }}</h4>
                         <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
@@ -34,21 +35,22 @@
                                             <div class="row">
                                                 @if ($pengurus_kepala !== null)
                                                     <div class="col-md-6">
-                                                        <input type="hidden" name="id[]" id="idkepalacabang" value="{{$pengurus_kepala->id}}">
+                                                        <input type="hidden" name="id[]" id="idkepalacabang"
+                                                            value="{{ $pengurus_kepala->id }}">
                                                         <input type="text" class="form-control" name="namapengurus[]"
                                                             placeholder="Nama lengkap..."
-                                                            value="{{$pengurus_kepala->nama_pengurus}}">
+                                                            value="{{ $pengurus_kepala->nama_pengurus }}">
                                                         <input type="hidden" name="bagian[]" value="Kepala Cabang"
                                                             class="form-control">
                                                     </div>
                                                     <div class="col-md-6">
                                                         <input type="text" class="form-control" name="telppengurus[]"
                                                             placeholder="Nomor Telepon..."
-                                                            value="{{$pengurus_kepala->telp_pengurus}}">
+                                                            value="{{ $pengurus_kepala->telp_pengurus }}">
                                                     </div>
                                                 @else
                                                     <div class="col-md-6">
-                                                        <input type="hidden" name="id[]" id="idkepalacabang" >
+                                                        <input type="hidden" name="id[]" id="idkepalacabang">
                                                         <input type="text" class="form-control" name="namapengurus[]"
                                                             placeholder="Nama lengkap..."
                                                             value="{{ auth()->user()->cabang->kepalacabang }}">
@@ -68,17 +70,20 @@
                                             <label>Kabid Administrasi, Keuangan & Disardik</label>
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    
-                                                    <input type="hidden" name="id[]" id="idkabidadmin" @if ($kabid_admin !== null)  value="{{$kabid_admin->id}}" @endif>
+
+                                                    <input type="hidden" name="id[]" id="idkabidadmin"
+                                                        @if ($kabid_admin !== null) value="{{ $kabid_admin->id }}" @endif>
                                                     <input type="text" class="form-control" name="namapengurus[]"
-                                                        placeholder="Nama lengkap..." @if ($kabid_admin !== null)  value="{{$kabid_admin->nama_pengurus}}" @endif>
+                                                        placeholder="Nama lengkap..."
+                                                        @if ($kabid_admin !== null) value="{{ $kabid_admin->nama_pengurus }}" @endif>
                                                     <input type="hidden" name="bagian[]"
                                                         value="Kabid Administrasi, Keuangan & Disardik"
                                                         class="form-control">
                                                 </div>
                                                 <div class="col-md-6">
                                                     <input type="text" class="form-control" name="telppengurus[]"
-                                                        placeholder="Nomor Telepon..." @if ($kabid_admin !== null)  value="{{$kabid_admin->telp_pengurus}}" @endif>
+                                                        placeholder="Nomor Telepon..."
+                                                        @if ($kabid_admin !== null) value="{{ $kabid_admin->telp_pengurus }}" @endif>
                                                 </div>
                                             </div>
                                         </div>
@@ -86,15 +91,18 @@
                                             <label>Kabid Diklat & Munaqosyah</label>
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <input type="hidden" name="id[]" id="idkabiddiklat"@if ($kabid_diklat !== null)  value="{{$kabid_diklat->id}}" @endif>
+                                                    <input type="hidden" name="id[]"
+                                                        id="idkabiddiklat"@if ($kabid_diklat !== null) value="{{ $kabid_diklat->id }}" @endif>
                                                     <input type="text" class="form-control" name="namapengurus[]"
-                                                        placeholder="Nama lengkap..." @if ($kabid_diklat !== null)  value="{{$kabid_diklat->nama_pengurus}}" @endif>
+                                                        placeholder="Nama lengkap..."
+                                                        @if ($kabid_diklat !== null) value="{{ $kabid_diklat->nama_pengurus }}" @endif>
                                                     <input type="hidden" name="bagian[]" value="Kabid Diklat & Munaqosyah"
                                                         class="form-control">
                                                 </div>
                                                 <div class="col-md-6">
                                                     <input type="text" class="form-control" name="telppengurus[]"
-                                                        placeholder="Nomor Telepon..." @if ($kabid_diklat !== null)  value="{{$kabid_diklat->telp_pengurus}}" @endif>
+                                                        placeholder="Nomor Telepon..."
+                                                        @if ($kabid_diklat !== null) value="{{ $kabid_diklat->telp_pengurus }}" @endif>
                                                 </div>
                                             </div>
                                         </div>
@@ -102,15 +110,18 @@
                                             <label>Kabid Pengembangan Kelembagaan</label>
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <input type="hidden" name="id[]" id="idkabidpengembangan" @if ($kabid_lembaga !== null)  value="{{$kabid_lembaga->id}}" @endif>
+                                                    <input type="hidden" name="id[]" id="idkabidpengembangan"
+                                                        @if ($kabid_lembaga !== null) value="{{ $kabid_lembaga->id }}" @endif>
                                                     <input type="text" class="form-control" name="namapengurus[]"
-                                                        placeholder="Nama lengkap..."  @if ($kabid_lembaga !== null)  value="{{$kabid_lembaga->nama_pengurus}}" @endif>
+                                                        placeholder="Nama lengkap..."
+                                                        @if ($kabid_lembaga !== null) value="{{ $kabid_lembaga->nama_pengurus }}" @endif>
                                                     <input type="hidden" name="bagian[]"
                                                         value="Kabid Pengembangan Kelembagaan" class="form-control">
                                                 </div>
                                                 <div class="col-md-6">
                                                     <input type="text" class="form-control" name="telppengurus[]"
-                                                        placeholder="Nomor Telepon..."  @if ($kabid_lembaga !== null)  value="{{$kabid_lembaga->telp_pengurus}}" @endif>
+                                                        placeholder="Nomor Telepon..."
+                                                        @if ($kabid_lembaga !== null) value="{{ $kabid_lembaga->telp_pengurus }}" @endif>
                                                 </div>
                                             </div>
                                         </div>
@@ -118,15 +129,18 @@
                                             <label>Kabid Supervisor</label>
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <input type="hidden" name="id[]" id="idkabidsupervisor" @if ($kabid_super !== null)  value="{{$kabid_super->id}}" @endif>
+                                                    <input type="hidden" name="id[]" id="idkabidsupervisor"
+                                                        @if ($kabid_super !== null) value="{{ $kabid_super->id }}" @endif>
                                                     <input type="text" class="form-control" name="namapengurus[]"
-                                                        placeholder="Nama lengkap..." @if ($kabid_super !== null)  value="{{$kabid_super->nama_pengurus}}" @endif>
+                                                        placeholder="Nama lengkap..."
+                                                        @if ($kabid_super !== null) value="{{ $kabid_super->nama_pengurus }}" @endif>
                                                     <input type="hidden" name="bagian[]" value="Kabid Supervisor"
                                                         class="form-control">
                                                 </div>
                                                 <div class="col-md-6">
                                                     <input type="text" class="form-control" name="telppengurus[]"
-                                                        placeholder="Nomor Telepon..." @if ($kabid_super !== null)  value="{{$kabid_super->telp_pengurus}}" @endif>
+                                                        placeholder="Nomor Telepon..."
+                                                        @if ($kabid_super !== null) value="{{ $kabid_super->telp_pengurus }}" @endif>
                                                 </div>
                                             </div>
                                         </div>
@@ -146,11 +160,83 @@
                             </form>
 
                         </blockquote>
-                    @endif
+                    </div>
+                @endif
+            </div>
+        </div>
+    </div>
 
+    <div class="row">
+        @if (auth()->user()->cabang->syirkah == null)
+        <div class="col-xl-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="media">
+                        <div class="avatar-sm font-size-20 mr-3">
+                            <span class="avatar-title bg-soft-primary text-primary rounded">
+                                <i class="mdi mdi-mdi mdi-contact-mail-outline
+                                    tag-plus-outline"></i>
+                            </span>
+                        </div>
+                        <div class="media-body">
+                            <div class="font-size-16 mt-2" style="color: rgb(255, 145, 145)">UPLOAD DOKUMEN SYIRKAH DALAM BENTUK PDF<br>
+                                <u><a href="#" data-toggle="modal" data-target="#modalupload" style="color: darkcyan">Klik disini upload file SYIRKAH</a></u>
+                            </div>
+                        </div>
+                    </div>
+                    <h4 class="mt-4"></h4>
                 </div>
             </div>
         </div>
+        @else
+        <div class="col-xl-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="media">
+                        <div class="avatar-sm font-size-20 mr-3">
+                            <span class="avatar-title bg-soft-primary text-primary rounded">
+                                <i class="mdi mdi-mdi mdi-contact-mail-outline
+                                    tag-plus-outline"></i>
+                            </span>
+                        </div>
+                        <div class="media-body">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <img src="{{asset('pdfan.png')}}" style="max-width: 150px" alt="">
+                                    <div class="namadokumen">
+                                        <small>Doc Syirkah : {{substr(auth()->user()->cabang->syirkah->syirkah_dc,12)}}</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-9">
+                                    <p style="text-transform: uppercase">Manajemen data dokumen syirkah anda berikut ini : </p>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <button class="btn btn-sm btn-info" style="width: 150px" data-syirkah_dc="{{asset('syirkah_dc/'.auth()->user()->cabang->syirkah->syirkah_dc)}}"
+                                                    data-toggle="modal" data-target="#modalpreview"><i class="fa fa-eye"></i> Preview</button>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <button class="btn btn-sm btn-primary" style="width: 150px" data-toggle="modal" data-target="#modalupload"
+                                                data-syirkah_dc="{{auth()->user()->cabang->syirkah->syirkah_dc}}" data-syirkah_id="{{auth()->user()->cabang->syirkah->id}}"><i class="fa fa-edit"></i> Update</button>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalremovesyirkah" style="width: 150px"><i class="fa fa-trash"></i> Remove</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h4 class="mt-4"></h4>
+                </div>
+            </div>
+        </div>
+        @endif
     </div>
 
     <div class="row">
@@ -277,6 +363,112 @@
     <!-- end row -->
 
     <!--modal import cabang-->
+    <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" id="modalupload"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title mt-0">UPLOAD DOKUMEN SYIRKAH </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-xl-12">
+                        <div class="card m-b-30">
+                            <form id="formupload" method="POST" enctype="multipart/form-data">@csrf
+                                <div class="card-body">
+                                    <div class="container-fluid">
+                                        <input type="hidden" id="import_tipe" value="munaqisy">
+                                        <div class="form-group">
+                                            <label for="file"> Upload dokuemn syirkah bentuk PDF</label><br>
+                                            @if (auth()->user()->cabang->syirkah !== null)
+                                                <input type="hidden" class="form-control" name="id" id="id" value="{{auth()->user()->cabang->syirkah->id}}">
+                                            @endif
+                                            <input type="hidden" name="cabang_id" value="{{auth()->user()->cabang->id}}">
+                                            <input type="file" name="file" accept="application/pdf" id="file">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="submit" name="import" id="btnupload" class="btn btn-info"
+                                                value="Upload" />
+                                        </div>
+                                    </div><!-- container fluid -->
+                                </div>
+                            </form>
+                        </div>
+                    </div> <!-- end col -->
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" id="modalremovesyirkah"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title mt-0">REMOVE DOKUMEN SYIRKAH </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-xl-12">
+                        <div class="card m-b-30">
+                            <form id="formremovesyirkah" method="POST" enctype="multipart/form-data">@csrf
+                                <div class="card-body">
+                                    <div class="container-fluid">
+                                        <input type="hidden" id="import_tipe" value="munaqisy">
+                                        <div class="form-group">
+                                            <label for="file"> Anda yakin akan menghapus dokumen syirkah berikut ini ?</label><br>
+                                            @if (auth()->user()->cabang->syirkah !== null)
+                                                <input type="hidden" class="form-control" name="id" id="id" value="{{auth()->user()->cabang->syirkah->id}}">
+                                                <label style="font-weight: 600">Doc Syirkah : {{substr(auth()->user()->cabang->syirkah->syirkah_dc,11)}}</label>
+                                            @endif
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="submit" name="import" id="btnremovesyirkah" class="btn btn-info"
+                                                value="Remove" />
+                                        </div>
+                                    </div><!-- container fluid -->
+                                </div>
+                            </form>
+                        </div>
+                    </div> <!-- end col -->
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" id="modalpreview"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title mt-0">PREVIEW DOKUMEN SYIRKAH </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-xl-12">
+                        <div class="card m-b-30">
+                            <form id="formremovesyirkah" method="POST" enctype="multipart/form-data">@csrf
+                                <div class="card-body">
+                                    <div class="container-fluid">
+                                        <div class="form-group">
+                                            <label for="file"> Anda akan otomatis mendownload file data syirkah apabila menggunakan internet download manager / IDM</label><br>
+                                            <iframe id="frame_syirkah" height="620" width="100%" frameborder="0" scrolling="auto"></iframe>
+                                    </div><!-- container fluid -->
+                                </div>
+                            </form>
+                        </div>
+                    </div> <!-- end col -->
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
     <div class="col-sm-6 col-md-3 m-t-30">
         <div class="modal fade bs-example-modal-cabang" tabindex="-1" role="dialog"
             aria-labelledby="mySmallModalLabel" aria-hidden="true">
@@ -644,10 +836,7 @@
                                             <div class="form-group col-xl-6">
                                                 <label for=""><i class="text-danger">* </i>Nama Cabang</label>
                                                 <input type="text" class="form-control text-capitalize" id="name"
-                                                    name="name" 
-                                                    @if (auth()->user()->role == 'cabang')
-                                                        readonly
-                                                    @endif
+                                                    name="name" @if (auth()->user()->role == 'cabang') readonly @endif
                                                     required>
                                             </div>
                                             <div class="form-group col-xl-6">
@@ -733,13 +922,14 @@
                                             <input type="hidden" id="id" name="id">
                                             <div class="form-group col-xl-6">
                                                 @if (auth()->user()->role == 'cabang')
-                                                    <label for=""><i class="text-danger">* </i>Nama Cabang <small class="text-danger">(akses pusat)</small></label>
-                                                    <input type="text" class="form-control text-capitalize" id="name"
-                                                    name="name" readonly required>  
+                                                    <label for=""><i class="text-danger">* </i>Nama Cabang <small
+                                                            class="text-danger">(akses pusat)</small></label>
+                                                    <input type="text" class="form-control text-capitalize"
+                                                        id="name" name="name" readonly required>
                                                 @else
-                                                <label for=""><i class="text-danger">* </i>Nama Cabang</label>
-                                                    <input type="text" class="form-control text-capitalize" id="name"
-                                                    name="name" required>  
+                                                    <label for=""><i class="text-danger">* </i>Nama Cabang</label>
+                                                    <input type="text" class="form-control text-capitalize"
+                                                        id="name" name="name" required>
                                                 @endif
                                             </div>
                                             <div class="form-group col-xl-6">
@@ -870,6 +1060,14 @@
             var modal = $(this)
             console.log(id);
             modal.find('.modal-body #id').val(id);
+        })
+
+        $('#modalpreview').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget)
+            var syirkah_dc = button.data('syirkah_dc')
+            var modal = $(this)
+            alert(syirkah_dc)
+            document.getElementById("frame_syirkah").src = syirkah_dc;
         })
 
         $('#modallocation').on('show.bs.modal', function(event) {
@@ -1062,6 +1260,107 @@
                 },
                 error: function(data) {
                     console.log(data);
+                }
+            });
+        });
+
+        $('#formupload').submit(function(e) {
+            e.preventDefault();
+            var formData = new FormData(this);
+            $.ajax({
+                type: 'POST',
+                url: "/upload-dokumen-syirkah",
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                beforeSend: function() {
+                    $('#btnupload').attr('disabled', 'disabled');
+                    $('#btnupload').val('Proses..');
+                },
+                success: function(response) {
+                    if (response.status == 200) {
+                        $('#modalupload').modal('hide');
+                        $("#formupload")[0].reset();
+                        $('#btnupload').val('Upload');
+                        $('#btnupload').attr('disabled', false);
+                        toastr.success(response.message);
+                        swal({
+                            title: "SUCCESS!",
+                            text: response.message,
+                            type: "success"
+                        }).then(okay => {
+                                if (okay) {
+                                    window.location.href = "/diklat-cabang";
+                                }
+                            });
+                    }else{
+                        $('#btnupload').val('Submit');
+                        $('#btnupload').attr('disabled', false);
+                        var values = '';
+                        jQuery.each(response.message, function(key, value) {
+                            values += value + '\n'
+                        });
+                        swal({
+                            title: "Maaf",
+                            text: values,
+                            type: "error",
+                        });
+                        toastr.error(values);
+                    }
+                },
+                error: function(response) {
+                    console.log(response);
+                }
+            });
+        });
+
+        $('#formremovesyirkah').submit(function(e) {
+            e.preventDefault();
+            var formData = new FormData(this);
+            $.ajax({
+                type: 'POST',
+                url: "/remove-dokumen-syirkah",
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                beforeSend: function() {
+                    $('#btnremovesyirkah').attr('disabled', 'disabled');
+                    $('#btnremovesyirkah').val('Proses Hapus Data');
+                },
+                success: function(response) {
+                    if (response.status == 200) {
+                        $('#modalremovesyirkah').modal('hide');
+                        $('#btnremovesyirkah').val('Remove');
+                        $('#btnremovesyirkah').attr('disabled', false);
+                        toastr.success(response.message);
+                        swal({
+                            title: "SUCCESS!",
+                            text: response.message,
+                            type: "success"
+                        }).then(okay => {
+                                if (okay) {
+                                    window.location.href = "/diklat-cabang";
+                                }
+                            });
+                    }else{
+                        $('#btnremovesyirkah').val('Remove');
+                        $('#btnremovesyirkah').attr('disabled', false);
+                        var values = '';
+                        jQuery.each(response.message, function(key, value) {
+                            values += value + '\n'
+                        });
+                        swal({
+                            title: "Maaf",
+                            text: values,
+                            type: "error",
+                        });
+                        toastr.error(values);
+                    }
+                },
+                error: function(response) {
+                    console.log(response);
                 }
             });
         });
