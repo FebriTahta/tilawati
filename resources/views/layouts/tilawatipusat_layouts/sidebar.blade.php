@@ -50,13 +50,12 @@
                         <i class="mdi mdi-checkbox-multiple-blank-outline"></i>
                         <span style="font-size: 12px">Data Master</span>
                     </a>
-                    <ul class="sub-menu mm-collapse mm-show" aria-expanded="true">
-                        {{-- <li><a style="font-size: 12px" href="{{ route('diklat.cabang') }}">Data Cabang
-                                Se-Indonesia</a></li> --}}
+                    {{-- <ul class="sub-menu mm-collapse mm-show" aria-expanded="true">
+                        <li><a style="font-size: 12px" href="{{ route('diklat.cabang') }}">Data Cabang
+                                Se-Indonesia</a></li>
                         @if (auth()->user()->role == 'pusat')
                             <li><a style="font-size: 12px" href="/daftar-ttd-cabang">Data TTD Kepala Cabang</a></li>
                             <li><a style="font-size: 12px" href="{{ route('diklat.lembaga') }}">Lembaga</a></li>
-                            {{-- <li><a style="font-size: 12px" href="{{ route('diklat.kepala') }}">Kepala Bagian</a></li> --}}
                             <li><a style="font-size: 12px" href="{{ route('diklat.jenjang') }}">Kelembagaan</a></li>
                             <li><a style="font-size: 12px" href="{{ route('diklat.program') }}">Program</a></li>
                             <li><a style="font-size: 12px" href="{{ route('diklat.kriteria') }}">Kriteria
@@ -74,7 +73,7 @@
                             <li><a style="font-size: 12px" href="{{ route('data.supervisor.cabang') }}">Data Supervisor Cabang</a>
                             </li>
                         @endif
-                    </ul>
+                    </ul> --}}
                 </li>
 
                 @if (auth()->user()->role == 'pusat')
