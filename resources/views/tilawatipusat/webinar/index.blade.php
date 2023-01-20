@@ -972,52 +972,52 @@
                     }else{
                         // data diklat cabang
                         alert(cabang);
-                        // $('.table-diklat').DataTable({
-                        //     //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
-                        //     destroy: true,
-                        //     processing: true,
-                        //     serverSide: true,
-                        //     ajax: {
-                        //         url:'/diklat-webinar-cabang-data'+cabang,
-                        //         data:{dari:dari, sampai:sampai}
-                        //     },
-                        //     columns: [
-                        //         {
-                        //         data:'program',
-                        //         name:'program.name'
-                        //         },
-                        //         {
-                        //         data:'cabang',
-                        //         name:'cabang.name'
-                        //         },
-                        //         {
-                        //         data:'tanggal',
-                        //         name:'tanggal'
-                        //         },
-                        //         {
-                        //         data:'peserta',
-                        //         name:'peserta'
-                        //         },
-                        //         {
-                        //         data:'linkpendaftaran',
-                        //         name:'linkpendaftaran'
-                        //         },
-                        //         {
-                        //         data:'groupwa',
-                        //         name:'groupwa'
-                        //         }, 
-                        //         {
-                        //         data:'flyer',
-                        //         name:'flyer'
-                        //         },
+                        $('.table-diklat').DataTable({
+                            //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
+                            destroy: true,
+                            processing: true,
+                            serverSide: true,
+                            ajax: {
+                                url:'/diklat-webinar-cabang-data'+cabang,
+                                data:{dari:dari, sampai:sampai}
+                            },
+                            columns: [
+                                {
+                                data:'program',
+                                name:'program.name'
+                                },
+                                {
+                                data:'cabang',
+                                name:'cabang.name'
+                                },
+                                {
+                                data:'tanggal',
+                                name:'tanggal'
+                                },
+                                {
+                                data:'peserta',
+                                name:'peserta'
+                                },
+                                {
+                                data:'linkpendaftaran',
+                                name:'linkpendaftaran'
+                                },
+                                {
+                                data:'groupwa',
+                                name:'groupwa'
+                                }, 
+                                {
+                                data:'flyer',
+                                name:'flyer'
+                                },
                                 
-                        //         {
-                        //         data:'action',
-                        //         name:'action'
-                        //         },
+                                {
+                                data:'action',
+                                name:'action'
+                                },
                                 
-                        //     ]
-                        // });
+                            ]
+                        });
                     }
 
                     
