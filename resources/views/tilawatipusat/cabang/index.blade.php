@@ -167,26 +167,6 @@
     </div>
 
     <div class="row">
-        <div class="col-xl-12">
-            <div class="card">
-                <div class="card-body">
-                    <div class="media">
-                        <div class="avatar-sm font-size-20 mr-3">
-                            <span class="avatar-title bg-soft-primary text-primary rounded">
-                                <i class="mdi mdi-mdi mdi-contact-mail-outline
-                                    tag-plus-outline"></i>
-                            </span>
-                        </div>
-                        <div class="media-body">
-                            <div class="font-size-16 mt-2" style="color: rgb(255, 145, 145)">UPLOAD DOKUMEN SYIRKAH DALAM BENTUK PDF<br>
-                                <u><a href="#" data-toggle="modal" data-target="#modalupload" style="color: darkcyan">Klik disini upload file SYIRKAH</a></u>
-                            </div>
-                        </div>
-                    </div>
-                    <h4 class="mt-4"></h4>
-                </div>
-            </div>
-        </div>
         @if (auth()->user()->cabang->syirkah == null)
         <div class="col-xl-12">
             <div class="card">
