@@ -50,7 +50,7 @@
                         <i class="mdi mdi-checkbox-multiple-blank-outline"></i>
                         <span style="font-size: 12px">Data Master</span>
                     </a>
-                    {{-- <ul class="sub-menu mm-collapse mm-show" aria-expanded="true">
+                    <ul class="sub-menu mm-collapse mm-show" aria-expanded="true">
                         <li><a style="font-size: 12px" href="{{ route('diklat.cabang') }}">Data Cabang
                                 Se-Indonesia</a></li>
                         @if (auth()->user()->role == 'pusat')
@@ -73,7 +73,7 @@
                             <li><a style="font-size: 12px" href="{{ route('data.supervisor.cabang') }}">Data Supervisor Cabang</a>
                             </li>
                         @endif
-                    </ul> --}}
+                    </ul>
                 </li>
 
                 @if (auth()->user()->role == 'pusat')
