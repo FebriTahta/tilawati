@@ -1404,54 +1404,67 @@ class CabangCont extends Controller
         if ($request->ajax()) {
             if($request->hasFile('file')) {
                 # code...
-                $validator = Validator::make($request->all(), [
-                    'imageposting.*'    => 'required|mimes:pdf|max:10000'
-                ]);
-
-                if ($validator->fails()) {
+                $extension = $request->file('file')->extension();
+                if ($extension == 'pdf') {
+                    # code...
+                    $validator = Validator::make($request->all(), [
+                        'imageposting.*'    => 'required|mimes:pdf|max:10000'
+                    ]);
+    
+                    if ($validator->fails()) {
+                        # code...
+                        return response()->json(
+                            [
+                                'status' => 400,
+                                'message'=> $validator->messages(),
+                            ]
+                        );
+                    }else {
+                        # code...
+    
+                        if ($request->id !== null) {
+                            # code...
+                            $exist = Syirkah::findOrFail($request->id);
+                            if ($exist) {
+                                # code...
+                                if(File::exists(public_path('syirkah_dc/'.$exist->syirkah_dc)))
+                                {
+                                    File::delete(public_path('syirkah_dc/'.$exist->syirkah_dc));
+                                }
+                            }
+                        }
+    
+    
+                        $extension = $request->file('file')->extension();
+                        $filename    = time().'.'.Str::slug(strtolower(substr($request->file->getClientOriginalName(),0,-3))).'.'.$extension;
+                        $request->file('file')->move('syirkah_dc/',$filename);
+    
+                        $data = Syirkah::updateOrCreate(
+                            [
+                                'id' => $request->id,
+                            ],
+                            [
+                                'cabang_id'=> $request->cabang_id,
+                                'ekstensi' => $extension,
+                                'syirkah_dc' => $filename,
+                            ]
+                        );
+    
+                        return response()->json([
+                            'status' => 200,
+                            'message' => 'Dokumen Syirkah '.$extension.' berhasil disimpan'
+                        ]);
+                    }
+                }else {
                     # code...
                     return response()->json(
                         [
                             'status' => 400,
-                            'message'=> $validator->messages(),
+                            'message'=> ['Sistem hanya menerima file PDF untuk dokumen syirkah'],
                         ]
                     );
-                }else {
-                    # code...
-
-                    if ($request->id !== null) {
-                        # code...
-                        $exist = Syirkah::findOrFail($request->id);
-                        if ($exist) {
-                            # code...
-                            if(File::exists(public_path('syirkah_dc/'.$exist->syirkah_dc)))
-                            {
-                                File::delete(public_path('syirkah_dc/'.$exist->syirkah_dc));
-                            }
-                        }
-                    }
-
-
-                    $extension = $request->file('file')->extension();
-                    $filename    = time().'.'.Str::slug(strtolower(substr($request->file->getClientOriginalName(),0,-3))).'.'.$extension;
-                    $request->file('file')->move('syirkah_dc/',$filename);
-
-                    $data = Syirkah::updateOrCreate(
-                        [
-                            'id' => $request->id,
-                        ],
-                        [
-                            'cabang_id'=> $request->cabang_id,
-                            'ekstensi' => $extension,
-                            'syirkah_dc' => $filename,
-                        ]
-                    );
-
-                    return response()->json([
-                        'status' => 200,
-                        'message' => 'Dokumen Syirkah '.$extension.' berhasil disimpan'
-                    ]);
                 }
+                
             }else {
                 # code...
                 return response()->json(
