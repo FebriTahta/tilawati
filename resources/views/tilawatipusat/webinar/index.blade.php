@@ -978,7 +978,7 @@
                             processing: true,
                             serverSide: true,
                             ajax: {
-                                url:'/diklat-webinar-cabang-data'+cabang,
+                                url:'/diklat-webinar-cabang-data/'+cabang,
                                 data:{dari:dari, sampai:sampai}
                             },
                             columns: [
