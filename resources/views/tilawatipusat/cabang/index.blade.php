@@ -24,7 +24,7 @@
                     <div class="card-body">
 
                         <h4 class="card-title text-uppercase">Struktur Tata Kelola Tilawati
-                            {{ auth()->user()->cabang->status }}</h4>
+                            {{ auth()->user()->cabang->status }} {{ auth()->user()->role }}</h4>
                         <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
                             {{-- <form action="/post-pengurus-cabang" method="POST"> @csrf  --}}
                             <form id="addpenguruscabang" method="POST"> @csrf
