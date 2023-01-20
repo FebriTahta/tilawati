@@ -1020,27 +1020,7 @@
                         // });
                     }
 
-                    // $('.table-diklat-cabang').DataTable({
-                    //     //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
-                    //     destroy: true,
-                    //     processing: true,
-                    //     serverSide: true,
-                    //     ajax: {
-                    //         url:'{{ route("diklat.webinar_cabang_data") }}',
-                    //         data:{dari:dari, sampai:sampai}
-                    //     },
-                    //     columns: [
-                    //         {
-                    //         data:'cabang',
-                    //         name:'cabang.name'
-                    //         },
-                    //         {
-                    //         data:'action',
-                    //         name:'action'
-                    //         },
-                            
-                    //     ]
-                    // });
+                    
 
                     $('.table-diklat-program').DataTable({
                         //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
