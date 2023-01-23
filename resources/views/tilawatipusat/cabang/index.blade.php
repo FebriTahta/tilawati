@@ -165,7 +165,7 @@
         </div>
     </div>
 
-    <div class="row">
+    {{-- <div class="row">
         @if (auth()->user()->cabang->syirkah == null)
         <div class="col-xl-12">
             <div class="card">
@@ -236,7 +236,7 @@
             </div>
         </div>
         @endif
-    </div>
+    </div> --}}
 
     <div class="row">
         <div class="col-xl-4">
