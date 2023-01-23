@@ -23,7 +23,7 @@
                         @else
                             {{ ucwords(auth()->user()->cabang->teritorial) }}
                         @endif --}}
-                        {{ ucwords('Tilawati ' . auth()->user()->cabang->name) }}
+                        {{ ucwords(auth()->user()->cabang->name) }}
                         {{-- {{ ucwords(substr(auth()->user()->cabang->kabupaten->nama,5)) }} --}}
                     @endif
                 </a>
