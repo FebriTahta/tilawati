@@ -400,7 +400,6 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
-@endif
 
     <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" id="modalremovesyirkah"
         aria-hidden="true">
@@ -439,7 +438,6 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
-
     <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" id="modalpreview"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -468,6 +466,7 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
+@endif
 
     <div class="col-sm-6 col-md-3 m-t-30">
         <div class="modal fade bs-example-modal-cabang" tabindex="-1" role="dialog"
