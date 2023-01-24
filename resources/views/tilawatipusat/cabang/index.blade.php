@@ -361,7 +361,7 @@
     </div>
     <!-- end row -->
 
-    <!--modal import cabang-->
+@if (auth()->user()->role !== 'pusat')
     <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" id="modalupload"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -400,6 +400,7 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
+@endif
 
     <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" id="modalremovesyirkah"
         aria-hidden="true">
