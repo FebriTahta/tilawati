@@ -210,7 +210,8 @@
 					{{-- direktur --}}
 					<td class="atas" style="width: 241px; height: 5px;"> 
 						<u>
-						@if ($item->pelatihan->cabang->name == 'Cahaya Amanah' || $item->pelatihan->cabang->name == 'Tilawati Pusat' || $item->pelatihan->cabang->status == "RPQ")
+						@if ($item->pelatihan->cabang->name == 'Cahaya Amanah' || $item->pelatihan->cabang->name == 'Tilawati Pusat' || $item->pelatihan->cabang->status == "RPQ"
+						|| $item->pelatihan->cabang->name == 'Tilawati Lombok')
 						Dr. KH. Umar Jaeni, M.Pd
 						@else
 						{{$item->pelatihan->cabang->kepalacabang}}
