@@ -792,7 +792,7 @@
 									@endphp
 									{{round($rata2)}}
 								@else
-									{{ $rata2 = round(($jumlah+ $item->nominal)/2) }}
+									{{ $rata2 = round((int)($jumlah+ $item->nominal)/2) }}
 								@endif
 									</th>
 							</tr>
