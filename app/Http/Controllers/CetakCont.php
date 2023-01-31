@@ -235,13 +235,15 @@ class CetakCont extends Controller
                     }elseif ($pelatihan->cabang->name == 'Tilawati Citra Anak Sholeh') {
                         # code...
                         $jabatan     = 'Kacab. CAS Surabaya Jawa Timur';
-                    }elseif ($kabupaten == 'Mataram') {
-                        # code...
-                        $jabatan     = 'Kacab. Lombok '.strtolower($pelatihan->cabang->kabupaten->provinsi->nama);
                     }
                     else {
-                        # code...
-                        $jabatan     = 'Kacab. '.ucwords($pelatihan->cabang->name).' '.strtolower($pelatihan->cabang->kabupaten->provinsi->nama);
+                        if ($kabupaten == 'Mataram' || $kabupaten == 'mataram' || $kabupaten == 'MATARAM') {
+                            # code...
+                            $jabatan     = 'Kacab. Lombok '.strtolower($pelatihan->cabang->kabupaten->provinsi->nama);
+                        }else {
+                            # code...
+                            $jabatan     = 'Kacab. '.strtolower($kabupaten).' '.strtolower($pelatihan->cabang->kabupaten->provinsi->nama);
+                        }
                     }
                 }
             }else {
@@ -256,11 +258,14 @@ class CetakCont extends Controller
                     }elseif ($pelatihan->cabang->name == 'Tilawati Citra Anak Sholeh') {
                         # code...
                         $jabatan     = 'Kacab. CAS Surabaya Jawa Timur';
-                    }elseif ($kabupaten == 'Mataram') {
-                        # code...
-                        $jabatan     = 'Kacab. Lombok '.strtolower($pelatihan->cabang->kabupaten->provinsi->nama);
                     }else{
-                        $jabatan     = 'Kacab. '.strtolower($kabupaten).' '.strtolower($pelatihan->cabang->kabupaten->provinsi->nama);
+                        if ($kabupaten == 'Mataram' || $kabupaten == 'mataram' || $kabupaten == 'MATARAM') {
+                            # code...
+                            $jabatan     = 'Kacab. Lombok '.strtolower($pelatihan->cabang->kabupaten->provinsi->nama);
+                        }else {
+                            # code...
+                            $jabatan     = 'Kacab. '.strtolower($kabupaten).' '.strtolower($pelatihan->cabang->kabupaten->provinsi->nama);
+                        }
                     }
                 }
             }
