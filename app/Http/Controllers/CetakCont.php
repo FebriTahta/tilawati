@@ -235,6 +235,9 @@ class CetakCont extends Controller
                     }elseif ($pelatihan->cabang->name == 'Tilawati Citra Anak Sholeh') {
                         # code...
                         $jabatan     = 'Kacab. CAS Surabaya Jawa Timur';
+                    }elseif ($kabupaten == 'Mataram') {
+                        # code...
+                        $jabatan     = 'Kacab. Lombok '.strtolower($pelatihan->cabang->kabupaten->provinsi->nama);
                     }
                     else {
                         # code...
@@ -253,6 +256,9 @@ class CetakCont extends Controller
                     }elseif ($pelatihan->cabang->name == 'Tilawati Citra Anak Sholeh') {
                         # code...
                         $jabatan     = 'Kacab. CAS Surabaya Jawa Timur';
+                    }elseif ($kabupaten == 'Mataram') {
+                        # code...
+                        $jabatan     = 'Kacab. Lombok '.strtolower($pelatihan->cabang->kabupaten->provinsi->nama);
                     }else{
                         $jabatan     = 'Kacab. '.strtolower($kabupaten).' '.strtolower($pelatihan->cabang->kabupaten->provinsi->nama);
                     }
