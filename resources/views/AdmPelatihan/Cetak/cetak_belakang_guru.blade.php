@@ -765,7 +765,7 @@
 										<th>{{ $i++ }}</th>
 										<td class="nilai6" style="text-transform: uppercase">&nbsp; &nbsp;<b> {{ $item->penilaian->name }}</b></th>
 										<th colspan="3" class="nilai5"></th>
-										<th >{{ round($item->nominal) }}</th>
+										<th >{{ round((int)$item->nominal) }}</th>
 									</tr>
 									<?$x++?>
 								@endif
