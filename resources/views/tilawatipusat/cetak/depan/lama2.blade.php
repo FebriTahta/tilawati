@@ -250,7 +250,11 @@
 										@endif
 										
 									@else
-										{{ 'Kacab. '.ucfirst($item->pelatihan->cabang->name).' '.ucfirst($provinsi) }}
+										@if (ucfirst($kab) == 'Mataram')
+											{{ 'Kacab. Lombok '.ucfirst($provinsi)}}
+										@else
+											{{ 'Kacab. '.ucfirst($item->pelatihan->cabang->name).' '.ucfirst($provinsi) }}
+										@endif
 									@endif
 								@endif
 							@else
@@ -269,10 +273,14 @@
 										@endif
 										
 									@else
-										@if (strtoupper($provinsi) == 'KALIMANTAN TIMUR')
-										{{ 'Kacab. '.ucfirst($kab).' Kaltim'}}
+										@if (ucfirst($kab) == 'Mataram')
+											{{ 'Kacab. Lombok '.ucfirst($provinsi)}}
 										@else
-										{{ 'Kacab. '.ucfirst($kab).' '.ucfirst($provinsi)}}
+											@if (strtoupper($provinsi) == 'KALIMANTAN TIMUR')
+											{{ 'Kacab. '.ucfirst($kab).' Kaltim'}}
+											@else
+											{{ 'Kacab. '.ucfirst($kab).' '.ucfirst($provinsi)}}
+											@endif
 										@endif
 									@endif
 								@endif
