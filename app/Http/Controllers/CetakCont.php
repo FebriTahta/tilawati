@@ -270,8 +270,7 @@ class CetakCont extends Controller
                     }
                 }
             }
-            return 'ok';
-  
+            
         //     $kepala     = ucwords($jabatan);
         //     if ($pelatihan->cabang->kepala == null) {
         //         # code...
@@ -283,7 +282,8 @@ class CetakCont extends Controller
         //         $pdf        = PDF::loadview('AdmPelatihan.Cetak.cetak_depan',compact('peserta','direktur','kepala','kabupaten','cabang','pelatihan'))->setPaper($customPaper, 'portrait');
         //         return $pdf->download('ijazah-depan-peserta-_'.$pelatihan->name.'.pdf','I');
         //     }
-        // }
+            return 'ok';
+        }
     }
 
 
