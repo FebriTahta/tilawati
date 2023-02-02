@@ -213,65 +213,64 @@ class CetakCont extends Controller
         $peserta    = Peserta::where('pelatihan_id', $id)->where('bersyahadah','1')->get();
         $customPaper = array(0,0,792,612);
 
-        return $pelatihan->cabang->name.'-'.$jumlah_cabang = $pelatihan->cabang->kabupaten->cabang->count().'.'.'Kacab. '.strtoupper(substr($pelatihan->cabang->kabupaten->provinsi->nama,0,3)).' '.ucfirst(substr($pelatihan->cabang->kabupaten->provinsi->nama,4));
-        // return "ok";
-        // if ($pelatihan->cabang->name == 'Cahaya Amanah' || $pelatihan->cabang->name == 'Tilawati Pusat' || substr($pelatihan->cabang->name,0,3) == 'RPQ') {
-        //     # code...
-        //     $direktur   = "Dr. KH. Umar Jaeni, M.Pd";
-        //     $jabatan    = "Direktur Eksekutif";
-        //     $kepala     = $jabatan;
+        if ($pelatihan->cabang->name == 'Cahaya Amanah' || $pelatihan->cabang->name == 'Tilawati Pusat' || substr($pelatihan->cabang->name,0,3) == 'RPQ') {
+            # code...
+            $direktur   = "Dr. KH. Umar Jaeni, M.Pd";
+            $jabatan    = "Direktur Eksekutif";
+            $kepala     = $jabatan;
             
-        //     $pdf        = PDF::loadview('AdmPelatihan.Cetak.cetak_depan',compact('peserta','direktur','kepala','kabupaten','cabang','pelatihan'))->setPaper($customPaper, 'portrait');
-        //     return $pdf->download('ijazah-depan-peserta-pdf_'.$pelatihan->name.'.pdf','I');
-        // }else{
-        //     $jumlah_cabang = $pelatihan->cabang->kabupaten->cabang->count();
-        //     if ($jumlah_cabang > 1) {
-        //         # code...
-        //         if (substr($pelatihan->cabang->kabupaten->nama,5,3)=='ADM') {
-        //             # code...
-        //             $jabatan     = 'Kacab. '.strtoupper(substr($pelatihan->cabang->kabupaten->provinsi->nama,0,3)).' '.ucfirst(substr($pelatihan->cabang->kabupaten->provinsi->nama,4));
-        //         } else {
-        //             # code...
-        //             if ($pelatihan->cabang->name == 'Tilawati Gresik Al Hikmah') {
-        //                 # code...
-        //                 $jabatan     = 'Kacab. Al Hikmah '.strtolower($kabupaten);
-        //             }elseif ($pelatihan->cabang->name == 'Tilawati Citra Anak Sholeh') {
-        //                 # code...
-        //                 $jabatan     = 'Kacab. CAS Surabaya Jawa Timur';
-        //             }
-        //             else {
-        //                 if ($kabupaten == 'Mataram' || $kabupaten == 'mataram' || $kabupaten == 'MATARAM') {
-        //                     # code...
-        //                     $jabatan     = 'Kacab. Lombok '.strtolower($pelatihan->cabang->kabupaten->provinsi->nama);
-        //                 }else {
-        //                     # code...
-        //                     $jabatan     = 'Kacab. '.strtolower($kabupaten).' '.strtolower($pelatihan->cabang->kabupaten->provinsi->nama);
-        //                 }
-        //             }
-        //         }
-        //     }else {
-        //         # code...
-        //         if (substr($pelatihan->cabang->kabupaten->nama,5,3)=='ADM') {
-        //             # code...
-        //             $jabatan     = 'Kacab. '.strtoupper(substr($pelatihan->cabang->kabupaten->provinsi->nama,0,3)).' '.ucfirst(substr($pelatihan->cabang->kabupaten->provinsi->nama,4));
-        //         }else {
-        //             # code...
-        //             if ($pelatihan->cabang->name == 'Tilawati Gresik Al Hikmah') {
-        //                 $jabatan     = 'Kacab. Al Hikmah '.strtolower($kabupaten);
-        //             }elseif ($pelatihan->cabang->name == 'Tilawati Citra Anak Sholeh') {
-        //                 # code...
-        //                 $jabatan     = 'Kacab. CAS Surabaya Jawa Timur';
-        //             }else{
-        //                 if ($kabupaten == 'Mataram' || $kabupaten == 'mataram' || $kabupaten == 'MATARAM') {
-        //                     # code...
-        //                     $jabatan     = 'Kacab. Lombok '.strtolower($pelatihan->cabang->kabupaten->provinsi->nama);
-        //                 }else {
-        //                     # code...
-        //                     $jabatan     = 'Kacab. '.strtolower($kabupaten).' '.strtolower($pelatihan->cabang->kabupaten->provinsi->nama);
-        //                 }
-        //             }
-        //         }
-        //     }
+            $pdf        = PDF::loadview('AdmPelatihan.Cetak.cetak_depan',compact('peserta','direktur','kepala','kabupaten','cabang','pelatihan'))->setPaper($customPaper, 'portrait');
+            return $pdf->download('ijazah-depan-peserta-pdf_'.$pelatihan->name.'.pdf','I');
+        }else{
+            $jumlah_cabang = $pelatihan->cabang->kabupaten->cabang->count();
+            if ($jumlah_cabang > 1) {
+                # code...
+                if (substr($pelatihan->cabang->kabupaten->nama,5,3)=='ADM') {
+                    # code...
+                    $jabatan     = 'Kacab. '.strtoupper(substr($pelatihan->cabang->kabupaten->provinsi->nama,0,3)).' '.ucfirst(substr($pelatihan->cabang->kabupaten->provinsi->nama,4));
+                } else {
+                    # code...
+                    if ($pelatihan->cabang->name == 'Tilawati Gresik Al Hikmah') {
+                        # code...
+                        $jabatan     = 'Kacab. Al Hikmah '.strtolower($kabupaten);
+                    }elseif ($pelatihan->cabang->name == 'Tilawati Citra Anak Sholeh') {
+                        # code...
+                        $jabatan     = 'Kacab. CAS Surabaya Jawa Timur';
+                    }
+                    else {
+                        if ($kabupaten == 'Mataram' || $kabupaten == 'mataram' || $kabupaten == 'MATARAM') {
+                            # code...
+                            $jabatan     = 'Kacab. Lombok '.strtolower($pelatihan->cabang->kabupaten->provinsi->nama);
+                        }else {
+                            # code...
+                            $jabatan     = 'Kacab. '.strtolower($kabupaten).' '.strtolower($pelatihan->cabang->kabupaten->provinsi->nama);
+                        }
+                    }
+                }
+            }else {
+                # code...
+                if (substr($pelatihan->cabang->kabupaten->nama,5,3)=='ADM') {
+                    # code...
+                    $jabatan     = 'Kacab. '.strtoupper(substr($pelatihan->cabang->kabupaten->provinsi->nama,0,3)).' '.ucfirst(substr($pelatihan->cabang->kabupaten->provinsi->nama,4));
+                }else {
+                    # code...
+                    if ($pelatihan->cabang->name == 'Tilawati Gresik Al Hikmah') {
+                        $jabatan     = 'Kacab. Al Hikmah '.strtolower($kabupaten);
+                    }elseif ($pelatihan->cabang->name == 'Tilawati Citra Anak Sholeh') {
+                        # code...
+                        $jabatan     = 'Kacab. CAS Surabaya Jawa Timur';
+                    }else{
+                        if ($kabupaten == 'Mataram' || $kabupaten == 'mataram' || $kabupaten == 'MATARAM') {
+                            # code...
+                            $jabatan     = 'Kacab. Lombok '.strtolower($pelatihan->cabang->kabupaten->provinsi->nama);
+                        }else {
+                            # code...
+                            $jabatan     = 'Kacab. '.strtolower($kabupaten).' '.strtolower($pelatihan->cabang->kabupaten->provinsi->nama);
+                        }
+                    }
+                }
+            }
+            return 'ok';
   
         //     $kepala     = ucwords($jabatan);
         //     if ($pelatihan->cabang->kepala == null) {
