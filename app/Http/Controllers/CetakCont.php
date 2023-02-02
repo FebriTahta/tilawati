@@ -213,7 +213,7 @@ class CetakCont extends Controller
         $peserta    = Peserta::where('pelatihan_id', $id)->where('bersyahadah','1')->get();
         $customPaper = array(0,0,792,612);
 
-        return "ok";
+        // return "ok";
         if ($pelatihan->cabang->name == 'Cahaya Amanah' || $pelatihan->cabang->name == 'Tilawati Pusat' || substr($pelatihan->cabang->name,0,3) == 'RPQ') {
             # code...
             $direktur   = "Dr. KH. Umar Jaeni, M.Pd";
@@ -228,7 +228,8 @@ class CetakCont extends Controller
                 # code...
                 if (substr($pelatihan->cabang->kabupaten->nama,5,3)=='ADM') {
                     # code...
-                    $jabatan     = 'Kacab. '.strtoupper(substr($pelatihan->cabang->kabupaten->provinsi->nama,0,3)).' '.ucfirst(substr($pelatihan->cabang->kabupaten->provinsi->nama,4));
+                    // $jabatan     = 'Kacab. '.strtoupper(substr($pelatihan->cabang->kabupaten->provinsi->nama,0,3)).' '.ucfirst(substr($pelatihan->cabang->kabupaten->provinsi->nama,4));
+                    $jabatan = 'ok';
                 } else {
                     # code...
                     if ($pelatihan->cabang->name == 'Tilawati Gresik Al Hikmah') {
@@ -252,7 +253,8 @@ class CetakCont extends Controller
                 # code...
                 if (substr($pelatihan->cabang->kabupaten->nama,5,3)=='ADM') {
                     # code...
-                    $jabatan     = 'Kacab. '.strtoupper(substr($pelatihan->cabang->kabupaten->provinsi->nama,0,3)).' '.ucfirst(substr($pelatihan->cabang->kabupaten->provinsi->nama,4));
+                    // $jabatan     = 'Kacab. '.strtoupper(substr($pelatihan->cabang->kabupaten->provinsi->nama,0,3)).' '.ucfirst(substr($pelatihan->cabang->kabupaten->provinsi->nama,4));
+                    $jabatan = 'ok';
                 }else {
                     # code...
                     if ($pelatihan->cabang->name == 'Tilawati Gresik Al Hikmah') {
