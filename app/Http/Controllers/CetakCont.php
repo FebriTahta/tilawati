@@ -239,14 +239,13 @@ class CetakCont extends Controller
                         $jabatan     = 'Kacab. CAS Surabaya Jawa Timur';
                     }
                     else {
-                        // if ($kabupaten == 'Mataram' || $kabupaten == 'mataram' || $kabupaten == 'MATARAM') {
-                        //     # code...
-                        //     $jabatan     = 'Kacab. Lombok '.strtolower($pelatihan->cabang->kabupaten->provinsi->nama);
-                        // }else {
-                        //     # code...
-                        //     $jabatan     = 'Kacab. '.strtolower($kabupaten).' '.strtolower($pelatihan->cabang->kabupaten->provinsi->nama);
-                        // }
-                        $jabatan     = 'Kacab. '.strtolower($kabupaten).' '.strtolower($pelatihan->cabang->kabupaten->provinsi->nama);
+                        if ($kabupaten == 'Mataram' || $kabupaten == 'mataram' || $kabupaten == 'MATARAM') {
+                            # code...
+                            $jabatan     = 'Kacab. Lombok '.strtolower($pelatihan->cabang->kabupaten->provinsi->nama);
+                        }else {
+                            # code...
+                            $jabatan     = 'Kacab. '.strtolower($kabupaten).' '.strtolower($pelatihan->cabang->kabupaten->provinsi->nama);
+                        }
                     }
                 }
             }else {
@@ -262,14 +261,13 @@ class CetakCont extends Controller
                         # code...
                         $jabatan     = 'Kacab. CAS Surabaya Jawa Timur';
                     }else{
-                        // if ($kabupaten == 'Mataram' || $kabupaten == 'mataram' || $kabupaten == 'MATARAM') {
-                        //     # code...
-                        //     $jabatan     = 'Kacab. Lombok '.strtolower($pelatihan->cabang->kabupaten->provinsi->nama);
-                        // }else {
-                        //     # code...
-                        //     $jabatan     = 'Kacab. '.strtolower($kabupaten).' '.strtolower($pelatihan->cabang->kabupaten->provinsi->nama);
-                        // }
-                        $jabatan     = 'Kacab. '.strtolower($kabupaten).' '.strtolower($pelatihan->cabang->kabupaten->provinsi->nama);
+                        if ($kabupaten == 'Mataram' || $kabupaten == 'mataram' || $kabupaten == 'MATARAM') {
+                            # code...
+                            $jabatan     = 'Kacab. Lombok '.strtolower($pelatihan->cabang->kabupaten->provinsi->nama);
+                        }else {
+                            # code...
+                            $jabatan     = 'Kacab. '.strtolower($kabupaten).' '.strtolower($pelatihan->cabang->kabupaten->provinsi->nama);
+                        }
                     }
                 }
             }
@@ -283,7 +281,8 @@ class CetakCont extends Controller
                 // $direktur   = $pelatihan->cabang->kepala->name;
                 $direktur   = $pelatihan->cabang->kepalacabang;
                 $pdf        = PDF::loadview('AdmPelatihan.Cetak.cetak_depan',compact('peserta','direktur','kepala','kabupaten','cabang','pelatihan'))->setPaper($customPaper, 'portrait');
-                return $pdf->download('ijazah-depan-peserta-_'.$pelatihan->name.'.pdf','I');
+                // return $pdf->download('ijazah-depan-peserta-_'.$pelatihan->name.'.pdf','I');
+                return 'ok';
             }
         }
     }
