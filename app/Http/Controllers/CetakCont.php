@@ -228,8 +228,7 @@ class CetakCont extends Controller
                 # code...
                 if (substr($pelatihan->cabang->kabupaten->nama,5,3)=='ADM') {
                     # code...
-                    // $jabatan     = 'Kacab. '.strtoupper(substr($pelatihan->cabang->kabupaten->provinsi->nama,0,3)).' '.ucfirst(substr($pelatihan->cabang->kabupaten->provinsi->nama,4));
-                    $jabatan = 'ok';
+                    $jabatan     = 'Kacab. '.strtoupper(substr($pelatihan->cabang->kabupaten->provinsi->nama,0,3)).' '.ucfirst(substr($pelatihan->cabang->kabupaten->provinsi->nama,4));
                 } else {
                     # code...
                     if ($pelatihan->cabang->name == 'Tilawati Gresik Al Hikmah') {
@@ -240,21 +239,21 @@ class CetakCont extends Controller
                         $jabatan     = 'Kacab. CAS Surabaya Jawa Timur';
                     }
                     else {
-                        if ($kabupaten == 'Mataram' || $kabupaten == 'mataram' || $kabupaten == 'MATARAM') {
-                            # code...
-                            $jabatan     = 'Kacab. Lombok '.strtolower($pelatihan->cabang->kabupaten->provinsi->nama);
-                        }else {
-                            # code...
-                            $jabatan     = 'Kacab. '.strtolower($kabupaten).' '.strtolower($pelatihan->cabang->kabupaten->provinsi->nama);
-                        }
+                        // if ($kabupaten == 'Mataram' || $kabupaten == 'mataram' || $kabupaten == 'MATARAM') {
+                        //     # code...
+                        //     $jabatan     = 'Kacab. Lombok '.strtolower($pelatihan->cabang->kabupaten->provinsi->nama);
+                        // }else {
+                        //     # code...
+                        //     $jabatan     = 'Kacab. '.strtolower($kabupaten).' '.strtolower($pelatihan->cabang->kabupaten->provinsi->nama);
+                        // }
+                        $jabatan     = 'Kacab. '.strtolower($kabupaten).' '.strtolower($pelatihan->cabang->kabupaten->provinsi->nama);
                     }
                 }
             }else {
                 # code...
                 if (substr($pelatihan->cabang->kabupaten->nama,5,3)=='ADM') {
                     # code...
-                    // $jabatan     = 'Kacab. '.strtoupper(substr($pelatihan->cabang->kabupaten->provinsi->nama,0,3)).' '.ucfirst(substr($pelatihan->cabang->kabupaten->provinsi->nama,4));
-                    $jabatan = 'ok';
+                    $jabatan     = 'Kacab. '.strtoupper(substr($pelatihan->cabang->kabupaten->provinsi->nama,0,3)).' '.ucfirst(substr($pelatihan->cabang->kabupaten->provinsi->nama,4));
                 }else {
                     # code...
                     if ($pelatihan->cabang->name == 'Tilawati Gresik Al Hikmah') {
@@ -263,13 +262,14 @@ class CetakCont extends Controller
                         # code...
                         $jabatan     = 'Kacab. CAS Surabaya Jawa Timur';
                     }else{
-                        if ($kabupaten == 'Mataram' || $kabupaten == 'mataram' || $kabupaten == 'MATARAM') {
-                            # code...
-                            $jabatan     = 'Kacab. Lombok '.strtolower($pelatihan->cabang->kabupaten->provinsi->nama);
-                        }else {
-                            # code...
-                            $jabatan     = 'Kacab. '.strtolower($kabupaten).' '.strtolower($pelatihan->cabang->kabupaten->provinsi->nama);
-                        }
+                        // if ($kabupaten == 'Mataram' || $kabupaten == 'mataram' || $kabupaten == 'MATARAM') {
+                        //     # code...
+                        //     $jabatan     = 'Kacab. Lombok '.strtolower($pelatihan->cabang->kabupaten->provinsi->nama);
+                        // }else {
+                        //     # code...
+                        //     $jabatan     = 'Kacab. '.strtolower($kabupaten).' '.strtolower($pelatihan->cabang->kabupaten->provinsi->nama);
+                        // }
+                        $jabatan     = 'Kacab. '.strtolower($kabupaten).' '.strtolower($pelatihan->cabang->kabupaten->provinsi->nama);
                     }
                 }
             }
