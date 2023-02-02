@@ -213,7 +213,7 @@ class CetakCont extends Controller
         $peserta    = Peserta::where('pelatihan_id', $id)->where('bersyahadah','1')->get();
         $customPaper = array(0,0,792,612);
 
-        if ($pelatihan->cabang->name == 'Cahaya Amanah' || $pelatihan->cabang->name == 'Tilawati Pusat' || substr($pelatihan->cabang->name,0,3) == 'RPQ') {
+        if ($pelatihan->cabang->name == 'Cahaya Amanah' || $pelatihan->cabang->name == 'Tilawati Pusat' || $pelatihan->cabang->status == 'RPQ') {
             # code...
             $direktur   = "Dr. KH. Umar Jaeni, M.Pd";
             $jabatan    = "Direktur Eksekutif";
