@@ -154,7 +154,7 @@ $date = $item->tgllahir; ?>
                                 @if (substr($item->tmptlahir, 0, 4) == 'KOTA')
                                     {{substr($item->tmptlahir, 5)}}
                                 @elseif(substr($item->tmptlahir, 0, 4) == 'ADM.')
-                                    {{substr($item->tmptlahir, 10)}}
+                                    {{substr($item->tmptlahir, 5)}}
                                 @elseif(substr($item->tmptlahir, 0, 4) == 'KAB.')
                                     {{substr($item->tmptlahir, 5)}}
                                 @else
@@ -169,7 +169,7 @@ $date = $item->tgllahir; ?>
                                 @if (substr($item->tmptlahir2, 0, 4) == 'KOTA')
                                 {{substr($item->tmptlahir2, 0)}}
                                 @elseif(substr($item->tmptlahir2, 0, 4) == 'ADM.')
-                                    {{substr($item->tmptlahir2, 10)}}
+                                    {{substr($item->tmptlahir2, 5)}}
                                 @elseif(substr($item->tmptlahir2, 0, 4) == 'KAB.')
                                     {{substr($item->tmptlahir2, 5)}}
                                 @else
