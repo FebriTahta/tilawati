@@ -48,10 +48,10 @@
                         <td class="atas" style="width: 11px; height: 10px;">:</td>
                         {{-- Output nama dengan gelar --}}
                         <td class="atas" style="width: 750px; height: 10px;">
-                            {{-- {{ $item->name }} --}}
-                            @if ($item->gelar !== null)
+                            {{ $item->name }}
+                            {{-- @if ($item->gelar !== null)
                                 {{ ', ' . $item->gelar }}
-                            @endif
+                            @endif --}}
                         </td>
                         <td class="atas" style="width: 52px; height: 10px; ">&nbsp;</td>
                     </tr>
