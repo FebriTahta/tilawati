@@ -212,6 +212,8 @@ class CetakCont extends Controller
         $kabupaten  = substr($cabang, 5);
         $peserta    = Peserta::where('pelatihan_id', $id)->where('bersyahadah','1')->get();
         $customPaper = array(0,0,792,612);
+
+        return "ok";
         if ($pelatihan->cabang->name == 'Cahaya Amanah' || $pelatihan->cabang->name == 'Tilawati Pusat' || substr($pelatihan->cabang->name,0,3) == 'RPQ') {
             # code...
             $direktur   = "Dr. KH. Umar Jaeni, M.Pd";
