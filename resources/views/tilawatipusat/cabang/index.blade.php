@@ -432,7 +432,7 @@
                                     </div><!-- container fluid -->
                                 </div>
                             </form>
-                        </div>
+                        </div> 
                     </div> <!-- end col -->
                 </div>
             </div><!-- /.modal-content -->
@@ -1065,8 +1065,8 @@
             var button = $(event.relatedTarget)
             var syirkah_dc = button.data('syirkah_dc')
             var modal = $(this)
-            alert(syirkah_dc)
-            document.getElementById("frame_syirkah").src = syirkah_dc;
+            // alert(syirkah_dc)
+            // document.getElementById("frame_syirkah").src = syirkah_dc;
         })
 
         $('#modallocation').on('show.bs.modal', function(event) {
