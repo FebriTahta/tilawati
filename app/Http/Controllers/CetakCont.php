@@ -271,18 +271,19 @@ class CetakCont extends Controller
                 }
             }
             
-        //     $kepala     = ucwords($jabatan);
-        //     if ($pelatihan->cabang->kepala == null) {
-        //         # code...
-        //         return Redirect::back()->withFail('Tidak ada Kepala Cabang yang terdaftar pada Cabang - '.$pelatihan->cabang->name.'');
-        //     } else {
-        //         # code...
-        //         // $direktur   = $pelatihan->cabang->kepala->name;
-        //         $direktur   = $pelatihan->cabang->kepalacabang;
-        //         $pdf        = PDF::loadview('AdmPelatihan.Cetak.cetak_depan',compact('peserta','direktur','kepala','kabupaten','cabang','pelatihan'))->setPaper($customPaper, 'portrait');
-        //         return $pdf->download('ijazah-depan-peserta-_'.$pelatihan->name.'.pdf','I');
-        //     }
-            return 'ok';
+            $kepala     = ucwords($jabatan);
+            if ($pelatihan->cabang->kepala == null) {
+                # code...
+                // return Redirect::back()->withFail('Tidak ada Kepala Cabang yang terdaftar pada Cabang - '.$pelatihan->cabang->name.'');
+                return 'fail';
+            } else {
+                # code...
+                // $direktur   = $pelatihan->cabang->kepala->name;
+                // $direktur   = $pelatihan->cabang->kepalacabang;
+                // $pdf        = PDF::loadview('AdmPelatihan.Cetak.cetak_depan',compact('peserta','direktur','kepala','kabupaten','cabang','pelatihan'))->setPaper($customPaper, 'portrait');
+                // return $pdf->download('ijazah-depan-peserta-_'.$pelatihan->name.'.pdf','I');
+                return 'ok';
+            }
         }
     }
 
