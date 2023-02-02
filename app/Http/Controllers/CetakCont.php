@@ -272,10 +272,9 @@ class CetakCont extends Controller
             }
             
             $kepala     = ucwords($jabatan);
-            if ($pelatihan->cabang->kepala == null) {
+            if ($pelatihan->cabang->kepalacabang == null) {
                 # code...
-                // return Redirect::back()->withFail('Tidak ada Kepala Cabang yang terdaftar pada Cabang - '.$pelatihan->cabang->name.'');
-                return 'fail';
+                // return Redirect::back()->with('error','Tidak ada Kepala Cabang yang terdaftar pada Cabang - '.$pelatihan->cabang->name.'');
             } else {
                 # code...
                 // $direktur   = $pelatihan->cabang->kepala->name;
