@@ -545,7 +545,7 @@
                                                         <option value="{{ $item->id }}">{{ $item->name }}</option>
                                                     @endforeach
                                                 </select> --}}
-                                                <input type="text" class="form-control" name="jenjang" id="jenjang_id">
+                                                <input type="text" class="form-control" name="jenjang" id="jenjang" placeholder="jenjang pendidikan">
                                             </div>
                                             <div class="form-group col-xl-6">
                                                 {{-- <select name="pengelola" class="form-control" id="pengelola" required>
@@ -563,7 +563,7 @@
                                             </div>
                                             <div class="form-group col-xl-3">
                                                 <label for=""><i class="text-danger"> </i>Tahun Masuk</label>
-                                                <input type="date" class="form-control" name="tahunmasuk">
+                                                <input type="number" class="form-control" id="tahunmasuk" name="tahunmasuk">
                                             </div>
                                             <div class="form-group col-xl-3">
                                                 <label for=""><i class="text-danger">* </i>Jumlah Guru</label>
@@ -640,7 +640,8 @@
             var jenjang_id = button.data('jenjang')
             var email = button.data('email')
             var website = button.data('website')
-            var pos = button.data('pos')            
+            var pos = button.data('pos')
+            var tahunmasuk = button.data('tahunmasuk')            
             console.log(pos);
             var modal = $(this)
             modal.find('.modal-body #id').val(id);
@@ -653,10 +654,11 @@
             modal.find('.modal-body #alamat').val(alamat);
             modal.find('.modal-body #pengelola').val(pengelola);
             modal.find('.modal-body #stts').val(status);
-            modal.find('.modal-body #jenjang_id').val(jenjang_id);
+            modal.find('.modal-body #jenjang').val(jenjang_id);
             modal.find('.modal-body #email').val(email);
             modal.find('.modal-body #website').val(website);
             modal.find('.modal-body #pos').val(pos);
+            modal.find('.modal-body #tahunmasuk').val(tahunmasuk);
             
         })
         $('#hapuslembaga').submit(function(e) {

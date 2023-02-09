@@ -15,7 +15,7 @@
     <table>
         <thead style="font-weight: bold; text-transform: uppercase">
             <tr>
-                <th rowspan="3" colspan="10">DATA LEMBAGA CABANG <br> <small>Per - 2022</small></th>
+                <th rowspan="3" colspan="12">DATA LEMBAGA CABANG <br> <small>Per - 2022</small></th>
             </tr>
         </thead>
     </table>
@@ -40,6 +40,7 @@
                 <th rowspan="2">ALAMAT</th>
                 <th rowspan="2">PENGELOLA</th>
                 <th rowspan="2">KEANGGOTAAN</th>
+                <th rowspan="2">TAHUN MASUK</th>
             </tr>
         </thead >
         <tbody>
@@ -56,6 +57,7 @@
                 <td>Alamat Lengkap Lembaga</td>
                 <td>Yayasan / Masjid / Pribadi</td>
                 <td>Aktif / Tidak</td>
+                <td>2023 (hanya angka)</td>
             </tr>
         </tbody>
     </table>

@@ -82,6 +82,7 @@ class LembagaImport implements ToCollection, WithChunkReading
                         $lembaga->alamat = $row[8];
                         $lembaga->pengelola = $row[9];
                         $lembaga->status = $row[10];
+                        $lembaga->tahunmasuk = $row[11];
                         $lembaga->created_at = new \DateTime;
                         $lembaga->save();
                     }else {
@@ -125,6 +126,7 @@ class LembagaImport implements ToCollection, WithChunkReading
                                 'alamat' => $row[8],
                                 'pengelola' => $row[9],
                                 'status' => $row[10],
+                                'tahunmasuk' => $row[11]
                             ]
                         );
     
