@@ -12,6 +12,7 @@ use App\Exports\TemplateKpaCabangExport;
 use App\Exports\CabangDataExport;
 use App\Exports\ApicabangtilawatiExport;
 use App\Exports\ApicabangnfExport;
+use App\Exports\TemplateSupervisorExport;
 use App\Exports\ExportDataKPA;
 use App\Exports\LembagaDataExport;
 use App\Exports\ExportDataTrainer;
@@ -149,7 +150,12 @@ class ExportCont extends Controller
 
     public function export_template_munaqisy_cabang()
     {
-        return Excel::download(new TemplateMunaqisyExport, 'template-import-munaqisy-&-supervisor-cabang.xlsx');
+        return Excel::download(new TemplateMunaqisyExport, 'template-import-munaqisy-cabang.xlsx');
+    }
+
+    public function export_template_supervisor_cabang()
+    {
+        return Excel::download(new TemplateSupervisorExport, 'template-import-supervisor-cabang.xlsx');
     }
 
     public function export_template_lembaga_cabang_data($cabang_id)
@@ -210,5 +216,10 @@ class ExportCont extends Controller
             # code...
             return Excel::download(new ExportLaporanPerkembanganPeriode($dari,$sampai),'Laporan_Data_Perkembangan_Periode_'.$dari.'_sampai_'.$sampai.'.xlsx');
         }
+    }
+
+    public function export_template_webinar(Request $request)
+    {
+        
     }
 }

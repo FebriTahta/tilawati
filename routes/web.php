@@ -456,8 +456,10 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     Route::get('/export-template-lembaga/{cabang_id}',[ExportCont::class,'export_template_lembaga_cabang_data'])->name('export.template.lembaga.cabang.data');
     Route::get('/export-download-data-cabang',[ExportCont::class,'download_data_cabang']);
     Route::get('/export-template-munaqisy',[ExportCont::class,'export_template_munaqisy_cabang']);
+    Route::get('/export-template-supervisor',[ExportCont::class,'export_template_supervisor_cabang']);
     Route::get('/export-template-munaqisy-data/{cabang_id}',[ExportCont::class,'export_template_munaqisy_cabang_data']);
     Route::get('/export-template-supervisor-data/{cabang_id}',[ExportCont::class,'export_template_supervisor_cabang_data']);
+    Route::get('/export-template-webinar',[ExportCont::class,'export_template_webinar']);
 
     Route::get('/kode-negara',[KodeAdminCont::class,'page_negara'])->name('negara');
     Route::get('/data-kode-negara',[KodeAdminCont::class,'data_negara'])->name('data_negara');
@@ -519,6 +521,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     Route::get('/hapus/data/munaqisy/{cabang_id}',[CabangCont::class,'remove_munaqisy']);
     Route::post('/store-munaqisy-cabang',[CabangCont::class,'store_munaqisy_cabang']);
     Route::post('/remove-munaqisy-cabang',[CabangCont::class,'remove_munaqisy_cabang']);
+    Route::post('/delete-seluruh-munaqisy-cabang',[CabangCont::class,'delete_munaqisy_cabang_all']);
     // Route::get('/data-munaqisy',[SubController::class,'hapus_data_munaqisy'])->name();
 
     
@@ -532,11 +535,15 @@ Route::group(['middleware' => ['auth', 'CheckRole:pusat,cabang,lembaga,bendahara
     Route::post('/delete-data-trainer/cabang',[CabangCont::class,'delete_trainer_cabang'])->name('delete.trainer.cabang');
     Route::post('/update-data-trainer',[CabangCont::class,'update_data_trainer'])->name('update.data.trainer');
     Route::post('/add-data-trainer',[CabangCont::class,'add_data_trainer'])->name('add.data.trainer');
+    Route::post('/delete-seluruh-trainer-cabang',[CabangCont::class,'delete_trainer_cabang_all']);
+
     // NEW DATA KPA CABANG RAKERNAS
     Route::get('/data-kpa/cabang',[CabangCont::class,'data_kpa'])->name('data.kpa.cabang');
     Route::get('/show-data-kpa/{cabang_id}',[CabangCont::class,'show_data_kpa'])->name('show.data.kpa.cabang');
     Route::post('/store-data-kpa/cabang',[CabangCont::class,'store_kpa_cabang'])->name('store.kpa.cabang');
     Route::post('/delete-data-kpa/cabang',[CabangCont::class,'delete_kpa_cabang'])->name('delete.kpa.cabang');
+    Route::post('/delete-seluruh-kpa-cabang',[CabangCont::class,'delete_kpa_cabang_all']);
+
     // KEPALA CABANG
     Route::post('/update-cabang',[CabangCont::class,'update_cabang'])->name('update.cabang');
     Route::get('/generate_kepala',[CabangCont::class,'generate_kepala']);

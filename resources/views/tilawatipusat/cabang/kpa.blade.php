@@ -41,6 +41,9 @@
                     <a href="/export-template-kpa-data/{{ $cabang->id }}"
                         class="btn btn-sm btn-outline-warning mb-2 mr-1 text-uppercase" style="font-size: 12px "><i
                             class="mdi mdi-download"></i> Unduh Data KPA</a>
+                    <a href="#" data-toggle="modal" data-target="#modal-hapus-seluruh-kpa" data-id="{{$cabang->id}}"
+                        class="btn btn-sm btn-outline-danger mb-2 mr-1 text-uppercase" style="font-size: 12px "><i
+                            class="fa fa-trash"></i> Hapus Seluruh KPA Cabang</a>
 
                     <blockquote class="blockquote font-size-16 mb-0 mt-2 table-responsive">
                         <table id="tabel-trainer" class="table table-cabang table-bordered dt-responsive nowrap"
@@ -177,13 +180,50 @@
                                 <div class="container-fluid">
                                     <form id="hapustrainer" method="POST" enctype="multipart/form-data">@csrf
                                         <div class="form-group text-center">
-                                            <h5>Anda yakin akan menghapus Trainer tersebut ?</h5>
+                                            <h5>Anda yakin akan menghapus KPA tersebut ?</h5>
                                             <input type="hidden" class="form-control text-capitalize" id="id" name="id"
                                                 required>
                                         </div>
                                         <div class="row" style="text-align: center">
                                             <div class="form-group col-6 col-xl-6">
                                                 <input type="submit" name="hapus" id="btnhapus" class="btn btn-danger"
+                                                    value="Ya, Hapus!" />
+                                            </div>
+                                            <div class="form-group col-6 col-xl-6">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                                    No, Cancel!
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div><!-- container fluid -->
+                            </div>
+                        </div>
+                    </div> <!-- end col -->
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+
+    <div class="modal fade" id="modal-hapus-seluruh-kpa" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-md">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="col-xl-12">
+                        <div class="card m-b-30">
+                            <div class="card-body">
+                                <div class="container-fluid">
+                                    <form id="hapusallkpa" method="POST" enctype="multipart/form-data">@csrf
+                                        <div class="form-group text-center">
+                                            <h5>Anda yakin akan menghapus seluruh data KPA ?</h5>
+                                            <input type="hidden" class="form-control text-capitalize" id="id" name="cabang_id"
+                                                required>
+                                        </div>
+                                        <div class="row" style="text-align: center">
+                                            <div class="form-group col-6 col-xl-6">
+                                                <input type="submit" name="hapus" id="btnhapusallkpa" class="btn btn-danger"
                                                     value="Ya, Hapus!" />
                                             </div>
                                             <div class="form-group col-6 col-xl-6">
@@ -299,6 +339,52 @@
             });
         });
 
+        $('#hapusallkpa').submit(function(e) {
+            e.preventDefault();
+            var formData = new FormData(this);
+            $.ajax({
+                type: 'POST',
+                url: "/delete-seluruh-kpa-cabang",
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                beforeSend: function() {
+                    $('#btnhapusallkpa').attr('disabled', 'disabled');
+                    $('#btnhapusallkpa').val('Proses Menghapus Data');
+                },
+                success: function(data) {
+                    if (data.status == 200) {
+                        //sweetalert and redirect
+                        $("#hapusallkpa")[0].reset();
+                        toastr.success(data.message);
+                        $('#modal-hapus-seluruh-kpa').modal('hide');
+                        $('#btnhapusallkpa').val('Hapus');
+                        $('#btnhapusallkpa').attr('disabled', false);
+                        var oTable = $('#tabel-trainer').dataTable();
+                        oTable.fnDraw(false);
+                        // swal({
+                        //     title: "Success!",
+                        //     text: "Trainer Baru Berhasil Ditambahkan!",
+                        //     type: "success"
+                        // })
+                    }else{
+                        toastr.error(data.message);
+                        $('#btnhapusallkpa').attr('disabled', false);
+                        $('#btnhapusallkpa').val('Hapus!');
+                    }
+                    // if (data.error) {
+                    //     $('#message').html('<div class="alert alert-danger">' + data.error + '</div>');
+                    //     $('#btnhapusallkpa').attr('disabled', false);
+                    //     $('#btnhapusallkpa').val('Hapus!');
+                    // }
+                },
+                error: function(data) {
+                    console.log(data);
+                }
+            });
+        });
+
         $('#hapustrainer').submit(function(e) {
             e.preventDefault();
             var formData = new FormData(this);
@@ -336,6 +422,12 @@
         });
 
         $('#modal_hapus').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget)
+            var id = button.data('id')
+            var modal = $(this)
+            modal.find('.modal-body #id').val(id);
+        })
+        $('#modal-hapus-seluruh-kpa').on('show.bs.modal', function(event) {
             var button = $(event.relatedTarget)
             var id = button.data('id')
             var modal = $(this)

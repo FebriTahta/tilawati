@@ -1509,4 +1509,61 @@ class CabangCont extends Controller
             }
         }
     }
+
+    public function delete_kpa_cabang_all(Request $request)
+    {
+        $kpa = Kpa::where('cabang_id', $request->cabang_id)->first();
+        if ($kpa !== null) {
+            # code...
+            Kpa::where('cabang_id', $request->cabang_id)->delete();
+            return response()->json([
+                'status'=> 200,
+                'message'=> 'SELURUH DATA KPA ANDA BERHASIL DIHAPUS'
+            ]);
+        }else {
+            # code...
+            return response()->json([
+                'status'=> 400,
+                'message'=> 'DATA KPA ANDA KOSONG / TIDAK DITEMUKAN'
+            ]);
+        }
+    }
+
+    public function delete_trainer_cabang_all(Request $request)
+    {
+        $kpa = Trainer::where('cabang_id', $request->cabang_id)->first();
+        if ($kpa !== null) {
+            # code...
+            Trainer::where('cabang_id', $request->cabang_id)->delete();
+            return response()->json([
+                'status'=> 200,
+                'message'=> 'SELURUH DATA TRAINER ANDA BERHASIL DIHAPUS'
+            ]);
+        }else {
+            # code...
+            return response()->json([
+                'status'=> 400,
+                'message'=> 'DATA TRAINER ANDA KOSONG / TIDAK DITEMUKAN'
+            ]);
+        }
+    }
+
+    public function delete_munaqisy_cabang_all(Request $request)
+    {
+        $kpa = Munaqisy::where('cabang_id', $request->cabang_id)->first();
+        if ($kpa !== null) {
+            # code...
+            Munaqisy::where('cabang_id', $request->cabang_id)->delete();
+            return response()->json([
+                'status'=> 200,
+                'message'=> 'SELURUH DATA TRAINER ANDA BERHASIL DIHAPUS'
+            ]);
+        }else {
+            # code...
+            return response()->json([
+                'status'=> 400,
+                'message'=> 'DATA TRAINER ANDA KOSONG / TIDAK DITEMUKAN'
+            ]);
+        }
+    }
 }

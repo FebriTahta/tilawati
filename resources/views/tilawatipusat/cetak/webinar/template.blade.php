@@ -15,7 +15,7 @@
     <table>
         <thead style="font-weight: bold; text-transform: uppercase">
             <tr>
-                <th rowspan="3" colspan="8">DATA SUPERVISOR CABANG <br> <small>Per - 2022</small></th>
+                <th rowspan="3" colspan="8">TEMPLATE <br> <small>Per - {{date('Y')}}</small></th>
             </tr>
         </thead>
     </table>
@@ -30,10 +30,13 @@
         <thead style="font-weight: bold; border: black">
             <tr style="border: black; text-transform: uppercase">
                 <th rowspan="2">NO</th>
-                <th rowspan="2">NAMA SUPERVISOR</th>
-                <th rowspan="2">NOMOR TELP / WA AKTIF</th>
+                <th rowspan="2">NAMA</th>
                 <th rowspan="2">ALAMAT</th>
-                <th rowspan="2">SUPERVISOR</th>
+                <th rowspan="2">ASAL KOTA</th>
+                <th rowspan="2">TEMPAT LAHIR</th>
+                <th rowspan="2">TANGGAL LAHIR</th>
+                <th rowspan="2">TELEPHONE</th>
+                <th rowspan="2">ASAL LEMBAGA (boleh kosong)</th>
             </tr>
         </thead >
         <tbody>
@@ -41,9 +44,11 @@
             <tr>
                 <td>1</td>
                 <td>Nama Lengkap + Gelar</td>
+                <td>ALAMAT LENGKAP</td>
+                <td>SURABAYA (tidak disingkat)</td>
+                <td>MALANG (tidak disingkat)</td>
                 <td>UBAH COLUMN "C" INI KE FORMAT TEXT AGAR FORMAT NOMOR TELP SESUAI</td>
-                <td>Alamat Lengkap</td>
-                <td>OK</td>
+                <td>BAITUR RAHMAN (boleh kosong)</td>
             </tr>
         </tbody>
     </table>

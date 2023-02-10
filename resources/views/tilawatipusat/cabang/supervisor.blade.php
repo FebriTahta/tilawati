@@ -31,7 +31,7 @@
                     data-toggle="modal" data-target="#modal-add"><i class="mdi mdi-plus"></i> Tambah
                     Supervisor</button>
 
-                    <a href="/export-template-munaqisy" class="btn btn-sm btn-outline-primary mb-2 mr-1 text-uppercase"
+                    <a href="/export-template-supervisor" class="btn btn-sm btn-outline-primary mb-2 mr-1 text-uppercase"
                         style="font-size: 12px "><i class="mdi mdi-download"></i> Template Supervisor</a>
 
                     <button class="btn btn-sm btn-outline-success mb-2 mr-1 text-uppercase" style="font-size: 12px "
@@ -149,6 +149,10 @@
                                             <label for="">Alamat</label>
                                             <textarea name="alamat" id="alamat" class="form-control" id="" cols="3"
                                                 rows="3"></textarea>
+                                        </div>
+                                        <div class="col-md-6 col-12 form-group">
+                                            <label for="">STATUS</label>
+                                            <input type="text" id="stats" name="stats" value="Supervisor" class="form-control" readonly>
                                         </div>
                                     </div>
                                     <hr>
