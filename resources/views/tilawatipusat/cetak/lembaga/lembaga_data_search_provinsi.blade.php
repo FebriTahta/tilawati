@@ -41,6 +41,7 @@
                 <th rowspan="2" style="font-weight: bold">ASAL CABANG</th>
                 <th rowspan="2" style="font-weight: bold">KOTA / KABUPATEN</th>
                 <th rowspan="2" style="font-weight: bold">ALAMAT</th>
+                <th rowspan="2" style="font-weight: bold">TAHUN MASUK</th>
             </tr>
             <tr></tr>
         </thead >
@@ -60,6 +61,7 @@
                     <td>{{$item->cabang->name}}</td>
                     <td>{{$item->kabupaten->nama}}</td>
                     <td>{{$item->alamat}}</td>
+                    <td>{{ $item->tahunmasuk }}</td>
                 </tr>
             @endforeach
         </tbody>
