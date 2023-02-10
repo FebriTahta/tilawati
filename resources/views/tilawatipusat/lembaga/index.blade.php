@@ -327,7 +327,7 @@
                                             </div>
                                             <div class="form-group col-xl-3">
                                                 <label for=""><i class="text-danger"> </i>Tahun Masuk</label>
-                                                <input type="date" class="form-control" name="tahunmasuk" >
+                                                <input type="number" class="form-control" name="tahunmasuk" >
                                             </div>
                                             <div class="form-group col-xl-3">
                                                 <label for=""><i class="text-danger">* </i>Jumlah Guru</label>

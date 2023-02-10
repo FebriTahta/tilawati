@@ -33,7 +33,7 @@
                 <th rowspan="2">NAMA MUNAQISY</th>
                 <th rowspan="2">NOMOR TELP / WA AKTIF</th>
                 <th rowspan="2">ALAMAT</th>
-                <th></th>
+                <th rowspan="2">MUNAQISY</th>
             </tr>
         </thead >
         <tbody>
@@ -43,6 +43,7 @@
                 <td>Nama Lengkap + Gelar</td>
                 <td>UBAH COLUMN "C" INI KE FORMAT TEXT AGAR FORMAT NOMOR TELP SESUAI</td>
                 <td>Alamat Lengkap</td>
+                <td>OK</td>
             </tr>
         </tbody>
     </table>
